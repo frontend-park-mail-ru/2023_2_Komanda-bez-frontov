@@ -1,0 +1,49 @@
+body {
+	font-family: Arial, sans-serif;
+	background-color: black;
+	color: white;
+	height: 100%;
+	margin-top: 20px;
+}
+
+h1 {
+	color: #F7CA18
+}
+
+h4 {
+	color: black
+}
+
+
+.column {
+	float: left;
+}
+
+.main-div {
+	width: 85%
+}
+
+.right-bar-div {
+	width: 15%
+}
+
+ /* Fonts */ 
+ 
+.text-ui {
+	color: #F7CA18,
+	
+}
+
+ /* Right bar specific styles */ 
+div[name="right-bar-container"] {
+	background: #F7CA18;
+	border: solid Blue;
+}
+
+.profile-picture {
+	max-width: 60%; 
+    max-height: 60%;
+	border: solid blue;
+	margin-left: 20%;
+	margin-bottom: 5%;
+}
