@@ -10,7 +10,7 @@
 	display: grid;
 	grid-template-columns: 1fr 1fr;
 	list-style: none;
-
+	margin-bottom: 20px;
 }
 
 .log-sign-choice {
@@ -40,8 +40,6 @@
 	font-size: 20px;
 }
 
-
-
 #login {
 	display: block;
 
@@ -64,6 +62,7 @@
 
 .tab-content {
 	border: solid #F7CA18;
+	min-width: 400px;
 }
 
 .form-group {

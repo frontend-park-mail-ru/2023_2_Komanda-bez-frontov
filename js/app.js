@@ -1,5 +1,7 @@
 console.log('Start')
 
+var templates_done = false;
+
 const templateElements = document.querySelectorAll('.template');
 
 templateElements.forEach((element) => console.log(element.getAttribute("name")))
@@ -38,3 +40,4 @@ templateElements.forEach((element) =>
 	  .catch(error => console.log(error))
 )
 
+templates_done = true;
