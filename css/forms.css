@@ -1,0 +1,75 @@
+
+.form-container {
+    display: flex;
+    justify-content: center;
+    font-family: 'Exo 2', sans-serif;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+}
+
+.signup-form {
+    width: 25%;
+}
+
+form {
+    height: 42%;
+    border-radius: 12px;
+    border: 3px solid #424242;
+    text-align: center;
+}
+
+form h3 {
+    font-size: 30px;
+}
+
+input {
+    width: 97.5%;
+    height: 60%;
+    margin: 2% 0;
+    border-radius: 12px;
+    border: 3px solid #424242;
+    padding: 7px 15px;
+    box-sizing: border-box;
+    font-size: 25px;
+    font-family: 'Exo 2', sans-serif;
+}
+
+.button-container {
+    display: flex;
+}
+
+.secondary-button {
+    background-color: #4B357A;
+    padding: 13px 12px;
+    color: white;
+    border-radius: 12px;
+    margin: 30px 6px;
+    width: 100%;
+    font-size: 15px;
+    font-family: 'Exo 2', sans-serif;
+    font-weight: bold;
+}
+
+.primary-button {
+    color: black;
+    padding: 13px 18px;
+    border-radius: 12px;
+    border: 3px solid #424242;
+    margin: 30px 6px;
+    width: 100%;
+    font-size: 15px;
+    font-family: 'Exo 2', sans-serif;
+    font-weight: bold;
+}
+
+button:hover {
+    opacity: 0.6;
+    cursor: pointer;
+}
+
+.main-сontainer {
+    padding: 13px;
+}
