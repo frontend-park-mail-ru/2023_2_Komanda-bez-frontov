@@ -6,6 +6,7 @@
 .navbar {
     display: flex;
     justify-content:space-between;
+    font-family: 'Exo 2', sans-serif;
     align-items: center;
     padding: 1.25rem 4rem;
     background: #4B357A;
@@ -14,6 +15,25 @@
 .logo a {
     color: #ffffff;
     font-family: 'Exo 2', sans-serif;
+    font-weight: bold;
     font-size: 36px;
+}
+
+.profile {
+    font-size: 24px;
+    color: white;
+    height: 60px;
+}
+
+.profile_pic {
+    height: 60px;
+    width: 60px;
+    object-fit: contain;
+}
+
+.profile_name {
+    position: relative;
+    bottom: 15px;
+    left: 20px
 }
 

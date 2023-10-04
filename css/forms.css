@@ -10,6 +10,17 @@
     transform: translate(-50%, -50%);
 }
 
+.list-container {
+    display: flex;
+    justify-content: center;
+    font-family: 'Exo 2', sans-serif;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+}
+
 .signup-form {
     width: 25%;
 }
