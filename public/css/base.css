@@ -19,12 +19,6 @@
     font-size: 36px;
 }
 
-.profile {
-    font-size: 24px;
-    color: white;
-    height: 60px;
-}
-
 .profile_pic {
     height: 60px;
     width: 60px;
@@ -32,6 +26,8 @@
 }
 
 .profile_name {
+    font-size: 24px;
+    color: white;
     position: relative;
     bottom: 15px;
     left: 20px
