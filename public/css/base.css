@@ -6,10 +6,16 @@
 .navbar {
     display: flex;
     justify-content:space-between;
+    position: fixed;
+    width: 100%;
     font-family: 'Exo 2', sans-serif;
     align-items: center;
     padding: 1.25rem 4rem;
     background: #4B357A;
+}
+
+html {
+    scroll-padding-top: 70px;
 }
 
 .logo a {
@@ -17,6 +23,10 @@
     font-family: 'Exo 2', sans-serif;
     font-weight: bold;
     font-size: 36px;
+}
+
+.profile {
+    margin-right: 8rem;
 }
 
 .profile_pic {

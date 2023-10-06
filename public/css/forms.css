@@ -3,15 +3,17 @@
     display: flex;
     justify-content: center;
     font-family: 'Exo 2', sans-serif;
+    width: 100%;
     position: absolute;
-    top: 50%;
-    left: 50%;
-    margin-right: -50%;
-    transform: translate(-50%, -50%);
+    top: 130px;
 }
 
 .signup-form {
     width: 25%;
+}
+
+.login-form {
+    width: 30%;
 }
 
 form {
@@ -25,6 +27,7 @@ form {
 
 form h3 {
     font-size: 30px;
+    margin-bottom: 15px;
 }
 
 input {

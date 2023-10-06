@@ -4,29 +4,20 @@ const application = document.getElementById('app');
 
 const config = {
     menu: {
-        href: '/menu',
-        text: 'Меню!',
-        open: menuPage,
+        href: '/',
+        text: 'Лента',
+        open: indexPage,
     },
     signup: {
         href: '/signup',
-        text: 'Зарегистрироваться!',
+        text: 'Регистрация',
         open: signupPage,
     },
     login: {
         href: '/login',
-        text: 'Авторизоваться!',
+        text: 'Авторизация',
         open: loginPage,
     },
-    profile: {
-        href: '/profile',
-        text: 'Профиль',
-        open: profilePage,
-    },
-    about: {
-        href: '/about',
-        text: 'Контакты',
-    }
 }
 
 function createInput(type, text, name) {
@@ -47,69 +38,105 @@ function createButton(classname, type, text) {
     return btn;
 }
 
-function createHeader() {
+function createNavbar() {
     const navbar = document.createElement('nav');
     navbar.classList.add('navbar');
 
     const logo = document.createElement('div');
     logo.classList.add('logo');
-    logo.textContent = '<a>FormHub</a>';
+    const logoText = document.createElement('a');
+    logoText.textContent = 'FormHub';
 
     const profile = document.createElement('div');
     profile.classList.add('profile')
 
     const image = document.createElement('img')
+    image.classList.add('profile_pic');
+    image.src = '../resources/images/profile_default.png';
+    const profName = document.createElement('a');
+    profName.classList.add('profile_name');
+    profName.textContent = 'Ваше Имя';
 
+    profile.appendChild(image);
+    profile.appendChild(profName);
+    logo.appendChild(logoText);
+    navbar.appendChild(logo);
+    navbar.appendChild(profile)
+
+    return navbar;
 }
 
 
-function menuPage() {
+function indexPage() {
     application.innerHTML = '';
+    const navbar = createNavbar();
+    application.appendChild(navbar);
 
-    Object
-        .entries(config)
-        .map(([menuKey, {text, href}]) => {
-            const menuItem = document.createElement('a');
-            menuItem.href = href;
-            menuItem.textContent = text;
-            menuItem.dataset.section = menuKey;
+    const listContainer = document.createElement('div')
+    listContainer.classList.add('list-container');
+    const mainContainer = document.createElement('div')
+    mainContainer.classList.add('main-container');
 
-            return menuItem;
-        })
-        .forEach(element => application.appendChild(element))
-    ;
+    const label = document.createElement('h3')
+    label.textContent = 'Популярные опросы';
+    const br = document.createElement('br')
+    for (let i = 1; i <= 10; i++) {
+        const btn = createButton('list-item', '', 'Мой опрос'+i);
+        mainContainer.appendChild(btn);
+    }
+
+    listContainer.appendChild(label);
+    listContainer.appendChild(br);
+    listContainer.appendChild(mainContainer);
+
+    application.appendChild(listContainer);
 }
 
 function signupPage() {
-    application.innerHTML = '<h1>Регистрация!</h1>';
+    application.innerHTML = '';
+    const navbar = createNavbar();
+    application.appendChild(navbar);
 
-    const form = document.createElement('form');
+    const formContainer = document.createElement('div')
+    formContainer.classList.add('form-container')
+    const signupForm = document.createElement('form');
+    signupForm.classList.add('signup-form')
+    const mainContainer = document.createElement('div')
+    mainContainer.classList.add('main-container')
 
-    const emailInput = createInput('email', 'Емайл', 'email');
+    const label = document.createElement('h3')
+    label.textContent = 'Регистрация';
+
+    const nameInput = createInput('text', 'Имя', 'name');
+    const surnameInput = createInput('text', 'Фамилия', 'surname');
+    const emailInput = createInput('email', 'Почта', 'email');
     const passwordInput = createInput('password', 'Пароль', 'password');
-    const ageInput = createInput('number', 'Возраст', 'age');
 
-    const submitBtn = document.createElement('input');
-    submitBtn.type = 'submit';
-    submitBtn.value = 'Зарегистрироваться!';
+    const buttonContainer = document.createElement('div')
+    buttonContainer.classList.add('button-container')
 
-    const back = document.createElement('a');
-    back.href = '/menu';
-    back.textContent = 'Назад';
-    back.dataset.section = 'menu';
+    const signupButton = createButton('secondary-button', 'submit', 'Создать аккаунт')
 
+    buttonContainer.appendChild(signupButton);
 
-    form.appendChild(emailInput);
-    form.appendChild(passwordInput);
-    form.appendChild(ageInput);
-    form.appendChild(submitBtn);
-    form.appendChild(back);
+    mainContainer.appendChild(nameInput);
+    mainContainer.appendChild(surnameInput);
+    mainContainer.appendChild(emailInput);
+    mainContainer.appendChild(passwordInput);
+    mainContainer.appendChild(buttonContainer);
 
-    application.appendChild(form);
+    signupForm.appendChild(label);
+    signupForm.appendChild(mainContainer);
+
+    formContainer.appendChild(signupForm);
+
+    application.appendChild(formContainer)
 }
 
 function loginPage() {
     application.innerHTML = '';
+    const navbar = createNavbar();
+    application.appendChild(navbar);
 
     const formContainer = document.createElement('div')
     formContainer.classList.add('form-container')
@@ -220,7 +247,7 @@ function profilePage() {
     });
 }
 
-menuPage();
+signupPage();
 
 application.addEventListener('click', e => {
     const {target} = e;

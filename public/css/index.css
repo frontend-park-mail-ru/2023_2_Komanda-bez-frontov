@@ -1,19 +1,8 @@
 
 .list-container {
-    width: max-content;
-    display: flex;
-    justify-content: center;
     font-family: 'Exo 2', sans-serif;
     position: absolute;
-    top: 45%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
-
-.list-form {
-    margin-top: 40px;
-    font-family: 'Exo 2', sans-serif;
-    border-radius: 12px;
+    top: 140px;
     text-align: center;
     border: none;
     font-size: 24px;
