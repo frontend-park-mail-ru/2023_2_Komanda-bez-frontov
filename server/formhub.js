@@ -6,17 +6,17 @@ const port = process.env.PORT || 3000;
 
 app.use(express.static(path.join(__dirname, '../public')));
 
-app.get('/', (req, res) => {
+app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, '../public/html/', 'main.html'));
 });
 
-app.get('/login', (req, res) => {
-    res.sendFile(path.join(__dirname, '../public/html/', 'main.html'));
-});
-
-app.get('/signup', (req, res) => {
-    res.sendFile(path.join(__dirname, '../public/html/', 'main.html'));
-});
+// app.get('/login', (req, res) => {
+//     res.sendFile(path.join(__dirname, '../public/html/', 'main.html'));
+// });
+//
+// app.get('/signup', (req, res) => {
+//     res.sendFile(path.join(__dirname, '../public/html/', 'main.html'));
+// });
 
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`);

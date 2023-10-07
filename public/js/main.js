@@ -2,23 +2,20 @@ console.log('lol kek');
 
 const application = document.getElementById('app');
 
-const config = {
-    menu: {
-        href: '/',
-        text: 'Лента',
+const routes = [
+    {
+        path: '/',
         open: indexPage,
     },
-    signup: {
-        href: '/signup',
-        text: 'Регистрация',
+    {
+        path: '/signup',
         open: signupPage,
     },
-    login: {
-        href: '/login',
-        text: 'Авторизация',
+    {
+        path: '/login',
         open: loginPage,
-    },
-}
+    }
+]
 
 function createInput(type, text, name) {
     const input = document.createElement('input');
@@ -29,9 +26,10 @@ function createInput(type, text, name) {
     return input;
 }
 
-function createButton(classname, type, text) {
+function createButton(classname, href, type, text) {
     const btn = document.createElement('button');
     btn.classList.add(classname);
+    btn.href = href;
     btn.type = type;
     btn.textContent = text;
 
@@ -78,10 +76,10 @@ function indexPage() {
     mainContainer.classList.add('main-container');
 
     const label = document.createElement('h3')
-    label.textContent = 'Популярные опросы';
+    label.textContent = 'Мои опросы';
     const br = document.createElement('br')
-    for (let i = 1; i <= 10; i++) {
-        const btn = createButton('list-item', '', 'Мой опрос'+i);
+    for (let i = 1; i <= 5; i++) {
+        const btn = createButton('list-item', 'none', '', 'Мой опрос' + i);
         mainContainer.appendChild(btn);
     }
 
@@ -115,7 +113,7 @@ function signupPage() {
     const buttonContainer = document.createElement('div')
     buttonContainer.classList.add('button-container')
 
-    const signupButton = createButton('secondary-button', 'submit', 'Создать аккаунт')
+    const signupButton = createButton('secondary-button', 'none','submit', 'Создать аккаунт')
 
     buttonContainer.appendChild(signupButton);
 
@@ -154,8 +152,8 @@ function loginPage() {
     const buttonContainer = document.createElement('div')
     buttonContainer.classList.add('button-container')
 
-    const loginButton = createButton('secondary-button', 'submit', 'Войти')
-    const signupButton = createButton('primary-button', 'none', 'Регистрация')
+    const loginButton = createButton('secondary-button', 'none', 'submit', 'Войти')
+    const signupButton = createButton('primary-button', '/signup', 'none', 'Регистрация')
 
     buttonContainer.appendChild(loginButton);
     buttonContainer.appendChild(signupButton);
@@ -169,93 +167,13 @@ function loginPage() {
 
     formContainer.appendChild(loginForm);
 
-    loginForm.addEventListener('submit', (evt) => {
-        evt.preventDefault();
-
-        const email = emailInput.value.trim();
-        const password = passwordInput.value.trim();
-
-        ajax(
-            'POST',
-            '/login',
-            {email, password},
-            (status, response) => {
-                if (status === 200) {
-                    profilePage();
-                } else {
-                    const {error} = JSON.parse(response);
-                    alert(error);
-                }
-            }
-        )
-
-    });
-
     application.appendChild(formContainer);
 }
 
-function profilePage() {
-    application.innerHTML = '';
-
-    ajax('GET', '/me', null, (status, responseText) => {
-        let isAuthorized = false;
-
-        if (status === 200) {
-            isAuthorized = true;
-        }
-
-        if (status === 401) {
-            isAuthorized = false;
-        }
-
-
-        if (isAuthorized) {
-            const responseBody = JSON.parse(responseText);
-
-            const span = document.createElement('span');
-            span.innerHTML = `Мне ${responseBody.age} и я крутой на ${responseBody.score} очков`;
-
-
-            application.appendChild(span);
-
-            const back = document.createElement('a');
-            back.href = '/menu';
-            back.textContent = 'Назад';
-            back.dataset.section = 'menu';
-
-            application.appendChild(back);
-
-
-            const {images} = responseBody;
-
-            if (images && Array.isArray(images)) {
-                const div = document.createElement('div');
-                application.appendChild(div);
-
-                images.forEach((imageSrc) => {
-                    div.innerHTML += `<img src="${imageSrc}" width="400" />`;
-                });
-            }
-
-            return;
-        }
-
-
-        alert('АХТУНГ! НЕТ АВТОРИЗАЦИИ');
-
-        loginPage();
-    });
-}
-
-signupPage();
-
-application.addEventListener('click', e => {
-    const {target} = e;
-
-    if (target instanceof HTMLAnchorElement) {
-        e.preventDefault();
-        config[target.dataset.section].open();
-    }
+window.addEventListener('DOMContentLoaded', function() {
+    application.innerHTML = ""
+    let route = routes.find(route => route.path === window.location.pathname);
+    application.appendChild(route.open());
 });
 
 function ajax(method, url, body = null, callback) {
