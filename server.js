@@ -1,5 +1,6 @@
 const express = require('express');
 const path = require('path');
+const fs = require('fs')
 
 const PORT = 3000;
 
@@ -14,20 +15,22 @@ function logger(req, res, next) {
 
 app.use(logger);
 
-app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, '/public/html/index.html'));
+// Define route for sending the HTML file
+app.get('*', (req, res) => {
+  // Read the HTML file from the file system
+  const htmlFile = fs.readFileSync(path.join(__dirname, 'public', 'main.html'), 'utf-8');
+
+  // Send the HTML file as a response
+  res.send(htmlFile);
 });
 
-app.get('/login', (req, res) => {
-  res.sendFile(path.join(__dirname, '/public/html/login.html'));
-});
+// Define route for sending the JS file
+app.get('/script.js', (req, res) => {
+  // Read the JS file from the file system
+  const jsFile = fs.readFileSync(path.join(__dirname, 'public', 'main.js'), 'utf-8');
 
-app.get('/signup', (req, res) => {
-  res.sendFile(path.join(__dirname, '/public/html/main.html'));
-});
-
-app.get('/main', (req, res) => {
-  res.sendFile(path.join(__dirname, '/public/html/main.html'));
+  // Send the JS file as a response
+  res.send(jsFile);
 });
 
 app.listen(PORT, () => console.log(`Server listening port ${PORT}`));

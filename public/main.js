@@ -29,9 +29,15 @@ function createInput(type, text, name) {
 function createButton(classname, href, type, text) {
     const btn = document.createElement('button');
     btn.classList.add(classname);
-    btn.href = href;
     btn.type = type;
     btn.textContent = text;
+    if(href != "none") {
+        console.log(classname, href, type, text);
+        btn.addEventListener('click', function() {
+            window.location.href = href;
+            routes.find(route => route.path === href).open();
+        });
+    }
 
     return btn;
 }
@@ -113,7 +119,7 @@ function signupPage() {
     const buttonContainer = document.createElement('div')
     buttonContainer.classList.add('button-container')
 
-    const signupButton = createButton('secondary-button', 'none','submit', 'Создать аккаунт')
+    const signupButton = createButton('secondary-button', 'none', 'submit', 'Создать аккаунт')
 
     buttonContainer.appendChild(signupButton);
 
@@ -171,9 +177,10 @@ function loginPage() {
 }
 
 window.addEventListener('DOMContentLoaded', function() {
-    application.innerHTML = ""
+    application.innerHTML = "";
     let route = routes.find(route => route.path === window.location.pathname);
-    application.appendChild(route.open());
+    console.log(route.path)
+    route.open();
 });
 
 function ajax(method, url, body = null, callback) {
