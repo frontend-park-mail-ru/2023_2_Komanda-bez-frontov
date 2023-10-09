@@ -1,6 +1,12 @@
 {
+  "name": "FormHub",
   "dependencies": {
     "express": "^4.18.2",
     "path": "^0.12.7"
+  },
+  "main": "server.js",
+  "scripts": {
+    "dev": "nodemon server/server.js"
   }
+
 }
