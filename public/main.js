@@ -134,6 +134,41 @@ function signupPage() {
 
     formContainer.appendChild(signupForm);
 
+    signupForm.addEventListener("submit", (event) => {
+        event.preventDefault(); // Prevent form submission
+    
+        const name = nameInput.value;
+        const surname = surnameInput.value;
+        const email = emailInput.value;
+        const password = passwordInput.value;
+    
+        const data = {
+            name: name,
+            surname: surname,
+            email: email,
+            password: password
+        };
+    
+        fetch("http://212.233.94.20:8080", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(data)
+        }).then((response) => {
+            if (!response.ok) {
+                throw new Error("Error: " + response.status);
+            } else {
+                console.log("Redirect will go here.")
+            }
+            return response.json();
+        }).then((responseData) => {
+            console.log(responseData); // Handle the response data
+        }).catch((error) => {
+            console.error(error); // Handle any errors
+        });
+    });
+
     application.appendChild(formContainer)
 }
 
