@@ -3,6 +3,7 @@ const path = require('path');
 const fs = require('fs')
 
 const PORT = 3000;
+const IP = '0.0.0.0'
 
 const app = express();
 
@@ -33,4 +34,7 @@ app.get('/script.js', (req, res) => {
   res.send(jsFile);
 });
 
-app.listen(PORT, () => console.log(`Server listening port ${PORT}`));
+app.listen(PORT, IP, () => {
+  console.log('Server running on port 3000');
+});
+app.listen(PORT, () => console.log(`Server listening port ${PORT} with ip ${IP}`));
