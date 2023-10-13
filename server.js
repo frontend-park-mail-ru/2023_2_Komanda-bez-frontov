@@ -2,8 +2,9 @@ const express = require('express');
 const path = require('path');
 const fs = require('fs')
 
+
 const PORT = 3000;
-const IP = '0.0.0.0'
+const IP = '127.0.0.1'
 
 const app = express();
 
@@ -34,7 +35,10 @@ app.get('/script.js', (req, res) => {
   res.send(jsFile);
 });
 
-app.listen(PORT, IP, () => {
-  console.log('Server running on port 3000');
+app.listen(PORT, IP, (error) => {
+  if (error) {
+    console.error('Error starting the server:', error);
+  } else {
+    console.log(`Server is running on ${IP}:${PORT}`);
+  }
 });
-app.listen(PORT, () => console.log(`Server listening port ${PORT} with ip ${IP}`));
