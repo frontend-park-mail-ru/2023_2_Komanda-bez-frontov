@@ -149,8 +149,9 @@ function signupPage() {
             password: password
         };
     
-        fetch("http://212.233.94.20:8080", {
+        fetch("https://b0f0-109-252-180-89.ngrok-free.app/api/v1/signup", {
             method: "POST",
+            mode: 'cors',
             headers: {
                 "Content-Type": "application/json"
             },

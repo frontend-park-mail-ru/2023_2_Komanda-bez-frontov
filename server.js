@@ -3,8 +3,8 @@ const path = require('path');
 const fs = require('fs')
 
 
-const PORT = 3000;
-const IP = '127.0.0.1'
+const PORT = 8000;
+const IP = '212.233.94.20'
 
 const app = express();
 
