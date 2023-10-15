@@ -4,16 +4,16 @@ const application = document.getElementById('app');
 
 const routes = [
     {
-        path: '/',
-        open: indexPage,
+        path: '/index',
+        open: renderIndex,
     },
     {
         path: '/signup',
-        open: signupPage,
+        open: returnSignup,
     },
     {
         path: '/login',
-        open: loginPage,
+        open: renderLogin,
     }
 ]
 
@@ -31,11 +31,10 @@ function createButton(classname, href, type, text) {
     btn.classList.add(classname);
     btn.type = type;
     btn.textContent = text;
-    if(href != "none") {
+    if(href !== "none") {
         console.log(classname, href, type, text);
         btn.addEventListener('click', function() {
-            window.location.href = href;
-            routes.find(route => route.path === href).open();
+            goToPage('/signup')
         });
     }
 
@@ -54,14 +53,10 @@ function createNavbar() {
     const profile = document.createElement('div');
     profile.classList.add('profile')
 
-    const image = document.createElement('img')
-    image.classList.add('profile_pic');
-    image.src = '../resources/images/profile_default.png';
     const profName = document.createElement('a');
     profName.classList.add('profile_name');
     profName.textContent = 'Ваше Имя';
 
-    profile.appendChild(image);
     profile.appendChild(profName);
     logo.appendChild(logoText);
     navbar.appendChild(logo);
@@ -71,42 +66,59 @@ function createNavbar() {
 }
 
 
-function indexPage() {
+function renderIndex() {
     application.innerHTML = '';
     const navbar = createNavbar();
     application.appendChild(navbar);
 
-    const listContainer = document.createElement('div')
-    listContainer.classList.add('list-container');
+    const listForm = document.createElement('div')
+    listForm.classList.add('list-form');
     const mainContainer = document.createElement('div')
-    mainContainer.classList.add('main-container');
 
     const label = document.createElement('h3')
     label.textContent = 'Мои опросы';
     const br = document.createElement('br')
-    for (let i = 1; i <= 5; i++) {
-        const btn = createButton('list-item', 'none', '', 'Мой опрос' + i);
-        mainContainer.appendChild(btn);
-    }
 
-    listContainer.appendChild(label);
-    listContainer.appendChild(br);
-    listContainer.appendChild(mainContainer);
+    ajax(
+        'GET',
+        '/index',
+        null,
+        (status, responseString) => {
+            let isAuthorized = false;
 
-    application.appendChild(listContainer);
+            if (status === 200) {
+                isAuthorized = true;
+                for (let i = 1; i <= 5; i++) {
+                    const btn = createButton('list-item', 'none', '', 'Мой опрос' + i);
+                    mainContainer.appendChild(btn);
+                }
+            }
+
+            if (!isAuthorized) {
+                alert('АХТУНГ! НЕТ АВТОРИЗАЦИИ');
+                goToPage("/login");
+            }
+        }
+    );
+
+    listForm.appendChild(label);
+    listForm.appendChild(br);
+    listForm.appendChild(mainContainer);
+
+    return listForm
 }
 
-function signupPage() {
+function returnSignup() {
     application.innerHTML = '';
     const navbar = createNavbar();
     application.appendChild(navbar);
 
     const formContainer = document.createElement('div')
-    formContainer.classList.add('form-container')
+    formContainer.classList.add('container')
     const signupForm = document.createElement('form');
-    signupForm.classList.add('signup-form')
+    formContainer.classList.add('signup-form')
+
     const mainContainer = document.createElement('div')
-    mainContainer.classList.add('main-container')
 
     const label = document.createElement('h3')
     label.textContent = 'Регистрация';
@@ -119,7 +131,7 @@ function signupPage() {
     const buttonContainer = document.createElement('div')
     buttonContainer.classList.add('button-container')
 
-    const signupButton = createButton('secondary-button', 'none', 'submit', 'Создать аккаунт')
+    const signupButton = createButton('primary-button', 'none', 'submit', 'Создать аккаунт')
 
     buttonContainer.appendChild(signupButton);
 
@@ -136,57 +148,37 @@ function signupPage() {
 
     signupForm.addEventListener("submit", (event) => {
         event.preventDefault(); // Prevent form submission
-    
+
         const name = nameInput.value;
         const surname = surnameInput.value;
         const email = emailInput.value;
         const password = passwordInput.value;
-    
+
         const data = {
             name: name,
             surname: surname,
             email: email,
             password: password
         };
-    
-        fetch("http://212.233.94.20:8080", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(data)
-        }).then((response) => {
-            if (!response.ok) {
-                throw new Error("Error: " + response.status);
-            } else {
-                console.log("Redirect will go here.")
-            }
-            return response.json();
-        }).then((responseData) => {
-            console.log(responseData); // Handle the response data
-        }).catch((error) => {
-            console.error(error); // Handle any errors
-        });
     });
-
-    application.appendChild(formContainer)
+    
+    return formContainer
 }
 
-function loginPage() {
+function renderLogin() {
     application.innerHTML = '';
     const navbar = createNavbar();
     application.appendChild(navbar);
 
     const formContainer = document.createElement('div')
-    formContainer.classList.add('form-container')
+    formContainer.classList.add('container')
     const loginForm = document.createElement('form');
     loginForm.classList.add('login-form')
     const mainContainer = document.createElement('div')
-    mainContainer.classList.add('main-container')
 
     const label = document.createElement('h3')
     label.textContent = 'Вход';
-
+    const br = document.createElement('br')
     const emailInput = createInput('email', 'Почта', 'email');
     const passwordInput = createInput('password', 'Пароль', 'password');
 
@@ -204,19 +196,34 @@ function loginPage() {
     mainContainer.appendChild(buttonContainer);
 
     loginForm.appendChild(label);
+    loginForm.appendChild(br);
     loginForm.appendChild(mainContainer);
 
     formContainer.appendChild(loginForm);
 
-    application.appendChild(formContainer);
-}
+    formContainer.addEventListener('submit', (e) => {
+        e.preventDefault();
 
-window.addEventListener('DOMContentLoaded', function() {
-    application.innerHTML = "";
-    let route = routes.find(route => route.path === window.location.pathname);
-    console.log(route.path)
-    route.open();
-});
+        const email = emailInput.value.trim();
+        const password = passwordInput.value;
+
+        ajax(
+            'POST',
+            '/login',
+            {password, email},
+            (status) => {
+                if (status === 200) {
+                    goToPage('/index');
+                    return;
+                }
+
+                alert('НЕВЕРНЫЙ ЕМЕЙЛ ИЛИ ПАРОЛЬ');
+            }
+        )
+    });
+
+    return formContainer
+}
 
 function ajax(method, url, body = null, callback) {
     const xhr = new XMLHttpRequest();
@@ -237,3 +244,12 @@ function ajax(method, url, body = null, callback) {
 
     xhr.send();
 }
+
+function goToPage(href) {
+    application.innerHTML = '';
+    const newPage = routes.find(route => route.path === href).open();
+    application.appendChild(newPage)
+}
+
+const mainPage = renderIndex()
+application.appendChild(mainPage)
