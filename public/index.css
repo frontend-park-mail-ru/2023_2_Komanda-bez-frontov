@@ -1,12 +1,12 @@
 * {
     padding: 0;
     margin: 0;
+    font-family: 'Exo 2', sans-serif;
 }
 
 .navbar {
     display: flex;
     justify-content:space-between;
-    font-family: 'Exo 2', sans-serif;
     align-items: center;
     padding: 1.25rem 4rem;
     background: #4B357A;
@@ -14,7 +14,6 @@
 
 .logo a {
     color: #ffffff;
-    font-family: 'Exo 2', sans-serif;
     font-weight: bold;
     font-size: 36px;
 }
@@ -26,7 +25,6 @@
 
 .list-form {
     margin-top: 40px;
-    font-family: 'Exo 2', sans-serif;
     border-radius: 12px;
     text-align: center;
     border: none;
@@ -47,27 +45,24 @@
     margin: 20px 10%;
     width: 80%;
     font-size: 20px;
-    font-family: 'Exo 2', sans-serif;
     font-weight: bold;
 }
 
 .container {
     display: flex;
     justify-content: center;
-    font-family: 'Exo 2', sans-serif;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    margin-right: -50%;
-    transform: translate(-50%, -50%);
+    align-items: center;
+    height: 67vh;
+
 }
 
 .signup-form {
     width: 20%;
+    height: 60%;
 }
 
 .login-form {
-    width: 50%;
+    width: 20%;
 }
 
 form {
@@ -90,7 +85,6 @@ input {
     padding: 7px 15px;
     box-sizing: border-box;
     font-size: 25px;
-    font-family: 'Exo 2', sans-serif;
 }
 
 .button-container {
@@ -106,7 +100,6 @@ input {
     width: 100%;
     margin: 1%;
     font-size: 15px;
-    font-family: 'Exo 2', sans-serif;
     font-weight: bold;
 }
 .primary-button {
@@ -117,7 +110,6 @@ input {
     width: 100%;
     margin: 1%;
     font-size: 15px;
-    font-family: 'Exo 2', sans-serif;
     font-weight: bold;
 }
 

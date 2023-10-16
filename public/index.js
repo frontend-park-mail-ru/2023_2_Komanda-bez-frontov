@@ -116,8 +116,7 @@ function returnSignup() {
     const formContainer = document.createElement('div')
     formContainer.classList.add('container')
     const signupForm = document.createElement('form');
-    formContainer.classList.add('signup-form')
-
+    signupForm.classList.add('signup-form')
     const mainContainer = document.createElement('div')
 
     const label = document.createElement('h3')
@@ -147,19 +146,13 @@ function returnSignup() {
     formContainer.appendChild(signupForm);
 
     signupForm.addEventListener("submit", (event) => {
-        event.preventDefault(); // Prevent form submission
+        event.preventDefault();
 
-        const name = nameInput.value;
-        const surname = surnameInput.value;
-        const email = emailInput.value;
-        const password = passwordInput.value;
+        // const name = nameInput.value;
+        // const surname = surnameInput.value;
+        // const email = emailInput.value;
+        // const password = passwordInput.value;
 
-        const data = {
-            name: name,
-            surname: surname,
-            email: email,
-            password: password
-        };
     });
     
     return formContainer
