@@ -26,7 +26,7 @@ app.get('/index', (req, res) => {
   const id = req.cookies['podvorot'];
   const emailSession = ids[id];
   if (!emailSession || !users[emailSession]) {
-    return res.status(401).end();
+    return res.status(401).json({error: 'Пользователь не авторизован!'});
   }
 
   const result = Object
@@ -51,7 +51,7 @@ app.post('/login',  (req, res) => {
   ids[id] = email;
 
   res.cookie('podvorot', id, {expires: new Date(Date.now() + 1000 * 60 * 10)});
-  res.status(200).json({id});
+  res.status(200).json({id, message: "Вы успешно вошли!"});
 });
 
 app.post('/signup', (req, res) => {
@@ -74,7 +74,7 @@ app.post('/signup', (req, res) => {
   users[email] = user;
 
   res.cookie('podvorot', id, {expires: new Date(Date.now() + 1000 * 60 * 10)});
-  res.status(201).json({id});
+  res.status(201).json({id, message: "Вы успешно вошли!"});
 });
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));

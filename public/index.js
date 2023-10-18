@@ -41,6 +41,29 @@ function createButton(classname, href, type, text) {
     return btn;
 }
 
+function createMessagesBox(message) {
+    if (message === undefined) {
+        return null;
+    }
+
+    const messageContainer = document.createElement('div');
+    const messageText = document.createElement('p');
+
+    JSON.parse(message, function (key, value) {
+        if (key === "error") {
+            messageContainer.classList.add("error-container");
+            messageText.textContent = value;
+        } else {
+            if (key === "message") {
+                messageContainer.classList.add("message-container");
+                messageText.textContent = value;
+            }
+        }
+    });
+    messageContainer.appendChild(messageText);
+    return messageContainer;
+}
+
 function createNavbar() {
     const navbar = document.createElement('nav');
     navbar.classList.add('navbar');
@@ -66,13 +89,20 @@ function createNavbar() {
 }
 
 
-function renderIndex() {
+function renderIndex(message) {
     application.innerHTML = '';
     const navbar = createNavbar();
     application.appendChild(navbar);
 
+    const messageBox = createMessagesBox(message);
+    if (messageBox !== null) {
+        application.appendChild(messageBox);
+    }
+
     const listForm = document.createElement('div')
     listForm.classList.add('list-form');
+
+
     const mainContainer = document.createElement('div')
 
     const label = document.createElement('h3')
@@ -95,8 +125,7 @@ function renderIndex() {
             }
 
             if (!isAuthorized) {
-                alert('АХТУНГ! НЕТ АВТОРИЗАЦИИ');
-                goToPage("/login");
+                goToPage("/login", responseString);
             }
         }
     );
@@ -108,15 +137,22 @@ function renderIndex() {
     return listForm
 }
 
-function returnSignup() {
+function returnSignup(message) {
     application.innerHTML = '';
     const navbar = createNavbar();
     application.appendChild(navbar);
 
+    const messageBox = createMessagesBox(message);
+    if (messageBox !== null) {
+        application.appendChild(messageBox);
+    }
+
     const formContainer = document.createElement('div')
     formContainer.classList.add('container')
+
     const signupForm = document.createElement('form');
     signupForm.classList.add('signup-form')
+
     const mainContainer = document.createElement('div')
 
     const label = document.createElement('h3')
@@ -158,18 +194,25 @@ function returnSignup() {
     return formContainer
 }
 
-function renderLogin() {
+function renderLogin(message) {
     application.innerHTML = '';
     const navbar = createNavbar();
     application.appendChild(navbar);
 
-    const formContainer = document.createElement('div')
-    formContainer.classList.add('container')
-    const loginForm = document.createElement('form');
-    loginForm.classList.add('login-form')
-    const mainContainer = document.createElement('div')
+    const messageBox = createMessagesBox(message);
+    if (messageBox !== null) {
+        application.appendChild(messageBox);
+    }
 
-    const label = document.createElement('h3')
+    const formContainer = document.createElement('div');
+    formContainer.classList.add('container');
+
+    const loginForm = document.createElement('form');
+    loginForm.classList.add('login-form');
+
+    const mainContainer = document.createElement('div');
+
+    const label = document.createElement('h3');
     label.textContent = 'Вход';
     const br = document.createElement('br')
     const emailInput = createInput('email', 'Почта', 'email');
@@ -204,13 +247,15 @@ function renderLogin() {
             'POST',
             '/login',
             {password, email},
-            (status) => {
+            (status, responseString) => {
                 if (status === 200) {
-                    goToPage('/index');
+                    goToPage('/index', responseString);
                     return;
                 }
 
-                alert('НЕВЕРНЫЙ ЕМЕЙЛ ИЛИ ПАРОЛЬ');
+                if (status === 401) {
+                    goToPage('/login', responseString)
+                }
             }
         )
     });
@@ -238,10 +283,10 @@ function ajax(method, url, body = null, callback) {
     xhr.send();
 }
 
-function goToPage(href) {
+function goToPage(href, message) {
     application.innerHTML = '';
-    const newPage = routes.find(route => route.path === href).open();
-    application.appendChild(newPage)
+    const resultPage = routes.find(route => route.path === href).open(message);
+    application.appendChild(resultPage)
 }
 
 const mainPage = renderIndex()

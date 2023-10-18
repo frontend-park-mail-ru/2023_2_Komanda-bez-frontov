@@ -53,7 +53,6 @@
     justify-content: center;
     align-items: center;
     height: 67vh;
-
 }
 
 .signup-form {
@@ -118,3 +117,25 @@ button:hover {
     cursor: pointer;
 }
 
+.message-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 9vh;
+    border-radius: 12px;
+    background-color: #EFE;
+    border: 1px solid #DED;
+    font-size: 30px;
+}
+
+.error-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 9vh;
+    border-radius: 12px;
+    background-color: #FEE;
+    border: 1px solid #eaa7a7;
+    color: #ea6767;
+    font-size: 30px;
+}
