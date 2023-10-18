@@ -78,7 +78,6 @@ function createNavbar() {
 
     const profName = document.createElement('a');
     profName.classList.add('profile_name');
-    profName.textContent = 'Ваше Имя';
 
     profile.appendChild(profName);
     logo.appendChild(logoText);
@@ -159,9 +158,10 @@ function returnSignup(message) {
     label.textContent = 'Регистрация';
 
     const nameInput = createInput('text', 'Имя', 'name');
-    const surnameInput = createInput('text', 'Фамилия', 'surname');
+    const usernameInput = createInput('text', 'Имя пользователя', 'username');
     const emailInput = createInput('email', 'Почта', 'email');
     const passwordInput = createInput('password', 'Пароль', 'password');
+    const repeatPasswordInput = createInput('password', 'Повторите пароль', 'password');
 
     const buttonContainer = document.createElement('div')
     buttonContainer.classList.add('button-container')
@@ -171,9 +171,10 @@ function returnSignup(message) {
     buttonContainer.appendChild(signupButton);
 
     mainContainer.appendChild(nameInput);
-    mainContainer.appendChild(surnameInput);
+    mainContainer.appendChild(usernameInput);
     mainContainer.appendChild(emailInput);
     mainContainer.appendChild(passwordInput);
+    mainContainer.appendChild(repeatPasswordInput);
     mainContainer.appendChild(buttonContainer);
 
     signupForm.appendChild(label);
@@ -184,11 +185,28 @@ function returnSignup(message) {
     signupForm.addEventListener("submit", (event) => {
         event.preventDefault();
 
-        // const name = nameInput.value;
-        // const surname = surnameInput.value;
-        // const email = emailInput.value;
-        // const password = passwordInput.value;
+        const name = nameInput.value;
+        const username = usernameInput.value;
+        const email = emailInput.value;
+        const password = passwordInput.value;
+        const repeat_password = repeatPasswordInput.value;
 
+        ajax(
+            'POST',
+            '/signup',
+            {name, username, email, password, repeat_password},
+            (status, responseString) => {
+                if (status === 201) {
+                    goToPage('/index', responseString, email);
+                    return;
+                }
+
+                if (status === 400) {
+                    goToPage('/signup', responseString, null);
+                    return;
+                }
+            }
+        )
     });
     
     return formContainer
@@ -254,7 +272,7 @@ function renderLogin(message) {
                 }
 
                 if (status === 401) {
-                    goToPage('/login', responseString)
+                    goToPage('/login', responseString, null)
                 }
             }
         )

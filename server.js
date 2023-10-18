@@ -16,6 +16,8 @@ app.use(cookie());
 
 const users = {
   'aa@aa.ru': {
+    name: 'Алекс',
+    username: 'user',
     email: 'aa@aa.ru',
     password: 'password',
   },
@@ -41,10 +43,10 @@ app.post('/login',  (req, res) => {
   const password = req.body.password;
   const email = req.body.email;
   if (!password || !email) {
-    return res.status(400).json({error: 'Не указан E-Mail или пароль'});
+    return res.status(400).json({error: 'Не указан E-Mail или пароль.'});
   }
   if (!users[email] || users[email].password !== password) {
-    return res.status(400).json({error: 'Не верный E-Mail и/или пароль'});
+    return res.status(400).json({error: 'Не верный E-Mail и/или пароль.'});
   }
 
   const id = uuid();
@@ -55,26 +57,39 @@ app.post('/login',  (req, res) => {
 });
 
 app.post('/signup', (req, res) => {
-  const password = req.body.password;
+  const name = req.body.name;
+  const username = req.body.username;
   const email = req.body.email;
-  if (
-      !password || !email ||
-      !password.match(/^\S{4,}$/) ||
-      !email.match(/@/)
-  ) {
-    return res.status(400).json({error: 'Не валидные данные пользователя'});
+  const password = req.body.password;
+  const repeat_password = req.body.repeat_password;
+
+  if (!password || !email || !name || !username || !repeat_password) {
+    return res.status(400).json({error: 'Вы ввели не все данные.'});
   }
+
+  if (!username.match(/^[A-Za-z]+$/)) {
+    return res.status(400).json({error: 'Неправильный формат ввода для пароля.'});
+  }
+
+  if (!email.match(/@/)) {
+    return res.status(400).json({error: 'Неправильный формат ввода для почтиы.'});
+  }
+
+  if (password !== repeat_password) {
+    return res.status(400).json({error: 'Введенные пароли не совпадают.'});
+  }
+
   if (users[email]) {
-    return res.status(400).json({error: 'Пользователь уже существует'});
+    return res.status(400).json({error: 'Пользователь уже существует.'});
   }
 
   const id = uuid();
-  const user = {password, email};
+  const user = {name, username, email, password};
   ids[id] = email;
   users[email] = user;
 
   res.cookie('podvorot', id, {expires: new Date(Date.now() + 1000 * 60 * 10)});
-  res.status(201).json({id, message: "Вы успешно вошли!"});
+  res.status(201).json({id, message: "Вы успешно зарегистрировались!"});
 });
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
