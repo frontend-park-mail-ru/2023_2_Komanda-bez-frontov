@@ -1,6 +1,8 @@
 console.log('lol kek');
 
 const application = document.getElementById('app');
+// в user хранится текущий авторизированный пользователь. если случился logout, user должен быть очищен
+let user;
 
 const routes = [
     {
@@ -76,10 +78,13 @@ function createNavbar() {
     const profile = document.createElement('div');
     profile.classList.add('profile')
 
-    const profName = document.createElement('a');
-    profName.classList.add('profile_name');
+    if (user) {
+        const profName = document.createElement('a');
+        profName.classList.add('profile_name');
+        profName.textContent = user.name;
+        profile.appendChild(profName);
+    }
 
-    profile.appendChild(profName);
     logo.appendChild(logoText);
     navbar.appendChild(logo);
     navbar.appendChild(profile)
@@ -90,17 +95,11 @@ function createNavbar() {
 
 function renderIndex(message) {
     application.innerHTML = '';
-    const navbar = createNavbar();
-    application.appendChild(navbar);
 
-    const messageBox = createMessagesBox(message);
-    if (messageBox !== null) {
-        application.appendChild(messageBox);
-    }
+    const navbarWrapper  = document.createElement('div');
 
     const listForm = document.createElement('div')
     listForm.classList.add('list-form');
-
 
     const mainContainer = document.createElement('div')
 
@@ -112,11 +111,14 @@ function renderIndex(message) {
         'GET',
         '/index',
         null,
-        (status, responseString) => {
+        (status, response) => {
             let isAuthorized = false;
 
             if (status === 200) {
                 isAuthorized = true;
+                user = JSON.parse(response).currentUser;
+                const navbar = createNavbar();
+                navbarWrapper.appendChild(navbar)
                 for (let i = 1; i <= 5; i++) {
                     const btn = createButton('list-item', 'none', '', 'Мой опрос' + i);
                     mainContainer.appendChild(btn);
@@ -124,10 +126,17 @@ function renderIndex(message) {
             }
 
             if (!isAuthorized) {
-                goToPage("/login", responseString);
+                goToPage("/login", response);
             }
         }
     );
+
+    application.appendChild(navbarWrapper);
+
+    const messageBox = createMessagesBox(message);
+    if (messageBox !== null) {
+        application.appendChild(messageBox);
+    }
 
     listForm.appendChild(label);
     listForm.appendChild(br);
@@ -265,14 +274,15 @@ function renderLogin(message) {
             'POST',
             '/login',
             {password, email},
-            (status, responseString) => {
+            (status, response) => {
                 if (status === 200) {
-                    goToPage('/index', responseString);
+                    user = JSON.parse(response).currentUser;
+                    goToPage('/index', response.toString());
                     return;
                 }
 
                 if (status === 401) {
-                    goToPage('/login', responseString, null)
+                    goToPage('/login', response.toString(), null)
                 }
             }
         )
@@ -289,7 +299,7 @@ function ajax(method, url, body = null, callback) {
     xhr.addEventListener('readystatechange', function() {
         if (xhr.readyState !== XMLHttpRequest.DONE) return;
 
-        callback(xhr.status, xhr.responseText);
+        callback(xhr.status, xhr.response);
     });
 
     if (body) {

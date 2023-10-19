@@ -31,12 +31,14 @@ app.get('/index', (req, res) => {
     return res.status(401).json({error: 'Пользователь не авторизован!'});
   }
 
-  const result = Object
-      .values(users)
-      .filter(({email}) => email !== emailSession)
-  ;
+  // const result = Object
+  //     .values(users)
+  //     .filter(({email}) => email !== emailSession)
+  // ;
+  // res.json(result.flat());
 
-  res.json(result.flat());
+  const currentUser = users[emailSession]
+  res.status(200).json({id, currentUser});
 });
 
 app.post('/login',  (req, res) => {
@@ -52,8 +54,10 @@ app.post('/login',  (req, res) => {
   const id = uuid();
   ids[id] = email;
 
+  const currentUser = users[email]
+
   res.cookie('podvorot', id, {expires: new Date(Date.now() + 1000 * 60 * 10)});
-  res.status(200).json({id, message: "Вы успешно вошли!"});
+  res.status(200).json({id, currentUser, message: "Вы успешно вошли!"});
 });
 
 app.post('/signup', (req, res) => {
