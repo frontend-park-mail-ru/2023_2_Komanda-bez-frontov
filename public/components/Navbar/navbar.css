@@ -1,0 +1,46 @@
+.navbar {
+    display: flex;
+    justify-content:space-between;
+    align-items: center;
+    padding: 1.25rem 4rem;
+    background: #4B357A;
+}
+
+.logo a {
+    color: #ffffff;
+    font-weight: bold;
+    font-size: 36px;
+}
+
+.profile {
+    font-size: 24px;
+    color: white;
+}
+
+.primary-button {
+    color: black;
+    border-radius: 12px;
+    border: 3px solid #424242;
+    width: 100%;
+    margin: 1%;
+    font-size: 15px;
+    font-weight: bold;
+    padding: 13px 18px;
+}
+
+.black-button {
+    background-color: #DDEEDD;
+    color: white;
+    border-radius: 12px;
+    border: 3px solid #424242;
+    width: 100%;
+    margin: 1%;
+    font-size: 15px;
+    font-weight: bold;
+    padding: 13px 18px;
+}
+
+.button-container {
+    display: flex;
+    margin: 4% 1% 5% 1%;
+}

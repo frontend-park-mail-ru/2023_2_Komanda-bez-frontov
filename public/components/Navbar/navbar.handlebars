@@ -1,0 +1,17 @@
+<link rel="stylesheet" type="text/css" href="navbar.css"/>
+<nav class="navbar">
+    <div class="logo">
+        <a>FormHub</a>
+    </div>
+    <div class="profile">
+    {{#if user}}
+        <a class="profile_name">{{user.username}}</a>
+        <button class="primary-button" id="logout-button">Выйти</button>
+    {{else}}
+        <div class="button-container">
+            <button class="black-button" id="login-button">Войти</button>
+            <button class="primary-button" id="signup-button">Регистрация</button>
+        </div>
+    {{/if}}
+    </div>
+</nav>

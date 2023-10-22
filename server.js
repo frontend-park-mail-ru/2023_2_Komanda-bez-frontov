@@ -24,7 +24,7 @@ const users = {
 };
 const ids = {};
 
-app.get('/index', (req, res) => {
+app.get('/main', (req, res) => {
   const id = req.cookies['podvorot'];
   const emailSession = ids[id];
   if (!emailSession || !users[emailSession]) {
