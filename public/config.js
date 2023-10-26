@@ -1,6 +1,6 @@
 import {renderMain} from "./components/Main/main.js";
 import {renderLogin} from "./components/Login/login.js";
-// import renderSignup from "./components/Signup/message.js";
+import {renderSignup} from "./components/Signup/signup.js";
 
 
 export const ROUTES = {
@@ -8,10 +8,10 @@ export const ROUTES = {
         url: '/main',
         open: renderMain,
     },
-    // signup:{
-    //     url: '/signup',
-    //     open: renderSignup,
-    // },
+    signup:{
+        url: '/signup',
+        open: renderSignup,
+    },
     login:{
         url: '/login',
         open: renderLogin,

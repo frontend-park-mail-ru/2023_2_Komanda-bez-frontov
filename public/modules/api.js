@@ -4,23 +4,25 @@ import {ROUTES} from '../config.js'
 const GET_METHOD = 'GET';
 const POST_METHOD = 'POST';
 export class API {
+
     async isAuth() {
         try {
             const url = ROUTES.main.url;
 
             const response = await fetch(url, {method: GET_METHOD});
 
-            const res = await response.json();
+            const res = await response;
+            const parseRes = await res.json();
 
             let isAuthorized = false;
-            let email = '';
+            let authorizedUserEmail = '';
 
-            if (res.status === 200) {
+            if (res.ok) {
                 isAuthorized = true;
-                email = res.body.email;
+                authorizedUserEmail = parseRes.currentUser.email;
             }
 
-            return {isAuthorized, email};
+            return {isAuthorized, authorizedUserEmail};
         } catch (e) {
             console.log("Ошибка метода isAuth:", e);
             throw(e);
@@ -39,17 +41,18 @@ export class API {
                 body: JSON.stringify({email, password}),
             });
 
-            const res = await response.json();
+            const  res = await response;
+            const parseRes = await res.json();
 
             let isLoggedIn = false;
-            let email = '';
+            let authorizedUserEmail = '';
 
-            if (res.status === 201) {
+            if (res.ok) {
                 isLoggedIn = true;
-                email = res.body.email;
+                authorizedUserEmail = parseRes.currentUser.email;
             }
 
-            return {isLoggedIn, email};
+            return {isLoggedIn, authorizedUserEmail};
         } catch (e) {
             console.log("Ошибка метода userLogin:", e);
             throw(e);
@@ -68,17 +71,18 @@ export class API {
                 body: JSON.stringify({name, username, email, password, repeat_password}),
             });
 
-            const res = await response.json();
+            const res = await response;
+            const parseRes = await res.json();
 
             let isSignup = false;
-            let username = '';
+            let registeredUserEmail = '';
 
-            if (res.status === 201) {
+            if (res.ok) {
                 isSignup = true;
-                username = res.body.username;
+                registeredUserEmail = parseRes.currentUser.email;
             }
 
-            return {isSignup, username};
+            return {isSignup, registeredUserEmail};
         } catch (e) {
             console.log("Ошибка метода userSignup:", e);
             throw(e);

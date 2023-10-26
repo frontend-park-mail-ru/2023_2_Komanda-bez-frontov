@@ -4,13 +4,15 @@ import {renderMessage} from "../Message/message.js";
 import {navbar} from "../Navbar/navbar.js";
 
 //добавить валидацию
-export function renderLogin() {
+export async function renderLogin() {
     const rootElement = document.querySelector("#root");
     rootElement.innerHTML = '';
     rootElement.innerHTML = Handlebars.templates['login']();
 
     const loginButton = document.querySelector("#login-button");
-    loginButton.addEventListener("click", async function (e) {
+    const signupButton = document.querySelector("#signup-button");
+
+    loginButton.addEventListener("click",async (e) => {
         e.preventDefault();
         const api = new API();
 
@@ -19,14 +21,17 @@ export function renderLogin() {
 
         const res = await api.userLogin(email.value.trim(), password.value);
         if (!res.isLoggedIn) {
-            renderMessage("Неправильный логин или пароль.", true);
-            goToPage(ROUTES.login);
+            renderMessage("Неправильный логин или пароль", true);
             return;
         }
 
-        const user = {user: {username: res.username}}
-        navbar(user);
-        renderMessage('Вы успешно вошли!');
+        const user = {user: {username: res.authorizedUserEmail}}
         goToPage(ROUTES.main);
+        navbar(user);
+        renderMessage('Вы успешно вошли');
     });
+
+    signupButton.addEventListener('click', (e) => {
+        goToPage(ROUTES.signup);
+    })
 }

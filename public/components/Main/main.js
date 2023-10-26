@@ -2,16 +2,20 @@ import {API} from '../../modules/api.js';
 import {navbar} from "../Navbar/navbar.js";
 import {renderMessage} from "../Message/message.js";
 
-const api = new API();
-const isAuth = await api.isAuth();
 
-export function renderMain() {
-    if (isAuth.isAuthorized) {
-        navbar({user: {username: isAuth.username}});
-    } else {
+export async function renderMain() {
+    const rootElement = document.querySelector("#root");
+
+    const api = new API();
+    const isAuth = await api.isAuth();
+    if (!isAuth.isAuthorized) {
         navbar();
-        const rootElement = document.querySelector("#root");
         rootElement.innerHTML = Handlebars.templates['main']();
         renderMessage('Вы не авторизованы!', true);
+        return;
     }
+
+    navbar({user: {username: isAuth.authorizedUserEmail}})
+    rootElement.innerHTML = "";
+
 }

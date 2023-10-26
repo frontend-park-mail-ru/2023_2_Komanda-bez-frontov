@@ -38,12 +38,12 @@ app.get('/main', (req, res) => {
   // res.json(result.flat());
 
   const currentUser = users[emailSession]
-  res.status(200).json({id, currentUser});
+  return res.status(200).json({id, currentUser});
 });
 
 app.post('/login',  (req, res) => {
-  const password = req.body.password;
   const email = req.body.email;
+  const password = req.body.password;
   if (!password || !email) {
     return res.status(400).json({error: 'Не указан E-Mail или пароль.'});
   }
@@ -57,7 +57,8 @@ app.post('/login',  (req, res) => {
   const currentUser = users[email]
 
   res.cookie('podvorot', id, {expires: new Date(Date.now() + 1000 * 60 * 10)});
-  res.status(200).json({id, currentUser, message: "Вы успешно вошли!"});
+  res.status(200).json({id, currentUser});
+
 });
 
 app.post('/signup', (req, res) => {
@@ -67,21 +68,21 @@ app.post('/signup', (req, res) => {
   const password = req.body.password;
   const repeat_password = req.body.repeat_password;
 
-  if (!password || !email || !name || !username || !repeat_password) {
-    return res.status(400).json({error: 'Вы ввели не все данные.'});
-  }
-
-  if (!username.match(/^[A-Za-z]+$/)) {
-    return res.status(400).json({error: 'Неправильный формат ввода для пароля.'});
-  }
-
-  if (!email.match(/@/)) {
-    return res.status(400).json({error: 'Неправильный формат ввода для почтиы.'});
-  }
-
-  if (password !== repeat_password) {
-    return res.status(400).json({error: 'Введенные пароли не совпадают.'});
-  }
+  // if (!password || !email || !name || !username || !repeat_password) {
+  //   return res.status(400).json({error: 'Вы ввели не все данные.'});
+  // }
+  //
+  // if (!username.match(/^[A-Za-z]+$/)) {
+  //   return res.status(400).json({error: 'Неправильный формат ввода для пароля.'});
+  // }
+  //
+  // if (!email.match(/@/)) {
+  //   return res.status(400).json({error: 'Неправильный формат ввода для почтиы.'});
+  // }
+  //
+  // if (password !== repeat_password) {
+  //   return res.status(400).json({error: 'Введенные пароли не совпадают.'});
+  // }
 
   if (users[email]) {
     return res.status(400).json({error: 'Пользователь уже существует.'});
@@ -89,11 +90,13 @@ app.post('/signup', (req, res) => {
 
   const id = uuid();
   const user = {name, username, email, password};
+  const currentUser = user;
   ids[id] = email;
   users[email] = user;
 
+
   res.cookie('podvorot', id, {expires: new Date(Date.now() + 1000 * 60 * 10)});
-  res.status(201).json({id, message: "Вы успешно зарегистрировались!"});
+  res.status(201).json({id, currentUser, message: "Вы успешно зарегистрировались!"});
 });
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
