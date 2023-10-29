@@ -1,0 +1,6 @@
+(function() {
+  var template = Handlebars.template, templates = Handlebars.templates = Handlebars.templates || {};
+templates['signup'] = template({"compiler":[8,">= 4.3.0"],"main":function(container,depth0,helpers,partials,data) {
+    return "<div class=\"message-container\" id=\"message-box\"></div>\n<div class=\"container\">\n    <div class=\"signup-form\">\n        <div class=\"main-сontainer\">\n            <h3>Регистрация</h3><br>\n            <input placeholder=\"Имя\" id=\"name\" name=\"name\" required><br>\n            <input type=\"email\" placeholder=\"Почта\" id=\"email\" name=\"email\" required><br>\n            <input placeholder=\"Имя пользователя\" id=\"username\" name=\"email\" required><br>\n            <input type=\"password\" placeholder=\"Пароль\" id=\"password\" name=\"password\" required>\n            <input type=\"password\" placeholder=\"Повторите пароль\" id=\"repeat_password\" name=\"repeat_password\" required>\n            <div class=\"button-container\">\n                <button class=\"primary-button\"  id=\"signup-button\">Создать аккаунт</button>\n                <button class=\"secondary-button\" id=\"login-button\">Войти</button>\n            </div>\n        </div>\n    </div>\n</div>";
+},"useData":true});
+})();
