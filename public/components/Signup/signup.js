@@ -2,6 +2,7 @@ import {ROUTES, goToPage} from "../../config.js";
 import {API} from "../../modules/api.js";
 import {renderMessage} from "../Message/message.js";
 import {navbar} from "../Navbar/navbar.js";
+import {emailValidation, passwordValidation, usernameValidation} from "../../modules/validation.js";
 
 export async function renderSignup() {
     const rootElement = document.querySelector("#root");
@@ -19,6 +20,31 @@ export async function renderSignup() {
         const username = document.querySelector('#username');
         const password = document.querySelector("#password");
         const repeatPassword = document.querySelector("#repeat_password");
+
+        if (password.value === '' || email.value === '' || name.value === ''
+            || username.value === '' || repeatPassword.value === '') {
+            renderMessage("Вы ввели не все данные", true);
+            return;
+        }
+
+        const isEmailValid = emailValidation(email.value);
+        const isUsernameValid = usernameValidation(username.value);
+        const isPasswordValid = passwordValidation(password.value);
+
+        if(!isEmailValid.valid) {
+            renderMessage(isEmailValid.message, true);
+            return;
+        }
+
+        if(!isUsernameValid.valid) {
+            renderMessage(isUsernameValid.message, true);
+            return;
+        }
+
+        if(!isPasswordValid.valid) {
+            renderMessage(isPasswordValid.message, true);
+            return;
+        }
 
         if (password.value !== repeatPassword.value) {
             renderMessage("Пароли не совпадают", true);

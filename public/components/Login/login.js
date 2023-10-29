@@ -2,6 +2,7 @@ import {ROUTES, goToPage} from "../../config.js";
 import {API} from "../../modules/api.js";
 import {renderMessage} from "../Message/message.js";
 import {navbar} from "../Navbar/navbar.js";
+import {emailValidation, passwordValidation} from "../../modules/validation.js";
 
 //добавить валидацию
 export async function renderLogin() {
@@ -19,7 +20,20 @@ export async function renderLogin() {
         const email =  document.querySelector("#email");
         const password = document.querySelector("#password");
 
-        const res = await api.userLogin(email.value.trim(), password.value);
+        const isEmailValid = emailValidation(email.value);
+        const isPasswordValid = passwordValidation(password.value);
+
+        if(!isEmailValid.valid) {
+            renderMessage(isEmailValid.message, true);
+            return;
+        }
+
+        if(!isPasswordValid.valid) {
+            renderMessage(isPasswordValid.message, true);
+            return;
+        }
+
+        const res = await api.userLogin(email.value, password.value);
         if (!res.isLoggedIn) {
             renderMessage("Неправильный логин или пароль", true);
             return;

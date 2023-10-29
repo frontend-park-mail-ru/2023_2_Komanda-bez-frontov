@@ -1,6 +1,8 @@
 export function renderMessage(text, error = false) {
 
     const messageContainer = document.querySelector("#message-box");
+    messageContainer.innerHTML = '';
+    messageContainer.classList.remove("error-container", "success-container");
 
     if (error) {
         messageContainer.classList.add("error-container");
