@@ -110,4 +110,27 @@ export class API {
             throw(e);
         }
     }
+
+    async getForms() {
+        try {
+            // const url = ROUTES.forms.url;
+            const url = '/forms';
+
+            const response = await fetch(url, {method: GET_METHOD});
+
+            const res = await response;
+            const body = await res.json();
+            const status = res.status;
+
+            if (status === 200) {
+                const forms = body.forms
+                return {status, forms};
+            }
+
+            return {status};
+        } catch (e) {
+            console.log("Ошибка метода getForms:", e);
+            throw(e);
+        }
+    }
 }

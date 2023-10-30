@@ -1,9 +1,11 @@
 import {API} from '../../modules/api.js';
 import {navbar} from "../Navbar/navbar.js";
-import {renderMessage} from "../Message/message.js";
+import {renderMessage, removeMessage} from "../Message/message.js";
+import {renderForms} from "../Forms/forms.js";
 
 
 export async function renderMain() {
+    removeMessage();
     const rootElement = document.querySelector("#root");
 
     const api = new API();
@@ -20,6 +22,7 @@ export async function renderMain() {
 }
 
 export async function renderMainLogout() {
+    removeMessage();
     const rootElement = document.querySelector("#root");
     const api = new API();
     const logoutStatus = await api.userLogout();
@@ -31,4 +34,5 @@ export async function renderMainLogout() {
         return;
     }
     renderMessage('Вы не авторизованы!', true);
+    renderForms();
 }

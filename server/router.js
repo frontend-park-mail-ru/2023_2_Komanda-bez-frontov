@@ -22,6 +22,29 @@ const users = {
     },
 };
 const ids = {};
+const forms = {
+    '1': {
+        title: 'Форма опроса номер один!'
+    },
+    '2': {
+        title: 'Форма опроса номер два!',
+    },
+    '3': {
+        title: 'Форма опроса номер три!',
+    },
+    '4': {
+        title: 'Форма опроса номер четыре!',
+    },
+    '5': {
+        title: 'Форма опроса номер пять!',
+    },
+    '6': {
+        title: 'Форма опроса номер шесть!',
+    },
+    '7': {
+        title: 'Форма опроса номер семь!',
+    },
+};
 
 router.get('/main', (req, res) => {
     console.log(req.cookies)
@@ -85,7 +108,13 @@ router.get('/logout',  (req, res) => {
     return res.status(404).json({error: 'Сессия не найдена!'});
 });
 
-// Сейчас GET запросы на логин и сайнап ведут на главную страничку - потом переделать
+router.get('/forms', (req, res) => {
+    if (forms.length === 0) {
+        return res.status(404).json({error: 'Опросов нет...'});
+    }
+    return res.status(200).json({forms});
+});
+
 router.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, '../public', 'index.html'));
 });

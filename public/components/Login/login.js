@@ -1,11 +1,13 @@
 import {ROUTES, goToPage} from "../../config.js";
 import {API} from "../../modules/api.js";
-import {renderMessage} from "../Message/message.js";
+import {renderMessage, removeMessage} from "../Message/message.js";
 import {navbar} from "../Navbar/navbar.js";
 import {emailValidation, passwordValidation} from "../../modules/validation.js";
 
 //добавить валидацию
 export async function renderLogin() {
+    removeMessage();
+
     const rootElement = document.querySelector("#root");
     rootElement.innerHTML = '';
     rootElement.innerHTML = Handlebars.templates['login']();
@@ -40,7 +42,7 @@ export async function renderLogin() {
         }
 
         const user = {user: {name: res.authorizedUser.name}}
-        goToPage(ROUTES.main);
+        goToPage(ROUTES.forms);
         navbar(user);
         renderMessage('Вы успешно вошли');
     });

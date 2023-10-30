@@ -23,6 +23,6 @@ export function navbar(user = null)  {
     }
     const logoButton = document.querySelector("#navbar-logo-label")
     logoButton.addEventListener("click", function (e) {
-        goToPage(ROUTES.main);
+        goToPage(ROUTES.forms);
     });
 }

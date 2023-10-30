@@ -1,10 +1,11 @@
 import {ROUTES, goToPage} from "../../config.js";
 import {API} from "../../modules/api.js";
-import {renderMessage} from "../Message/message.js";
+import {renderMessage, removeMessage} from "../Message/message.js";
 import {navbar} from "../Navbar/navbar.js";
 import {emailValidation, passwordValidation, usernameValidation} from "../../modules/validation.js";
 
 export async function renderSignup() {
+    removeMessage();
     const rootElement = document.querySelector("#root");
     rootElement.innerHTML = '';
     rootElement.innerHTML = Handlebars.templates['signup']();
@@ -60,7 +61,7 @@ export async function renderSignup() {
         }
 
         const user = {user: {username: res.registeredUser.username}};
-        goToPage(ROUTES.main);
+        goToPage(ROUTES.forms);
         navbar(user);
         renderMessage('Вы успешно зарегистрировались');
     });
@@ -69,6 +70,5 @@ export async function renderSignup() {
     loginButton.addEventListener('click', (e) => {
        goToPage(ROUTES.login);
     });
-
 
 }

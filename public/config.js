@@ -1,13 +1,18 @@
 import {renderMain, renderMainLogout} from "./components/Main/main.js";
 import {renderLogin} from "./components/Login/login.js";
+import {renderForms} from "./components/Forms/forms.js";
 import {renderSignup} from "./components/Signup/signup.js";
-
 
 export const ROUTES = {
     main: {
-        url: '/',
+        url: '/main',
         state: 'main',
         open: renderMain,
+    },
+    forms:{
+        url: '/',
+        state: 'forms',
+        open: renderForms,
     },
     signup:{
         url: '/signup',

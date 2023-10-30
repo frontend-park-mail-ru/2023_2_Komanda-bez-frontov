@@ -5,12 +5,14 @@ import {renderLogin} from "./components/Login/login.js";
 import {renderSignup} from "./components/Signup/signup.js";
 import {render404} from "./components/404/404.js";
 import {goToPage, ROUTES} from "./config.js";
+import {renderForms} from "./components/Forms/forms.js";
 
 const url = window.location.pathname
 
 await renderMain();
 switch (url) {
     case '/':
+        goToPage(ROUTES.forms)
         break;
     case '/login':
         goToPage(ROUTES.login);
@@ -19,6 +21,7 @@ switch (url) {
         goToPage(ROUTES.signup);
         break;
     default:
+        window.history.pushState('404','', url)
         render404(url);
         break;
 }
@@ -27,7 +30,10 @@ window.onpopstate = function (event) {
     const state = event.state
     switch (state) {
         case 'main':
-            renderMain();
+            renderForms();
+            break;
+        case 'forms':
+            renderForms();
             break;
         case 'login':
             renderLogin();
