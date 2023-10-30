@@ -51,15 +51,15 @@ export async function renderSignup() {
             return;
         }
 
-        const res = await api.userSignup(name.value, email.value,
-                                                        username.value, password.value, repeatPassword.value);
+        const res = await api.userSignup(name.value, username.value,
+                                                        email.value, password.value);
 
-        if (!res.isSignup) {
+        if (res.status === 400) {
             renderMessage("Пользователь уже существует", true);
             return;
         }
 
-        const user = {user: {username: res.registeredUserEmail}};
+        const user = {user: {username: res.registeredUser.username}};
         goToPage(ROUTES.main);
         navbar(user);
         renderMessage('Вы успешно зарегистрировались');

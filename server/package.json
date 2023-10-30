@@ -10,6 +10,6 @@
   },
   "main": "server.js",
   "scripts": {
-    "dev": "nodemon server.js"
+    "dev": "../node_modules/.bin/nodemon server.js"
   }
 }

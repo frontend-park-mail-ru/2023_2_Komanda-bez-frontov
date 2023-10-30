@@ -20,6 +20,9 @@ export function navbar(user = null)  {
         signupButton.addEventListener("click", function (e) {
             goToPage(ROUTES.signup);
         });
-
     }
+    const logoButton = document.querySelector("#navbar-logo-label")
+    logoButton.addEventListener("click", function (e) {
+        goToPage(ROUTES.main);
+    });
 }

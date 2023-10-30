@@ -15,3 +15,11 @@ export function renderMessage(text, error = false) {
 
     messageContainer.appendChild(message);
 }
+
+export function removeMessage() {
+
+    const messageContainer = document.querySelector("#message-box");
+    messageContainer.innerHTML = '';
+    messageContainer.classList.remove("error-container", "success-container");
+
+}

@@ -47,5 +47,11 @@ export async function renderLogin() {
 
     signupButton.addEventListener('click', (e) => {
         goToPage(ROUTES.signup);
-    })
+    });
+
+    // Не работает...
+    // const backButton = document.querySelector("#back-button");
+    // backButton.addEventListener("click", function (e) {
+    //     window.history.back()
+    // });
 }

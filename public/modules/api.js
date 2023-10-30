@@ -7,7 +7,9 @@ export class API {
 
     async isAuth() {
         try {
-            const url = ROUTES.main.url;
+            // ВОТ ТУТ Я ИЗМЕНИЛ УРЛ НА НАПИСАННЫЙ ВРУЧНУЮ!!!!
+            // const url = ROUTES.main.url;
+            const url = '/main';
 
             const response = await fetch(url, {method: GET_METHOD});
 
@@ -15,7 +17,7 @@ export class API {
             const parseRes = await res.json();
 
             let isAuthorized = false;
-            let authorizedUser = '';
+            let authorizedUser;
 
             if (res.ok) {
                 isAuthorized = true;
@@ -45,7 +47,7 @@ export class API {
             const parseRes = await res.json();
 
             let isLoggedIn = false;
-            let authorizedUser = '';
+            let authorizedUser;
 
             if (res.ok) {
                 isLoggedIn = true;
@@ -80,7 +82,7 @@ export class API {
         }
     }
 
-    async userSignup(name, username, email, password, repeat_password) {
+    async userSignup(name, username, email, password) {
         try {
             const url = ROUTES.signup.url;
 
@@ -89,21 +91,20 @@ export class API {
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({name, username, email, password, repeat_password}),
+                body: JSON.stringify({name, username, email, password}),
             });
 
             const res = await response;
             const parseRes = await res.json();
 
-            let isSignup = false;
-            let registeredUserEmail = '';
+            let status = res.status;
+            let registeredUser;
 
-            if (res.ok) {
-                isSignup = true;
-                registeredUserEmail = parseRes.currentUser.email;
+            if (status === 201) {
+                registeredUser = parseRes.currentUser;
             }
 
-            return {isSignup, registeredUserEmail};
+            return {status, registeredUser};
         } catch (e) {
             console.log("Ошибка метода userSignup:", e);
             throw(e);
