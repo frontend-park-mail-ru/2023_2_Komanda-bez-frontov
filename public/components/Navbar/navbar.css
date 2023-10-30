@@ -6,6 +6,10 @@
     background: #4B357A;
 }
 
+.button-container-navbar {
+    display: flex;
+}
+
 .logo a {
     color: #ffffff;
     font-weight: bold;
@@ -13,34 +17,14 @@
 }
 
 .profile {
+    display: flex;
+    justify-content: space-evenly;
     font-size: 24px;
     color: white;
 }
 
-.primary-button {
-    color: black;
-    border-radius: 12px;
-    border: 3px solid #424242;
-    width: 100%;
-    margin: 1%;
-    font-size: 15px;
-    font-weight: bold;
-    padding: 13px 18px;
-}
-
-.black-button {
-    background-color: #DDEEDD;
-    color: white;
-    border-radius: 12px;
-    border: 3px solid #424242;
-    width: 100%;
-    margin: 1%;
-    font-size: 15px;
-    font-weight: bold;
-    padding: 13px 18px;
-}
-
-.button-container {
-    display: flex;
-    margin: 4% 1% 5% 1%;
+.profile_name {
+    white-space: nowrap;
+    font-size: 30px;
+    margin: 6% 10% 6% 6%;
 }

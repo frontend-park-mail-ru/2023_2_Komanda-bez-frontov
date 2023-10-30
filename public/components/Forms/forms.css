@@ -1,0 +1,24 @@
+.list-form {
+    margin-top: 40px;
+    border-radius: 12px;
+    text-align: center;
+    border: none;
+    font-size: 24px;
+}
+
+.list-form h3 {
+    margin: 25px;
+    font-size: 36px;
+}
+
+.list-item {
+    background-color: #FFFFFF;
+    padding: 13px 12px;
+    color: black;
+    border-radius: 12px;
+    border: 3px solid #424242;
+    margin: 20px 10%;
+    width: 80%;
+    font-size: 20px;
+    font-weight: bold;
+}

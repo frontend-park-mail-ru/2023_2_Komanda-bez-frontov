@@ -1,7 +1,7 @@
 import {API} from '../../modules/api.js';
 import {navbar} from "../Navbar/navbar.js";
 import {renderMessage, removeMessage} from "../Message/message.js";
-import {renderForms} from "../Forms/forms.js";
+import {ROUTES} from "../../config.js";
 
 
 export async function renderMain() {
@@ -12,7 +12,6 @@ export async function renderMain() {
     const isAuth = await api.isAuth();
     if (!isAuth.isAuthorized) {
         navbar();
-        rootElement.innerHTML = Handlebars.templates['main']();
         renderMessage('Вы не авторизованы!', true);
         return;
     }
@@ -22,6 +21,8 @@ export async function renderMain() {
 }
 
 export async function renderMainLogout() {
+    window.history.replaceState(ROUTES.forms.state,'', ROUTES.forms.url)
+
     removeMessage();
     const rootElement = document.querySelector("#root");
     const api = new API();
@@ -34,5 +35,4 @@ export async function renderMainLogout() {
         return;
     }
     renderMessage('Вы не авторизованы!', true);
-    renderForms();
 }

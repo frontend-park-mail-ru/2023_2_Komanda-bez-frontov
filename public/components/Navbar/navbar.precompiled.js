@@ -21,8 +21,8 @@ templates['navbar'] = template({"1":function(container,depth0,helpers,partials,d
         return undefined
     };
 
-  return "<link rel=\"stylesheet\" type=\"text/css\" href=\"navbar.css\"/>\n<nav class=\"navbar\">\n    <div class=\"logo\">\n        <a  id=\"navbar-logo-label\">FormHub</a>\n    </div>\n    <div class=\"profile\">\n"
-    + ((stack1 = lookupProperty(helpers,"if").call(depth0 != null ? depth0 : (container.nullContext || {}),(depth0 != null ? lookupProperty(depth0,"user") : depth0),{"name":"if","hash":{},"fn":container.program(1, data, 0),"inverse":container.program(3, data, 0),"data":data,"loc":{"start":{"line":7,"column":4},"end":{"line":15,"column":11}}})) != null ? stack1 : "")
+  return "<nav class=\"navbar\">\n    <div class=\"logo\">\n        <a  id=\"navbar-logo-label\">FormHub</a>\n    </div>\n    <div class=\"profile\">\n"
+    + ((stack1 = lookupProperty(helpers,"if").call(depth0 != null ? depth0 : (container.nullContext || {}),(depth0 != null ? lookupProperty(depth0,"user") : depth0),{"name":"if","hash":{},"fn":container.program(1, data, 0),"inverse":container.program(3, data, 0),"data":data,"loc":{"start":{"line":6,"column":4},"end":{"line":14,"column":11}}})) != null ? stack1 : "")
     + "    </div>\n</nav>\n";
 },"useData":true});
 })();
