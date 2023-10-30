@@ -1,4 +1,4 @@
-import {renderMain} from "./components/Main/main.js";
+import {renderMain, renderMainLogout} from "./components/Main/main.js";
 import {renderLogin} from "./components/Login/login.js";
 import {renderSignup} from "./components/Signup/signup.js";
 
@@ -15,6 +15,10 @@ export const ROUTES = {
     login:{
         url: '/login',
         open: renderLogin,
+    },
+    logout:{
+        url: '/logout',
+        open: renderMainLogout,
     }
 }
 

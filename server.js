@@ -25,17 +25,12 @@ const users = {
 const ids = {};
 
 app.get('/main', (req, res) => {
+  console.log(req.cookies)
   const id = req.cookies['podvorot'];
   const emailSession = ids[id];
   if (!emailSession || !users[emailSession]) {
     return res.status(401).json({error: 'Пользователь не авторизован!'});
   }
-
-  // const result = Object
-  //     .values(users)
-  //     .filter(({email}) => email !== emailSession)
-  // ;
-  // res.json(result.flat());
 
   const currentUser = users[emailSession]
   return res.status(200).json({id, currentUser});
@@ -98,6 +93,17 @@ app.post('/signup', (req, res) => {
   res.cookie('podvorot', id, {expires: new Date(Date.now() + 1000 * 60 * 10)});
   res.status(201).json({id, currentUser, message: "Вы успешно зарегистрировались!"});
 });
+
+app.get('/logout',  (req, res) => {
+  const id = req.cookies['podvorot'];
+  if (ids[id]) {
+    delete ids[id];
+    res.clearCookie('podvorot')
+    return res.status(401).json({error: 'Пользователь не авторизован!'});
+  }
+  return res.status(404).json({error: 'Сессия не найдена!'});
+});
+
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });

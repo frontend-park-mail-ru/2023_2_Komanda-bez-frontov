@@ -6,6 +6,9 @@ export function navbar(user = null)  {
     if (user) {
         navbarElement.innerHTML = Handlebars.templates['navbar'](user);
         const logoutButton = document.querySelector("#navbar-logout-button")
+        logoutButton.addEventListener("click", function (e) {
+            goToPage(ROUTES.logout);
+        });
     } else {
         navbarElement.innerHTML = Handlebars.templates['navbar']();
         const loginButton = document.querySelector("#navbar-login-button");

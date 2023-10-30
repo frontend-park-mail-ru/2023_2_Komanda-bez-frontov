@@ -15,7 +15,20 @@ export async function renderMain() {
         return;
     }
 
-    navbar({user: {username: isAuth.authorizedUserEmail}})
+    navbar({user: {name: isAuth.authorizedUser.name}})
     rootElement.innerHTML = "";
+}
 
+export async function renderMainLogout() {
+    const rootElement = document.querySelector("#root");
+    const api = new API();
+    const logoutStatus = await api.userLogout();
+
+    navbar();
+    rootElement.innerHTML = Handlebars.templates['main']();
+    if (logoutStatus === 404) {
+        renderMessage('Невозможно выполнить Logout - вы не авторизованы!', true);
+        return;
+    }
+    renderMessage('Вы не авторизованы!', true);
 }

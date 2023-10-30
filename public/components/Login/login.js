@@ -39,7 +39,7 @@ export async function renderLogin() {
             return;
         }
 
-        const user = {user: {username: res.authorizedUserEmail}}
+        const user = {user: {name: res.authorizedUser.name}}
         goToPage(ROUTES.main);
         navbar(user);
         renderMessage('Вы успешно вошли');

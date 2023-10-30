@@ -9,10 +9,10 @@ templates['navbar'] = template({"1":function(container,depth0,helpers,partials,d
     };
 
   return "        <a class=\"profile_name\">"
-    + container.escapeExpression(container.lambda(((stack1 = (depth0 != null ? lookupProperty(depth0,"user") : depth0)) != null ? lookupProperty(stack1,"username") : stack1), depth0))
+    + container.escapeExpression(container.lambda(((stack1 = (depth0 != null ? lookupProperty(depth0,"user") : depth0)) != null ? lookupProperty(stack1,"name") : stack1), depth0))
     + "</a>\n        <button class=\"primary-button\" id=\"navbar-logout-button\">Выйти</button>\n";
 },"3":function(container,depth0,helpers,partials,data) {
-    return "        <div class=\"button-container\">\n            <button class=\"black-button\" id=\"navbar-login-button\">Войти</button>\n            <button class=\"primary-button\" id=\"navbar-signup-button\">Регистрация</button>\n        </div>\n";
+    return "        <div class=\"button-container-navbar\">\n            <button class=\"black-button\" id=\"navbar-login-button\">Войти</button>\n            <button class=\"primary-button\" id=\"navbar-signup-button\">Регистрация</button>\n        </div>\n";
 },"compiler":[8,">= 4.3.0"],"main":function(container,depth0,helpers,partials,data) {
     var stack1, lookupProperty = container.lookupProperty || function(parent, propertyName) {
         if (Object.prototype.hasOwnProperty.call(parent, propertyName)) {

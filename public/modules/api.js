@@ -15,14 +15,14 @@ export class API {
             const parseRes = await res.json();
 
             let isAuthorized = false;
-            let authorizedUserEmail = '';
+            let authorizedUser = '';
 
             if (res.ok) {
                 isAuthorized = true;
-                authorizedUserEmail = parseRes.currentUser.email;
+                authorizedUser = parseRes.currentUser;
             }
 
-            return {isAuthorized, authorizedUserEmail};
+            return {isAuthorized, authorizedUser};
         } catch (e) {
             console.log("Ошибка метода isAuth:", e);
             throw(e);
@@ -45,16 +45,37 @@ export class API {
             const parseRes = await res.json();
 
             let isLoggedIn = false;
-            let authorizedUserEmail = '';
+            let authorizedUser = '';
 
             if (res.ok) {
                 isLoggedIn = true;
-                authorizedUserEmail = parseRes.currentUser.email;
+                authorizedUser = parseRes.currentUser;
             }
 
-            return {isLoggedIn, authorizedUserEmail};
+            return {isLoggedIn, authorizedUser};
         } catch (e) {
             console.log("Ошибка метода userLogin:", e);
+            throw(e);
+        }
+    }
+
+    async userLogout() {
+        try {
+            const url = ROUTES.logout.url;
+
+            const response = await fetch(url, {
+                method: GET_METHOD
+            });
+
+            const  res = await response;
+
+            if (res.status === 404) {
+                return 404;
+            }
+
+            return 401;
+        } catch (e) {
+            console.log("Ошибка метода userLogout:", e);
             throw(e);
         }
     }
