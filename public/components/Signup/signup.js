@@ -60,7 +60,7 @@ export async function renderSignup() {
             return;
         }
 
-        const user = {user: {username: res.registeredUser.username}};
+        const user = {user: {name: res.registeredUser.name}};
         goToPage(ROUTES.forms);
         navbar(user);
         renderMessage('Вы успешно зарегистрировались');
