@@ -1,5 +1,6 @@
 @import './components/Navbar/navbar.css';
 @import './components/Forms/forms.css';
+@import './components/Form/form.css';
 @import './components/Buttons/buttons.css';
 @import './components/Login/login.css';
 @import './components/Signup/signup.css';

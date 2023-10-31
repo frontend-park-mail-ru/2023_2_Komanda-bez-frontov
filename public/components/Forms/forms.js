@@ -1,4 +1,5 @@
 import {API} from '../../modules/api.js';
+import {goToPage, ROUTES} from "../../config.js";
 
 export async function renderForms() {
     const rootElement = document.querySelector("#root");
@@ -7,15 +8,18 @@ export async function renderForms() {
     const formsContainer = document.querySelector("#forms-container");
 
     const api = new API();
-    const forms = await api.getForms();
+    const res = await api.getForms();
 
-    if (forms.status === 200) {
-        for (let id in forms.forms) {
+    if (res.status === 200) {
+        for (let id in res.forms) {
             const item = document.createElement('div');
             item.innerHTML = Handlebars.templates['forms_item']();
 
             const itemButton = item.querySelector("#list-item");
-            itemButton.textContent = forms.forms[id].title;
+            itemButton.textContent = res.forms[id].title;
+            itemButton.addEventListener("click", function (e) {
+                goToPage(ROUTES.form, id);
+            });
 
             formsContainer.appendChild(item);
         }

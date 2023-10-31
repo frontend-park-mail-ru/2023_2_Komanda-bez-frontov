@@ -6,13 +6,30 @@ import {renderSignup} from "./components/Signup/signup.js";
 import {render404} from "./components/404/404.js";
 import {goToPage, ROUTES} from "./config.js";
 import {renderForms} from "./components/Forms/forms.js";
+import {renderForm} from "./components/Form/form.js";
 
-const url = window.location.pathname
+const parseUrl = (url) => {
+    const index = url.indexOf("/", 1);
+    if (index !== -1) {
+        const id = url.slice(index + 1, url.length);
+        url = url.slice(0, index + 1);
+        return {id, url};
+    }
+    const id = null;
+    return {id, url};
+};
+
+const temp = parseUrl(window.location.pathname);
+const id = temp.id;
+const url = temp.url;
 
 await renderMain();
 switch (url) {
     case '/':
         goToPage(ROUTES.forms)
+        break;
+    case '/forms/':
+        goToPage(ROUTES.form, id)
         break;
     case '/login':
         goToPage(ROUTES.login);
@@ -22,7 +39,7 @@ switch (url) {
         break;
     default:
         window.history.pushState('404','', url)
-        render404(url);
+        render404();
         break;
 }
 
@@ -35,6 +52,11 @@ window.onpopstate = function (event) {
         case 'forms':
             renderForms();
             break;
+        case 'form':
+            const id = parseUrl(window.location.pathname).id;
+            console.log(id);
+            renderForm(id);
+            break;
         case 'login':
             renderLogin();
             break;
@@ -42,7 +64,7 @@ window.onpopstate = function (event) {
             renderSignup();
             break;
         default:
-            render404(window.location.pathname);
+            render404();
             break;
     }
 };

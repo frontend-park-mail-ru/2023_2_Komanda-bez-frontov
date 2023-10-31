@@ -9,7 +9,8 @@ const path = require('path');
 const router = express.Router();
 
 router.use(morgan('dev'));
-router.use(express.static(path.resolve(__dirname, '../public')));
+router.use('/', express.static(path.resolve(__dirname, '../public')));
+router.use('/forms/', express.static(path.resolve(__dirname, '../public')));
 router.use(body.json());
 router.use(cookie());
 
@@ -108,11 +109,20 @@ router.get('/logout',  (req, res) => {
     return res.status(404).json({error: 'Сессия не найдена!'});
 });
 
-router.get('/forms', (req, res) => {
+router.get('/api/forms', (req, res) => {
     if (forms.length === 0) {
         return res.status(404).json({error: 'Опросов нет...'});
     }
     return res.status(200).json({forms});
+});
+
+router.get('/api/forms/:id', (req, res) => {
+    const id = req.params.id;
+    if (!forms[id]) {
+        return res.status(404).json({error: 'Опрос не найден'});
+    }
+    const form = forms[id];
+    return res.status(200).json({form});
 });
 
 router.get('*', (req, res) => {
