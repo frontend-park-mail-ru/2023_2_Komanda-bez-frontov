@@ -6,7 +6,6 @@ import {renderMessage, removeMessage} from "../../Message/message.js";
 import {navbar} from "../../Navbar/navbar.js";
 import {emailValidation, passwordValidation} from "../../../modules/validation.js";
 
-
 /**
  * Функция для рендеринга страницы аутенфикации.
  *
@@ -60,9 +59,4 @@ export async function renderLogin() {
         goToPage(ROUTES.signup);
     });
 
-    // Не работает...
-    // const backButton = document.querySelector("#back-button");
-    // backButton.addEventListener("click", function (e) {
-    //     window.history.back()
-    // });
 }

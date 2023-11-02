@@ -1,5 +1,6 @@
-import {renderMessage} from "../Message/message.js";
+'use strict'
 
+import {renderMessage} from "../Message/message.js";
 
 /**
  * Функция для рендеринга страницы при ошибке 404.

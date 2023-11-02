@@ -6,7 +6,6 @@ import {ROUTES} from '../config.js'
 const GET_METHOD = 'GET';
 const POST_METHOD = 'POST';
 export class API {
-
     /**
      * Проверяет, является ли пользователь авторизованным.
      *
@@ -38,6 +37,7 @@ export class API {
             throw(e);
         }
     }
+
     /**
      * Функция для авторизации пользователя.
      *
@@ -148,6 +148,15 @@ export class API {
         }
     }
 
+    /**
+     * Функция для получения всех опросов.
+     * П.С. Позже заменить на получение всех опросов за авторством пользователя.
+     *
+     * @async
+     * @function
+     * @return {Promise<{forms: ( * | { id: { title: string } }[] ), status: number}>} Объект с информацией о статусе запроса и массивом с опросами.
+     * @throws {Error} Если произошла ошибка при запросе или обработке данных.
+     */
     async getForms() {
         try {
 
@@ -171,6 +180,15 @@ export class API {
         }
     }
 
+    /**
+     * Функция для получения опроса по его id.
+     *
+     * @async
+     * @function
+     * @param {number} id - ID.
+     * @return {Promise<{form: ( * | { id: { title: string } } ), status: number}>} Объект с информацией о статусе запроса и об искомом опросе.
+     * @throws {Error} Если произошла ошибка при запросе или обработке данных.
+     */
     async getForm(id) {
         try {
             const url = '/api' + ROUTES.form.url + id;
@@ -188,7 +206,7 @@ export class API {
 
             return {status};
         } catch (e) {
-            console.log("Ошибка метода getForms:", e);
+            console.log("Ошибка метода getForm:", e);
             throw(e);
         }
     }

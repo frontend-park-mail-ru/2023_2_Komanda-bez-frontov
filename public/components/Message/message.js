@@ -6,7 +6,7 @@
  *
  * @function
  * @param {string} text - Текст сообщения.
- * @param {boolean} error - Флаг, который показывает, является ли сообщение ошибочным.
+ * @param {boolean} error - Флаг, который показывает, является ли сообщение сообщением об ошибке.
  * @return {void}
  */
 export function renderMessage(text, error = false) {

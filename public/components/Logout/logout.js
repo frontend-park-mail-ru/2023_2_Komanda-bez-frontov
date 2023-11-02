@@ -5,7 +5,6 @@ import {navbar} from "../Navbar/navbar.js";
 import {renderMessage, removeMessage} from "../Message/message.js";
 import {goToPage, ROUTES} from "../../config.js";
 
-
 /**
  * Функция для выполнения выхода из аккаунта.
  *

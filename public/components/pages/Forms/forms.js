@@ -1,7 +1,17 @@
+'use strict'
+
 import {API} from '../../../modules/api.js';
 import {goToPage, ROUTES} from "../../../config.js";
-import {renderMessage} from "../../Message/message.js";
+import {removeMessage, renderMessage} from "../../Message/message.js";
 
+/**
+ * Функция для рендеринга страницы с созданными пользователем опросами.
+ * Если пользователь не авторизован, происходит редирект на страницу входа.
+ *
+ * @async
+ * @function
+ * @return {void}
+ */
 export async function renderForms() {
     const api = new API();
     const isAuth = await api.isAuth();
@@ -11,6 +21,7 @@ export async function renderForms() {
         return;
     }
 
+    removeMessage();
     const rootElement = document.querySelector("#root");
     rootElement.innerHTML = '';
     rootElement.innerHTML = Handlebars.templates['forms']();

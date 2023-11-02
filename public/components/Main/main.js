@@ -5,9 +5,8 @@ import {navbar} from "../Navbar/navbar.js";
 import {renderMessage, removeMessage} from "../Message/message.js";
 import {goToPage, ROUTES} from "../../config.js";
 
-
 /**
- * Функция для рендеринга главной страницы.
+ * Функция для рендеринга страницы при первой загрузке.
  *
  * @async
  * @function

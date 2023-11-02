@@ -1,9 +1,20 @@
+'use strict'
+
 import {API} from '../../../modules/api.js';
 import {render404} from "../../404/404.js";
 import {removeMessage, renderMessage} from "../../Message/message.js";
 import {goToPage, ROUTES} from "../../../config.js";
 import {renderForms} from "../Forms/forms.js";
 
+/**
+ * Функция для рендеринга страницы опроса по его id.
+ * Если пользователь не авторизован, происходит редирект на страницу входа.
+ *
+ * @async
+ * @function
+ * @param {number} id - ID.
+ * @return {void}
+ */
 export async function renderForm(id) {
     const api = new API();
     const isAuth = await api.isAuth();

@@ -6,7 +6,6 @@ import {renderMessage, removeMessage} from "../../Message/message.js";
 import {navbar} from "../../Navbar/navbar.js";
 import {emailValidation, passwordValidation, usernameValidation} from "../../../modules/validation.js";
 
-
 /**
  * Функция для рендеринга страницы регистрации.
  *
