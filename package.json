@@ -8,11 +8,12 @@
     "morgan": "^1.10.0",
     "uuid": "^9.0.1"
   },
-  "main": "server.js",
+  "main": "server/server.js",
   "scripts": {
-    "dev": "../node_modules/.bin/nodemon server.js"
+    "dev": "../node_modules/.bin/nodemon server/server.js"
   },
   "devDependencies": {
+    "eslint": "^8.52.0",
     "nodemon": "^3.0.1"
   }
 }
