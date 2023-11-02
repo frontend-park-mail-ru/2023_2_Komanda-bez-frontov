@@ -2,6 +2,14 @@
 
 import {ROUTES, goToPage} from "../../config.js";
 
+/**
+ * Функция для рендеринга навбара страницы.
+ *
+ * @async
+ * @function
+ * @param user - Объект, в котором передаётся информация о пользователе.
+ * @return {void}
+ */
 export function navbar(user = null)  {
     const navbarElement = document.querySelector("#navbar");
     navbarElement.innerHTML = '';

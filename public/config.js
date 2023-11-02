@@ -39,6 +39,14 @@ export const ROUTES = {
 
 export const SERVER_URL = "https://b0f0-109-252-180-89.ngrok-free.app";
 
+/**
+ * Рендерит страницу аутентификации.
+ *
+ * @param page Объект, в котором содержится информация о странице из ROUTES.
+ * @param id Объект(опцианальный параметр) для перехода на страницу конкретного опроса.
+ *
+ * @return {void}
+ */
 export function goToPage(page, id = null) {
     if (id) {
         const url = page.url + id;

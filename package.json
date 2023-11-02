@@ -10,7 +10,7 @@
   },
   "main": "server/server.js",
   "scripts": {
-    "dev": "../node_modules/.bin/nodemon server/server.js"
+    "dev": "nodemon server/server.js"
   },
   "devDependencies": {
     "eslint": "^8.52.0",

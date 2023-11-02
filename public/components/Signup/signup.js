@@ -6,6 +6,13 @@ import {renderMessage, removeMessage} from "../Message/message.js";
 import {navbar} from "../Navbar/navbar.js";
 import {emailValidation, passwordValidation, usernameValidation} from "../../modules/validation.js";
 
+/**
+ * Функция для рендеринга страницы регистрации.
+ *
+ * @async
+ * @function
+ * @return {void}
+ */
 export async function renderSignup() {
     removeMessage();
     const rootElement = document.querySelector("#root");

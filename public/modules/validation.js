@@ -1,5 +1,12 @@
 'use strict';
 
+
+/**
+ * Эта функция проверяет, является ли введёный email валидным.
+ * @param {string} email - Введённый пользователем email.
+ * @return {object} - Объект с полем `valid` (true/false) и с полем
+ * `message` (сообщение об ошибке).
+ */
 export function emailValidation(email) {
     let isValid = {valid: true, message: ''};
 
@@ -31,6 +38,12 @@ export function emailValidation(email) {
 }
 
 
+/**
+ * Эта функция проверяет, является ли введённое имя пользователя валидным.
+ * @param {string} username - Введённый пользователем username.
+ * @return {object} - Объект с полем `valid` (true/false) и с полем
+ * `message` (сообщение об ошибке).
+ */
 export function usernameValidation(username) {
     let isValid = {valid: true, message: ''};
 
@@ -63,6 +76,12 @@ export function usernameValidation(username) {
 }
 
 
+/**
+ * Эта функция проверяет, является ли введёный password валидным.
+ * @param {string} password - Введённый пользователем password.
+ * @return {object} - Объект с полем `valid` (true/false) и с полем
+ * `message` (сообщение об ошибке).
+ */
 export function passwordValidation(password) {
     let isValid = {valid: true, message: ''};
 

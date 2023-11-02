@@ -7,10 +7,16 @@ const GET_METHOD = 'GET';
 const POST_METHOD = 'POST';
 export class API {
 
+    /**
+     * Проверяет, является ли пользователь авторизованным.
+     *
+     * @async
+     * @function
+     * @return {Promise<{isAuthorized: boolean, authorizedUser: ({password: *, name: *, email: *, username: *}|*)}>} Объект с информацией о статусе авторизации и о пользователе.
+     * @throws {Error} Если произошла ошибка при запросе или обработке данных.
+     */
     async isAuth() {
         try {
-            // ВОТ ТУТ Я ИЗМЕНИЛ УРЛ НА НАПИСАННЫЙ ВРУЧНУЮ!!!!
-            // const url = ROUTES.main.url;
             const url = '/main';
 
             const response = await fetch(url, {method: GET_METHOD});
@@ -32,7 +38,16 @@ export class API {
             throw(e);
         }
     }
-
+    /**
+     * Функция для авторизации пользователя.
+     *
+     * @async
+     * @function
+     * @param {string} email - Почта.
+     * @param {string} password - Пароль.
+     * @return {Promise<{isLoggedIn: boolean, authorizedUser: ({password: *, name: *, email: *, username: *}|*)}>} Объект с информацией о статусе авторизации и о пользователе.
+     * @throws {Error} Если произошла ошибка при запросе или обработке данных.
+     */
     async userLogin(email, password) {
         try {
             const url = ROUTES.login.url;
@@ -63,6 +78,14 @@ export class API {
         }
     }
 
+    /**
+     * Функция для выхода из аккаунта пользователя.
+     *
+     * @async
+     * @function
+     * @return {Promise<number>} Объект с номером статуса при выходе пользователя.
+     * @throws {Error} Если произошла ошибка при запросе или обработке данных.
+     */
     async userLogout() {
         try {
             const url = ROUTES.logout.url;
@@ -84,6 +107,18 @@ export class API {
         }
     }
 
+    /**
+     * Функция для регистрации пользователя.
+     *
+     * @async
+     * @function
+     * @param {string} name - Имя.
+     * @param {string} username - Имя пользователя.
+     * @param {string} email - Почта.
+     * @param {string} password - Пароль.
+     * @return {Promise<{registeredUser: ({password: *, name: *, email: *, username: *}|*), status: number}>} Объект с информацией о статусе регистрации и о пользователе.
+     * @throws {Error} Если произошла ошибка при запросе или обработке данных.
+     */
     async userSignup(name, username, email, password) {
         try {
             const url = ROUTES.signup.url;

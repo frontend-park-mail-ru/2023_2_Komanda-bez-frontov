@@ -6,6 +6,14 @@ import {renderMessage, removeMessage} from "../Message/message.js";
 import {navbar} from "../Navbar/navbar.js";
 import {emailValidation, passwordValidation} from "../../modules/validation.js";
 
+
+/**
+ * Функция для рендеринга страницы аутенфикации.
+ *
+ * @async
+ * @function
+ * @return {void}
+ */
 export async function renderLogin() {
     removeMessage();
 
