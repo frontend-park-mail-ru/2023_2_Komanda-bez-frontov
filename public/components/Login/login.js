@@ -1,10 +1,11 @@
+'use strict';
+
 import {ROUTES, goToPage} from "../../config.js";
 import {API} from "../../modules/api.js";
 import {renderMessage, removeMessage} from "../Message/message.js";
 import {navbar} from "../Navbar/navbar.js";
 import {emailValidation, passwordValidation} from "../../modules/validation.js";
 
-//добавить валидацию
 export async function renderLogin() {
     removeMessage();
 

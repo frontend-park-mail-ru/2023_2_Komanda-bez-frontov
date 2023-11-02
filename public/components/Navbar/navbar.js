@@ -1,3 +1,5 @@
+'use strict';
+
 import {ROUTES, goToPage} from "../../config.js";
 
 export function navbar(user = null)  {

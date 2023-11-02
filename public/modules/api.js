@@ -1,3 +1,5 @@
+'use strict';
+
 import {ROUTES} from '../config.js'
 
 

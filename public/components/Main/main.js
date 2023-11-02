@@ -1,3 +1,5 @@
+'use strict';
+
 import {API} from '../../modules/api.js';
 import {navbar} from "../Navbar/navbar.js";
 import {renderMessage, removeMessage} from "../Message/message.js";

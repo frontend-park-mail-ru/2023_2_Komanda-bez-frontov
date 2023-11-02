@@ -1,3 +1,5 @@
+'use strict';
+
 import {ROUTES, goToPage} from "../../config.js";
 import {API} from "../../modules/api.js";
 import {renderMessage, removeMessage} from "../Message/message.js";

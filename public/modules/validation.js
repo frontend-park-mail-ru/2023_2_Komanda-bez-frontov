@@ -1,3 +1,4 @@
+'use strict';
 
 export function emailValidation(email) {
     let isValid = {valid: true, message: ''};

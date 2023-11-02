@@ -1,3 +1,5 @@
+'use strict';
+
 export function renderMessage(text, error = false) {
 
     const messageContainer = document.querySelector("#message-box");

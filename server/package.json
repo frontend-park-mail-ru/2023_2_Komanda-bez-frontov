@@ -11,5 +11,8 @@
   "main": "server.js",
   "scripts": {
     "dev": "../node_modules/.bin/nodemon server.js"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
   }
 }
