@@ -1,8 +1,8 @@
 import {renderMain, renderMainLogout} from "./components/Main/main.js";
-import {renderLogin} from "./components/Login/login.js";
-import {renderForms} from "./components/Forms/forms.js";
-import {renderForm} from "./components/Form/form.js";
-import {renderSignup} from "./components/Signup/signup.js";
+import {renderLogin} from "./components/pages/Login/login.js";
+import {renderForms} from "./components/pages/Forms/forms.js";
+import {renderForm} from "./components/pages/Form/form.js";
+import {renderSignup} from "./components/pages/Signup/signup.js";
 
 export const ROUTES = {
     main: {

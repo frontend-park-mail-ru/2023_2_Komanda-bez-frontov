@@ -1,7 +1,7 @@
-import {API} from '../../modules/api.js';
-import {render404} from "../404/404.js";
-import {removeMessage, renderMessage} from "../Message/message.js";
-import {goToPage, ROUTES} from "../../config.js";
+import {API} from '../../../modules/api.js';
+import {render404} from "../../404/404.js";
+import {removeMessage, renderMessage} from "../../Message/message.js";
+import {goToPage, ROUTES} from "../../../config.js";
 
 export async function renderForm(id) {
     if (!id) {

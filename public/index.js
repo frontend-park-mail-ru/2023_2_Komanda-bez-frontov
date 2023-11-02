@@ -1,12 +1,12 @@
 'use strict'
 
 import {renderMain} from "./components/Main/main.js";
-import {renderLogin} from "./components/Login/login.js";
-import {renderSignup} from "./components/Signup/signup.js";
+import {renderLogin} from "./components/pages/Login/login.js";
+import {renderSignup} from "./components/pages/Signup/signup.js";
 import {render404} from "./components/404/404.js";
 import {goToPage, ROUTES} from "./config.js";
-import {renderForms} from "./components/Forms/forms.js";
-import {renderForm} from "./components/Form/form.js";
+import {renderForms} from "./components/pages/Forms/forms.js";
+import {renderForm} from "./components/pages/Form/form.js";
 
 const parseUrl = (url) => {
     const index = url.indexOf("/", 1);

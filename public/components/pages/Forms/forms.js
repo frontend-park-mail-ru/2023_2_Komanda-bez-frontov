@@ -1,5 +1,5 @@
-import {API} from '../../modules/api.js';
-import {goToPage, ROUTES} from "../../config.js";
+import {API} from '../../../modules/api.js';
+import {goToPage, ROUTES} from "../../../config.js";
 
 export async function renderForms() {
     const rootElement = document.querySelector("#root");

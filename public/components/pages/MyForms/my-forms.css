@@ -1,0 +1,13 @@
+.my-forms-list-container {
+    margin-top: 40px;
+    border-radius: 12px;
+    text-align: center;
+    border: none;
+    font-size: 24px;
+}
+
+.my-forms-list-container h3 {
+    text-align: left;
+    font-size: 35px;
+    margin-bottom: 30px;
+}

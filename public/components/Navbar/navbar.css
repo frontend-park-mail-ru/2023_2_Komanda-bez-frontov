@@ -23,8 +23,14 @@
     color: white;
 }
 
+.profile_pic {
+    height: 60px;
+    width: 60px;
+    object-fit: contain;
+}
+
 .profile_name {
     white-space: nowrap;
     font-size: 30px;
-    margin: 6% 10% 6% 6%;
+    margin: 10% 10% 6% 15%;
 }

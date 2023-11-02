@@ -1,8 +1,8 @@
-import {ROUTES, goToPage} from "../../config.js";
-import {API} from "../../modules/api.js";
-import {renderMessage, removeMessage} from "../Message/message.js";
-import {navbar} from "../Navbar/navbar.js";
-import {emailValidation, passwordValidation, usernameValidation} from "../../modules/validation.js";
+import {ROUTES, goToPage} from "../../../config.js";
+import {API} from "../../../modules/api.js";
+import {renderMessage, removeMessage} from "../../Message/message.js";
+import {navbar} from "../../Navbar/navbar.js";
+import {emailValidation, passwordValidation, usernameValidation} from "../../../modules/validation.js";
 
 export async function renderSignup() {
     removeMessage();
