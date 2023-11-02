@@ -1,3 +1,14 @@
+'use strict';
+
+
+/**
+ * Функция для рендеринга сообщений для пользователя на странице.
+ *
+ * @function
+ * @param {string} text - Текст сообщения.
+ * @param {boolean} error - Флаг, который показывает, является ли сообщение ошибочным.
+ * @return {void}
+ */
 export function renderMessage(text, error = false) {
 
     const messageContainer = document.querySelector("#message-box");
@@ -16,6 +27,12 @@ export function renderMessage(text, error = false) {
     messageContainer.appendChild(message);
 }
 
+/**
+ * Функция для очистки поля ошибки на странице.
+ *
+ * @function
+ * @return {void}
+ */
 export function removeMessage() {
     const messageContainer = document.querySelector("#message-box");
     messageContainer.innerHTML = '';

@@ -1,6 +1,16 @@
+'use strict';
+
 import {ROUTES, goToPage} from "../../config.js";
 import {renderProfileMenu} from "../ProfileMenu/profileMenu.js";
 
+/**
+ * Функция для рендеринга навбара страницы.
+ *
+ * @async
+ * @function
+ * @param user - Объект, в котором передаётся информация о пользователе.
+ * @return {void}
+ */
 export function navbar(user = null)  {
     const navbarElement = document.querySelector("#navbar");
     navbarElement.innerHTML = '';
@@ -24,6 +34,6 @@ export function navbar(user = null)  {
     }
     const logoButton = document.querySelector("#navbar-logo-label")
     logoButton.addEventListener("click", function (e) {
-        goToPage(ROUTES.forms);
+        goToPage(ROUTES.index);
     });
 }

@@ -6,7 +6,7 @@ const cookie = require('cookie-parser');
 const morgan = require('morgan');
 const uuid = require('uuid').v4;
 const path = require('path');
-const router = express.Router();
+const router = express.Router({ strict: true });
 
 router.use(morgan('dev'));
 router.use('/', express.static(path.resolve(__dirname, '../public')));
@@ -125,7 +125,13 @@ router.get('/api/forms/:id', (req, res) => {
     return res.status(200).json({form});
 });
 
+router.get('/forms', (req, res) => {
+    console.log(req)
+    res.sendFile(path.join(__dirname, '../public', 'index.html'));
+});
+
 router.get('*', (req, res) => {
+    console.log(req)
     res.sendFile(path.join(__dirname, '../public', 'index.html'));
 });
 

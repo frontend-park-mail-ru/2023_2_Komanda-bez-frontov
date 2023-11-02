@@ -2,18 +2,19 @@ import {API} from '../../../modules/api.js';
 import {render404} from "../../404/404.js";
 import {removeMessage, renderMessage} from "../../Message/message.js";
 import {goToPage, ROUTES} from "../../../config.js";
+import {renderForms} from "../Forms/forms.js";
 
 export async function renderForm(id) {
-    if (!id) {
-        render404();
-        return;
-    }
-
     const api = new API();
     const isAuth = await api.isAuth();
     if (!isAuth.isAuthorized) {
         goToPage(ROUTES.login)
         renderMessage('Вы не авторизованы!', true);
+        return;
+    }
+
+    if (!id) {
+        renderForms();
         return;
     }
 

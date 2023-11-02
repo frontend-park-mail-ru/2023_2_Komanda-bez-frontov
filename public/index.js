@@ -23,10 +23,12 @@ const temp = parseUrl(window.location.pathname);
 const id = temp.id;
 const url = temp.url;
 
+console.log(window.location.pathname, url, id)
+
 await renderMain();
 switch (url) {
     case '/':
-        goToPage(ROUTES.forms)
+        goToPage(ROUTES.index)
         break;
     case '/forms/':
         goToPage(ROUTES.form, id)
@@ -46,15 +48,14 @@ switch (url) {
 window.onpopstate = function (event) {
     const state = event.state
     switch (state) {
-        case 'main':
-            renderForms();
+        case 'index':
+            renderIndex();
             break;
         case 'forms':
             renderForms();
             break;
         case 'form':
             const id = parseUrl(window.location.pathname).id;
-            console.log(id);
             renderForm(id);
             break;
         case 'login':

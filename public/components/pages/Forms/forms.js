@@ -1,13 +1,21 @@
 import {API} from '../../../modules/api.js';
 import {goToPage, ROUTES} from "../../../config.js";
+import {renderMessage} from "../../Message/message.js";
 
 export async function renderForms() {
+    const api = new API();
+    const isAuth = await api.isAuth();
+    if (!isAuth.isAuthorized) {
+        goToPage(ROUTES.login)
+        renderMessage('Вы не авторизованы!', true);
+        return;
+    }
+
     const rootElement = document.querySelector("#root");
     rootElement.innerHTML = '';
     rootElement.innerHTML = Handlebars.templates['forms']();
     const formsContainer = document.querySelector("#forms-container");
 
-    const api = new API();
     const res = await api.getForms();
 
     if (res.status === 200) {

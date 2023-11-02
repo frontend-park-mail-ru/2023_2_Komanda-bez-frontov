@@ -1,7 +1,9 @@
-import {renderMain, renderMainLogout} from "./components/Main/main.js";
+import {renderMain} from "./components/Main/main.js";
+import {renderMainLogout} from "./components/Logout/logout.js";
 import {renderLogin} from "./components/pages/Login/login.js";
 import {renderForms} from "./components/pages/Forms/forms.js";
 import {renderForm} from "./components/pages/Form/form.js";
+import {renderIndex} from "./components/pages/Index/index.js";
 import {renderSignup} from "./components/pages/Signup/signup.js";
 
 export const ROUTES = {
@@ -10,8 +12,13 @@ export const ROUTES = {
         state: 'main',
         open: renderMain,
     },
-    forms:{
+    index: {
         url: '/',
+        state: 'index',
+        open: renderIndex,
+    },
+    forms:{
+        url: '/forms/',
         state: 'forms',
         open: renderForms,
     },
@@ -39,6 +46,14 @@ export const ROUTES = {
 
 export const SERVER_URL = "https://b0f0-109-252-180-89.ngrok-free.app";
 
+/**
+ * Рендерит страницу аутентификации.
+ *
+ * @param page Объект, в котором содержится информация о странице из ROUTES.
+ * @param id Объект(опцианальный параметр) для перехода на страницу конкретного опроса.
+ *
+ * @return {void}
+ */
 export function goToPage(page, id = null) {
     if (id) {
         const url = page.url + id;

@@ -1,10 +1,19 @@
+'use strict';
+
 import {ROUTES, goToPage} from "../../../config.js";
 import {API} from "../../../modules/api.js";
 import {renderMessage, removeMessage} from "../../Message/message.js";
 import {navbar} from "../../Navbar/navbar.js";
 import {emailValidation, passwordValidation} from "../../../modules/validation.js";
 
-//добавить валидацию
+
+/**
+ * Функция для рендеринга страницы аутенфикации.
+ *
+ * @async
+ * @function
+ * @return {void}
+ */
 export async function renderLogin() {
     removeMessage();
 
@@ -42,7 +51,7 @@ export async function renderLogin() {
         }
 
         const user = {user: {name: res.authorizedUser.name}}
-        goToPage(ROUTES.forms);
+        goToPage(ROUTES.index);
         navbar(user);
         renderMessage('Вы успешно вошли');
     });

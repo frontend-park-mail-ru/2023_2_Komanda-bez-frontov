@@ -1,4 +1,4 @@
-.my-forms-list-container {
+.index-container {
     margin-top: 40px;
     border-radius: 12px;
     text-align: center;
@@ -6,8 +6,7 @@
     font-size: 24px;
 }
 
-.my-forms-list-container h3 {
-    text-align: left;
+.index-container h3 {
     font-size: 35px;
     margin-bottom: 30px;
 }
