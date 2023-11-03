@@ -14,3 +14,20 @@
     margin: 0;
     font-family: 'Exo 2', sans-serif;
 }
+
+#navbar {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 100;
+}
+
+#message-box {
+    position: relative;
+    top: 100px;
+}
+
+#root {
+    position: relative;
+    top: 100px;
+}

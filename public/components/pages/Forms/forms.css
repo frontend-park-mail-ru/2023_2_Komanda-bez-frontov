@@ -2,11 +2,47 @@
     margin-top: 40px;
     border-radius: 12px;
     text-align: center;
-    border: none;
+    align-content: center;
     font-size: 24px;
 }
 
-.list-container h3 {
+.title-container h3 {
+    position: absolute;
+    z-index: -1;
     font-size: 35px;
     margin-bottom: 30px;
+    width: 100%;
+}
+
+.title-container {
+    position: relative;
+    display: flex;
+    justify-content: end;
+    left: 10%;
+    width: 80%;
+    margin-bottom: 12px;
+}
+
+.list-button-container {
+    display: flex;
+    align-items: center;
+    text-align: center;
+}
+
+.list-button-container button {
+    width: 60px;
+    height: 50px;
+    padding: 0;
+    margin-right: 15px;
+}
+
+.list-button-container button.primary-button {
+    font-size: 28px;
+    font-weight: lighter;
+}
+
+.list-button-container button.secondary-button {
+    font-size: 32px;
+    font-weight: lighter;
+    padding-bottom: 5px;
 }

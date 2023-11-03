@@ -8,6 +8,11 @@
 
 .button-container-navbar {
     display: flex;
+    height: 60px;
+}
+
+.button-container-navbar button {
+    margin-left: 10px;
 }
 
 .logo a {
