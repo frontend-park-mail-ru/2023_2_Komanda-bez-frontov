@@ -1,25 +1,19 @@
-
 .form-container {
     display: flex;
     justify-content: center;
     padding-top: 40px;
 }
 
-.container {
+.login-form {
+    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 50vh;
-    max-height: 90vh;
-    position: relative;
-}
-
-.login-form {
-    width: 20%;
+    height: 330px;
+    margin: 0 20px 0 20px;
 }
 
 form {
-    height: 42%;
     border-radius: 12px;
     border: 3px solid #424242;
     text-align: center;
@@ -31,11 +25,10 @@ form h3 {
 }
 
 input {
-    width: 96%;
-    height: 60%;
-    margin: 2%;
+    height: 48px;
+    margin: 10px;
     border-radius: 12px;
-    border: 3px solid #424242;
+    border: 2px solid #424242;
     padding: 7px 15px;
     box-sizing: border-box;
     font-size: 25px;

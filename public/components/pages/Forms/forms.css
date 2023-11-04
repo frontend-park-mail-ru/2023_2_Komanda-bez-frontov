@@ -1,32 +1,26 @@
 .list-container {
-    margin-top: 40px;
-    border-radius: 12px;
-    text-align: center;
-    align-content: center;
-    font-size: 24px;
-}
-
-.title-container h3 {
-    position: absolute;
-    z-index: -1;
-    font-size: 35px;
-    margin-bottom: 30px;
-    width: 100%;
+    margin: 40px 100px 0 100px;
 }
 
 .title-container {
     position: relative;
     display: flex;
     justify-content: end;
-    left: 10%;
-    width: 80%;
-    margin-bottom: 12px;
+    text-align: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.title-container h3 {
+    position: absolute;
+    z-index: -1;
+    font-size: 35px;
+    width: 100%;
 }
 
 .list-button-container {
     display: flex;
     align-items: center;
-    text-align: center;
 }
 
 .list-button-container button {

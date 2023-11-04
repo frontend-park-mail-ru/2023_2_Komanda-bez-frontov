@@ -26,6 +26,11 @@ export async function renderLogin() {
     loginButton.addEventListener("click",async (e) => {
         e.preventDefault();
         const api = new API();
+        const isAuth = await api.isAuth();
+        if (isAuth.isAuthorized) {
+            renderMessage('Невозможно выполнить вход. Завершите предыдущую сессию!', true);
+            return;
+        }
 
         const email =  document.querySelector("#email");
         const password = document.querySelector("#password");

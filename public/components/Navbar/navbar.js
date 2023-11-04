@@ -2,6 +2,7 @@
 
 import {ROUTES, goToPage} from "../../config.js";
 import {renderProfileMenu} from "../ProfileMenu/profileMenu.js";
+import {removeMessage} from "../Message/message.js";
 
 /**
  * Функция для рендеринга навбара страницы.
@@ -36,6 +37,7 @@ export function navbar(user = null)  {
     }
     const logoButton = document.querySelector("#navbar-logo-label")
     logoButton.addEventListener("click", function (e) {
+        removeMessage();
         goToPage(ROUTES.index);
     });
 }

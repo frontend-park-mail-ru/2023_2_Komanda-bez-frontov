@@ -2,7 +2,7 @@
     display: flex;
     justify-content:space-between;
     align-items: center;
-    padding: 1.25rem 4rem;
+    padding: 20px 60px;
     background: #4B357A;
 }
 
@@ -21,6 +21,10 @@
     font-size: 36px;
 }
 
+.logo a:hover {
+    cursor: pointer;
+}
+
 .profile {
     display: flex;
     justify-content: space-evenly;
@@ -32,10 +36,11 @@
     height: 60px;
     width: 60px;
     object-fit: contain;
+    border-radius: 6px;
 }
 
 .profile_name {
     white-space: nowrap;
     font-size: 30px;
-    margin: 10% 10% 6% 15%;
+    margin: 15px 0 9px 20px;
 }

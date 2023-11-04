@@ -2,6 +2,7 @@
 
 import {goToPage, ROUTES} from "../../config.js";
 import {navbar} from "../Navbar/navbar.js";
+import {renderProfile} from "../pages/Profile/profile.js";
 
 /**
  * Функция для рендеринга страницы с созданными пользователем опросами.
@@ -19,6 +20,12 @@ export function renderProfileMenu(user)  {
     const navbarElement = document.querySelector("#navbar");
     navbarElement.innerHTML += Handlebars.templates['profileMenu']();
 
+    const profileButton = document.querySelector("#navbar-menu-profile-button")
+    profileButton.addEventListener("click", function (e) {
+        navbar(user);
+        renderProfile();
+        // goToPage(ROUTES.forms);
+    });
     const formsButton = document.querySelector("#navbar-menu-forms-button")
     formsButton.addEventListener("click", function (e) {
         navbar(user);

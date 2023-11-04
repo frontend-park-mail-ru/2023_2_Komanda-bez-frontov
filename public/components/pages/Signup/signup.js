@@ -24,6 +24,11 @@ export async function renderSignup() {
     signupButton.addEventListener('click', async(e) => {
         e.preventDefault();
         const api = new API();
+        const isAuth = await api.isAuth();
+        if (isAuth.isAuthorized) {
+            renderMessage('Невозможно зарегистрироваться. Завершите предыдущую сессию!', true);
+            return;
+        }
 
         const name = document.querySelector('#name');
         const email = document.querySelector("#email");
