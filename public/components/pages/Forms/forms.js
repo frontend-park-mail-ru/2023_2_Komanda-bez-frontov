@@ -34,7 +34,7 @@ export async function renderForms() {
             const item = document.createElement('div');
             item.innerHTML = Handlebars.templates['forms_item']();
 
-            const itemButton = item.querySelector("#list-item");
+            const itemButton = item.querySelector("#forms-list-item");
             itemButton.textContent = res.forms[id].title;
             itemButton.addEventListener("click", function (e) {
                 goToPage(ROUTES.form, id);

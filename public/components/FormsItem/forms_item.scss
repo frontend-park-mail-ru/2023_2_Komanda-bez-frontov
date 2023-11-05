@@ -1,0 +1,12 @@
+@import '../Buttons/buttons';
+
+.forms-list-item {
+  @extend %button-common;
+  background-color: #FFFFFF;
+  margin-bottom: 20px;
+  width: 100%;
+  min-width: min-content;
+  min-height: 70px;
+  max-height: min-content;
+  font-size: 20px;
+}

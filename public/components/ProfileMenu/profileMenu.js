@@ -21,8 +21,8 @@ export function renderProfileMenu(user)  {
 
     // Функция убирающая рендер меню, а так же убирающая event listener клика по области вне нее
     function removeProfileMenu (e) {
-        if (!e.target.classList.contains('profile-menu') &&
-            !e.target.parentNode.classList.contains('profile-menu')) {
+        if (!e.target.classList.contains('navbar-profile-menu') &&
+            !e.target.parentNode.classList.contains('navbar-profile-menu')) {
             document.body.removeEventListener("click", removeProfileMenu)
             navbar(user);
         }

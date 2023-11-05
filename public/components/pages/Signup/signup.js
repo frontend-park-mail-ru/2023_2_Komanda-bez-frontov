@@ -80,9 +80,4 @@ export async function renderSignup() {
         renderMessage('Вы успешно зарегистрировались');
     });
 
-    const loginButton = document.querySelector('#login-button');
-    loginButton.addEventListener('click', (e) => {
-       goToPage(ROUTES.login);
-    });
-
 }

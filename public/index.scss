@@ -1,0 +1,29 @@
+@import './components/Buttons/buttons';
+@import './components/Navbar/navbar';
+@import './components/ProfileMenu/profileMenu';
+@import './components/pages/Profile/profile';
+@import './components/pages/Forms/forms';
+@import './components/FormsItem/forms_item';
+@import './components/pages/Form/form';
+@import './components/pages/Index/index';
+@import './components/pages/Login/login';
+@import './components/pages/Signup/signup';
+@import './components/Message/message';
+
+* {
+  padding: 0;
+  margin: 0;
+  font-family: 'Exo 2', sans-serif;
+}
+
+#navbar {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 100;
+}
+
+#message-box, #root {
+  position: relative;
+  top: 100px;
+}

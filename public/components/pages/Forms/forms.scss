@@ -1,0 +1,47 @@
+.forms-list-container {
+  margin: 40px 100px 0 100px;
+  min-width: 230px;
+}
+
+.title-container {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: end;
+  text-align: center;
+  align-items: center;
+  min-height: max-content;
+  margin-bottom: 20px;
+  h3 {
+    position: absolute;
+    z-index: -1;
+    font-size: 35px;
+    width: 100%;
+    min-width: max-content;
+    top: 0;
+  }
+  .title-container-space {
+    min-width: 380px;
+    height: 56px;
+  }
+}
+
+.list-button-container {
+  display: flex;
+  align-items: center;
+  button {
+    width: 60px;
+    height: 50px;
+    padding: 0;
+    margin-right: 15px;
+  }
+  button.primary-button {
+    font-size: 28px;
+    font-weight: lighter;
+  }
+  button.secondary-button {
+    font-size: 32px;
+    font-weight: lighter;
+    padding-bottom: 5px;
+  }
+}

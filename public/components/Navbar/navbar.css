@@ -1,53 +1,48 @@
 .navbar {
-    display: flex;
-    justify-content:space-between;
-    align-items: center;
-    padding: 20px 60px;
-    background: #4B357A;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 60px;
+  background: #4B357A;
+  color: #ffffff;
 }
 
-.button-container-navbar {
-    display: flex;
-    height: 54px;
-    padding: 3px 0;
+.navbar-logo a {
+  font-weight: bold;
+  font-size: 36px;
+}
+.navbar-logo a:hover {
+  cursor: pointer;
 }
 
-.button-container-navbar button {
-    width: 135px;
-    margin-left: 10px;
+.navbar-profile {
+  display: flex;
+  justify-content: space-evenly;
+  margin-left: 50px;
+}
+.navbar-profile:hover {
+  cursor: pointer;
+}
+.navbar-profile .profile-picture {
+  height: 60px;
+  width: 60px;
+  object-fit: contain;
+  border-radius: 6px;
+}
+.navbar-profile .profile-name {
+  white-space: nowrap;
+  font-size: 30px;
+  margin: 15px 0 9px 20px;
 }
 
-.logo a {
-    color: #ffffff;
-    font-weight: bold;
-    font-size: 36px;
+.navbar-button-container {
+  display: flex;
+  height: 54px;
+  padding: 3px 0;
+}
+.navbar-button-container button {
+  width: 135px;
+  margin-left: 10px;
 }
 
-.logo a:hover {
-    cursor: pointer;
-}
-
-.profile {
-    display: flex;
-    justify-content: space-evenly;
-    font-size: 24px;
-    color: white;
-    margin-left: 50px;
-}
-
-.profile:hover {
-    cursor: pointer;
-}
-
-.profile_pic {
-    height: 60px;
-    width: 60px;
-    object-fit: contain;
-    border-radius: 6px;
-}
-
-.profile_name {
-    white-space: nowrap;
-    font-size: 30px;
-    margin: 15px 0 9px 20px;
-}
+/*# sourceMappingURL=navbar.css.map */
