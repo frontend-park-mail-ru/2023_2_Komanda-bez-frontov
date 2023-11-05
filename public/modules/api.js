@@ -53,7 +53,7 @@ export class API {
    */
   async userLogin(email, password) {
     try {
-      const url = ROUTES.login;
+      const url = ROUTES.login.url;
 
       const res = await fetch(url, {
         method: POST_METHOD,
@@ -89,7 +89,7 @@ export class API {
      */
   async userLogout() {
     try {
-      const { url } = ROUTES.logout;
+      const url = ROUTES.logout.url;
 
       const res = await fetch(url, {
         method: GET_METHOD,
@@ -121,7 +121,7 @@ export class API {
    */
   async userSignup(name, username, email, password) {
     try {
-      const { url } = ROUTES.signup;
+      const url = ROUTES.signup.url;
 
       const res = await fetch(url, {
         method: POST_METHOD,
@@ -138,7 +138,7 @@ export class API {
       const {status} = res.status;
       let registeredUser;
 
-      if (status === 201) {
+      if (res.ok) {
         registeredUser = body.currentUser;
       }
 
@@ -161,14 +161,14 @@ export class API {
    */
   async getForms() {
     try {
-      const url = '/api/forms';
+      const url = `/api/forms`;
 
       const res = await fetch(url, {method: GET_METHOD});
 
       const body = await res.json();
       const status = res.status;
 
-      if (status === 200) {
+      if (res.ok) {
         const forms = body.forms;
         return {status, forms};
       }
@@ -199,7 +199,7 @@ export class API {
       const body = await res.json();
       const status = res.status;
 
-      if (status === 200) {
+      if (res.ok) {
         const form = body.form;
         return {status, form};
       }

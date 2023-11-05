@@ -36,6 +36,6 @@ export function navbar(user = null) {
   const logoButton = document.querySelector('#navbar-logo-label');
   logoButton.addEventListener('click', () => {
     removeMessage();
-    goToPage(ROUTES.index);
+    goToPage(ROUTES.main);
   });
 }

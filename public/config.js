@@ -1,21 +1,16 @@
-import {renderMain} from './components/Main/main.js';
+import {renderInitial} from './components/Initial/Initial.js';
 import {renderMainLogout} from './components/Logout/logout.js';
 import {renderLogin} from './components/pages/Login/login.js';
 import {renderForms} from './components/pages/Forms/forms.js';
 import {renderForm} from './components/pages/Form/form.js';
-import {renderIndex} from './components/pages/Index/index.js';
+import {renderMain} from './components/pages/Main/main.js';
 import {renderSignup} from './components/pages/Signup/signup.js';
 
 export const ROUTES = {
   main: {
-    url: '/main',
+    url: '/',
     state: 'main',
     open: renderMain,
-  },
-  index: {
-    url: '/',
-    state: 'index',
-    open: renderIndex,
   },
   forms: {
     url: '/forms/',

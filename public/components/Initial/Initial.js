@@ -9,7 +9,7 @@ import {renderMessage, removeMessage} from '../Message/message.js';
  * @function
  * @return {void}
  */
-export async function renderMain() {
+export async function renderInitial() {
   removeMessage();
   const rootElement = document.querySelector('#root');
 

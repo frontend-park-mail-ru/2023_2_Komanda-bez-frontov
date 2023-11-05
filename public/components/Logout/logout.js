@@ -11,7 +11,7 @@ import {goToPage, ROUTES} from '../../config.js';
  * @return {void}
  */
 export async function renderMainLogout() {
-  window.history.replaceState(ROUTES.forms.state, '', ROUTES.forms.url);
+  window.history.replaceState(ROUTES.forms.state, '', ROUTES.main.url);
   removeMessage();
   const api = new API();
   const logoutStatus = await api.userLogout();
@@ -21,5 +21,5 @@ export async function renderMainLogout() {
     return;
   }
   renderMessage('Вы вышли из аккаунта', true);
-  goToPage(ROUTES.index);
+  goToPage(ROUTES.main);
 }

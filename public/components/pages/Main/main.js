@@ -4,8 +4,8 @@
  * @function
  * @return {void}
  */
-export function renderIndex() {
+export function renderMain() {
   const rootElement = document.querySelector('#root');
   rootElement.innerHTML = '';
-  rootElement.innerHTML = Handlebars.templates.index();
+  rootElement.innerHTML = Handlebars.templates.main();
 }

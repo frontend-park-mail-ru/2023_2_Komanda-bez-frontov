@@ -1,11 +1,11 @@
-import {renderMain} from './components/Main/main.js';
+import {renderInitial} from './components/Initial/Initial.js';
 import {renderLogin} from './components/pages/Login/login.js';
 import {renderSignup} from './components/pages/Signup/signup.js';
 import {render404} from './components/404/404.js';
 import {goToPage, ROUTES} from './config.js';
 import {renderForms} from './components/pages/Forms/forms.js';
 import {renderForm} from './components/pages/Form/form.js';
-import {renderIndex} from './components/pages/Index/index.js';
+import {renderMain} from './components/pages/Main/main.js';
 
 /**
  * Расщепляет url запроса на префикс и id страницы.
@@ -32,10 +32,10 @@ const url = temp.prefix;
 
 console.log(window.location.pathname, url, id);
 
-await renderMain();
+await renderInitial();
 switch (url) {
   case '/':
-    goToPage(ROUTES.index);
+    goToPage(ROUTES.main);
     break;
   case '/forms/':
     goToPage(ROUTES.form, id);
@@ -64,14 +64,13 @@ switch (url) {
 window.onpopstate = function (event) {
   const state = event.state;
   switch (state) {
-    case 'index':
-      renderIndex();
+    case 'main':
+      renderMain();
       break;
     case 'forms':
       renderForms();
       break;
     case 'form':
-    // eslint-disable-next-line no-case-declarations,no-shadow
       const id = parseUrl(window.location.pathname).id;
       renderForm(id);
       break;

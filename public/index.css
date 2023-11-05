@@ -5,7 +5,7 @@
 @import './components/pages/Forms/forms.css';
 @import './components/FormsItem/forms_item.css';
 @import './components/pages/Form/form.css';
-@import './components/pages/Index/index.css';
+@import 'components/pages/Main/main.css';
 @import './components/pages/Login/login.css';
 @import './components/pages/Signup/signup.css';
 @import './components/Message/message.css';

@@ -53,7 +53,7 @@ export async function renderLogin() {
     }
 
     const user = {user: {name: res.authorizedUser.name}};
-    goToPage(ROUTES.index);
+    goToPage(ROUTES.main);
     navbar(user);
     renderMessage('Вы успешно вошли');
   });
