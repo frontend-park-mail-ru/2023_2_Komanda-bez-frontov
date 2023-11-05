@@ -1,5 +1,3 @@
-'use strict'
-
 /**
  * Функция для рендеринга главной страницы с информацией о сервисе.
  *
@@ -7,7 +5,7 @@
  * @return {void}
  */
 export function renderIndex() {
-    const rootElement = document.querySelector("#root");
-    rootElement.innerHTML = '';
-    rootElement.innerHTML = Handlebars.templates['index']();
+  const rootElement = document.querySelector('#root');
+  rootElement.innerHTML = '';
+  rootElement.innerHTML = Handlebars.templates.index();
 }

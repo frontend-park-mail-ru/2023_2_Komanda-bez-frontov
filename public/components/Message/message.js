@@ -1,6 +1,3 @@
-'use strict';
-
-
 /**
  * Функция для рендеринга сообщений для пользователя на странице.
  *
@@ -10,21 +7,20 @@
  * @return {void}
  */
 export function renderMessage(text, error = false) {
+  const messageContainer = document.querySelector('#message-box');
+  messageContainer.innerHTML = '';
+  messageContainer.classList.remove('error-container', 'success-container');
 
-    const messageContainer = document.querySelector("#message-box");
-    messageContainer.innerHTML = '';
-    messageContainer.classList.remove("error-container", "success-container");
+  if (error) {
+    messageContainer.classList.add('error-container');
+  } else {
+    messageContainer.classList.add('success-container');
+  }
 
-    if (error) {
-        messageContainer.classList.add("error-container");
-    } else {
-        messageContainer.classList.add("success-container");
-    }
+  const message = document.createElement('p');
+  message.textContent = text;
 
-    const message = document.createElement('p');
-    message.textContent = text;
-
-    messageContainer.appendChild(message);
+  messageContainer.appendChild(message);
 }
 
 /**
@@ -34,8 +30,7 @@ export function renderMessage(text, error = false) {
  * @return {void}
  */
 export function removeMessage() {
-    const messageContainer = document.querySelector("#message-box");
-    messageContainer.innerHTML = '';
-    messageContainer.classList.remove("error-container", "success-container");
-
+  const messageContainer = document.querySelector('#message-box');
+  messageContainer.innerHTML = '';
+  messageContainer.classList.remove('error-container', 'success-container');
 }
