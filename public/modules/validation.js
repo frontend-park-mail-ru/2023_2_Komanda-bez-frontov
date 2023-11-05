@@ -8,33 +8,25 @@
  * `message` (сообщение об ошибке).
  */
 export function emailValidation(email) {
-    let isValid = {valid: true, message: ''};
+    let valid = false;
 
-    if (email.length >= 50) {
-        isValid = {
-            valid: false,
-            message: 'Email не должен содержать более 50 символов',
-        };
-        return isValid;
+    if (email.length >= 255) {
+        const message = 'Email не должен содержать более 50 символов';
+        return {valid, message};
     }
 
     if (!email.includes('@')) {
-        isValid = {
-            valid: false,
-            message: 'Email должен содержать символ @',
-        };
-        return isValid;
+        const message = 'Email должен содержать символ @';
+        return {valid, message}
     }
 
     if (email.split('@').length - 1 >= 2) {
-        isValid = {
-            valid: false,
-            message: 'Email должен содержать только один символ @',
-        };
-        return isValid;
+        const message = 'Email должен содержать только один символ @';
+        return {valid, message}
     }
 
-    return isValid;
+    valid = true;
+    return {valid, message: ''}
 }
 
 
@@ -45,34 +37,25 @@ export function emailValidation(email) {
  * `message` (сообщение об ошибке).
  */
 export function usernameValidation(username) {
-    let isValid = {valid: true, message: ''};
+    let valid = false;
 
     if (!/^[a-zA-Z0-9_-]+$/.test(username)) {
-        isValid = {
-            valid: false,
-            message: 'Имя пользователя должно содержать только буквы и цифры',
-        };
-
-        return isValid;
+        const message = 'Имя пользователя должно содержать только буквы и цифры';
+        return {valid, message}
     }
 
     if (username.length < 4) {
-        isValid = {
-            valid: false,
-            message: 'Имя пользователя должно содержать более 4 символов',
-        };
-        return isValid;
+        const message = 'Username должен содержать более 4 символов';
+        return {valid, message}
     }
 
     if (username.length >= 50) {
-        isValid = {
-            valid: false,
-            message: 'Имя пользователя не должно содержать более 50 символов',
-        };
-        return isValid;
+        const message = 'Имя пользователя не должно содержать более 50 символов';
+        return {valid, message}
     }
 
-    return isValid;
+    valid = true;
+    return {valid, message: ''}
 }
 
 
@@ -83,31 +66,23 @@ export function usernameValidation(username) {
  * `message` (сообщение об ошибке).
  */
 export function passwordValidation(password) {
-    let isValid = {valid: true, message: ''};
+    let valid = false;
 
     if (password.length < 8) {
-        isValid = {
-            valid: false,
-            message: 'Пароль должен содержать не менее 8 символов',
-        };
-        return isValid;
+        const message = 'Пароль должен содержать не менее 8 символов';
+        return {valid, message}
     }
 
     if (password.length >= 50) {
-        isValid = {
-            valid: false,
-            message: 'Пароль не должен содержать более 50 символов',
-        };
-        return isValid;
+        const message = 'Пароль не должен содержать более 50 символов';
+        return {valid, message}
     }
 
     if (!/[a-z]/.test(password)) {
-        isValid = {
-            valid: false,
-            message: 'Пароль должен содержать хотя бы одну букву в нижнем регистре',
-        };
-        return isValid;
+        const message = 'Пароль должен содержать хотя бы одну букву в нижнем регистре';
+        return {valid, message}
     }
 
-    return isValid;
+    valid = true;
+    return {valid, message: ''}
 }

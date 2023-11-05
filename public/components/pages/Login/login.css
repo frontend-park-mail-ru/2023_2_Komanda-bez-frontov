@@ -1,16 +1,5 @@
 .form-container {
-    display: flex;
-    justify-content: center;
-    padding-top: 40px;
-}
-
-.login-form {
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 330px;
-    margin: 0 20px 0 20px;
+    margin: 40px 0;
 }
 
 form {
@@ -18,18 +7,30 @@ form {
     border: 3px solid #424242;
     text-align: center;
     width: 400px;
+    margin: 0 auto;
 }
 
 form h3 {
     font-size: 30px;
+    margin-bottom: 5px;
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    margin: 25px 30px;
 }
 
 input {
     height: 48px;
-    margin: 10px;
+    margin: 0 0 12px 0;
     border-radius: 12px;
     border: 2px solid #424242;
     padding: 7px 15px;
     box-sizing: border-box;
     font-size: 25px;
+}
+
+.login-form .button-container {
+    margin-top: 25px;
 }

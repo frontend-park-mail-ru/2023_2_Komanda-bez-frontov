@@ -1,6 +1,7 @@
 'use strict';
 
 import {ROUTES} from '../config.js'
+import {renderMessage} from "../components/Message/message.js";
 
 
 const GET_METHOD = 'GET';
@@ -18,22 +19,23 @@ export class API {
         try {
             const url = '/main';
 
-            const response = await fetch(url, {method: GET_METHOD});
-
-            const res = await response;
-            const parseRes = await res.json();
+            const res = await fetch(url, {method: GET_METHOD});
+            const body = await res.json();
 
             let isAuthorized = false;
             let authorizedUser;
 
             if (res.ok) {
                 isAuthorized = true;
-                authorizedUser = parseRes.currentUser;
+                authorizedUser = body.currentUser;
             }
 
             return {isAuthorized, authorizedUser};
         } catch (e) {
             console.log("Ошибка метода isAuth:", e);
+            if (e.toString() === "TypeError: Failed to fetch") {
+                renderMessage("Потеряна связь с сервером!", true);
+            }
             throw(e);
         }
     }
@@ -52,7 +54,7 @@ export class API {
         try {
             const url = ROUTES.login.url;
 
-            const response = await fetch(url, {
+            const res = await fetch(url, {
                 method: POST_METHOD,
                 headers: {
                     'Content-Type': 'application/json',
@@ -60,15 +62,14 @@ export class API {
                 body: JSON.stringify({email, password}),
             });
 
-            const  res = await response;
-            const parseRes = await res.json();
+            const body = await res.json();
 
             let isLoggedIn = false;
             let authorizedUser;
 
             if (res.ok) {
                 isLoggedIn = true;
-                authorizedUser = parseRes.currentUser;
+                authorizedUser = body.currentUser;
             }
 
             return {isLoggedIn, authorizedUser};
@@ -90,11 +91,9 @@ export class API {
         try {
             const url = ROUTES.logout.url;
 
-            const response = await fetch(url, {
+            const res = await fetch(url, {
                 method: GET_METHOD
             });
-
-            const  res = await response;
 
             if (res.status === 404) {
                 return 404;
@@ -123,7 +122,7 @@ export class API {
         try {
             const url = ROUTES.signup.url;
 
-            const response = await fetch(url, {
+            const res = await fetch(url, {
                 method: POST_METHOD,
                 headers: {
                     'Content-Type': 'application/json',
@@ -131,14 +130,13 @@ export class API {
                 body: JSON.stringify({name, username, email, password}),
             });
 
-            const res = await response;
-            const parseRes = await res.json();
+            const body = await res.json();
 
-            let status = res.status;
+            const status = res.status;
             let registeredUser;
 
             if (status === 201) {
-                registeredUser = parseRes.currentUser;
+                registeredUser = body.currentUser;
             }
 
             return {status, registeredUser};
@@ -162,9 +160,8 @@ export class API {
 
             const url = '/api/forms';
 
-            const response = await fetch(url, {method: GET_METHOD});
+            const res = await fetch(url, {method: GET_METHOD});
 
-            const res = await response;
             const body = await res.json();
             const status = res.status;
 
@@ -193,9 +190,8 @@ export class API {
         try {
             const url = '/api' + ROUTES.form.url + id;
 
-            const response = await fetch(url, {method: GET_METHOD});
+            const res = await fetch(url, {method: GET_METHOD});
 
-            const res = await response;
             const body = await res.json();
             const status = res.status;
 

@@ -8,10 +8,12 @@
 
 .button-container-navbar {
     display: flex;
-    height: 60px;
+    height: 54px;
+    padding: 3px 0;
 }
 
 .button-container-navbar button {
+    width: 135px;
     margin-left: 10px;
 }
 
@@ -30,6 +32,11 @@
     justify-content: space-evenly;
     font-size: 24px;
     color: white;
+    margin-left: 50px;
+}
+
+.profile:hover {
+    cursor: pointer;
 }
 
 .profile_pic {

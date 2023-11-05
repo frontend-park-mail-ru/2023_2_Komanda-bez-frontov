@@ -131,7 +131,6 @@ router.get('/forms', (req, res) => {
 });
 
 router.get('*', (req, res) => {
-    console.log(req)
     res.sendFile(path.join(__dirname, '../public', 'index.html'));
 });
 

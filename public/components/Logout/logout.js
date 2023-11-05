@@ -25,6 +25,6 @@ export async function renderMainLogout() {
         renderMessage('Невозможно выполнить Logout - вы не авторизованы!', true);
         return;
     }
-    renderMessage('Вы не авторизованы!', true);
+    renderMessage('Вы вышли из аккаунта', true);
     goToPage(ROUTES.index);
 }

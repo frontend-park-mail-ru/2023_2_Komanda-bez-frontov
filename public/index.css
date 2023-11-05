@@ -1,3 +1,4 @@
+@import './components/Buttons/buttons.css';
 @import './components/Navbar/navbar.css';
 @import './components/ProfileMenu/profileMenu.css';
 @import './components/pages/Profile/profile.css';
@@ -5,7 +6,6 @@
 @import './components/FormsItem/forms_item.css';
 @import './components/pages/Form/form.css';
 @import './components/pages/Index/index.css';
-@import './components/Buttons/buttons.css';
 @import './components/pages/Login/login.css';
 @import './components/pages/Signup/signup.css';
 @import './components/Message/message.css';

@@ -1,39 +1,30 @@
 .button-container {
     display: flex;
-    margin: 5px 3px 5px 3px;
+    gap: 6px;
+}
+
+button {
+    padding: 13px 15px;
+    border-radius: 12px;
+    border: 2px solid #424242;
+    width: 100%;
+    font-size: 15px;
+    font-weight: bold;
 }
 
 .secondary-button {
     background-color: #4B357A;
-    padding: 13px 12px;
     color: white;
-    border-radius: 12px;
-    width: 100%;
-    margin: 3px;
-    font-size: 15px;
-    font-weight: bold;
 }
 
 .primary-button {
     color: black;
-    padding: 13px 18px;
-    border-radius: 12px;
-    border: 2px solid #424242;
-    width: 100%;
-    margin: 3px;
-    font-size: 15px;
-    font-weight: bold;
 }
 
 .black-button {
     background-color: #000000;
     color: white;
     border-radius: 12px;
-    border: 2px solid #424242;
-    margin: 3px;
-    font-size: 15px;
-    font-weight: bold;
-    padding: 13px 45px;
 }
 
 button:hover {
