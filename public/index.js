@@ -8,6 +8,7 @@ import {goToPage, ROUTES} from "./config.js";
 import {renderForms} from "./components/pages/Forms/forms.js";
 import {renderForm} from "./components/pages/Form/form.js";
 import {renderIndex} from "./components/pages/Index/index.js";
+import {renderProfile} from "./components/pages/Profile/profile.js";
 
 /**
  * Расщепляет url запроса на префикс и id страницы.
@@ -42,6 +43,9 @@ switch (url) {
     case '/forms/':
         goToPage(ROUTES.form, id)
         break;
+    case '/profile':
+        goToPage(ROUTES.profile);
+        break;
     case '/login':
         goToPage(ROUTES.login);
         break;
@@ -74,6 +78,9 @@ window.onpopstate = function (event) {
         case 'form':
             const id = parseUrl(window.location.pathname).id;
             renderForm(id);
+            break;
+        case 'profile':
+            renderProfile();
             break;
         case 'login':
             renderLogin();

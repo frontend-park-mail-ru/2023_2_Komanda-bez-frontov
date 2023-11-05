@@ -3,6 +3,7 @@
 import {API} from '../../../modules/api.js';
 import {goToPage, ROUTES} from "../../../config.js";
 import {removeMessage, renderMessage} from "../../Message/message.js";
+import {navbar} from "../../Navbar/navbar.js";
 
 /**
  * Функция для рендеринга страницы с созданными пользователем опросами.
@@ -16,6 +17,7 @@ export async function renderForms() {
     const api = new API();
     const isAuth = await api.isAuth();
     if (!isAuth.isAuthorized) {
+        navbar();
         goToPage(ROUTES.login)
         renderMessage('Вы не авторизованы!', true);
         return;

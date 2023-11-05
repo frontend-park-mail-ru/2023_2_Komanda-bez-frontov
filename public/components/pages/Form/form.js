@@ -5,6 +5,7 @@ import {render404} from "../../404/404.js";
 import {removeMessage, renderMessage} from "../../Message/message.js";
 import {goToPage, ROUTES} from "../../../config.js";
 import {renderForms} from "../Forms/forms.js";
+import {navbar} from "../../Navbar/navbar.js";
 
 /**
  * Функция для рендеринга страницы опроса по его id.
@@ -19,6 +20,7 @@ export async function renderForm(id) {
     const api = new API();
     const isAuth = await api.isAuth();
     if (!isAuth.isAuthorized) {
+        navbar();
         goToPage(ROUTES.login)
         renderMessage('Вы не авторизованы!', true);
         return;

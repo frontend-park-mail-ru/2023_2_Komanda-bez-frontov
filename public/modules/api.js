@@ -135,7 +135,7 @@ export class API {
             const status = res.status;
             let registeredUser;
 
-            if (status === 201) {
+            if (res.ok) {
                 registeredUser = body.currentUser;
             }
 
@@ -165,7 +165,7 @@ export class API {
             const body = await res.json();
             const status = res.status;
 
-            if (status === 200) {
+            if (res.ok) {
                 const forms = body.forms
                 return {status, forms};
             }
@@ -195,7 +195,7 @@ export class API {
             const body = await res.json();
             const status = res.status;
 
-            if (status === 200) {
+            if (res.ok) {
                 const form = body.form
                 return {status, form};
             }

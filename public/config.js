@@ -5,6 +5,7 @@ import {renderForms} from "./components/pages/Forms/forms.js";
 import {renderForm} from "./components/pages/Form/form.js";
 import {renderIndex} from "./components/pages/Index/index.js";
 import {renderSignup} from "./components/pages/Signup/signup.js";
+import {renderProfile} from "./components/pages/Profile/profile.js";
 
 export const ROUTES = {
     main: {
@@ -26,6 +27,11 @@ export const ROUTES = {
         url: '/forms/',
         state: 'form',
         open: renderForm,
+    },
+    profile:{
+        url: '/profile',
+        state: 'profile',
+        open: renderProfile,
     },
     signup:{
         url: '/signup',

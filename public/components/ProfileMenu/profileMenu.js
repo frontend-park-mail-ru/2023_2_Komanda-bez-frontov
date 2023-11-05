@@ -36,7 +36,7 @@ export function renderProfileMenu(user)  {
     profileButton.addEventListener("click", function (e) {
         navbar(user);
         document.body.removeEventListener("click", removeProfileMenu)
-        renderProfile();
+        goToPage(ROUTES.profile);
     });
     const formsButton = document.querySelector("#navbar-menu-forms-button")
     formsButton.addEventListener("click", function (e) {
@@ -44,10 +44,22 @@ export function renderProfileMenu(user)  {
         document.body.removeEventListener("click", removeProfileMenu)
         goToPage(ROUTES.forms);
     });
+    // const historyButton = document.querySelector("#navbar-menu-history-button")
+    // historyButton.addEventListener("click", function (e) {
+    //     navbar(user);
+    //     document.body.removeEventListener("click", removeProfileMenu)
+    //     goToPage(ROUTES.history);
+    // });
+    // const settingsButton = document.querySelector("#navbar-menu-settings-button")
+    // settingsButton.addEventListener("click", function (e) {
+    //     navbar(user);
+    //     document.body.removeEventListener("click", removeProfileMenu)
+    //     goToPage(ROUTES.settings);
+    // });
+
     const logoutButton = document.querySelector("#navbar-menu-logout-button")
     logoutButton.addEventListener("click", function (e) {
         document.body.removeEventListener("click", removeProfileMenu)
         goToPage(ROUTES.logout);
     });
-
 }
