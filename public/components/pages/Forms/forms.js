@@ -1,7 +1,7 @@
 import {API} from '../../../modules/api.js';
 import {ROUTES} from '../../../config.js';
 import {removeMessage, renderMessage} from '../../Message/message.js';
-import {goToPage} from "../../../modules/router.js";
+import {goToPage} from '../../../modules/router.js';
 
 /**
  * Функция для рендеринга страницы с созданными пользователем опросами.
@@ -32,7 +32,7 @@ export async function renderForms() {
   // eslint-disable-next-line no-restricted-syntax
     for (const index in res.forms) {
       const form = res.forms[index];
-      console.log(form)
+
       const item = document.createElement('div');
       item.innerHTML = Handlebars.templates.forms_item();
 

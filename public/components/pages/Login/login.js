@@ -3,7 +3,7 @@ import {API} from '../../../modules/api.js';
 import {renderMessage, removeMessage} from '../../Message/message.js';
 import {navbar} from '../../Navbar/navbar.js';
 import {emailValidation, passwordValidation} from '../../../modules/validation.js';
-import {goToPage} from "../../../modules/router.js";
+import {goToPage} from '../../../modules/router.js';
 
 /**
  * Функция для рендеринга страницы аутенфикации.
@@ -62,7 +62,7 @@ export async function renderLogin() {
         first_name: res.authorizedUser.first_name,
         username: res.authorizedUser.username,
         email: res.authorizedUser.email,
-      }
+      },
     };
     goToPage(ROUTES.main);
     navbar(user);

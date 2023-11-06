@@ -1,6 +1,6 @@
-import {ROUTES} from "../../config.js";
-import {navbar} from "../Navbar/navbar.js";
-import {goToPage} from "../../modules/router.js";
+import {ROUTES} from '../../config.js';
+import {navbar} from '../Navbar/navbar.js';
+import {goToPage} from '../../modules/router.js';
 
 /**
  * Функция для рендеринга страницы с созданными пользователем опросами.
@@ -10,51 +10,51 @@ import {goToPage} from "../../modules/router.js";
  * @param user - Объект с информацией о пользователе.
  * @return {void}
  */
-export function renderProfileMenu(user)  {
-    if (!user) {
-        return
+export function renderProfileMenu(user) {
+  if (!user) {
+    return;
+  }
+  const navbarElement = document.querySelector('#navbar');
+  navbarElement.innerHTML += Handlebars.templates.profileMenu();
+
+  // Функция убирающая рендер меню, а так же убирающая event listener клика по области вне нее
+  function removeProfileMenu(e) {
+    if (!e.target.classList.contains('navbar-profile-menu')
+            && !e.target.parentNode.classList.contains('navbar-profile-menu')) {
+      document.body.removeEventListener('click', removeProfileMenu);
+      navbar(user);
     }
-    const navbarElement = document.querySelector("#navbar");
-    navbarElement.innerHTML += Handlebars.templates.profileMenu();
+  }
+  document.body.addEventListener('click', removeProfileMenu);
 
-    // Функция убирающая рендер меню, а так же убирающая event listener клика по области вне нее
-    function removeProfileMenu (e) {
-        if (!e.target.classList.contains('navbar-profile-menu') &&
-            !e.target.parentNode.classList.contains('navbar-profile-menu')) {
-            document.body.removeEventListener("click", removeProfileMenu)
-            navbar(user);
-        }
-    }
-    document.body.addEventListener("click", removeProfileMenu);
+  const profileButton = document.querySelector('#navbar-menu-profile-button');
+  profileButton.addEventListener('click', (e) => {
+    navbar(user);
+    document.body.removeEventListener('click', removeProfileMenu);
+    goToPage(ROUTES.profile);
+  });
+  const formsButton = document.querySelector('#navbar-menu-forms-button');
+  formsButton.addEventListener('click', (e) => {
+    navbar(user);
+    document.body.removeEventListener('click', removeProfileMenu);
+    goToPage(ROUTES.forms);
+  });
+  // const historyButton = document.querySelector("#navbar-menu-history-button")
+  // historyButton.addEventListener("click", function (e) {
+  //     navbar(user);
+  //     document.body.removeEventListener("click", removeProfileMenu)
+  //     goToPage(ROUTES.history);
+  // });
+  // const settingsButton = document.querySelector("#navbar-menu-settings-button")
+  // settingsButton.addEventListener("click", function (e) {
+  //     navbar(user);
+  //     document.body.removeEventListener("click", removeProfileMenu)
+  //     goToPage(ROUTES.settings);
+  // });
 
-    const profileButton = document.querySelector("#navbar-menu-profile-button")
-    profileButton.addEventListener("click", function (e) {
-        navbar(user);
-        document.body.removeEventListener("click", removeProfileMenu)
-        goToPage(ROUTES.profile);
-    });
-    const formsButton = document.querySelector("#navbar-menu-forms-button")
-    formsButton.addEventListener("click", function (e) {
-        navbar(user);
-        document.body.removeEventListener("click", removeProfileMenu)
-        goToPage(ROUTES.forms);
-    });
-    // const historyButton = document.querySelector("#navbar-menu-history-button")
-    // historyButton.addEventListener("click", function (e) {
-    //     navbar(user);
-    //     document.body.removeEventListener("click", removeProfileMenu)
-    //     goToPage(ROUTES.history);
-    // });
-    // const settingsButton = document.querySelector("#navbar-menu-settings-button")
-    // settingsButton.addEventListener("click", function (e) {
-    //     navbar(user);
-    //     document.body.removeEventListener("click", removeProfileMenu)
-    //     goToPage(ROUTES.settings);
-    // });
-
-    const logoutButton = document.querySelector("#navbar-menu-logout-button")
-    logoutButton.addEventListener("click", function (e) {
-        document.body.removeEventListener("click", removeProfileMenu)
-        goToPage(ROUTES.logout);
-    });
+  const logoutButton = document.querySelector('#navbar-menu-logout-button');
+  logoutButton.addEventListener('click', (e) => {
+    document.body.removeEventListener('click', removeProfileMenu);
+    goToPage(ROUTES.logout);
+  });
 }

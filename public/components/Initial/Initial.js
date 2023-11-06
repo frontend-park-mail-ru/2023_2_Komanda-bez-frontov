@@ -27,8 +27,8 @@ export async function renderInitial() {
       first_name: isAuth.authorizedUser.first_name,
       username: isAuth.authorizedUser.username,
       email: isAuth.authorizedUser.email,
-    }
-  }
+    },
+  };
   navbar(user);
   rootElement.innerHTML = '';
 }

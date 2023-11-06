@@ -1,10 +1,31 @@
+@import '../../Buttons/buttons';
+
 .form-wrapper {
   margin-top: 40px;
   text-align: center;
   font-size: 24px;
 
   h3 {
-    font-size: 35px;
-    margin-bottom: 30px;
+    font-size: 29px;
+    margin-bottom: 18px;
   }
+
+  .description {
+    @extend %button-common;
+    text-align: left;
+    margin: 0 auto;
+    width: 800px;
+
+    h3 {
+      font-size: 29px;
+    }
+
+    p {
+      font-size: 20px;
+      font-weight: normal;
+    }
+  }
+
+
+
 }

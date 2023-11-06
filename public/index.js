@@ -1,3 +1,3 @@
-import {initialRouter} from "./modules/router.js";
+import {renderInitial} from './components/Initial/Initial.js';
 
-initialRouter();
+renderInitial();

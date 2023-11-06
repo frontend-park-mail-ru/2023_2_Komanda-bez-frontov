@@ -27,7 +27,6 @@ export async function renderForm(id) {
 
   const api = new API();
   const res = await api.getForm(id);
-
   if (res.status === 200) {
     formTitle.innerHTML = res.form.title;
   } else {
