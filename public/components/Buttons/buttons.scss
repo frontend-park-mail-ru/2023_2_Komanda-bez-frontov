@@ -3,32 +3,34 @@
   gap: 6px;
 }
 
-.black-button, .primary-button, .secondary-button {
+%button-common {
   padding: 13px 15px;
   border-radius: 12px;
   border: 2px solid #424242;
   width: 100%;
   font-size: 15px;
   font-weight: bold;
-}
-.black-button:hover, .primary-button:hover, .secondary-button:hover {
-  opacity: 0.6;
-  cursor: pointer;
+
+  &:hover {
+    opacity: 0.6;
+    cursor: pointer;
+  }
 }
 
 .secondary-button {
+  @extend %button-common;
   background-color: #4B357A;
   color: white;
 }
 
 .primary-button {
+  @extend %button-common;
   color: black;
 }
 
 .black-button {
+  @extend %button-common;
   background-color: #000000;
   color: white;
   border-radius: 12px;
 }
-
-/*# sourceMappingURL=buttons.css.map */

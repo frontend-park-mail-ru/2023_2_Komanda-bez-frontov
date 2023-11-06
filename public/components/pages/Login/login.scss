@@ -8,19 +8,21 @@ form {
   text-align: center;
   width: 400px;
   margin: 0 auto;
-}
-form h3 {
-  font-size: 30px;
-  margin-bottom: 5px;
+
+  h3 {
+    font-size: 30px;
+    margin-bottom: 5px;
+  }
 }
 
 .login-form {
   display: flex;
   flex-direction: column;
   margin: 25px 30px;
-}
-.login-form .button-container {
-  margin-top: 25px;
+
+  .button-container {
+    margin-top: 25px;
+  }
 }
 
 input {
@@ -32,5 +34,3 @@ input {
   box-sizing: border-box;
   font-size: 25px;
 }
-
-/*# sourceMappingURL=login.css.map */

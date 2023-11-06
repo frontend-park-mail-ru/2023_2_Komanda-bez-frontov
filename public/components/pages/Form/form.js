@@ -1,9 +1,7 @@
 import {API} from '../../../modules/api.js';
 import {render404} from '../../404/404.js';
-import {removeMessage, renderMessage} from '../../Message/message.js';
-import {ROUTES} from '../../../config.js';
+import {removeMessage} from '../../Message/message.js';
 import {renderForms} from '../Forms/forms.js';
-import {goToPage} from "../../../modules/router.js";
 
 /**
  * Функция для рендеринга страницы опроса по его id.

@@ -6,6 +6,7 @@ import {renderMain} from '../components/pages/Main/main.js';
 import {renderInitial} from '../components/Initial/Initial.js';
 import {render404} from '../components/404/404.js';
 import {ROUTES} from '../config.js';
+import {renderProfile} from "../components/pages/Profile/profile.js";
 
 /**
  * Расщепляет url запроса на префикс и id страницы.
@@ -61,6 +62,9 @@ export async function initialRouter() {
         case '/':
             goToPage(ROUTES.main);
             break;
+        case '/profile':
+            goToPage(ROUTES.profile);
+            break;
         case '/forms/':
             goToPage(ROUTES.form, id);
             break;
@@ -98,6 +102,9 @@ window.onpopstate = function (event) {
         case 'form':
             const id = parseUrl(window.location.pathname).id;
             renderForm(id);
+            break;
+        case 'profile':
+            renderProfile();
             break;
         case 'login':
             renderLogin();

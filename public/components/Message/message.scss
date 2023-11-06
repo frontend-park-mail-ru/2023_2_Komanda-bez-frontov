@@ -1,4 +1,4 @@
-.error-container, .success-container {
+%message-common {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -8,14 +8,14 @@
 }
 
 .success-container {
+  @extend %message-common;
   background-color: #e9ffe9;
   border: 1px solid #d4f1d4;
 }
 
 .error-container {
+  @extend %message-common;
   background-color: #fde9e9;
   border: 1px solid #eaa7a7;
   color: #ea6767;
 }
-
-/*# sourceMappingURL=message.css.map */

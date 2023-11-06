@@ -1,5 +1,4 @@
-import { backendUrl, ROUTES, ROUTES_API } from '../config.js';
-import { renderMessage } from '../components/Message/message.js';
+import { backendUrl, ROUTES_API } from '../config.js';
 
 const GET_METHOD = 'GET';
 const POST_METHOD = 'POST';
@@ -220,3 +219,4 @@ export class API {
     }
   }
 }
+

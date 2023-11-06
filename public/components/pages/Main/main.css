@@ -1,10 +1,11 @@
 .index-container {
-    margin-top: 40px;
-    text-align: center;
-    font-size: 24px;
+  margin: 40px 80px;
+  text-align: center;
+  font-size: 24px;
+}
+.index-container h3 {
+  font-size: 35px;
+  margin-bottom: 30px;
 }
 
-.index-container h3 {
-    font-size: 35px;
-    margin-bottom: 30px;
-}
+/*# sourceMappingURL=main.css.map */

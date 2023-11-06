@@ -1,10 +1,11 @@
 .form-wrapper {
-    margin-top: 40px;
-    text-align: center;
-    font-size: 24px;
+  margin-top: 40px;
+  text-align: center;
+  font-size: 24px;
+}
+.form-wrapper h3 {
+  font-size: 35px;
+  margin-bottom: 30px;
 }
 
-.form-wrapper h3 {
-    font-size: 35px;
-    margin-bottom: 30px;
-}
+/*# sourceMappingURL=form.css.map */
