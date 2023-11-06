@@ -28,13 +28,13 @@ export function renderProfileMenu(user) {
   document.body.addEventListener('click', removeProfileMenu);
 
   const profileButton = document.querySelector('#navbar-menu-profile-button');
-  profileButton.addEventListener('click', (e) => {
+  profileButton.addEventListener('click', () => {
     navbar(user);
     document.body.removeEventListener('click', removeProfileMenu);
     goToPage(ROUTES.profile);
   });
   const formsButton = document.querySelector('#navbar-menu-forms-button');
-  formsButton.addEventListener('click', (e) => {
+  formsButton.addEventListener('click', () => {
     navbar(user);
     document.body.removeEventListener('click', removeProfileMenu);
     goToPage(ROUTES.forms);
@@ -53,7 +53,7 @@ export function renderProfileMenu(user) {
   // });
 
   const logoutButton = document.querySelector('#navbar-menu-logout-button');
-  logoutButton.addEventListener('click', (e) => {
+  logoutButton.addEventListener('click', () => {
     document.body.removeEventListener('click', removeProfileMenu);
     goToPage(ROUTES.logout);
   });

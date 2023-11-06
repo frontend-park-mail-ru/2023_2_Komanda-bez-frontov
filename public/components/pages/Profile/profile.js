@@ -41,7 +41,7 @@ export async function renderProfile() {
   //     goToPage(ROUTES.settings);
   // });
   const formsButton = document.querySelector('#profile-forms-button');
-  formsButton.addEventListener('click', (e) => {
+  formsButton.addEventListener('click', () => {
     goToPage(ROUTES.forms);
   });
   // const historyButton = document.querySelector("#profile-history-button");

@@ -21,7 +21,6 @@ module.exports = {
     ecmaVersion: 'latest',
     sourceType: 'module',
   },
-  ignorePatterns: ['*precompiled.js'],
   rules: {
     'import/no-cycle': 'off',
     'import/extensions': 'off',
