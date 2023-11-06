@@ -21,6 +21,14 @@ export async function renderInitial() {
     return;
   }
 
-  navbar({user: {name: isAuth.authorizedUser.name}});
+  const user = {
+    user: {
+      id: isAuth.authorizedUser.id,
+      first_name: isAuth.authorizedUser.first_name,
+      username: isAuth.authorizedUser.username,
+      email: isAuth.authorizedUser.email,
+    }
+  }
+  navbar(user);
   rootElement.innerHTML = '';
 }

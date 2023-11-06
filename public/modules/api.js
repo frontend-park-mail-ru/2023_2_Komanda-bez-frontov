@@ -25,14 +25,13 @@ export class API {
         credentials: "include",
       });
 
-      // const body = await res.json();
+      const body = await res.json();
       let isAuthorized = false;
       let authorizedUser;
 
       if (res.ok) {
         isAuthorized = true;
-        // authorizedUser = body.currentUser;
-        authorizedUser = { name: 'NAME', username: 'USERNAME', email: 'EMAIL@GMAIL.COM' };
+        authorizedUser = body.current_user;
       }
 
       return { isAuthorized, authorizedUser };
@@ -73,7 +72,7 @@ export class API {
       let authorizedUser;
 
       if (res.ok) {
-        authorizedUser = body;
+        authorizedUser = body.data;
       }
 
       return { status, authorizedUser };
@@ -145,7 +144,7 @@ export class API {
       let registeredUser;
 
       if (res.ok) {
-        registeredUser = body;
+        registeredUser = body.data;
       }
 
       return {status, registeredUser};
@@ -161,8 +160,7 @@ export class API {
    *
    * @async
    * @function
-   * @return {Promise<{   count: number, forms: ( * | { id: { title: string } }[] ),
-   * status: number}>} Объект с информацией о статусе запроса и массивом с опросами.
+   * @return {Promise<{forms: ( * | [] ), status: number}>} Объект с информацией о статусе запроса и массивом с опросами.
    * @throws {Error} Если произошла ошибка при запросе или обработке данных.
    */
   async getForms() {
@@ -178,7 +176,7 @@ export class API {
       const status = res.status;
 
       if (res.ok) {
-        const forms = body.forms;
+        const forms = body.data.forms;
         return {status, forms};
       }
 
@@ -211,7 +209,7 @@ export class API {
       const status = res.status;
 
       if (res.ok) {
-        const form = body;
+        const form = body.data;
         return {status, form};
       }
 
