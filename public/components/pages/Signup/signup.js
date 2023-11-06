@@ -3,7 +3,7 @@ import {API} from '../../../modules/api.js';
 import {renderMessage, removeMessage} from '../../Message/message.js';
 import {navbar} from '../../Navbar/navbar.js';
 import {emailValidation, passwordValidation, usernameValidation} from '../../../modules/validation.js';
-import {goToPage} from "../../../modules/router.js";
+import {goToPage} from '../../../modules/router.js';
 
 /**
  * Функция для рендеринга страницы регистрации.
@@ -85,7 +85,7 @@ export async function renderSignup() {
         first_name: res.registeredUser.first_name,
         username: res.registeredUser.username,
         email: res.registeredUser.email,
-      }
+      },
     };
     goToPage(ROUTES.main);
     navbar(user);

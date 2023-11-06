@@ -21,7 +21,7 @@ export class API {
 
       const res = await fetch(url, {
         method: GET_METHOD,
-        credentials: "include",
+        credentials: 'include',
       });
 
       const body = await res.json();
@@ -61,7 +61,7 @@ export class API {
         headers: {
           'Content-Type': 'application/json',
         },
-        credentials: "include",
+        credentials: 'include',
         body: JSON.stringify({ email, password }),
       });
 
@@ -95,7 +95,7 @@ export class API {
 
       const res = await fetch(url, {
         method: POST_METHOD,
-        credentials: "include",
+        credentials: 'include',
       });
 
       if (res.status === 404) {
@@ -131,7 +131,7 @@ export class API {
         headers: {
           'Content-Type': 'application/json',
         },
-        credentials: "include",
+        credentials: 'include',
         body: JSON.stringify({
           first_name, username, email, password,
         }),
@@ -168,7 +168,7 @@ export class API {
 
       const res = await fetch(url, {
         method: GET_METHOD,
-        credentials: "include",
+        credentials: 'include',
       });
 
       const body = await res.json();
@@ -201,7 +201,7 @@ export class API {
 
       const res = await fetch(url, {
         method: GET_METHOD,
-        credentials: "include",
+        credentials: 'include',
       });
 
       const body = await res.json();
@@ -219,4 +219,3 @@ export class API {
     }
   }
 }
-
