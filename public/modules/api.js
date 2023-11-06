@@ -20,8 +20,12 @@ export class API {
     try {
       const url = backendUrl + ROUTES_API.isAuth.url;
 
-      const res = await fetch(url, { method: GET_METHOD });
-      const body = await res.json();
+      const res = await fetch(url, {
+        method: GET_METHOD,
+        credentials: "include",
+      });
+
+      // const body = await res.json();
       let isAuthorized = false;
       let authorizedUser;
 
@@ -45,7 +49,7 @@ export class API {
    * @function
    * @param {string} email - Почта.
    * @param {string} password - Пароль.
-   * @return {Promise<{isLoggedIn: boolean,
+   * @return {Promise<{status: number,
    * authorizedUser: ({password: *, name: *, email: *, username: *}|*)}>} Объект с информацией
    * о статусе авторизации и о пользователе.
    * @throws {Error} Если произошла ошибка при запросе или обработке данных.
@@ -59,23 +63,20 @@ export class API {
         headers: {
           'Content-Type': 'application/json',
         },
+        credentials: "include",
         body: JSON.stringify({ email, password }),
       });
 
       const body = await res.json();
 
-      let isLoggedIn = false;
+      const status = res.status;
       let authorizedUser;
 
-      const setCookieHeader = res.headers.get('Set-Cookie');
-      console.log(setCookieHeader);
-
       if (res.ok) {
-        isLoggedIn = true;
         authorizedUser = body;
       }
 
-      return { isLoggedIn, authorizedUser };
+      return { status, authorizedUser };
     } catch (e) {
       console.log('Ошибка метода userLogin:', e);
       throw (e);
@@ -96,6 +97,7 @@ export class API {
 
       const res = await fetch(url, {
         method: POST_METHOD,
+        credentials: "include",
       });
 
       if (res.status === 404) {
@@ -114,7 +116,7 @@ export class API {
    *
    * @async
    * @function
-   * @param {string} name - Имя.
+   * @param {string} first_name - Имя.
    * @param {string} username - Имя пользователя.
    * @param {string} email - Почта.
    * @param {string} password - Пароль.
@@ -122,7 +124,7 @@ export class API {
    * status: number}>} Объект с информацией о статусе регистрации и о пользователе.
    * @throws {Error} Если произошла ошибка при запросе или обработке данных.
    */
-  async userSignup(name, username, email, password) {
+  async userSignup(first_name, username, email, password) {
     try {
       const url = backendUrl + ROUTES_API.signup.url;
 
@@ -131,18 +133,19 @@ export class API {
         headers: {
           'Content-Type': 'application/json',
         },
+        credentials: "include",
         body: JSON.stringify({
-          name, username, email, password,
+          first_name, username, email, password,
         }),
       });
 
       const body = await res.json();
 
-      const {status} = res.status;
+      const status = res.status;
       let registeredUser;
 
       if (res.ok) {
-        registeredUser = body.currentUser;
+        registeredUser = body;
       }
 
       return {status, registeredUser};
@@ -158,15 +161,18 @@ export class API {
    *
    * @async
    * @function
-   * @return {Promise<{forms: ( * | { id: { title: string } }[] ),
+   * @return {Promise<{   count: number, forms: ( * | { id: { title: string } }[] ),
    * status: number}>} Объект с информацией о статусе запроса и массивом с опросами.
    * @throws {Error} Если произошла ошибка при запросе или обработке данных.
    */
   async getForms() {
     try {
-      const url = backendUrl + ROUTES_API.login.url;
+      const url = backendUrl + ROUTES_API.forms.url;
 
-      const res = await fetch(url, {method: GET_METHOD});
+      const res = await fetch(url, {
+        method: GET_METHOD,
+        credentials: "include",
+      });
 
       const body = await res.json();
       const status = res.status;
@@ -189,21 +195,23 @@ export class API {
    * @async
    * @function
    * @param {number} id - ID.
-   * @return {Promise<{form: ( * | { id: { title: string } } ),
-   * status: number}>} Объект с информацией о статусе запроса и об искомом опросе.
+   * @return {Promise<{form: any, status: number}>} Объект с информацией о статусе запроса и об искомом опросе.
    * @throws {Error} Если произошла ошибка при запросе или обработке данных.
    */
   async getForm(id) {
     try {
-      const url = backendUrl + ROUTES_API.login.url + id;
+      const url = backendUrl + ROUTES_API.form.url.replace(':id', id.toString());
 
-      const res = await fetch(url, {method: GET_METHOD});
+      const res = await fetch(url, {
+        method: GET_METHOD,
+        credentials: "include",
+      });
 
       const body = await res.json();
       const status = res.status;
 
       if (res.ok) {
-        const form = body.form;
+        const form = body;
         return {status, form};
       }
 

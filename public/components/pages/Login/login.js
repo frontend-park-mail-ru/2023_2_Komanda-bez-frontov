@@ -24,12 +24,6 @@ export async function renderLogin() {
 
   loginButton.addEventListener('click', async (e) => {
     e.preventDefault();
-    const api = new API();
-    const isAuth = await api.isAuth();
-    if (isAuth.isAuthorized) {
-      renderMessage('Невозможно выполнить вход. Завершите предыдущую сессию!', true);
-      return;
-    }
 
     const email = document.querySelector('#email');
     const password = document.querySelector('#password');
@@ -47,13 +41,29 @@ export async function renderLogin() {
       return;
     }
 
+    const api = new API();
     const res = await api.userLogin(email.value, password.value);
-    if (!res.isLoggedIn) {
+    if (res.status === 400) {
+      renderMessage('Невозможно выполнить вход. Завершите предыдущую сессию!', true);
+      return;
+    }
+    if (res.status === 401) {
       renderMessage('Неправильный логин или пароль', true);
       return;
     }
+    if (res.status !== 200) {
+      renderMessage('Ошибка сервера. Попробуйте позже.', true);
+      return;
+    }
 
-    const user = {user: {name: res.authorizedUser.name}};
+    const user = {
+      user: {
+        id: res.authorizedUser.id,
+        first_name: res.authorizedUser.first_name,
+        username: res.authorizedUser.username,
+        email: res.authorizedUser.email,
+      }
+    };
     goToPage(ROUTES.main);
     navbar(user);
     renderMessage('Вы успешно вошли');

@@ -30,14 +30,15 @@ export async function renderForms() {
 
   if (res.status === 200) {
   // eslint-disable-next-line no-restricted-syntax
-    for (const id in res.forms) {
+    for (const index in res.forms) {
+      const form = res.forms[index];
       const item = document.createElement('div');
       item.innerHTML = Handlebars.templates.forms_item();
 
       const itemButton = item.querySelector('#list-item');
-      itemButton.textContent = res.forms[id].title;
+      itemButton.textContent = form.title;
       itemButton.addEventListener('click', () => {
-        goToPage(ROUTES.form, id);
+        goToPage(ROUTES.form, form.id);
       });
 
       formsContainer.appendChild(item);

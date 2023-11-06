@@ -15,14 +15,6 @@ import {goToPage} from "../../../modules/router.js";
  * @return {void}
  */
 export async function renderForm(id) {
-  const api = new API();
-  const isAuth = await api.isAuth();
-  if (!isAuth.isAuthorized) {
-    goToPage(ROUTES.login);
-    renderMessage('Вы не авторизованы!', true);
-    return;
-  }
-
   if (!id) {
     renderForms();
     return;
@@ -35,6 +27,7 @@ export async function renderForm(id) {
 
   const formTitle = document.querySelector('#form-title');
 
+  const api = new API();
   const res = await api.getForm(id);
 
   if (res.status === 200) {

@@ -17,17 +17,12 @@ export async function renderSignup() {
   const rootElement = document.querySelector('#root');
   rootElement.innerHTML = '';
   rootElement.innerHTML = Handlebars.templates.signup();
+
   const signupButton = document.querySelector('#signup-button');
   signupButton.addEventListener('click', async (e) => {
     e.preventDefault();
-    const api = new API();
-    const isAuth = await api.isAuth();
-    if (isAuth.isAuthorized) {
-      renderMessage('Невозможно зарегистрироваться. Завершите предыдущую сессию!', true);
-      return;
-    }
 
-    const name = document.querySelector('#name');
+    const first_name = document.querySelector('#name');
     const email = document.querySelector('#email');
     const username = document.querySelector('#username');
     const password = document.querySelector('#password');
@@ -63,19 +58,35 @@ export async function renderSignup() {
       return;
     }
 
+    const api = new API();
     const res = await api.userSignup(
-      name.value,
+      first_name.value,
       username.value,
       email.value,
       password.value,
     );
 
-    if (res.status === 400) {
+    if (res.status === 409) {
       renderMessage('Пользователь уже существует', true);
       return;
     }
+    if (res.status === 400) {
+      renderMessage('Невозможно зарегистрироваться. Завершите предыдущую сессию!', true);
+      return;
+    }
+    if (res.status !== 200) {
+      renderMessage('Ошибка сервера. Попробуйте позже.', true);
+      return;
+    }
 
-    const user = {user: {name: res.registeredUser.name}};
+    const user = {
+      user: {
+        id: res.registeredUser.id,
+        first_name: res.registeredUser.first_name,
+        username: res.registeredUser.username,
+        email: res.registeredUser.email,
+      }
+    };
     goToPage(ROUTES.main);
     navbar(user);
     renderMessage('Вы успешно зарегистрировались');
