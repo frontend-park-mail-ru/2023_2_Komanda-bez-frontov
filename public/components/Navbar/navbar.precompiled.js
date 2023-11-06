@@ -8,7 +8,7 @@ templates['navbar'] = template({"1":function(container,depth0,helpers,partials,d
         return undefined
     };
 
-  return "        <img class=\"profile_pic\" src=\"../../resources/images/profile_default.png\" alt=\"\">\n        <a class=\"profile_name\">"
+  return "        <img class=\"profile-picture\" src=\"../../resources/images/profile_default.png\" alt=\"\">\n        <a class=\"profile-name\">"
     + container.escapeExpression(container.lambda(((stack1 = (depth0 != null ? lookupProperty(depth0,"user") : depth0)) != null ? lookupProperty(stack1,"first_name") : stack1), depth0))
     + "</a>\n";
 },"3":function(container,depth0,helpers,partials,data) {

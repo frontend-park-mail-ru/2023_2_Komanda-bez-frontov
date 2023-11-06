@@ -31,7 +31,7 @@ export async function renderProfile() {
 
     const user = isAuth.authorizedUser;
     const name = document.querySelector("#profile-page-name");
-    name.textContent = user.name;
+    name.textContent = user.first_name;
     const username = document.querySelector("#profile-page-username");
     username.textContent = user.username;
     const email = document.querySelector("#profile-page-email");
