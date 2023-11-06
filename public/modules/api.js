@@ -114,7 +114,7 @@ export class API {
    *
    * @async
    * @function
-   * @param {string} first_name - Имя.
+   * @param {string} firstName - Имя.
    * @param {string} username - Имя пользователя.
    * @param {string} email - Почта.
    * @param {string} password - Пароль.
@@ -122,7 +122,7 @@ export class API {
    * status: number}>} Объект с информацией о статусе регистрации и о пользователе.
    * @throws {Error} Если произошла ошибка при запросе или обработке данных.
    */
-  async userSignup(first_name, username, email, password) {
+  async userSignup(firstName, username, email, password) {
     try {
       const url = backendUrl + ROUTES_API.signup.url;
 
@@ -133,7 +133,7 @@ export class API {
         },
         credentials: 'include',
         body: JSON.stringify({
-          first_name, username, email, password,
+          first_name: firstName, username, email, password,
         }),
       });
 
@@ -159,7 +159,8 @@ export class API {
    *
    * @async
    * @function
-   * @return {Promise<{forms: ( * | [] ), status: number}>} Объект с информацией о статусе запроса и массивом с опросами.
+   * @return {Promise<{forms: ( * | [] ), status: number}>} Объект с информацией
+   * о статусе запроса и массивом с опросами.
    * @throws {Error} Если произошла ошибка при запросе или обработке данных.
    */
   async getForms() {
@@ -192,7 +193,8 @@ export class API {
    * @async
    * @function
    * @param {number} id - ID.
-   * @return {Promise<{form: any, status: number}>} Объект с информацией о статусе запроса и об искомом опросе.
+   * @return {Promise<{form: any, status: number}>} Объект с информацией
+   * о статусе запроса и об искомом опросе.
    * @throws {Error} Если произошла ошибка при запросе или обработке данных.
    */
   async getForm(id) {

@@ -22,13 +22,13 @@ export async function renderSignup() {
   signupButton.addEventListener('click', async (e) => {
     e.preventDefault();
 
-    const first_name = document.querySelector('#name');
+    const firstName = document.querySelector('#name');
     const email = document.querySelector('#email');
     const username = document.querySelector('#username');
     const password = document.querySelector('#password');
     const repeatPassword = document.querySelector('#repeat_password');
 
-    if (password.value === '' || email.value === '' || name.value === ''
+    if (password.value === '' || email.value === '' || firstName.value === ''
         || username.value === '' || repeatPassword.value === '') {
       renderMessage('Вы ввели не все данные', true);
       return;
@@ -60,7 +60,7 @@ export async function renderSignup() {
 
     const api = new API();
     const res = await api.userSignup(
-      first_name.value,
+      firstName.value,
       username.value,
       email.value,
       password.value,

@@ -100,6 +100,7 @@ window.onpopstate = function (event) {
       renderForms();
       break;
     case 'form':
+      // eslint-disable-next-line no-case-declarations
       const id = parseUrl(window.location.pathname).id;
       renderForm(id);
       break;
