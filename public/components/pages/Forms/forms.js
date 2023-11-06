@@ -1,6 +1,7 @@
 import {API} from '../../../modules/api.js';
-import {goToPage, ROUTES} from '../../../config.js';
+import {ROUTES} from '../../../config.js';
 import {removeMessage, renderMessage} from '../../Message/message.js';
+import {goToPage} from "../../../modules/router.js";
 
 /**
  * Функция для рендеринга страницы с созданными пользователем опросами.

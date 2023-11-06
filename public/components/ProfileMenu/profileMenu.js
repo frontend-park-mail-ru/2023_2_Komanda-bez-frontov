@@ -1,8 +1,7 @@
-'use strict'
-
-import {goToPage, ROUTES} from "../../config.js";
+import {ROUTES} from "../../config.js";
 import {navbar} from "../Navbar/navbar.js";
 import {renderProfile} from "../pages/Profile/profile.js";
+import {goToPage} from "../../modules/router.js";
 
 /**
  * Функция для рендеринга страницы с созданными пользователем опросами.

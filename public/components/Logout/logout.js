@@ -1,7 +1,8 @@
 import {API} from '../../modules/api.js';
 import {navbar} from '../Navbar/navbar.js';
 import {renderMessage, removeMessage} from '../Message/message.js';
-import {goToPage, ROUTES} from '../../config.js';
+import {ROUTES} from '../../config.js';
+import {goToPage} from "../../modules/router.js";
 
 /**
  * Функция для выполнения выхода из аккаунта.

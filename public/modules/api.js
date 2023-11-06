@@ -1,8 +1,9 @@
-import { ROUTES } from '../config.js';
+import { backendUrl, ROUTES, ROUTES_API } from '../config.js';
 import { renderMessage } from '../components/Message/message.js';
 
 const GET_METHOD = 'GET';
 const POST_METHOD = 'POST';
+
 export class API {
   /**
  * Проверяет, является ли пользователь авторизованным.
@@ -17,7 +18,7 @@ export class API {
  */
   async isAuth() {
     try {
-      const url = '/main';
+      const url = backendUrl + ROUTES_API.isAuth.url;
 
       const res = await fetch(url, { method: GET_METHOD });
       const body = await res.json();
@@ -26,15 +27,13 @@ export class API {
 
       if (res.ok) {
         isAuthorized = true;
-        authorizedUser = body.currentUser;
+        // authorizedUser = body.currentUser;
+        authorizedUser = { name: 'NAME', username: 'USERNAME', email: 'EMAIL@GMAIL.COM' };
       }
 
       return { isAuthorized, authorizedUser };
     } catch (e) {
       console.log('Ошибка метода isAuth:', e);
-      if (e.toString() === 'TypeError: Failed to fetch') {
-        renderMessage('Потеряна связь с сервером!', true);
-      }
       throw (e);
     }
   }
@@ -53,7 +52,7 @@ export class API {
    */
   async userLogin(email, password) {
     try {
-      const url = ROUTES.login.url;
+      const url = backendUrl + ROUTES_API.login.url;
 
       const res = await fetch(url, {
         method: POST_METHOD,
@@ -68,10 +67,14 @@ export class API {
       let isLoggedIn = false;
       let authorizedUser;
 
+      const setCookieHeader = res.headers.get('Set-Cookie');
+      console.log(setCookieHeader);
+
       if (res.ok) {
         isLoggedIn = true;
-        authorizedUser = body.currentUser;
+        authorizedUser = body;
       }
+
       return { isLoggedIn, authorizedUser };
     } catch (e) {
       console.log('Ошибка метода userLogin:', e);
@@ -89,10 +92,10 @@ export class API {
      */
   async userLogout() {
     try {
-      const url = ROUTES.logout.url;
+      const url = backendUrl + ROUTES_API.logout.url;
 
       const res = await fetch(url, {
-        method: GET_METHOD,
+        method: POST_METHOD,
       });
 
       if (res.status === 404) {
@@ -121,7 +124,7 @@ export class API {
    */
   async userSignup(name, username, email, password) {
     try {
-      const url = ROUTES.signup.url;
+      const url = backendUrl + ROUTES_API.signup.url;
 
       const res = await fetch(url, {
         method: POST_METHOD,
@@ -161,7 +164,7 @@ export class API {
    */
   async getForms() {
     try {
-      const url = `/api/forms`;
+      const url = backendUrl + ROUTES_API.login.url;
 
       const res = await fetch(url, {method: GET_METHOD});
 
@@ -192,7 +195,7 @@ export class API {
    */
   async getForm(id) {
     try {
-      const url = `/api${ROUTES.form.url}${id}`;
+      const url = backendUrl + ROUTES_API.login.url + id;
 
       const res = await fetch(url, {method: GET_METHOD});
 

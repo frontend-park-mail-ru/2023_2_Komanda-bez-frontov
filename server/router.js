@@ -125,11 +125,6 @@ router.get('/api/forms/:id', (req, res) => {
   return res.status(200).json({form});
 });
 
-router.get('/forms', (req, res) => {
-  console.log(req);
-  res.sendFile(path.join(__dirname, '../public', 'index.html'));
-});
-
 router.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, '../public', 'index.html'));
 });

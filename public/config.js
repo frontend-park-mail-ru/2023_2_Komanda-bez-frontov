@@ -1,4 +1,3 @@
-import {renderInitial} from './components/Initial/Initial.js';
 import {renderMainLogout} from './components/Logout/logout.js';
 import {renderLogin} from './components/pages/Login/login.js';
 import {renderForms} from './components/pages/Forms/forms.js';
@@ -39,22 +38,27 @@ export const ROUTES = {
   },
 };
 
-export const SERVER_URL = 'https://b0f0-109-252-180-89.ngrok-free.app';
+export const backendUrl = "http://localhost:8080/api/v1"
 
-/**
- * Рендерит выбранную в аргументах страницу.
- *
- * @param page - Объект, в котором содержится информация о странице из ROUTES.
- * @param id - Объект(опцианальный параметр) для перехода на страницу конкретного опроса.
- * @return {void}
- */
-export function goToPage(page, id = null) {
-  if (id) {
-    const url = page.url + id;
-    window.history.pushState(page.state, '', url);
-    page.open(id);
-    return;
+const GET_METHOD = 'GET';
+const POST_METHOD = 'POST';
+
+export const ROUTES_API = {
+  login: {
+    url: "/login",
+    method: POST_METHOD
+  },
+  signup: {
+    url: "/signup",
+    method: POST_METHOD
+  },
+  isAuth: {
+    url: '/is_authorized',
+    method: GET_METHOD
+  },
+  logout: {
+    url: '/logout',
+    method: POST_METHOD
   }
-  window.history.pushState(page.state, '', page.url);
-  page.open();
 }
+
