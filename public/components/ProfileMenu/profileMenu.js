@@ -26,10 +26,7 @@ export function renderProfileMenu(user)  {
             navbar(user);
         }
     }
-    // Таймаут для того, чтобы событие не произошло сразу, как только addEventListener вызовется
-    window.setTimeout(() => {
-        document.body.addEventListener("click", removeProfileMenu);
-    }, 0)
+    document.body.addEventListener("click", removeProfileMenu);
 
     const profileButton = document.querySelector("#navbar-menu-profile-button")
     profileButton.addEventListener("click", function (e) {
