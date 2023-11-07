@@ -19,10 +19,10 @@ export async function renderMainLogout() {
   STORAGE.avatar = null;
 
   const api = new API();
-  const logoutStatus = await api.userLogout();
+  const logoutStatus = await api.userLogout().status;
 
   removeMessage();
-  if (logoutStatus === 404) {
+  if (logoutStatus === 401) {
     renderMessage('Невозможно выполнить Logout - вы не авторизованы!', true);
     return;
   }

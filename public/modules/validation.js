@@ -81,3 +81,20 @@ export function passwordValidation(password) {
   valid = true;
   return {valid, message: ''};
 }
+
+
+/**
+ * Эта функция проверяет, является ли загруженный аватар валидным.
+ * @param {file} avatar - Загруженный файл с аватаром.
+ * @return {object} - Объект с полем `valid` (true/false) и с полем
+ * `message` (сообщение об ошибке).
+ */
+export function avatarValidation(avatar) {
+  let valid = false;
+
+  // Добавить валидацию по размерам, памяти и расширению.
+  console.log(avatar)
+
+  valid = true;
+  return {valid, message: ''};
+}

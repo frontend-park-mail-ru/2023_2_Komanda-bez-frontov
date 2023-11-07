@@ -86,7 +86,7 @@ export class API {
      *
      * @async
      * @function
-     * @return {Promise<number>} Объект с номером статуса при выходе пользователя.
+     * @return {Promise< { status: number } >} Объект с номером статуса при выходе пользователя.
      * @throws {Error} Если произошла ошибка при запросе или обработке данных.
      */
   async userLogout() {
@@ -98,11 +98,8 @@ export class API {
         credentials: 'include',
       });
 
-      if (res.status === 404) {
-        return 404;
-      }
-
-      return 401;
+      const status = res.status ;
+      return {status};
     } catch (e) {
       console.log('Ошибка метода userLogout:', e);
       throw (e);

@@ -17,14 +17,14 @@
 }
 .signup_avatar a {
   font-size: 25px;
-  margin-right: 25px;
+  margin-right: 40px;
 }
 .signup_avatar label {
   border-radius: 12px;
-  width: 150px;
+  width: 120px;
   border: 2px solid #424242;
   display: inline-block;
-  padding: 6px 12px;
+  padding: 6px 12px 8px 12px;
   font-size: 22px;
   cursor: pointer;
 }

@@ -13,24 +13,32 @@ import {STORAGE} from "../../../index.js";
  * @return {void}
  */
 export async function renderForms() {
-  const api = new API();
-  const isAuth = await api.isAuth();
-  if (!isAuth.isAuthorized) {
-    STORAGE.user = null;
-    STORAGE.avatar = null;
-    goToPage(ROUTES.login);
-    renderMessage('Вы не авторизованы!', true);
-    return;
-  }
-
   removeMessage();
+
+  const api = new API();
   const rootElement = document.querySelector('#root');
   rootElement.innerHTML = '';
   rootElement.innerHTML = Handlebars.templates.forms();
+
+  try {
+    const isAuth = await api.isAuth();
+    if (!isAuth.isAuthorized) {
+      STORAGE.user = null;
+      STORAGE.avatar = null;
+      goToPage(ROUTES.login);
+      renderMessage('Вы не авторизованы!', true);
+      return;
+    }
+  } catch (e) {
+    if (e.toString() === 'TypeError: Failed to fetch') {
+      renderMessage('Потеряно соединение с сервером', true)
+    }
+    return
+  }
+
   const formsContainer = document.querySelector('#forms-container');
 
   const res = await api.getForms();
-
   if (res.status === 200) {
   // eslint-disable-next-line no-restricted-syntax
     for (const index in res.forms) {

@@ -1,7 +1,6 @@
 import {ROUTES} from '../../../config.js';
 import {API} from '../../../modules/api.js';
 import {renderMessage, removeMessage} from '../../Message/message.js';
-import {navbar} from '../../Navbar/navbar.js';
 import {emailValidation, passwordValidation} from '../../../modules/validation.js';
 import {goToPage} from '../../../modules/router.js';
 import {STORAGE} from "../../../index.js";
@@ -43,25 +42,32 @@ export async function renderLogin() {
       return;
     }
 
-    const api = new API();
-    const res = await api.userLogin(email.value, password.value);
-    if (res.status === 400) {
-      renderMessage('Невозможно выполнить вход. Завершите предыдущую сессию!', true);
-      return;
-    }
-    if (res.status === 401) {
-      renderMessage('Неправильный логин или пароль', true);
-      return;
-    }
-    if (res.status !== 200) {
-      renderMessage('Ошибка сервера. Попробуйте позже.', true);
-      return;
+    try {
+      const api = new API();
+      const res = await api.userLogin(email.value, password.value);
+      if (res.status === 400) {
+        renderMessage('Невозможно выполнить вход. Завершите предыдущую сессию!', true);
+        return;
+      }
+      if (res.status === 401) {
+        renderMessage('Неправильный логин или пароль', true);
+        return;
+      }
+      if (res.status !== 200) {
+        renderMessage('Ошибка сервера. Попробуйте позже.', true);
+        return;
+      }
+
+      STORAGE.user = res.authorizedUser;
+      await getAuthAvatar();
+      goToPage(ROUTES.main);
+      renderMessage('Вы успешно вошли');
+    } catch (e) {
+      if (e.toString() === 'TypeError: Failed to fetch') {
+        renderMessage('Потеряно соединение с сервером', true)
+      }
     }
 
-    STORAGE.user = res.authorizedUser;
-    await getAuthAvatar();
-    goToPage(ROUTES.main);
-    renderMessage('Вы успешно вошли');
   });
 
   signupButton.addEventListener('click', () => {

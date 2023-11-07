@@ -1,6 +1,6 @@
 import {API} from '../../../modules/api.js';
 import {render404} from '../../404/404.js';
-import {removeMessage} from '../../Message/message.js';
+import {removeMessage, renderMessage} from '../../Message/message.js';
 import {renderForms} from '../Forms/forms.js';
 
 /**
@@ -25,11 +25,18 @@ export async function renderForm(id) {
 
   const formTitle = document.querySelector('#form-title');
 
-  const api = new API();
-  const res = await api.getForm(id);
-  if (res.status === 200) {
-    formTitle.innerHTML = res.form.title;
-  } else {
-    render404();
+  try {
+    const api = new API();
+    const res = await api.getForm(id);
+    if (res.status === 200) {
+      formTitle.innerHTML = res.form.title;
+    } else {
+      render404();
+    }
+  } catch (e) {
+    if (e.toString() === 'TypeError: Failed to fetch') {
+      renderMessage('Потеряно соединение с сервером', true)
+    }
   }
+
 }

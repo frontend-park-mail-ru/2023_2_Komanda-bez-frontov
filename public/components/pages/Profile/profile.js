@@ -14,22 +14,29 @@ import {STORAGE} from "../../../index.js";
  * @return {void}
  */
 export async function renderProfile() {
-  const api = new API();
-  const isAuth = await api.isAuth();
-  if (!isAuth.isAuthorized) {
-    STORAGE.user = null;
-    STORAGE.avatar = null;
-    goToPage(ROUTES.login);
-    renderMessage('Вы не авторизованы!', true);
-    return;
+  removeMessage();
+
+  try {
+    const api = new API();
+    const isAuth = await api.isAuth();
+    if (!isAuth.isAuthorized) {
+      STORAGE.user = null;
+      STORAGE.avatar = null;
+      goToPage(ROUTES.login);
+      renderMessage('Вы не авторизованы!', true);
+      return;
+    }
+  } catch (e) {
+    if (e.toString() === 'TypeError: Failed to fetch') {
+      renderMessage('Потеряно соединение с сервером', true)
+    }
   }
 
-  removeMessage();
   const rootElement = document.querySelector('#root');
   rootElement.innerHTML = '';
   rootElement.innerHTML = Handlebars.templates.profile();
 
-  const user = isAuth.authorizedUser;
+  const user = STORAGE.user;
   const profilePicture = document.querySelector('#profile-page-picture');
   if (STORAGE.avatar) {
     profilePicture.src = "data:image/png;base64, " + STORAGE.avatar;
