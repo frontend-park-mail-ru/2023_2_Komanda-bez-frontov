@@ -1,17 +1,17 @@
 import {ROUTES} from '../../config.js';
 import {navbar} from '../Navbar/navbar.js';
 import {goToPage} from '../../modules/router.js';
+import {STORAGE} from "../../index.js";
 
 /**
  * Функция для рендеринга страницы с созданными пользователем опросами.
  * Если пользователь не авторизован, ничего не происходит.
  *
  * @function
- * @param user - Объект с информацией о пользователе.
  * @return {void}
  */
-export function renderProfileMenu(user) {
-  if (!user) {
+export function renderProfileMenu() {
+  if (!STORAGE.user) {
     return;
   }
   const navbarElement = document.querySelector('#navbar');
@@ -22,32 +22,28 @@ export function renderProfileMenu(user) {
     if (!e.target.classList.contains('navbar-profile-menu')
             && !e.target.parentNode.classList.contains('navbar-profile-menu')) {
       document.body.removeEventListener('click', removeProfileMenu);
-      navbar(user);
+      navbar();
     }
   }
   document.body.addEventListener('click', removeProfileMenu);
 
   const profileButton = document.querySelector('#navbar-menu-profile-button');
   profileButton.addEventListener('click', () => {
-    navbar(user);
     document.body.removeEventListener('click', removeProfileMenu);
     goToPage(ROUTES.profile);
   });
   const formsButton = document.querySelector('#navbar-menu-forms-button');
   formsButton.addEventListener('click', () => {
-    navbar(user);
     document.body.removeEventListener('click', removeProfileMenu);
     goToPage(ROUTES.forms);
   });
   // const historyButton = document.querySelector("#navbar-menu-history-button")
   // historyButton.addEventListener("click", function (e) {
-  //     navbar(user);
   //     document.body.removeEventListener("click", removeProfileMenu)
   //     goToPage(ROUTES.history);
   // });
   // const settingsButton = document.querySelector("#navbar-menu-settings-button")
   // settingsButton.addEventListener("click", function (e) {
-  //     navbar(user);
   //     document.body.removeEventListener("click", removeProfileMenu)
   //     goToPage(ROUTES.settings);
   // });

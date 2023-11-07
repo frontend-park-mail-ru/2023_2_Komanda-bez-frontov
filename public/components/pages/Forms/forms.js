@@ -2,6 +2,7 @@ import {API} from '../../../modules/api.js';
 import {ROUTES} from '../../../config.js';
 import {removeMessage, renderMessage} from '../../Message/message.js';
 import {goToPage} from '../../../modules/router.js';
+import {STORAGE} from "../../../index.js";
 
 /**
  * Функция для рендеринга страницы с созданными пользователем опросами.
@@ -15,6 +16,8 @@ export async function renderForms() {
   const api = new API();
   const isAuth = await api.isAuth();
   if (!isAuth.isAuthorized) {
+    STORAGE.user = null;
+    STORAGE.avatar = null;
     goToPage(ROUTES.login);
     renderMessage('Вы не авторизованы!', true);
     return;

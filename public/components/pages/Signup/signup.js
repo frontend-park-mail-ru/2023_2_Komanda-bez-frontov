@@ -4,6 +4,7 @@ import {renderMessage, removeMessage} from '../../Message/message.js';
 import {navbar} from '../../Navbar/navbar.js';
 import {emailValidation, passwordValidation, usernameValidation} from '../../../modules/validation.js';
 import {goToPage} from '../../../modules/router.js';
+import {STORAGE} from "../../../index.js";
 
 /**
  * Функция для рендеринга страницы регистрации.
@@ -79,20 +80,10 @@ export async function renderSignup() {
       return;
     }
 
-    const user = {
-      user: {
-        id: res.registeredUser.id,
-        first_name: res.registeredUser.first_name,
-        username: res.registeredUser.username,
-        email: res.registeredUser.email,
-      },
-    };
+    STORAGE.user = res.registeredUser;
+    STORAGE.avatar = res.registeredUser.username;
     goToPage(ROUTES.main);
-    navbar(user);
     renderMessage('Вы успешно зарегистрировались');
   });
-  const loginButton = document.querySelector('#login-button');
-  loginButton.addEventListener('click', () => {
-    goToPage(ROUTES.login);
-  });
+
 }

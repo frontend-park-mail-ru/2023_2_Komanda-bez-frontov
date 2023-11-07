@@ -4,6 +4,7 @@ import {renderMessage, removeMessage} from '../../Message/message.js';
 import {navbar} from '../../Navbar/navbar.js';
 import {emailValidation, passwordValidation} from '../../../modules/validation.js';
 import {goToPage} from '../../../modules/router.js';
+import {STORAGE} from "../../../index.js";
 
 /**
  * Функция для рендеринга страницы аутенфикации.
@@ -56,16 +57,9 @@ export async function renderLogin() {
       return;
     }
 
-    const user = {
-      user: {
-        id: res.authorizedUser.id,
-        first_name: res.authorizedUser.first_name,
-        username: res.authorizedUser.username,
-        email: res.authorizedUser.email,
-      },
-    };
+    STORAGE.user = res.authorizedUser;
+    STORAGE.avatar = res.authorizedUser.username;
     goToPage(ROUTES.main);
-    navbar(user);
     renderMessage('Вы успешно вошли');
   });
 
