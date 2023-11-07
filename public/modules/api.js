@@ -157,13 +157,18 @@ export class API {
    *
    * @async
    * @function
+   * @param {string} author_username - Опционально. Осуществляет возврат только опросов за авторством пользователя username
    * @return {Promise<{forms: ( * | [] ), status: number}>} Объект с информацией
    * о статусе запроса и массивом с опросами.
    * @throws {Error} Если произошла ошибка при запросе или обработке данных.
    */
-  async getForms() {
+  async getForms(author_username = '') {
     try {
-      const url = backendUrl + ROUTES_API.forms.url;
+      let url = backendUrl + ROUTES_API.forms.url;
+      if (author_username !== '') {
+        const query = '?author=' + author_username;
+        url += query;
+      }
 
       const res = await fetch(url, {
         method: GET_METHOD,

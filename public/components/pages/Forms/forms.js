@@ -38,7 +38,7 @@ export async function renderForms() {
 
   const formsContainer = document.querySelector('#forms-container');
 
-  const res = await api.getForms();
+  const res = await api.getForms(STORAGE.user.username);
   if (res.status === 200) {
   // eslint-disable-next-line no-restricted-syntax
     for (const index in res.forms) {
