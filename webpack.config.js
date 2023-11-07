@@ -48,7 +48,7 @@ module.exports = {
         use: {
           loader: 'babel-loader',
           options: {
-            presets: ['@babel/preset-env'],
+            presets: ['@babel/preset-env', 'es2015', 'es2016'],
           },
         },
       },
@@ -60,6 +60,7 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({template: './public/index.html'}),
+    '@babel/plugin-transform-runtime',
   ],
   mode: 'production',
 };
