@@ -5,10 +5,10 @@ import {
   avatarValidation,
   emailValidation,
   passwordValidation,
-  usernameValidation
+  usernameValidation,
 } from '../../../modules/validation.js';
 import {goToPage} from '../../../modules/router.js';
-import {STORAGE} from "../../../index.js";
+import {STORAGE} from '../../../index.js';
 
 /**
  * Функция для рендеринга страницы регистрации.
@@ -68,11 +68,11 @@ export async function renderSignup() {
     try {
       const api = new API();
       const res = await api.userSignup(
-          firstName.value,
-          username.value,
-          email.value,
-          password.value,
-          avatar
+        firstName.value,
+        username.value,
+        email.value,
+        password.value,
+        avatar,
       );
 
       if (res.status === 409) {
@@ -92,9 +92,9 @@ export async function renderSignup() {
       STORAGE.avatar = avatar;
       goToPage(ROUTES.main);
       renderMessage('Вы успешно зарегистрировались');
-    } catch(e) {
+    } catch (e) {
       if (e.toString() === 'TypeError: Failed to fetch') {
-        renderMessage('Потеряно соединение с сервером', true)
+        renderMessage('Потеряно соединение с сервером', true);
       }
     }
   });
@@ -103,7 +103,7 @@ export async function renderSignup() {
   inputAvatar.addEventListener('change', (e) => {
     const labelAvatar = document.querySelector('#signup_avatar_input-label');
     labelAvatar.style.backgroundColor = '#caecaf';
-    const avatar_file = e.target.files[0];
+    const avatarFile = e.target.files[0];
     const isAvatarValid = avatarValidation(avatar_file);
 
     if (!isAvatarValid.valid) {
@@ -111,16 +111,15 @@ export async function renderSignup() {
       return;
     }
     // Перевод аватарка из файла в Base64
-    if (avatar_file) {
+    if (avatarFile) {
       const reader = new FileReader();
       reader.onloadend = () => {
         avatar = reader.result
-            .replace('data:', '')
-            .replace(/^.+,/, '');
+          .replace('data:', '')
+          .replace(/^.+,/, '');
       };
       reader.readAsDataURL(avatar_file);
     }
-
   });
 
   const cancelAvatar = document.querySelector('#signup_avatar_cancel');
@@ -129,5 +128,4 @@ export async function renderSignup() {
     labelAvatar.style.backgroundColor = '#ffffff';
     avatar = '';
   });
-
 }

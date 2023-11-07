@@ -1,7 +1,7 @@
 import {ROUTES} from '../../config.js';
 import {navbar} from '../Navbar/navbar.js';
 import {goToPage} from '../../modules/router.js';
-import {STORAGE} from "../../index.js";
+import {STORAGE} from '../../index.js';
 
 /**
  * Функция для рендеринга страницы с созданными пользователем опросами.

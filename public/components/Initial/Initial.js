@@ -1,7 +1,7 @@
 import {API} from '../../modules/api.js';
 import {renderMessage} from '../Message/message.js';
-import {STORAGE} from "../../index.js";
-import {getAuthAvatar} from "../Avatar/avatar.js";
+import {STORAGE} from '../../index.js';
+import {getAuthAvatar} from '../Avatar/avatar.js';
 
 /**
  * Функция для рендеринга страницы при первой загрузке.
@@ -25,8 +25,7 @@ export async function renderInitial() {
     }
   } catch (e) {
     if (e.toString() === 'TypeError: Failed to fetch') {
-      renderMessage('Потеряно соединение с сервером', true)
+      renderMessage('Потеряно соединение с сервером', true);
     }
   }
-
 }

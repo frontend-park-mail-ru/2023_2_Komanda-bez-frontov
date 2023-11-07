@@ -1,8 +1,8 @@
-import {initialRouter} from "./modules/router.js";
+import {initialRouter} from './modules/router.js';
 
 export const STORAGE = {
-    user: null,
-    avatar: null,
-}
+  user: null,
+  avatar: null,
+};
 
 initialRouter();

@@ -1,9 +1,8 @@
 import {API} from '../../../modules/api.js';
 import {ROUTES} from '../../../config.js';
 import {removeMessage, renderMessage} from '../../Message/message.js';
-import {navbar} from '../../Navbar/navbar.js';
 import {goToPage} from '../../../modules/router.js';
-import {STORAGE} from "../../../index.js";
+import {STORAGE} from '../../../index.js';
 
 /**
  * Функция для рендеринга страницы профиля авторизированного пользователя.
@@ -28,7 +27,7 @@ export async function renderProfile() {
     }
   } catch (e) {
     if (e.toString() === 'TypeError: Failed to fetch') {
-      renderMessage('Потеряно соединение с сервером', true)
+      renderMessage('Потеряно соединение с сервером', true);
     }
   }
 
@@ -39,7 +38,7 @@ export async function renderProfile() {
   const user = STORAGE.user;
   const profilePicture = document.querySelector('#profile-page-picture');
   if (STORAGE.avatar) {
-    profilePicture.src = "data:image/png;base64, " + STORAGE.avatar;
+    profilePicture.src = `data:image/png;base64, ${STORAGE.avatar}`;
   }
   const name = document.querySelector('#profile-page-name');
   name.textContent = user.first_name;

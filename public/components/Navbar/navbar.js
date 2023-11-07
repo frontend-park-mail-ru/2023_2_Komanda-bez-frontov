@@ -2,7 +2,7 @@ import {ROUTES} from '../../config.js';
 import {renderProfileMenu} from '../ProfileMenu/profileMenu.js';
 import {removeMessage} from '../Message/message.js';
 import {goToPage} from '../../modules/router.js';
-import {STORAGE} from "../../index.js";
+import {STORAGE} from '../../index.js';
 
 /**
  * Функция для рендеринга навбара страницы.
@@ -23,7 +23,7 @@ export function navbar() {
 
     const profilePicture = document.querySelector('#navbar-profile-picture');
     if (STORAGE.avatar) {
-      profilePicture.src = "data:image/png;base64, " + STORAGE.avatar;
+      profilePicture.src = `data:image/png;base64, ${STORAGE.avatar}`;
     }
     const profileButton = document.querySelector('#navbar-profile');
     profileButton.addEventListener('click', (e) => {

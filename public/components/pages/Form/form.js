@@ -35,8 +35,7 @@ export async function renderForm(id) {
     }
   } catch (e) {
     if (e.toString() === 'TypeError: Failed to fetch') {
-      renderMessage('Потеряно соединение с сервером', true)
+      renderMessage('Потеряно соединение с сервером', true);
     }
   }
-
 }

@@ -2,7 +2,7 @@ import {API} from '../../../modules/api.js';
 import {ROUTES} from '../../../config.js';
 import {removeMessage, renderMessage} from '../../Message/message.js';
 import {goToPage} from '../../../modules/router.js';
-import {STORAGE} from "../../../index.js";
+import {STORAGE} from '../../../index.js';
 
 /**
  * Функция для рендеринга страницы с созданными пользователем опросами.
@@ -31,16 +31,23 @@ export async function renderForms() {
     }
   } catch (e) {
     if (e.toString() === 'TypeError: Failed to fetch') {
-      renderMessage('Потеряно соединение с сервером', true)
+      renderMessage('Потеряно соединение с сервером', true);
     }
-    return
+    return;
   }
 
   const formsContainer = document.querySelector('#forms-container');
 
   const res = await api.getForms(STORAGE.user.username);
   if (res.status === 200) {
-  // eslint-disable-next-line no-restricted-syntax
+    if (res.count === 0) {
+      const label = document.createElement('a');
+      label.classList.add('forms-list_empty-label');
+      label.textContent = 'Опросов пока нет...';
+      formsContainer.appendChild(label);
+      return;
+    }
+    // eslint-disable-next-line no-restricted-syntax
     for (const index in res.forms) {
       const form = res.forms[index];
 
@@ -56,8 +63,6 @@ export async function renderForms() {
       formsContainer.appendChild(item);
     }
   } else {
-    const label = document.createElement('a');
-    label.textContent = 'Опросов пока нет...';
-    formsContainer.appendChild(label);
+    renderMessage('Ошибка сервера. Попробуйте позже.', true);
   }
 }

@@ -82,13 +82,13 @@ export class API {
   }
 
   /**
-     * Функция для выхода из аккаунта пользователя.
-     *
-     * @async
-     * @function
-     * @return {Promise< { status: number } >} Объект с номером статуса при выходе пользователя.
-     * @throws {Error} Если произошла ошибка при запросе или обработке данных.
-     */
+   * Функция для выхода из аккаунта пользователя.
+   *
+   * @async
+   * @function
+   * @return {Promise< { status: number } >} Объект с номером статуса при выходе пользователя.
+   * @throws {Error} Если произошла ошибка при запросе или обработке данных.
+   */
   async userLogout() {
     try {
       const url = backendUrl + ROUTES_API.logout.url;
@@ -98,7 +98,7 @@ export class API {
         credentials: 'include',
       });
 
-      const status = res.status ;
+      const status = res.status;
       return {status};
     } catch (e) {
       console.log('Ошибка метода userLogout:', e);
@@ -120,6 +120,7 @@ export class API {
    * status: number}>} Объект с информацией о статусе регистрации и о пользователе.
    * @throws {Error} Если произошла ошибка при запросе или обработке данных.
    */
+  // eslint-disable-next-line camelcase
   async userSignup(first_name, username, email, password, avatar) {
     try {
       const url = backendUrl + ROUTES_API.signup.url;
@@ -131,7 +132,8 @@ export class API {
         },
         credentials: 'include',
         body: JSON.stringify({
-          first_name, username, email, password, avatar
+          // eslint-disable-next-line camelcase
+          first_name, username, email, password, avatar,
         }),
       });
 
@@ -153,20 +155,21 @@ export class API {
 
   /**
    * Функция для получения всех опросов.
-   * П.С. Позже заменить на получение всех опросов за авторством пользователя.
+   * Через Query запрос можно осуществить поиск по автору опросов, задав его username
    *
    * @async
    * @function
-   * @param {string} author_username - Опционально. Осуществляет возврат только опросов за авторством пользователя username
-   * @return {Promise<{forms: ( * | [] ), status: number}>} Объект с информацией
+   * @param {string} authorUsername - Опционально. Username автора
+   * @return {Promise<{forms: ( * | [] ),
+   *          count: ( * | number ), status: number}>} Объект с информацией
    * о статусе запроса и массивом с опросами.
    * @throws {Error} Если произошла ошибка при запросе или обработке данных.
    */
-  async getForms(author_username = '') {
+  async getForms(authorUsername = '') {
     try {
       let url = backendUrl + ROUTES_API.forms.url;
-      if (author_username !== '') {
-        const query = '?author=' + author_username;
+      if (authorUsername !== '') {
+        const query = `?author=${authorUsername}`;
         url += query;
       }
 
@@ -180,7 +183,8 @@ export class API {
 
       if (res.ok) {
         const forms = body.data.forms;
-        return {status, forms};
+        const count = body.data.count;
+        return {status, count, forms};
       }
 
       return {status};
