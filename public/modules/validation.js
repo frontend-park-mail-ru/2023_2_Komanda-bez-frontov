@@ -8,7 +8,7 @@ export function emailValidation(email) {
   let valid = false;
 
   if (email.length >= 255) {
-    const message = 'Email не должен содержать более 50 символов';
+    const message = 'Email не должен содержать более 255 символов';
     return {valid, message};
   }
 

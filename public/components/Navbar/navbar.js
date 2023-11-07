@@ -19,7 +19,8 @@ export function navbar(user = null) {
   if (user) {
     navbarElement.innerHTML = Handlebars.templates.navbar(user);
     const profileButton = document.querySelector('#navbar-profile');
-    profileButton.addEventListener('click', () => {
+    profileButton.addEventListener('click', (e) => {
+      e.stopImmediatePropagation();
       renderProfileMenu(user);
     });
   } else {

@@ -32,11 +32,11 @@ export async function renderForms() {
   // eslint-disable-next-line no-restricted-syntax
     for (const index in res.forms) {
       const form = res.forms[index];
-      console.log(form);
+
       const item = document.createElement('div');
       item.innerHTML = Handlebars.templates.forms_item();
 
-      const itemButton = item.querySelector('#list-item');
+      const itemButton = item.querySelector('#forms-list-item');
       itemButton.textContent = form.title;
       itemButton.addEventListener('click', () => {
         goToPage(ROUTES.form, form.id);
