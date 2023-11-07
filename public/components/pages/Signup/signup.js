@@ -20,7 +20,7 @@ export async function renderSignup() {
   rootElement.innerHTML = '';
   rootElement.innerHTML = Handlebars.templates.signup();
 
-  let avatar_file = null;
+  let avatar = '';
 
   const signupButton = document.querySelector('#signup-button');
   signupButton.addEventListener('click', async (e) => {
@@ -31,7 +31,6 @@ export async function renderSignup() {
     const username = document.querySelector('#username');
     const password = document.querySelector('#password');
     const repeatPassword = document.querySelector('#repeat_password');
-    let avatar = '';
 
     if (password.value === '' || email.value === '' || firstName.value === ''
         || username.value === '' || repeatPassword.value === '') {
@@ -62,21 +61,6 @@ export async function renderSignup() {
       renderMessage('Пароли не совпадают', true);
       return;
     }
-
-    console.log(avatar_file)
-    console.log(avatar)
-    // Перевод аватарка из файла в Base64
-    if (avatar_file) {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        const base64 = reader.result
-            .replace('data:', '')
-            .replace(/^.+,/, '');
-        avatar = base64;
-      };
-      reader.readAsDataURL(avatar_file);
-    }
-    console.log(avatar)
 
     const api = new API();
     const res = await api.userSignup(
@@ -110,14 +94,23 @@ export async function renderSignup() {
   inputAvatar.addEventListener('change', (e) => {
     const labelAvatar = document.querySelector('#signup_avatar_input-label');
     labelAvatar.style.backgroundColor = '#caecaf';
-    avatar_file = e.target.files[0];
+    const avatar_file = e.target.files[0];
+    // Перевод аватарка из файла в Base64
+    if (avatar_file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        avatar = reader.result
+            .replace('data:', '')
+            .replace(/^.+,/, '');
+      };
+      reader.readAsDataURL(avatar_file);
+    }
   });
   const cancelAvatar = document.querySelector('#signup_avatar_cancel');
   cancelAvatar.addEventListener('click', (e) => {
     const labelAvatar = document.querySelector('#signup_avatar_input-label');
     labelAvatar.style.backgroundColor = '#ffffff';
-    const avatar = document.querySelector('#avatar');
-    avatar_file = null;
+    avatar = '';
   });
 
 }
