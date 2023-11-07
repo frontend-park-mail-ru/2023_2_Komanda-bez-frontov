@@ -118,11 +118,12 @@ export class API {
    * @param {string} username - Имя пользователя.
    * @param {string} email - Почта.
    * @param {string} password - Пароль.
+   * @param {string} avatar - Аватар пользователя в формате Base64.
    * @return {Promise<{registeredUser: ({password: *, name: *, email: *, username: *}|*),
    * status: number}>} Объект с информацией о статусе регистрации и о пользователе.
    * @throws {Error} Если произошла ошибка при запросе или обработке данных.
    */
-  async userSignup(firstName, username, email, password) {
+  async userSignup(firstName, username, email, password, avatar) {
     try {
       const url = backendUrl + ROUTES_API.signup.url;
 
@@ -133,7 +134,7 @@ export class API {
         },
         credentials: 'include',
         body: JSON.stringify({
-          first_name: firstName, username, email, password,
+          firstName, username, email, password, avatar
         }),
       });
 
