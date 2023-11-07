@@ -1,7 +1,7 @@
 import {API} from '../../modules/api.js';
-import {navbar} from '../Navbar/navbar.js';
-import {renderMessage, removeMessage} from '../Message/message.js';
+import {renderMessage} from '../Message/message.js';
 import {STORAGE} from "../../index.js";
+import {getAuthAvatar} from "../Avatar/avatar.js";
 
 /**
  * Функция для рендеринга страницы при первой загрузке.
@@ -21,5 +21,5 @@ export async function renderInitial() {
     return;
   }
   STORAGE.user = isAuth.authorizedUser;
-  STORAGE.avatar = isAuth.authorizedUser.username;
+  await getAuthAvatar();
 }

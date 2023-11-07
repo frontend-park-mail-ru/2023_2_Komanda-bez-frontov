@@ -30,6 +30,10 @@ export async function renderProfile() {
   rootElement.innerHTML = Handlebars.templates.profile();
 
   const user = isAuth.authorizedUser;
+  const profilePicture = document.querySelector('#profile-page-picture');
+  if (STORAGE.avatar) {
+    profilePicture.src = "data:image/png;base64, " + STORAGE.avatar;
+  }
   const name = document.querySelector('#profile-page-name');
   name.textContent = user.first_name;
   const username = document.querySelector('#profile-page-username');

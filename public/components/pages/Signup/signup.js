@@ -5,6 +5,7 @@ import {navbar} from '../../Navbar/navbar.js';
 import {emailValidation, passwordValidation, usernameValidation} from '../../../modules/validation.js';
 import {goToPage} from '../../../modules/router.js';
 import {STORAGE} from "../../../index.js";
+import {getAuthAvatar} from "../../Avatar/avatar.js";
 
 /**
  * Функция для рендеринга страницы регистрации.
@@ -81,7 +82,7 @@ export async function renderSignup() {
     }
 
     STORAGE.user = res.registeredUser;
-    STORAGE.avatar = res.registeredUser.username;
+    await getAuthAvatar();
     goToPage(ROUTES.main);
     renderMessage('Вы успешно зарегистрировались');
   });

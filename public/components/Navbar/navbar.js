@@ -19,15 +19,18 @@ export function navbar() {
 
   const user = STORAGE.user;
   if (user) {
-    console.log("!!")
     navbarElement.innerHTML = Handlebars.templates.navbar({ user: STORAGE.user });
+
+    const profilePicture = document.querySelector('#navbar-profile-picture');
+    if (STORAGE.avatar) {
+      profilePicture.src = "data:image/png;base64, " + STORAGE.avatar;
+    }
     const profileButton = document.querySelector('#navbar-profile');
     profileButton.addEventListener('click', (e) => {
       e.stopImmediatePropagation();
       renderProfileMenu();
     });
   } else {
-    console.log("??")
     navbarElement.innerHTML = Handlebars.templates.navbar();
     const loginButton = document.querySelector('#navbar-login-button');
     loginButton.addEventListener('click', () => {

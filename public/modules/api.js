@@ -220,4 +220,38 @@ export class API {
       throw (e);
     }
   }
+
+  /**
+   * Функция для получения аватарки пользователя по его username.
+   *
+   * @async
+   * @function
+   * @param {string} username - Никнейм пользователя.
+   * @return {Promise<{avatar: * | any, status: number}>} Объект с информацией
+   * о статусе запроса и с аватаркой в виде base64 кода.
+   * @throws {Error} Если произошла ошибка при запросе или обработке данных.
+   */
+  async getAvatar(username) {
+    try {
+      const url = backendUrl + ROUTES_API.avatar.url.replace(':username', username);
+
+      const res = await fetch(url, {
+        method: GET_METHOD,
+        credentials: 'include',
+      });
+
+      const body = await res.json();
+      const status = res.status;
+
+      if (res.ok) {
+        const avatar = body.data.avatar;
+        return {status, avatar};
+      }
+
+      return {status};
+    } catch (e) {
+      console.log('Ошибка метода getForm:', e);
+      throw (e);
+    }
+  }
 }

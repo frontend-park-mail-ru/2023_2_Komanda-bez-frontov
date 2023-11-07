@@ -66,6 +66,10 @@ export const ROUTES_API = {
     url: '/logout',
     method: POST_METHOD,
   },
+  avatar: {
+    url: '/user/:username/avatar',
+    method: GET_METHOD,
+  },
   forms: {
     url: '/forms',
     method: GET_METHOD,
