@@ -36,7 +36,7 @@ export function usernameValidation(username) {
   let valid = false;
 
   if (!/^[a-zA-Z0-9_-]+$/.test(username)) {
-    const message = 'Имя пользователя должно содержать только буквы и цифры';
+    const message = 'Имя пользователя должно содержать только латинские буквы и цифры';
     return { valid, message };
   }
 
