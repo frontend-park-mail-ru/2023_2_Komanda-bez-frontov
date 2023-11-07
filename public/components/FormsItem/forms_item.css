@@ -3,12 +3,15 @@
   gap: 6px;
 }
 
+button {
+  font-size: 15px;
+}
+
 .forms-list-item, .black-button, .primary-button, .secondary-button {
   padding: 13px 15px;
   border-radius: 12px;
   border: 2px solid #424242;
   width: 100%;
-  font-size: 15px;
   font-weight: bold;
 }
 .forms-list-item:hover, .black-button:hover, .primary-button:hover, .secondary-button:hover {
@@ -34,11 +37,10 @@
 .forms-list-item {
   background-color: #FFFFFF;
   margin-bottom: 20px;
-  width: 100%;
   min-width: min-content;
   min-height: 70px;
   max-height: min-content;
-  font-size: 20px;
+  font-size: 22px;
 }
 
 /*# sourceMappingURL=forms_item.css.map */

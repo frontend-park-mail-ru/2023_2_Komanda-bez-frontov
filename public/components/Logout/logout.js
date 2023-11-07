@@ -3,6 +3,7 @@ import {navbar} from '../Navbar/navbar.js';
 import {renderMessage, removeMessage} from '../Message/message.js';
 import {ROUTES} from '../../config.js';
 import {goToPage} from '../../modules/router.js';
+import {STORAGE} from "../../index.js";
 
 /**
  * Функция для выполнения выхода из аккаунта.
@@ -13,10 +14,14 @@ import {goToPage} from '../../modules/router.js';
  */
 export async function renderMainLogout() {
   window.history.replaceState(ROUTES.forms.state, '', ROUTES.main.url);
-  removeMessage();
+
+  STORAGE.user = null;
+  STORAGE.avatar = null;
+
   const api = new API();
   const logoutStatus = await api.userLogout();
-  navbar();
+
+  removeMessage();
   if (logoutStatus === 404) {
     renderMessage('Невозможно выполнить Logout - вы не авторизованы!', true);
     return;

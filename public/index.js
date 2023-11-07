@@ -1,3 +1,8 @@
-import {renderInitial} from './components/Initial/Initial.js';
+import {initialRouter} from "./modules/router.js";
 
-renderInitial();
+export const STORAGE = {
+    user: null,
+    avatar: null,
+}
+
+initialRouter();

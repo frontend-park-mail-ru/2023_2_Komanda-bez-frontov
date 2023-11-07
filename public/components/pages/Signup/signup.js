@@ -4,6 +4,8 @@ import {renderMessage, removeMessage} from '../../Message/message.js';
 import {navbar} from '../../Navbar/navbar.js';
 import {emailValidation, passwordValidation, usernameValidation} from '../../../modules/validation.js';
 import {goToPage} from '../../../modules/router.js';
+import {STORAGE} from "../../../index.js";
+import {getAuthAvatar} from "../../Avatar/avatar.js";
 
 /**
  * Функция для рендеринга страницы регистрации.
@@ -18,6 +20,8 @@ export async function renderSignup() {
   rootElement.innerHTML = '';
   rootElement.innerHTML = Handlebars.templates.signup();
 
+  let avatar_file = null;
+
   const signupButton = document.querySelector('#signup-button');
   signupButton.addEventListener('click', async (e) => {
     e.preventDefault();
@@ -27,6 +31,7 @@ export async function renderSignup() {
     const username = document.querySelector('#username');
     const password = document.querySelector('#password');
     const repeatPassword = document.querySelector('#repeat_password');
+    let avatar = '';
 
     if (password.value === '' || email.value === '' || firstName.value === ''
         || username.value === '' || repeatPassword.value === '') {
@@ -58,12 +63,28 @@ export async function renderSignup() {
       return;
     }
 
+    console.log(avatar_file)
+    console.log(avatar)
+    // Перевод аватарка из файла в Base64
+    if (avatar_file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        const base64 = reader.result
+            .replace('data:', '')
+            .replace(/^.+,/, '');
+        avatar = base64;
+      };
+      reader.readAsDataURL(avatar_file);
+    }
+    console.log(avatar)
+
     const api = new API();
     const res = await api.userSignup(
       firstName.value,
       username.value,
       email.value,
       password.value,
+      avatar
     );
 
     if (res.status === 409) {
@@ -79,20 +100,24 @@ export async function renderSignup() {
       return;
     }
 
-    const user = {
-      user: {
-        id: res.registeredUser.id,
-        first_name: res.registeredUser.first_name,
-        username: res.registeredUser.username,
-        email: res.registeredUser.email,
-      },
-    };
+    STORAGE.user = res.registeredUser;
+    STORAGE.avatar = avatar;
     goToPage(ROUTES.main);
-    navbar(user);
     renderMessage('Вы успешно зарегистрировались');
   });
-  const loginButton = document.querySelector('#login-button');
-  loginButton.addEventListener('click', () => {
-    goToPage(ROUTES.login);
+
+  const inputAvatar = document.querySelector('#avatar');
+  inputAvatar.addEventListener('change', (e) => {
+    const labelAvatar = document.querySelector('#signup_avatar_input-label');
+    labelAvatar.style.backgroundColor = '#caecaf';
+    avatar_file = e.target.files[0];
   });
+  const cancelAvatar = document.querySelector('#signup_avatar_cancel');
+  cancelAvatar.addEventListener('click', (e) => {
+    const labelAvatar = document.querySelector('#signup_avatar_input-label');
+    labelAvatar.style.backgroundColor = '#ffffff';
+    const avatar = document.querySelector('#avatar');
+    avatar_file = null;
+  });
+
 }

@@ -118,11 +118,12 @@ export class API {
    * @param {string} username - Имя пользователя.
    * @param {string} email - Почта.
    * @param {string} password - Пароль.
+   * @param {string} avatar - Аватар пользователя в формате Base64.
    * @return {Promise<{registeredUser: ({password: *, name: *, email: *, username: *}|*),
    * status: number}>} Объект с информацией о статусе регистрации и о пользователе.
    * @throws {Error} Если произошла ошибка при запросе или обработке данных.
    */
-  async userSignup(firstName, username, email, password) {
+  async userSignup(firstName, username, email, password, avatar) {
     try {
       const url = backendUrl + ROUTES_API.signup.url;
 
@@ -133,7 +134,7 @@ export class API {
         },
         credentials: 'include',
         body: JSON.stringify({
-          first_name: firstName, username, email, password,
+          firstName, username, email, password, avatar
         }),
       });
 
@@ -212,6 +213,40 @@ export class API {
       if (res.ok) {
         const form = body.data;
         return {status, form};
+      }
+
+      return {status};
+    } catch (e) {
+      console.log('Ошибка метода getForm:', e);
+      throw (e);
+    }
+  }
+
+  /**
+   * Функция для получения аватарки пользователя по его username.
+   *
+   * @async
+   * @function
+   * @param {string} username - Никнейм пользователя.
+   * @return {Promise<{avatar: * | any, status: number}>} Объект с информацией
+   * о статусе запроса и с аватаркой в виде base64 кода.
+   * @throws {Error} Если произошла ошибка при запросе или обработке данных.
+   */
+  async getAvatar(username) {
+    try {
+      const url = backendUrl + ROUTES_API.avatar.url.replace(':username', username);
+
+      const res = await fetch(url, {
+        method: GET_METHOD,
+        credentials: 'include',
+      });
+
+      const body = await res.json();
+      const status = res.status;
+
+      if (res.ok) {
+        const avatar = body.data.avatar;
+        return {status, avatar};
       }
 
       return {status};

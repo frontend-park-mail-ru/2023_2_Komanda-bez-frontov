@@ -3,12 +3,15 @@
   gap: 6px;
 }
 
+button {
+  font-size: 15px;
+}
+
 .form-wrapper .description, .forms-list-item, .black-button, .primary-button, .secondary-button {
   padding: 13px 15px;
   border-radius: 12px;
   border: 2px solid #424242;
   width: 100%;
-  font-size: 15px;
   font-weight: bold;
 }
 .form-wrapper .description:hover, .forms-list-item:hover, .black-button:hover, .primary-button:hover, .secondary-button:hover {
@@ -218,12 +221,15 @@
   gap: 6px;
 }
 
+button {
+  font-size: 15px;
+}
+
 .form-wrapper .description, .forms-list-item, .secondary-button, .primary-button, .black-button {
   padding: 13px 15px;
   border-radius: 12px;
   border: 2px solid #424242;
   width: 100%;
-  font-size: 15px;
   font-weight: bold;
 }
 .form-wrapper .description:hover, .forms-list-item:hover, .secondary-button:hover, .primary-button:hover, .black-button:hover {
@@ -249,11 +255,10 @@
 .forms-list-item {
   background-color: #FFFFFF;
   margin-bottom: 20px;
-  width: 100%;
   min-width: min-content;
   min-height: 70px;
   max-height: min-content;
-  font-size: 20px;
+  font-size: 22px;
 }
 
 .button-container {
@@ -261,12 +266,15 @@
   gap: 6px;
 }
 
+button {
+  font-size: 15px;
+}
+
 .form-wrapper .description, .secondary-button, .primary-button, .black-button, .forms-list-item {
   padding: 13px 15px;
   border-radius: 12px;
   border: 2px solid #424242;
   width: 100%;
-  font-size: 15px;
   font-weight: bold;
 }
 .form-wrapper .description:hover, .secondary-button:hover, .primary-button:hover, .black-button:hover, .forms-list-item:hover {
@@ -364,6 +372,35 @@ input {
 .signup-form .button-container {
   margin: 25px 30px;
   font-size: 18px;
+}
+
+.signup_avatar {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  gap: 10px;
+  margin: 10px 10px 30px 15px;
+}
+.signup_avatar a {
+  font-size: 25px;
+  margin-right: 25px;
+}
+.signup_avatar label {
+  border-radius: 12px;
+  width: 150px;
+  border: 2px solid #424242;
+  display: inline-block;
+  padding: 6px 12px;
+  font-size: 22px;
+  cursor: pointer;
+}
+.signup_avatar label .signup_avatar-input {
+  display: none;
+}
+.signup_avatar #signup_avatar_cancel {
+  font-size: 18px;
+  margin: 0;
+  cursor: pointer;
 }
 
 .error-container, .success-container {

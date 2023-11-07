@@ -3,6 +3,7 @@ import {ROUTES} from '../../../config.js';
 import {removeMessage, renderMessage} from '../../Message/message.js';
 import {navbar} from '../../Navbar/navbar.js';
 import {goToPage} from '../../../modules/router.js';
+import {STORAGE} from "../../../index.js";
 
 /**
  * Функция для рендеринга страницы профиля авторизированного пользователя.
@@ -16,7 +17,8 @@ export async function renderProfile() {
   const api = new API();
   const isAuth = await api.isAuth();
   if (!isAuth.isAuthorized) {
-    navbar();
+    STORAGE.user = null;
+    STORAGE.avatar = null;
     goToPage(ROUTES.login);
     renderMessage('Вы не авторизованы!', true);
     return;
@@ -28,6 +30,10 @@ export async function renderProfile() {
   rootElement.innerHTML = Handlebars.templates.profile();
 
   const user = isAuth.authorizedUser;
+  const profilePicture = document.querySelector('#profile-page-picture');
+  if (STORAGE.avatar) {
+    profilePicture.src = "data:image/png;base64, " + STORAGE.avatar;
+  }
   const name = document.querySelector('#profile-page-name');
   name.textContent = user.first_name;
   const username = document.querySelector('#profile-page-username');

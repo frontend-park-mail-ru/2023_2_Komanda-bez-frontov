@@ -7,6 +7,7 @@ import {renderInitial} from '../components/Initial/Initial.js';
 import {render404} from '../components/404/404.js';
 import {ROUTES} from '../config.js';
 import {renderProfile} from '../components/pages/Profile/profile.js';
+import {navbar} from "../components/Navbar/navbar.js";
 
 /**
  * Расщепляет url запроса на префикс и id страницы.
@@ -35,6 +36,7 @@ export function parseUrl(url) {
  * @return {void}
  */
 export function goToPage(page, id = null) {
+  navbar();
   if (id) {
     const url = page.url + id;
     window.history.pushState(page.state, '', url);
