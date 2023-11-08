@@ -78,4 +78,16 @@ export const ROUTES_API = {
     url: '/forms/:id',
     method: GET_METHOD,
   },
+  saveForm: {
+    url: '/forms/save',
+    method: GET_METHOD,
+  },
+  deleteForm: {
+    url: '/forms/:id/delete',
+    method: GET_METHOD,
+  },
+  updateForm: {
+    url: '/forms/:id/update',
+    method: GET_METHOD,
+  },
 };

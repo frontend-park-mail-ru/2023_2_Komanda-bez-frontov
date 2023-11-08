@@ -2,6 +2,8 @@ import { backendUrl, ROUTES_API } from '../config.js';
 
 const GET_METHOD = 'GET';
 const POST_METHOD = 'POST';
+const DELETE_METHOD = 'DELETE';
+const PUT_METHOD = 'PUT';
 
 export class API {
   /**
@@ -254,6 +256,80 @@ export class API {
         const avatar = body.data.avatar;
         return {status, avatar};
       }
+
+      return {status};
+    } catch (e) {
+      console.log('Ошибка метода getForm:', e);
+      throw (e);
+    }
+  }
+
+  async SaveForm(saveForm) {
+    try {
+      const url = backendUrl + ROUTES_API.saveForm.url;
+
+      const res = await fetch(url, {
+        method: POST_METHOD,
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        credentials: 'include',
+        body: saveForm,
+      });
+
+      const body = await res.json();
+      const status = res.status;
+
+      if (res.ok) {
+        const form = body.data;
+        return {status, form};
+      }
+
+      return {status};
+    } catch (e) {
+      console.log('Ошибка метода getForm:', e);
+      throw (e);
+    }
+  }
+
+  async updateForm(updateForm) {
+    try {
+      const url = backendUrl + ROUTES_API.updateForm.url.replace(':id', id.toString());
+
+      const res = await fetch(url, {
+        method: POST_METHOD,
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        credentials: 'include',
+        body: updateForm,
+      });
+
+      const body = await res.json();
+      const status = res.status;
+
+      if (res.ok) {
+        const form = body.data;
+        return {status, form};
+      }
+
+      return {status};
+    } catch (e) {
+      console.log('Ошибка метода getForm:', e);
+      throw (e);
+    }
+  }
+
+  async deleteForm(id) {
+    try {
+      const url = backendUrl + ROUTES_API.deleteForm.url.replace(':id', id.toString());
+
+      const res = await fetch(url, {
+        method: DELETE_METHOD,
+        credentials: 'include',
+      });
+
+      const status = res.status;
 
       return {status};
     } catch (e) {
