@@ -33,7 +33,7 @@ module.exports = {
             path.resolve(__dirname, 'public/components/FormsItem'),
             path.resolve(__dirname, 'public/components/Navbar'),
             path.resolve(__dirname, 'public/components/ProfileMenu'),
-            path.resolve(__dirname, 'public/components/pages/Form'),
+            path.resolve(__dirname, 'public/components/pages/CheckForm'),
             path.resolve(__dirname, 'public/components/pages/Forms'),
             path.resolve(__dirname, 'public/components/pages/Index'),
             path.resolve(__dirname, 'public/components/pages/Login'),
