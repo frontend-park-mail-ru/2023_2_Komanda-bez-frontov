@@ -7,14 +7,14 @@ button {
   font-size: 15px;
 }
 
-.forms-list-item, .black-button, .primary-button, .secondary-button {
+.forms-list__item, .black-button, .primary-button, .secondary-button {
   padding: 13px 15px;
   border-radius: 12px;
   border: 2px solid #424242;
   width: 100%;
   font-weight: bold;
 }
-.forms-list-item:hover, .black-button:hover, .primary-button:hover, .secondary-button:hover {
+.forms-list__item:hover, .black-button:hover, .primary-button:hover, .secondary-button:hover {
   opacity: 0.6;
   cursor: pointer;
 }
@@ -34,7 +34,7 @@ button {
   border-radius: 12px;
 }
 
-.forms-list-item {
+.forms-list__item {
   background-color: #FFFFFF;
   margin-bottom: 20px;
   min-width: min-content;

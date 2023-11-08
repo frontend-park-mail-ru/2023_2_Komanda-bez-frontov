@@ -7,40 +7,40 @@
   color: #ffffff;
 }
 
-.navbar-logo a {
+.navbar_logo a {
   font-weight: bold;
   font-size: 36px;
 }
-.navbar-logo a:hover {
+.navbar_logo a:hover {
   cursor: pointer;
 }
 
-.navbar-profile {
+.navbar_profile {
   display: flex;
   justify-content: space-evenly;
   margin-left: 50px;
 }
-.navbar-profile:hover {
+.navbar_profile:hover {
   cursor: pointer;
 }
-.navbar-profile .profile-picture {
+.navbar_profile .navbar_profile__picture {
   height: 60px;
   width: 60px;
   object-fit: contain;
   border-radius: 6px;
 }
-.navbar-profile .profile-name {
+.navbar_profile .navbar_profile__name {
   white-space: nowrap;
   font-size: 30px;
   margin: 15px 0 9px 20px;
 }
 
-.navbar-button-container {
+.navbar_button-container {
   display: flex;
   height: 54px;
   padding: 3px 0;
 }
-.navbar-button-container button {
+.navbar_button-container button {
   width: 135px;
   margin-left: 10px;
 }

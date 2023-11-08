@@ -101,10 +101,10 @@ export async function renderSignup() {
 
   const inputAvatar = document.querySelector('#avatar');
   inputAvatar.addEventListener('change', (e) => {
-    const labelAvatar = document.querySelector('#signup_avatar_input-label');
+    const labelAvatar = document.querySelector('#signup-avatar-button');
     labelAvatar.style.backgroundColor = '#caecaf';
     const avatarFile = e.target.files[0];
-    const isAvatarValid = avatarValidation(avatar_file);
+    const isAvatarValid = avatarValidation(avatarFile);
 
     if (!isAvatarValid.valid) {
       renderMessage(isAvatarValid.message, true);
@@ -118,13 +118,13 @@ export async function renderSignup() {
           .replace('data:', '')
           .replace(/^.+,/, '');
       };
-      reader.readAsDataURL(avatar_file);
+      reader.readAsDataURL(avatarFile);
     }
   });
 
-  const cancelAvatar = document.querySelector('#signup_avatar_cancel');
+  const cancelAvatar = document.querySelector('#signup-avatar-cancel');
   cancelAvatar.addEventListener('click', (e) => {
-    const labelAvatar = document.querySelector('#signup_avatar_input-label');
+    const labelAvatar = document.querySelector('#signup-avatar-button');
     labelAvatar.style.backgroundColor = '#ffffff';
     avatar = '';
   });

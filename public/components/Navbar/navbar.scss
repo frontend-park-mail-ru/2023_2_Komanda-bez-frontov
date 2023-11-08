@@ -7,7 +7,7 @@
   color: #ffffff;
 }
 
-.navbar-logo a {
+.navbar_logo a {
   font-weight: bold;
   font-size: 36px;
   &:hover {
@@ -15,27 +15,27 @@
   }
 }
 
-.navbar-profile {
+.navbar_profile {
   display: flex;
   justify-content: space-evenly;
   margin-left: 50px;
   &:hover {
     cursor: pointer;
   }
-  .profile-picture {
+  .navbar_profile__picture {
     height: 60px;
     width: 60px;
     object-fit: contain;
     border-radius: 6px;
   }
-  .profile-name {
+  .navbar_profile__name {
     white-space: nowrap;
     font-size: 30px;
     margin: 15px 0 9px 20px;
   }
 }
 
-.navbar-button-container {
+.navbar_button-container {
   display: flex;
   height: 54px;
   padding: 3px 0;

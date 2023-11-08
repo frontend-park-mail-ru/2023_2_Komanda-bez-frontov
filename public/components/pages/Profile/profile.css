@@ -4,19 +4,19 @@
   font-size: 30px;
 }
 
-.profile-container {
+.profile {
   background-color: rgba(75, 53, 122, 0.6);
   margin: 0 auto;
   max-width: 1000px;
   border-radius: 12px;
 }
 
-.profile-main-container {
+.profile_main-container {
   display: flex;
   justify-content: left;
   padding: 35px 0 35px 45px;
 }
-.profile-main-container .profile-picture {
+.profile_main-container .profile_main-container__picture {
   max-height: 250px;
   max-width: 250px;
   min-width: 180px;
@@ -24,38 +24,38 @@
   border-radius: 12px;
 }
 
-.profile-name-container {
+.profile_main-container_name-container {
   color: #FFFFFF;
   margin: 15px 40px;
   line-height: 30px;
 }
-.profile-name-container h3 {
+.profile_main-container_name-container h3 {
   font-size: 35px;
   margin-bottom: 20px;
 }
-.profile-name-container a {
+.profile_main-container_name-container a {
   font-size: 24px;
 }
 
-.profile-button-container {
+.profile_button-container {
   display: flex;
   flex-wrap: wrap;
   gap: 15px;
   justify-content: left;
   padding: 0 0 40px 45px;
 }
-.profile-button-container button {
+.profile_button-container button {
   width: max-content;
   min-width: 220px;
   font-size: 20px;
   font-weight: bold;
 }
-.profile-button-container .primary-button:hover {
+.profile_button-container .primary-button:hover {
   opacity: 1;
   color: #696969;
   border-color: #696969;
 }
-.profile-button-container .secondary-button:hover {
+.profile_button-container .secondary-button:hover {
   opacity: 1;
   background-color: #6e51a4;
   border-color: #696969;

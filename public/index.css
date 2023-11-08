@@ -7,14 +7,14 @@ button {
   font-size: 15px;
 }
 
-.form-wrapper .description, .forms-list-item, .black-button, .primary-button, .secondary-button {
+.form-wrapper .description, .forms-list__item, .black-button, .primary-button, .secondary-button {
   padding: 13px 15px;
   border-radius: 12px;
   border: 2px solid #424242;
   width: 100%;
   font-weight: bold;
 }
-.form-wrapper .description:hover, .forms-list-item:hover, .black-button:hover, .primary-button:hover, .secondary-button:hover {
+.form-wrapper .description:hover, .forms-list__item:hover, .black-button:hover, .primary-button:hover, .secondary-button:hover {
   opacity: 0.6;
   cursor: pointer;
 }
@@ -43,40 +43,40 @@ button {
   color: #ffffff;
 }
 
-.navbar-logo a {
+.navbar_logo a {
   font-weight: bold;
   font-size: 36px;
 }
-.navbar-logo a:hover {
+.navbar_logo a:hover {
   cursor: pointer;
 }
 
-.navbar-profile {
+.navbar_profile {
   display: flex;
   justify-content: space-evenly;
   margin-left: 50px;
 }
-.navbar-profile:hover {
+.navbar_profile:hover {
   cursor: pointer;
 }
-.navbar-profile .profile-picture {
+.navbar_profile .navbar_profile__picture {
   height: 60px;
   width: 60px;
   object-fit: contain;
   border-radius: 6px;
 }
-.navbar-profile .profile-name {
+.navbar_profile .navbar_profile__name {
   white-space: nowrap;
   font-size: 30px;
   margin: 15px 0 9px 20px;
 }
 
-.navbar-button-container {
+.navbar_button-container {
   display: flex;
   height: 54px;
   padding: 3px 0;
 }
-.navbar-button-container button {
+.navbar_button-container button {
   width: 135px;
   margin-left: 10px;
 }
@@ -96,7 +96,7 @@ button {
 .navbar-profile-menu .primary-button {
   margin: 3px 0;
 }
-.navbar-profile-menu .separator {
+.navbar-profile-menu .navbar-profile-menu-separator {
   height: 15px;
 }
 
@@ -106,19 +106,19 @@ button {
   font-size: 30px;
 }
 
-.profile-container {
+.profile {
   background-color: rgba(75, 53, 122, 0.6);
   margin: 0 auto;
   max-width: 1000px;
   border-radius: 12px;
 }
 
-.profile-main-container {
+.profile_main-container {
   display: flex;
   justify-content: left;
   padding: 35px 0 35px 45px;
 }
-.profile-main-container .profile-picture {
+.profile_main-container .profile_main-container__picture {
   max-height: 250px;
   max-width: 250px;
   min-width: 180px;
@@ -126,49 +126,49 @@ button {
   border-radius: 12px;
 }
 
-.profile-name-container {
+.profile_main-container_name-container {
   color: #FFFFFF;
   margin: 15px 40px;
   line-height: 30px;
 }
-.profile-name-container h3 {
+.profile_main-container_name-container h3 {
   font-size: 35px;
   margin-bottom: 20px;
 }
-.profile-name-container a {
+.profile_main-container_name-container a {
   font-size: 24px;
 }
 
-.profile-button-container {
+.profile_button-container {
   display: flex;
   flex-wrap: wrap;
   gap: 15px;
   justify-content: left;
   padding: 0 0 40px 45px;
 }
-.profile-button-container button {
+.profile_button-container button {
   width: max-content;
   min-width: 220px;
   font-size: 20px;
   font-weight: bold;
 }
-.profile-button-container .primary-button:hover {
+.profile_button-container .primary-button:hover {
   opacity: 1;
   color: #696969;
   border-color: #696969;
 }
-.profile-button-container .secondary-button:hover {
+.profile_button-container .secondary-button:hover {
   opacity: 1;
   background-color: #6e51a4;
   border-color: #696969;
 }
 
-.forms-list-container {
+.forms_list-container {
   margin: 40px 100px 0 100px;
   min-width: 230px;
 }
 
-.title-container {
+.forms_title-container {
   position: relative;
   display: flex;
   flex-wrap: wrap;
@@ -178,7 +178,7 @@ button {
   min-height: max-content;
   margin-bottom: 20px;
 }
-.title-container h3 {
+.forms_title-container h3 {
   position: absolute;
   z-index: -1;
   font-size: 35px;
@@ -186,38 +186,38 @@ button {
   min-width: max-content;
   top: 0;
 }
-.title-container .title-container-space {
+.forms_title-container .forms_title-container__space {
   min-width: 380px;
   height: 56px;
 }
 
-.list-button-container {
+.forms_title-container_button-container {
   display: flex;
   align-items: center;
 }
-.list-button-container button {
+.forms_title-container_button-container button {
   width: 60px;
   height: 50px;
   padding: 0;
   margin-right: 15px;
 }
-.list-button-container button.primary-button {
+.forms_title-container_button-container button.primary-button {
   font-size: 28px;
   font-weight: lighter;
 }
-.list-button-container button.secondary-button {
+.forms_title-container_button-container button.secondary-button {
   font-size: 32px;
   font-weight: lighter;
   padding-bottom: 5px;
 }
 
-.main-container {
+.forms_list_main-container {
   display: flex;
   flex-flow: column;
   justify-content: center;
 }
 
-.forms-list_empty-label {
+.forms_list_main-container_empty-label {
   margin-top: 20px;
   text-align: center;
   font-size: 24px;
@@ -232,14 +232,14 @@ button {
   font-size: 15px;
 }
 
-.form-wrapper .description, .forms-list-item, .secondary-button, .primary-button, .black-button {
+.form-wrapper .description, .forms-list__item, .secondary-button, .primary-button, .black-button {
   padding: 13px 15px;
   border-radius: 12px;
   border: 2px solid #424242;
   width: 100%;
   font-weight: bold;
 }
-.form-wrapper .description:hover, .forms-list-item:hover, .secondary-button:hover, .primary-button:hover, .black-button:hover {
+.form-wrapper .description:hover, .forms-list__item:hover, .secondary-button:hover, .primary-button:hover, .black-button:hover {
   opacity: 0.6;
   cursor: pointer;
 }
@@ -259,7 +259,7 @@ button {
   border-radius: 12px;
 }
 
-.forms-list-item {
+.forms-list__item {
   background-color: #FFFFFF;
   margin-bottom: 20px;
   min-width: min-content;
@@ -277,14 +277,14 @@ button {
   font-size: 15px;
 }
 
-.form-wrapper .description, .secondary-button, .primary-button, .black-button, .forms-list-item {
+.form-wrapper .description, .secondary-button, .primary-button, .black-button, .forms-list__item {
   padding: 13px 15px;
   border-radius: 12px;
   border: 2px solid #424242;
   width: 100%;
   font-weight: bold;
 }
-.form-wrapper .description:hover, .secondary-button:hover, .primary-button:hover, .black-button:hover, .forms-list-item:hover {
+.form-wrapper .description:hover, .secondary-button:hover, .primary-button:hover, .black-button:hover, .forms-list__item:hover {
   opacity: 0.6;
   cursor: pointer;
 }
@@ -336,18 +336,18 @@ button {
   margin-bottom: 30px;
 }
 
-.form-container {
+.auth-container {
   margin: 40px 0;
 }
 
-form {
+.auth-container__form {
   border-radius: 12px;
   border: 3px solid #424242;
   text-align: center;
   width: 400px;
   margin: 0 auto;
 }
-form h3 {
+.auth-container__form h3 {
   font-size: 30px;
   margin-bottom: 5px;
 }
@@ -361,7 +361,7 @@ form h3 {
   margin-top: 25px;
 }
 
-input {
+.login-form_container__input {
   height: 48px;
   margin: 0 0 12px 0;
   border-radius: 12px;
@@ -381,18 +381,18 @@ input {
   font-size: 18px;
 }
 
-.signup_avatar {
+.signup-form_container_avatar {
   display: flex;
   justify-content: left;
   align-items: center;
   gap: 10px;
   margin: 10px 10px 30px 15px;
 }
-.signup_avatar a {
+.signup-form_container_avatar a {
   font-size: 25px;
   margin-right: 40px;
 }
-.signup_avatar label {
+.signup-form_container_avatar label {
   border-radius: 12px;
   width: 120px;
   border: 2px solid #424242;
@@ -401,10 +401,10 @@ input {
   font-size: 22px;
   cursor: pointer;
 }
-.signup_avatar label .signup_avatar-input {
+.signup-form_container_avatar label .signup-form_container_avatar__input {
   display: none;
 }
-.signup_avatar #signup_avatar_cancel {
+.signup-form_container_avatar #signup-form_container_avatar__cancel {
   font-size: 18px;
   margin: 0;
   cursor: pointer;

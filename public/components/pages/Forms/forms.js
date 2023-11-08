@@ -42,7 +42,7 @@ export async function renderForms() {
   if (res.status === 200) {
     if (res.count === 0) {
       const label = document.createElement('a');
-      label.classList.add('forms-list_empty-label');
+      label.classList.add('forms_list_main-container_empty-label');
       label.textContent = 'Опросов пока нет...';
       formsContainer.appendChild(label);
       return;

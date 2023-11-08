@@ -9,7 +9,7 @@
   }
 }
 
-.signup_avatar {
+.signup-form_container_avatar {
   display: flex;
   justify-content: left;
   align-items: center;
@@ -27,11 +27,11 @@
     padding: 6px 12px 8px 12px;
     font-size: 22px;
     cursor: pointer;
-    .signup_avatar-input {
+    .signup-form_container_avatar__input {
       display: none;
     }
   }
-  #signup_avatar_cancel {
+  #signup-form_container_avatar__cancel {
       font-size: 18px;
       margin: 0;
       cursor: pointer;

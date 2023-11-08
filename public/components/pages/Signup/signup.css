@@ -8,18 +8,18 @@
   font-size: 18px;
 }
 
-.signup_avatar {
+.signup-form_container_avatar {
   display: flex;
   justify-content: left;
   align-items: center;
   gap: 10px;
   margin: 10px 10px 30px 15px;
 }
-.signup_avatar a {
+.signup-form_container_avatar a {
   font-size: 25px;
   margin-right: 40px;
 }
-.signup_avatar label {
+.signup-form_container_avatar label {
   border-radius: 12px;
   width: 120px;
   border: 2px solid #424242;
@@ -28,10 +28,10 @@
   font-size: 22px;
   cursor: pointer;
 }
-.signup_avatar label .signup_avatar-input {
+.signup-form_container_avatar label .signup-form_container_avatar__input {
   display: none;
 }
-.signup_avatar #signup_avatar_cancel {
+.signup-form_container_avatar #signup-form_container_avatar__cancel {
   font-size: 18px;
   margin: 0;
   cursor: pointer;
