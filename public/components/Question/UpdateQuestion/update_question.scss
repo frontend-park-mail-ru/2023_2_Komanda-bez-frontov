@@ -18,6 +18,7 @@
   height: 118px;
   background-color: #D8D3E2;
   border-radius: 8px;
+  padding-left: 10px;
 }
 
 .update-question__answer-title {
@@ -67,19 +68,19 @@
   margin-bottom: 10px;
 }
 
-.update-question__answers-item-input {
-  border: none;
-  margin: 0;
-  font-size: 20px;
-}
 
 .update-question__answers-item {
   text-align: left;
+  border: none;
+  margin: 0;
+  font-size: 20px;
 
   .update-question__answers-item-input {
     font-size: 20px;
     font-weight: normal;
     padding-left: 5px;
+    border: none;
+    margin: 0;
   }
 
   .update-question__answers-item-checkbox {
@@ -90,7 +91,6 @@
     position: relative;
     top: -1px;
     *overflow: hidden;
-    margin-bottom: 13px;
   }
 
   .update-question__answers-item-radio {
@@ -101,13 +101,10 @@
     position: relative;
     top: -1px;
     *overflow: hidden;
-    margin-bottom: 13px;
   }
 }
 
-
 .button-container {
   margin-top: 18px;
-  width: 247px;
 }
 

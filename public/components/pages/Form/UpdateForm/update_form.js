@@ -72,24 +72,32 @@ export async function renderForm(id) {
   removeMessage();
   const rootElement = document.querySelector('#root');
   rootElement.innerHTML = '';
-  rootElement.innerHTML = Handlebars.templates.update_form({form: formJSON});
-  const questions = document.querySelector('#check-form__questions-container');
-  for (const index in formJSON.questions) {
-    const questionElement = document.createElement('div');
-    questionElement.innerHTML = Handlebars.templates.update_question({question: formJSON.questions[index]});
-    questions.appendChild(questionElement);
+
+  try {
+    const api = new API();
+    const res = await api.getForm(id);
+    if (res.status === 200) {
+      rootElement.innerHTML = Handlebars.templates.update_form({form: res.form});
+      const questions = document.querySelector('#check-form__questions-container');
+      for (const index in res.form.questions) {
+        const questionElement = document.createElement('div');
+        questionElement.innerHTML = Handlebars.templates.update_question(
+          {question: res.form.questions[index]},
+        );
+        questions.appendChild(questionElement);
+      }
+
+      const updateButton = document.querySelector('#update-button');
+      const addButton = document.querySelector('#add-button');
+      const deleteButton = document.querySelector('#delete-button');
+
+
+    } else {
+      render404();
+    }
+  } catch (e) {
+    if (e.toString() === 'TypeError: Failed to fetch') {
+      renderMessage('Потеряно соединение с сервером', true);
+    }
   }
-  // try {
-  //   const api = new API();
-  //   const res = await api.getForm(id);
-  //   if (res.status === 200) {
-  //     formTitle.innerHTML = res.form.title;
-  //   } else {
-  //     render404();
-  //   }
-  // } catch (e) {
-  //   if (e.toString() === 'TypeError: Failed to fetch') {
-  //     renderMessage('Потеряно соединение с сервером', true);
-  //   }
-  // }
 }

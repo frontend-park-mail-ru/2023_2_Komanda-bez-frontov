@@ -7,14 +7,14 @@ button {
   font-size: 15px;
 }
 
-.forms-list__item, .black-button, .primary-button, .secondary-button {
+.forms-list__item, .red-button, .black-button, .primary-button, .secondary-button {
   padding: 13px 15px;
   border-radius: 12px;
   border: 2px solid #424242;
   width: 100%;
   font-weight: bold;
 }
-.forms-list__item:hover, .black-button:hover, .primary-button:hover, .secondary-button:hover {
+.forms-list__item:hover, .red-button:hover, .black-button:hover, .primary-button:hover, .secondary-button:hover {
   opacity: 0.6;
   cursor: pointer;
 }
@@ -30,6 +30,12 @@ button {
 
 .black-button {
   background-color: #000000;
+  color: white;
+  border-radius: 12px;
+}
+
+.red-button {
+  background-color: #ff0700;
   color: white;
   border-radius: 12px;
 }
@@ -232,14 +238,14 @@ button {
   font-size: 15px;
 }
 
-.forms-list__item, .secondary-button, .primary-button, .black-button {
+.forms-list__item, .secondary-button, .primary-button, .black-button, .red-button {
   padding: 13px 15px;
   border-radius: 12px;
   border: 2px solid #424242;
   width: 100%;
   font-weight: bold;
 }
-.forms-list__item:hover, .secondary-button:hover, .primary-button:hover, .black-button:hover {
+.forms-list__item:hover, .secondary-button:hover, .primary-button:hover, .black-button:hover, .red-button:hover {
   opacity: 0.6;
   cursor: pointer;
 }
@@ -255,6 +261,12 @@ button {
 
 .black-button {
   background-color: #000000;
+  color: white;
+  border-radius: 12px;
+}
+
+.red-button {
+  background-color: #ff0700;
   color: white;
   border-radius: 12px;
 }
@@ -337,7 +349,6 @@ button {
 
 .button-container {
   margin-top: 18px;
-  width: 247px;
 }
 
 .update-question {
@@ -360,6 +371,7 @@ button {
   height: 118px;
   background-color: #D8D3E2;
   border-radius: 8px;
+  padding-left: 10px;
 }
 
 .update-question__answer-title {
@@ -407,19 +419,18 @@ button {
   margin-bottom: 10px;
 }
 
-.update-question__answers-item-input {
+.update-question__answers-item {
+  text-align: left;
   border: none;
   margin: 0;
   font-size: 20px;
-}
-
-.update-question__answers-item {
-  text-align: left;
 }
 .update-question__answers-item .update-question__answers-item-input {
   font-size: 20px;
   font-weight: normal;
   padding-left: 5px;
+  border: none;
+  margin: 0;
 }
 .update-question__answers-item .update-question__answers-item-checkbox {
   width: 18px;
@@ -429,7 +440,6 @@ button {
   position: relative;
   top: -1px;
   *overflow: hidden;
-  margin-bottom: 13px;
 }
 .update-question__answers-item .update-question__answers-item-radio {
   width: 18px;
@@ -439,12 +449,10 @@ button {
   position: relative;
   top: -1px;
   *overflow: hidden;
-  margin-bottom: 13px;
 }
 
 .button-container {
   margin-top: 18px;
-  width: 247px;
 }
 
 .check-form {
@@ -479,7 +487,6 @@ button {
 
 .button-container {
   margin-top: 18px;
-  width: 247px;
 }
 
 .update-form {
@@ -488,12 +495,14 @@ button {
   margin: 0 auto;
   width: 800px;
 }
-
-.update-form__title {
-  width: 100%;
+.update-form .update-form__title {
+  padding: 13px 15px;
+  width: 765px;
   font-size: 22px;
-  padding-left: 18px;
   font-weight: 600;
+  border-radius: 12px;
+  border: 2px solid #424242;
+  margin-bottom: 18px;
 }
 
 .update-form__description-title {
@@ -511,15 +520,23 @@ button {
 
 .update-form__description-textarea {
   font-size: 20px;
-  padding-left: 10px;
   width: 740px;
   height: 118px;
   background-color: #D8D3E2;
   border-radius: 8px;
+  padding-left: 10px;
 }
 
 .button-container {
   margin-top: 18px;
+}
+.button-container .primary-button {
+  width: 247px;
+}
+.button-container .secondary-button {
+  width: 247px;
+}
+.button-container .red-button {
   width: 247px;
 }
 
