@@ -1,48 +1,48 @@
-// import {API} from '../../../../modules/api.js';
-// import {render404} from '../../../404/404.js';
-import {removeMessage, renderMessage} from '../../../Message/message.js';
+import {API} from '../../../../modules/api.js';
+import {render404} from '../../../404/404.js';
+import {removeMessage} from '../../../Message/message.js';
 import {renderForms} from '../../Forms/forms.js';
 
-const formJSON = {
-  title: 'new-form',
-  questions: [
-    {
-      title: '1',
-      type: 'single_choice',
-      shuffle: false,
-      description: '1',
-      answers: [
-        {
-          text: '1_1',
-        },
-        {
-          text: '1_2',
-        },
-      ],
-    },
-    {
-      title: '2',
-      type: 'multiple_choice',
-      shuffle: false,
-      description: '2',
-      answers: [
-        {
-          text: '2_1',
-        },
-        {
-          text: '2_2',
-        },
-      ],
-    },
-    {
-      title: '1',
-      type: 'no_choice',
-      shuffle: false,
-      description: '1',
-      answers: [],
-    },
-  ],
-};
+// const formJSON = {
+//   title: 'new-form',
+//   questions: [
+//     {
+//       title: '1',
+//       type: 'single_choice',
+//       shuffle: false,
+//       description: '1',
+//       answers: [
+//         {
+//           text: '1_1',
+//         },
+//         {
+//           text: '1_2',
+//         },
+//       ],
+//     },
+//     {
+//       title: '2',
+//       type: 'multiple_choice',
+//       shuffle: false,
+//       description: '2',
+//       answers: [
+//         {
+//           text: '2_1',
+//         },
+//         {
+//           text: '2_2',
+//         },
+//       ],
+//     },
+//     {
+//       title: '1',
+//       type: 'no_choice',
+//       shuffle: false,
+//       description: '1',
+//       answers: [],
+//     },
+//   ],
+// };
 
 // Compares first value to the second one allowing entering IF clouse if true.
 // Otherwise entering ELSE clause if exist.
@@ -69,9 +69,19 @@ export async function renderForm(id) {
     return;
   }
 
+  const api = new API();
+  const res = await api.getForm(id);
+  if (res.status !== 200) {
+    render404();
+    return;
+  }
+
+  const formJSON = res.form;
+
   removeMessage();
   const rootElement = document.querySelector('#root');
   rootElement.innerHTML = '';
+  console.log(formJSON);
   rootElement.innerHTML = Handlebars.templates.check_form({form: formJSON});
 
   const questions = document.querySelector('#check-form__questions-container');
@@ -80,17 +90,5 @@ export async function renderForm(id) {
     questionElement.innerHTML = Handlebars.templates.check_question({question: formJSON.questions[index]});
     questions.appendChild(questionElement);
   }
-  // try {
-  //   const api = new API();
-  //   const res = await api.getForm(id);
-  //   if (res.status === 200) {
-  //     formTitle.innerHTML = res.form.title;
-  //   } else {
-  //     render404();
-  //   }
-  // } catch (e) {
-  //   if (e.toString() === 'TypeError: Failed to fetch') {
-  //     renderMessage('Потеряно соединение с сервером', true);
-  //   }
-  // }
+
 }

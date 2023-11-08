@@ -3,7 +3,7 @@
         <h3 class="check-form__description-title">Текст вопроса</h3>
         <p class="check-form__description-text">{{question.title}}</p>
         <div class="check-question__answer" id="question-answer">
-            {{#ifEquals question.type "multiple_choice"}}
+            {{#ifEquals question.type 1}}
                 <h3 class="check-question__answer-title">Выберите один или несколько вариантов из нижеперечисленных:</h3>
                 <div class="check-question__answers-item">
                     {{#each question.answers}}
@@ -14,7 +14,7 @@
                     {{/each}}
                 </div>
             {{/ifEquals}}
-            {{#ifEquals question.type "single_choice"}}
+            {{#ifEquals question.type 2}}
                 <h3 class="check-question__answer-title">Выберите один вариант из нижеперечисленных:</h3>
                 <div class="check-question__answer-item">
                     {{#each question.answers}}
@@ -26,7 +26,7 @@
                 </div>
 
             {{/ifEquals}}
-            {{#ifEquals question.type "no_choice"}}
+            {{#ifEquals question.type 3}}
                 <h3 class="check-question__answer-title">Дайте ответ в формате текста:</h3>
                 <div class="check-question__answer-item">
                     <textarea class="check-question__answers-item-textarea" id="check-question__answers-item-textarea"></textarea>
