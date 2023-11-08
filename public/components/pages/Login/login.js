@@ -3,8 +3,7 @@ import {API} from '../../../modules/api.js';
 import {renderMessage, removeMessage} from '../../Message/message.js';
 import {emailValidation, passwordValidation} from '../../../modules/validation.js';
 import {goToPage} from '../../../modules/router.js';
-import {STORAGE} from '../../../index.js';
-import {getAuthAvatar} from '../../Avatar/avatar.js';
+import {STORAGE, getAuthAvatar} from '../../../modules/storage.js';
 
 /**
  * Функция для рендеринга страницы аутенфикации.
@@ -60,6 +59,7 @@ export async function renderLogin() {
 
       STORAGE.user = res.authorizedUser;
       await getAuthAvatar();
+
       goToPage(ROUTES.main);
       renderMessage('Вы успешно вошли');
     } catch (e) {

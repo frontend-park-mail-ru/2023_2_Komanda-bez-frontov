@@ -1,6 +1,23 @@
-import {API} from '../../modules/api.js';
-import {STORAGE} from '../../index.js';
-import {renderMessage} from '../Message/message.js';
+import {renderMessage} from '../components/Message/message.js';
+import {API} from './api.js';
+
+export const STORAGE = {
+  user: null,
+  avatar: null,
+  forms: [],
+};
+
+/**
+ * Функция очистки информации о текущем пользователе.
+ *
+ * @function
+ * @return {void}
+ */
+export function clearStorage() {
+  STORAGE.user = null;
+  STORAGE.avatar = null;
+  STORAGE.forms = [];
+}
 
 /**
  * Функция для получения и сохранения аватарки текущего пользователя.

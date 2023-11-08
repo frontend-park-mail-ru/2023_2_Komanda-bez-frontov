@@ -2,7 +2,7 @@ import {ROUTES} from '../../config.js';
 import {renderProfileMenu} from '../ProfileMenu/profileMenu.js';
 import {removeMessage} from '../Message/message.js';
 import {goToPage} from '../../modules/router.js';
-import {STORAGE} from '../../index.js';
+import {STORAGE} from '../../modules/storage.js';
 
 /**
  * Функция для рендеринга навбара страницы.

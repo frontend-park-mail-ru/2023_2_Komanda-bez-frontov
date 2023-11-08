@@ -2,7 +2,7 @@ import {API} from '../../../modules/api.js';
 import {ROUTES} from '../../../config.js';
 import {removeMessage, renderMessage} from '../../Message/message.js';
 import {goToPage} from '../../../modules/router.js';
-import {STORAGE} from '../../../index.js';
+import {clearStorage, STORAGE} from '../../../modules/storage.js';
 
 /**
  * Функция для рендеринга страницы с созданными пользователем опросами.
@@ -23,8 +23,7 @@ export async function renderForms() {
   try {
     const isAuth = await api.isAuth();
     if (!isAuth.isAuthorized) {
-      STORAGE.user = null;
-      STORAGE.avatar = null;
+      clearStorage();
       goToPage(ROUTES.login);
       renderMessage('Вы не авторизованы!', true);
       return;
@@ -33,14 +32,28 @@ export async function renderForms() {
     if (e.toString() === 'TypeError: Failed to fetch') {
       renderMessage('Потеряно соединение с сервером', true);
     }
-    return;
   }
 
   const formsContainer = document.querySelector('#forms-container');
+  let forms = [];
+  let status = 200;
 
-  const res = await api.getForms(STORAGE.user.username);
-  if (res.status === 200) {
-    if (res.count === 0) {
+  try {
+    const res = await api.getForms(STORAGE.user.username);
+    status = res.status;
+    forms = res.forms;
+    STORAGE.forms = res.forms;
+  } catch (e) {
+    if (e.toString() !== 'TypeError: Failed to fetch') {
+      renderMessage('Ошибка сервера. Попробуйте позже.', true);
+      return;
+    }
+    renderMessage('Потеряно соединение с сервером', true);
+    forms = STORAGE.forms;
+  }
+
+  if (status === 200) {
+    if (forms.length === 0) {
       const label = document.createElement('a');
       label.classList.add('forms_list_main-container_empty-label');
       label.textContent = 'Опросов пока нет...';
@@ -48,8 +61,8 @@ export async function renderForms() {
       return;
     }
     // eslint-disable-next-line no-restricted-syntax
-    for (const index in res.forms) {
-      const form = res.forms[index];
+    for (const index in forms) {
+      const form = forms[index];
 
       const item = document.createElement('div');
       item.innerHTML = Handlebars.templates.forms_item();

@@ -1,7 +1,6 @@
 import {API} from '../../modules/api.js';
 import {renderMessage} from '../Message/message.js';
-import {STORAGE} from '../../index.js';
-import {getAuthAvatar} from '../Avatar/avatar.js';
+import {getAuthAvatar, STORAGE} from '../../modules/storage.js';
 
 /**
  * Функция для рендеринга страницы при первой загрузке.

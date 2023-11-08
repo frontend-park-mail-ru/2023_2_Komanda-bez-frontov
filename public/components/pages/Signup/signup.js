@@ -8,7 +8,7 @@ import {
   usernameValidation,
 } from '../../../modules/validation.js';
 import {goToPage} from '../../../modules/router.js';
-import {STORAGE} from '../../../index.js';
+import {STORAGE} from '../../../modules/storage.js';
 
 /**
  * Функция для рендеринга страницы регистрации.
@@ -90,6 +90,7 @@ export async function renderSignup() {
 
       STORAGE.user = res.registeredUser;
       STORAGE.avatar = avatar;
+
       goToPage(ROUTES.main);
       renderMessage('Вы успешно зарегистрировались');
     } catch (e) {
