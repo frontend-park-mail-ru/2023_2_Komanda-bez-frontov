@@ -1,0 +1,42 @@
+.update-form {
+  text-align: center;
+  font-size: 24px;
+  margin: 0 auto;
+  width: 800px;
+}
+
+.update-form__title {
+  width: 100%;
+  font-size: 22px;
+  padding-left: 18px;
+  font-weight: 600;
+}
+
+.update-form__description-title {
+  padding-left: 5px;
+  font-size: 22px;
+  margin-bottom: 10px;
+  text-align: left;
+}
+
+.update-form__description {
+  padding: 13px 15px;
+  border-radius: 12px;
+  border: 2px solid #424242;
+}
+
+.update-form__description-textarea {
+  font-size: 20px;
+  padding-left: 10px;
+  width: 740px;
+  height: 118px;
+  background-color: #D8D3E2;
+  border-radius: 8px;
+}
+
+.button-container {
+  margin-top: 18px;
+  width: 247px;
+}
+
+
