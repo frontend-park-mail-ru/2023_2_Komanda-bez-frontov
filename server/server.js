@@ -6,7 +6,8 @@ const PORT = process.env.PORT || 8000;
 // const HOSTNAME_BACKEND = process.env.HOSTNAME_BACKEND || 'http://localhost:8080';
 
 app.use('/', express.static(path.resolve(__dirname, '../public')));
-app.use('/forms/', express.static(path.resolve(__dirname, '../public')));
+app.use('/forms/', express.static(path.resolve(__dirname, '..', 'public')));
+app.use('/forms/[0-9]+', express.static(path.resolve(__dirname, '..', 'public')));
 
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, '../public', 'index.html'));

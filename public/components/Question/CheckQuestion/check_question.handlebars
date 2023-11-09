@@ -4,17 +4,6 @@
         <p class="check-form__description-text">{{question.title}}</p>
         <div class="check-question__answer" id="question-answer">
             {{#ifEquals question.type 1}}
-                <h3 class="check-question__answer-title">Выберите один или несколько вариантов из нижеперечисленных:</h3>
-                <div class="check-question__answers-item">
-                    {{#each question.answers}}
-                        <div class="check-question__answer-item">
-                            <input class="check-question__answer-item-checkbox" id="check-question__answer-item-checkbox" type="checkbox">
-                            <label class="check-question__answer-item-label" for="check-question__answer-item-checkbox">{{text}}</label>
-                        </div>
-                    {{/each}}
-                </div>
-            {{/ifEquals}}
-            {{#ifEquals question.type 2}}
                 <h3 class="check-question__answer-title">Выберите один вариант из нижеперечисленных:</h3>
                 <div class="check-question__answer-item">
                     {{#each question.answers}}
@@ -24,7 +13,17 @@
                         </div>
                     {{/each}}
                 </div>
-
+            {{/ifEquals}}
+            {{#ifEquals question.type 2}}
+                <h3 class="check-question__answer-title">Выберите один или несколько вариантов из нижеперечисленных:</h3>
+                <div class="check-question__answers-item">
+                    {{#each question.answers}}
+                        <div class="check-question__answer-item">
+                            <input class="check-question__answer-item-checkbox" id="check-question__answer-item-checkbox" type="checkbox">
+                            <label class="check-question__answer-item-label" for="check-question__answer-item-checkbox">{{text}}</label>
+                        </div>
+                    {{/each}}
+                </div>
             {{/ifEquals}}
             {{#ifEquals question.type 3}}
                 <h3 class="check-question__answer-title">Дайте ответ в формате текста:</h3>

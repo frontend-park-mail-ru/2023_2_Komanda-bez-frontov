@@ -1,58 +1,7 @@
 import {API} from '../../../../modules/api.js';
 import {render404} from '../../../404/404.js';
 import {removeMessage, renderMessage} from '../../../Message/message.js';
-import {renderForms} from '../../Forms/forms.js';
-
-const formJSON = {
-  title: 'new-form',
-  questions: [
-    {
-      title: '1',
-      type: 'single_choice',
-      shuffle: false,
-      description: '1',
-      answers: [
-        {
-          text: '1_1',
-        },
-        {
-          text: '1_2',
-        },
-      ],
-    },
-    {
-      title: '2',
-      type: 'multiple_choice',
-      shuffle: false,
-      description: '2',
-      answers: [
-        {
-          text: '2_1',
-        },
-        {
-          text: '2_2',
-        },
-      ],
-    },
-    {
-      title: '1',
-      type: 'no_choice',
-      shuffle: false,
-      description: '1',
-      answers: [],
-    },
-  ],
-};
-
-// Compares first value to the second one allowing entering IF clouse if true.
-// Otherwise entering ELSE clause if exist.
-// eslint-disable-next-line func-names
-Handlebars.registerHelper('ifEquals', function (a, b, options) {
-  if (a === b) {
-    return options.fn(this);
-  }
-  return options.inverse(this);
-});
+import {STORAGE, storageGetForm} from '../../../../modules/storage.js';
 
 /**
  * Функция для рендеринга страницы опроса по его id.
@@ -63,41 +12,44 @@ Handlebars.registerHelper('ifEquals', function (a, b, options) {
  * @param {number} id - ID.
  * @return {void}
  */
-export async function renderForm(id) {
+export async function renderFormUpdate(id) {
+  removeMessage();
   if (!id) {
-    renderForms();
+    render404();
     return;
   }
 
-  removeMessage();
-  const rootElement = document.querySelector('#root');
-  rootElement.innerHTML = '';
-
+  let formJSON;
   try {
     const api = new API();
     const res = await api.getForm(id);
-    if (res.status === 200) {
-      rootElement.innerHTML = Handlebars.templates.update_form({form: res.form});
-      const questions = document.querySelector('#check-form__questions-container');
-      for (const index in res.form.questions) {
-        const questionElement = document.createElement('div');
-        questionElement.innerHTML = Handlebars.templates.update_question(
-          {question: res.form.questions[index]},
-        );
-        questions.appendChild(questionElement);
-      }
-
-      const updateButton = document.querySelector('#update-button');
-      const addButton = document.querySelector('#add-button');
-      const deleteButton = document.querySelector('#delete-button');
-
-
-    } else {
+    if (res.status !== 200) {
       render404();
+      return;
     }
+    formJSON = res.form;
   } catch (e) {
-    if (e.toString() === 'TypeError: Failed to fetch') {
-      renderMessage('Потеряно соединение с сервером', true);
+    if (e.toString() !== 'TypeError: Failed to fetch') {
+      return;
     }
+    renderMessage('Потеряно соединение с сервером', true);
+    formJSON = storageGetForm(id);
   }
+
+  if (STORAGE.user.id !== formJSON.author.id) {
+    renderMessage('Вы не являетесь автором опроса. Доступ запрещен.', true);
+  }
+  //
+  // const rootElement = document.querySelector('#root');
+  // rootElement.innerHTML = '';
+  // rootElement.innerHTML = Handlebars.templates.update_form({form: formJSON});
+  //
+  // const questions = document.querySelector('#update-form__questions-container');
+  // // eslint-disable-next-line no-restricted-syntax
+  // for (const index in formJSON.questions) {
+  //   const questionElement = document.createElement('div');
+  //   questionElement.innerHTML = Handlebars.templates
+  //     .update_question({question: formJSON.questions[index]});
+  //   questions.appendChild(questionElement);
+  // }
 }

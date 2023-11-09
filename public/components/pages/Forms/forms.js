@@ -32,6 +32,9 @@ export async function renderForms() {
     if (e.toString() === 'TypeError: Failed to fetch') {
       renderMessage('Потеряно соединение с сервером', true);
     }
+    if (!STORAGE.user) {
+      goToPage(ROUTES.main);
+    }
   }
 
   const formsContainer = document.querySelector('#forms-container');

@@ -10,22 +10,33 @@ import {renderProfile} from '../components/pages/Profile/profile.js';
 import {navbar} from '../components/Navbar/navbar.js';
 
 /**
- * Расщепляет url запроса на префикс и id страницы.
+ * Расщепляет url запроса на нормальный url (с :id по умолчанию) и id страницы.
+ * Так же убирает слеш в конце, если после него ничего не написано.
+ * Например, '/forms/34/edit' -> { 'id': '34', 'normalUrl': '/forms/:id/edit' }
+ *           '/forms/' -> { 'id': null, 'normalUrl': '/forms' }
  *
  * @function
  * @param url - Путь из запроса.
- * @return {{ id: number | *, prefix: string }} - Объект,содержащий ID запроса и префикс url.
+ * @return {{ id: number | *, normalUrl: string }} - Объект,содержащий ID запроса и нормальный url.
  */
 export function parseUrl(url) {
+  if (url[url.length - 1] === '/' && url.length > 1) {
+    // eslint-disable-next-line no-param-reassign
+    url = url.slice(0, url.length - 1);
+  }
   const index = url.indexOf('/', 1);
   if (index !== -1) {
-    const id = url.slice(index + 1, url.length);
-    const prefix = url.slice(0, index + 1);
-    return {id, prefix};
+    let indexRight = url.indexOf('/', index + 1);
+    if (indexRight === -1) {
+      indexRight = url.length;
+    }
+    const id = url.slice(index + 1, indexRight);
+    const normalUrl = `${url.slice(0, index + 1)}:id${url.slice(indexRight, url.length)}`;
+    return {id, normalUrl};
   }
   const id = null;
-  const prefix = url;
-  return {id, prefix};
+  const normalUrl = url;
+  return {id, normalUrl};
 }
 
 /**
@@ -38,7 +49,7 @@ export function parseUrl(url) {
 export function goToPage(page, id = null) {
   navbar();
   if (id) {
-    const url = page.url + id;
+    const url = page.url.replace(':id', id.toString());
     window.history.pushState(page.state, '', url);
     page.open(id);
     return;
@@ -56,8 +67,9 @@ export function goToPage(page, id = null) {
  */
 export async function initialRouter() {
   const temp = parseUrl(window.location.pathname);
+  // console.log(temp);
   const id = temp.id;
-  const url = temp.prefix;
+  const url = temp.normalUrl;
 
   await renderInitial();
   switch (url) {
@@ -67,7 +79,10 @@ export async function initialRouter() {
     case '/profile':
       goToPage(ROUTES.profile);
       break;
-    case '/forms/':
+    case '/forms':
+      goToPage(ROUTES.form, id);
+      break;
+    case '/forms/:id':
       goToPage(ROUTES.form, id);
       break;
     case '/login':
@@ -78,6 +93,7 @@ export async function initialRouter() {
       break;
     default:
       window.history.pushState('404', '', url);
+      navbar();
       render404();
       break;
   }

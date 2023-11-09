@@ -5,6 +5,7 @@ import {renderForm} from './components/pages/Form/CheckForm/check_form.js';
 import {renderMain} from './components/pages/Main/main.js';
 import {renderSignup} from './components/pages/Signup/signup.js';
 import {renderProfile} from './components/pages/Profile/profile.js';
+import {renderFormUpdate} from './components/pages/Form/UpdateForm/update_form.js';
 
 export const ROUTES = {
   main: {
@@ -13,14 +14,24 @@ export const ROUTES = {
     open: renderMain,
   },
   forms: {
-    url: '/forms/',
+    url: '/forms',
     state: 'forms',
     open: renderForms,
   },
   form: {
-    url: '/forms/',
+    url: '/forms/:id',
     state: 'form',
     open: renderForm,
+  },
+  formNew: {
+    url: '/forms/new',
+    state: 'formNew',
+    open: renderForm,
+  },
+  formUpdate: {
+    url: '/forms/:id/edit',
+    state: 'formUpdate',
+    open: renderFormUpdate,
   },
   profile: {
     url: '/profile',
@@ -48,6 +59,8 @@ export const backendUrl = 'http://localhost:8080/api/v1';
 
 const GET_METHOD = 'GET';
 const POST_METHOD = 'POST';
+const DELETE_METHOD = 'DELETE';
+const PUT_METHOD = 'PUT';
 
 export const ROUTES_API = {
   login: {
@@ -80,14 +93,14 @@ export const ROUTES_API = {
   },
   saveForm: {
     url: '/forms/save',
-    method: GET_METHOD,
+    method: POST_METHOD,
   },
   deleteForm: {
     url: '/forms/:id/delete',
-    method: GET_METHOD,
+    method: DELETE_METHOD,
   },
   updateForm: {
     url: '/forms/:id/update',
-    method: GET_METHOD,
+    method: PUT_METHOD,
   },
 };

@@ -42,3 +42,20 @@ export async function getAuthAvatar() {
     }
   }
 }
+
+/**
+ * Функция поиска формы в локальном хранилище по id.
+ *
+ * @function
+ * @param {number} id - ID искомой формы
+ * @return {form | null} - Искомая форма
+ */
+export function storageGetForm(id) {
+  // eslint-disable-next-line no-restricted-syntax
+  for (const index in STORAGE.forms) {
+    if (STORAGE.forms[index].id === id) {
+      return STORAGE.forms[index];
+    }
+  }
+  return null;
+}
