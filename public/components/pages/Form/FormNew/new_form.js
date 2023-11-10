@@ -175,15 +175,15 @@ export function formPageParser() {
     };
 
     if (!question.title) {
-      const titleInput = document.querySelector('#update-question__title');
+      const titleInput = questionElement.querySelector('#update-question__title');
       titleInput.classList.add('update-form__input-error');
       titleInput.addEventListener('click', () => {
         titleInput.classList.remove('update-form__input-error');
       }, {once: true});
       flag = true;
     }
-    if (!form.description) {
-      const descInput = document.querySelector('#update-question__description-textarea');
+    if (!question.description) {
+      const descInput = questionElement.querySelector('#update-question__description-textarea');
       descInput.classList.add('update-form__input-error');
       descInput.addEventListener('click', () => {
         descInput.classList.remove('update-form__input-error');
@@ -222,6 +222,7 @@ export function formPageParser() {
   }
 
   if (flag) {
+    console.log(form);
     return null;
   }
   return form;
