@@ -62,10 +62,12 @@ export async function renderLogin() {
 
       goToPage(ROUTES.main);
       renderMessage('Вы успешно вошли');
-    } catch (e) {
-      if (e.toString() === 'TypeError: Failed to fetch') {
-        renderMessage('Потеряно соединение с сервером', true);
+    } catch (err) {
+      if (err.toString() !== 'TypeError: Failed to fetch') {
+        renderMessage('Ошибка сервера. Попробуйте позже', true);
+        return;
       }
+      renderMessage('Потеряно соединение с сервером', true);
     }
   });
 

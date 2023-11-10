@@ -1,63 +1,26 @@
 {{#if question}}
     <div class="update-question">
-        <h3 class="update-question__description-title">Текст вопроса</h3>
-        <textarea class="update-question__description-textarea" id="update-question__description-textarea"></textarea>
-        <div class="update-question__answer" id="question-answer">
-            <h3 class="update-question__answer-title">Формат ответа</h3>
-            {{#ifEquals question.type "multiple_choice"}}
-                <div class="update-question__answer-format">
-                    <input class="update-question__answer-format-radio" id="update-question__answer-format-text" type="radio">
-                    <label class="update-question__answer-format-label" for="update-question__answer-format-text">Текст</label>
-                    <input class="update-question__answer-format-radio" id="update-question__answer-format-radio" type="radio">
-                    <label class="update-question__answer-format-label" for="update-question__answer-format-radio">Один вариант</label>
-                    <input class="update-question__answer-format-radio" id="update-question__answer-format-checkbox" type="radio" checked>
-                    <label class="update-question__answer-format-label" for="update-question__answer-format-checkbox">Несколько вариантов</label>
-                </div>
-                <div class="update-question__answers">
-                    <h3 class="update-question__answers-title">Ответы</h3>
-                    {{#each question.answers}}
-                        <div class="update-question__answers-item">
-                            <input class="update-question__answers-item-checkbox" id="update-question__answers-item-checkbox-{{question.title}}" type="checkbox"></input>
-                            <input class="update-question__answers-item-input" type="text" value="{{text}}"></input>
-                        </div>
-                    {{/each}}
-                </div>
-                <div class="button-container">
-                    <button class="primary-button" type="submit" id="add-button-{{question.title}}">Добавить ответ</button>
-                </div>
-            {{/ifEquals}}
-            {{#ifEquals question.type "single_choice"}}
-                <div class="update-question__answer-format">
-                    <input class="update-question__answer-format-radio" id="update-question__answer-format-text" type="radio">
-                    <label class="update-question__answer-format-label" for="update-question__answer-format-text">Текст</label>
-                    <input class="update-question__answer-format-radio" id="update-question__answer-format-radio" type="radio" checked>
-                    <label class="update-question__answer-format-label" for="update-question__answer-format-radio">Один вариант</label>
-                    <input class="update-question__answer-format-radio" id="update-question__answer-format-checkbox" type="radio">
-                    <label class="update-question__answer-format-label" for="update-question__answer-format-checkbox">Несколько вариантов</label>
-                </div>
-                <div class="update-question__answers">
-                    <h3 class="update-question__answers-title">Ответы</h3>
-                    {{#each question.answers}}
-                        <div class="update-question__answers-item">
-                            <input class="update-question__answers-item-radio" id="update-question__answers-item-radio-{{question.title}}" type="radio"></input>
-                            <input class="update-question__answers-item-input" type="text" value="{{text}}"></input>
-                        </div>
-                    {{/each}}
-                </div>
-                <div class="button-container">
-                    <button class="primary-button" type="submit" id="add-button-{{question.title}}">Добавить ответ</button>
-                </div>
-            {{/ifEquals}}
-            {{#ifEquals question.type "no_choice"}}
-                <div class="update-question__answer-format">
-                    <input class="update-question__answer-format-radio" id="update-question__answer-format-text" type="radio" checked>
-                    <label class="update-question__answer-format-label" for="update-question__answer-format-text">Текст</label>
-                    <input class="update-question__answer-format-radio" id="update-question__answer-format-radio" type="radio">
-                    <label class="update-question__answer-format-label" for="update-question__answer-format-radio">Один вариант</label>
-                    <input class="update-question__answer-format-radio" id="update-question__answer-format-checkbox" type="radio">
-                    <label class="update-question__answer-format-label" for="update-question__answer-format-checkbox">Несколько вариантов</label>
-                </div>
-            {{/ifEquals}}
+        <div class="update-question__title-container">
+            <h3 class="update-question__description-title">Текст вопроса</h3>
+            <a class="update-question__question-delete" id="delete-question">❌</a>
+        </div>
+        <input class="update-question__title-input" id="update-question__title" value="{{question.title}}" maxlength="64">
+        <textarea class="update-question__description-textarea" id="update-question__description-textarea" maxlength="512">{{question.description}}</textarea>
+        <h3 class="update-question__answer-title">Формат ответа</h3>
+        <div class="update-question__answer-format">
+            <input class="update-question__answer-format-radio" id="update-question__answer-format-text" type="radio">
+            <label class="update-question__answer-format-label" for="update-question__answer-format-text">Текст</label>
+            <input class="update-question__answer-format-radio" id="update-question__answer-format-radio" type="radio">
+            <label class="update-question__answer-format-label" for="update-question__answer-format-radio">Один вариант</label>
+            <input class="update-question__answer-format-radio" id="update-question__answer-format-checkbox" type="radio">
+            <label class="update-question__answer-format-label" for="update-question__answer-format-checkbox">Несколько вариантов</label>
+        </div>
+        <div class="update-question__answer" id="question-answers">
+<!--            Answers will be here-->
+        </div>
+        <div class="update-question__button-container">
+            <button class="primary-button" type="submit" id="add-answer-button">Добавить ответ</button>
+            <button class="red-button" type="submit" id="clear-answers-button">Очистить все</button>
         </div>
     </div>
 {{/if}}

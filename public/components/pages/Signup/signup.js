@@ -93,10 +93,12 @@ export async function renderSignup() {
 
       goToPage(ROUTES.main);
       renderMessage('Вы успешно зарегистрировались');
-    } catch (e) {
-      if (e.toString() === 'TypeError: Failed to fetch') {
-        renderMessage('Потеряно соединение с сервером', true);
+    } catch (err) {
+      if (err.toString() !== 'TypeError: Failed to fetch') {
+        renderMessage('Ошибка сервера. Попробуйте позже', true);
+        return;
       }
+      renderMessage('Потеряно соединение с сервером', true);
     }
   });
 
@@ -124,7 +126,7 @@ export async function renderSignup() {
   });
 
   const cancelAvatar = document.querySelector('#signup-avatar-cancel');
-  cancelAvatar.addEventListener('click', (e) => {
+  cancelAvatar.addEventListener('click', () => {
     const labelAvatar = document.querySelector('#signup-avatar-button');
     labelAvatar.style.backgroundColor = '#ffffff';
     avatar = '';

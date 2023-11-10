@@ -21,6 +21,7 @@ export function renderMessage(text, error = false) {
   message.textContent = text;
 
   messageContainer.appendChild(message);
+  window.scroll(0, 0);
 }
 
 /**

@@ -1,13 +1,15 @@
 @import './components/Buttons/buttons';
 @import './components/Navbar/navbar';
 @import './components/ProfileMenu/profileMenu';
+@import './components/PopUpWindow/popup_window';
 @import './components/pages/Profile/profile';
 @import './components/pages/Forms/forms';
 @import './components/FormsItem/forms_item';
-@import 'components/Question/CheckQuestion/check_question';
-@import 'components/Question/UpdateQuestion/update_question';
-@import 'components/pages/Form/CheckForm/check_form';
-@import 'components/pages/Form/UpdateForm/update_form';
+@import './components/Question/CheckQuestion/check_question';
+@import './components/Question/UpdateQuestion/update_question';
+@import './components/Question/UpdateAnswer/update_answer';
+@import './components/pages/Form/CheckForm/check_form';
+@import './components/pages/Form/UpdateForm/update_form';
 @import './components/pages/Main/main';
 @import './components/pages/Login/login';
 @import './components/pages/Signup/signup';
@@ -19,14 +21,18 @@
   font-family: 'Exo 2', sans-serif;
 }
 
-#navbar {
+html {
+  scroll-behavior: smooth;
+}
+
+#navbar, #popup {
   position: fixed;
   width: 100%;
   top: 0;
   z-index: 100;
 }
 
-#message-box, #root {
+#message-box, #root{
   position: relative;
   top: 100px;
 }

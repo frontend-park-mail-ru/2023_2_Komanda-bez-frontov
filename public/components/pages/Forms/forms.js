@@ -20,6 +20,7 @@ export async function renderForms() {
   rootElement.innerHTML = '';
   rootElement.innerHTML = Handlebars.templates.forms();
 
+  // Проверка авторизации
   try {
     const isAuth = await api.isAuth();
     if (!isAuth.isAuthorized) {
@@ -28,12 +29,16 @@ export async function renderForms() {
       renderMessage('Вы не авторизованы!', true);
       return;
     }
+    STORAGE.user = isAuth.authorizedUser;
   } catch (e) {
-    if (e.toString() === 'TypeError: Failed to fetch') {
-      renderMessage('Потеряно соединение с сервером', true);
+    if (e.toString() !== 'TypeError: Failed to fetch') {
+      renderMessage('Ошибка сервера. Попробуйте позже', true);
+      return;
     }
+    renderMessage('Потеряно соединение с сервером', true);
     if (!STORAGE.user) {
       goToPage(ROUTES.main);
+      return;
     }
   }
 
@@ -41,6 +46,7 @@ export async function renderForms() {
   let forms = [];
   let status = 200;
 
+  // Получение формы
   try {
     const res = await api.getForms(STORAGE.user.username);
     status = res.status;
@@ -52,6 +58,7 @@ export async function renderForms() {
       return;
     }
     renderMessage('Потеряно соединение с сервером', true);
+    // Попытка найти опросы в локальном хранилище
     forms = STORAGE.forms;
   }
 

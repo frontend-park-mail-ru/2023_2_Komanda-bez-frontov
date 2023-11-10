@@ -14,9 +14,9 @@
 
 .check-form__description-text {
   padding-left: 10px;
-  font-size: 20px;
+  font-size: 22px;
   font-weight: normal;
-  margin-bottom: 10px;
+  margin-bottom: 15px;
   text-align: left;
 }
 
@@ -61,6 +61,7 @@
   font-size: 20px;
   width: 740px;
   height: 118px;
+  resize: none;
   background-color: #D8D3E2;
   border-radius: 8px;
 }

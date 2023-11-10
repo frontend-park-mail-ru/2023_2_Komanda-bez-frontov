@@ -8,6 +8,7 @@ import {render404} from '../components/404/404.js';
 import {ROUTES} from '../config.js';
 import {renderProfile} from '../components/pages/Profile/profile.js';
 import {navbar} from '../components/Navbar/navbar.js';
+import {renderFormUpdate} from '../components/pages/Form/UpdateForm/update_form.js';
 
 /**
  * Расщепляет url запроса на нормальный url (с :id по умолчанию) и id страницы.
@@ -48,6 +49,7 @@ export function parseUrl(url) {
  */
 export function goToPage(page, id = null) {
   navbar();
+  window.scroll(0, 0);
   if (id) {
     const url = page.url.replace(':id', id.toString());
     window.history.pushState(page.state, '', url);
@@ -85,6 +87,9 @@ export async function initialRouter() {
     case '/forms/:id':
       goToPage(ROUTES.form, id);
       break;
+    case '/forms/:id/edit':
+      goToPage(ROUTES.formUpdate, id);
+      break;
     case '/login':
       goToPage(ROUTES.login);
       break;
@@ -92,7 +97,7 @@ export async function initialRouter() {
       goToPage(ROUTES.signup);
       break;
     default:
-      window.history.pushState('404', '', url);
+      // window.history.pushState('404', '', url);
       navbar();
       render404();
       break;
@@ -118,9 +123,10 @@ window.onpopstate = function (event) {
       renderForms();
       break;
     case 'form':
-      // eslint-disable-next-line no-case-declarations
-      const id = parseUrl(window.location.pathname).id;
-      renderForm(id);
+      renderForm(parseUrl(window.location.pathname).id);
+      break;
+    case 'formUpdate':
+      renderFormUpdate(parseUrl(window.location.pathname).id);
       break;
     case 'profile':
       renderProfile();

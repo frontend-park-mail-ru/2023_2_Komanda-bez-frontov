@@ -24,10 +24,13 @@ export async function renderProfile() {
       renderMessage('Вы не авторизованы!', true);
       return;
     }
+    STORAGE.user = isAuth.authorizedUser;
   } catch (e) {
-    if (e.toString() === 'TypeError: Failed to fetch') {
-      renderMessage('Потеряно соединение с сервером', true);
+    if (e.toString() !== 'TypeError: Failed to fetch') {
+      renderMessage('Ошибка сервера. Попробуйте позже', true);
+      return;
     }
+    renderMessage('Потеряно соединение с сервером', true);
     if (!STORAGE.user) {
       goToPage(ROUTES.main);
     }

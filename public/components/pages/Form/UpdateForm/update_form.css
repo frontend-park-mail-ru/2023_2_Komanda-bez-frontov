@@ -1,20 +1,39 @@
 .update-form {
+  position: relative;
   text-align: center;
   font-size: 24px;
-  margin: 0 auto;
+  margin: 40px auto;
   width: 800px;
 }
+.update-form .update-form__title-label {
+  font-size: 36px;
+  margin-bottom: 32px;
+}
 .update-form .update-form__title {
-  padding: 13px 15px;
-  width: 765px;
-  font-size: 22px;
-  font-weight: 600;
+  padding: 15px;
   border-radius: 12px;
   border: 2px solid #424242;
   margin-bottom: 18px;
 }
+.update-form .update-form__title-input {
+  padding: 13px 15px;
+  width: 720px;
+  font-size: 22px;
+  background-color: #D8D3E2;
+  border-radius: 8px;
+}
+.update-form .button-container {
+  width: 550px;
+  flex-wrap: wrap;
+  margin: 30px 20px;
+  gap: 15px;
+}
+.update-form .button-container button {
+  width: 247px;
+  margin-bottom: 5px;
+}
 
-.update-form__description-title {
+.update-form__description-title, .update-form__title-title {
   padding-left: 5px;
   font-size: 22px;
   margin-bottom: 10px;
@@ -22,7 +41,7 @@
 }
 
 .update-form__description {
-  padding: 13px 15px;
+  padding: 15px;
   border-radius: 12px;
   border: 2px solid #424242;
 }
@@ -31,22 +50,10 @@
   font-size: 20px;
   width: 740px;
   height: 118px;
+  resize: none;
   background-color: #D8D3E2;
   border-radius: 8px;
   padding-left: 10px;
-}
-
-.button-container {
-  margin-top: 18px;
-}
-.button-container .primary-button {
-  width: 247px;
-}
-.button-container .secondary-button {
-  width: 247px;
-}
-.button-container .red-button {
-  width: 247px;
 }
 
 /*# sourceMappingURL=update_form.css.map */

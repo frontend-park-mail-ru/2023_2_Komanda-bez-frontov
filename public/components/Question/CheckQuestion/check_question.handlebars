@@ -1,15 +1,15 @@
 {{#if question}}
     <div class="check-question">
-        <h3 class="check-form__description-title">Текст вопроса</h3>
-        <p class="check-form__description-text">{{question.title}}</p>
+        <h3 class="check-form__description-title">{{question.title}}</h3>
+        <p class="check-form__description-text">{{question.description}}</p>
         <div class="check-question__answer" id="question-answer">
             {{#ifEquals question.type 1}}
                 <h3 class="check-question__answer-title">Выберите один вариант из нижеперечисленных:</h3>
                 <div class="check-question__answer-item">
-                    {{#each question.answers}}
+                    {{#each ../question.answers}}
                         <div class="check-question__answer-item">
-                            <input class="check-question__answer-item-radio" id="check-question__answer-item-radio" type="radio">
-                            <label class="check-question__answer-item-label" for="check-question__answer-item-radio">{{text}}</label>
+                            <input class="check-question__answer-item-radio" id="check-question_{{../../question.id}}_answer-item_{{id}}" type="radio">
+                            <label class="check-question__answer-item-label" for="check-question_{{../../question.id}}_answer-item_{{id}}">{{text}}</label>
                         </div>
                     {{/each}}
                 </div>
@@ -17,10 +17,10 @@
             {{#ifEquals question.type 2}}
                 <h3 class="check-question__answer-title">Выберите один или несколько вариантов из нижеперечисленных:</h3>
                 <div class="check-question__answers-item">
-                    {{#each question.answers}}
+                    {{#each ../question.answers}}
                         <div class="check-question__answer-item">
-                            <input class="check-question__answer-item-checkbox" id="check-question__answer-item-checkbox" type="checkbox">
-                            <label class="check-question__answer-item-label" for="check-question__answer-item-checkbox">{{text}}</label>
+                            <input class="check-question__answer-item-checkbox" id="check-question_{{../../question.id}}_answer-item_{{id}}" type="checkbox">
+                            <label class="check-question__answer-item-label" for="check-question_{{../../question.id}}_answer-item-{{id}}">{{text}}</label>
                         </div>
                     {{/each}}
                 </div>
@@ -28,7 +28,7 @@
             {{#ifEquals question.type 3}}
                 <h3 class="check-question__answer-title">Дайте ответ в формате текста:</h3>
                 <div class="check-question__answer-item">
-                    <textarea class="check-question__answers-item-textarea" id="check-question__answers-item-textarea"></textarea>
+                    <textarea class="check-question__answers-item-textarea" id="check-question_{{../question.id}}_answers-item" maxlength="512"></textarea>
                 </div>
             {{/ifEquals}}
         </div>

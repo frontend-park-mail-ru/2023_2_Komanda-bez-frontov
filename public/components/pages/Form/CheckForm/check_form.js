@@ -4,17 +4,7 @@ import {removeMessage, renderMessage} from '../../../Message/message.js';
 import {storageGetForm, STORAGE} from '../../../../modules/storage.js';
 import {ROUTES} from '../../../../config.js';
 import {goToPage} from '../../../../modules/router.js';
-
-/** Compares first value to the second one allowing entering IF clouse if true.
-* Otherwise entering ELSE clause if exist.
-* eslint-disable-next-line func-names
-*/
-Handlebars.registerHelper('ifEquals', (a, b, options) => {
-  if (a === b) {
-    return options.fn(this);
-  }
-  return options.inverse(this);
-});
+import {createQuestion} from '../../../Question/CheckQuestion/check_question.js';
 
 /**
  * Функция для рендеринга страницы опроса по его id.
@@ -45,8 +35,10 @@ export async function renderForm(id) {
     formJSON = res.form;
   } catch (e) {
     if (e.toString() !== 'TypeError: Failed to fetch') {
+      renderMessage('Ошибка сервера. Попробуйте позже', true);
       return;
     }
+    // Попытка найти опрос в локальном хранилище
     renderMessage('Потеряно соединение с сервером', true);
     formJSON = storageGetForm(id);
   }
@@ -58,24 +50,20 @@ export async function renderForm(id) {
   const questions = document.querySelector('#check-form__questions-container');
   // eslint-disable-next-line no-restricted-syntax
   for (const index in formJSON.questions) {
-    const questionElement = document.createElement('div');
-    questionElement.innerHTML = Handlebars.templates
-      .check_question({question: formJSON.questions[index]});
+    const questionElement = createQuestion(formJSON.questions[index]);
     questions.appendChild(questionElement);
   }
 
   const updateSubmitButton = document.querySelector('#update-submit-button');
   if (STORAGE.user.id === formJSON.author.id) {
     updateSubmitButton.innerHTML = 'Редактировать';
+    updateSubmitButton.addEventListener('click', () => {
+      goToPage(ROUTES.formUpdate, id);
+    });
   } else {
     updateSubmitButton.innerHTML = 'Отправить';
+    updateSubmitButton.addEventListener('click', () => {
+      // иначе отправим заполненную форму.
+    });
   }
-
-  updateSubmitButton.addEventListener('click', () => {
-    if (STORAGE.user.id === formJSON.author.id) {
-      goToPage(ROUTES.formUpdate, id);
-      // return;
-    }
-    // иначе отправим заполненную форму.
-  });
 }
