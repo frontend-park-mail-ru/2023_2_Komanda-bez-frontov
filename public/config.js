@@ -6,6 +6,7 @@ import {renderMain} from './components/pages/Main/main.js';
 import {renderSignup} from './components/pages/Signup/signup.js';
 import {renderProfile} from './components/pages/Profile/profile.js';
 import {renderFormUpdate} from './components/pages/Form/UpdateForm/update_form.js';
+import {renderFormNew} from './components/pages/Form/FormNew/new_form.js';
 
 export const ROUTES = {
   main: {
@@ -26,7 +27,7 @@ export const ROUTES = {
   formNew: {
     url: '/forms/new',
     state: 'formNew',
-    open: renderForm,
+    open: renderFormNew,
   },
   formUpdate: {
     url: '/forms/:id/edit',

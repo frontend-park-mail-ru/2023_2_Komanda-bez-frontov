@@ -8,7 +8,6 @@ import {createQuestion} from '../../../Question/CheckQuestion/check_question.js'
 
 /**
  * Функция для рендеринга страницы опроса по его id.
- * Если пользователь не авторизован, происходит редирект на страницу входа.
  *
  * @async
  * @function

@@ -264,7 +264,17 @@ export class API {
     }
   }
 
-  async SaveForm(saveForm) {
+  /**
+   * Функция для сохранения опроса на сервере.
+   *
+   * @async
+   * @function
+   * @param {form} saveForm - объект, содержащий информацию об опросе.
+   * @return {Promise<{form: * | any, status: number}>} Объект с информацией
+   * о статусе запроса и формой опубликованного опроса.
+   * @throws {Error} Если произошла ошибка при запросе или обработке данных.
+   */
+  async saveForm(saveForm) {
     try {
       const url = backendUrl + ROUTES_API.saveForm.url;
 
@@ -274,7 +284,7 @@ export class API {
           'Content-Type': 'application/json',
         },
         credentials: 'include',
-        body: saveForm,
+        body: JSON.stringify(saveForm),
       });
 
       const body = await res.json();
@@ -292,17 +302,27 @@ export class API {
     }
   }
 
+  /**
+   * Функция для обновления опроса на сервере.
+   *
+   * @async
+   * @function
+   * @param {form} updateForm - объект, содержащий информацию об измененном опросе.
+   * @return {Promise<{form: * | any, status: number}>} Объект с информацией
+   * о статусе запроса и формой обновленного опроса.
+   * @throws {Error} Если произошла ошибка при запросе или обработке данных.
+   */
   async updateForm(updateForm) {
     try {
-      const url = backendUrl + ROUTES_API.updateForm.url.replace(':id', id.toString());
+      const url = backendUrl + ROUTES_API.updateForm.url.replace(':id', updateForm.id.toString());
 
       const res = await fetch(url, {
-        method: POST_METHOD,
+        method: PUT_METHOD,
         headers: {
           'Content-Type': 'application/json',
         },
         credentials: 'include',
-        body: updateForm,
+        body: JSON.stringify(updateForm),
       });
 
       const body = await res.json();
@@ -320,6 +340,15 @@ export class API {
     }
   }
 
+  /**
+   * Функция для удаления опроса с сервера.
+   *
+   * @async
+   * @function
+   * @param {number} id - ID удаляемого опроса.
+   * @return {Promise<{status: number}>} Объект с информацией о статусе запроса.
+   * @throws {Error} Если произошла ошибка при запросе или обработке данных.
+   */
   async deleteForm(id) {
     try {
       const url = backendUrl + ROUTES_API.deleteForm.url.replace(':id', id.toString());

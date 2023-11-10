@@ -78,7 +78,7 @@ export function createQuestionUpdate(question) {
   addButton.addEventListener('click', () => {
     answers.push({
       id: answers.length,
-      text: 'новый вопрос',
+      text: 'новый ответ',
     });
     renderAnswers();
   });
@@ -88,7 +88,7 @@ export function createQuestionUpdate(question) {
     answers.length = 0;
     answers.push({
       id: answers.length,
-      text: 'новый вопрос',
+      text: 'новый ответ',
     });
     renderAnswers();
   });

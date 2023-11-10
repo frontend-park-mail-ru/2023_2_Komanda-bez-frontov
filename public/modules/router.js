@@ -9,6 +9,7 @@ import {ROUTES} from '../config.js';
 import {renderProfile} from '../components/pages/Profile/profile.js';
 import {navbar} from '../components/Navbar/navbar.js';
 import {renderFormUpdate} from '../components/pages/Form/UpdateForm/update_form.js';
+import {renderFormNew} from '../components/pages/Form/FormNew/new_form.js';
 
 /**
  * Расщепляет url запроса на нормальный url (с :id по умолчанию) и id страницы.
@@ -85,6 +86,10 @@ export async function initialRouter() {
       goToPage(ROUTES.form, id);
       break;
     case '/forms/:id':
+      if (id === 'new') {
+        goToPage(ROUTES.formNew);
+        break;
+      }
       goToPage(ROUTES.form, id);
       break;
     case '/forms/:id/edit':
@@ -127,6 +132,9 @@ window.onpopstate = function (event) {
       break;
     case 'formUpdate':
       renderFormUpdate(parseUrl(window.location.pathname).id);
+      break;
+    case 'formNew':
+      renderFormNew();
       break;
     case 'profile':
       renderProfile();

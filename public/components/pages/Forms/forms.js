@@ -68,7 +68,6 @@ export async function renderForms() {
       label.classList.add('forms_list_main-container_empty-label');
       label.textContent = 'Опросов пока нет...';
       formsContainer.appendChild(label);
-      return;
     }
     // eslint-disable-next-line no-restricted-syntax
     for (const index in forms) {
@@ -88,4 +87,9 @@ export async function renderForms() {
   } else {
     renderMessage('Ошибка сервера. Попробуйте позже.', true);
   }
+
+  const newFormButton = document.querySelector('#forms-list-add-button');
+  newFormButton.addEventListener('click', () => {
+    goToPage(ROUTES.formNew);
+  });
 }

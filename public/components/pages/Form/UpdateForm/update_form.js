@@ -6,10 +6,12 @@ import {goToPage} from '../../../../modules/router.js';
 import {ROUTES} from '../../../../config.js';
 import {createQuestionUpdate} from '../../../Question/UpdateQuestion/update_question.js';
 import {renderPopUpWindow} from '../../../PopUpWindow/popup_window.js';
+import {formPageParser} from '../FormNew/new_form.js';
 
 /**
- * Функция для рендеринга страницы опроса по его id.
+ * Функция для рендеринга страницы редактирования опроса по его id.
  * Если пользователь не авторизован, происходит редирект на страницу входа.
+ * Если пользователь не является автором, возвращается ошибка 403.
  *
  * @async
  * @function
@@ -93,7 +95,7 @@ export async function renderFormUpdate(id) {
       title: 'Новый вопрос',
       description: 'Описание вопроса',
       type: 1,
-      shuffle: true,
+      shuffle: false,
       answers: [
         {
           id: 0,
@@ -110,10 +112,55 @@ export async function renderFormUpdate(id) {
     questions.appendChild(questionElement);
   });
 
-  const deleteQuestion = document.querySelector('#delete-button');
-  deleteQuestion.addEventListener('click', () => {
-    renderPopUpWindow('Вы уверены, что хотите удалить опрос? Это действие необратимо.', true, () => {
-      // delete api
+  const deleteForm = document.querySelector('#delete-button');
+  deleteForm.addEventListener('click', () => {
+    renderPopUpWindow('Вы уверены, что хотите удалить опрос? Это действие необратимо.', true, async () => {
+      try {
+        const res = await api.deleteForm(id);
+        const status = res.status;
+        if (status === 200) {
+          renderMessage('Опрос успешно удален.');
+          goToPage(ROUTES.forms);
+          return;
+        }
+        if (status === 404) {
+          renderMessage('Опрос не удалось обнаружить: уже удален.', true);
+          return;
+        }
+        renderMessage('Ошибка сервера. Попробуйте позже', true);
+      } catch (e) {
+        if (e.toString() !== 'TypeError: Failed to fetch') {
+          renderMessage('Ошибка сервера. Попробуйте позже', true);
+          return;
+        }
+        renderMessage('Потеряно соединение с сервером', true);
+      }
     });
+  });
+
+  const updateForm = document.querySelector('#update-button');
+  updateForm.addEventListener('click', async () => {
+    const updatedForm = formPageParser();
+    if (!updatedForm) {
+      renderMessage('Введены не все данные. Проверьте правильность заполнения.', true);
+      return;
+    }
+    updatedForm.id = Number(id);
+    try {
+      const res = await api.updateForm(updatedForm);
+      const status = res.status;
+      if (status === 200) {
+        renderMessage('Опрос успешно обновлен.');
+        goToPage(ROUTES.form, id);
+        return;
+      }
+      renderMessage('Ошибка сервера. Попробуйте позже', true);
+    } catch (e) {
+      if (e.toString() !== 'TypeError: Failed to fetch') {
+        renderMessage('Ошибка сервера. Попробуйте позже', true);
+        return;
+      }
+      renderMessage('Потеряно соединение с сервером', true);
+    }
   });
 }
