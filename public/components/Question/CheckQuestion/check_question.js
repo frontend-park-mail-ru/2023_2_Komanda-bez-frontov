@@ -16,7 +16,7 @@ Handlebars.registerHelper('ifEquals', (a, b, options) => {
  * @param {question} question - JSON с информацией о вопросе.
  * @return {HTMLDivElement} - HTML элемент вопроса.
  */
-export function createQuestion(question) {
+export const createQuestion = (question) => {
   const questionElement = document.createElement('div');
   questionElement.innerHTML = Handlebars.templates.check_question({question});
 
@@ -33,4 +33,4 @@ export function createQuestion(question) {
   });
 
   return questionElement;
-}
+};

@@ -1,6 +1,6 @@
 import {API} from '../../../../modules/api.js';
 import {removeMessage, renderMessage} from '../../../Message/message.js';
-import {clearStorage, STORAGE} from '../../../../modules/storage.js';
+import {STORAGE} from '../../../../modules/storage.js';
 import {goToPage} from '../../../../modules/router.js';
 import {ROUTES} from '../../../../config.js';
 import {createQuestionUpdate} from '../../../Question/UpdateQuestion/update_question.js';
@@ -18,26 +18,10 @@ export async function renderFormNew() {
   removeMessage();
 
   // Проверка авторизации
-  const api = new API();
-  try {
-    const isAuth = await api.isAuth();
-    if (!isAuth.isAuthorized) {
-      clearStorage();
-      goToPage(ROUTES.login);
-      renderMessage('Вы не авторизованы!', true);
-      return;
-    }
-    STORAGE.user = isAuth.authorizedUser;
-  } catch (e) {
-    if (e.toString() !== 'TypeError: Failed to fetch') {
-      renderMessage('Ошибка сервера. Попробуйте позже', true);
-      return;
-    }
-    renderMessage('Потеряно соединение с сервером', true);
-    if (!STORAGE.user) {
-      goToPage(ROUTES.main);
-      return;
-    }
+  if (!STORAGE.user) {
+    goToPage(ROUTES.login);
+    renderMessage('Вы не авторизованы!', true);
+    return;
   }
 
   const defaultForm = {
@@ -115,6 +99,7 @@ export async function renderFormNew() {
       return;
     }
     try {
+      const api = new API();
       const res = await api.saveForm(createdForm);
       const status = res.status;
       if (status === 200) {

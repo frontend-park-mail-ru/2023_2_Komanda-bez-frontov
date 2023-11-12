@@ -16,4 +16,4 @@ __Backend repository__
 
 __Deploy__
 
-http://212.233.94.20:8000/
+https://212.233.94.20:8000/

@@ -12,28 +12,14 @@ import {clearStorage, STORAGE} from '../../../modules/storage.js';
  * @function
  * @return {void}
  */
-export async function renderProfile() {
+export const renderProfile = async () => {
   removeMessage();
 
-  try {
-    const api = new API();
-    const isAuth = await api.isAuth();
-    if (!isAuth.isAuthorized) {
-      clearStorage();
-      goToPage(ROUTES.login);
-      renderMessage('Вы не авторизованы!', true);
-      return;
-    }
-    STORAGE.user = isAuth.authorizedUser;
-  } catch (e) {
-    if (e.toString() !== 'TypeError: Failed to fetch') {
-      renderMessage('Ошибка сервера. Попробуйте позже', true);
-      return;
-    }
-    renderMessage('Потеряно соединение с сервером', true);
-    if (!STORAGE.user) {
-      goToPage(ROUTES.main);
-    }
+  // Проверка авторизации
+  if (!STORAGE.user) {
+    goToPage(ROUTES.login);
+    renderMessage('Вы не авторизованы!', true);
+    return;
   }
 
   const rootElement = document.querySelector('#root');
@@ -65,4 +51,4 @@ export async function renderProfile() {
   // historyButton.addEventListener("click", function (e) {
   //     goToPage(ROUTES.history);
   // });
-}
+};

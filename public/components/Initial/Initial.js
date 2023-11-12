@@ -9,7 +9,7 @@ import {getAuthAvatar, STORAGE} from '../../modules/storage.js';
  * @function
  * @return {void}
  */
-export async function renderInitial() {
+export const renderInitial = async () => {
   const rootElement = document.querySelector('#root');
   rootElement.innerHTML = '';
 
@@ -27,4 +27,4 @@ export async function renderInitial() {
       renderMessage('Потеряно соединение с сервером', true);
     }
   }
-}
+};

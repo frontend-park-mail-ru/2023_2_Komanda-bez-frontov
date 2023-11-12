@@ -13,7 +13,7 @@ import {STORAGE} from '../../modules/storage.js';
  * @function
  * @return {void}
  */
-export function navbar() {
+export const navbar = () => {
   const navbarElement = document.querySelector('#navbar');
   navbarElement.innerHTML = '';
 
@@ -47,4 +47,4 @@ export function navbar() {
     removeMessage();
     goToPage(ROUTES.main);
   });
-}
+};

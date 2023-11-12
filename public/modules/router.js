@@ -1,3 +1,4 @@
+import {ROUTES} from '../config.js';
 import {renderLogin} from '../components/pages/Login/login.js';
 import {renderSignup} from '../components/pages/Signup/signup.js';
 import {renderForms} from '../components/pages/Forms/forms.js';
@@ -5,7 +6,6 @@ import {renderForm} from '../components/pages/Form/CheckForm/check_form.js';
 import {renderMain} from '../components/pages/Main/main.js';
 import {renderInitial} from '../components/Initial/Initial.js';
 import {render404} from '../components/404/404.js';
-import {ROUTES} from '../config.js';
 import {renderProfile} from '../components/pages/Profile/profile.js';
 import {navbar} from '../components/Navbar/navbar.js';
 import {renderFormUpdate} from '../components/pages/Form/UpdateForm/update_form.js';
@@ -19,9 +19,9 @@ import {renderFormNew} from '../components/pages/Form/FormNew/new_form.js';
  *
  * @function
  * @param url - Путь из запроса.
- * @return {{ id: number | *, normalUrl: string }} - Объект,содержащий ID запроса и нормальный url.
+ * @return {{ id: string | null, normalUrl: string }} - Объект,содержащий ID запроса и нормальный url.
  */
-export function parseUrl(url) {
+export const parseUrl = (url) => {
   if (url[url.length - 1] === '/' && url.length > 1) {
     // eslint-disable-next-line no-param-reassign
     url = url.slice(0, url.length - 1);
@@ -39,7 +39,7 @@ export function parseUrl(url) {
   const id = null;
   const normalUrl = url;
   return {id, normalUrl};
-}
+};
 
 /**
  * Рендерит выбранную в аргументах страницу.
@@ -48,7 +48,7 @@ export function parseUrl(url) {
  * @param id - Объект(опцианальный параметр) для перехода на страницу конкретного опроса.
  * @return {void}
  */
-export function goToPage(page, id = null) {
+export const goToPage = (page, id = null) => {
   navbar();
   window.scroll(0, 0);
   if (id) {
@@ -59,7 +59,7 @@ export function goToPage(page, id = null) {
   }
   window.history.pushState(page.state, '', page.url);
   page.open();
-}
+};
 
 /**
  * Рендерит необходимую страницу при перезагрузке сайта (или первом заходе)
@@ -68,7 +68,7 @@ export function goToPage(page, id = null) {
  * @function
  * @return {void}
  */
-export async function initialRouter() {
+export const initialRouter = async () => {
   const temp = parseUrl(window.location.pathname);
   const id = temp.id;
   const url = temp.normalUrl;
@@ -104,9 +104,8 @@ export async function initialRouter() {
       // window.history.pushState('404', '', url);
       navbar();
       render404();
-      break;
   }
-}
+};
 
 /**
  * Event listener для перехода по истории браузера.
@@ -117,7 +116,7 @@ export async function initialRouter() {
  * @return {void}
  */
 // eslint-disable-next-line func-names
-window.onpopstate = function (event) {
+window.onpopstate = (event) => {
   const state = event.state;
   switch (state) {
     case 'main':
@@ -146,6 +145,5 @@ window.onpopstate = function (event) {
       break;
     default:
       render404();
-      break;
   }
 };

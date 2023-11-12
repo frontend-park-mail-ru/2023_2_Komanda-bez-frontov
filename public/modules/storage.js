@@ -50,7 +50,7 @@ export async function getAuthAvatar() {
  * @param {number} id - ID искомой формы
  * @return {form | null} - Искомая форма
  */
-export function storageGetForm(id) {
+export function storageGetFormByID(id) {
   // eslint-disable-next-line no-restricted-syntax
   for (const index in STORAGE.forms) {
     if (STORAGE.forms[index].id === id) {

@@ -1,7 +1,7 @@
 import {API} from '../../../../modules/api.js';
 import {render404} from '../../../404/404.js';
 import {removeMessage, renderMessage} from '../../../Message/message.js';
-import {clearStorage, STORAGE, storageGetForm} from '../../../../modules/storage.js';
+import {clearStorage, STORAGE, storageGetFormByID} from '../../../../modules/storage.js';
 import {goToPage} from '../../../../modules/router.js';
 import {ROUTES} from '../../../../config.js';
 import {createQuestionUpdate} from '../../../Question/UpdateQuestion/update_question.js';
@@ -19,6 +19,7 @@ import {formPageParser} from '../FormNew/new_form.js';
  * @return {void}
  */
 export async function renderFormUpdate(id) {
+  const api = new API();
   removeMessage();
   if (!id) {
     render404();
@@ -26,33 +27,21 @@ export async function renderFormUpdate(id) {
   }
 
   // Проверка авторизации
-  const api = new API();
-  try {
-    const isAuth = await api.isAuth();
-    if (!isAuth.isAuthorized) {
-      clearStorage();
-      goToPage(ROUTES.login);
-      renderMessage('Вы не авторизованы!', true);
-      return;
-    }
-    STORAGE.user = isAuth.authorizedUser;
-  } catch (e) {
-    if (e.toString() !== 'TypeError: Failed to fetch') {
-      renderMessage('Ошибка сервера. Попробуйте позже', true);
-      return;
-    }
-    renderMessage('Потеряно соединение с сервером', true);
-    if (!STORAGE.user) {
-      goToPage(ROUTES.main);
-      return;
-    }
+  if (!STORAGE.user) {
+    goToPage(ROUTES.login);
+    renderMessage('Вы не авторизованы!', true);
+    return;
   }
 
   let formJSON;
   try {
-    const res = await api.getForm(id);
-    if (res.status !== 200) {
-      render404();
+    const res = await api.getFormByID(id);
+    if (res.message !== 'ok') {
+      if (res.message === '404') {
+        render404();
+        return;
+      }
+      renderMessage(res.message, true);
       return;
     }
     formJSON = res.form;
@@ -63,7 +52,7 @@ export async function renderFormUpdate(id) {
     }
     // Попытка найти опрос в локальном хранилище
     renderMessage('Потеряно соединение с сервером', true);
-    formJSON = storageGetForm(id);
+    formJSON = storageGetFormByID(id);
   }
 
   const rootElement = document.querySelector('#root');
@@ -77,16 +66,15 @@ export async function renderFormUpdate(id) {
   rootElement.innerHTML = Handlebars.templates.update_form({form: formJSON});
 
   const questions = document.querySelector('#check-form__questions-container');
-  // eslint-disable-next-line no-restricted-syntax
-  for (const index in formJSON.questions) {
-    const questionElement = createQuestionUpdate(formJSON.questions[index]);
+  formJSON.questions.forEach((question) => {
+    const questionElement = createQuestionUpdate(question);
     questionElement.querySelector('#delete-question').addEventListener('click', () => {
       renderPopUpWindow('Вы уверены, что хотите безвозвратно удалить вопрос?', true, () => {
         questionElement.remove();
       });
     });
     questions.appendChild(questionElement);
-  }
+  });
 
   const addQuestion = document.querySelector('#add-button');
   addQuestion.addEventListener('click', () => {

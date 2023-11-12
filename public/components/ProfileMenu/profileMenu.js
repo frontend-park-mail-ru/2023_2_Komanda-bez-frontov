@@ -10,7 +10,7 @@ import {STORAGE} from '../../modules/storage.js';
  * @function
  * @return {void}
  */
-export function renderProfileMenu() {
+export const renderProfileMenu = () => {
   if (!STORAGE.user) {
     return;
   }
@@ -38,12 +38,12 @@ export function renderProfileMenu() {
     goToPage(ROUTES.forms);
   });
   // const historyButton = document.querySelector("#navbar-menu-history-button")
-  // historyButton.addEventListener("click", function (e) {
+  // historyButton.addEventListener("click", (e) => {
   //     document.body.removeEventListener("click", removeProfileMenu)
   //     goToPage(ROUTES.history);
   // });
   // const settingsButton = document.querySelector("#navbar-menu-settings-button")
-  // settingsButton.addEventListener("click", function (e) {
+  // settingsButton.addEventListener("click", (e) => {
   //     document.body.removeEventListener("click", removeProfileMenu)
   //     goToPage(ROUTES.settings);
   // });
@@ -53,4 +53,4 @@ export function renderProfileMenu() {
     document.body.removeEventListener('click', removeProfileMenu);
     goToPage(ROUTES.logout);
   });
-}
+};

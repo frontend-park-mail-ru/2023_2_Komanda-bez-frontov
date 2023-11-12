@@ -1,7 +1,7 @@
 import {API} from '../../../../modules/api.js';
 import {render404} from '../../../404/404.js';
 import {removeMessage, renderMessage} from '../../../Message/message.js';
-import {storageGetForm, STORAGE} from '../../../../modules/storage.js';
+import {storageGetFormByID, STORAGE} from '../../../../modules/storage.js';
 import {ROUTES} from '../../../../config.js';
 import {goToPage} from '../../../../modules/router.js';
 import {createQuestion} from '../../../Question/CheckQuestion/check_question.js';
@@ -15,6 +15,7 @@ import {createQuestion} from '../../../Question/CheckQuestion/check_question.js'
  * @return {void}
  */
 export async function renderForm(id) {
+  const api = new API();
   removeMessage();
   if (!id) {
     const page = ROUTES.forms;
@@ -25,10 +26,13 @@ export async function renderForm(id) {
 
   let formJSON;
   try {
-    const api = new API();
-    const res = await api.getForm(id);
-    if (res.status !== 200) {
-      render404();
+    const res = await api.getFormByID(id);
+    if (res.message !== 'ok') {
+      if (res.message === '404') {
+        render404();
+        return;
+      }
+      renderMessage(res.message, true);
       return;
     }
     formJSON = res.form;
@@ -39,7 +43,7 @@ export async function renderForm(id) {
     }
     // Попытка найти опрос в локальном хранилище
     renderMessage('Потеряно соединение с сервером', true);
-    formJSON = storageGetForm(id);
+    formJSON = storageGetFormByID(id);
   }
 
   const rootElement = document.querySelector('#root');
@@ -47,11 +51,10 @@ export async function renderForm(id) {
   rootElement.innerHTML = Handlebars.templates.check_form({form: formJSON});
 
   const questions = document.querySelector('#check-form__questions-container');
-  // eslint-disable-next-line no-restricted-syntax
-  for (const index in formJSON.questions) {
-    const questionElement = createQuestion(formJSON.questions[index]);
+  formJSON.questions.forEach((question) => {
+    const questionElement = createQuestion(question);
     questions.appendChild(questionElement);
-  }
+  });
 
   const updateSubmitButton = document.querySelector('#update-submit-button');
   if (STORAGE.user.id === formJSON.author.id) {

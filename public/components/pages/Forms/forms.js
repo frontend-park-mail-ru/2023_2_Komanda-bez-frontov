@@ -12,7 +12,7 @@ import {clearStorage, STORAGE} from '../../../modules/storage.js';
  * @function
  * @return {void}
  */
-export async function renderForms() {
+export const renderForms = async () => {
   removeMessage();
 
   const api = new API();
@@ -21,35 +21,20 @@ export async function renderForms() {
   rootElement.innerHTML = Handlebars.templates.forms();
 
   // Проверка авторизации
-  try {
-    const isAuth = await api.isAuth();
-    if (!isAuth.isAuthorized) {
-      clearStorage();
-      goToPage(ROUTES.login);
-      renderMessage('Вы не авторизованы!', true);
-      return;
-    }
-    STORAGE.user = isAuth.authorizedUser;
-  } catch (e) {
-    if (e.toString() !== 'TypeError: Failed to fetch') {
-      renderMessage('Ошибка сервера. Попробуйте позже', true);
-      return;
-    }
-    renderMessage('Потеряно соединение с сервером', true);
-    if (!STORAGE.user) {
-      goToPage(ROUTES.main);
-      return;
-    }
+  if (!STORAGE.user) {
+    goToPage(ROUTES.login);
+    renderMessage('Вы не авторизованы!', true);
+    return;
   }
 
   const formsContainer = document.querySelector('#forms-container');
   let forms = [];
-  let status = 200;
+  let message = 'ok';
 
   // Получение формы
   try {
     const res = await api.getForms(STORAGE.user.username);
-    status = res.status;
+    message = res.message;
     forms = res.forms;
     STORAGE.forms = res.forms;
   } catch (e) {
@@ -62,17 +47,15 @@ export async function renderForms() {
     forms = STORAGE.forms;
   }
 
-  if (status === 200) {
+  if (message === 'ok') {
     if (forms.length === 0) {
       const label = document.createElement('a');
       label.classList.add('forms_list_main-container_empty-label');
       label.textContent = 'Опросов пока нет...';
       formsContainer.appendChild(label);
     }
-    // eslint-disable-next-line no-restricted-syntax
-    for (const index in forms) {
-      const form = forms[index];
 
+    forms.forEach((form) => {
       const item = document.createElement('div');
       item.innerHTML = Handlebars.templates.forms_item();
 
@@ -83,13 +66,13 @@ export async function renderForms() {
       });
 
       formsContainer.appendChild(item);
-    }
+    });
   } else {
-    renderMessage('Ошибка сервера. Попробуйте позже.', true);
+    renderMessage(message, true);
   }
 
   const newFormButton = document.querySelector('#forms-list-add-button');
   newFormButton.addEventListener('click', () => {
     goToPage(ROUTES.formNew);
   });
-}
+};

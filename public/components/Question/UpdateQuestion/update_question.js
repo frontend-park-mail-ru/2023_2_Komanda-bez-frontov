@@ -5,7 +5,7 @@
  * @param {question} question - JSON с информацией о вопросе.
  * @return {HTMLDivElement} - HTML элемент вопроса.
  */
-export function createQuestionUpdate(question) {
+export const createQuestionUpdate = (question) => {
   const questionElement = document.createElement('div');
   questionElement.innerHTML = Handlebars.templates.update_question({question});
 
@@ -25,7 +25,7 @@ export function createQuestionUpdate(question) {
     });
   }
 
-  function renderAnswers() {
+  const renderAnswers = () => {
     answerContainer.innerHTML = Handlebars.templates
       .update_answer({answers, type});
     const cInputText = questionElement.querySelectorAll('.update-question__answers-item-input');
@@ -34,7 +34,7 @@ export function createQuestionUpdate(question) {
         answers[index].text = input.value;
       });
     });
-  }
+  };
 
   switch (type) {
     case 1:
@@ -94,4 +94,4 @@ export function createQuestionUpdate(question) {
   });
 
   return questionElement;
-}
+};
