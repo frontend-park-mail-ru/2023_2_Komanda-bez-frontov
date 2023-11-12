@@ -13,7 +13,7 @@ import {goToPage} from "../../modules/router.js";
  * @param user - Объект, в котором передаётся информация о пользователе.
  * @return {void}
  */
-export function navbar(user = null) {
+export const navbar = (user = null) => {
   const navbarElement = document.querySelector('#navbar');
   navbarElement.innerHTML = '';
   if (user) {
@@ -39,4 +39,4 @@ export function navbar(user = null) {
     removeMessage();
     goToPage(ROUTES.main);
   });
-}
+};

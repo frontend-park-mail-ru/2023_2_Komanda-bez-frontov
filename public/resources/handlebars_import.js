@@ -1,0 +1,9 @@
+import '../components/pages/Main/main.precompiled.js';
+import '../components/Navbar/navbar.precompiled.js';
+import '../components/ProfileMenu/profileMenu.precompiled.js';
+import '../components/pages/Profile/profile.precompiled.js';
+import '../components/pages/Form/form.precompiled.js';
+import '../components/pages/Forms/forms.precompiled.js';
+import '../components/FormsItem/forms_item.precompiled.js';
+import '../components/pages/Login/login.precompiled.js';
+import '../components/pages/Signup/signup.precompiled.js';

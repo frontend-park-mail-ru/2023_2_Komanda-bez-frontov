@@ -4,7 +4,7 @@
  * @return {object} - Объект с полем `valid` (true/false) и с полем
  * `message` (сообщение об ошибке).
  */
-export function emailValidation(email) {
+export const emailValidation = (email) => {
   let valid = false;
 
   if (email.length >= 255) {
@@ -24,7 +24,7 @@ export function emailValidation(email) {
 
   valid = true;
   return {valid, message: ''};
-}
+};
 
 /**
  * Эта функция проверяет, является ли введённое имя пользователя валидным.
@@ -32,7 +32,7 @@ export function emailValidation(email) {
  * @return {object} - Объект с полем `valid` (true/false) и с полем
  * `message` (сообщение об ошибке).
  */
-export function usernameValidation(username) {
+export const usernameValidation = (username) => {
   let valid = false;
 
   if (!/^[a-zA-Z0-9_-]+$/.test(username)) {
@@ -52,7 +52,7 @@ export function usernameValidation(username) {
 
   valid = true;
   return {valid, message: ''};
-}
+};
 
 /**
  * Эта функция проверяет, является ли введёный password валидным.
@@ -60,7 +60,7 @@ export function usernameValidation(username) {
  * @return {object} - Объект с полем `valid` (true/false) и с полем
  * `message` (сообщение об ошибке).
  */
-export function passwordValidation(password) {
+export const passwordValidation = (password) => {
   let valid = false;
 
   if (password.length < 8) {
@@ -80,4 +80,4 @@ export function passwordValidation(password) {
 
   valid = true;
   return {valid, message: ''};
-}
+};

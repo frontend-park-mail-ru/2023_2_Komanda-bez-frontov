@@ -11,28 +11,18 @@ import {goToPage} from "../../../modules/router.js";
  * @function
  * @return {void}
  */
-export async function renderForms() {
-  const api = new API();
-  const isAuth = await api.isAuth();
-  if (!isAuth.isAuthorized) {
-    goToPage(ROUTES.login);
-    renderMessage('Вы не авторизованы!', true);
-    return;
-  }
-
+export const renderForms = async () => {
   removeMessage();
   const rootElement = document.querySelector('#root');
   rootElement.innerHTML = '';
   rootElement.innerHTML = Handlebars.templates.forms();
   const formsContainer = document.querySelector('#forms-container');
 
+  const api = new API();
   const res = await api.getForms();
 
-  if (res.status === 200) {
-  // eslint-disable-next-line no-restricted-syntax
-    for (const index in res.forms) {
-      const form = res.forms[index];
-      console.log(form)
+  if (res.forms) {
+    res.forms.forEach((form) => {
       const item = document.createElement('div');
       item.innerHTML = Handlebars.templates.forms_item();
 
@@ -43,10 +33,10 @@ export async function renderForms() {
       });
 
       formsContainer.appendChild(item);
-    }
+    });
   } else {
     const label = document.createElement('a');
     label.textContent = 'Опросов пока нет...';
     formsContainer.appendChild(label);
   }
-}
+};

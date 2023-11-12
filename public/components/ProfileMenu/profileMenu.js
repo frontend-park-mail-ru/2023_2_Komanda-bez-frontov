@@ -11,7 +11,7 @@ import {goToPage} from "../../modules/router.js";
  * @param user - Объект с информацией о пользователе.
  * @return {void}
  */
-export function renderProfileMenu(user)  {
+export const renderProfileMenu = (user) =>  {
     if (!user) {
         return
     }
@@ -49,4 +49,4 @@ export function renderProfileMenu(user)  {
         goToPage(ROUTES.logout);
     });
 
-}
+};

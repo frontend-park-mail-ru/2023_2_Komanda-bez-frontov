@@ -9,7 +9,7 @@ import {renderMessage, removeMessage} from '../Message/message.js';
  * @function
  * @return {void}
  */
-export async function renderInitial() {
+export const renderInitial = async () => {
   removeMessage();
   const rootElement = document.querySelector('#root');
 
@@ -31,4 +31,4 @@ export async function renderInitial() {
   }
   navbar(user);
   rootElement.innerHTML = '';
-}
+};

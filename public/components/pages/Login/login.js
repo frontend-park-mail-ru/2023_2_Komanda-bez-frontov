@@ -43,16 +43,8 @@ export async function renderLogin() {
 
     const api = new API();
     const res = await api.userLogin(email.value, password.value);
-    if (res.status === 400) {
-      renderMessage('Невозможно выполнить вход. Завершите предыдущую сессию!', true);
-      return;
-    }
-    if (res.status === 401) {
-      renderMessage('Неправильный логин или пароль', true);
-      return;
-    }
-    if (res.status !== 200) {
-      renderMessage('Ошибка сервера. Попробуйте позже.', true);
+    if (res.message !== 'ok') {
+      renderMessage(res.message, true);
       return;
     }
 
