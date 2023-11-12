@@ -12,7 +12,7 @@ import {goToPage} from "../../../modules/router.js";
  * @function
  * @return {void}
  */
-export async function renderSignup() {
+export const renderSignup = async () => {
   removeMessage();
   const rootElement = document.querySelector('#root');
   rootElement.innerHTML = '';
@@ -66,16 +66,8 @@ export async function renderSignup() {
       password.value,
     );
 
-    if (res.status === 409) {
-      renderMessage('Пользователь уже существует', true);
-      return;
-    }
-    if (res.status === 400) {
-      renderMessage('Невозможно зарегистрироваться. Завершите предыдущую сессию!', true);
-      return;
-    }
-    if (res.status !== 200) {
-      renderMessage('Ошибка сервера. Попробуйте позже.', true);
+    if (res.message !== 'ok') {
+      renderMessage(res.message, true);
       return;
     }
 
@@ -95,4 +87,4 @@ export async function renderSignup() {
   loginButton.addEventListener('click', () => {
     goToPage(ROUTES.login);
   });
-}
+};

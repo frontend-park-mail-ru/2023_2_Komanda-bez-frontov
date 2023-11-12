@@ -7,9 +7,9 @@ import {removeMessage} from '../../Message/message.js';
  * @function
  * @return {void}
  */
-export async function renderProfile() {
+export const renderProfile = () => {
   removeMessage();
   const rootElement = document.querySelector('#root');
   rootElement.innerHTML = '';
   rootElement.innerHTML = Handlebars.templates.profile();
-}
+};

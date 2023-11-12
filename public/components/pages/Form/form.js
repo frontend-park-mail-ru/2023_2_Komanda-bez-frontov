@@ -14,7 +14,7 @@ import {goToPage} from "../../../modules/router.js";
  * @param {number} id - ID.
  * @return {void}
  */
-export async function renderForm(id) {
+export const renderForm = async (id) => {
   if (!id) {
     renderForms();
     return;
@@ -28,11 +28,15 @@ export async function renderForm(id) {
   const formTitle = document.querySelector('#form-title');
 
   const api = new API();
-  const res = await api.getForm(id);
+  const res = await api.getFormByID(id);
 
-  if (res.status === 200) {
+  if (res.message === 'ok') {
     formTitle.innerHTML = res.form.title;
   } else {
-    render404();
+    if (res.message === '404') {
+      render404();
+      return;
+    }
+    renderMessage(res.message, true);
   }
-}
+};

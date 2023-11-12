@@ -12,9 +12,9 @@ import {ROUTES} from '../config.js';
  *
  * @function
  * @param url - Путь из запроса.
- * @return {{ id: number | *, prefix: string }} - Объект,содержащий ID запроса и префикс url.
+ * @return {{ id: string | null, prefix: string }} - Объект,содержащий ID запроса и префикс url.
  */
-export function parseUrl (url){
+export const parseUrl = (url) => {
     const index = url.indexOf('/', 1);
     if (index !== -1) {
         const id = url.slice(index + 1, url.length);
@@ -24,7 +24,7 @@ export function parseUrl (url){
     const id = null;
     const prefix = url;
     return {id, prefix};
-}
+};
 
 /**
  * Рендерит выбранную в аргументах страницу.
@@ -33,7 +33,7 @@ export function parseUrl (url){
  * @param id - Объект(опцианальный параметр) для перехода на страницу конкретного опроса.
  * @return {void}
  */
-export function goToPage(page, id = null) {
+export const goToPage = (page, id = null) =>  {
     if (id) {
         const url = page.url + id;
         window.history.pushState(page.state, '', url);
@@ -42,7 +42,7 @@ export function goToPage(page, id = null) {
     }
     window.history.pushState(page.state, '', page.url);
     page.open();
-}
+};
 
 /**
  * Рендерит необходимую страницу при перезагрузке сайта (или первом заходе)
@@ -51,7 +51,7 @@ export function goToPage(page, id = null) {
  * @function
  * @return {void}
  */
-export async function initialRouter() {
+export const initialRouter = async () => {
     const temp = parseUrl(window.location.pathname);
     const id = temp.id;
     const url = temp.prefix;
@@ -73,9 +73,8 @@ export async function initialRouter() {
         default:
             window.history.pushState('404', '', url);
             render404();
-            break;
     }
-}
+};
 
 /**
  * Event listener для перехода по истории браузера.
@@ -86,7 +85,7 @@ export async function initialRouter() {
  * @return {void}
  */
 // eslint-disable-next-line func-names
-window.onpopstate = function (event) {
+window.onpopstate = (event) => {
     const state = event.state;
     switch (state) {
         case 'main':
@@ -107,6 +106,5 @@ window.onpopstate = function (event) {
             break;
         default:
             render404();
-            break;
     }
 };

@@ -11,16 +11,12 @@ import {goToPage} from "../../modules/router.js";
  * @function
  * @return {void}
  */
-export async function renderMainLogout() {
+export const renderMainLogout = async () => {
   window.history.replaceState(ROUTES.forms.state, '', ROUTES.main.url);
   removeMessage();
   const api = new API();
   const logoutStatus = await api.userLogout();
   navbar();
-  if (logoutStatus === 404) {
-    renderMessage('Невозможно выполнить Logout - вы не авторизованы!', true);
-    return;
-  }
-  renderMessage('Вы вышли из аккаунта', true);
+  renderMessage(logoutStatus.message, true);
   goToPage(ROUTES.main);
-}
+};
