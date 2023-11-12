@@ -70,7 +70,6 @@ export function goToPage(page, id = null) {
  */
 export async function initialRouter() {
   const temp = parseUrl(window.location.pathname);
-  // console.log(temp);
   const id = temp.id;
   const url = temp.normalUrl;
 

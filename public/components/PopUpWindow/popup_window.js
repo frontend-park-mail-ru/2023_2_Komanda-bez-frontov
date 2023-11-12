@@ -1,15 +1,4 @@
 /**
- * Функция для закрытия всплывающего окна.
- *
- * @function
- * @return {void}
- */
-export function closePopUpWindow() {
-  const messageContainer = document.querySelector('#popup');
-  messageContainer.innerHTML = '';
-}
-
-/**
  * Функция для рендеринга всплывающего диалогового окна.
  *
  * @function
@@ -33,11 +22,24 @@ export function renderPopUpWindow(text, error = false, action = null) {
 
   const cancelButton = document.querySelector('#popup-cancel-button');
   cancelButton.addEventListener('click', () => {
+    // eslint-disable-next-line no-use-before-define
     closePopUpWindow();
   });
   const okButton = document.querySelector('#popup-ok-button');
   okButton.addEventListener('click', () => {
     action();
+    // eslint-disable-next-line no-use-before-define
     closePopUpWindow();
   });
+}
+
+/**
+ * Функция для закрытия всплывающего окна.
+ *
+ * @function
+ * @return {void}
+ */
+export function closePopUpWindow() {
+  const messageContainer = document.querySelector('#popup');
+  messageContainer.innerHTML = '';
 }

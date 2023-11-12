@@ -137,6 +137,9 @@ button {
   margin-top: 12px;
   height: 110px;
 }
+.popup_window .button-container {
+  gap: 12px;
+}
 
 .profile-title {
   margin: 25px 50px;
