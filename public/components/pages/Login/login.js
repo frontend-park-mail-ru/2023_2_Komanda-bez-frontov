@@ -12,7 +12,7 @@ import {goToPage} from "../../../modules/router.js";
  * @function
  * @return {void}
  */
-export async function renderLogin() {
+export const renderLogin = async () => {
   removeMessage();
 
   const rootElement = document.querySelector('#root');
@@ -64,4 +64,4 @@ export async function renderLogin() {
   signupButton.addEventListener('click', () => {
     goToPage(ROUTES.signup);
   });
-}
+};

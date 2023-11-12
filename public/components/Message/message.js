@@ -6,7 +6,7 @@
  * @param {boolean} error - Флаг, который показывает, является ли сообщение сообщением об ошибке.
  * @return {void}
  */
-export function renderMessage(text, error = false) {
+export const renderMessage = (text, error = false) => {
   const messageContainer = document.querySelector('#message-box');
   messageContainer.innerHTML = '';
   messageContainer.classList.remove('error-container', 'success-container');
@@ -21,7 +21,7 @@ export function renderMessage(text, error = false) {
   message.textContent = text;
 
   messageContainer.appendChild(message);
-}
+};
 
 /**
  * Функция для очистки поля ошибки на странице.
@@ -29,8 +29,8 @@ export function renderMessage(text, error = false) {
  * @function
  * @return {void}
  */
-export function removeMessage() {
+export const removeMessage = () => {
   const messageContainer = document.querySelector('#message-box');
   messageContainer.innerHTML = '';
   messageContainer.classList.remove('error-container', 'success-container');
-}
+};

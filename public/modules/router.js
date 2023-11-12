@@ -1,3 +1,4 @@
+import {ROUTES} from '../config.js';
 import {renderLogin} from '../components/pages/Login/login.js';
 import {renderSignup} from '../components/pages/Signup/signup.js';
 import {renderForms} from '../components/pages/Forms/forms.js';
@@ -5,7 +6,6 @@ import {renderForm} from '../components/pages/Form/form.js';
 import {renderMain} from '../components/pages/Main/main.js';
 import {renderInitial} from '../components/Initial/Initial.js';
 import {render404} from '../components/404/404.js';
-import {ROUTES} from '../config.js';
 
 /**
  * Расщепляет url запроса на префикс и id страницы.
