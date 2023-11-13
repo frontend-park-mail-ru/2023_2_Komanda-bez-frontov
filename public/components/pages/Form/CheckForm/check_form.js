@@ -74,7 +74,7 @@ export const renderForm = async (id) => {
     createLinkButton.addEventListener('click', (e) => {
       const link = `${frontendUrl}/forms/${id}`;
       e.stopImmediatePropagation();
-      renderPopUpWindow('Ваша ссылка готова', link, false, () => {
+      renderPopUpWindow('Ваша ссылка готова', link, false, async () => {
         const copyButton = document.querySelector('#popup-ok-button');
         navigator.clipboard.writeText(link)
           .then(() => {
