@@ -76,10 +76,12 @@ export const renderForm = async (id) => {
       e.stopImmediatePropagation();
       renderPopUpWindow('Ваша ссылка готова', link, false, () => {
         const copyButton = document.querySelector('#popup-ok-button');
-        copyButton.innerHTML = 'Скопировано!';
-        copyButton.classList.add('primary-button');
-        copyButton.classList.remove('secondary-button');
-        navigator.clipboard.writeText(link);
+        navigator.clipboard.writeText(link)
+          .then(() => {
+            copyButton.innerHTML = 'Скопировано!';
+            copyButton.classList.add('primary-button');
+            copyButton.classList.remove('secondary-button');
+          });
       });
       document.querySelector('#popup-ok-button').innerHTML = 'Скопировать';
     });
