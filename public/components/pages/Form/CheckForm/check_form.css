@@ -11,6 +11,10 @@
 }
 .check-form .button-container {
   margin: 18px 12px;
+  width: 550px;
+  gap: 15px;
+}
+.check-form .button-container button {
   width: 250px;
 }
 

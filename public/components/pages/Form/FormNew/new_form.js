@@ -4,7 +4,7 @@ import {STORAGE} from '../../../../modules/storage.js';
 import {goToPage} from '../../../../modules/router.js';
 import {ROUTES} from '../../../../config.js';
 import {createQuestionUpdate} from '../../../Question/UpdateQuestion/update_question.js';
-import {renderPopUpWindow} from '../../../PopUpWindow/popup_window.js';
+import {closePopUpWindow, renderPopUpWindow} from '../../../PopUpWindow/popup_window.js';
 
 /**
  * Функция для рендеринга страницы опроса по его id.
@@ -54,9 +54,11 @@ export const renderFormNew = async () => {
   const questions = document.querySelector('#check-form__questions-container');
   {
     const questionElement = createQuestionUpdate(defaultForm.questions[0]);
-    questionElement.querySelector('#delete-question').addEventListener('click', () => {
-      renderPopUpWindow('Вы уверены, что хотите безвозвратно удалить вопрос?', true, () => {
+    questionElement.querySelector('#delete-question').addEventListener('click', (e) => {
+      e.stopImmediatePropagation();
+      renderPopUpWindow('Требуется подтверждение', 'Вы уверены, что хотите безвозвратно удалить вопрос?', true, () => {
         questionElement.remove();
+        closePopUpWindow();
       });
     });
     questions.appendChild(questionElement);
@@ -78,8 +80,9 @@ export const renderFormNew = async () => {
       ],
     };
     const questionElement = createQuestionUpdate(defaultQuestion);
-    questionElement.querySelector('#delete-question').addEventListener('click', () => {
-      renderPopUpWindow('Вы уверены, что хотите безвозвратно удалить вопрос?', true, () => {
+    questionElement.querySelector('#delete-question').addEventListener('click', (e) => {
+      e.stopImmediatePropagation();
+      renderPopUpWindow('Требуется подтверждение', 'Вы уверены, что хотите безвозвратно удалить вопрос?', true, () => {
         questionElement.remove();
       });
     });
@@ -93,9 +96,8 @@ export const renderFormNew = async () => {
   saveForm.innerHTML = 'Опубликовать';
   saveForm.addEventListener('click', async () => {
     // eslint-disable-next-line no-use-before-define
-    const createdForm = formPageParser();
+    const createdForm = formUpdatePageParser();
     if (!createdForm) {
-      renderMessage('Введены не все данные. Проверьте правильность заполнения.', true);
       return;
     }
     try {
@@ -124,9 +126,10 @@ export const renderFormNew = async () => {
  * @function
  * @return {form} form - собранный объект с опросом.
  */
-export const formPageParser = () => {
+export const formUpdatePageParser = () => {
   // Флаг того, что не все данные введены
   let flag = false;
+  let flagRepeation = false;
   const form = {
     title: document.querySelector('#update-form__title').value,
     questions: [],
@@ -181,6 +184,7 @@ export const formPageParser = () => {
       });
     } else {
       const cAnswers = questionElement.querySelectorAll('#update-question__answers-item-input');
+      const uniqueAnswers = new Set();
       cAnswers.forEach((answer) => {
         if (!answer.value) {
           answer.classList.add('update-form__input-error');
@@ -192,7 +196,16 @@ export const formPageParser = () => {
         question.answers.push({
           text: answer.value,
         });
+        uniqueAnswers.add(answer.value);
       });
+      if (question.answers.length !== uniqueAnswers.size) {
+        const answersContainer = questionElement.querySelector('#question-answers');
+        answersContainer.classList.add('update-form__input-error');
+        answersContainer.addEventListener('click', () => {
+          answersContainer.classList.remove('update-form__input-error');
+        }, {once: true});
+        flagRepeation = true;
+      }
     }
     form.questions.push(question);
   });
@@ -205,7 +218,12 @@ export const formPageParser = () => {
     flag = true;
   }
 
+  if (flagRepeation) {
+    renderMessage('Повторяющиеся ответы не допустимы.', true);
+    return null;
+  }
   if (flag) {
+    renderMessage('Введены не все данные. Проверьте правильность заполнения.', true);
     return null;
   }
   return form;

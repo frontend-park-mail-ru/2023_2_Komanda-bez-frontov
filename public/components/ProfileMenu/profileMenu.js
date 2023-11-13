@@ -18,13 +18,13 @@ export const renderProfileMenu = () => {
   navbarElement.innerHTML += Handlebars.templates.profileMenu();
 
   // Функция убирающая рендер меню, а так же убирающая event listener клика по области вне нее
-  function removeProfileMenu(e) {
+  const removeProfileMenu = (e) => {
     if (!e.target.classList.contains('navbar-profile-menu')
             && !e.target.parentNode.classList.contains('navbar-profile-menu')) {
       document.body.removeEventListener('click', removeProfileMenu);
       navbar();
     }
-  }
+  };
   document.body.addEventListener('click', removeProfileMenu);
 
   const profileButton = document.querySelector('#navbar-menu-profile-button');

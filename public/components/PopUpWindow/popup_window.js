@@ -2,12 +2,13 @@
  * Функция для рендеринга всплывающего диалогового окна.
  *
  * @function
- * @param {string} text - Текст сообщения.
+ * @param {string} titleText - Текст заголовка.
+ * @param {string} messageText - Текст сообщения.
  * @param {boolean} error - Флаг, который показывает, является ли сообщение сообщение критическим.
  * @param {function} action - Выполняется при подтверждении окна.
  * @return {void}
  */
-export const renderPopUpWindow = (text, error = false, action = null) => {
+export const renderPopUpWindow = (titleText, messageText, error = false, action = null) => {
   const popupContainer = document.querySelector('#popup');
   popupContainer.innerHTML += Handlebars.templates.popup_window();
 
@@ -17,8 +18,11 @@ export const renderPopUpWindow = (text, error = false, action = null) => {
     document.querySelector('#popup-ok-button').classList.add('secondary-button');
   }
 
+  const title = document.querySelector('#popup-title');
+  title.textContent = titleText;
+
   const message = document.querySelector('#popup-message');
-  message.textContent = text;
+  message.textContent = messageText;
 
   const cancelButton = document.querySelector('#popup-cancel-button');
   cancelButton.addEventListener('click', () => {
@@ -28,9 +32,17 @@ export const renderPopUpWindow = (text, error = false, action = null) => {
   const okButton = document.querySelector('#popup-ok-button');
   okButton.addEventListener('click', () => {
     action();
-    // eslint-disable-next-line no-use-before-define
-    closePopUpWindow();
   });
+
+  const closePopUpWindowByBody = (e) => {
+    if (!e.target.classList.contains('popup_window')
+        && !e.target.parentNode.classList.contains('button-container')) {
+      document.body.removeEventListener('click', closePopUpWindowByBody);
+      // eslint-disable-next-line no-use-before-define
+      closePopUpWindow();
+    }
+  };
+  document.body.addEventListener('click', closePopUpWindowByBody);
 };
 
 /**

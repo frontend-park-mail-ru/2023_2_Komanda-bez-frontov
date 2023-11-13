@@ -76,6 +76,9 @@ export const createQuestionUpdate = (question) => {
 
   const addButton = questionElement.querySelector('#add-answer-button');
   addButton.addEventListener('click', () => {
+    if (answers.length >= 12) {
+      return;
+    }
     answers.push({
       id: answers.length,
       text: 'новый ответ',

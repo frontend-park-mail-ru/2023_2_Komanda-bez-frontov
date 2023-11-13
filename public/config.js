@@ -57,6 +57,7 @@ export const ROUTES = {
 };
 
 export const backendUrl = 'http://localhost:8080/api/v1';
+export const frontendUrl = 'http://212.233.94.20:8000';
 
 const GET_METHOD = 'GET';
 const POST_METHOD = 'POST';

@@ -5,8 +5,8 @@ import {STORAGE, storageGetFormByID} from '../../../../modules/storage.js';
 import {goToPage} from '../../../../modules/router.js';
 import {ROUTES} from '../../../../config.js';
 import {createQuestionUpdate} from '../../../Question/UpdateQuestion/update_question.js';
-import {renderPopUpWindow} from '../../../PopUpWindow/popup_window.js';
-import {formPageParser} from '../FormNew/new_form.js';
+import {closePopUpWindow, renderPopUpWindow} from '../../../PopUpWindow/popup_window.js';
+import {formUpdatePageParser} from '../FormNew/new_form.js';
 
 /**
  * Функция для рендеринга страницы редактирования опроса по его id.
@@ -68,9 +68,11 @@ export const renderFormUpdate = async (id) => {
   const questions = document.querySelector('#check-form__questions-container');
   formJSON.questions.forEach((question) => {
     const questionElement = createQuestionUpdate(question);
-    questionElement.querySelector('#delete-question').addEventListener('click', () => {
-      renderPopUpWindow('Вы уверены, что хотите безвозвратно удалить вопрос?', true, () => {
+    questionElement.querySelector('#delete-question').addEventListener('click', (e) => {
+      e.stopImmediatePropagation();
+      renderPopUpWindow('Требуется подтверждение', 'Вы уверены, что хотите безвозвратно удалить вопрос?', true, () => {
         questionElement.remove();
+        closePopUpWindow();
       });
     });
     questions.appendChild(questionElement);
@@ -92,17 +94,20 @@ export const renderFormUpdate = async (id) => {
       ],
     };
     const questionElement = createQuestionUpdate(defaultQuestion);
-    questionElement.querySelector('#delete-question').addEventListener('click', () => {
-      renderPopUpWindow('Вы уверены, что хотите безвозвратно удалить вопрос?', true, () => {
+    questionElement.querySelector('#delete-question').addEventListener('click', (e) => {
+      e.stopImmediatePropagation();
+      renderPopUpWindow('Требуется подтверждение', 'Вы уверены, что хотите безвозвратно удалить вопрос?', true, () => {
         questionElement.remove();
+        closePopUpWindow();
       });
     });
     questions.appendChild(questionElement);
   });
 
   const deleteForm = document.querySelector('#delete-button');
-  deleteForm.addEventListener('click', () => {
-    renderPopUpWindow('Вы уверены, что хотите удалить опрос? Это действие необратимо.', true, async () => {
+  deleteForm.addEventListener('click', (e) => {
+    e.stopImmediatePropagation();
+    renderPopUpWindow('Требуется подтверждение', 'Вы уверены, что хотите удалить опрос? Это действие необратимо.', true, async () => {
       try {
         const res = await api.deleteForm(id);
         if (res.message === 'ok') {
@@ -118,14 +123,14 @@ export const renderFormUpdate = async (id) => {
         }
         renderMessage('Потеряно соединение с сервером', true);
       }
+      closePopUpWindow();
     });
   });
 
   const updateForm = document.querySelector('#update-button');
   updateForm.addEventListener('click', async () => {
-    const updatedForm = formPageParser();
+    const updatedForm = formUpdatePageParser();
     if (!updatedForm) {
-      renderMessage('Введены не все данные. Проверьте правильность заполнения.', true);
       return;
     }
     updatedForm.id = Number(id);

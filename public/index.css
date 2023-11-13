@@ -134,7 +134,7 @@ button {
   text-align: center;
 }
 .popup_window p {
-  margin-top: 12px;
+  margin-top: 15px;
   height: 110px;
 }
 .popup_window .button-container {
@@ -543,6 +543,10 @@ button {
 }
 .check-form .button-container {
   margin: 18px 12px;
+  width: 550px;
+  gap: 15px;
+}
+.check-form .button-container button {
   width: 250px;
 }
 

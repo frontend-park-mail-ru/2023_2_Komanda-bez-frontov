@@ -12,7 +12,12 @@
 
   .button-container {
     margin: 18px 12px;
-    width: 250px;
+    width: 550px;
+    gap: 15px;
+
+    button {
+      width: 250px;
+    }
   }
 }
 
