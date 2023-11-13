@@ -109,9 +109,19 @@ export const passwordValidation = (password) => {
 export const avatarValidation = (avatar) => {
   let valid = false;
 
-  // Добавить валидацию по размерам, памяти и расширению.
-  if (!avatar) {
-    const message = 'а где';
+  const allowedExtensions = ["jpg", "jpeg", "png", "webp", "avif"];
+  const fileExtension = avatar.name.split(".").pop().toLowerCase();
+
+  if (!allowedExtensions.includes(fileExtension)) {
+    const message = "Пожалуйста, выберите файл с расширением: " + allowedExtensions.join(", ");
+    return {valid, message};
+  }
+
+  const maxSize = 5;
+  const fileSize = avatar.size / 1024 / 1024;
+
+  if (fileSize > maxSize) {
+    const message ="Пожалуйста, выберите файл размером не более " + maxSize + " MB";
     return {valid, message};
   }
 
