@@ -187,8 +187,8 @@ export class API {
    * @param {string} oldPassword - Текущий пароль.
    * @param {string} newPassword - Новый пароль.
    * @param {string} avatar - Аватар пользователя в формате Base64.
-   * @return {Promise<{registeredUser: ({password: *, name: *, email: *, username: *} | null),
-   * message: string}>} Объект с информацией о статусе регистрации и о пользователе.
+   * @return {Promise<{updatedUser: ({password: *, name: *, email: *, username: *} | null),
+   * message: string}>} Объект с информацией о статусе изменения и о пользователе.
    * @throws {Error} Если произошла ошибка при запросе или обработке данных.
    */
   // eslint-disable-next-line camelcase
@@ -197,7 +197,7 @@ export class API {
       const url = backendUrl + ROUTES_API.updateProfile.url;
 
       const res = await fetch(url, {
-        method: POST_METHOD,
+        method: PUT_METHOD,
         headers: {
           'Content-Type': 'application/json',
         },
@@ -210,20 +210,20 @@ export class API {
 
       const body = await res.json();
 
-      const registeredUser = body.data;
+      const updatedUser = body.data;
       let message = 'Ошибка сервера. Попробуйте позже.';
 
       if (res.status === 403) {
-        message = 'Пользователь уже существует';
+        message = 'Введен неправильный пароль';
       }
-      if (res.status === 400) {
-        message = 'Невозможно зарегистрироваться. Завершите предыдущую сессию!';
+      if (res.status === 404) {
+        message = 'Пользователь не найден';
       }
-      if (res.status !== 200) {
+      if (res.ok) {
         message = 'ok';
       }
 
-      return {message, registeredUser};
+      return {message, updatedUser};
     } catch (e) {
       // TODO убрать к РК4
       console.log('Ошибка метода userSignup:', e);

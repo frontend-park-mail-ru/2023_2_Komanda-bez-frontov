@@ -84,7 +84,7 @@ export const renderUpdateProfile = async () => {
     const username = document.querySelector('#update-profile_username');
     const oldPassword = document.querySelector('#update-profile_old-password');
     const newPassword = document.querySelector('#update-profile_new-password');
-    const repeatPassword = document.querySelector('#update-profile_repeat_password');
+    const repeatPassword = document.querySelector('#update-profile_repeat-password');
 
     if (email.value === '' || firstName.value === ''
         || username.value === '') {
@@ -121,44 +121,44 @@ export const renderUpdateProfile = async () => {
       return;
     }
 
-    if (newPassword) {
+    if (newPassword.value) {
       if (!isNewPasswordValid.valid) {
         renderMessage(isNewPasswordValid.message, true);
         return;
       }
-      if (password.value !== repeatPassword.value) {
+      if (newPassword.value !== repeatPassword.value) {
         renderMessage('Новые пароли не совпадают', true);
       }
     }
 
-    // try {
-    //   const api = new API();
-    //   const res = await api.updateProfile(
-    //     firstName.value,
-    //     username.value,
-    //     email.value,
-    //     oldPassword.value,
-    //     newPassword.value,
-    //     avatar,
-    //   );
-    //
-    //   if (res.message !== 'ok') {
-    //     renderMessage(res.message, true);
-    //     return;
-    //   }
-    //
-    //   STORAGE.user = res.registeredUser;
-    //   // STORAGE.avatar = avatar;
-    //
-    //   goToPage(ROUTES.main);
-    //   renderMessage('Вы успешно зарегистрировались');
-    // } catch (err) {
-    //   if (err.toString() !== 'TypeError: Failed to fetch') {
-    //     renderMessage('Ошибка сервера. Попробуйте позже', true);
-    //     return;
-    //   }
-    //   renderMessage('Потеряно соединение с сервером', true);
-    // }
+    try {
+      const api = new API();
+      const res = await api.updateProfile(
+        firstName.value,
+        username.value,
+        email.value,
+        oldPassword.value,
+        newPassword.value,
+        avatar,
+      );
+
+      if (res.message !== 'ok') {
+        renderMessage(res.message, true);
+        return;
+      }
+
+      STORAGE.user = res.updatedUser;
+      STORAGE.avatar = avatar;
+
+      goToPage(ROUTES.profile);
+      renderMessage('Изменения успешно применены');
+    } catch (err) {
+      if (err.toString() !== 'TypeError: Failed to fetch') {
+        renderMessage('Ошибка сервера. Попробуйте позже', true);
+        return;
+      }
+      renderMessage('Потеряно соединение с сервером', true);
+    }
   });
 
   const cancelButton = document.querySelector('#update-profile-cancel-button');
