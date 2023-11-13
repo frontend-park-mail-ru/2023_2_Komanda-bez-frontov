@@ -3,7 +3,7 @@ import {API} from '../../../modules/api.js';
 import {renderMessage, removeMessage} from '../../Message/message.js';
 import {
   nameValidation,
-  avatarValidation,
+  // avatarValidation,
   emailValidation,
   passwordValidation,
   usernameValidation,
@@ -24,7 +24,7 @@ export const renderSignup = async () => {
   rootElement.innerHTML = '';
   rootElement.innerHTML = Handlebars.templates.signup();
 
-  let avatar = '';
+  // let avatar = '';
 
   const signupButton = document.querySelector('#signup-button');
   signupButton.addEventListener('click', async (e) => {
@@ -79,7 +79,7 @@ export const renderSignup = async () => {
         username.value,
         email.value,
         password.value,
-        avatar,
+        // avatar,
       );
 
       if (res.message !== 'ok') {
@@ -88,7 +88,7 @@ export const renderSignup = async () => {
       }
 
       STORAGE.user = res.registeredUser;
-      STORAGE.avatar = avatar;
+      // STORAGE.avatar = avatar;
 
       goToPage(ROUTES.main);
       renderMessage('Вы успешно зарегистрировались');
@@ -101,33 +101,33 @@ export const renderSignup = async () => {
     }
   });
 
-  const inputAvatar = document.querySelector('#avatar');
-  inputAvatar.addEventListener('change', (e) => {
-    const labelAvatar = document.querySelector('#signup-avatar-button');
-    labelAvatar.style.backgroundColor = '#caecaf';
-    const avatarFile = e.target.files[0];
-    const isAvatarValid = avatarValidation(avatarFile);
-
-    if (!isAvatarValid.valid) {
-      renderMessage(isAvatarValid.message, true);
-      return;
-    }
-    // Перевод аватарка из файла в Base64
-    if (avatarFile) {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        avatar = reader.result
-          .replace('data:', '')
-          .replace(/^.+,/, '');
-      };
-      reader.readAsDataURL(avatarFile);
-    }
-  });
-
-  const cancelAvatar = document.querySelector('#signup-avatar-cancel');
-  cancelAvatar.addEventListener('click', () => {
-    const labelAvatar = document.querySelector('#signup-avatar-button');
-    labelAvatar.style.backgroundColor = '#ffffff';
-    avatar = '';
-  });
+  // const inputAvatar = document.querySelector('#avatar');
+  // inputAvatar.addEventListener('change', (e) => {
+  //   const labelAvatar = document.querySelector('#signup-avatar-button');
+  //   labelAvatar.style.backgroundColor = '#caecaf';
+  //   const avatarFile = e.target.files[0];
+  //   const isAvatarValid = avatarValidation(avatarFile);
+  //
+  //   if (!isAvatarValid.valid) {
+  //     renderMessage(isAvatarValid.message, true);
+  //     return;
+  //   }
+  //   // Перевод аватарка из файла в Base64
+  //   if (avatarFile) {
+  //     const reader = new FileReader();
+  //     reader.onloadend = () => {
+  //       avatar = reader.result
+  //         .replace('data:', '')
+  //         .replace(/^.+,/, '');
+  //     };
+  //     reader.readAsDataURL(avatarFile);
+  //   }
+  // });
+  //
+  // const cancelAvatar = document.querySelector('#signup-avatar-cancel');
+  // cancelAvatar.addEventListener('click', () => {
+  //   const labelAvatar = document.querySelector('#signup-avatar-button');
+  //   labelAvatar.style.backgroundColor = '#ffffff';
+  //   avatar = '';
+  // });
 };

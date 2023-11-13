@@ -83,7 +83,7 @@ self.addEventListener('install', (event) => {
 });
 
 // при событии fetch, мы и делаем запрос, но используем кэш, только после истечения timeout.
-self.addEventListener('fetch', (event) => {// eslint-disable-next-line no-use-before-define
+self.addEventListener('fetch', (event) => { // eslint-disable-next-line no-use-before-define
   event.respondWith(fromNetwork(event.request, timeout)
     .catch((err) => {
       console.log(`Error: ${err.message()}`);

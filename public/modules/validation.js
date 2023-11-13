@@ -108,11 +108,11 @@ export const passwordValidation = (password) => {
 export const avatarValidation = (avatar) => {
   let valid = false;
 
-  const allowedExtensions = ["jpg", "jpeg", "png", "webp", "avif"];
-  const fileExtension = avatar.name.split(".").pop().toLowerCase();
+  const allowedExtensions = ['jpg', 'jpeg', 'png', 'webp', 'avif'];
+  const fileExtension = avatar.name.split('.').pop().toLowerCase();
 
   if (!allowedExtensions.includes(fileExtension)) {
-    const message = "Пожалуйста, выберите файл с расширением: " + allowedExtensions.join(", ");
+    const message = `Пожалуйста, выберите файл с расширением: ${allowedExtensions.join(', ')}`;
     return {valid, message};
   }
 
@@ -120,7 +120,7 @@ export const avatarValidation = (avatar) => {
   const fileSize = avatar.size / 1024 / 1024;
 
   if (fileSize > maxSize) {
-    const message ="Пожалуйста, выберите файл размером не более " + maxSize + " MB";
+    const message = `Пожалуйста, выберите файл размером не более ${maxSize} MB`;
     return {valid, message};
   }
 

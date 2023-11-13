@@ -7,7 +7,7 @@ import {renderSignup} from './components/pages/Signup/signup.js';
 import {renderProfile} from './components/pages/Profile/profile.js';
 import {renderFormUpdate} from './components/pages/Form/UpdateForm/update_form.js';
 import {renderFormNew} from './components/pages/Form/FormNew/new_form.js';
-import {renderUpdateProfile} from   './components/pages/UpdateProfile/update_profile.js';
+import {renderUpdateProfile} from './components/pages/UpdateProfile/update_profile.js';
 
 export const ROUTES = {
   main: {
@@ -85,6 +85,10 @@ export const ROUTES_API = {
   },
   logout: {
     url: '/logout',
+    method: POST_METHOD,
+  },
+  updateProfile: {
+    url: '/profile/update',
     method: POST_METHOD,
   },
   avatar: {

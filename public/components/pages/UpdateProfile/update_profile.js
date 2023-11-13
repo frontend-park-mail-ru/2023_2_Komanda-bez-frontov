@@ -2,7 +2,14 @@ import {ROUTES} from '../../../config.js';
 import {removeMessage, renderMessage} from '../../Message/message.js';
 import {goToPage} from '../../../modules/router.js';
 import {STORAGE} from '../../../modules/storage.js';
-import {avatarValidation} from '../../../modules/validation.js';
+import {
+  avatarValidation,
+  emailValidation,
+  nameValidation,
+  passwordValidation,
+  usernameValidation,
+} from '../../../modules/validation.js';
+import {API} from '../../../modules/api.js';
 
 /**
  * Функция для рендеринга страницы изменения профиля авторизированного пользователя.
@@ -26,7 +33,6 @@ export const renderUpdateProfile = async () => {
   rootElement.innerHTML = '';
   rootElement.innerHTML = Handlebars.templates.update_profile({User: STORAGE.user});
 
-  const user = STORAGE.user;
   let avatar = STORAGE.avatar;
   const profilePicture = document.querySelector('#update-profile-page-picture');
   if (STORAGE.avatar) {
@@ -67,5 +73,93 @@ export const renderUpdateProfile = async () => {
     labelAvatar.style.backgroundColor = '#ffffff';
     avatar = '';
     profilePicture.src = '../../resources/images/profile_default.png';
+  });
+
+  const saveButton = document.querySelector('#update-profile-save-button');
+  saveButton.addEventListener('click', async (e) => {
+    e.preventDefault();
+
+    const firstName = document.querySelector('#update-profile_name');
+    const email = document.querySelector('#update-profile_email');
+    const username = document.querySelector('#update-profile_username');
+    const oldPassword = document.querySelector('#update-profile_old-password');
+    const newPassword = document.querySelector('#update-profile_new-password');
+    const repeatPassword = document.querySelector('#update-profile_repeat_password');
+
+    if (email.value === '' || firstName.value === ''
+        || username.value === '' || oldPassword.value === '') {
+      renderMessage('Вы ввели не все данные', true);
+      return;
+    }
+
+    const isNameValid = nameValidation(firstName.value);
+    const isEmailValid = emailValidation(email.value);
+    const isUsernameValid = usernameValidation(username.value);
+    const isOldPasswordValid = passwordValidation(oldPassword.value);
+    const isNewPasswordValid = passwordValidation(newPassword.value);
+
+    if (!isNameValid.valid) {
+      renderMessage(isNameValid.message, true);
+      return;
+    }
+
+    if (!isEmailValid.valid) {
+      renderMessage(isEmailValid.message, true);
+      return;
+    }
+
+    if (!isUsernameValid.valid) {
+      renderMessage(isUsernameValid.message, true);
+      return;
+    }
+
+    if (!isOldPasswordValid.valid) {
+      renderMessage('Для сохранения изменений введите текущий пароль', true);
+      return;
+    }
+
+    if (newPassword) {
+      if (!isNewPasswordValid.valid) {
+        renderMessage(isNewPasswordValid.message, true);
+        return;
+      }
+      if (password.value !== repeatPassword.value) {
+        renderMessage('Новые пароли не совпадают', true);
+      }
+    }
+
+    // try {
+    //   const api = new API();
+    //   const res = await api.updateProfile(
+    //     firstName.value,
+    //     username.value,
+    //     email.value,
+    //     oldPassword.value,
+    //     newPassword.value,
+    //     avatar,
+    //   );
+    //
+    //   if (res.message !== 'ok') {
+    //     renderMessage(res.message, true);
+    //     return;
+    //   }
+    //
+    //   STORAGE.user = res.registeredUser;
+    //   // STORAGE.avatar = avatar;
+    //
+    //   goToPage(ROUTES.main);
+    //   renderMessage('Вы успешно зарегистрировались');
+    // } catch (err) {
+    //   if (err.toString() !== 'TypeError: Failed to fetch') {
+    //     renderMessage('Ошибка сервера. Попробуйте позже', true);
+    //     return;
+    //   }
+    //   renderMessage('Потеряно соединение с сервером', true);
+    // }
+  });
+
+  const cancelButton = document.querySelector('#update-profile-cancel-button');
+  cancelButton.addEventListener('click', () => {
+    goToPage(ROUTES.profile);
   });
 };

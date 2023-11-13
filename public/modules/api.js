@@ -137,7 +137,7 @@ export class API {
    * @throws {Error} Если произошла ошибка при запросе или обработке данных.
    */
   // eslint-disable-next-line camelcase
-  async userSignup(first_name, username, email, password, avatar) {
+  async userSignup(first_name, username, email, password, avatar = '') {
     try {
       const url = backendUrl + ROUTES_API.signup.url;
 
@@ -159,6 +159,61 @@ export class API {
       let message = 'Ошибка сервера. Попробуйте позже.';
 
       if (res.status === 409) {
+        message = 'Пользователь уже существует';
+      }
+      if (res.status === 400) {
+        message = 'Невозможно зарегистрироваться. Завершите предыдущую сессию!';
+      }
+      if (res.ok) {
+        message = 'ok';
+      }
+
+      return {message, registeredUser};
+    } catch (e) {
+      // TODO убрать к РК4
+      console.log('Ошибка метода userSignup:', e);
+      throw (e);
+    }
+  }
+
+  /**
+   * Функция для обновления профиля пользователя.
+   *
+   * @async
+   * @function
+   * @param {string} first_name - Имя.
+   * @param {string} username - Имя пользователя.
+   * @param {string} email - Почта.
+   * @param {string} oldPassword - Текущий пароль.
+   * @param {string} newPassword - Новый пароль.
+   * @param {string} avatar - Аватар пользователя в формате Base64.
+   * @return {Promise<{registeredUser: ({password: *, name: *, email: *, username: *} | null),
+   * message: string}>} Объект с информацией о статусе регистрации и о пользователе.
+   * @throws {Error} Если произошла ошибка при запросе или обработке данных.
+   */
+  // eslint-disable-next-line camelcase
+  async updateProfile(first_name, username, email, oldPassword, newPassword, avatar = '') {
+    try {
+      const url = backendUrl + ROUTES_API.updateProfile.url;
+
+      const res = await fetch(url, {
+        method: POST_METHOD,
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        credentials: 'include',
+        body: JSON.stringify({
+          // eslint-disable-next-line camelcase
+          first_name, username, email, oldPassword, newPassword, avatar,
+        }),
+      });
+
+      const body = await res.json();
+
+      const registeredUser = body.data;
+      let message = 'Ошибка сервера. Попробуйте позже.';
+
+      if (res.status === 403) {
         message = 'Пользователь уже существует';
       }
       if (res.status === 400) {
