@@ -1,8 +1,9 @@
-const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+import path from 'path';
+import HtmlWebpackPlugin from 'html-webpack-plugin';
+import MiniCssExtractPlugin from 'mini-css-extract-plugin';
+const __dirname = path.resolve();
 
-module.exports = {
+export default {
   entry: './public/index.js',
   devServer: {
     port: 3000,
@@ -30,15 +31,15 @@ module.exports = {
         loader: 'handlebars-loader',
         options: {
           partialDirs: [
-            path.resolve(__dirname, 'public/components/FormsItem'),
-            path.resolve(__dirname, 'public/components/Navbar'),
-            path.resolve(__dirname, 'public/components/ProfileMenu'),
-            path.resolve(__dirname, 'public/components/pages/CheckForm'),
-            path.resolve(__dirname, 'public/components/pages/Forms'),
-            path.resolve(__dirname, 'public/components/pages/Index'),
-            path.resolve(__dirname, 'public/components/pages/Login'),
-            path.resolve(__dirname, 'public/components/pages/Profile'),
-            path.resolve(__dirname, 'public/components/pages/Signup'),
+            path.resolve(__dirname, './public/components/FormsItem'),
+            path.resolve(__dirname, './public/components/Navbar'),
+            path.resolve(__dirname, './public/components/ProfileMenu'),
+            path.resolve(__dirname, './public/components/pages/CheckForm'),
+            path.resolve(__dirname, './public/components/pages/Forms'),
+            path.resolve(__dirname, './public/components/pages/Index'),
+            path.resolve(__dirname, './public/components/pages/Login'),
+            path.resolve(__dirname, './public/components/pages/Profile'),
+            path.resolve(__dirname, './public/components/pages/Signup'),
           ],
         },
       },
@@ -48,7 +49,7 @@ module.exports = {
         use: {
           loader: 'babel-loader',
           options: {
-            presets: ['@babel/preset-env', 'es2015', 'es2016'],
+            presets: ['@babel/preset-env'],
           },
         },
       },
@@ -60,7 +61,6 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({template: './public/index.html'}),
-    '@babel/plugin-transform-runtime',
   ],
-  mode: 'production',
+  mode: 'development',
 };
