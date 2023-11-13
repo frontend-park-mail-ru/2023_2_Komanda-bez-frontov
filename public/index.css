@@ -204,6 +204,77 @@ button {
   border-color: #696969;
 }
 
+.profile-title {
+  margin: 25px 50px;
+  text-align: center;
+  font-size: 30px;
+}
+
+.update-profile {
+  background-color: rgba(75, 53, 122, 0.4);
+  margin: 0 auto;
+  width: 747px;
+  border-radius: 12px;
+}
+
+.update-profile_main-container {
+  display: flex;
+  padding: 35px 0 35px 45px;
+}
+.update-profile_main-container .update-profile_main-container__picture {
+  max-height: 250px;
+  max-width: 250px;
+  min-width: 180px;
+  object-fit: contain;
+  border-radius: 12px;
+  margin-bottom: 12px;
+}
+
+.update-profile_main-container_img-container {
+  justify-content: left;
+}
+
+.update-profile_main-container_name-container {
+  color: #FFFFFF;
+  margin: 15px 40px;
+  line-height: 30px;
+  justify-content: right;
+}
+.update-profile_main-container_name-container .update-form__title-input {
+  width: 363px;
+  margin-left: 10px;
+  margin-bottom: 10px;
+  padding: 8px 10px;
+  font-size: 25px;
+  background-color: #ffffff;
+  border: 2px solid #424242;
+  border-radius: 12px;
+}
+
+.update-profile_button-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  justify-content: left;
+  padding: 0 0 40px 45px;
+}
+.update-profile_button-container button {
+  width: max-content;
+  min-width: 190px;
+  font-size: 20px;
+  font-weight: bold;
+}
+.update-profile_button-container .primary-button:hover {
+  opacity: 1;
+  color: #696969;
+  border-color: #696969;
+}
+.update-profile_button-container .secondary-button:hover {
+  opacity: 1;
+  background-color: #6e51a4;
+  border-color: #696969;
+}
+
 .forms_list-container {
   margin: 40px 100px 0 100px;
   min-width: 230px;

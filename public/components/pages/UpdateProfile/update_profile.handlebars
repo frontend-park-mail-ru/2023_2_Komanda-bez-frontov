@@ -1,0 +1,23 @@
+<div class="profile-title"><h3>Редактирование профиля</h3></div>
+{{#if User}}
+<div class="update-profile">
+    <div class="update-profile_main-container">
+        <div class="update-profile_main-container_img-container">
+            <img class="update-profile_main-container__picture" id="update-profile-page-picture" src="../../../resources/images/profile_default.png" alt="">
+            <button class="primary-button" id="profile-forms-button">Изменить фото</button>
+        </div>
+        <div class="update-profile_main-container_name-container">
+            <input class="update-form__title-input" id="update-profile_name" value="{{User.name}}">
+            <input class="update-form__title-input" id="update-profile_username" value="{{User.username}}">
+            <input class="update-form__title-input" id="update-profile_email" value="{{User.email}}">
+            <input class="update-form__title-input" id="update-profile_old-password" value="{{User.password}}">
+            <input class="update-form__title-input" id="update-profile_new-password" value="Новый пароль">
+            <input class="update-form__title-input" id="update-profile_repeat-password" value="Повторите пароль">
+        </div>
+    </div>
+    <div class="update-profile_button-container">
+        <button class="secondary-button" id="profile-settings-button">Сохранить</button>
+<!--        <button class="primary-button" id="profile-history-button">История прохождения</button>-->
+    </div>
+</div>
+{{/if}}
