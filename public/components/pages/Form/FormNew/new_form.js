@@ -14,7 +14,7 @@ import {renderPopUpWindow} from '../../../PopUpWindow/popup_window.js';
  * @function
  * @return {void}
  */
-export async function renderFormNew() {
+export const renderFormNew = async () => {
   removeMessage();
 
   // Проверка авторизации
@@ -101,13 +101,12 @@ export async function renderFormNew() {
     try {
       const api = new API();
       const res = await api.saveForm(createdForm);
-      const status = res.status;
-      if (status === 200) {
+      if (res.message === 'ok') {
         renderMessage('Опрос успешно создан.');
         goToPage(ROUTES.form, res.form.id);
         return;
       }
-      renderMessage('Ошибка сервера. Попробуйте позже', true);
+      renderMessage(res.message, true);
     } catch (e) {
       if (e.toString() !== 'TypeError: Failed to fetch') {
         renderMessage('Ошибка сервера. Попробуйте позже', true);
@@ -116,7 +115,7 @@ export async function renderFormNew() {
       renderMessage('Потеряно соединение с сервером', true);
     }
   });
-}
+};
 
 /**
  * Функция для сбора информации о заполнении формы создания/редактирования опроса.
@@ -125,7 +124,7 @@ export async function renderFormNew() {
  * @function
  * @return {form} form - собранный объект с опросом.
  */
-export function formPageParser() {
+export const formPageParser = () => {
   // Флаг того, что не все данные введены
   let flag = false;
   const form = {
@@ -207,8 +206,7 @@ export function formPageParser() {
   }
 
   if (flag) {
-    console.log(form);
     return null;
   }
   return form;
-}
+};

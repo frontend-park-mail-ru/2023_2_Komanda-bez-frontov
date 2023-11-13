@@ -1,7 +1,7 @@
 import {API} from '../../../../modules/api.js';
 import {render404} from '../../../404/404.js';
 import {removeMessage, renderMessage} from '../../../Message/message.js';
-import {clearStorage, STORAGE, storageGetFormByID} from '../../../../modules/storage.js';
+import {STORAGE, storageGetFormByID} from '../../../../modules/storage.js';
 import {goToPage} from '../../../../modules/router.js';
 import {ROUTES} from '../../../../config.js';
 import {createQuestionUpdate} from '../../../Question/UpdateQuestion/update_question.js';
@@ -18,7 +18,7 @@ import {formPageParser} from '../FormNew/new_form.js';
  * @param {number} id - ID.
  * @return {void}
  */
-export async function renderFormUpdate(id) {
+export const renderFormUpdate = async (id) => {
   const api = new API();
   removeMessage();
   if (!id) {
@@ -105,17 +105,12 @@ export async function renderFormUpdate(id) {
     renderPopUpWindow('Вы уверены, что хотите удалить опрос? Это действие необратимо.', true, async () => {
       try {
         const res = await api.deleteForm(id);
-        const status = res.status;
-        if (status === 200) {
+        if (res.message === 'ok') {
           renderMessage('Опрос успешно удален.');
           goToPage(ROUTES.forms);
           return;
         }
-        if (status === 404) {
-          renderMessage('Опрос не удалось обнаружить: уже удален.', true);
-          return;
-        }
-        renderMessage('Ошибка сервера. Попробуйте позже', true);
+        renderMessage(res.message, true);
       } catch (e) {
         if (e.toString() !== 'TypeError: Failed to fetch') {
           renderMessage('Ошибка сервера. Попробуйте позже', true);
@@ -136,13 +131,12 @@ export async function renderFormUpdate(id) {
     updatedForm.id = Number(id);
     try {
       const res = await api.updateForm(updatedForm);
-      const status = res.status;
-      if (status === 200) {
+      if (res.message === 'ok') {
         renderMessage('Опрос успешно обновлен.');
         goToPage(ROUTES.form, id);
         return;
       }
-      renderMessage('Ошибка сервера. Попробуйте позже', true);
+      renderMessage(res.message, true);
     } catch (e) {
       if (e.toString() !== 'TypeError: Failed to fetch') {
         renderMessage('Ошибка сервера. Попробуйте позже', true);
@@ -151,4 +145,4 @@ export async function renderFormUpdate(id) {
       renderMessage('Потеряно соединение с сервером', true);
     }
   });
-}
+};

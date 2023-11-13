@@ -13,11 +13,11 @@ export const STORAGE = {
  * @function
  * @return {void}
  */
-export function clearStorage() {
+export const clearStorage = () => {
   STORAGE.user = null;
   STORAGE.avatar = null;
   STORAGE.forms = [];
-}
+};
 
 /**
  * Функция для получения и сохранения аватарки текущего пользователя.
@@ -26,22 +26,24 @@ export function clearStorage() {
  * @function
  * @return {void}
  */
-export async function getAuthAvatar() {
+export const getAuthAvatar = async () => {
   if (!STORAGE.user) {
     return;
   }
   try {
     const api = new API();
     const res = await api.getAvatar(STORAGE.user.username);
-    if (res.status === 200) {
+    if (res.message === 'ok') {
       STORAGE.avatar = res.avatar;
+    } else {
+      renderMessage(res.message, true);
     }
   } catch (e) {
     if (e.toString() === 'TypeError: Failed to fetch') {
       renderMessage('Потеряно соединение с сервером', true);
     }
   }
-}
+};
 
 /**
  * Функция поиска формы в локальном хранилище по id.
@@ -50,7 +52,7 @@ export async function getAuthAvatar() {
  * @param {number} id - ID искомой формы
  * @return {form | null} - Искомая форма
  */
-export function storageGetFormByID(id) {
+export const storageGetFormByID = (id) => {
   // eslint-disable-next-line no-restricted-syntax
   for (const index in STORAGE.forms) {
     if (STORAGE.forms[index].id === id) {
@@ -58,4 +60,4 @@ export function storageGetFormByID(id) {
     }
   }
   return null;
-}
+};

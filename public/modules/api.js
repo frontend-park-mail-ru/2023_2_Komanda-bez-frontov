@@ -1,4 +1,4 @@
-import { backendUrl, ROUTES_API } from '../config.js';
+import {backendUrl, ROUTES_API} from '../config.js';
 
 const GET_METHOD = 'GET';
 const POST_METHOD = 'POST';
@@ -253,7 +253,7 @@ export class API {
    * @async
    * @function
    * @param {string} username - Никнейм пользователя.
-   * @return {Promise<{avatar: * | any, status: number}>} Объект с информацией
+   * @return {Promise<{avatar: string | null, message: string}>} Объект с информацией
    * о статусе запроса и с аватаркой в виде base64 кода.
    * @throws {Error} Если произошла ошибка при запросе или обработке данных.
    */
@@ -267,15 +267,15 @@ export class API {
       });
 
       const body = await res.json();
-      const status = res.status;
 
       if (res.ok) {
         const avatar = body.data.avatar;
-        return {status, avatar};
+        return {message: 'ok', avatar};
       }
 
-      return {status};
+      return {message: 'Ошибка сервера. Попробуйте позже', avatar: null};
     } catch (e) {
+      // TODO убрать к РК4
       console.log('Ошибка метода getForm:', e);
       throw (e);
     }
@@ -287,7 +287,7 @@ export class API {
    * @async
    * @function
    * @param {form} saveForm - объект, содержащий информацию об опросе.
-   * @return {Promise<{form: * | any, status: number}>} Объект с информацией
+   * @return {Promise<{form: * | null, message: string}>} Объект с информацией
    * о статусе запроса и формой опубликованного опроса.
    * @throws {Error} Если произошла ошибка при запросе или обработке данных.
    */
@@ -305,15 +305,15 @@ export class API {
       });
 
       const body = await res.json();
-      const status = res.status;
 
       if (res.ok) {
         const form = body.data;
-        return {status, form};
+        return {message: 'ok', form};
       }
 
-      return {status};
+      return {message: 'Ошибка сервера. Попробуйте позже', form: null};
     } catch (e) {
+      // TODO убрать к РК4
       console.log('Ошибка метода getForm:', e);
       throw (e);
     }
@@ -325,7 +325,7 @@ export class API {
    * @async
    * @function
    * @param {form} updateForm - объект, содержащий информацию об измененном опросе.
-   * @return {Promise<{form: * | any, status: number}>} Объект с информацией
+   * @return {Promise<{form: * | null, message: string}>} Объект с информацией
    * о статусе запроса и формой обновленного опроса.
    * @throws {Error} Если произошла ошибка при запросе или обработке данных.
    */
@@ -343,15 +343,15 @@ export class API {
       });
 
       const body = await res.json();
-      const status = res.status;
 
       if (res.ok) {
         const form = body.data;
-        return {status, form};
+        return {message: 'ok', form};
       }
 
-      return {status};
+      return {message: 'Ошибка сервера. Попробуйте позже', form: null};
     } catch (e) {
+      // TODO убрать к РК4
       console.log('Ошибка метода getForm:', e);
       throw (e);
     }
@@ -363,7 +363,7 @@ export class API {
    * @async
    * @function
    * @param {number} id - ID удаляемого опроса.
-   * @return {Promise<{status: number}>} Объект с информацией о статусе запроса.
+   * @return {Promise<{message: string}>} Объект с информацией о статусе запроса.
    * @throws {Error} Если произошла ошибка при запросе или обработке данных.
    */
   async deleteForm(id) {
@@ -375,10 +375,16 @@ export class API {
         credentials: 'include',
       });
 
-      const status = res.status;
+      if (res.ok) {
+        return {message: 'ok'};
+      }
+      if (res.status === 404) {
+        return {message: 'Опрос не удалось обнаружить: уже удален.'};
+      }
 
-      return {status};
+      return {message: 'Ошибка сервера. Попробуйте позже'};
     } catch (e) {
+      // TODO убрать к РК4
       console.log('Ошибка метода getForm:', e);
       throw (e);
     }

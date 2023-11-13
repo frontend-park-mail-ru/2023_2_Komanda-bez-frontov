@@ -1,6 +1,6 @@
 import {API} from '../../../../modules/api.js';
 import {render404} from '../../../404/404.js';
-import {removeMessage, renderMessage} from '../../../Message/message.js';
+import {renderMessage} from '../../../Message/message.js';
 import {storageGetFormByID, STORAGE} from '../../../../modules/storage.js';
 import {ROUTES} from '../../../../config.js';
 import {goToPage} from '../../../../modules/router.js';
@@ -14,9 +14,8 @@ import {createQuestion} from '../../../Question/CheckQuestion/check_question.js'
  * @param {number} id - ID.
  * @return {void}
  */
-export async function renderForm(id) {
+export const renderForm = async (id) => {
   const api = new API();
-  removeMessage();
   if (!id) {
     const page = ROUTES.forms;
     window.history.replaceState(page.state, '', page.url);
@@ -68,4 +67,4 @@ export async function renderForm(id) {
       // иначе отправим заполненную форму.
     });
   }
-}
+};

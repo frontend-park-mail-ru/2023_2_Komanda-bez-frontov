@@ -1,8 +1,7 @@
-import {API} from '../../../modules/api.js';
 import {ROUTES} from '../../../config.js';
 import {removeMessage, renderMessage} from '../../Message/message.js';
 import {goToPage} from '../../../modules/router.js';
-import {clearStorage, STORAGE} from '../../../modules/storage.js';
+import {STORAGE} from '../../../modules/storage.js';
 
 /**
  * Функция для рендеринга страницы профиля авторизированного пользователя.

@@ -19,7 +19,8 @@ import {renderFormNew} from '../components/pages/Form/FormNew/new_form.js';
  *
  * @function
  * @param url - Путь из запроса.
- * @return {{ id: string | null, normalUrl: string }} - Объект,содержащий ID запроса и нормальный url.
+ * @return {{ id: string | null, normalUrl: string }} - Объект,содержащий
+ * ID запроса и нормальный url.
  */
 export const parseUrl = (url) => {
   if (url[url.length - 1] === '/' && url.length > 1) {

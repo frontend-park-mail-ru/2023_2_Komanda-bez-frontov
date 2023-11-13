@@ -7,7 +7,7 @@
  * @param {function} action - Выполняется при подтверждении окна.
  * @return {void}
  */
-export function renderPopUpWindow(text, error = false, action = null) {
+export const renderPopUpWindow = (text, error = false, action = null) => {
   const popupContainer = document.querySelector('#popup');
   popupContainer.innerHTML += Handlebars.templates.popup_window();
 
@@ -31,7 +31,7 @@ export function renderPopUpWindow(text, error = false, action = null) {
     // eslint-disable-next-line no-use-before-define
     closePopUpWindow();
   });
-}
+};
 
 /**
  * Функция для закрытия всплывающего окна.
@@ -39,7 +39,7 @@ export function renderPopUpWindow(text, error = false, action = null) {
  * @function
  * @return {void}
  */
-export function closePopUpWindow() {
+export const closePopUpWindow = () => {
   const messageContainer = document.querySelector('#popup');
   messageContainer.innerHTML = '';
-}
+};
