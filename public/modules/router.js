@@ -10,7 +10,7 @@ import {renderProfile} from '../components/pages/Profile/profile.js';
 import {navbar} from '../components/Navbar/navbar.js';
 import {renderFormUpdate} from '../components/pages/Form/UpdateForm/update_form.js';
 import {renderFormNew} from '../components/pages/Form/FormNew/new_form.js';
-import {renderUpdateProfile} from "../components/pages/UpdateProfile/update_profile.js";
+import {renderUpdateProfile} from '../components/pages/UpdateProfile/update_profile.js';
 
 /**
  * Расщепляет url запроса на нормальный url (с :id по умолчанию) и id страницы.
@@ -35,8 +35,11 @@ export const parseUrl = (url) => {
       indexRight = url.length;
     }
     const id = url.slice(index + 1, indexRight);
-    const normalUrl = `${url.slice(0, index + 1)}:id${url.slice(indexRight, url.length)}`;
-    return {id, normalUrl};
+    if (!Number.isNaN(Number(id))) {
+      const normalUrl = `${url.slice(0, index + 1)}:id${url.slice(indexRight, url.length)}`;
+      return {id, normalUrl};
+    }
+    return {id: null, normalUrl: url};
   }
   const id = null;
   const normalUrl = url;
@@ -89,11 +92,10 @@ export const initialRouter = async () => {
     case '/forms':
       goToPage(ROUTES.form, id);
       break;
+    case '/forms/new':
+      goToPage(ROUTES.formNew);
+      break;
     case '/forms/:id':
-      if (id === 'new') {
-        goToPage(ROUTES.formNew);
-        break;
-      }
       goToPage(ROUTES.form, id);
       break;
     case '/forms/:id/edit':

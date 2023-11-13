@@ -13,10 +13,9 @@ export const nameValidation = (name) => {
     return { valid, message };
   }
 
-
   valid = true;
   return {valid, message: ''};
-}
+};
 export const emailValidation = (email) => {
   let valid = false;
 

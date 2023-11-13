@@ -4,22 +4,43 @@
     <div class="update-profile_main-container">
         <div class="update-profile_main-container_img-container">
             <img class="update-profile_main-container__picture" id="update-profile-page-picture" src="../../../resources/images/profile_default.png" alt="">
-            <input class="signup-form_container_avatar__input" type="file" id="avatar" name="avatar" accept="image/png, image/jpeg, image/jpg">
-                Загрузить
-            <a id="signup-avatar-cancel">❌</a>
+            <div class="update-profile_img-container_avatar-container">
+                <label id="update-profile-avatar-button">
+                    <input class="update-profile_img-container_avatar-container__input" type="file" id="avatar" name="avatar" accept="image/png, image/jpeg, image/jpg">
+                    <a>Загрузить</a>
+                </label>
+                <a id="update-profile-avatar-cancel">❌</a>
+            </div>
         </div>
         <div class="update-profile_main-container_name-container">
-            <input class="update-form__title-input" id="update-profile_name" value="{{User.name}}">
-            <input class="update-form__title-input" id="update-profile_username" value="{{User.username}}">
-            <input class="update-form__title-input" id="update-profile_email" value="{{User.email}}">
-            <input class="update-form__title-input" id="update-profile_old-password" value="{{User.password}}">
-            <input class="update-form__title-input" id="update-profile_new-password" value="Новый пароль">
-            <input class="update-form__title-input" id="update-profile_repeat-password" value="Повторите пароль">
+            <div>
+                <label>Имя</label>
+                <input class="update-form__title-input" id="update-profile_name" placeholder="Имя" value="{{User.first_name}}">
+            </div>
+            <div>
+                <label>Username</label>
+                <input class="update-form__title-input" id="update-profile_username" placeholder="Username" value="{{User.username}}">
+            </div>
+            <div>
+                <label>Почта</label>
+                <input class="update-form__title-input" id="update-profile_email" placeholder="Почта" value="{{User.email}}">
+            </div>
+            <div>
+                <label>Старый пароль</label>
+                <input class="update-form__title-input" id="update-profile_old-password" placeholder="Старый пароль">
+            </div>
+            <div>
+                <label>Новый пароль</label>
+                <input class="update-form__title-input" id="update-profile_new-password" placeholder="Новый пароль">
+            </div>
+            <div>
+                <label>Повторите пароль</label>
+                <input class="update-form__title-input" id="update-profile_repeat-password" placeholder="Повторите пароль">
+            </div>
         </div>
     </div>
     <div class="update-profile_button-container">
         <button class="secondary-button" id="update-profile-save-button">Сохранить</button>
-<!--        <button class="primary-button" id="profile-history-button">История прохождения</button>-->
     </div>
 </div>
 {{/if}}

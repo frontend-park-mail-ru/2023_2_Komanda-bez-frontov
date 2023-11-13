@@ -2,6 +2,7 @@ import {ROUTES} from '../../../config.js';
 import {removeMessage, renderMessage} from '../../Message/message.js';
 import {goToPage} from '../../../modules/router.js';
 import {STORAGE} from '../../../modules/storage.js';
+import {avatarValidation} from '../../../modules/validation.js';
 
 /**
  * Функция для рендеринга страницы изменения профиля авторизированного пользователя.
@@ -26,20 +27,45 @@ export const renderUpdateProfile = async () => {
   rootElement.innerHTML = Handlebars.templates.update_profile({User: STORAGE.user});
 
   const user = STORAGE.user;
+  let avatar = STORAGE.avatar;
   const profilePicture = document.querySelector('#update-profile-page-picture');
   if (STORAGE.avatar) {
-    profilePicture.src = `data:image/png;base64, ${STORAGE.avatar}`;
+    profilePicture.src = `data:image/png;base64, ${avatar}`;
   }
 
-  //
-  // // const settingButton = document.querySelector("#profile-settings-button");
-  // // settingButton.textContent = res.forms[id].title;
-  // // settingButton.addEventListener("click", function (e) {
-  // //     goToPage(ROUTES.settings);
-  // // });
-  // const formsButton = document.querySelector('#profile-forms-button');
-  // formsButton.addEventListener('click', () => {
-  //   goToPage(ROUTES.forms);
-  // });
+  const inputAvatar = document.querySelector('#avatar');
+  inputAvatar.addEventListener('change', (e) => {
+    const labelAvatar = document.querySelector('#update-profile-avatar-button');
+    const avatarFile = e.target.files[0];
+    const isAvatarValid = avatarValidation(avatarFile);
 
+    if (!isAvatarValid.valid) {
+      renderMessage(isAvatarValid.message, true);
+      return;
+    }
+
+    labelAvatar.style.backgroundColor = '#caecaf';
+    // Перевод аватарка из файла в Base64
+    if (avatarFile) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        avatar = reader.result
+          .replace('data:', '')
+          .replace(/^.+,/, '');
+      };
+      reader.readAsDataURL(avatarFile);
+    }
+    const changeAvatarRender = setTimeout(() => {
+      profilePicture.src = `data:image/png;base64, ${avatar}`;
+    }, 500);
+    changeAvatarRender();
+  });
+
+  const cancelAvatar = document.querySelector('#update-profile-avatar-cancel');
+  cancelAvatar.addEventListener('click', () => {
+    const labelAvatar = document.querySelector('#update-profile-avatar-button');
+    labelAvatar.style.backgroundColor = '#ffffff';
+    avatar = '';
+    profilePicture.src = '../../resources/images/profile_default.png';
+  });
 };

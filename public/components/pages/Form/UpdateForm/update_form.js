@@ -113,12 +113,14 @@ export const renderFormUpdate = async (id) => {
         if (res.message === 'ok') {
           renderMessage('Опрос успешно удален.');
           goToPage(ROUTES.forms);
+          closePopUpWindow();
           return;
         }
         renderMessage(res.message, true);
       } catch (e) {
         if (e.toString() !== 'TypeError: Failed to fetch') {
           renderMessage('Ошибка сервера. Попробуйте позже', true);
+          closePopUpWindow();
           return;
         }
         renderMessage('Потеряно соединение с сервером', true);

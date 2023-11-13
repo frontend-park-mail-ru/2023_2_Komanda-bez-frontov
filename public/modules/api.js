@@ -110,6 +110,9 @@ export class API {
       if (res.status === 404) {
         return {message: 'Невозможно выйти из аккаунта - вы не авторизованы!'};
       }
+      if (res.status === 408) {
+        return {message: 'Потеряно соединение с сервером'};
+      }
 
       return {message: 'Вы вышли из аккаунта'};
     } catch (e) {
@@ -310,11 +313,14 @@ export class API {
         const form = body.data;
         return {message: 'ok', form};
       }
+      if (res.status === 408) {
+        return {message: 'Потеряно соединение с сервером', form: null};
+      }
 
       return {message: 'Ошибка сервера. Попробуйте позже', form: null};
     } catch (e) {
       // TODO убрать к РК4
-      console.log('Ошибка метода getForm:', e);
+      console.log('Ошибка метода saveForm:', e);
       throw (e);
     }
   }
@@ -348,11 +354,14 @@ export class API {
         const form = body.data;
         return {message: 'ok', form};
       }
+      if (res.status === 408) {
+        return {message: 'Потеряно соединение с сервером', form: null};
+      }
 
       return {message: 'Ошибка сервера. Попробуйте позже', form: null};
     } catch (e) {
       // TODO убрать к РК4
-      console.log('Ошибка метода getForm:', e);
+      console.log('Ошибка метода updateForm:', e);
       throw (e);
     }
   }
@@ -378,6 +387,9 @@ export class API {
       if (res.ok) {
         return {message: 'ok'};
       }
+      if (res.status === 408) {
+        return {message: 'Потеряно соединение с сервером'};
+      }
       if (res.status === 404) {
         return {message: 'Опрос не удалось обнаружить: уже удален.'};
       }
@@ -385,7 +397,7 @@ export class API {
       return {message: 'Ошибка сервера. Попробуйте позже'};
     } catch (e) {
       // TODO убрать к РК4
-      console.log('Ошибка метода getForm:', e);
+      console.log('Ошибка метода deleteForm:', e);
       throw (e);
     }
   }
