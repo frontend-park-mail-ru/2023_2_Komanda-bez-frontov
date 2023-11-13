@@ -7,6 +7,7 @@ import {renderSignup} from './components/pages/Signup/signup.js';
 import {renderProfile} from './components/pages/Profile/profile.js';
 import {renderFormUpdate} from './components/pages/Form/UpdateForm/update_form.js';
 import {renderFormNew} from './components/pages/Form/FormNew/new_form.js';
+import {renderUpdateProfile} from "./components/pages/UpdateProfile/update_profile.js";
 
 export const ROUTES = {
   main: {
@@ -38,6 +39,11 @@ export const ROUTES = {
     url: '/profile',
     state: 'profile',
     open: renderProfile,
+  },
+  updateProfile: {
+    url: '/profile/update',
+    state: 'updateProfile',
+    open: renderUpdateProfile,
   },
   signup: {
     url: '/signup',

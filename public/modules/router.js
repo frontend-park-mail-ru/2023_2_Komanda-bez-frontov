@@ -10,6 +10,7 @@ import {renderProfile} from '../components/pages/Profile/profile.js';
 import {navbar} from '../components/Navbar/navbar.js';
 import {renderFormUpdate} from '../components/pages/Form/UpdateForm/update_form.js';
 import {renderFormNew} from '../components/pages/Form/FormNew/new_form.js';
+import {renderUpdateProfile} from "../components/pages/UpdateProfile/update_profile.js";
 
 /**
  * Расщепляет url запроса на нормальный url (с :id по умолчанию) и id страницы.
@@ -82,6 +83,9 @@ export const initialRouter = async () => {
     case '/profile':
       goToPage(ROUTES.profile);
       break;
+    case '/profile/update':
+      goToPage(ROUTES.updateProfile);
+      break;
     case '/forms':
       goToPage(ROUTES.form, id);
       break;
@@ -137,6 +141,9 @@ window.onpopstate = (event) => {
       break;
     case 'profile':
       renderProfile();
+      break;
+    case 'updateProfile':
+      renderUpdateProfile();
       break;
     case 'login':
       renderLogin();

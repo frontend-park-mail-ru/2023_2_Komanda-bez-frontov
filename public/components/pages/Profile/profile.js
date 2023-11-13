@@ -37,11 +37,10 @@ export const renderProfile = async () => {
   const email = document.querySelector('#profile-page-email');
   email.textContent = user.email;
 
-  // const settingButton = document.querySelector("#profile-settings-button");
-  // settingButton.textContent = res.forms[id].title;
-  // settingButton.addEventListener("click", function (e) {
-  //     goToPage(ROUTES.settings);
-  // });
+  const settingButton = document.querySelector("#profile-settings-button");
+  settingButton.addEventListener("click",() => {
+      goToPage(ROUTES.updateProfile);
+  });
   const formsButton = document.querySelector('#profile-forms-button');
   formsButton.addEventListener('click', () => {
     goToPage(ROUTES.forms);

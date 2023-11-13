@@ -4,7 +4,9 @@
     <div class="update-profile_main-container">
         <div class="update-profile_main-container_img-container">
             <img class="update-profile_main-container__picture" id="update-profile-page-picture" src="../../../resources/images/profile_default.png" alt="">
-            <button class="primary-button" id="profile-forms-button">Изменить фото</button>
+            <input class="signup-form_container_avatar__input" type="file" id="avatar" name="avatar" accept="image/png, image/jpeg, image/jpg">
+                Загрузить
+            <a id="signup-avatar-cancel">❌</a>
         </div>
         <div class="update-profile_main-container_name-container">
             <input class="update-form__title-input" id="update-profile_name" value="{{User.name}}">
@@ -16,7 +18,7 @@
         </div>
     </div>
     <div class="update-profile_button-container">
-        <button class="secondary-button" id="profile-settings-button">Сохранить</button>
+        <button class="secondary-button" id="update-profile-save-button">Сохранить</button>
 <!--        <button class="primary-button" id="profile-history-button">История прохождения</button>-->
     </div>
 </div>
