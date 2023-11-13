@@ -25,19 +25,19 @@ export const renderFormNew = async () => {
   }
 
   const defaultForm = {
-    title: 'Заголовок опроса',
-    description: 'Описание опроса',
+    title: '',
+    description: '',
     questions: [
       {
         id: 0,
-        title: 'Новый вопрос',
-        description: 'Описание вопроса',
+        title: '',
+        description: '',
         type: 1,
         shuffle: false,
         answers: [
           {
             id: 0,
-            text: 'новый ответ',
+            text: '',
           },
         ],
       },
@@ -68,14 +68,14 @@ export const renderFormNew = async () => {
   addQuestion.addEventListener('click', () => {
     const defaultQuestion = {
       id: 0,
-      title: 'Новый вопрос',
-      description: 'Описание вопроса',
+      title: '',
+      description: '',
       type: 1,
       shuffle: false,
       answers: [
         {
           id: 0,
-          text: 'новый ответ',
+          text: '',
         },
       ],
     };

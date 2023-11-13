@@ -4,7 +4,7 @@
         {{#each ../answers}}
             <div class="update-question__answers-item">
                 <input class="update-question__answers-item-radio" id="update-question__answers-item-radio" type="radio" disabled></input>
-                <input class="update-question__answers-item-input" id="update-question__answers-item-input" type="text" value="{{text}}" maxlength="64"></input>
+                <input class="update-question__answers-item-input" id="update-question__answers-item-input" placeholder="Новый ответ" type="text" value="{{text}}" maxlength="64"></input>
 <!--                <a class="update-question__answers-item-radio-delete" id="{{id}}">❌</a>-->
             </div>
         {{/each}}
@@ -16,7 +16,7 @@
         {{#each ../answers}}
             <div class="update-question__answers-item">
                 <input class="update-question__answers-item-checkbox" id="update-question__answers-item-checkbox" type="checkbox" disabled></input>
-                <input class="update-question__answers-item-input" id="update-question__answers-item-input" type="text" value="{{text}}" maxlength="64"></input>
+                <input class="update-question__answers-item-input" id="update-question__answers-item-input" placeholder="Новый ответ" type="text" value="{{text}}" maxlength="64"></input>
 <!--                <a class="update-question__answers-item-radio-delete" id="{{id}}">❌</a>-->
             </div>
         {{/each}}
@@ -26,7 +26,7 @@
     <div class="update-question__answers">
         <h3 class="update-question__answers-title">Ответ</h3>
         <div class="update-question__answers-item">
-            <textarea class="update-question__answers-item-textarea" id="check-question__answers-item-text" maxlength="512" disabled></textarea>
+            <textarea class="update-question__answers-item-textarea" id="check-question__answers-item-text" placeholder="Поле для ответа" maxlength="512" disabled></textarea>
         </div>
     </div>
 {{/ifEquals}}

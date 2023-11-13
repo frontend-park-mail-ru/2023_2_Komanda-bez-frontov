@@ -82,14 +82,14 @@ export const renderFormUpdate = async (id) => {
   addQuestion.addEventListener('click', () => {
     const defaultQuestion = {
       id: 0,
-      title: 'Новый вопрос',
-      description: 'Описание вопроса',
+      title: '',
+      description: '',
       type: 1,
       shuffle: false,
       answers: [
         {
           id: 0,
-          text: 'новый ответ',
+          text: '',
         },
       ],
     };

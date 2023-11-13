@@ -87,7 +87,7 @@ export const renderUpdateProfile = async () => {
     const repeatPassword = document.querySelector('#update-profile_repeat_password');
 
     if (email.value === '' || firstName.value === ''
-        || username.value === '' || oldPassword.value === '') {
+        || username.value === '') {
       renderMessage('Вы ввели не все данные', true);
       return;
     }
@@ -113,8 +113,11 @@ export const renderUpdateProfile = async () => {
       return;
     }
 
-    if (!isOldPasswordValid.valid) {
+    if (oldPassword.value === '') {
       renderMessage('Для сохранения изменений введите текущий пароль', true);
+      return;
+    } if (!isOldPasswordValid.valid) {
+      renderMessage(isOldPasswordValid.message, true);
       return;
     }
 

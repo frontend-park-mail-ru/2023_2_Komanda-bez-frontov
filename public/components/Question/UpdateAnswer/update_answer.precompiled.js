@@ -19,8 +19,8 @@ templates['update_answer'] = template({"1":function(container,depth0,helpers,par
         return undefined
     };
 
-  return "            <div class=\"update-question__answers-item\">\n                <input class=\"update-question__answers-item-radio\" id=\"update-question__answers-item-radio\" type=\"radio\" disabled></input>\n                <input class=\"update-question__answers-item-input\" id=\"update-question__answers-item-input\" type=\"text\" value=\""
-    + alias4(((helper = (helper = lookupProperty(helpers,"text") || (depth0 != null ? lookupProperty(depth0,"text") : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"text","hash":{},"data":data,"loc":{"start":{"line":7,"column":127},"end":{"line":7,"column":135}}}) : helper)))
+  return "            <div class=\"update-question__answers-item\">\n                <input class=\"update-question__answers-item-radio\" id=\"update-question__answers-item-radio\" type=\"radio\" disabled></input>\n                <input class=\"update-question__answers-item-input\" id=\"update-question__answers-item-input\" placeholder=\"Новый ответ\" type=\"text\" value=\""
+    + alias4(((helper = (helper = lookupProperty(helpers,"text") || (depth0 != null ? lookupProperty(depth0,"text") : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"text","hash":{},"data":data,"loc":{"start":{"line":7,"column":153},"end":{"line":7,"column":161}}}) : helper)))
     + "\" maxlength=\"64\"></input>\n<!--                <a class=\"update-question__answers-item-radio-delete\" id=\""
     + alias4(((helper = (helper = lookupProperty(helpers,"id") || (depth0 != null ? lookupProperty(depth0,"id") : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"id","hash":{},"data":data,"loc":{"start":{"line":8,"column":78},"end":{"line":8,"column":84}}}) : helper)))
     + "\">❌</a>-->\n            </div>\n";
@@ -43,13 +43,13 @@ templates['update_answer'] = template({"1":function(container,depth0,helpers,par
         return undefined
     };
 
-  return "            <div class=\"update-question__answers-item\">\n                <input class=\"update-question__answers-item-checkbox\" id=\"update-question__answers-item-checkbox\" type=\"checkbox\" disabled></input>\n                <input class=\"update-question__answers-item-input\" id=\"update-question__answers-item-input\" type=\"text\" value=\""
-    + alias4(((helper = (helper = lookupProperty(helpers,"text") || (depth0 != null ? lookupProperty(depth0,"text") : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"text","hash":{},"data":data,"loc":{"start":{"line":19,"column":127},"end":{"line":19,"column":135}}}) : helper)))
+  return "            <div class=\"update-question__answers-item\">\n                <input class=\"update-question__answers-item-checkbox\" id=\"update-question__answers-item-checkbox\" type=\"checkbox\" disabled></input>\n                <input class=\"update-question__answers-item-input\" id=\"update-question__answers-item-input\" placeholder=\"Новый ответ\" type=\"text\" value=\""
+    + alias4(((helper = (helper = lookupProperty(helpers,"text") || (depth0 != null ? lookupProperty(depth0,"text") : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"text","hash":{},"data":data,"loc":{"start":{"line":19,"column":153},"end":{"line":19,"column":161}}}) : helper)))
     + "\" maxlength=\"64\"></input>\n<!--                <a class=\"update-question__answers-item-radio-delete\" id=\""
     + alias4(((helper = (helper = lookupProperty(helpers,"id") || (depth0 != null ? lookupProperty(depth0,"id") : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"id","hash":{},"data":data,"loc":{"start":{"line":20,"column":78},"end":{"line":20,"column":84}}}) : helper)))
     + "\">❌</a>-->\n            </div>\n";
 },"7":function(container,depth0,helpers,partials,data) {
-    return "    <div class=\"update-question__answers\">\n        <h3 class=\"update-question__answers-title\">Ответ</h3>\n        <div class=\"update-question__answers-item\">\n            <textarea class=\"update-question__answers-item-textarea\" id=\"check-question__answers-item-text\" maxlength=\"512\" disabled></textarea>\n        </div>\n    </div>\n";
+    return "    <div class=\"update-question__answers\">\n        <h3 class=\"update-question__answers-title\">Ответ</h3>\n        <div class=\"update-question__answers-item\">\n            <textarea class=\"update-question__answers-item-textarea\" id=\"check-question__answers-item-text\" placeholder=\"Поле для ответа\" maxlength=\"512\" disabled></textarea>\n        </div>\n    </div>\n";
 },"compiler":[8,">= 4.3.0"],"main":function(container,depth0,helpers,partials,data,blockParams,depths) {
     var stack1, alias1=depth0 != null ? depth0 : (container.nullContext || {}), alias2=container.hooks.helperMissing, lookupProperty = container.lookupProperty || function(parent, propertyName) {
         if (Object.prototype.hasOwnProperty.call(parent, propertyName)) {

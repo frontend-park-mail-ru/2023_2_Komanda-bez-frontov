@@ -81,7 +81,7 @@ export const createQuestionUpdate = (question) => {
     }
     answers.push({
       id: answers.length,
-      text: 'новый ответ',
+      text: '',
     });
     renderAnswers();
   });
@@ -91,7 +91,7 @@ export const createQuestionUpdate = (question) => {
     answers.length = 0;
     answers.push({
       id: answers.length,
-      text: 'новый ответ',
+      text: '',
     });
     renderAnswers();
   });
