@@ -2,6 +2,7 @@ import {ROUTES} from '../../../config.js';
 import {API} from '../../../modules/api.js';
 import {renderMessage, removeMessage} from '../../Message/message.js';
 import {
+  nameValidation,
   avatarValidation,
   emailValidation,
   passwordValidation,
@@ -41,9 +42,15 @@ export const renderSignup = async () => {
       return;
     }
 
+    const isNameValid = nameValidation(firstName.value);
     const isEmailValid = emailValidation(email.value);
     const isUsernameValid = usernameValidation(username.value);
     const isPasswordValid = passwordValidation(password.value);
+
+    if (!isNameValid.valid) {
+      renderMessage(isNameValid.message, true);
+      return;
+    }
 
     if (!isEmailValid.valid) {
       renderMessage(isEmailValid.message, true);
