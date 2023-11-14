@@ -6,7 +6,7 @@ import {goToPage} from '../../../../modules/router.js';
 import {ROUTES} from '../../../../config.js';
 import {createQuestionUpdate} from '../../../Question/UpdateQuestion/update_question.js';
 import {closePopUpWindow, renderPopUpWindow} from '../../../PopUpWindow/popup_window.js';
-import {formUpdatePageParser} from '../FormNew/new_form.js';
+import {formUpdatePageParser, formUpdateValidator} from '../FormNew/new_form.js';
 
 /**
  * Функция для рендеринга страницы редактирования опроса по его id.
@@ -28,7 +28,7 @@ export const renderFormUpdate = async (id) => {
 
   // Проверка авторизации
   if (!STORAGE.user) {
-    goToPage(ROUTES.login);
+    goToPage(ROUTES.login, 0, true);
     renderMessage('Вы не авторизованы!', true);
     return;
   }
@@ -133,6 +133,11 @@ export const renderFormUpdate = async (id) => {
   updateForm.addEventListener('click', async () => {
     const updatedForm = formUpdatePageParser();
     if (!updatedForm) {
+      return;
+    }
+    const formValidation = formUpdateValidator();
+    if (!formValidation.valid) {
+      renderMessage(formValidation.message, true);
       return;
     }
     updatedForm.id = Number(id);

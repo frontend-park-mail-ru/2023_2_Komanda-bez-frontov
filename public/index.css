@@ -739,14 +739,48 @@ button {
   background-color: #fdc6c6 !important;
 }
 
-.index-container {
-  margin: 40px 80px;
-  text-align: center;
-  font-size: 24px;
+.index {
+  margin: 40px auto;
 }
-.index-container h3 {
-  font-size: 35px;
-  margin-bottom: 30px;
+.index h3 {
+  text-align: center;
+  font-size: 45px;
+  margin-bottom: 60px;
+}
+
+.index_content-container {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+}
+.index_content-container .index_content-container_description__picture {
+  max-width: 750px;
+  object-fit: cover;
+}
+
+.index_content-container_description {
+  margin-left: 50px;
+  font-size: 30px;
+  text-align: left;
+  max-width: 550px;
+  max-height: 422px;
+}
+.index_content-container_description .button-container {
+  margin: 60px 0 25px 0;
+}
+.index_content-container_description .button-container button {
+  font-size: 22px;
+  width: 380px;
+  padding: 18px 15px;
+}
+.index_content-container_description a {
+  font-size: 24px;
+  color: #424242;
+}
+.index_content-container_description a span {
+  height: 30px;
+  color: #6e51a4;
+  cursor: pointer;
 }
 
 .auth-container {

@@ -19,8 +19,6 @@ export const renderInitial = async () => {
     if (isAuth.isAuthorized) {
       STORAGE.user = isAuth.authorizedUser;
       await getAuthAvatar();
-    } else {
-      renderMessage('Вы не авторизованы!', true);
     }
   } catch (e) {
     if (e.toString() === 'TypeError: Failed to fetch') {

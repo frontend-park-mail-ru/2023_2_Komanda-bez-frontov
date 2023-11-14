@@ -20,7 +20,7 @@ export const renderForm = async (id) => {
   if (!id) {
     const page = ROUTES.forms;
     window.history.replaceState(page.state, '', page.url);
-    goToPage(page);
+    goToPage(page, 0, true);
     return;
   }
 
@@ -74,14 +74,12 @@ export const renderForm = async (id) => {
     createLinkButton.addEventListener('click', (e) => {
       const link = `${frontendUrl}/forms/${id}`;
       e.stopImmediatePropagation();
-      renderPopUpWindow('Ваша ссылка готова', link, false, async () => {
+      renderPopUpWindow('Ваша ссылка готова', link, false, () => {
         const copyButton = document.querySelector('#popup-ok-button');
-        navigator.clipboard.writeText(link)
-          .then(() => {
-            copyButton.innerHTML = 'Скопировано!';
-            copyButton.classList.add('primary-button');
-            copyButton.classList.remove('secondary-button');
-          });
+        copyButton.innerHTML = 'Скопировано!';
+        copyButton.classList.add('primary-button');
+        copyButton.classList.remove('secondary-button');
+        navigator.clipboard.writeText(link);
       });
       document.querySelector('#popup-ok-button').innerHTML = 'Скопировать';
     });

@@ -24,7 +24,7 @@ export const renderUpdateProfile = async () => {
 
   // Проверка авторизации
   if (!STORAGE.user) {
-    goToPage(ROUTES.login);
+    goToPage(ROUTES.login, 0, true);
     renderMessage('Вы не авторизованы!', true);
     return;
   }

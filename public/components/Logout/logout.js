@@ -4,6 +4,7 @@ import {ROUTES} from '../../config.js';
 import {clearStorage} from '../../modules/storage.js';
 import {renderMain} from '../pages/Main/main.js';
 import {navbar} from '../Navbar/navbar.js';
+import {goToPage} from "../../modules/router.js";
 
 /**
  * Функция для выполнения выхода из аккаунта.
@@ -24,13 +25,13 @@ export const renderMainLogout = async () => {
     return;
   }
 
-  renderMessage(logoutStatus.message, true);
-  if (logoutStatus.message === 'Потеряно соединеие с сервером') {
-    return;
+  if (logoutStatus.message !== 'ok') {
+    renderMessage(logoutStatus.message, true);
+    if (logoutStatus.message === 'Потеряно соединеие с сервером') {
+      return;
+    }
   }
 
-  window.history.replaceState(ROUTES.forms.state, '', ROUTES.main.url);
   clearStorage();
-  navbar();
-  renderMain();
+  goToPage(ROUTES.main, 0, true);
 };

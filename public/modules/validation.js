@@ -1,21 +1,27 @@
 /**
- * Эта функция проверяет, является ли введёный email валидным.
+ * Эта функция проверяет, является ли введёное имя валидным.
  * @param {string} name - Введённое пользователем имя.
  * @return {object} - Объект с полем `valid` (true/false) и с полем
  * `message` (сообщение об ошибке).
  */
-
 export const nameValidation = (name) => {
   let valid = false;
 
   if (!/^[a-zA-Zа-яА-Я]+(?:-[a-zA-Zа-яА-Я]+)*(?:\s[a-zA-Zа-яА-Я]+(?:-[a-zA-Zа-яА-Я]+)*)*$/.test(name)) {
-    const message = 'Имя должно состоять из русских или английских символов';
+    const message = 'Имя должно состоять из русских или английских букв';
     return { valid, message };
   }
 
   valid = true;
   return {valid, message: ''};
 };
+
+/**
+ * Эта функция проверяет, является ли введёный email валидным.
+ * @param {string} email - Введённое пользователем email.
+ * @return {object} - Объект с полем `valid` (true/false) и с полем
+ * `message` (сообщение об ошибке).
+ */
 export const emailValidation = (email) => {
   let valid = false;
 
@@ -126,4 +132,23 @@ export const avatarValidation = (avatar) => {
 
   valid = true;
   return {valid, message: ''};
+};
+
+// TODO Доделать валидацию текста!! Сейчас она применена, но всегда возвращает true
+/**
+ * Эта функция проверяет, является ли введёный текст валидным.
+ * @param {string} text - Введённый пользователем текст.
+ * @return {object} - Объект с полем `valid` (true/false) и с полем
+ * `message` (сообщение об ошибке).
+ */
+export const textValidation = (text) => {
+  let valid = false;
+
+  // if (!/^[a-zA-Zа-яА-Я]+(?:-[a-zA-Zа-яА-Я]+)*(?:\s[a-zA-Zа-яА-Я]+(?:-[a-zA-Zа-яА-Я]+)*)*$/.test(name)) {
+  //   const message = 'Текст должен состоять из русских и английских слов и не иметь недопустимых символов';
+  //   return { valid, message };
+  // }
+
+  valid = true;
+  return {valid, message: 'Проверка валидации форм'};
 };

@@ -11,6 +11,7 @@ import {navbar} from '../components/Navbar/navbar.js';
 import {renderFormUpdate} from '../components/pages/Form/UpdateForm/update_form.js';
 import {renderFormNew} from '../components/pages/Form/FormNew/new_form.js';
 import {renderUpdateProfile} from '../components/pages/UpdateProfile/update_profile.js';
+import {removeMessage} from "../components/Message/message.js";
 
 /**
  * Расщепляет url запроса на нормальный url (с :id по умолчанию) и id страницы.
@@ -20,7 +21,7 @@ import {renderUpdateProfile} from '../components/pages/UpdateProfile/update_prof
  *
  * @function
  * @param url - Путь из запроса.
- * @return {{ id: string | null, normalUrl: string }} - Объект,содержащий
+ * @return {{ id: number | null, normalUrl: string }} - Объект,содержащий
  * ID запроса и нормальный url.
  */
 export const parseUrl = (url) => {
@@ -37,7 +38,7 @@ export const parseUrl = (url) => {
     const id = url.slice(index + 1, indexRight);
     if (!Number.isNaN(Number(id))) {
       const normalUrl = `${url.slice(0, index + 1)}:id${url.slice(indexRight, url.length)}`;
-      return {id, normalUrl};
+      return {id: Number(id), normalUrl};
     }
     return {id: null, normalUrl: url};
   }
@@ -48,21 +49,32 @@ export const parseUrl = (url) => {
 
 /**
  * Рендерит выбранную в аргументах страницу.
+ * Добавляет либо заменяет на ее в истории переходов.
  *
  * @param page - Объект, в котором содержится информация о странице из ROUTES.
  * @param id - Объект(опцианальный параметр) для перехода на страницу конкретного опроса.
+ * @param redirect - Флаг, означающий, что случился редирект.
  * @return {void}
  */
-export const goToPage = (page, id = null) => {
-  navbar();
+export const goToPage = (page, id = null, redirect = false) => {
+  if (!id) {
+    id = '';
+  }
+  const url = page.url.replace(':id', id.toString());
   window.scroll(0, 0);
+  navbar();
+
+  if (window.location.pathname !== url) {
+    if (redirect) {
+      window.history.replaceState(page.state, '', url);
+    } else {
+      window.history.pushState(page.state, '', url);
+    }
+  }
   if (id) {
-    const url = page.url.replace(':id', id.toString());
-    window.history.pushState(page.state, '', url);
     page.open(id);
     return;
   }
-  window.history.pushState(page.state, '', page.url);
   page.open();
 };
 
@@ -84,19 +96,19 @@ export const initialRouter = async () => {
       goToPage(ROUTES.main);
       break;
     case '/profile':
-      goToPage(ROUTES.profile);
+      goToPage(ROUTES.profile, 0, true);
       break;
     case '/profile/update':
       goToPage(ROUTES.updateProfile);
       break;
     case '/forms':
-      goToPage(ROUTES.form, id);
+      goToPage(ROUTES.forms, 0, true);
       break;
     case '/forms/new':
       goToPage(ROUTES.formNew);
       break;
     case '/forms/:id':
-      goToPage(ROUTES.form, id);
+      goToPage(ROUTES.form, id, true);
       break;
     case '/forms/:id/edit':
       goToPage(ROUTES.formUpdate, id);
@@ -124,6 +136,7 @@ export const initialRouter = async () => {
  */
 // eslint-disable-next-line func-names
 window.onpopstate = (event) => {
+  removeMessage();
   const state = event.state;
   switch (state) {
     case 'main':

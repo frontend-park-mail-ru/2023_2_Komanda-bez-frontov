@@ -108,13 +108,13 @@ export class API {
       });
 
       if (res.status === 404) {
-        return {message: 'Невозможно выйти из аккаунта - вы не авторизованы!'};
+        return {message: 'Вы не авторизованы, обновите страницу'};
       }
       if (res.status === 408) {
         return {message: 'Потеряно соединение с сервером'};
       }
 
-      return {message: 'Вы вышли из аккаунта'};
+      return {message: 'ok'};
     } catch (e) {
       // TODO убрать к РК4
       console.log('Ошибка метода userLogout:', e);
