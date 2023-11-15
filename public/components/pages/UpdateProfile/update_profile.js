@@ -113,12 +113,14 @@ export const renderUpdateProfile = async () => {
       return;
     }
 
-    if (oldPassword.value === '') {
-      renderMessage('Для сохранения изменений введите текущий пароль', true);
-      return;
-    } if (!isOldPasswordValid.valid) {
-      renderMessage(isOldPasswordValid.message, true);
-      return;
+    if (username.value !== STORAGE.user.username || email.value !== STORAGE.user.email || newPassword.value !== '') {
+      if (oldPassword.value === '') {
+        renderMessage('Для сохранения изменений введите текущий пароль', true);
+        return;
+      } if (!isOldPasswordValid.valid) {
+        renderMessage(isOldPasswordValid.message, true);
+        return;
+      }
     }
 
     if (newPassword.value) {

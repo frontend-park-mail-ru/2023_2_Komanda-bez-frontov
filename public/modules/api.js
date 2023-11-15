@@ -219,6 +219,9 @@ export class API {
       if (res.status === 404) {
         message = 'Пользователь не найден';
       }
+      if (res.status === 409) {
+        message = 'Пользователь с такими email/username уже существует';
+      }
       if (res.ok) {
         message = 'ok';
       }
