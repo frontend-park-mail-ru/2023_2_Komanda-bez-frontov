@@ -7,7 +7,7 @@
 export const nameValidation = (name) => {
   let valid = false;
 
-  if (!/^[a-zA-Zа-яА-Я]+(?:-[a-zA-Zа-яА-Я]+)*(?:\s[a-zA-Zа-яА-Я]+(?:-[a-zA-Zа-яА-Я]+)*)*$/.test(name)) {
+  if (!/^[a-zA-Zа-яА-Я]+(?:-[a-zA-Zа-яА-Я]+)*(?:\s[a-zA-Zа-яА-Я]+(?:-[a-zA-Zа-яА-Я]+)*)*$/.test(name) ) {
     const message = 'Имя должно состоять из русских или английских букв';
     return { valid, message };
   }
@@ -30,7 +30,8 @@ export const emailValidation = (email) => {
     return {valid, message};
   }
 
-  if (!/^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/.test(email)) {
+  if (!/^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/.test(email) ||
+    !/^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[\w-]+$/.test(email)) {
     const message = 'Неправильный формат ввода почты, пример: example@example.ru';
     return { valid, message };
   }
