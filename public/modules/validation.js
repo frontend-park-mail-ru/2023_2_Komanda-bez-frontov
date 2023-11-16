@@ -134,7 +134,6 @@ export const avatarValidation = (avatar) => {
   return {valid, message: ''};
 };
 
-// TODO Доделать валидацию текста!! Сейчас она применена, но всегда возвращает true
 /**
  * Эта функция проверяет, является ли введёный текст валидным.
  * @param {string} text - Введённый пользователем текст.
@@ -144,10 +143,19 @@ export const avatarValidation = (avatar) => {
 export const textValidation = (text) => {
   let valid = false;
 
-  // if (!/^[a-zA-Zа-яА-Я]+(?:-[a-zA-Zа-яА-Я]+)*(?:\s[a-zA-Zа-яА-Я]+(?:-[a-zA-Zа-яА-Я]+)*)*$/.test(name)) {
-  //   const message = 'Текст должен состоять из русских и английских слов и не иметь недопустимых символов';
-  //   return { valid, message };
-  // }
+  let re = /[\u{1F600}-\u{1F6FF}\u{2600}-\u{26FF}\u{2700}-\u{27BF}\u{FE00}-\u{FE0F}\u{1F900}-\u{1F9FF}\u{1F1E0}-\u{1F1FF}]+/u;
+
+  if (re.test(text)) {
+    const message = 'Текст не должен иметь недопустимых символов';
+    return {valid, message};
+  }
+
+  re = /^[A-Za-zА-Яа-я\s,."'?!-]*$/;
+
+  if (!re.test(text)) {
+    const message = 'Текст должен состоять из русских или английских слов и знаков препинания';
+    return {valid, message};
+  }
 
   valid = true;
   return {valid, message: 'Проверка валидации форм'};
