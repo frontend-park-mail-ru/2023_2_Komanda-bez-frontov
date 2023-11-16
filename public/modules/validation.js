@@ -143,17 +143,10 @@ export const avatarValidation = (avatar) => {
 export const textValidation = (text) => {
   let valid = false;
 
-  let re = /[\u{1F600}-\u{1F6FF}\u{2600}-\u{26FF}\u{2700}-\u{27BF}\u{FE00}-\u{FE0F}\u{1F900}-\u{1F9FF}\u{1F1E0}-\u{1F1FF}]+/u;
-
-  if (re.test(text)) {
-    const message = 'Текст не должен иметь недопустимых символов';
-    return {valid, message};
-  }
-
-  re = /^[A-Za-zА-Яа-я\s,."'?!-]*$/;
+  const re = /^[A-Za-zА-Яа-я0-9\s,."'?!-]*$/;
 
   if (!re.test(text)) {
-    const message = 'Текст должен состоять из русских или английских слов и знаков препинания';
+    const message = 'Текст должен состоять из русских или английских слов, цифр и знаков препинания';
     return {valid, message};
   }
 
