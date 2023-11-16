@@ -10,6 +10,7 @@ import {
   usernameValidation,
 } from '../../../modules/validation.js';
 import {API} from '../../../modules/api.js';
+import {toggleFunc} from "../Signup/signup.js";
 
 /**
  * Функция для рендеринга страницы изменения профиля авторизированного пользователя.
@@ -38,6 +39,30 @@ export const renderUpdateProfile = async () => {
   if (STORAGE.avatar) {
     profilePicture.src = `data:image/png;base64, ${avatar}`;
   }
+
+  const showOldPasswordButton = document.querySelector('#login-form_container__input-show-old-button');
+  showOldPasswordButton.addEventListener('click',  () => {
+    const password = document.querySelector('#update-profile_old-password');
+    const icon = document.querySelector('#login-form_container__input-show-old-button-icon');
+
+    toggleFunc(password, icon);
+  });
+
+  const showPasswordButton = document.querySelector('#login-form_container__input-show-button');
+  showPasswordButton.addEventListener('click',  () => {
+    const password = document.querySelector('#update-profile_new-password');
+    const icon = document.querySelector('#login-form_container__input-show-button-icon');
+
+    toggleFunc(password, icon);
+  });
+
+  const showRepeatPasswordButton = document.querySelector('#login-form_container__input-show-rep-button');
+  showRepeatPasswordButton.addEventListener('click',  () => {
+    const password = document.querySelector('#update-profile_repeat-password');
+    const icon = document.querySelector('#login-form_container__input-show-rep-button-icon');
+
+    toggleFunc(password, icon);
+  });
 
   const inputAvatar = document.querySelector('#avatar');
   inputAvatar.addEventListener('change', (e) => {

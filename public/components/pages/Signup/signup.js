@@ -18,6 +18,19 @@ import {STORAGE} from '../../../modules/storage.js';
  * @function
  * @return {void}
  */
+
+export const toggleFunc = (password, icon) => {
+
+  if (password.type === 'password') {
+    password.type = 'text';
+    icon.innerText = 'visibility_off';
+  } else {
+    password.type = 'password';
+    icon.innerText = 'visibility';
+
+  }
+};
+
 export const renderSignup = async () => {
   removeMessage();
   const rootElement = document.querySelector('#root');
@@ -25,6 +38,22 @@ export const renderSignup = async () => {
   rootElement.innerHTML = Handlebars.templates.signup();
 
   // let avatar = '';
+
+  const showPasswordButton = document.querySelector('#login-form_container__input-show-button');
+  showPasswordButton.addEventListener('click',  () => {
+    const password = document.querySelector('#password');
+    const icon = document.querySelector('#login-form_container__input-show-button-icon');
+
+    toggleFunc(password, icon);
+  });
+
+  const showRepPasswordButton = document.querySelector('#login-form_container__input-show-rep-button');
+  showRepPasswordButton.addEventListener('click',  () => {
+    const password = document.querySelector('#repeat_password');
+    const icon = document.querySelector('#login-form_container__input-show-rep-button-icon');
+
+    toggleFunc(password, icon);
+  });
 
   const signupButton = document.querySelector('#signup-button');
   signupButton.addEventListener('click', async (e) => {
