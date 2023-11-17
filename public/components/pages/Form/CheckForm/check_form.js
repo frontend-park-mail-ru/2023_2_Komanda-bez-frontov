@@ -57,12 +57,13 @@ export const renderForm = async (id) => {
   });
 
   const updateSubmitButton = document.querySelector('#update-submit-button');
-  if (STORAGE.user.id === formJSON.author.id) {
+  if (STORAGE.user && STORAGE.user.id === formJSON.author.id) {
     updateSubmitButton.innerHTML = 'Редактировать';
     updateSubmitButton.addEventListener('click', () => {
       goToPage(ROUTES.formUpdate, id);
     });
   } else {
+    // TODO проверка на анонимность
     updateSubmitButton.innerHTML = 'Отправить';
     updateSubmitButton.addEventListener('click', () => {
       // иначе отправим заполненную форму.
