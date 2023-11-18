@@ -43,7 +43,9 @@
     span {
       height: 30px;
       color: #6e51a4;
-      cursor: pointer;
+      &:hover {
+        cursor: pointer;
+      }
     }
   }
 }

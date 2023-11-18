@@ -6,6 +6,7 @@ import {frontendUrl, ROUTES} from '../../../../config.js';
 import {goToPage} from '../../../../modules/router.js';
 import {createQuestion} from '../../../Question/CheckQuestion/check_question.js';
 import {renderPopUpWindow} from '../../../PopUpWindow/popup_window.js';
+import {renderAuthorMenu} from '../../../AuthorMenu/authorMenu.js';
 
 /**
  * Функция для рендеринга страницы опроса по его id.
@@ -48,7 +49,14 @@ export const renderForm = async (id) => {
 
   const rootElement = document.querySelector('#root');
   rootElement.innerHTML = '';
-  rootElement.innerHTML = Handlebars.templates.check_form({form: formJSON});
+
+  renderAuthorMenu(id);
+  const menuCheckButton = document.querySelector('#author-menu-check-button');
+  menuCheckButton.disabled = true;
+  menuCheckButton.classList.add('secondary-button');
+  menuCheckButton.classList.remove('primary-button');
+
+  rootElement.innerHTML += Handlebars.templates.check_form({form: formJSON});
 
   const questions = document.querySelector('#check-form__questions-container');
   formJSON.questions.forEach((question) => {

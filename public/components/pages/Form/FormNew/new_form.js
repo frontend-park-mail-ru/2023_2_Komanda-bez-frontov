@@ -160,6 +160,7 @@ export const formUpdatePageParser = () => {
     }
 
     const question = {
+      // id: questionElement.id,
       title: questionElement.querySelector('#update-question__title').value,
       description: questionElement.querySelector('#update-question__description-textarea').value,
       type,
@@ -186,10 +187,11 @@ export const formUpdatePageParser = () => {
 
     if (question.type === 3) {
       question.answers.push({
+        // id: questionElement.querySelector('#update-question__answers-item-input').id,
         text: '',
       });
     } else {
-      const cAnswers = questionElement.querySelectorAll('#update-question__answers-item-input');
+      const cAnswers = questionElement.querySelectorAll('.update-question__answers-item-input');
       const uniqueAnswers = new Set();
       cAnswers.forEach((answer) => {
         if (!answer.value) {
@@ -200,6 +202,7 @@ export const formUpdatePageParser = () => {
           flag = true;
         }
         question.answers.push({
+          // id: answer.id,
           text: answer.value,
         });
         uniqueAnswers.add(answer.value);

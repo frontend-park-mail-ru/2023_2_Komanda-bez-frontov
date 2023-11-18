@@ -39,6 +39,8 @@
 .index_content-container_description a span {
   height: 30px;
   color: #6e51a4;
+}
+.index_content-container_description a span:hover {
   cursor: pointer;
 }
 

@@ -1,3 +1,5 @@
+export const removedAnswersID = [];
+
 /**
  * Функция для рендеринга одного вопроса (вариант для формы обновления и создания).
  *
@@ -16,14 +18,7 @@ export const createQuestionUpdate = (question) => {
   const buttonContainer = questionElement.querySelector('.update-question__button-container');
 
   let type = question.type;
-  const answers = [];
-  // eslint-disable-next-line no-restricted-syntax
-  for (const index in question.answers) {
-    answers.push({
-      id: index,
-      text: question.answers[index].text,
-    });
-  }
+  const answers = question.answers;
 
   const renderAnswers = () => {
     answerContainer.innerHTML = Handlebars.templates
@@ -33,6 +28,25 @@ export const createQuestionUpdate = (question) => {
       input.addEventListener('change', () => {
         answers[index].text = input.value;
       });
+    });
+    const cAnswers = questionElement.querySelectorAll('.update-question__answers-item');
+    cAnswers.forEach((answerElement, index) => {
+      const deleteButton = answerElement.querySelector('.update-question__answers-item-delete');
+      if (deleteButton) {
+        deleteButton.addEventListener('click', () => {
+          answers.splice(index, 1);
+          if (answers.length === 0) {
+            answers.push({
+              id: 0,
+              text: '',
+            })
+          }
+          if (deleteButton.id !== '0') {
+            removedAnswersID.push(deleteButton.id);
+          }
+          renderAnswers();
+        });
+      }
     });
   };
 
@@ -80,7 +94,7 @@ export const createQuestionUpdate = (question) => {
       return;
     }
     answers.push({
-      id: answers.length,
+      id: 0,
       text: '',
     });
     renderAnswers();
@@ -90,7 +104,7 @@ export const createQuestionUpdate = (question) => {
   clearButton.addEventListener('click', () => {
     answers.length = 0;
     answers.push({
-      id: answers.length,
+      id: 0,
       text: '',
     });
     renderAnswers();

@@ -1,0 +1,24 @@
+.form-author-menu {
+  position: fixed;
+  z-index: 5;
+  left: 0;
+  top: 100px;
+  width: 250px;
+  height: 100%;
+  padding: 50px 30px;
+  background-color: rgba(75, 53, 122, 0.3);
+  text-align: center;
+
+  .primary-button {
+    margin: 8px 0;
+    font-size: 18px;
+    &:hover {
+      opacity: 1;
+      background-color: #DDDDDD;
+    }
+  }
+  .secondary-button {
+    margin: 6px 0;
+    font-size: 18px;
+  }
+}

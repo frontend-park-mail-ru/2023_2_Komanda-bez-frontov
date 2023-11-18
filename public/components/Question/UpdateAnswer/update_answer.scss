@@ -61,4 +61,10 @@
     padding-left: 10px;
     *overflow: hidden;
   }
+
+  .update-question__answers-item-delete {
+    &:hover {
+      cursor: pointer;
+    }
+  }
 }

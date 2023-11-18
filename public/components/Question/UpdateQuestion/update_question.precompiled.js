@@ -8,7 +8,9 @@ templates['update_question'] = template({"1":function(container,depth0,helpers,p
         return undefined
     };
 
-  return "    <div class=\"update-question\">\n        <div class=\"update-question__title-container\">\n            <h3 class=\"update-question__description-title\">Текст вопроса</h3>\n            <a class=\"update-question__question-delete\" id=\"delete-question\">❌</a>\n        </div>\n        <input class=\"update-question__title-input\" id=\"update-question__title\" placeholder=\"Новый вопрос\" value=\""
+  return "    <div class=\"update-question\" id=\""
+    + alias2(alias1(((stack1 = (depth0 != null ? lookupProperty(depth0,"question") : depth0)) != null ? lookupProperty(stack1,"id") : stack1), depth0))
+    + "\">\n        <div class=\"update-question__title-container\">\n            <h3 class=\"update-question__description-title\">Текст вопроса</h3>\n            <a class=\"update-question__question-delete\" id=\"delete-question\">❌</a>\n        </div>\n        <input class=\"update-question__title-input\" id=\"update-question__title\" placeholder=\"Новый вопрос\" value=\""
     + alias2(alias1(((stack1 = (depth0 != null ? lookupProperty(depth0,"question") : depth0)) != null ? lookupProperty(stack1,"title") : stack1), depth0))
     + "\" maxlength=\"64\">\n        <textarea class=\"update-question__description-textarea\" id=\"update-question__description-textarea\" placeholder=\"Описание вопроса\" maxlength=\"512\">"
     + alias2(alias1(((stack1 = (depth0 != null ? lookupProperty(depth0,"question") : depth0)) != null ? lookupProperty(stack1,"description") : stack1), depth0))

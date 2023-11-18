@@ -61,10 +61,9 @@ export const renderUpdateProfile = async () => {
       };
       reader.readAsDataURL(avatarFile);
     }
-    const changeAvatarRender = setTimeout(() => {
+    setTimeout(() => {
       profilePicture.src = `data:image/png;base64, ${avatar}`;
     }, 500);
-    changeAvatarRender();
   });
 
   const cancelAvatar = document.querySelector('#update-profile-avatar-cancel');

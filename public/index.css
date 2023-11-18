@@ -106,6 +106,30 @@ button {
   height: 15px;
 }
 
+.form-author-menu {
+  position: fixed;
+  z-index: 5;
+  left: 0;
+  top: 100px;
+  width: 250px;
+  height: 100%;
+  padding: 50px 30px;
+  background-color: rgba(75, 53, 122, 0.3);
+  text-align: center;
+}
+.form-author-menu .primary-button {
+  margin: 8px 0;
+  font-size: 18px;
+}
+.form-author-menu .primary-button:hover {
+  opacity: 1;
+  background-color: #DDDDDD;
+}
+.form-author-menu .secondary-button {
+  margin: 6px 0;
+  font-size: 18px;
+}
+
 .popup_fade {
   position: fixed;
   z-index: 110;
@@ -638,6 +662,9 @@ button {
   padding-left: 10px;
   *overflow: hidden;
 }
+.update-question__answers-item .update-question__answers-item-delete:hover {
+  cursor: pointer;
+}
 
 .check-form {
   position: relative;
@@ -780,6 +807,8 @@ button {
 .index_content-container_description a span {
   height: 30px;
   color: #6e51a4;
+}
+.index_content-container_description a span:hover {
   cursor: pointer;
 }
 
