@@ -15,7 +15,7 @@ export const createQuestionUpdate = (question) => {
   const checkboxButton = questionElement.querySelector('#update-question__answer-format-checkbox');
   const textButton = questionElement.querySelector('#update-question__answer-format-text');
   const answerContainer = questionElement.querySelector('#question-answers');
-  const buttonContainer = questionElement.querySelector('.update-question__button-container');
+  const buttonAddAnswer = questionElement.querySelector('#add-answer-button');
 
   let type = question.type;
   const answers = question.answers;
@@ -62,7 +62,7 @@ export const createQuestionUpdate = (question) => {
     default:
       textButton.checked = true;
       renderAnswers();
-      buttonContainer.style.display = 'none';
+      buttonAddAnswer.style.display = 'none';
       break;
   }
 
@@ -70,21 +70,21 @@ export const createQuestionUpdate = (question) => {
     checkboxButton.checked = false;
     textButton.checked = false;
     type = 1;
-    buttonContainer.style.display = 'flex';
+    buttonAddAnswer.style.display = 'flex';
     renderAnswers();
   });
   checkboxButton.addEventListener('click', () => {
     radioButton.checked = false;
     textButton.checked = false;
     type = 2;
-    buttonContainer.style.display = 'flex';
+    buttonAddAnswer.style.display = 'flex';
     renderAnswers();
   });
   textButton.addEventListener('click', () => {
     checkboxButton.checked = false;
     radioButton.checked = false;
     type = 3;
-    buttonContainer.style.display = 'none';
+    buttonAddAnswer.style.display = 'none';
     renderAnswers();
   });
 
@@ -100,15 +100,15 @@ export const createQuestionUpdate = (question) => {
     renderAnswers();
   });
 
-  const clearButton = questionElement.querySelector('#clear-answers-button');
-  clearButton.addEventListener('click', () => {
-    answers.length = 0;
-    answers.push({
-      id: 0,
-      text: '',
-    });
-    renderAnswers();
-  });
+  // const clearButton = questionElement.querySelector('#clear-answers-button');
+  // clearButton.addEventListener('click', () => {
+  //   answers.length = 0;
+  //   answers.push({
+  //     id: 0,
+  //     text: '',
+  //   });
+  //   renderAnswers();
+  // });
 
   return questionElement;
 };

@@ -1,6 +1,7 @@
-import {ROUTES} from '../../config.js';
+import {frontendUrl, ROUTES} from '../../config.js';
 import {goToPage} from '../../modules/router.js';
 import {STORAGE} from '../../modules/storage.js';
+import {renderPopUpWindow} from '../PopUpWindow/popup_window.js';
 
 /**
  * Функция для рендеринга меню с инструментами автора опроса.
@@ -32,6 +33,21 @@ export const renderAuthorMenu = (id) => {
     // resultsButton.addEventListener('click', () => {
     //   goToPage(ROUTES.formResults, id);
     // });
+
+    const createLinkButton = document.querySelector('#author-menu-link-button');
+    createLinkButton.addEventListener('click', (e) => {
+      const link = `${frontendUrl}/forms/${id}`;
+      e.stopImmediatePropagation();
+      renderPopUpWindow('Ссылка на ваш опрос', link, false, () => {
+        const copyButton = document.querySelector('#popup-ok-button');
+        copyButton.innerHTML = 'Скопировано!';
+        copyButton.classList.add('primary-button');
+        copyButton.classList.remove('secondary-button');
+        navigator.clipboard.writeText(link);
+      });
+      document.querySelector('#popup-ok-button').innerHTML = 'Скопировать';
+    });
+
   }, 10);
 
 };

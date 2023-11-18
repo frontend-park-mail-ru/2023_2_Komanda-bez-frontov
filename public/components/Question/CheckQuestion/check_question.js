@@ -18,6 +18,10 @@ Handlebars.registerHelper('ifEquals', (a, b, options) => {
  */
 export const createQuestion = (question) => {
   const questionElement = document.createElement('div');
+
+  // TODO удалить потом, для теста
+  question.required = true;
+
   questionElement.innerHTML = Handlebars.templates.check_question({question});
 
   const cRadioButtons = questionElement.querySelectorAll('.check-question__answer-item-radio');
@@ -30,6 +34,29 @@ export const createQuestion = (question) => {
       // eslint-disable-next-line no-param-reassign
       radioButton.checked = true;
     });
+  });
+
+  const cCheckboxButton = questionElement.querySelectorAll('.check-question__answer-item-checkbox');
+  const textArea = questionElement.querySelector('.check-question__answers-item-textarea');
+
+  const clearButton = questionElement.querySelector('#check-question__clear-button');
+  clearButton.addEventListener('click', () => {
+    switch (question.type) {
+      case 1:
+        cRadioButtons.forEach( (rb) => {
+          rb.checked = false;
+        });
+        break;
+      case 2:
+        cCheckboxButton.forEach( (cb) => {
+          cb.checked = false;
+        });
+        break;
+      case 3:
+        textArea.value = '';
+        break;
+      default:
+    }
   });
 
   return questionElement;

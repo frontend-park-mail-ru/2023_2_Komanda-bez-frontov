@@ -56,6 +56,30 @@
   padding-left: 10px;
 }
 
+.update-form_anonymous {
+  margin-top: 18px;
+  padding: 18px;
+  border-radius: 12px;
+  border: 2px solid #424242;
+  text-align: left;
+}
+.update-form_anonymous .update-form_anonymous__checkbox {
+  margin-left: 5px;
+  width: 18px;
+  height: 18px;
+}
+.update-form_anonymous .update-form_anonymous__checkbox-label {
+  margin-left: 10px;
+  font-size: 24px;
+}
+.update-form_anonymous .update-form_anonymous__checkbox-label:hover {
+  cursor: pointer;
+}
+.update-form_anonymous p {
+  margin-top: 10px;
+  font-size: 20px;
+}
+
 .update-form__input-error {
   background-color: #fdc6c6 !important;
 }

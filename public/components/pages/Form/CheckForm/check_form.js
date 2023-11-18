@@ -50,13 +50,27 @@ export const renderForm = async (id) => {
   const rootElement = document.querySelector('#root');
   rootElement.innerHTML = '';
 
-  renderAuthorMenu(id);
-  const menuCheckButton = document.querySelector('#author-menu-check-button');
-  menuCheckButton.disabled = true;
-  menuCheckButton.classList.add('secondary-button');
-  menuCheckButton.classList.remove('primary-button');
+  if (STORAGE.user && STORAGE.user.id === formJSON.author.id) {
+    renderAuthorMenu(id);
+    const menuCheckButton = document.querySelector('#author-menu-check-button');
+    menuCheckButton.disabled = true;
+    menuCheckButton.classList.add('secondary-button');
+    menuCheckButton.classList.remove('primary-button');
+  }
+
+  // TODO удалить. потом будет получаться из апи, пока тест
+  formJSON.anonymous = true;
 
   rootElement.innerHTML += Handlebars.templates.check_form({form: formJSON});
+
+  // Чтоб красиво выглядело, но не получилось
+  // if (STORAGE.user && STORAGE.user.id === formJSON.author.id) {
+  //   document.querySelector('.check-form').style.left = '155px';
+  // }
+
+  if (STORAGE.user && !formJSON.anonymous) {
+    document.querySelector('.check-form__anonymous').style.display = 'none';
+  }
 
   const questions = document.querySelector('#check-form__questions-container');
   formJSON.questions.forEach((question) => {
