@@ -36,6 +36,7 @@ export const renderPopUpWindow = (titleText, messageText, error = false, action 
 
   const closePopUpWindowByBody = (e) => {
     if (!e.target.classList.contains('popup_window')
+        && !e.target.parentNode.classList.contains('popup_window')
         && !e.target.parentNode.classList.contains('button-container')) {
       document.body.removeEventListener('click', closePopUpWindowByBody);
       // eslint-disable-next-line no-use-before-define
