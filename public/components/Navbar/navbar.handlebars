@@ -1,0 +1,16 @@
+<nav class="navbar">
+    <div class="logo">
+        <a  id="navbar-logo-label">FormHub</a>
+    </div>
+    <div class="profile" id="navbar-profile">
+    {{#if user}}
+        <img class="profile_pic" src="../../resources/images/profile_default.png" alt="">
+        <a class="profile_name">{{user.first_name}}</a>
+    {{else}}
+        <div class="button-container-navbar">
+            <button class="black-button" id="navbar-login-button">Войти</button>
+            <button class="primary-button" id="navbar-signup-button">Регистрация</button>
+        </div>
+    {{/if}}
+    </div>
+</nav>
