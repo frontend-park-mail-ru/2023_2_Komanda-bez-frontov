@@ -1,0 +1,47 @@
+.auth-container {
+  margin: 40px 0;
+}
+
+.auth-container__form {
+  border-radius: 12px;
+  border: 3px solid #424242;
+  text-align: center;
+  width: 400px;
+  margin: 0 auto;
+
+  h3 {
+    font-size: 30px;
+    margin-bottom: 5px;
+  }
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  margin: 25px 30px;
+
+  .button-container {
+    margin-top: 25px;
+  }
+}
+
+.login-form_container__input {
+  height: 48px;
+  margin: 0 0 12px 0;
+  border-radius: 12px;
+  border: 2px solid #424242;
+  padding: 7px 15px;
+  box-sizing: border-box;
+  font-size: 25px;
+}
+
+.login-form_container__input-password-container {
+  display: flex;
+  margin-left: 3px;
+}
+
+.login-form_container__input-show-button {
+  color: #000000;
+  margin-left: -40px;
+  margin-top: 13px;
+}

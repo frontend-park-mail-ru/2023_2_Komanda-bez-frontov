@@ -1,9 +1,13 @@
 import {renderMainLogout} from './components/Logout/logout.js';
 import {renderLogin} from './components/pages/Login/login.js';
 import {renderForms} from './components/pages/Forms/forms.js';
-import {renderForm} from './components/pages/Form/form.js';
+import {renderForm} from './components/pages/Form/CheckForm/check_form.js';
 import {renderMain} from './components/pages/Main/main.js';
 import {renderSignup} from './components/pages/Signup/signup.js';
+import {renderProfile} from './components/pages/Profile/profile.js';
+import {renderFormUpdate} from './components/pages/Form/UpdateForm/update_form.js';
+import {renderFormNew} from './components/pages/Form/FormNew/new_form.js';
+import {renderUpdateProfile} from './components/pages/UpdateProfile/update_profile.js';
 
 export const ROUTES = {
   main: {
@@ -12,14 +16,34 @@ export const ROUTES = {
     open: renderMain,
   },
   forms: {
-    url: '/forms/',
+    url: '/forms',
     state: 'forms',
     open: renderForms,
   },
   form: {
-    url: '/forms/',
+    url: '/forms/:id',
     state: 'form',
     open: renderForm,
+  },
+  formNew: {
+    url: '/forms/new',
+    state: 'formNew',
+    open: renderFormNew,
+  },
+  formUpdate: {
+    url: '/forms/:id/edit',
+    state: 'formUpdate',
+    open: renderFormUpdate,
+  },
+  profile: {
+    url: '/profile',
+    state: 'profile',
+    open: renderProfile,
+  },
+  updateProfile: {
+    url: '/profile/update',
+    state: 'updateProfile',
+    open: renderUpdateProfile,
   },
   signup: {
     url: '/signup',
@@ -38,35 +62,57 @@ export const ROUTES = {
   },
 };
 
-export const backendUrl = "http://localhost:8080/api/v1"
+export const backendUrl = 'http://localhost:8080/api/v1';
+export const frontendUrl = 'http://212.233.94.20:8000';
 
 const GET_METHOD = 'GET';
 const POST_METHOD = 'POST';
+const DELETE_METHOD = 'DELETE';
+const PUT_METHOD = 'PUT';
 
 export const ROUTES_API = {
   login: {
-    url: "/login",
-    method: POST_METHOD
+    url: '/login',
+    method: POST_METHOD,
   },
   signup: {
-    url: "/signup",
-    method: POST_METHOD
+    url: '/signup',
+    method: POST_METHOD,
   },
   isAuth: {
     url: '/is_authorized',
-    method: GET_METHOD
+    method: GET_METHOD,
   },
   logout: {
     url: '/logout',
-    method: POST_METHOD
+    method: POST_METHOD,
+  },
+  updateProfile: {
+    url: '/profile/update',
+    method: POST_METHOD,
+  },
+  avatar: {
+    url: '/user/:username/avatar',
+    method: GET_METHOD,
   },
   forms: {
     url: '/forms',
-    method: GET_METHOD
+    method: GET_METHOD,
   },
   form: {
     url: '/forms/:id',
-    method: GET_METHOD
+    method: GET_METHOD,
   },
-}
-
+  saveForm: {
+    url: '/forms/save',
+    method: POST_METHOD,
+  },
+  deleteForm: {
+    url: '/forms/:id/delete',
+    method: DELETE_METHOD,
+  },
+  updateForm: {
+    url: '/forms/:id/update',
+    method: PUT_METHOD,
+  },
+};

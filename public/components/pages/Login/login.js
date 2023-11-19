@@ -1,9 +1,10 @@
 import {ROUTES} from '../../../config.js';
 import {API} from '../../../modules/api.js';
 import {renderMessage, removeMessage} from '../../Message/message.js';
-import {navbar} from '../../Navbar/navbar.js';
 import {emailValidation, passwordValidation} from '../../../modules/validation.js';
-import {goToPage} from "../../../modules/router.js";
+import {goToPage} from '../../../modules/router.js';
+import {STORAGE, getAuthAvatar} from '../../../modules/storage.js';
+import {toggleFunc} from "../Signup/signup.js";
 
 /**
  * Функция для рендеринга страницы аутенфикации.
@@ -21,6 +22,14 @@ export const renderLogin = async () => {
 
   const loginButton = document.querySelector('#login-button');
   const signupButton = document.querySelector('#signup-button');
+  const showPasswordButton = document.querySelector('#login-form_container__input-show-button');
+  showPasswordButton.addEventListener('click',  () => {
+    const password = document.querySelector('#password');
+    const icon = document.querySelector('#login-form_container__input-show-button-icon');
+
+    toggleFunc(password, icon);
+
+  });
 
   loginButton.addEventListener('click', async (e) => {
     e.preventDefault();
@@ -41,24 +50,26 @@ export const renderLogin = async () => {
       return;
     }
 
-    const api = new API();
-    const res = await api.userLogin(email.value, password.value);
-    if (res.message !== 'ok') {
-      renderMessage(res.message, true);
-      return;
-    }
-
-    const user = {
-      user: {
-        id: res.authorizedUser.id,
-        first_name: res.authorizedUser.first_name,
-        username: res.authorizedUser.username,
-        email: res.authorizedUser.email,
+    try {
+      const api = new API();
+      const res = await api.userLogin(email.value, password.value);
+      if (res.message !== 'ok') {
+        renderMessage(res.message, true);
+        return;
       }
-    };
-    goToPage(ROUTES.main);
-    navbar(user);
-    renderMessage('Вы успешно вошли');
+
+      STORAGE.user = res.authorizedUser;
+      await getAuthAvatar();
+
+      goToPage(ROUTES.main);
+      renderMessage('Вы успешно вошли');
+    } catch (err) {
+      if (err.toString() !== 'TypeError: Failed to fetch') {
+        renderMessage('Ошибка сервера. Попробуйте позже', true);
+        return;
+      }
+      renderMessage('Потеряно соединение с сервером', true);
+    }
   });
 
   signupButton.addEventListener('click', () => {

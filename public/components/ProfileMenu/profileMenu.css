@@ -1,20 +1,20 @@
-.profile-menu {
-    position: fixed;
-    z-index: 20;
-    right: 20px;
-    top: 105px;
-    width: 250px;
-    padding: 10px;
-    border-radius: 12px;
-    border: 2px solid #424242;
-    background-color: #FFFFFF;
-    text-align: center;
+.navbar-profile-menu {
+  position: fixed;
+  z-index: 20;
+  right: 20px;
+  top: 105px;
+  width: 250px;
+  padding: 10px;
+  border-radius: 12px;
+  border: 2px solid #424242;
+  background-color: #FFFFFF;
+  text-align: center;
+}
+.navbar-profile-menu .primary-button {
+  margin: 3px 0;
+}
+.navbar-profile-menu .navbar-profile-menu-separator {
+  height: 15px;
 }
 
-.profile-menu .primary-button {
-    margin: 3px 0;
-}
-
-.separator {
-    height: 15px;
-}
+/*# sourceMappingURL=profileMenu.css.map */

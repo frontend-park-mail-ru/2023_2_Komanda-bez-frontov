@@ -1,22 +1,22 @@
+.error-container, .success-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 12px;
+  border-radius: 12px;
+  font-size: 30px;
+}
+
 .success-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 60px;
-    border-radius: 12px;
-    background-color: #EFE;
-    border: 1px solid #DED;
-    font-size: 30px;
+  background-color: #e9ffe9;
+  border: 1px solid #d4f1d4;
 }
 
 .error-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 60px;
-    border-radius: 12px;
-    background-color: #FEE;
-    border: 1px solid #eaa7a7;
-    color: #ea6767;
-    font-size: 30px;
+  background-color: #fde9e9;
+  border: 1px solid #eaa7a7;
+  color: #ea6767;
 }
+
+/*# sourceMappingURL=message.css.map */

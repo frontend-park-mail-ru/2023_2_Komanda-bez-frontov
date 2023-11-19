@@ -1,0 +1,109 @@
+.profile-title {
+  margin: 25px 50px;
+  text-align: center;
+  font-size: 30px;
+}
+
+.update-profile {
+  background-color: rgba(75, 53, 122, 0.6);
+  margin: 0 auto;
+  width: 1020px;
+  border-radius: 12px;
+}
+
+.update-profile_main-container {
+  display: flex;
+  padding: 35px 0 35px 45px;
+}
+.update-profile_main-container .update-profile_main-container__picture {
+  height: 250px;
+  width: 250px;
+  min-width: 180px;
+  object-fit: contain;
+  border-radius: 12px;
+  margin-bottom: 12px;
+}
+
+.update-profile_main-container_img-container {
+  justify-content: left;
+}
+
+.update-profile_main-container_name-container {
+  display: flex;
+  flex-flow: column;
+  color: #FFFFFF;
+  margin: 15px 0 0 40px;
+  line-height: 30px;
+  justify-content: right;
+}
+.update-profile_main-container_name-container label {
+  display: inline-flex;
+  width: 230px;
+  font-size: 25px;
+}
+.update-profile_main-container_name-container .update-form__title-input {
+  width: 363px;
+  margin-left: 10px;
+  margin-bottom: 10px;
+  padding: 8px 10px;
+  font-size: 25px;
+  background-color: #ffffff;
+  border: 2px solid #424242;
+  border-radius: 12px;
+}
+
+.update-profile_button-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  justify-content: left;
+  padding: 0 0 40px 45px;
+}
+.update-profile_button-container button {
+  width: max-content;
+  min-width: 190px;
+  font-size: 20px;
+  font-weight: bold;
+}
+.update-profile_button-container .primary-button:hover {
+  opacity: 1;
+  color: #696969;
+  border-color: #696969;
+}
+.update-profile_button-container .secondary-button:hover {
+  opacity: 1;
+  background-color: #6e51a4;
+  border-color: #696969;
+}
+
+.update-profile_img-container_avatar-container {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  gap: 10px;
+  margin: 10px 10px 30px 15px;
+}
+.update-profile_img-container_avatar-container a {
+  font-size: 25px;
+  margin-right: 40px;
+}
+.update-profile_img-container_avatar-container label {
+  border-radius: 12px;
+  width: 170px;
+  background-color: #FFFFFF;
+  border: 2px solid #424242;
+  display: inline-block;
+  padding: 6px 12px 8px 12px;
+  font-size: 22px;
+  cursor: pointer;
+}
+.update-profile_img-container_avatar-container label .update-profile_img-container_avatar-container__input {
+  display: none;
+}
+.update-profile_img-container_avatar-container #update-profile-avatar-cancel {
+  font-size: 18px;
+  margin: 0;
+  cursor: pointer;
+}
+
+/*# sourceMappingURL=update_profile.css.map */

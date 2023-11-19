@@ -1,0 +1,14 @@
+{{#if form}}
+    <div class="check-form">
+        <h3 class="check-form__title" id="check-form-title">{{form.title}}</h3>
+        <div class="check-form__description" id="check-form-description">
+            <h3 class="check-form__description-title">Описание опроса</h3>
+            <p class="check-form__description-text" id="check-form__description-text">Описание</p>
+        </div>
+        <div class="check-form__questions-container" id="check-form__questions-container"></div>
+        <div class="button-container">
+            <button class="secondary-button" type="submit" id="update-submit-button">Редактировать</button>
+            <button class="primary-button" type="submit" id="create-link-button">Создать публичную ссылку</button>
+        </div>
+    </div>
+{{/if}}

@@ -1,6 +1,6 @@
 import {API} from '../../modules/api.js';
-import {navbar} from '../Navbar/navbar.js';
-import {renderMessage, removeMessage} from '../Message/message.js';
+import {renderMessage} from '../Message/message.js';
+import {getAuthAvatar, STORAGE} from '../../modules/storage.js';
 
 /**
  * Функция для рендеринга страницы при первой загрузке.
@@ -10,25 +10,19 @@ import {renderMessage, removeMessage} from '../Message/message.js';
  * @return {void}
  */
 export const renderInitial = async () => {
-  removeMessage();
   const rootElement = document.querySelector('#root');
+  rootElement.innerHTML = '';
 
-  const api = new API();
-  const isAuth = await api.isAuth();
-  if (!isAuth.isAuthorized) {
-    navbar();
-    renderMessage('Вы не авторизованы!', true);
-    return;
-  }
-
-  const user = {
-    user: {
-      id: isAuth.authorizedUser.id,
-      first_name: isAuth.authorizedUser.first_name,
-      username: isAuth.authorizedUser.username,
-      email: isAuth.authorizedUser.email,
+  try {
+    const api = new API();
+    const isAuth = await api.isAuth();
+    if (isAuth.isAuthorized) {
+      STORAGE.user = isAuth.authorizedUser;
+      await getAuthAvatar();
+    }
+  } catch (e) {
+    if (e.toString() === 'TypeError: Failed to fetch') {
+      renderMessage('Потеряно соединение с сервером', true);
     }
   }
-  navbar(user);
-  rootElement.innerHTML = '';
 };
