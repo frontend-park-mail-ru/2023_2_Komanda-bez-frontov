@@ -1,9 +1,15 @@
 import {ROUTES} from '../../../config.js';
 import {API} from '../../../modules/api.js';
 import {renderMessage, removeMessage} from '../../Message/message.js';
-import {navbar} from '../../Navbar/navbar.js';
-import {emailValidation, passwordValidation, usernameValidation} from '../../../modules/validation.js';
-import {goToPage} from "../../../modules/router.js";
+import {
+  nameValidation,
+  // avatarValidation,
+  emailValidation,
+  passwordValidation,
+  usernameValidation,
+} from '../../../modules/validation.js';
+import {goToPage} from '../../../modules/router.js';
+import {STORAGE} from '../../../modules/storage.js';
 
 /**
  * Функция для рендеринга страницы регистрации.
@@ -12,31 +18,68 @@ import {goToPage} from "../../../modules/router.js";
  * @function
  * @return {void}
  */
+
+export const toggleFunc = (password, icon) => {
+
+  if (password.type === 'password') {
+    password.type = 'text';
+    icon.innerText = 'visibility_off';
+  } else {
+    password.type = 'password';
+    icon.innerText = 'visibility';
+
+  }
+};
+
 export const renderSignup = async () => {
   removeMessage();
   const rootElement = document.querySelector('#root');
   rootElement.innerHTML = '';
   rootElement.innerHTML = Handlebars.templates.signup();
 
+  // let avatar = '';
+
+  const showPasswordButton = document.querySelector('#login-form_container__input-show-button');
+  showPasswordButton.addEventListener('click',  () => {
+    const password = document.querySelector('#password');
+    const icon = document.querySelector('#login-form_container__input-show-button-icon');
+
+    toggleFunc(password, icon);
+  });
+
+  const showRepPasswordButton = document.querySelector('#login-form_container__input-show-rep-button');
+  showRepPasswordButton.addEventListener('click',  () => {
+    const password = document.querySelector('#repeat_password');
+    const icon = document.querySelector('#login-form_container__input-show-rep-button-icon');
+
+    toggleFunc(password, icon);
+  });
+
   const signupButton = document.querySelector('#signup-button');
   signupButton.addEventListener('click', async (e) => {
     e.preventDefault();
 
-    const first_name = document.querySelector('#name');
+    const firstName = document.querySelector('#name');
     const email = document.querySelector('#email');
     const username = document.querySelector('#username');
     const password = document.querySelector('#password');
     const repeatPassword = document.querySelector('#repeat_password');
 
-    if (password.value === '' || email.value === '' || name.value === ''
+    if (password.value === '' || email.value === '' || firstName.value === ''
         || username.value === '' || repeatPassword.value === '') {
       renderMessage('Вы ввели не все данные', true);
       return;
     }
 
+    const isNameValid = nameValidation(firstName.value);
     const isEmailValid = emailValidation(email.value);
     const isUsernameValid = usernameValidation(username.value);
     const isPasswordValid = passwordValidation(password.value);
+
+    if (!isNameValid.valid) {
+      renderMessage(isNameValid.message, true);
+      return;
+    }
 
     if (!isEmailValid.valid) {
       renderMessage(isEmailValid.message, true);
@@ -58,33 +101,62 @@ export const renderSignup = async () => {
       return;
     }
 
-    const api = new API();
-    const res = await api.userSignup(
-      first_name.value,
-      username.value,
-      email.value,
-      password.value,
-    );
+    try {
+      const api = new API();
+      const res = await api.userSignup(
+        firstName.value,
+        username.value,
+        email.value,
+        password.value,
+        // avatar,
+      );
 
-    if (res.message !== 'ok') {
-      renderMessage(res.message, true);
-      return;
-    }
-
-    const user = {
-      user: {
-        id: res.registeredUser.id,
-        first_name: res.registeredUser.first_name,
-        username: res.registeredUser.username,
-        email: res.registeredUser.email,
+      if (res.message !== 'ok') {
+        renderMessage(res.message, true);
+        return;
       }
-    };
-    goToPage(ROUTES.main);
-    navbar(user);
-    renderMessage('Вы успешно зарегистрировались');
+
+      STORAGE.user = res.registeredUser;
+      // STORAGE.avatar = avatar;
+
+      goToPage(ROUTES.main);
+      renderMessage('Вы успешно зарегистрировались');
+    } catch (err) {
+      if (err.toString() !== 'TypeError: Failed to fetch') {
+        renderMessage('Ошибка сервера. Попробуйте позже', true);
+        return;
+      }
+      renderMessage('Потеряно соединение с сервером', true);
+    }
   });
-  const loginButton = document.querySelector('#login-button');
-  loginButton.addEventListener('click', () => {
-    goToPage(ROUTES.login);
-  });
+
+  // const inputAvatar = document.querySelector('#avatar');
+  // inputAvatar.addEventListener('change', (e) => {
+  //   const labelAvatar = document.querySelector('#signup-avatar-button');
+  //   labelAvatar.style.backgroundColor = '#caecaf';
+  //   const avatarFile = e.target.files[0];
+  //   const isAvatarValid = avatarValidation(avatarFile);
+  //
+  //   if (!isAvatarValid.valid) {
+  //     renderMessage(isAvatarValid.message, true);
+  //     return;
+  //   }
+  //   // Перевод аватарка из файла в Base64
+  //   if (avatarFile) {
+  //     const reader = new FileReader();
+  //     reader.onloadend = () => {
+  //       avatar = reader.result
+  //         .replace('data:', '')
+  //         .replace(/^.+,/, '');
+  //     };
+  //     reader.readAsDataURL(avatarFile);
+  //   }
+  // });
+  //
+  // const cancelAvatar = document.querySelector('#signup-avatar-cancel');
+  // cancelAvatar.addEventListener('click', () => {
+  //   const labelAvatar = document.querySelector('#signup-avatar-button');
+  //   labelAvatar.style.backgroundColor = '#ffffff';
+  //   avatar = '';
+  // });
 };

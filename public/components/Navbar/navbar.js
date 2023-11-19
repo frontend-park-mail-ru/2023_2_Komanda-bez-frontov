@@ -1,7 +1,8 @@
 import {ROUTES} from '../../config.js';
 import {renderProfileMenu} from '../ProfileMenu/profileMenu.js';
 import {removeMessage} from '../Message/message.js';
-import {goToPage} from "../../modules/router.js";
+import {goToPage} from '../../modules/router.js';
+import {STORAGE} from '../../modules/storage.js';
 
 /**
  * Функция для рендеринга навбара страницы.
@@ -10,18 +11,24 @@ import {goToPage} from "../../modules/router.js";
  *
  * @async
  * @function
- * @param user - Объект, в котором передаётся информация о пользователе.
  * @return {void}
  */
-export const navbar = (user = null) => {
+export const navbar = () => {
   const navbarElement = document.querySelector('#navbar');
   navbarElement.innerHTML = '';
+
+  const user = STORAGE.user;
   if (user) {
-    navbarElement.innerHTML = Handlebars.templates.navbar(user);
+    navbarElement.innerHTML = Handlebars.templates.navbar({ user: STORAGE.user });
+
+    const profilePicture = document.querySelector('#navbar-profile-picture');
+    if (STORAGE.avatar) {
+      profilePicture.src = `data:image/png;base64, ${STORAGE.avatar}`;
+    }
     const profileButton = document.querySelector('#navbar-profile');
     profileButton.addEventListener('click', (e) => {
       e.stopImmediatePropagation();
-      renderProfileMenu(user);
+      renderProfileMenu();
     });
   } else {
     navbarElement.innerHTML = Handlebars.templates.navbar();

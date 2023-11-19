@@ -21,12 +21,11 @@ module.exports = {
     ecmaVersion: 'latest',
     sourceType: 'module',
   },
-  ignorePatterns: ['*precompiled.js'],
   rules: {
     'import/no-cycle': 'off',
     'import/extensions': 'off',
     'import/prefer-default-export': 'off',
-    'no-console': 'off',
+    'no-console': 'warn',
     'class-methods-use-this': 'off',
     'prefer-destructuring': 'off',
     'object-curly-spacing': 'off',

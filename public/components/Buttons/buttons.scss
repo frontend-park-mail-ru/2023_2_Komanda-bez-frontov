@@ -1,0 +1,46 @@
+.button-container {
+  display: flex;
+  gap: 6px;
+}
+
+button {
+  font-size: 15px;
+}
+
+%button-common {
+  padding: 13px 15px;
+  border-radius: 12px;
+  border: 2px solid #424242;
+  width: 100%;
+  font-weight: bold;
+
+  &:hover {
+    opacity: 0.6;
+    cursor: pointer;
+  }
+}
+
+.secondary-button {
+  @extend %button-common;
+  background-color: #4B357A;
+  color: white;
+}
+
+.primary-button {
+  @extend %button-common;
+  color: black;
+}
+
+.black-button {
+  @extend %button-common;
+  background-color: #000000;
+  color: white;
+  border-radius: 12px;
+}
+
+.red-button {
+  @extend %button-common;
+  background-color: #da2d28;
+  color: white;
+  border-radius: 12px;
+}
