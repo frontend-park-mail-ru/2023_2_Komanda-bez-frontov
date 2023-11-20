@@ -46,6 +46,33 @@
   }
 }
 
+.forms_search-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 25px;
+
+  .forms_search-container__input {
+    border-radius: 12px 0 0 12px;
+    height: 40px;
+    width: 700px;
+    font-size: 24px;
+    padding: 3px 20px;
+  }
+
+  .forms_search-container__button {
+    border-radius: 0 12px 12px 0;
+    margin-left: -3px;
+    height: 48.5px;
+    width: 100px;
+    font-size: 20px;
+    &:hover {
+      opacity: 0.6;
+      cursor: pointer;
+    }
+  }
+}
+
 .forms_list_main-container {
   display: flex;
   flex-flow: column;

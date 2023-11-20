@@ -35,7 +35,7 @@ export default {
             path.resolve(__dirname, './public/components/Navbar'),
             path.resolve(__dirname, './public/components/ProfileMenu'),
             path.resolve(__dirname, './public/components/pages/CheckForm'),
-            path.resolve(__dirname, './public/components/pages/Forms'),
+            path.resolve(__dirname, './public/components/pages/MyForms'),
             path.resolve(__dirname, './public/components/pages/Index'),
             path.resolve(__dirname, './public/components/pages/Login'),
             path.resolve(__dirname, './public/components/pages/Profile'),

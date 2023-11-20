@@ -75,4 +75,14 @@ export const renderForms = async () => {
   newFormButton.addEventListener('click', () => {
     goToPage(ROUTES.formNew);
   });
+
+  // Тестирование моментальных запросов
+  const searchInput = document.querySelector('.forms_search-container__input');
+  const searchRequest = () => {
+    setTimeout(() => {
+      console.log(searchInput.value);
+      searchInput.addEventListener('input', searchRequest, {once: true});
+    }, 1500);
+  };
+  searchInput.addEventListener('input', searchRequest, {once: true});
 };
