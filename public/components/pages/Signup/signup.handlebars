@@ -6,8 +6,18 @@
                 <input class="login-form_container__input" placeholder="Имя" id="name" name="name" required><br>
                 <input class="login-form_container__input" type="email" placeholder="Почта" id="email" name="email" required><br>
                 <input class="login-form_container__input" placeholder="Имя пользователя" id="username" name="username" required><br>
-                <input class="login-form_container__input" type="password" placeholder="Пароль" id="password" name="password" required>
-                <input class="login-form_container__input" type="password" placeholder="Повторите пароль" id="repeat_password" name="repeat_password" required>
+                <div class="login-form_container__input-password-container">
+                    <input class="login-form_container__input" type="password" placeholder="Пароль" id="password" name="password" required>
+                    <i id="login-form_container__input-show-button" class="login-form_container__input-show-button" >
+                        <span id="login-form_container__input-show-button-icon" class="material-symbols-outlined">visibility</span>
+                    </i>
+                </div>
+                <div class="login-form_container__input-password-container">
+                    <input class="login-form_container__input" type="password" placeholder="Повторите пароль" id="repeat_password" name="repeat_password" required>
+                    <i id="login-form_container__input-show-rep-button" class="login-form_container__input-show-button" >
+                        <span id="login-form_container__input-show-rep-button-icon" class="material-symbols-outlined">visibility</span>
+                    </i>
+                </div>
 <!--                <div class="signup-form_container_avatar">-->
 <!--                    <a>Аватар</a>-->
 <!--                    <label id="signup-avatar-button">-->

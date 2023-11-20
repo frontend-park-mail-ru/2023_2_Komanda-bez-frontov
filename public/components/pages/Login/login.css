@@ -33,4 +33,15 @@
   font-size: 25px;
 }
 
+.login-form_container__input-password-container {
+  display: flex;
+  margin-left: 3px;
+}
+
+.login-form_container__input-show-button {
+  color: #000000;
+  margin-left: -40px;
+  margin-top: 13px;
+}
+
 /*# sourceMappingURL=login.css.map */
