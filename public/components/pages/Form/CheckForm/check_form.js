@@ -7,6 +7,7 @@ import {goToPage} from '../../../../modules/router.js';
 import {createQuestion} from '../../../Question/CheckQuestion/check_question.js';
 import {renderPopUpWindow} from '../../../PopUpWindow/popup_window.js';
 import {renderAuthorMenu} from '../../../AuthorMenu/authorMenu.js';
+import {textValidation} from "../../../../modules/validation.js";
 
 /**
  * Функция для рендеринга страницы опроса по его id.
@@ -86,9 +87,88 @@ export const renderForm = async (id) => {
     });
   } else {
     // TODO проверка на анонимность
+    if (!STORAGE.user && !formJSON.anonymous) {
+      goToPage(ROUTES.login);
+      renderMessage("Для прохождение опроса необходимо авторизироваться", true);
+      return;
+    }
     updateSubmitButton.innerHTML = 'Отправить';
-    updateSubmitButton.addEventListener('click', () => {
-      // иначе отправим заполненную форму.
+
+    let passageJSON = {
+      "form_id": formJSON.id,
+      "passage_answers": [
+      ]
+    };
+    let passageAnswerJSON = {
+      "answer_id": -1,
+      "question_id": -1,
+      "answer_text": -1,
+    };
+
+    updateSubmitButton.addEventListener('click', async () => {
+      formJSON.questions.forEach((question) => {
+        if (question.type === 1 || question.type === 2) {
+          let isAnswered = false;
+          question.answers.forEach((answer) => {
+            const chosenAnswer = document.querySelector(`#check-question_${question.id}_answer-item_${answer.id}`);
+            if (chosenAnswer.checked) {
+              passageAnswerJSON = {
+                "answer_id": answer.id,
+                "question_id": question.id,
+                "answer_text": answer.text,
+              };
+              passageJSON.passage_answers.push(passageAnswerJSON);
+              isAnswered = true;
+            }
+          })
+
+          if (question.required && !isAnswered) {
+            renderMessage("Вы ответили не на все вопросы", true);
+          }
+        }
+
+        else if (question.type === 3) {
+          const chosenAnswer = document.querySelector(`#check-question_${question.id}_answers-item`);
+
+          if (question.required && chosenAnswer.value === "") {
+            chosenAnswer.classList.add('update-form__input-error');
+            chosenAnswer.addEventListener('click', () => {
+              chosenAnswer.classList.remove('update-form__input-error');
+            }, {once: true});
+
+            renderMessage("Вы ответили не на все вопросы", true);
+            return;
+          }
+
+          const validator = textValidation(chosenAnswer.value);
+          if (!validator.valid) {
+            chosenAnswer.classList.add('update-form__input-error');
+            chosenAnswer.addEventListener('click', () => {
+              chosenAnswer.classList.remove('update-form__input-error');
+            }, {once: true});
+
+            renderMessage(validator.message, true);
+            return;
+          }
+
+          passageAnswerJSON = {
+            "answer_id": question.answers[0].id,
+            "question_id": question.id,
+            "answer_text": chosenAnswer.value,
+          };
+          passageJSON.passage_answers.push(passageAnswerJSON);
+        }
+      });
+      const res = await api.passageForm(passageJSON);
+      if (res.message === 'ok') {
+        renderMessage("Вы успешно прошли опрос! Ваши результаты сохранены!");
+        goToPage(ROUTES.main);
+        return;
+      }
+      renderMessage(res.message, true);
+
+      goToPage(ROUTES.main);
+
     });
   }
 

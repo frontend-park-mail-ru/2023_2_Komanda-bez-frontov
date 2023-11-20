@@ -7,16 +7,16 @@ const PUT_METHOD = 'PUT';
 
 export class API {
   /**
- * Проверяет, является ли пользователь авторизованным.
- *
- * @async
- * @function
+   * Проверяет, является ли пользователь авторизованным.
+   *
+   * @async
+   * @function
    // eslint-disable-next-line max-len
- * @return {Promise<{isAuthorized: boolean,
- * authorizedUser: ({password: *, name: *, email: *, username: *} | null)}>} Объект* с информацией
- * о статусе авторизации и о пользователе.
- * @throws {Error} Если произошла ошибка при запросе или обработке данных.
- */
+   * @return {Promise<{isAuthorized: boolean,
+   * authorizedUser: ({password: *, name: *, email: *, username: *} | null)}>} Объект* с информацией
+   * о статусе авторизации и о пользователе.
+   * @throws {Error} Если произошла ошибка при запросе или обработке данных.
+   */
   async isAuth() {
     try {
       const url = backendUrl + ROUTES_API.isAuth.url;
@@ -35,7 +35,7 @@ export class API {
         authorizedUser = body.current_user;
       }
 
-      return { isAuthorized, authorizedUser };
+      return {isAuthorized, authorizedUser};
     } catch (e) {
       // TODO убрать к РК4
       console.log('Ошибка метода isAuth:', e);
@@ -65,7 +65,7 @@ export class API {
           'Content-Type': 'application/json',
         },
         credentials: 'include',
-        body: JSON.stringify({ email, password }),
+        body: JSON.stringify({email, password}),
       });
 
       const body = await res.json();
@@ -82,7 +82,7 @@ export class API {
         message = 'ok';
       }
 
-      return { message, authorizedUser: body.data };
+      return {message, authorizedUser: body.data};
     } catch (e) {
       // TODO убрать к РК4
       console.log('Ошибка метода userLogin:', e);
@@ -456,6 +456,48 @@ export class API {
     } catch (e) {
       // TODO убрать к РК4
       console.log('Ошибка метода deleteForm:', e);
+      throw (e);
+    }
+  }
+
+
+  /**
+   * Функция для сохранения опроса на сервере.
+   *
+   * @async
+   * @function
+   * @param {{passage_answers: *[], form_id}} passageJSON - объект, содержащий информацию о прохождении опроса.
+   * @return {Promise<{form: * | null, message: string}>} Объект с информацией
+   * о статусе запроса и формой опубликованного опроса.
+   * @throws {Error} Если произошла ошибка при запросе или обработке данных.
+   */
+  async passageForm(passageJSON) {
+    try {
+      const url = backendUrl + ROUTES_API.saveForm.url;
+
+      const res = await fetch(url, {
+        method: POST_METHOD,
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        credentials: 'include',
+        body: JSON.stringify(passageJSON),
+      });
+
+      const body = await res.json();
+
+      if (res.ok) {
+        const form = body.data;
+        return {message: 'ok', form};
+      }
+      if (res.status === 408) {
+        return {message: 'Потеряно соединение с сервером', form: null};
+      }
+
+      return {message: 'Ошибка сервера. Попробуйте позже', form: null};
+    } catch (e) {
+      // TODO убрать к РК4
+      console.log('Ошибка метода passageForm:', e);
       throw (e);
     }
   }
