@@ -70,14 +70,14 @@ export const createQuestionUpdate = (question) => {
     checkboxButton.checked = false;
     textButton.checked = false;
     type = 1;
-    buttonAddAnswer.style.display = 'flex';
+    buttonAddAnswer.style.display = 'block';
     renderAnswers();
   });
   checkboxButton.addEventListener('click', () => {
     radioButton.checked = false;
     textButton.checked = false;
     type = 2;
-    buttonAddAnswer.style.display = 'flex';
+    buttonAddAnswer.style.display = 'block';
     renderAnswers();
   });
   textButton.addEventListener('click', () => {

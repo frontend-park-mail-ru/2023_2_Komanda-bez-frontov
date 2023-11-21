@@ -1,6 +1,6 @@
 import {API} from '../../../modules/api.js';
 import {render404} from '../../404/404.js';
-import {renderMessage} from '../../Message/message.js';
+import {removeMessage, renderMessage} from '../../Message/message.js';
 import {STORAGE} from '../../../modules/storage.js';
 import {ROUTES} from '../../../config.js';
 import {goToPage} from '../../../modules/router.js';
@@ -16,6 +16,8 @@ import {renderResultsQuestion} from "../../Question/ResultsQuestion/results_ques
  * @return {void}
  */
 export const renderResultsForm = async (id) => {
+  removeMessage();
+
   const api = new API();
   if (!id) {
     render404();

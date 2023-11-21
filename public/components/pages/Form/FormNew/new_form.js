@@ -28,13 +28,14 @@ export const renderFormNew = async () => {
   const defaultForm = {
     title: '',
     description: '',
+    anonymous: false,
     questions: [
       {
         id: 0,
         title: '',
         description: '',
         type: 1,
-        shuffle: false,
+        required: false,
         answers: [
           {
             id: 0,
@@ -72,7 +73,7 @@ export const renderFormNew = async () => {
       title: '',
       description: '',
       type: 1,
-      shuffle: false,
+      required: false,
       answers: [
         {
           id: 0,

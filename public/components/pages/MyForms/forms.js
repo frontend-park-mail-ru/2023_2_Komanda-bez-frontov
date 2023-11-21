@@ -91,6 +91,12 @@ export const renderForms = async () => {
     loadingScreen.style.display = 'flex';
     searchFormsRequest();
   });
+  searchInput.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') {
+      loadingScreen.style.display = 'flex';
+      searchFormsRequest();
+    }
+  });
 
   // Тестирование моментальных запросов
   const searchRequest = () => {
