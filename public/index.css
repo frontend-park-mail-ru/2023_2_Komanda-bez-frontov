@@ -911,7 +911,7 @@ button {
   height: 18px;
 }
 .update-form_anonymous .update-form_anonymous__checkbox-label {
-  margin-left: 10px;
+  margin-left: 8px;
   font-size: 24px;
 }
 .update-form_anonymous .update-form_anonymous__checkbox-label:hover {
@@ -1131,6 +1131,7 @@ html {
   position: relative;
   height: 60px;
   top: 60px;
+  z-index: -1;
 }
 
 /*# sourceMappingURL=index.css.map */

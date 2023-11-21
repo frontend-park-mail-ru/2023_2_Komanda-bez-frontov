@@ -21,7 +21,12 @@
         <div class="update-question__button-container">
             <button class="primary-button" type="submit" id="add-answer-button">Добавить ответ</button>
 <!--            <button class="red-button" type="submit" id="clear-answers-button">Очистить все</button>-->
-            <input class="update-question_button-container__required-checkbox" id="required-question-checkbox" type="checkbox">
+            {{#ifEquals question.required true}}
+                <input class="update-question_button-container__required-checkbox" id="required-question-checkbox" type="checkbox" checked>
+            {{/ifEquals}}
+            {{#ifEquals question.required false}}
+                <input class="update-question_button-container__required-checkbox" id="required-question-checkbox" type="checkbox">
+            {{/ifEquals}}
             <label class="update-question_button-container__required-label">Обязательный вопрос</label>
         </div>
     </div>

@@ -58,9 +58,6 @@ export const renderForm = async (id) => {
     menuCheckButton.classList.remove('primary-button');
   }
 
-  // TODO удалить. потом будет получаться из апи, пока тест
-  formJSON.anonymous = true;
-
   rootElement.innerHTML += Handlebars.templates.check_form({form: formJSON});
 
   // Чтоб красиво выглядело, но не получилось

@@ -61,6 +61,9 @@ export const renderFormUpdate = async (id) => {
     return;
   }
 
+  // TODO delete when api is ready
+  formJSON.anonymous = true;
+
   const removedQuestionsID = [];
   removedAnswersID.length = 0;
 

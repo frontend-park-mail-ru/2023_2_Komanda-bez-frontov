@@ -29,6 +29,7 @@ export const renderResultsForm = async (id) => {
     return;
   }
 
+  // TODO заменить на получение через апи, когда будет готово
   let formJSON = {
     id: 18,
     title: "Test Form title",
@@ -80,7 +81,7 @@ export const renderResultsForm = async (id) => {
   };
 
   // try {
-  //   const res = await api.getFormByID(id);
+  //   const res = await api.getFormResultsByID(id);
   //   if (res.message !== 'ok') {
   //     if (res.message === '404') {
   //       render404();
@@ -95,9 +96,8 @@ export const renderResultsForm = async (id) => {
   //     renderMessage('Ошибка сервера. Попробуйте позже', true);
   //     return;
   //   }
-  //   // Попытка найти опрос в локальном хранилище
   //   renderMessage('Потеряно соединение с сервером', true);
-  //   formJSON = storageGetFormByID(id);
+  //   return;
   // }
 
   if (STORAGE.user.id !== formJSON.author.id) {

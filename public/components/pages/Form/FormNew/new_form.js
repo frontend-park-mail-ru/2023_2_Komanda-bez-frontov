@@ -138,6 +138,8 @@ export const formUpdatePageParser = () => {
   let flagRepeation = false;
   const form = {
     title: document.querySelector('#update-form__title').value,
+    description: document.querySelector('#update-form__description-textarea').value,
+    anonymous: document.querySelector('#update-form-anonymous-checkbox').checked,
     questions: [],
   };
   if (!form.title) {
@@ -160,11 +162,11 @@ export const formUpdatePageParser = () => {
     }
 
     const question = {
-      // id: questionElement.id,
+      id: Number(questionElement.id),
       title: questionElement.querySelector('#update-question__title').value,
       description: questionElement.querySelector('#update-question__description-textarea').value,
       type,
-      shuffle: false,
+      required: questionElement.querySelector('#required-question-checkbox').checked,
       answers: [],
     };
 

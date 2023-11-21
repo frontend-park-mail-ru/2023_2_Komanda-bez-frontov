@@ -497,4 +497,40 @@ export class API {
       throw (e);
     }
   }
+
+  /**
+   * Функция для получения результатов опроса по его id.
+   *
+   * @async
+   * @function
+   * @param {number} id - ID.
+   * @return {Promise<{formResults: any | null}>} Объект с информацией об искомом опросе.
+   * @throws {Error} Если произошла ошибка при запросе или обработке данных.
+   */
+  async getFormResultsByID(id) {
+    try {
+      const url = backendUrl + ROUTES_API.formResults.url.replace(':id', id.toString());
+
+      const res = await fetch(url, {
+        method: GET_METHOD,
+        credentials: 'include',
+      });
+
+      const body = await res.json();
+
+      if (res.ok) {
+        const formResults = body.data;
+        return {message: 'ok', formResults};
+      }
+      if (res.status === 404) {
+        return {message: '404', formResults: null};
+      }
+
+      return {message: 'Ошибка сервера. Попробуйте позже', formResults: null};
+    } catch (e) {
+      // TODO убрать к РК4
+      console.log('Ошибка метода getForm:', e);
+      throw (e);
+    }
+  }
 }

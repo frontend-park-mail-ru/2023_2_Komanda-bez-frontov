@@ -113,6 +113,10 @@ export const ROUTES_API = {
     url: '/forms/:id',
     method: GET_METHOD,
   },
+  formResults: {
+    url: '/forms/:id/results',
+    method: GET_METHOD,
+  },
   saveForm: {
     url: '/forms/save',
     method: POST_METHOD,

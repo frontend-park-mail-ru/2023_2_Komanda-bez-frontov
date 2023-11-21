@@ -10,7 +10,12 @@
             <textarea class="update-form__description-textarea" id="update-form__description-textarea" maxlength="512"></textarea>
         </div>
         <div class="update-form_anonymous">
-            <input class="update-form_anonymous__checkbox" id="update-form-anonymous-checkbox" type="checkbox">
+            {{#ifEquals form.anonymous true}}
+                <input class="update-form_anonymous__checkbox" id="update-form-anonymous-checkbox" type="checkbox" checked>
+            {{/ifEquals}}
+            {{#ifEquals form.anonymous false}}
+                <input class="update-form_anonymous__checkbox" id="update-form-anonymous-checkbox" type="checkbox">
+            {{/ifEquals}}
             <label class="update-form_anonymous__checkbox-label" for="update-form-anonymous-checkbox">Анонимный опрос</label>
             <p class="check-form__anonymous-warning">⚠️ &nbsp;Включив анонимный опрос вы не сможете получать информацию о участниках опроса</p>
         </div>
