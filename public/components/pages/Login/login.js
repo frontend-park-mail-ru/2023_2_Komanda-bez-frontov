@@ -4,6 +4,7 @@ import {renderMessage, removeMessage} from '../../Message/message.js';
 import {emailValidation, passwordValidation} from '../../../modules/validation.js';
 import {goToPage} from '../../../modules/router.js';
 import {STORAGE, getAuthAvatar} from '../../../modules/storage.js';
+import {toggleFunc} from "../Signup/signup.js";
 
 /**
  * Функция для рендеринга страницы аутенфикации.
@@ -21,6 +22,14 @@ export const renderLogin = async () => {
 
   const loginButton = document.querySelector('#login-button');
   const signupButton = document.querySelector('#signup-button');
+  const showPasswordButton = document.querySelector('#login-form_container__input-show-button');
+  showPasswordButton.addEventListener('click',  () => {
+    const password = document.querySelector('#password');
+    const icon = document.querySelector('#login-form_container__input-show-button-icon');
+
+    toggleFunc(password, icon);
+
+  });
 
   loginButton.addEventListener('click', async (e) => {
     e.preventDefault();
