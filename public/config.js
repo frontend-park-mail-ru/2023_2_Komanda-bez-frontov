@@ -105,6 +105,10 @@ export const ROUTES_API = {
     url: '/forms',
     method: GET_METHOD,
   },
+  searchForms: {
+    url: '/forms/search',
+    method: GET_METHOD,
+  },
   form: {
     url: '/forms/:id',
     method: GET_METHOD,

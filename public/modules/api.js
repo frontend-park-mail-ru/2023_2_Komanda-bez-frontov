@@ -273,6 +273,44 @@ export class API {
   }
 
   /**
+   * Функция для получения списка опросов по искомому названию.
+   * Возращает список всех созданных текущим пользователем опросов в порядке, где на первом месте стоит
+   * опрос с самым похожим названием на искомое, и так далее.
+   * Через Query запрос передается искомое название
+   *
+   * @async
+   * @function
+   * @param {string} title - название искомого опроса
+   * @return {Promise<{forms: ( null | [] )}>} Объект с массивом с опросами.
+   * @throws {Error} Если произошла ошибка при запросе или обработке данных.
+   */
+  async getFormsByTitle(title = '') {
+    try {
+      let url = backendUrl + ROUTES_API.searchForms.url;
+      const query = `?title=${title}`;
+      url += query;
+
+      const res = await fetch(url, {
+        method: GET_METHOD,
+        credentials: 'include',
+      });
+
+      const body = await res.json();
+
+      if (res.ok) {
+        const forms = body.data.forms;
+        return {message: 'ok', forms};
+      }
+
+      return {message: 'Ошибка сервера. Попробуйте позже', forms: null};
+    } catch (e) {
+      // TODO убрать к РК4
+      console.log('Ошибка метода getFormsByTitle:', e);
+      throw (e);
+    }
+  }
+
+  /**
    * Функция для получения опроса по его id.
    *
    * @async
