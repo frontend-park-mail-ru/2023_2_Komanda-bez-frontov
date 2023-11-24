@@ -102,7 +102,6 @@ export const renderForm = async (id) => {
       };
 
       let passageAnswerJSON = {
-        answer_id: -1,
         question_id: -1,
         answer_text: -1,
       };
@@ -114,7 +113,6 @@ export const renderForm = async (id) => {
             const chosenAnswer = document.querySelector(`#check-question_${question.id}_answer-item_${answer.id}`);
             if (chosenAnswer.checked) {
               passageAnswerJSON = {
-                answer_id: answer.id,
                 question_id: question.id,
                 answer_text: answer.text,
               };
@@ -153,14 +151,13 @@ export const renderForm = async (id) => {
           }
 
           passageAnswerJSON = {
-            answer_id: question.answers[0].id,
             question_id: question.id,
             answer_text: chosenAnswer.value,
           };
           passageJSON.passage_answers.push(passageAnswerJSON);
         }
       });
-      console.log(formJSON)
+
       try {
         const res = await api.passageForm(passageJSON);
         if (res.message !== 'ok') {
@@ -172,7 +169,6 @@ export const renderForm = async (id) => {
           return;
         }
       } catch (e) {
-        console.log(e.toString());
         if (e.toString() !== 'TypeError: Failed to fetch') {
           renderMessage('Ошибка сервера. Попробуйте позже', true);
           return;
