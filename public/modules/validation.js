@@ -146,7 +146,7 @@ export const textValidation = (text) => {
 
   for (let i = 0; i < text.length; i++) {
     let charCode = text.charCodeAt(i);
-    if (charCode >= 255) {
+    if ((charCode >= 255 && charCode < 1025) || charCode > 1105) {
       const message = 'Текст должен состоять из русских или английских слов, цифр и знаков препинания';
       return {valid, message};
     }
