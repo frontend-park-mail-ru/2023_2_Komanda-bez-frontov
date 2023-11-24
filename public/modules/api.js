@@ -462,7 +462,7 @@ export class API {
 
 
   /**
-   * Функция для сохранения опроса на сервере.
+   * Функция для сохранения прохождении опроса на сервере.
    *
    * @async
    * @function
@@ -473,7 +473,7 @@ export class API {
    */
   async passageForm(passageJSON) {
     try {
-      const url = backendUrl + ROUTES_API.saveForm.url;
+      const url = backendUrl + ROUTES_API.passForm.url;
 
       const res = await fetch(url, {
         method: POST_METHOD,
@@ -484,14 +484,16 @@ export class API {
         body: JSON.stringify(passageJSON),
       });
 
-      const body = await res.json();
-
       if (res.ok) {
-        const form = body.data;
-        return {message: 'ok', form};
+        return {message: 'ok'};
       }
-      if (res.status === 408) {
-        return {message: 'Потеряно соединение с сервером', form: null};
+
+      if (res.status === 400) {
+        return {message: 'Введены не валидные данные', form: null};
+      }
+
+      if (res.status === 401) {
+        return {message: 'Пользователь не авторизирован для прохождения опроса', form: null};
       }
 
       return {message: 'Ошибка сервера. Попробуйте позже', form: null};

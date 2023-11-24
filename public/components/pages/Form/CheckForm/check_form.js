@@ -94,18 +94,19 @@ export const renderForm = async (id) => {
     }
     updateSubmitButton.innerHTML = 'Отправить';
 
-    let passageJSON = {
-      "form_id": formJSON.id,
-      "passage_answers": [
-      ]
-    };
-    let passageAnswerJSON = {
-      "answer_id": -1,
-      "question_id": -1,
-      "answer_text": -1,
-    };
-
     updateSubmitButton.addEventListener('click', async () => {
+      let passageJSON = {
+        form_id: formJSON.id,
+        passage_answers: [
+        ]
+      };
+
+      let passageAnswerJSON = {
+        answer_id: -1,
+        question_id: -1,
+        answer_text: -1,
+      };
+
       formJSON.questions.forEach((question) => {
         if (question.type === 1 || question.type === 2) {
           let isAnswered = false;
@@ -113,9 +114,9 @@ export const renderForm = async (id) => {
             const chosenAnswer = document.querySelector(`#check-question_${question.id}_answer-item_${answer.id}`);
             if (chosenAnswer.checked) {
               passageAnswerJSON = {
-                "answer_id": answer.id,
-                "question_id": question.id,
-                "answer_text": answer.text,
+                answer_id: answer.id,
+                question_id: question.id,
+                answer_text: answer.text,
               };
               passageJSON.passage_answers.push(passageAnswerJSON);
               isAnswered = true;
@@ -152,22 +153,37 @@ export const renderForm = async (id) => {
           }
 
           passageAnswerJSON = {
-            "answer_id": question.answers[0].id,
-            "question_id": question.id,
-            "answer_text": chosenAnswer.value,
+            answer_id: question.answers[0].id,
+            question_id: question.id,
+            answer_text: chosenAnswer.value,
           };
           passageJSON.passage_answers.push(passageAnswerJSON);
         }
       });
-      const res = await api.passageForm(passageJSON);
-      if (res.message === 'ok') {
-        renderMessage("Вы успешно прошли опрос! Ваши результаты сохранены!");
-        goToPage(ROUTES.main);
-        return;
+      console.log(formJSON)
+      try {
+        const res = await api.passageForm(passageJSON);
+        if (res.message !== 'ok') {
+          if (res.message === '404') {
+            render404();
+            return;
+          }
+          renderMessage(res.message, true);
+          return;
+        }
+      } catch (e) {
+        console.log(e.toString());
+        if (e.toString() !== 'TypeError: Failed to fetch') {
+          renderMessage('Ошибка сервера. Попробуйте позже', true);
+          return;
+        }
       }
-      renderMessage(res.message, true);
-
-      goToPage(ROUTES.main);
+      if (!STORAGE.user) {
+        goToPage(ROUTES.main);
+      } else {
+        goToPage(ROUTES.forms);
+      }
+      renderMessage("Вы успешно прошли опрос! Ваши результаты сохранены");
 
     });
   }

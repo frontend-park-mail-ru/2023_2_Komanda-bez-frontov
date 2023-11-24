@@ -115,4 +115,8 @@ export const ROUTES_API = {
     url: '/forms/:id/update',
     method: PUT_METHOD,
   },
+  passForm: {
+    url: '/forms/pass',
+    method: POST_METHOD,
+  },
 };
