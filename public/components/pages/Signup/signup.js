@@ -119,7 +119,7 @@ export const renderSignup = async () => {
       STORAGE.user = res.registeredUser;
       // STORAGE.avatar = avatar;
 
-      goToPage(ROUTES.main);
+      goToPage(ROUTES.forms);
       renderMessage('Вы успешно зарегистрировались');
     } catch (err) {
       if (err.toString() !== 'TypeError: Failed to fetch') {
