@@ -1047,4 +1047,12 @@ html {
   top: 60px;
 }
 
+#csat {
+  position: fixed;
+  z-index: 200;
+  bottom: 20px;
+  width: 100%;
+  text-align: center;
+}
+
 /*# sourceMappingURL=index.css.map */

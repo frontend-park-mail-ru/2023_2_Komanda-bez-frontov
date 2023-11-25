@@ -44,3 +44,11 @@ html {
   height: 60px;
   top: 60px;
 }
+
+#csat {
+  position: fixed;
+  z-index: 200;
+  bottom: 20px;
+  width:100%;
+  text-align:center;
+}

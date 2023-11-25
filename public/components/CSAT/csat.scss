@@ -1,3 +1,54 @@
+@import '../Buttons/buttons';
+
+body {
+  padding: 0;
+  margin: 0;
+  font-family: 'Exo 2', sans-serif;
+}
+
+.csat-container {
+  background-color: #FFFFFF;
+  border-radius: 12px;
+  border: 2px solid #424242;
+  text-align: center;
+  padding-bottom: 8px;
+
+  h3 {
+    font-size: 22px;
+    margin: 10px 25px;
+  }
+
+  .csat-container__close-button {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+}
+
+.csat-container__stars-container {
+  display: flex;
+  justify-content: space-evenly;
+  margin: 20px 50px;
+  .fa-star {
+    font-size: 30px;
+  }
+}
+
 .checked {
-  color: orange;
+ color: orange;
+}
+
+.button-container {
+  margin: 10px 20px;
+  button {
+    padding: 10px 10px;
+    font-size: 16px;
+  }
+}
+
+.csat-container__do-not-ask-again {
+  font-size: 18px;
+  //color: #6e51a4;
 }
