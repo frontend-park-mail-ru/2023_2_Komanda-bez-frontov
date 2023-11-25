@@ -40,3 +40,12 @@ if (closeButton) {
     });
 }
 
+const laterButton = document.querySelector('#btn1');
+if (laterButton) {
+    laterButton.addEventListener('click', () => {
+        window.top.postMessage('close', '*');
+    });
+}
+
+
+

@@ -130,7 +130,7 @@ export const ROUTES_API = {
     method: GET_METHOD,
   },
   csatResult: {
-    url: '/csat/result',
+    url: '/csat/results',
     method: GET_METHOD,
   },
 };

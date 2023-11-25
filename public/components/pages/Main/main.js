@@ -28,11 +28,11 @@ export const renderMain = () => {
     goToPage(ROUTES.signup);
   });
 
-  renderCSAT("../../CSAT/csat.html");
-
-  window.onmessage = function(event){
-    if (event.data === 'close') {
-      removeCSAT();
-    }
-  };
+  // renderCSAT("../../CSAT/csat.html");
+  //
+  // window.onmessage = function(event){
+  //   if (event.data === 'close') {
+  //     removeCSAT();
+  //   }
+  // };
 };

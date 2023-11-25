@@ -13,6 +13,7 @@ import {renderFormNew} from '../components/pages/Form/FormNew/new_form.js';
 import {renderUpdateProfile} from '../components/pages/UpdateProfile/update_profile.js';
 import {removeMessage} from "../components/Message/message.js";
 import {renderCsatResults} from "../components/pages/csatResult/csat_result.js";
+import {removeCSAT} from "../components/CSAT/csat.js";
 
 /**
  * Расщепляет url запроса на нормальный url (с :id по умолчанию) и id страницы.
@@ -77,6 +78,7 @@ export const goToPage = (page, id = null, redirect = false) => {
     return;
   }
   page.open();
+  removeCSAT();
 };
 
 /**

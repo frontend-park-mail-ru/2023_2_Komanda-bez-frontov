@@ -3,6 +3,7 @@ import {ROUTES} from '../../../config.js';
 import {removeMessage, renderMessage} from '../../Message/message.js';
 import {goToPage} from '../../../modules/router.js';
 import {STORAGE} from '../../../modules/storage.js';
+import {removeCSAT, renderCSAT} from "../../CSAT/csat.js";
 
 /**
  * Функция для рендеринга страницы с созданными пользователем опросами.
@@ -75,4 +76,12 @@ export const renderForms = async () => {
   newFormButton.addEventListener('click', () => {
     goToPage(ROUTES.formNew);
   });
+
+  renderCSAT("../../CSAT/csat.html");
+
+  window.onmessage = function(event){
+    if (event.data === 'close') {
+      removeCSAT();
+    }
+  };
 };

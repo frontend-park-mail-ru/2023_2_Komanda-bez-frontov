@@ -472,11 +472,38 @@ export class API {
       const body = await res.json();
 
       if (res.ok) {
-        const ratings = body.data.ratings;
+        const ratings = body.ratings;
         return {message: 'ok', ratings};
       }
 
       return {message: 'Ошибка сервера. Попробуйте позже', avatar: null};
+    } catch (e) {
+      // TODO убрать к РК4
+      console.log('Ошибка метода getForm:', e);
+      throw (e);
+    }
+  }
+
+  async sendCSAT(rating) {
+    try {
+      const url = "http://localhost:8090/api/v1/csat/add";
+
+      const res = await fetch(url, {
+        method: POST_METHOD,
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        credentials: 'include',
+        body: JSON.stringify(rating),
+      });
+
+      const body = await res.json();
+
+      if (res.ok) {
+        return {message: 'ok'};
+      }
+
+      return {message: 'Ошибка сервера. Попробуйте позже'};
     } catch (e) {
       // TODO убрать к РК4
       console.log('Ошибка метода getForm:', e);

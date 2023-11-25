@@ -20,25 +20,25 @@ export const renderCsatResults = async () => {
     rootElement.innerHTML = Handlebars.templates.csat_result();
 
 
-    let ratings = [
-        { "rating":5 },
-        { "rating":4 },
-        { "rating":3 },
-        { "rating":2 },
-        { "rating":1 },
-    ]
+    let ratings;
+    //     { "rating":5 },
+    //     { "rating":4 },
+    //     { "rating":3 },
+    //     { "rating":2 },
+    //     { "rating":1 },
+    // ]
 
-    // try {
-    //     const res = await api.getCsatResult();
-    //     const ratings = res.ratings;
-    // } catch (e) {
-    //     if (e.toString() !== 'TypeError: Failed to fetch') {
-    //         renderMessage('Ошибка сервера. Попробуйте позже.', true);
-    //         return;
-    //     }
-    //     renderMessage('Потеряно соединение с сервером', true);
-    //
-    // }
+    try {
+        const res = await api.getCsatResult();
+        ratings = res.ratings;
+    } catch (e) {
+        if (e.toString() !== 'TypeError: Failed to fetch') {
+            renderMessage('Ошибка сервера. Попробуйте позже.', true);
+            return;
+        }
+        renderMessage('Потеряно соединение с сервером', true);
+
+    }
 
     ratings.forEach((rating) => {
         let ratingInput = document.querySelector(`#rating_${rating.rating}`)
