@@ -42,7 +42,7 @@ export const createQuestionUpdate = (question) => {
             })
           }
           if (deleteButton.id !== '0') {
-            removedAnswersID.push(deleteButton.id);
+            removedAnswersID.push(Number(deleteButton.id));
           }
           renderAnswers();
         });

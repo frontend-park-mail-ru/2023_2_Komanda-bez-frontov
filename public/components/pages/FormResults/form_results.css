@@ -33,7 +33,18 @@
   font-size: 22px;
   font-weight: normal;
   line-height: 35px;
-  margin-bottom: 15px;
+}
+
+.form-results_description-text_participants {
+  margin-bottom: 10px;
+}
+.form-results_description-text_participants .form-results_description-text__participants-item {
+  width: 150px;
+  margin: 0 15px;
+  line-height: 30px;
+  font-size: 22px;
+  font-weight: normal;
+  padding-left: 5px;
 }
 
 /*# sourceMappingURL=form_results.css.map */

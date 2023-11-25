@@ -61,9 +61,6 @@ export const renderFormUpdate = async (id) => {
     return;
   }
 
-  // TODO delete when api is ready
-  formJSON.anonymous = false;
-
   const removedQuestionsID = [];
   removedAnswersID.length = 0;
 
@@ -85,7 +82,7 @@ export const renderFormUpdate = async (id) => {
       e.stopImmediatePropagation();
       renderPopUpWindow('Требуется подтверждение', 'Вы уверены, что хотите безвозвратно удалить вопрос?', true, () => {
         questionElement.remove();
-        removedQuestionsID.push(question.id);
+        removedQuestionsID.push(Number(question.id));
         closePopUpWindow();
       });
     });
@@ -156,7 +153,7 @@ export const renderFormUpdate = async (id) => {
     }
     updatedForm.id = Number(id);
     updatedForm.removed_questions = removedQuestionsID;
-    updatedForm.remoed_answers = removedAnswersID;
+    updatedForm.removed_answers = removedAnswersID;
     console.log(updatedForm);
     try {
       const res = await api.updateForm(updatedForm);

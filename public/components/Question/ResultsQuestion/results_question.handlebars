@@ -24,7 +24,9 @@
                 {{#each ../question.answers}}
                     <div class="results-question_answers_answer-item">
                         <p class="results-question_answers_answer-item__label">{{text}}</p>
-                        <div class="results-question_answers_answer-item__progress-bar"></div>
+                        <div class="results-question_answers_answer-item__bar-container">
+                            <div class="results-question_answers_answer-item__bar"></div>
+                        </div>
                         <p class="results-question_answers_answer-item__percentage">{{selected_times}}</p>
                     </div>
                 {{/each}}

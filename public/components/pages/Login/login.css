@@ -43,5 +43,8 @@
   margin-left: -40px;
   margin-top: 13px;
 }
+.login-form_container__input-show-button:hover {
+  cursor: pointer;
+}
 
 /*# sourceMappingURL=login.css.map */

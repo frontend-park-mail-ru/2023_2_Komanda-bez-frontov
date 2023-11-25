@@ -7,7 +7,7 @@
         </div>
         <div class="update-form__description">
             <h3 class="update-form__description-title">Описание опроса</h3>
-            <textarea class="update-form__description-textarea" id="update-form__description-textarea" maxlength="512"></textarea>
+            <textarea class="update-form__description-textarea" id="update-form__description-textarea" maxlength="512">{{form.description}}</textarea>
         </div>
         <div class="update-form_anonymous">
             {{#ifEquals form.anonymous true}}

@@ -3,7 +3,7 @@ import {removeMessage, renderMessage} from '../../../Message/message.js';
 import {STORAGE} from '../../../../modules/storage.js';
 import {goToPage} from '../../../../modules/router.js';
 import {ROUTES} from '../../../../config.js';
-import {createQuestionUpdate} from '../../../Question/UpdateQuestion/update_question.js';
+import {createQuestionUpdate, removedAnswersID} from '../../../Question/UpdateQuestion/update_question.js';
 import {closePopUpWindow, renderPopUpWindow} from '../../../PopUpWindow/popup_window.js';
 import {textValidation} from '../../../../modules/validation.js';
 
@@ -190,7 +190,8 @@ export const formUpdatePageParser = () => {
 
     if (question.type === 3) {
       question.answers.push({
-        // id: questionElement.querySelector('#update-question__answers-item-input').id,
+        // id: Number(questionElement.querySelector('.update-question__answers-item-textarea').id),
+        id: 0,
         text: '',
       });
     } else {
@@ -205,7 +206,7 @@ export const formUpdatePageParser = () => {
           flag = true;
         }
         question.answers.push({
-          // id: answer.id,
+          id: Number(answer.id),
           text: answer.value,
         });
         uniqueAnswers.add(answer.value);
