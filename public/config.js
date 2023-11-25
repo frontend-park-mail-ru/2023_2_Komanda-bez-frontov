@@ -8,6 +8,7 @@ import {renderProfile} from './components/pages/Profile/profile.js';
 import {renderFormUpdate} from './components/pages/Form/UpdateForm/update_form.js';
 import {renderFormNew} from './components/pages/Form/FormNew/new_form.js';
 import {renderUpdateProfile} from './components/pages/UpdateProfile/update_profile.js';
+import {renderCsatResults} from "./components/pages/csatResult/csat_result.js";
 
 export const ROUTES = {
   main: {
@@ -59,6 +60,11 @@ export const ROUTES = {
     url: '/logout',
     state: 'main',
     open: renderMainLogout,
+  },
+  csat_result: {
+    url: '/csat_result',
+    state: 'main',
+    open: renderCsatResults,
   },
 };
 
@@ -114,5 +120,17 @@ export const ROUTES_API = {
   updateForm: {
     url: '/forms/:id/update',
     method: PUT_METHOD,
+  },
+  csatAdd: {
+    url: '/csat/add',
+    method: POST_METHOD,
+  },
+  csatCheck: {
+    url: '/csat/check',
+    method: GET_METHOD,
+  },
+  csatResult: {
+    url: '/csat/result',
+    method: GET_METHOD,
   },
 };

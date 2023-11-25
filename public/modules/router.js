@@ -12,6 +12,7 @@ import {renderFormUpdate} from '../components/pages/Form/UpdateForm/update_form.
 import {renderFormNew} from '../components/pages/Form/FormNew/new_form.js';
 import {renderUpdateProfile} from '../components/pages/UpdateProfile/update_profile.js';
 import {removeMessage} from "../components/Message/message.js";
+import {renderCsatResults} from "../components/pages/csatResult/csat_result.js";
 
 /**
  * Расщепляет url запроса на нормальный url (с :id по умолчанию) и id страницы.
@@ -119,6 +120,9 @@ export const initialRouter = async () => {
     case '/signup':
       goToPage(ROUTES.signup);
       break;
+    case '/csat_result':
+      goToPage(ROUTES.csat_result);
+      break;
     default:
       // window.history.pushState('404', '', url);
       navbar();
@@ -165,6 +169,9 @@ window.onpopstate = (event) => {
       break;
     case 'signup':
       renderSignup();
+      break;
+    case 'cast_result':
+      renderCsatResults();
       break;
     default:
       render404();

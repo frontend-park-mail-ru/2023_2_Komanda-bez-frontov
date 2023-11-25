@@ -1023,6 +1023,28 @@ iframe {
   color: #ea6767;
 }
 
+.form-results {
+  position: relative;
+  text-align: center;
+  font-size: 24px;
+  margin: 40px auto;
+  width: 800px;
+}
+.form-results .form-results__title {
+  font-size: 36px;
+  margin: 0 auto 20px;
+}
+.form-results .check-form__questions-container {
+  position: relative;
+  flex-wrap: wrap;
+  justify-content: end;
+  text-align: center;
+  align-items: center;
+  min-height: max-content;
+  margin-bottom: 20px;
+  border: 1px;
+}
+
 * {
   padding: 0;
   margin: 0;
