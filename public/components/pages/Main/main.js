@@ -1,6 +1,7 @@
 import {goToPage} from "../../../modules/router.js";
 import {ROUTES} from "../../../config.js";
 import {STORAGE} from "../../../modules/storage.js";
+import {removeCSAT, renderCSAT} from "../../CSAT/csat.js";
 
 /**
  * Функция для рендеринга главной страницы с информацией о сервисе.
@@ -26,4 +27,12 @@ export const renderMain = () => {
   signupButton.addEventListener('click', () => {
     goToPage(ROUTES.signup);
   });
+
+  renderCSAT("../../CSAT/csat.html");
+
+  window.onmessage = function(event){
+    if (event.data === 'close') {
+      removeCSAT();
+    }
+  };
 };

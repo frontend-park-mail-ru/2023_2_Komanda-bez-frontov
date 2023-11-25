@@ -15,3 +15,4 @@ import '../components/Question/CheckQuestion/check_question.precompiled.js';
 import '../components/Question/UpdateQuestion/update_question.precompiled.js';
 import '../components/Question/UpdateAnswer/update_answer.precompiled.js';
 import '../components/pages/UpdateProfile/update_profile.precompiled.js';
+import '../components/CSAT/csat_iframe.precompiled.js'
