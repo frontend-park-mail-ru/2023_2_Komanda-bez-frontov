@@ -1,8 +1,5 @@
+import {TYPE_SINGLE_CHOICE, TYPE_MULTIPLE_CHOICE, TYPE_TEXT} from "../../pages/Form/CheckForm/check_form.js";
 export const removedAnswersID = [];
-
-const TYPE_SINGLE_CHOICE = 1;
-const TYPE_MULTIPLE_CHOICE = 2;
-const TYPE_TEXT = 3;
 
 /**
  * Функция для рендеринга одного вопроса (вариант для формы обновления и создания).

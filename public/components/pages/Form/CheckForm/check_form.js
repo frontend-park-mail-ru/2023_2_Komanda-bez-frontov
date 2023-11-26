@@ -9,9 +9,9 @@ import {renderPopUpWindow} from '../../../PopUpWindow/popup_window.js';
 import {renderAuthorMenu} from '../../../AuthorMenu/authorMenu.js';
 import {textValidation} from "../../../../modules/validation.js";
 
-const TYPE_SINGLE_CHOICE = 1;
-const TYPE_MULTIPLE_CHOICE = 2;
-const TYPE_TEXT = 3;
+export const TYPE_SINGLE_CHOICE = 1;
+export const TYPE_MULTIPLE_CHOICE = 2;
+export const TYPE_TEXT = 3;
 
 /**
  * Функция для рендеринга страницы опроса по его id.
