@@ -43,7 +43,7 @@ export const createQuestionUpdate = (question) => {
             })
           }
           if (deleteButton.id !== '0') {
-            removedAnswersID.push(deleteButton.id);
+            removedAnswersID.push(Number(deleteButton.id));
           }
           renderAnswers();
         });
@@ -71,14 +71,14 @@ export const createQuestionUpdate = (question) => {
     checkboxButton.checked = false;
     textButton.checked = false;
     type = TYPE_SINGLE_CHOICE;
-    buttonAddAnswer.style.display = 'flex';
+    buttonAddAnswer.style.display = null;
     renderAnswers();
   });
   checkboxButton.addEventListener('click', () => {
     radioButton.checked = false;
     textButton.checked = false;
     type = TYPE_MULTIPLE_CHOICE;
-    buttonAddAnswer.style.display = 'flex';
+    buttonAddAnswer.style.display = null;
     renderAnswers();
   });
   textButton.addEventListener('click', () => {

@@ -1,0 +1,28 @@
+{{#if form}}
+    <div class="form-results">
+        <h3 class="form-results__title">Результаты опроса<br>{{form.title}}</h3>
+        <div class="form-results__description">
+            <h3 class="form-results__description-title">Описание опроса</h3>
+            <p class="form-results__description-text">
+                Дата создания: &nbsp;&nbsp;&nbsp;{{form.created_at}}<br>
+                Количесто прохождений: &nbsp;&nbsp;&nbsp;{{form.number_of_passages}}<br>
+            {{#ifEquals form.anonymous true}}
+                    Это анонимный опрос. Участники скрыты.
+                </p>
+            {{/ifEquals}}
+            {{#ifEquals form.anonymous false}}
+                    Участники:
+                </p>
+                <div class="form-results_description-text_participants">
+                    {{#each ../form.participants}}
+                        <p class="form-results_description-text__participants-item">{{name}}</p>
+                    {{/each}}
+                </div>
+            {{/ifEquals}}
+        </div>
+        <div class="check-form__questions-container" id="check-form__questions-container"></div>
+        <div class="button-container">
+            <button class="secondary-button" type="submit" id="results-export-button">Экспорт данных</button>
+        </div>
+    </div>
+{{/if}}

@@ -21,9 +21,6 @@ Handlebars.registerHelper('ifEquals', (a, b, options) => {
 export const createQuestion = (question) => {
   const questionElement = document.createElement('div');
 
-  // TODO удалить потом, для теста
-  question.required = true;
-
   questionElement.innerHTML = Handlebars.templates.check_question({question});
 
   const cRadioButtons = questionElement.querySelectorAll('.check-question__answer-item-radio');

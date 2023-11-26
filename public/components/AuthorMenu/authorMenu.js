@@ -2,6 +2,8 @@ import {frontendUrl, ROUTES} from '../../config.js';
 import {goToPage} from '../../modules/router.js';
 import {STORAGE} from '../../modules/storage.js';
 import {renderPopUpWindow} from '../PopUpWindow/popup_window.js';
+import {renderResultsQuestion} from "../Question/ResultsQuestion/results_question.js";
+import {renderResultsForm} from "../pages/FormResults/form_results.js";
 
 /**
  * Функция для рендеринга меню с инструментами автора опроса.
@@ -28,10 +30,10 @@ export const renderAuthorMenu = (id) => {
     goToPage(ROUTES.formUpdate, id);
   });
 
-  // const resultsButton = document.querySelector('#author-menu-results-button');
-  // resultsButton.addEventListener('click', () => {
-  //   goToPage(ROUTES.formResults, id);
-  // });
+  const resultsButton = document.querySelector('#author-menu-results-button');
+  resultsButton.addEventListener('click', () => {
+    goToPage(ROUTES.formResults, id);
+  });
 
   const createLinkButton = document.querySelector('#author-menu-link-button');
   createLinkButton.addEventListener('click', (e) => {

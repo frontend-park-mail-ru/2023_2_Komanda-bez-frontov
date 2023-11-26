@@ -1,7 +1,7 @@
 import {ROUTES} from '../config.js';
 import {renderLogin} from '../components/pages/Login/login.js';
 import {renderSignup} from '../components/pages/Signup/signup.js';
-import {renderForms} from '../components/pages/Forms/forms.js';
+import {renderForms} from '../components/pages/MyForms/forms.js';
 import {renderForm} from '../components/pages/Form/CheckForm/check_form.js';
 import {renderMain} from '../components/pages/Main/main.js';
 import {renderInitial} from '../components/Initial/Initial.js';
@@ -12,6 +12,7 @@ import {renderFormUpdate} from '../components/pages/Form/UpdateForm/update_form.
 import {renderFormNew} from '../components/pages/Form/FormNew/new_form.js';
 import {renderUpdateProfile} from '../components/pages/UpdateProfile/update_profile.js';
 import {removeMessage} from "../components/Message/message.js";
+import {renderResultsForm} from "../components/pages/FormResults/form_results.js";
 
 /**
  * Расщепляет url запроса на нормальный url (с :id по умолчанию) и id страницы.
@@ -113,6 +114,9 @@ export const initialRouter = async () => {
     case '/forms/:id/edit':
       goToPage(ROUTES.formUpdate, id);
       break;
+    case '/forms/:id/results':
+      goToPage(ROUTES.formResults, id);
+      break;
     case '/login':
       goToPage(ROUTES.login);
       break;
@@ -150,6 +154,9 @@ window.onpopstate = (event) => {
       break;
     case 'formUpdate':
       renderFormUpdate(parseUrl(window.location.pathname).id);
+      break;
+    case 'formResults':
+      renderResultsForm(parseUrl(window.location.pathname).id);
       break;
     case 'formNew':
       renderFormNew();

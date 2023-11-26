@@ -400,6 +400,46 @@ button {
   padding-bottom: 5px;
 }
 
+.forms_search-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 25px;
+}
+.forms_search-container .forms_search-container__input {
+  border-radius: 12px 0 0 12px;
+  height: 40px;
+  width: 700px;
+  font-size: 24px;
+  padding: 3px 20px;
+}
+.forms_search-container .forms_search-container__button {
+  border-radius: 0 12px 12px 0;
+  margin-left: -3px;
+  height: 48.5px;
+  width: 100px;
+  font-size: 20px;
+}
+.forms_search-container .forms_search-container__button:hover {
+  opacity: 0.6;
+  cursor: pointer;
+}
+
+.forms__loading-screen {
+  position: fixed;
+  display: none;
+  width: 100%;
+  height: 100%;
+  top: 280px;
+  left: 0;
+  background-color: rgba(255, 255, 255, 0.6);
+}
+.forms__loading-screen img {
+  width: 60px;
+  height: 60px;
+  margin: 150px auto;
+}
+
 .forms_list_main-container {
   display: flex;
   flex-flow: column;
@@ -547,6 +587,69 @@ button {
 
 .button-container {
   margin-top: 18px;
+}
+
+.results-question {
+  margin-top: 18px;
+  padding: 13px 15px;
+  border-radius: 12px;
+  border: 2px solid #424242;
+}
+
+.results-question_title-container {
+  display: flex;
+  flex-flow: wrap;
+  justify-content: space-between;
+  font-size: 20px;
+}
+
+.results-question__description-title {
+  padding-left: 5px;
+  font-size: 22px;
+  margin-bottom: 10px;
+  text-align: left;
+}
+
+.results-question__required-title {
+  color: #da2d28;
+  padding-left: 10px;
+  font-size: 18px;
+  font-weight: normal;
+  margin-bottom: 10px;
+  text-align: left;
+}
+
+.results-question__answers-title {
+  padding-left: 5px;
+  font-size: 22px;
+  text-align: left;
+}
+
+.results-question_answers {
+  text-align: left;
+  font-size: 22px;
+}
+
+.results-question_answers_answer-item {
+  display: flex;
+  margin: 20px 0;
+  text-align: left;
+  align-items: center;
+  padding-left: 5px;
+}
+.results-question_answers_answer-item .results-question_answers_answer-item__label, .results-question_answers_answer-item .results-question_answers_answer-item__percentage {
+  width: 150px;
+  margin: 0 0 0 15px;
+  font-size: 20px;
+  font-weight: normal;
+  padding-left: 5px;
+}
+.results-question_answers_answer-item .results-question_answers_answer-item__bar-container {
+  width: 400px;
+}
+.results-question_answers_answer-item .results-question_answers_answer-item__bar-container .results-question_answers_answer-item__bar {
+  height: 20px;
+  background-color: #6e51a4;
 }
 
 .update-question {
@@ -830,7 +933,7 @@ button {
   cursor: pointer;
 }
 .update-form_anonymous .update-form_anonymous__checkbox-label {
-  margin-left: 10px;
+  margin-left: 8px;
   font-size: 24px;
 }
 .update-form_anonymous p {
@@ -840,6 +943,55 @@ button {
 
 .update-form__input-error {
   background-color: #fdc6c6 !important;
+}
+
+.form-results {
+  position: relative;
+  text-align: center;
+  font-size: 24px;
+  margin: 40px auto;
+  width: 800px;
+}
+.form-results .form-results__title {
+  font-size: 36px;
+  margin-bottom: 32px;
+}
+.form-results .button-container {
+  margin: 18px 12px 10px 12px;
+}
+.form-results .button-container button {
+  width: 250px;
+}
+
+.form-results__description {
+  padding: 13px 15px;
+  border-radius: 12px;
+  border: 2px solid #424242;
+  text-align: left;
+}
+
+.form-results__description-title {
+  font-size: 25px;
+  margin-bottom: 10px;
+}
+
+.form-results__description-text {
+  padding-left: 10px;
+  font-size: 22px;
+  font-weight: normal;
+  line-height: 35px;
+}
+
+.form-results_description-text_participants {
+  margin-bottom: 10px;
+}
+.form-results_description-text_participants .form-results_description-text__participants-item {
+  width: 150px;
+  margin: 0 15px;
+  line-height: 30px;
+  font-size: 22px;
+  font-weight: normal;
+  padding-left: 5px;
 }
 
 .index {
@@ -929,6 +1081,9 @@ button {
   color: #000000;
   margin-left: -40px;
   margin-top: 13px;
+}
+.login-form_container__input-show-button:hover {
+  cursor: pointer;
 }
 
 .signup-form {
@@ -1037,6 +1192,7 @@ html {
   position: relative;
   height: 60px;
   top: 60px;
+  z-index: -1;
 }
 
 /*# sourceMappingURL=index.css.map */

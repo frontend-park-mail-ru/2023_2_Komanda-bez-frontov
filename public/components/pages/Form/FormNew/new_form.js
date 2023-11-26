@@ -3,7 +3,7 @@ import {removeMessage, renderMessage} from '../../../Message/message.js';
 import {STORAGE} from '../../../../modules/storage.js';
 import {goToPage} from '../../../../modules/router.js';
 import {ROUTES} from '../../../../config.js';
-import {createQuestionUpdate} from '../../../Question/UpdateQuestion/update_question.js';
+import {createQuestionUpdate, removedAnswersID} from '../../../Question/UpdateQuestion/update_question.js';
 import {closePopUpWindow, renderPopUpWindow} from '../../../PopUpWindow/popup_window.js';
 import {textValidation} from '../../../../modules/validation.js';
 import {TYPE_SINGLE_CHOICE, TYPE_MULTIPLE_CHOICE, TYPE_TEXT} from "../CheckForm/check_form.js";
@@ -29,13 +29,14 @@ export const renderFormNew = async () => {
   const defaultForm = {
     title: '',
     description: '',
+    anonymous: false,
     questions: [
       {
         id: 0,
         title: '',
         description: '',
         type: TYPE_SINGLE_CHOICE,
-        shuffle: false,
+        required: false,
         answers: [
           {
             id: 0,
@@ -73,7 +74,7 @@ export const renderFormNew = async () => {
       title: '',
       description: '',
       type: TYPE_SINGLE_CHOICE,
-      shuffle: false,
+      required: false,
       answers: [
         {
           id: 0,
@@ -139,6 +140,8 @@ export const formUpdatePageParser = () => {
   let flagRepeation = false;
   const form = {
     title: document.querySelector('#update-form__title').value,
+    description: document.querySelector('#update-form__description-textarea').value,
+    anonymous: document.querySelector('#update-form-anonymous-checkbox').checked,
     questions: [],
   };
   if (!form.title) {
@@ -161,11 +164,11 @@ export const formUpdatePageParser = () => {
     }
 
     const question = {
-      // id: questionElement.id,
+      id: Number(questionElement.id),
       title: questionElement.querySelector('#update-question__title').value,
       description: questionElement.querySelector('#update-question__description-textarea').value,
       type,
-      shuffle: false,
+      required: questionElement.querySelector('#required-question-checkbox').checked,
       answers: [],
     };
 
@@ -188,7 +191,8 @@ export const formUpdatePageParser = () => {
 
     if (question.type === TYPE_TEXT) {
       question.answers.push({
-        // id: questionElement.querySelector('#update-question__answers-item-input').id,
+        // id: Number(questionElement.querySelector('.update-question__answers-item-textarea').id),
+        id: 0,
         text: '',
       });
     } else {
@@ -203,7 +207,7 @@ export const formUpdatePageParser = () => {
           flag = true;
         }
         question.answers.push({
-          // id: answer.id,
+          id: Number(answer.id),
           text: answer.value,
         });
         uniqueAnswers.add(answer.value);

@@ -1,0 +1,43 @@
+{{#if question}}
+    <div class="results-question">
+        <div class="results-question_title-container">
+            <h3 class="results-question__description-title">{{question.title}}</h3>
+            <p class="results-question__passage-text">Количество ответов: &nbsp;{{question.number_of_passages}}</p>
+        </div>
+        {{#ifEquals question.required true}}
+            <p class="results-question__required-title">Это обязательный вопрос</p>
+        {{/ifEquals}}
+        <h3 class="results-question__answers-title">Ответы</h3>
+        <div class="results-question_answers" id="question-answers">
+            {{#ifEquals question.type 1}}
+                {{#each ../question.answers}}
+                    <div class="results-question_answers_answer-item">
+                        <p class="results-question_answers_answer-item__label">{{text}}</p>
+                        <div class="results-question_answers_answer-item__bar-container">
+                            <div class="results-question_answers_answer-item__bar"></div>
+                        </div>
+                        <p class="results-question_answers_answer-item__percentage">{{selected_times}}</p>
+                    </div>
+                {{/each}}
+            {{/ifEquals}}
+            {{#ifEquals question.type 2}}
+                {{#each ../question.answers}}
+                    <div class="results-question_answers_answer-item">
+                        <p class="results-question_answers_answer-item__label">{{text}}</p>
+                        <div class="results-question_answers_answer-item__bar-container">
+                            <div class="results-question_answers_answer-item__bar"></div>
+                        </div>
+                        <p class="results-question_answers_answer-item__percentage">{{selected_times}}</p>
+                    </div>
+                {{/each}}
+            {{/ifEquals}}
+            {{#ifEquals question.type 3}}
+                {{#each ../question.answers}}
+                    <div class="results-question_answers_answer-item">
+                        <p class="results-question_answers_answer-item__label">{{text}}</p>
+                    </div>
+                {{/each}}
+            {{/ifEquals}}
+        </div>
+    </div>
+{{/if}}

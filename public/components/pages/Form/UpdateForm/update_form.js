@@ -83,7 +83,7 @@ export const renderFormUpdate = async (id) => {
       e.stopImmediatePropagation();
       renderPopUpWindow('Требуется подтверждение', 'Вы уверены, что хотите безвозвратно удалить вопрос?', true, () => {
         questionElement.remove();
-        removedQuestionsID.push(question.id);
+        removedQuestionsID.push(Number(question.id));
         closePopUpWindow();
       });
     });
@@ -97,7 +97,7 @@ export const renderFormUpdate = async (id) => {
       title: '',
       description: '',
       type: TYPE_SINGLE_CHOICE,
-      shuffle: false,
+      required: false,
       answers: [
         {
           id: 0,
@@ -154,7 +154,7 @@ export const renderFormUpdate = async (id) => {
     }
     updatedForm.id = Number(id);
     updatedForm.removed_questions = removedQuestionsID;
-    updatedForm.remoed_answers = removedAnswersID;
+    updatedForm.removed_answers = removedAnswersID;
     console.log(updatedForm);
     try {
       const res = await api.updateForm(updatedForm);
