@@ -83,7 +83,6 @@ export const renderForm = async (id) => {
       goToPage(ROUTES.formUpdate, id);
     });
   } else {
-    // TODO проверка на анонимность
     if (!STORAGE.user && !formJSON.anonymous) {
       goToPage(ROUTES.login);
       renderMessage("Для прохождение опроса необходимо авторизироваться", true);
@@ -165,6 +164,8 @@ export const renderForm = async (id) => {
           renderMessage('Ошибка сервера. Попробуйте позже', true);
           return;
         }
+        renderMessage('Потеряно соединение с сервером', true);
+        return;
       }
       if (!STORAGE.user) {
         goToPage(ROUTES.main);
