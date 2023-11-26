@@ -61,7 +61,7 @@ export const renderForm = async (id) => {
   // TODO удалить. потом будет получаться из апи, пока тест
   formJSON.anonymous = true;
 
-  rootElement.innerHTML += Handlebars.templates.check_form({form: formJSON});
+  rootElement.insertAdjacentHTML('beforeend', Handlebars.templates.check_form({form: formJSON}));
 
   // Чтоб красиво выглядело, но не получилось
   // if (STORAGE.user && STORAGE.user.id === formJSON.author.id) {

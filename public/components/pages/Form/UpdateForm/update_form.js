@@ -75,7 +75,7 @@ export const renderFormUpdate = async (id) => {
   menuUpdateButton.classList.add('secondary-button');
   menuUpdateButton.classList.remove('primary-button');
 
-  rootElement.innerHTML += Handlebars.templates.update_form({form: formJSON});
+  rootElement.insertAdjacentHTML('beforeend', Handlebars.templates.update_form({form: formJSON}));
 
   const questions = document.querySelector('#check-form__questions-container');
   formJSON.questions.forEach((question) => {
