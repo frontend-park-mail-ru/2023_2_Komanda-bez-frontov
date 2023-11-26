@@ -1,5 +1,5 @@
-/** Compares first value to the second one allowing entering IF clouse if true.
- * Otherwise entering ELSE clause if exist.
+/** Compares first value to the second one allowing entering IF clause if true.
+ * Otherwise, entering ELSE clause if exists.
  * eslint-disable-next-line func-names
  */
 Handlebars.registerHelper('ifEquals', (a, b, options) => {
@@ -8,6 +8,10 @@ Handlebars.registerHelper('ifEquals', (a, b, options) => {
   }
   return options.inverse(this);
 });
+
+const TYPE_SINGLE_CHOICE = 1;
+const TYPE_MULTIPLE_CHOICE = 2;
+const TYPE_TEXT = 3;
 
 /**
  * Функция для рендеринга одного вопроса (вариант для просмотра и прохождения).
@@ -42,17 +46,17 @@ export const createQuestion = (question) => {
   const clearButton = questionElement.querySelector('#check-question__clear-button');
   clearButton.addEventListener('click', () => {
     switch (question.type) {
-      case 1:
+      case TYPE_SINGLE_CHOICE:
         cRadioButtons.forEach( (rb) => {
           rb.checked = false;
         });
         break;
-      case 2:
+      case TYPE_MULTIPLE_CHOICE:
         cCheckboxButton.forEach( (cb) => {
           cb.checked = false;
         });
         break;
-      case 3:
+      case TYPE_TEXT:
         textArea.value = '';
         break;
       default:
