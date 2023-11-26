@@ -8,8 +8,7 @@ import {createQuestionUpdate, removedAnswersID} from '../../../Question/UpdateQu
 import {closePopUpWindow, renderPopUpWindow} from '../../../PopUpWindow/popup_window.js';
 import {formUpdatePageParser, formUpdateValidator} from '../FormNew/new_form.js';
 import {renderAuthorMenu} from "../../../AuthorMenu/authorMenu.js";
-
-const TYPE_SINGLE_CHOICE = 1;
+import {TYPE_SINGLE_CHOICE} from "../CheckForm/check_form.js";
 
 /**
  * Функция для рендеринга страницы редактирования опроса по его id.
