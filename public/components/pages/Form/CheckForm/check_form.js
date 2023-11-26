@@ -59,9 +59,6 @@ export const renderForm = async (id) => {
     menuCheckButton.classList.remove('primary-button');
   }
 
-  // TODO удалить. потом будет получаться из апи, пока тест
-  formJSON.anonymous = true;
-
   rootElement.insertAdjacentHTML('beforeend', Handlebars.templates.check_form({form: formJSON}));
 
   // Чтоб красиво выглядело, но не получилось
@@ -86,6 +83,7 @@ export const renderForm = async (id) => {
       goToPage(ROUTES.formUpdate, id);
     });
   } else {
+    // TODO проверка на анонимность
     if (!STORAGE.user && !formJSON.anonymous) {
       goToPage(ROUTES.login);
       renderMessage("Для прохождение опроса необходимо авторизироваться", true);
@@ -100,20 +98,16 @@ export const renderForm = async (id) => {
         ]
       };
 
-      const passageAnswerJSON = {
-        question_id: -1,
-        answer_text: -1,
-      };
-
       formJSON.questions.forEach((question) => {
         if (question.type === 1 || question.type === 2) {
           let isAnswered = false;
           question.answers.forEach((answer) => {
             const chosenAnswer = document.querySelector(`#check-question_${question.id}_answer-item_${answer.id}`);
             if (chosenAnswer.checked) {
-              passageAnswerJSON.question_id = question.id;
-              passageAnswerJSON.answer_text = answer.text;
-
+              const passageAnswerJSON = {
+                question_id: question.id,
+                answer_text: answer.text,
+              };
               passageJSON.passage_answers.push(passageAnswerJSON);
               isAnswered = true;
             }
@@ -148,9 +142,10 @@ export const renderForm = async (id) => {
             return;
           }
 
-          passageAnswerJSON.question_id = question.id;
-          passageAnswerJSON.answer_text = chosenAnswer.value;
-
+          const passageAnswerJSON = {
+            question_id: question.id,
+            answer_text: chosenAnswer.value,
+          };
           passageJSON.passage_answers.push(passageAnswerJSON);
         }
       });
@@ -170,8 +165,6 @@ export const renderForm = async (id) => {
           renderMessage('Ошибка сервера. Попробуйте позже', true);
           return;
         }
-        renderMessage('Потеряно соединение с сервером', true);
-        return;
       }
       if (!STORAGE.user) {
         goToPage(ROUTES.main);
