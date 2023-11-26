@@ -1,3 +1,9 @@
+export const removedAnswersID = [];
+
+const TYPE_SINGLE_CHOICE = 1;
+const TYPE_MULTIPLE_CHOICE = 2;
+const TYPE_TEXT = 3;
+
 /**
  * Функция для рендеринга одного вопроса (вариант для формы обновления и создания).
  *
@@ -13,17 +19,10 @@ export const createQuestionUpdate = (question) => {
   const checkboxButton = questionElement.querySelector('#update-question__answer-format-checkbox');
   const textButton = questionElement.querySelector('#update-question__answer-format-text');
   const answerContainer = questionElement.querySelector('#question-answers');
-  const buttonContainer = questionElement.querySelector('.update-question__button-container');
+  const buttonAddAnswer = questionElement.querySelector('#add-answer-button');
 
   let type = question.type;
-  const answers = [];
-  // eslint-disable-next-line no-restricted-syntax
-  for (const index in question.answers) {
-    answers.push({
-      id: index,
-      text: question.answers[index].text,
-    });
-  }
+  const answers = question.answers;
 
   const renderAnswers = () => {
     answerContainer.innerHTML = Handlebars.templates
@@ -34,43 +33,62 @@ export const createQuestionUpdate = (question) => {
         answers[index].text = input.value;
       });
     });
+    const cAnswers = questionElement.querySelectorAll('.update-question__answers-item');
+    cAnswers.forEach((answerElement, index) => {
+      const deleteButton = answerElement.querySelector('.update-question__answers-item-delete');
+      if (deleteButton) {
+        deleteButton.addEventListener('click', () => {
+          answers.splice(index, 1);
+          if (answers.length === 0) {
+            answers.push({
+              id: 0,
+              text: '',
+            })
+          }
+          if (deleteButton.id !== '0') {
+            removedAnswersID.push(deleteButton.id);
+          }
+          renderAnswers();
+        });
+      }
+    });
   };
 
   switch (type) {
-    case 1:
+    case TYPE_SINGLE_CHOICE:
       radioButton.checked = true;
       renderAnswers();
       break;
-    case 2:
+    case TYPE_MULTIPLE_CHOICE:
       checkboxButton.checked = true;
       renderAnswers();
       break;
     default:
       textButton.checked = true;
       renderAnswers();
-      buttonContainer.style.display = 'none';
+      buttonAddAnswer.style.display = 'none';
       break;
   }
 
   radioButton.addEventListener('click', () => {
     checkboxButton.checked = false;
     textButton.checked = false;
-    type = 1;
-    buttonContainer.style.display = 'flex';
+    type = TYPE_SINGLE_CHOICE;
+    buttonAddAnswer.style.display = 'flex';
     renderAnswers();
   });
   checkboxButton.addEventListener('click', () => {
     radioButton.checked = false;
     textButton.checked = false;
-    type = 2;
-    buttonContainer.style.display = 'flex';
+    type = TYPE_MULTIPLE_CHOICE;
+    buttonAddAnswer.style.display = 'flex';
     renderAnswers();
   });
   textButton.addEventListener('click', () => {
     checkboxButton.checked = false;
     radioButton.checked = false;
-    type = 3;
-    buttonContainer.style.display = 'none';
+    type = TYPE_TEXT;
+    buttonAddAnswer.style.display = 'none';
     renderAnswers();
   });
 
@@ -80,21 +98,21 @@ export const createQuestionUpdate = (question) => {
       return;
     }
     answers.push({
-      id: answers.length,
+      id: 0,
       text: '',
     });
     renderAnswers();
   });
 
-  const clearButton = questionElement.querySelector('#clear-answers-button');
-  clearButton.addEventListener('click', () => {
-    answers.length = 0;
-    answers.push({
-      id: answers.length,
-      text: '',
-    });
-    renderAnswers();
-  });
+  // const clearButton = questionElement.querySelector('#clear-answers-button');
+  // clearButton.addEventListener('click', () => {
+  //   answers.length = 0;
+  //   answers.push({
+  //     id: 0,
+  //     text: '',
+  //   });
+  //   renderAnswers();
+  // });
 
   return questionElement;
 };

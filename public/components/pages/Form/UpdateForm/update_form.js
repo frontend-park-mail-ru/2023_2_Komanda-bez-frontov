@@ -4,9 +4,12 @@ import {removeMessage, renderMessage} from '../../../Message/message.js';
 import {STORAGE, storageGetFormByID} from '../../../../modules/storage.js';
 import {goToPage} from '../../../../modules/router.js';
 import {ROUTES} from '../../../../config.js';
-import {createQuestionUpdate} from '../../../Question/UpdateQuestion/update_question.js';
+import {createQuestionUpdate, removedAnswersID} from '../../../Question/UpdateQuestion/update_question.js';
 import {closePopUpWindow, renderPopUpWindow} from '../../../PopUpWindow/popup_window.js';
 import {formUpdatePageParser, formUpdateValidator} from '../FormNew/new_form.js';
+import {renderAuthorMenu} from "../../../AuthorMenu/authorMenu.js";
+
+const TYPE_SINGLE_CHOICE = 1;
 
 /**
  * Функция для рендеринга страницы редактирования опроса по его id.
@@ -55,15 +58,24 @@ export const renderFormUpdate = async (id) => {
     formJSON = storageGetFormByID(id);
   }
 
-  const rootElement = document.querySelector('#root');
-  rootElement.innerHTML = '';
-
   if (STORAGE.user.id !== formJSON.author.id) {
     renderMessage('У вас нет прав на редактирование этого опроса.', true);
     return;
   }
 
-  rootElement.innerHTML = Handlebars.templates.update_form({form: formJSON});
+  const removedQuestionsID = [];
+  removedAnswersID.length = 0;
+
+  const rootElement = document.querySelector('#root');
+  rootElement.innerHTML = '';
+
+  renderAuthorMenu(id);
+  const menuUpdateButton = document.querySelector('#author-menu-update-button');
+  menuUpdateButton.disabled = true;
+  menuUpdateButton.classList.add('secondary-button');
+  menuUpdateButton.classList.remove('primary-button');
+
+  rootElement.insertAdjacentHTML('beforeend', Handlebars.templates.update_form({form: formJSON}));
 
   const questions = document.querySelector('#check-form__questions-container');
   formJSON.questions.forEach((question) => {
@@ -72,6 +84,7 @@ export const renderFormUpdate = async (id) => {
       e.stopImmediatePropagation();
       renderPopUpWindow('Требуется подтверждение', 'Вы уверены, что хотите безвозвратно удалить вопрос?', true, () => {
         questionElement.remove();
+        removedQuestionsID.push(question.id);
         closePopUpWindow();
       });
     });
@@ -84,7 +97,7 @@ export const renderFormUpdate = async (id) => {
       id: 0,
       title: '',
       description: '',
-      type: 1,
+      type: TYPE_SINGLE_CHOICE,
       shuffle: false,
       answers: [
         {
@@ -141,6 +154,9 @@ export const renderFormUpdate = async (id) => {
       return;
     }
     updatedForm.id = Number(id);
+    updatedForm.removed_questions = removedQuestionsID;
+    updatedForm.remoed_answers = removedAnswersID;
+    console.log(updatedForm);
     try {
       const res = await api.updateForm(updatedForm);
       if (res.message === 'ok') {

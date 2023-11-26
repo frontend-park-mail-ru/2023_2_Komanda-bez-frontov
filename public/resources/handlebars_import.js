@@ -1,6 +1,7 @@
 import '../components/pages/Main/main.precompiled.js';
 import '../components/Navbar/navbar.precompiled.js';
 import '../components/ProfileMenu/profileMenu.precompiled.js';
+import '../components/AuthorMenu/authorMenu.precompiled.js';
 import '../components/PopUpWindow/popup_window.precompiled.js';
 import '../components/pages/Profile/profile.precompiled.js';
 import '../components/pages/Forms/forms.precompiled.js';

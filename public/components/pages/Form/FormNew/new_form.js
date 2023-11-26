@@ -7,6 +7,10 @@ import {createQuestionUpdate} from '../../../Question/UpdateQuestion/update_ques
 import {closePopUpWindow, renderPopUpWindow} from '../../../PopUpWindow/popup_window.js';
 import {textValidation} from '../../../../modules/validation.js';
 
+const TYPE_SINGLE_CHOICE = 1;
+const TYPE_MULTIPLE_CHOICE = 2;
+const TYPE_TEXT = 3;
+
 /**
  * Функция для рендеринга страницы опроса по его id.
  * Если пользователь не авторизован, происходит редирект на страницу входа.
@@ -33,7 +37,7 @@ export const renderFormNew = async () => {
         id: 0,
         title: '',
         description: '',
-        type: 1,
+        type: TYPE_SINGLE_CHOICE,
         shuffle: false,
         answers: [
           {
@@ -71,7 +75,7 @@ export const renderFormNew = async () => {
       id: 0,
       title: '',
       description: '',
-      type: 1,
+      type: TYPE_SINGLE_CHOICE,
       shuffle: false,
       answers: [
         {
@@ -151,15 +155,16 @@ export const formUpdatePageParser = () => {
 
   const cQuestions = document.querySelectorAll('.update-question');
   cQuestions.forEach((questionElement) => {
-    let type = 3;
+    let type = TYPE_TEXT;
     if (questionElement.querySelector('#update-question__answer-format-radio').checked) {
-      type = 1;
+      type = TYPE_SINGLE_CHOICE;
     }
     if (questionElement.querySelector('#update-question__answer-format-checkbox').checked) {
-      type = 2;
+      type = TYPE_MULTIPLE_CHOICE;
     }
 
     const question = {
+      // id: questionElement.id,
       title: questionElement.querySelector('#update-question__title').value,
       description: questionElement.querySelector('#update-question__description-textarea').value,
       type,
@@ -184,12 +189,13 @@ export const formUpdatePageParser = () => {
       flag = true;
     }
 
-    if (question.type === 3) {
+    if (question.type === TYPE_TEXT) {
       question.answers.push({
+        // id: questionElement.querySelector('#update-question__answers-item-input').id,
         text: '',
       });
     } else {
-      const cAnswers = questionElement.querySelectorAll('#update-question__answers-item-input');
+      const cAnswers = questionElement.querySelectorAll('.update-question__answers-item-input');
       const uniqueAnswers = new Set();
       cAnswers.forEach((answer) => {
         if (!answer.value) {
@@ -200,6 +206,7 @@ export const formUpdatePageParser = () => {
           flag = true;
         }
         question.answers.push({
+          // id: answer.id,
           text: answer.value,
         });
         uniqueAnswers.add(answer.value);

@@ -6,6 +6,7 @@ import {frontendUrl, ROUTES} from '../../../../config.js';
 import {goToPage} from '../../../../modules/router.js';
 import {createQuestion} from '../../../Question/CheckQuestion/check_question.js';
 import {renderPopUpWindow} from '../../../PopUpWindow/popup_window.js';
+import {renderAuthorMenu} from '../../../AuthorMenu/authorMenu.js';
 
 /**
  * Функция для рендеринга страницы опроса по его id.
@@ -48,7 +49,28 @@ export const renderForm = async (id) => {
 
   const rootElement = document.querySelector('#root');
   rootElement.innerHTML = '';
-  rootElement.innerHTML = Handlebars.templates.check_form({form: formJSON});
+
+  if (STORAGE.user && STORAGE.user.id === formJSON.author.id) {
+    renderAuthorMenu(id);
+    const menuCheckButton = document.querySelector('#author-menu-check-button');
+    menuCheckButton.disabled = true;
+    menuCheckButton.classList.add('secondary-button');
+    menuCheckButton.classList.remove('primary-button');
+  }
+
+  // TODO удалить. потом будет получаться из апи, пока тест
+  formJSON.anonymous = true;
+
+  rootElement.insertAdjacentHTML('beforeend', Handlebars.templates.check_form({form: formJSON}));
+
+  // Чтоб красиво выглядело, но не получилось
+  // if (STORAGE.user && STORAGE.user.id === formJSON.author.id) {
+  //   document.querySelector('.check-form').style.left = '155px';
+  // }
+
+  if (STORAGE.user && !formJSON.anonymous) {
+    document.querySelector('.check-form__anonymous').style.display = 'none';
+  }
 
   const questions = document.querySelector('#check-form__questions-container');
   formJSON.questions.forEach((question) => {
@@ -57,12 +79,13 @@ export const renderForm = async (id) => {
   });
 
   const updateSubmitButton = document.querySelector('#update-submit-button');
-  if (STORAGE.user.id === formJSON.author.id) {
+  if (STORAGE.user && STORAGE.user.id === formJSON.author.id) {
     updateSubmitButton.innerHTML = 'Редактировать';
     updateSubmitButton.addEventListener('click', () => {
       goToPage(ROUTES.formUpdate, id);
     });
   } else {
+    // TODO проверка на анонимность
     updateSubmitButton.innerHTML = 'Отправить';
     updateSubmitButton.addEventListener('click', () => {
       // иначе отправим заполненную форму.

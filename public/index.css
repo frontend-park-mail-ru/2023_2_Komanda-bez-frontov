@@ -52,8 +52,6 @@ button {
 .navbar_logo a {
   font-weight: bold;
   font-size: 36px;
-}
-.navbar_logo a:hover {
   cursor: pointer;
 }
 
@@ -61,8 +59,6 @@ button {
   display: flex;
   justify-content: space-evenly;
   margin-left: 50px;
-}
-.navbar_profile:hover {
   cursor: pointer;
 }
 .navbar_profile .navbar_profile__picture {
@@ -104,6 +100,30 @@ button {
 }
 .navbar-profile-menu .navbar-profile-menu-separator {
   height: 15px;
+}
+
+.form-author-menu {
+  position: fixed;
+  z-index: 5;
+  left: 0;
+  top: 100px;
+  width: 250px;
+  height: 100%;
+  padding: 50px 30px;
+  background-color: rgba(75, 53, 122, 0.3);
+  text-align: center;
+}
+.form-author-menu .primary-button {
+  margin: 8px 0;
+  font-size: 18px;
+}
+.form-author-menu .primary-button:hover {
+  opacity: 1;
+  background-color: #DDDDDD;
+}
+.form-author-menu .secondary-button {
+  margin: 6px 0;
+  font-size: 18px;
 }
 
 .popup_fade {
@@ -312,6 +332,26 @@ button {
   cursor: pointer;
 }
 
+.update-profile-form_container__input-container {
+  display: flex;
+}
+
+.update-profile-form_container__input {
+  height: 48px;
+  margin: 0 0 12px 0;
+  border-radius: 12px;
+  border: 2px solid #424242;
+  padding: 7px 15px;
+  box-sizing: border-box;
+  font-size: 25px;
+}
+
+.update-profile-form_container__input-show-button {
+  color: #000000;
+  margin-left: -40px;
+  margin-top: 13px;
+}
+
 .forms_list-container {
   margin: 40px 100px 0 100px;
   min-width: 230px;
@@ -429,15 +469,29 @@ button {
   border-radius: 12px;
   border: 2px solid #424242;
 }
+.check-question .button-container button {
+  font-size: 18px;
+  font-weight: normal;
+  padding: 8px;
+}
 
-.check-form__description-title {
+.check-question__description-title {
   padding-left: 5px;
   font-size: 22px;
   margin-bottom: 10px;
   text-align: left;
 }
 
-.check-form__description-text {
+.check-question__required-title {
+  color: #da2d28;
+  padding-left: 10px;
+  font-size: 18px;
+  font-weight: normal;
+  margin-bottom: 10px;
+  text-align: left;
+}
+
+.check-question__description-text {
   padding-left: 10px;
   font-size: 22px;
   font-weight: normal;
@@ -529,7 +583,7 @@ button {
 .update-question__description-textarea {
   font-size: 20px;
   width: 720px;
-  height: 118px;
+  height: 80px;
   resize: none;
   background-color: #D8D3E2;
   border-radius: 8px;
@@ -570,13 +624,22 @@ button {
 }
 
 .update-question__button-container {
-  margin-top: 18px;
+  margin: 18px 0 8px 0;
   display: flex;
   justify-content: left;
-  gap: 15px;
+  align-items: center;
+  gap: 10px;
 }
 .update-question__button-container button {
   width: 250px;
+}
+.update-question__button-container .update-question_button-container__required-checkbox {
+  margin-left: 15px;
+  width: 18px;
+  height: 18px;
+}
+.update-question__button-container .update-question_button-container__required-label {
+  font-size: 20px;
 }
 
 .update-question__answers-title {
@@ -638,6 +701,9 @@ button {
   padding-left: 10px;
   *overflow: hidden;
 }
+.update-question__answers-item .update-question__answers-item-delete {
+  cursor: pointer;
+}
 
 .check-form {
   position: relative;
@@ -651,7 +717,7 @@ button {
   margin-bottom: 32px;
 }
 .check-form .button-container {
-  margin: 18px 12px;
+  margin: 18px 12px 10px 12px;
   width: 550px;
   gap: 15px;
 }
@@ -664,6 +730,21 @@ button {
   border-radius: 12px;
   border: 2px solid #424242;
   text-align: left;
+}
+
+.check-form__anonymous {
+  margin-top: 18px;
+  padding: 13px 15px;
+  border-radius: 12px;
+  border: 2px solid #424242;
+  text-align: left;
+}
+.check-form__anonymous p {
+  font-size: 20px;
+  color: #6e51a4;
+}
+.check-form__anonymous .check-form__anonymous-error {
+  color: #da2d28;
 }
 
 .check-form__description-title {
@@ -733,6 +814,28 @@ button {
   background-color: #D8D3E2;
   border-radius: 8px;
   padding-left: 10px;
+}
+
+.update-form_anonymous {
+  margin-top: 18px;
+  padding: 18px;
+  border-radius: 12px;
+  border: 2px solid #424242;
+  text-align: left;
+}
+.update-form_anonymous .update-form_anonymous__checkbox {
+  margin-left: 5px;
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+}
+.update-form_anonymous .update-form_anonymous__checkbox-label {
+  margin-left: 10px;
+  font-size: 24px;
+}
+.update-form_anonymous p {
+  margin-top: 10px;
+  font-size: 20px;
 }
 
 .update-form__input-error {
@@ -818,9 +921,8 @@ button {
   font-size: 25px;
 }
 
-.login-form_container__input-password-container {
+.login-form_container__input-container {
   display: flex;
-  margin-left: 3px;
 }
 
 .login-form_container__input-show-button {
@@ -866,6 +968,26 @@ button {
   font-size: 18px;
   margin: 0;
   cursor: pointer;
+}
+
+.signup-form_container__input-container {
+  display: flex;
+}
+
+.signup-form_container__input {
+  height: 48px;
+  margin: 0 0 12px 0;
+  border-radius: 12px;
+  border: 2px solid #424242;
+  padding: 7px 15px;
+  box-sizing: border-box;
+  font-size: 25px;
+}
+
+.signup-form_container__input-show-button {
+  color: #000000;
+  margin-left: -40px;
+  margin-top: 13px;
 }
 
 .error-container, .success-container {

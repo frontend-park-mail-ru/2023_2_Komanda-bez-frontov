@@ -34,7 +34,7 @@
 .update-question__description-textarea {
   font-size: 20px;
   width: 720px;
-  height: 118px;
+  height: 80px;
   resize: none;
   background-color: #D8D3E2;
   border-radius: 8px;
@@ -77,12 +77,24 @@
 }
 
 .update-question__button-container {
-  margin-top: 18px;
+  margin: 18px 0 8px 0;
   display: flex;
   justify-content: left;
-  gap: 15px;
+  align-items: center;
+  gap: 10px;
+
   button {
     width: 250px;
+  }
+
+  .update-question_button-container__required-checkbox {
+    margin-left: 15px;
+    width: 18px;
+    height: 18px;
+  }
+
+  .update-question_button-container__required-label {
+    font-size: 20px;
   }
 }
 

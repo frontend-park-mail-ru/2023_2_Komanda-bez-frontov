@@ -11,7 +11,7 @@
   }
 
   .button-container {
-    margin: 18px 12px;
+    margin: 18px 12px 10px 12px;
     width: 550px;
     gap: 15px;
 
@@ -21,13 +21,27 @@
   }
 }
 
-
-
 .check-form__description {
   padding: 13px 15px;
   border-radius: 12px;
   border: 2px solid #424242;
   text-align: left;
+}
+
+.check-form__anonymous {
+  margin-top: 18px;
+  padding: 13px 15px;
+  border-radius: 12px;
+  border: 2px solid #424242;
+  text-align: left;
+  p {
+    font-size: 20px;
+    color: #6e51a4;
+  }
+
+  .check-form__anonymous-error {
+    color: #da2d28;
+  }
 }
 
 .check-form__description-title {

@@ -61,7 +61,7 @@ export const renderLogin = async () => {
       STORAGE.user = res.authorizedUser;
       await getAuthAvatar();
 
-      goToPage(ROUTES.main);
+      goToPage(ROUTES.forms);
       renderMessage('Вы успешно вошли');
     } catch (err) {
       if (err.toString() !== 'TypeError: Failed to fetch') {

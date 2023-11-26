@@ -3,16 +3,33 @@
   padding: 13px 15px;
   border-radius: 12px;
   border: 2px solid #424242;
+
+  .button-container {
+    button {
+      font-size: 18px;
+      font-weight: normal;
+      padding: 8px;
+    }
+  }
 }
 
-.check-form__description-title {
+.check-question__description-title {
   padding-left: 5px;
   font-size: 22px;
   margin-bottom: 10px;
   text-align: left;
 }
 
-.check-form__description-text {
+.check-question__required-title {
+  color: #da2d28;
+  padding-left: 10px;
+  font-size: 18px;
+  font-weight: normal;
+  margin-bottom: 10px;
+  text-align: left;
+}
+
+.check-question__description-text {
   padding-left: 10px;
   font-size: 22px;
   font-weight: normal;

@@ -144,11 +144,12 @@ export const avatarValidation = (avatar) => {
 export const textValidation = (text) => {
   let valid = false;
 
-  const re = /^[A-Za-zА-Яа-я0-9\s,."'?!-]*$/;
-
-  if (!re.test(text)) {
-    const message = 'Текст должен состоять из русских или английских слов, цифр и знаков препинания';
-    return {valid, message};
+  for (let i = 0; i < text.length; i++) {
+    let charCode = text.charCodeAt(i);
+    if ((charCode >= 255 && charCode < 1025) || charCode > 1105) {
+      const message = 'Текст должен состоять из русских или английских слов, цифр и знаков препинания';
+      return {valid, message};
+    }
   }
 
   valid = true;
