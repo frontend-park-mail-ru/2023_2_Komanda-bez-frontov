@@ -17,37 +17,34 @@ export const renderAuthorMenu = (id) => {
   }
   const rootElement = document.querySelector('#root');
   rootElement.innerHTML = Handlebars.templates.authorMenu();
+  
+  const checkButton = document.querySelector('#author-menu-check-button');
+  checkButton.addEventListener('click', () => {
+    goToPage(ROUTES.form, id);
+  });
 
-  setTimeout(() => {
-    const checkButton = document.querySelector('#author-menu-check-button');
-    checkButton.addEventListener('click', () => {
-      goToPage(ROUTES.form, id);
+  const updateButton = document.querySelector('#author-menu-update-button');
+  updateButton.addEventListener('click', () => {
+    goToPage(ROUTES.formUpdate, id);
+  });
+
+  // const resultsButton = document.querySelector('#author-menu-results-button');
+  // resultsButton.addEventListener('click', () => {
+  //   goToPage(ROUTES.formResults, id);
+  // });
+
+  const createLinkButton = document.querySelector('#author-menu-link-button');
+  createLinkButton.addEventListener('click', (e) => {
+    const link = `${frontendUrl}/forms/${id}`;
+    e.stopImmediatePropagation();
+    renderPopUpWindow('Ссылка на ваш опрос', link, false, () => {
+      const copyButton = document.querySelector('#popup-ok-button');
+      copyButton.innerHTML = 'Скопировано!';
+      copyButton.classList.add('primary-button');
+      copyButton.classList.remove('secondary-button');
+      navigator.clipboard.writeText(link);
     });
-
-    const updateButton = document.querySelector('#author-menu-update-button');
-    updateButton.addEventListener('click', () => {
-      goToPage(ROUTES.formUpdate, id);
-    });
-
-    // const resultsButton = document.querySelector('#author-menu-results-button');
-    // resultsButton.addEventListener('click', () => {
-    //   goToPage(ROUTES.formResults, id);
-    // });
-
-    const createLinkButton = document.querySelector('#author-menu-link-button');
-    createLinkButton.addEventListener('click', (e) => {
-      const link = `${frontendUrl}/forms/${id}`;
-      e.stopImmediatePropagation();
-      renderPopUpWindow('Ссылка на ваш опрос', link, false, () => {
-        const copyButton = document.querySelector('#popup-ok-button');
-        copyButton.innerHTML = 'Скопировано!';
-        copyButton.classList.add('primary-button');
-        copyButton.classList.remove('secondary-button');
-        navigator.clipboard.writeText(link);
-      });
-      document.querySelector('#popup-ok-button').innerHTML = 'Скопировать';
-    });
-
-  }, 10);
+    document.querySelector('#popup-ok-button').innerHTML = 'Скопировать';
+  });
 
 };

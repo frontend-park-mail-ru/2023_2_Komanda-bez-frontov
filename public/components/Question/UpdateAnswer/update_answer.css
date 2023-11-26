@@ -57,7 +57,7 @@
   padding-left: 10px;
   *overflow: hidden;
 }
-.update-question__answers-item .update-question__answers-item-delete:hover {
+.update-question__answers-item .update-question__answers-item-delete {
   cursor: pointer;
 }
 

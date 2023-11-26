@@ -2,8 +2,6 @@ import {API} from '../../modules/api.js';
 import {renderMessage, removeMessage} from '../Message/message.js';
 import {ROUTES} from '../../config.js';
 import {clearStorage} from '../../modules/storage.js';
-import {renderMain} from '../pages/Main/main.js';
-import {navbar} from '../Navbar/navbar.js';
 import {goToPage} from "../../modules/router.js";
 
 /**
@@ -14,6 +12,8 @@ import {goToPage} from "../../modules/router.js";
  * @return {void}
  */
 export const renderMainLogout = async () => {
+  removeMessage();
+
   let logoutStatus;
   try {
     const api = new API();

@@ -45,6 +45,10 @@ export const navbar = () => {
   const logoButton = document.querySelector('#navbar-logo-label');
   logoButton.addEventListener('click', () => {
     removeMessage();
-    goToPage(ROUTES.main);
+    if (!STORAGE.user) {
+      goToPage(ROUTES.main);
+    } else {
+      goToPage(ROUTES.forms);
+    }
   });
 };

@@ -37,4 +37,24 @@
   cursor: pointer;
 }
 
+.signup-form_container__input-container {
+  display: flex;
+}
+
+.signup-form_container__input {
+  height: 48px;
+  margin: 0 0 12px 0;
+  border-radius: 12px;
+  border: 2px solid #424242;
+  padding: 7px 15px;
+  box-sizing: border-box;
+  font-size: 25px;
+}
+
+.signup-form_container__input-show-button {
+  color: #000000;
+  margin-left: -40px;
+  margin-top: 13px;
+}
+
 /*# sourceMappingURL=signup.css.map */

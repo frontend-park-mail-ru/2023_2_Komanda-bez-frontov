@@ -1,5 +1,9 @@
 export const removedAnswersID = [];
 
+const TYPE_SINGLE_CHOICE = 1;
+const TYPE_MULTIPLE_CHOICE = 2;
+const TYPE_TEXT = 3;
+
 /**
  * Функция для рендеринга одного вопроса (вариант для формы обновления и создания).
  *
@@ -51,11 +55,11 @@ export const createQuestionUpdate = (question) => {
   };
 
   switch (type) {
-    case 1:
+    case TYPE_SINGLE_CHOICE:
       radioButton.checked = true;
       renderAnswers();
       break;
-    case 2:
+    case TYPE_MULTIPLE_CHOICE:
       checkboxButton.checked = true;
       renderAnswers();
       break;
@@ -69,21 +73,21 @@ export const createQuestionUpdate = (question) => {
   radioButton.addEventListener('click', () => {
     checkboxButton.checked = false;
     textButton.checked = false;
-    type = 1;
+    type = TYPE_SINGLE_CHOICE;
     buttonAddAnswer.style.display = 'flex';
     renderAnswers();
   });
   checkboxButton.addEventListener('click', () => {
     radioButton.checked = false;
     textButton.checked = false;
-    type = 2;
+    type = TYPE_MULTIPLE_CHOICE;
     buttonAddAnswer.style.display = 'flex';
     renderAnswers();
   });
   textButton.addEventListener('click', () => {
     checkboxButton.checked = false;
     radioButton.checked = false;
-    type = 3;
+    type = TYPE_TEXT;
     buttonAddAnswer.style.display = 'none';
     renderAnswers();
   });
