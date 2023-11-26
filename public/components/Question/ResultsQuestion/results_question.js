@@ -1,3 +1,5 @@
+import {TYPE_MULTIPLE_CHOICE, TYPE_SINGLE_CHOICE} from "../../pages/Form/CheckForm/check_form.js";
+
 /**
  * Функция для рендеринга результата одного вопроса.
  *
@@ -10,15 +12,11 @@ export const renderResultsQuestion = (question) => {
 
   questionElement.innerHTML = Handlebars.templates.results_question({question});
 
-  if (question.type === 1 || question.type === 2) {
-    let max_selected_times = 0;
-    question.answers.forEach((answer) => {
-      if (answer.selected_times > max_selected_times) {
-        max_selected_times = answer.selected_times;
-      }
-    });
+  if (question.type === TYPE_SINGLE_CHOICE || question.type === TYPE_MULTIPLE_CHOICE) {
+    const max_selected_times = question.answers.reduce((accum, answer) => Math.max(accum, answer.selected_times));
+
     const cAnswers = questionElement.querySelectorAll('.results-question_answers_answer-item');
-    cAnswers.forEach((answerElement) => {
+    cAnswers.forEach((answerElement, index) => {
       const bar = answerElement.querySelector('.results-question_answers_answer-item__bar');
       const percentageLabel = answerElement.querySelector('.results-question_answers_answer-item__percentage');
       if (max_selected_times === 0) {
@@ -31,12 +29,12 @@ export const renderResultsQuestion = (question) => {
           bar.style.width = `${barWidth}%`;
         }
       }
-      const percentage = Number(percentageLabel.innerHTML)* 100 / question.number_of_passages;
+      const percentage = question.answers[index].selected_times * 100 / question.number_of_passages;
       percentageLabel.innerHTML += ` (${percentage}%)`;
     });
   } else {
     // TODO заменить на нормальный 0, когда будет апи
-    if (question.number_of_passages === 1) {
+    if (question.number_of_passages === TYPE_SINGLE_CHOICE) {
       const answerContainer = questionElement.querySelector('#question-answers');
       answerContainer.innerHTML = '<br> &nbsp;&nbsp;&nbsp;Ответов пока нет...';
       answerContainer.style.margin = '0 0 10px 0';
