@@ -116,15 +116,6 @@ export const renderResultsForm = async (id) => {
   menuResultsButton.classList.add('secondary-button');
   menuResultsButton.classList.remove('primary-button');
 
-  // formJSON.participants = [
-  //   {
-  //     name: 'Jora',
-  //   },
-  //   {
-  //     name: 'Jopa',
-  //   },
-  // ];
-
   rootElement.innerHTML += Handlebars.templates.form_results({form: formJSON});
 
   if (!formJSON.participants) {

@@ -63,8 +63,6 @@
   }
 
   .update-question__answers-item-delete {
-    &:hover {
-      cursor: pointer;
-    }
+    cursor: pointer;
   }
 }

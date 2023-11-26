@@ -33,25 +33,8 @@ export const renderForms = async () => {
   let forms = [];
   let message = 'ok';
 
-  const searchFormsRequest = async () => {
-    // Получение формы
-    try {
-      const res = await api.getFormsByTitle(searchInput.value);
-      message = res.message;
-      forms = res.forms;
-      STORAGE.forms = res.forms;
-      loadingScreen.style.display = 'none';
-    } catch (e) {
-      loadingScreen.style.display = 'none';
-      if (e.toString() !== 'TypeError: Failed to fetch') {
-        renderMessage('Ошибка сервера. Попробуйте позже.', true);
-        return;
-      }
-      renderMessage('Потеряно соединение с сервером', true);
-      // Попытка найти опросы в локальном хранилище
-      forms = STORAGE.forms;
-    }
-
+  // Рендерит полученные опросы на страничке
+  const renderRequestedForms = () => {
     if (message === 'ok') {
       formsContainer.innerHTML = '';
 
@@ -79,7 +62,51 @@ export const renderForms = async () => {
     }
   };
 
-  await searchFormsRequest();
+  // Отображает результаты поиска по введеной строке
+  const searchFormsRequest = async () => {
+    // Получение формы
+    try {
+      const res = await api.getFormsByTitle(searchInput.value);
+      message = res.message;
+      forms = res.forms;
+      loadingScreen.style.display = 'none';
+    } catch (e) {
+      loadingScreen.style.display = 'none';
+      if (e.toString() !== 'TypeError: Failed to fetch') {
+        renderMessage('Ошибка сервера. Попробуйте позже.', true);
+        return;
+      }
+      renderMessage('Потеряно соединение с сервером', true);
+    }
+
+    renderRequestedForms();
+  };
+
+  // Отображает все созданные пользователем опросы
+  const showAllFormsRequest = async () => {
+    // Получение формы
+    try {
+      const res = await api.getForms();
+      message = res.message;
+      forms = res.forms;
+      STORAGE.forms = res.forms;
+      loadingScreen.style.display = 'none';
+    } catch (e) {
+      loadingScreen.style.display = 'none';
+      if (e.toString() !== 'TypeError: Failed to fetch') {
+        renderMessage('Ошибка сервера. Попробуйте позже.', true);
+        return;
+      }
+      renderMessage('Потеряно соединение с сервером', true);
+      // Попытка найти опросы в локальном хранилище
+      forms = STORAGE.forms;
+    }
+
+    forms = forms.sort((a, b) => b.id - a.id);
+    renderRequestedForms();
+  };
+
+  await showAllFormsRequest();
 
   const newFormButton = document.querySelector('#forms-list-add-button');
   newFormButton.addEventListener('click', () => {
@@ -89,11 +116,19 @@ export const renderForms = async () => {
   const searchButton = document.querySelector('#forms-list-search-button');
   searchButton.addEventListener('click', () => {
     loadingScreen.style.display = 'flex';
+    if (searchInput.value === '') {
+      showAllFormsRequest();
+      return;
+    }
     searchFormsRequest();
   });
   searchInput.addEventListener('keypress', (e) => {
     if (e.key === 'Enter') {
       loadingScreen.style.display = 'flex';
+      if (searchInput.value === '') {
+        showAllFormsRequest();
+        return;
+      }
       searchFormsRequest();
     }
   });
@@ -102,6 +137,11 @@ export const renderForms = async () => {
   const searchRequest = () => {
     loadingScreen.style.display = 'flex';
     setTimeout(() => {
+      if (searchInput.value === '') {
+        showAllFormsRequest();
+        searchInput.addEventListener('input', searchRequest, {once: true});
+        return;
+      }
       searchFormsRequest();
       searchInput.addEventListener('input', searchRequest, {once: true});
     }, 1000);
