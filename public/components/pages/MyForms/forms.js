@@ -69,9 +69,9 @@ export const renderForms = async () => {
       const res = await api.getFormsByTitle(searchInput.value);
       message = res.message;
       forms = res.forms;
-      loadingScreen.style.display = 'none';
+      loadingScreen.classList.add('display-none');
     } catch (e) {
-      loadingScreen.style.display = 'none';
+      loadingScreen.classList.add('display-none');
       if (e.toString() !== 'TypeError: Failed to fetch') {
         renderMessage('Ошибка сервера. Попробуйте позже.', true);
         return;
@@ -90,9 +90,9 @@ export const renderForms = async () => {
       message = res.message;
       forms = res.forms;
       STORAGE.forms = res.forms;
-      loadingScreen.style.display = 'none';
+      loadingScreen.classList.add('display-none');
     } catch (e) {
-      loadingScreen.style.display = 'none';
+      loadingScreen.classList.add('display-none');
       if (e.toString() !== 'TypeError: Failed to fetch') {
         renderMessage('Ошибка сервера. Попробуйте позже.', true);
         return;
@@ -115,7 +115,7 @@ export const renderForms = async () => {
 
   const searchButton = document.querySelector('#forms-list-search-button');
   searchButton.addEventListener('click', () => {
-    loadingScreen.style.display = 'flex';
+    loadingScreen.classList.remove('display-none');
     if (searchInput.value === '') {
       showAllFormsRequest();
       return;
@@ -124,7 +124,7 @@ export const renderForms = async () => {
   });
   searchInput.addEventListener('keypress', (e) => {
     if (e.key === 'Enter') {
-      loadingScreen.style.display = 'flex';
+      loadingScreen.classList.remove('display-none');
       if (searchInput.value === '') {
         showAllFormsRequest();
         return;
@@ -135,7 +135,7 @@ export const renderForms = async () => {
 
   // Тестирование моментальных запросов
   const searchRequest = () => {
-    loadingScreen.style.display = 'flex';
+    loadingScreen.classList.remove('display-none');
     setTimeout(() => {
       if (searchInput.value === '') {
         showAllFormsRequest();

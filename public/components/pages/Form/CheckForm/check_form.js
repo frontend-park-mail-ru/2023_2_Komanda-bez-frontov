@@ -71,7 +71,7 @@ export const renderForm = async (id) => {
   // }
 
   if (STORAGE.user && !formJSON.anonymous) {
-    document.querySelector('.check-form__anonymous').style.display = 'none';
+    document.querySelector('.check-form__anonymous').classList.add('display-none');
   }
 
   const questions = document.querySelector('#check-form__questions-container');
@@ -196,6 +196,6 @@ export const renderForm = async (id) => {
       document.querySelector('#popup-ok-button').innerHTML = 'Скопировать';
     });
   } else {
-    createLinkButton.style.display = 'none';
+    createLinkButton.classList.add('display-none');
   }
 };

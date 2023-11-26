@@ -93,7 +93,7 @@ export const renderFormNew = async () => {
   });
 
   const deleteForm = document.querySelector('#delete-button');
-  deleteForm.style.display = 'none';
+  deleteForm.classList.add('display-none');;
 
   const saveForm = document.querySelector('#update-button');
   saveForm.innerHTML = 'Опубликовать';

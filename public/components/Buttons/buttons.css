@@ -40,4 +40,8 @@ button {
   border-radius: 12px;
 }
 
+.button__disabled {
+  opacity: 0.6;
+}
+
 /*# sourceMappingURL=buttons.css.map */

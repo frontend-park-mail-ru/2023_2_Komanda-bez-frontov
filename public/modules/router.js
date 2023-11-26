@@ -63,7 +63,6 @@ export const goToPage = (page, id = null, redirect = false) => {
   }
   const url = page.url.replace(':id', id.toString());
   window.scroll(0, 0);
-  navbar();
 
   if (window.location.pathname !== url) {
     if (redirect) {

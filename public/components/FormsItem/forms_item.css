@@ -40,6 +40,10 @@ button {
   border-radius: 12px;
 }
 
+.button__disabled {
+  opacity: 0.6;
+}
+
 .forms-list__item {
   background-color: #FFFFFF;
   margin-bottom: 20px;
