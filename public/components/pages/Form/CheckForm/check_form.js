@@ -9,6 +9,10 @@ import {renderPopUpWindow} from '../../../PopUpWindow/popup_window.js';
 import {renderAuthorMenu} from '../../../AuthorMenu/authorMenu.js';
 import {textValidation} from "../../../../modules/validation.js";
 
+const TYPE_SINGLE_CHOICE = 1;
+const TYPE_MULTIPLE_CHOICE = 2;
+const TYPE_TEXT = 3;
+
 /**
  * Функция для рендеринга страницы опроса по его id.
  *
@@ -98,7 +102,7 @@ export const renderForm = async (id) => {
       };
 
       formJSON.questions.forEach((question) => {
-        if (question.type === 1 || question.type === 2) {
+        if (question.type === TYPE_SINGLE_CHOICE || question.type === TYPE_MULTIPLE_CHOICE) {
           let isAnswered = false;
           question.answers.forEach((answer) => {
             const chosenAnswer = document.querySelector(`#check-question_${question.id}_answer-item_${answer.id}`);
@@ -117,7 +121,7 @@ export const renderForm = async (id) => {
           }
         }
 
-        else if (question.type === 3) {
+        else if (question.type === TYPE_TEXT) {
           const chosenAnswer = document.querySelector(`#check-question_${question.id}_answers-item`);
 
           if (question.required && chosenAnswer.value === "") {
