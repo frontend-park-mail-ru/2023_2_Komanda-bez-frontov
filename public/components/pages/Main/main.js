@@ -1,5 +1,6 @@
 import {goToPage} from "../../../modules/router.js";
 import {ROUTES} from "../../../config.js";
+import {STORAGE} from "../../../modules/storage.js";
 
 /**
  * Функция для рендеринга главной страницы с информацией о сервисе.
@@ -8,6 +9,11 @@ import {ROUTES} from "../../../config.js";
  * @return {void}
  */
 export const renderMain = () => {
+  if (STORAGE.user) {
+    goToPage(ROUTES.forms);
+    return;
+  }
+
   const rootElement = document.querySelector('#root');
   rootElement.innerHTML = '';
   rootElement.innerHTML = Handlebars.templates.main();
