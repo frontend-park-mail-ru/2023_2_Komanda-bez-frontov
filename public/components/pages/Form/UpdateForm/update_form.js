@@ -9,6 +9,8 @@ import {closePopUpWindow, renderPopUpWindow} from '../../../PopUpWindow/popup_wi
 import {formUpdatePageParser, formUpdateValidator} from '../FormNew/new_form.js';
 import {renderAuthorMenu} from "../../../AuthorMenu/authorMenu.js";
 
+const TYPE_SINGLE_CHOICE = 1;
+
 /**
  * Функция для рендеринга страницы редактирования опроса по его id.
  * Если пользователь не авторизован, происходит редирект на страницу входа.
@@ -73,7 +75,7 @@ export const renderFormUpdate = async (id) => {
   menuUpdateButton.classList.add('secondary-button');
   menuUpdateButton.classList.remove('primary-button');
 
-  rootElement.innerHTML += Handlebars.templates.update_form({form: formJSON});
+  rootElement.insertAdjacentHTML('beforeend', Handlebars.templates.update_form({form: formJSON}));
 
   const questions = document.querySelector('#check-form__questions-container');
   formJSON.questions.forEach((question) => {
@@ -95,7 +97,7 @@ export const renderFormUpdate = async (id) => {
       id: 0,
       title: '',
       description: '',
-      type: 1,
+      type: TYPE_SINGLE_CHOICE,
       required: false,
       answers: [
         {

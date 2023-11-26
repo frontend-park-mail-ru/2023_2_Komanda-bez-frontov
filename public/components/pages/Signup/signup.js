@@ -39,18 +39,18 @@ export const renderSignup = async () => {
 
   // let avatar = '';
 
-  const showPasswordButton = document.querySelector('#login-form_container__input-show-button');
+  const showPasswordButton = document.querySelector('#signup-form_container__input-show-button');
   showPasswordButton.addEventListener('click',  () => {
     const password = document.querySelector('#password');
-    const icon = document.querySelector('#login-form_container__input-show-button-icon');
+    const icon = document.querySelector('#signup-form_container__input-show-button-icon');
 
     toggleFunc(password, icon);
   });
 
-  const showRepPasswordButton = document.querySelector('#login-form_container__input-show-rep-button');
+  const showRepPasswordButton = document.querySelector('#signup-form_container__input-show-rep-button');
   showRepPasswordButton.addEventListener('click',  () => {
     const password = document.querySelector('#repeat_password');
-    const icon = document.querySelector('#login-form_container__input-show-rep-button-icon');
+    const icon = document.querySelector('#signup-form_container__input-show-rep-button-icon');
 
     toggleFunc(password, icon);
   });
@@ -119,7 +119,7 @@ export const renderSignup = async () => {
       STORAGE.user = res.registeredUser;
       // STORAGE.avatar = avatar;
 
-      goToPage(ROUTES.main);
+      goToPage(ROUTES.forms);
       renderMessage('Вы успешно зарегистрировались');
     } catch (err) {
       if (err.toString() !== 'TypeError: Failed to fetch') {

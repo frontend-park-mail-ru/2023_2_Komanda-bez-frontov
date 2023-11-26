@@ -67,13 +67,11 @@
   margin-left: 5px;
   width: 18px;
   height: 18px;
+  cursor: pointer;
 }
 .update-form_anonymous .update-form_anonymous__checkbox-label {
   margin-left: 8px;
   font-size: 24px;
-}
-.update-form_anonymous .update-form_anonymous__checkbox-label:hover {
-  cursor: pointer;
 }
 .update-form_anonymous p {
   margin-top: 10px;

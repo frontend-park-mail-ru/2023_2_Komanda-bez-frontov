@@ -33,9 +33,8 @@
   font-size: 25px;
 }
 
-.login-form_container__input-password-container {
+.login-form_container__input-container {
   display: flex;
-  margin-left: 3px;
 }
 
 .login-form_container__input-show-button {

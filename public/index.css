@@ -52,8 +52,6 @@ button {
 .navbar_logo a {
   font-weight: bold;
   font-size: 36px;
-}
-.navbar_logo a:hover {
   cursor: pointer;
 }
 
@@ -61,8 +59,6 @@ button {
   display: flex;
   justify-content: space-evenly;
   margin-left: 50px;
-}
-.navbar_profile:hover {
   cursor: pointer;
 }
 .navbar_profile .navbar_profile__picture {
@@ -334,6 +330,26 @@ button {
   font-size: 18px;
   margin: 0;
   cursor: pointer;
+}
+
+.update-profile-form_container__input-container {
+  display: flex;
+}
+
+.update-profile-form_container__input {
+  height: 48px;
+  margin: 0 0 12px 0;
+  border-radius: 12px;
+  border: 2px solid #424242;
+  padding: 7px 15px;
+  box-sizing: border-box;
+  font-size: 25px;
+}
+
+.update-profile-form_container__input-show-button {
+  color: #000000;
+  margin-left: -40px;
+  margin-top: 13px;
 }
 
 .forms_list-container {
@@ -914,13 +930,11 @@ button {
   margin-left: 5px;
   width: 18px;
   height: 18px;
+  cursor: pointer;
 }
 .update-form_anonymous .update-form_anonymous__checkbox-label {
   margin-left: 8px;
   font-size: 24px;
-}
-.update-form_anonymous .update-form_anonymous__checkbox-label:hover {
-  cursor: pointer;
 }
 .update-form_anonymous p {
   margin-top: 10px;
@@ -1021,8 +1035,6 @@ button {
 .index_content-container_description a span {
   height: 30px;
   color: #6e51a4;
-}
-.index_content-container_description a span:hover {
   cursor: pointer;
 }
 
@@ -1061,9 +1073,8 @@ button {
   font-size: 25px;
 }
 
-.login-form_container__input-password-container {
+.login-form_container__input-container {
   display: flex;
-  margin-left: 3px;
 }
 
 .login-form_container__input-show-button {
@@ -1112,6 +1123,26 @@ button {
   font-size: 18px;
   margin: 0;
   cursor: pointer;
+}
+
+.signup-form_container__input-container {
+  display: flex;
+}
+
+.signup-form_container__input {
+  height: 48px;
+  margin: 0 0 12px 0;
+  border-radius: 12px;
+  border: 2px solid #424242;
+  padding: 7px 15px;
+  box-sizing: border-box;
+  font-size: 25px;
+}
+
+.signup-form_container__input-show-button {
+  color: #000000;
+  margin-left: -40px;
+  margin-top: 13px;
 }
 
 .error-container, .success-container {

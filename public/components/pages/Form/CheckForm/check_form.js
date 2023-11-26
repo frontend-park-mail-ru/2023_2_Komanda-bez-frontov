@@ -58,7 +58,7 @@ export const renderForm = async (id) => {
     menuCheckButton.classList.remove('primary-button');
   }
 
-  rootElement.innerHTML += Handlebars.templates.check_form({form: formJSON});
+  rootElement.insertAdjacentHTML('beforeend', Handlebars.templates.check_form({form: formJSON}));
 
   // Чтоб красиво выглядело, но не получилось
   // if (STORAGE.user && STORAGE.user.id === formJSON.author.id) {

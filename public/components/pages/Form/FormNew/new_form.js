@@ -7,6 +7,10 @@ import {createQuestionUpdate, removedAnswersID} from '../../../Question/UpdateQu
 import {closePopUpWindow, renderPopUpWindow} from '../../../PopUpWindow/popup_window.js';
 import {textValidation} from '../../../../modules/validation.js';
 
+const TYPE_SINGLE_CHOICE = 1;
+const TYPE_MULTIPLE_CHOICE = 2;
+const TYPE_TEXT = 3;
+
 /**
  * Функция для рендеринга страницы опроса по его id.
  * Если пользователь не авторизован, происходит редирект на страницу входа.
@@ -34,7 +38,7 @@ export const renderFormNew = async () => {
         id: 0,
         title: '',
         description: '',
-        type: 1,
+        type: TYPE_SINGLE_CHOICE,
         required: false,
         answers: [
           {
@@ -72,7 +76,7 @@ export const renderFormNew = async () => {
       id: 0,
       title: '',
       description: '',
-      type: 1,
+      type: TYPE_SINGLE_CHOICE,
       required: false,
       answers: [
         {
@@ -154,12 +158,12 @@ export const formUpdatePageParser = () => {
 
   const cQuestions = document.querySelectorAll('.update-question');
   cQuestions.forEach((questionElement) => {
-    let type = 3;
+    let type = TYPE_TEXT;
     if (questionElement.querySelector('#update-question__answer-format-radio').checked) {
-      type = 1;
+      type = TYPE_SINGLE_CHOICE;
     }
     if (questionElement.querySelector('#update-question__answer-format-checkbox').checked) {
-      type = 2;
+      type = TYPE_MULTIPLE_CHOICE;
     }
 
     const question = {
@@ -188,7 +192,7 @@ export const formUpdatePageParser = () => {
       flag = true;
     }
 
-    if (question.type === 3) {
+    if (question.type === TYPE_TEXT) {
       question.answers.push({
         // id: Number(questionElement.querySelector('.update-question__answers-item-textarea').id),
         id: 0,

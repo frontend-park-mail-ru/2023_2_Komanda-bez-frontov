@@ -10,18 +10,15 @@
 .navbar_logo a {
   font-weight: bold;
   font-size: 36px;
-  &:hover {
-    cursor: pointer;
-  }
+  cursor: pointer;
 }
 
 .navbar_profile {
   display: flex;
   justify-content: space-evenly;
   margin-left: 50px;
-  &:hover {
-    cursor: pointer;
-  }
+  cursor: pointer;
+
   .navbar_profile__picture {
     height: 60px;
     width: 60px;
