@@ -9,6 +9,10 @@ import {renderPopUpWindow} from '../../../PopUpWindow/popup_window.js';
 import {renderAuthorMenu} from '../../../AuthorMenu/authorMenu.js';
 import {textValidation} from "../../../../modules/validation.js";
 
+export const TYPE_SINGLE_CHOICE = 1;
+export const TYPE_MULTIPLE_CHOICE = 2;
+export const TYPE_TEXT = 3;
+
 /**
  * Функция для рендеринга страницы опроса по его id.
  *
@@ -83,7 +87,6 @@ export const renderForm = async (id) => {
       goToPage(ROUTES.formUpdate, id);
     });
   } else {
-    // TODO проверка на анонимность
     if (!STORAGE.user && !formJSON.anonymous) {
       goToPage(ROUTES.login);
       renderMessage("Для прохождение опроса необходимо авторизироваться", true);
@@ -92,24 +95,19 @@ export const renderForm = async (id) => {
     updateSubmitButton.innerHTML = 'Отправить';
 
     updateSubmitButton.addEventListener('click', async () => {
-      let passageJSON = {
+      const passageJSON = {
         form_id: formJSON.id,
         passage_answers: [
         ]
       };
 
-      let passageAnswerJSON = {
-        question_id: -1,
-        answer_text: -1,
-      };
-
       formJSON.questions.forEach((question) => {
-        if (question.type === 1 || question.type === 2) {
+        if (question.type === TYPE_SINGLE_CHOICE || question.type === TYPE_MULTIPLE_CHOICE) {
           let isAnswered = false;
           question.answers.forEach((answer) => {
             const chosenAnswer = document.querySelector(`#check-question_${question.id}_answer-item_${answer.id}`);
             if (chosenAnswer.checked) {
-              passageAnswerJSON = {
+              const passageAnswerJSON = {
                 question_id: question.id,
                 answer_text: answer.text,
               };
@@ -123,7 +121,7 @@ export const renderForm = async (id) => {
           }
         }
 
-        else if (question.type === 3) {
+        else if (question.type === TYPE_TEXT) {
           const chosenAnswer = document.querySelector(`#check-question_${question.id}_answers-item`);
 
           if (question.required && chosenAnswer.value === "") {
@@ -147,7 +145,7 @@ export const renderForm = async (id) => {
             return;
           }
 
-          passageAnswerJSON = {
+          const passageAnswerJSON = {
             question_id: question.id,
             answer_text: chosenAnswer.value,
           };
@@ -170,6 +168,8 @@ export const renderForm = async (id) => {
           renderMessage('Ошибка сервера. Попробуйте позже', true);
           return;
         }
+        renderMessage('Потеряно соединение с сервером', true);
+        return;
       }
       if (!STORAGE.user) {
         goToPage(ROUTES.main);

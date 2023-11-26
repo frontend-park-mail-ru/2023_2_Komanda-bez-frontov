@@ -6,10 +6,7 @@ import {ROUTES} from '../../../../config.js';
 import {createQuestionUpdate, removedAnswersID} from '../../../Question/UpdateQuestion/update_question.js';
 import {closePopUpWindow, renderPopUpWindow} from '../../../PopUpWindow/popup_window.js';
 import {textValidation} from '../../../../modules/validation.js';
-
-const TYPE_SINGLE_CHOICE = 1;
-const TYPE_MULTIPLE_CHOICE = 2;
-const TYPE_TEXT = 3;
+import {TYPE_SINGLE_CHOICE, TYPE_MULTIPLE_CHOICE, TYPE_TEXT} from "../CheckForm/check_form.js";
 
 /**
  * Функция для рендеринга страницы опроса по его id.

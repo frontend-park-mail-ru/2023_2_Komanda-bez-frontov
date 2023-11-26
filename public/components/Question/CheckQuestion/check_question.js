@@ -2,16 +2,14 @@
  * Otherwise, entering ELSE clause if exists.
  * eslint-disable-next-line func-names
  */
+import {TYPE_SINGLE_CHOICE, TYPE_MULTIPLE_CHOICE, TYPE_TEXT} from "../../pages/Form/CheckForm/check_form.js";
+
 Handlebars.registerHelper('ifEquals', (a, b, options) => {
   if (a === b) {
     return options.fn(this);
   }
   return options.inverse(this);
 });
-
-const TYPE_SINGLE_CHOICE = 1;
-const TYPE_MULTIPLE_CHOICE = 2;
-const TYPE_TEXT = 3;
 
 /**
  * Функция для рендеринга одного вопроса (вариант для просмотра и прохождения).
