@@ -116,7 +116,7 @@ export const renderResultsForm = async (id) => {
   menuResultsButton.classList.add('secondary-button');
   menuResultsButton.classList.remove('primary-button');
 
-  rootElement.innerHTML += Handlebars.templates.form_results({form: formJSON});
+  rootElement.insertAdjacentHTML('beforeend', Handlebars.templates.form_results({form: formJSON}));
 
   if (!formJSON.participants) {
     const description = document.querySelector('.form-results__description-text');
