@@ -40,7 +40,7 @@ templates['form_results'] = template({"1":function(container,depth0,helpers,part
     };
 
   return "                        <p class=\"form-results_description-text__participants-item\">"
-    + container.escapeExpression(((helper = (helper = lookupProperty(helpers,"name") || (depth0 != null ? lookupProperty(depth0,"name") : depth0)) != null ? helper : container.hooks.helperMissing),(typeof helper === "function" ? helper.call(depth0 != null ? depth0 : (container.nullContext || {}),{"name":"name","hash":{},"data":data,"loc":{"start":{"line":18,"column":84},"end":{"line":18,"column":92}}}) : helper)))
+    + container.escapeExpression(((helper = (helper = lookupProperty(helpers,"first_name") || (depth0 != null ? lookupProperty(depth0,"first_name") : depth0)) != null ? helper : container.hooks.helperMissing),(typeof helper === "function" ? helper.call(depth0 != null ? depth0 : (container.nullContext || {}),{"name":"first_name","hash":{},"data":data,"loc":{"start":{"line":18,"column":84},"end":{"line":18,"column":98}}}) : helper)))
     + "</p>\n";
 },"compiler":[8,">= 4.3.0"],"main":function(container,depth0,helpers,partials,data,blockParams,depths) {
     var stack1, lookupProperty = container.lookupProperty || function(parent, propertyName) {

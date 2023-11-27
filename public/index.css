@@ -622,7 +622,6 @@ input {
 
 .results-question_title-container {
   display: flex;
-  flex-flow: wrap;
   justify-content: space-between;
   font-size: 16px;
 }

@@ -29,7 +29,9 @@ templates['check_question'] = template({"1":function(container,depth0,helpers,pa
         return undefined
     };
 
-  return "                <h3 class=\"check-question__answer-title\">Выберите один вариант из нижеперечисленных:</h3>\n                <div class=\"check-question__answer-item\">\n"
+  return "                <h3 class=\"check-question__answer-title\">Выберите один вариант из нижеперечисленных:</h3>\n                <div class=\"check-question__answers\" id=\"check-question_"
+    + container.escapeExpression(container.lambda(((stack1 = (depths[1] != null ? lookupProperty(depths[1],"question") : depths[1])) != null ? lookupProperty(stack1,"id") : stack1), depth0))
+    + "__answers\">\n"
     + ((stack1 = lookupProperty(helpers,"each").call(depth0 != null ? depth0 : (container.nullContext || {}),((stack1 = (depths[1] != null ? lookupProperty(depths[1],"question") : depths[1])) != null ? lookupProperty(stack1,"answers") : stack1),{"name":"each","hash":{},"fn":container.program(5, data, 0, blockParams, depths),"inverse":container.noop,"data":data,"loc":{"start":{"line":12,"column":20},"end":{"line":17,"column":29}}})) != null ? stack1 : "")
     + "                </div>\n";
 },"5":function(container,depth0,helpers,partials,data,blockParams,depths) {
@@ -59,7 +61,9 @@ templates['check_question'] = template({"1":function(container,depth0,helpers,pa
         return undefined
     };
 
-  return "                <h3 class=\"check-question__answer-title\">Выберите один или несколько вариантов из нижеперечисленных:</h3>\n                <div class=\"check-question__answers-item\">\n"
+  return "                <h3 class=\"check-question__answer-title\">Выберите один или несколько вариантов из нижеперечисленных:</h3>\n                <div class=\"check-question__answers\" id=\"check-question_"
+    + container.escapeExpression(container.lambda(((stack1 = (depths[1] != null ? lookupProperty(depths[1],"question") : depths[1])) != null ? lookupProperty(stack1,"id") : stack1), depth0))
+    + "__answers\">\n"
     + ((stack1 = lookupProperty(helpers,"each").call(depth0 != null ? depth0 : (container.nullContext || {}),((stack1 = (depths[1] != null ? lookupProperty(depths[1],"question") : depths[1])) != null ? lookupProperty(stack1,"answers") : stack1),{"name":"each","hash":{},"fn":container.program(8, data, 0, blockParams, depths),"inverse":container.noop,"data":data,"loc":{"start":{"line":23,"column":20},"end":{"line":28,"column":29}}})) != null ? stack1 : "")
     + "                </div>\n";
 },"8":function(container,depth0,helpers,partials,data,blockParams,depths) {
