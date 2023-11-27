@@ -1,50 +1,50 @@
 .form-results {
   position: relative;
   text-align: center;
-  font-size: 24px;
-  margin: 40px auto;
-  width: 800px;
+  font-size: 20px;
+  margin: 32px auto;
+  width: 640px;
 }
 .form-results .form-results__title {
-  font-size: 36px;
-  margin-bottom: 32px;
+  font-size: 29px;
+  margin-bottom: 26px;
 }
 .form-results .button-container {
-  margin: 18px 12px 10px 12px;
+  margin: 15px 9px 8px 9px;
 }
 .form-results .button-container button {
-  width: 250px;
+  width: 200px;
 }
 
 .form-results__description {
-  padding: 13px 15px;
-  border-radius: 12px;
-  border: 2px solid #424242;
+  padding: 10px 12px;
+  border-radius: 9px;
+  border: 1px solid #424242;
   text-align: left;
 }
 
 .form-results__description-title {
-  font-size: 25px;
-  margin-bottom: 10px;
+  font-size: 20px;
+  margin-bottom: 8px;
 }
 
 .form-results__description-text {
-  padding-left: 10px;
-  font-size: 22px;
+  padding-left: 8px;
+  font-size: 18px;
   font-weight: normal;
-  line-height: 35px;
+  line-height: 29px;
 }
 
 .form-results_description-text_participants {
-  margin-bottom: 10px;
+  margin-bottom: 8px;
 }
 .form-results_description-text_participants .form-results_description-text__participants-item {
-  width: 150px;
-  margin: 0 15px;
-  line-height: 30px;
-  font-size: 22px;
+  width: 120px;
+  margin: 0 12px;
+  line-height: 24px;
+  font-size: 18px;
   font-weight: normal;
-  padding-left: 5px;
+  padding-left: 4px;
 }
 
 /*# sourceMappingURL=form_results.css.map */

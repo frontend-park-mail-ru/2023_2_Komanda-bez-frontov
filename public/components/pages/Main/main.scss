@@ -1,47 +1,47 @@
 .index {
-  margin: 40px auto;
+  margin: 45px auto;
 
   h3 {
     text-align: center;
-    font-size: 45px;
-    margin-bottom: 60px;
+    font-size: 36px;
+    margin-bottom: 50px;
   }
 }
 
 .index_content-container {
   display: flex;
   justify-content: center;
-  gap: 40px;
+  gap: 45px;
 
   .index_content-container_description__picture {
-    max-width: 750px;
+    max-width: 600px;
     object-fit: cover;
   }
 }
 
 .index_content-container_description {
-  margin-left: 50px;
-  font-size: 30px;
+  margin-left: 40px;
+  font-size: 24px;
   text-align: left;
-  max-width: 550px;
-  max-height: 422px;
+  max-width: 440px;
+  max-height: 338px;
 
   .button-container {
-    margin: 60px 0 25px 0;
+    margin: 48px 0 25px 0;
 
     button {
-      font-size: 22px;
-      width: 380px;
-      padding: 18px 15px;
+      font-size: 18px;
+      width: 300px;
+      padding: 15px 12px;
     }
   }
 
   a {
-    font-size: 24px;
+    font-size: 20px;
     color: #424242;
 
     span {
-      height: 30px;
+      height: 24px;
       color: #6e51a4;
       cursor: pointer;
     }

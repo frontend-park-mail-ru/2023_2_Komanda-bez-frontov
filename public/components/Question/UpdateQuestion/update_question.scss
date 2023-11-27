@@ -1,8 +1,8 @@
 .update-question {
-  margin-top: 18px;
-  padding: 15px 20px;
-  border-radius: 12px;
-  border: 2px solid #424242;
+  margin-top: 15px;
+  padding: 12px 20px;
+  border-radius: 9px;
+  border: 1px solid #424242;
 }
 
 .update-question__title-container {
@@ -10,57 +10,57 @@
   justify-content: space-between;
 
   .update-question__description-title {
-    padding-left: 5px;
-    font-size: 22px;
-    margin-bottom: 10px;
+    padding-left: 4px;
+    font-size: 18px;
+    margin-bottom: 8px;
     text-align: left;
   }
 
   .update-question__question-delete {
     cursor: pointer;
-    font-size: 20px;
+    font-size: 16px;
   }
 }
 
 .update-question__title-input {
-  padding: 6px 12px;
-  margin-bottom: 15px;
-  width: 720px;
-  font-size: 20px;
-  background-color: #D8D3E2;
-  border-radius: 8px;
+  padding: 5px 9px;
+  margin-bottom: 12px;
+  width: 575px;
+  font-size: 16px;
+  background-color: #d5ceec;
+  border-radius: 6px;
 }
 
 .update-question__description-textarea {
-  font-size: 20px;
-  width: 720px;
-  height: 80px;
+  font-size: 16px;
+  width: 575px;
+  height: 64px;
   resize: none;
-  background-color: #D8D3E2;
-  border-radius: 8px;
-  padding: 6px 12px;
+  background-color: #d5ceec;
+  border-radius: 6px;
+  padding: 5px 9px;
 }
 
 .update-question__answer-title {
-   padding-left: 5px;
-   font-size: 22px;
-   margin: 10px 0;
+   padding-left: 4px;
+   font-size: 18px;
+   margin: 8px 0;
    text-align: left;
  }
 
 .update-question__answers-item {
-  padding-left: 10px;
-  margin-bottom: 10px;
+  padding-left: 8px;
+  margin-bottom: 8px;
 }
 
 .update-question__answer-format {
   text-align: left;
-  margin-bottom: 10px;
-  margin-left: 10px;
+  margin-bottom: 8px;
+  margin-left: 8px;
 
   .update-question__answer-format-radio {
-    width: 18px;
-    height: 18px;
+    width: 15px;
+    height: 15px;
     border: 1.5px solid #1E2534;
     margin:0;
     vertical-align: bottom;
@@ -70,31 +70,31 @@
   }
 
   .update-question__answer-format-label {
-    font-size: 20px;
+    font-size: 16px;
     font-weight: normal;
-    padding-right: 15px;
+    padding-right: 12px;
   }
 }
 
 .update-question__button-container {
-  margin: 18px 0 8px 0;
+  margin: 15px 0 6px 0;
   display: flex;
   justify-content: left;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
 
   button {
-    width: 250px;
+    width: 200px;
   }
 
   .update-question_button-container__required-checkbox {
-    margin-left: 15px;
-    width: 18px;
-    height: 18px;
+    margin-left: 12px;
+    width: 15px;
+    height: 15px;
   }
 
   .update-question_button-container__required-label {
-    font-size: 20px;
+    font-size: 16px;
   }
 }
 

@@ -86,7 +86,7 @@ export const renderForms = async () => {
   const showAllFormsRequest = async () => {
     // Получение формы
     try {
-      const res = await api.getForms();
+      const res = await api.getForms(STORAGE.user.username);
       message = res.message;
       forms = res.forms;
       STORAGE.forms = res.forms;

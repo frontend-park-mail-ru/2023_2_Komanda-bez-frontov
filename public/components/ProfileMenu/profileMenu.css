@@ -1,12 +1,12 @@
 .navbar-profile-menu {
   position: fixed;
   z-index: 20;
-  right: 20px;
-  top: 105px;
-  width: 250px;
-  padding: 10px;
-  border-radius: 12px;
-  border: 2px solid #424242;
+  right: 16px;
+  top: 85px;
+  width: 200px;
+  padding: 8px;
+  border-radius: 9px;
+  border: 1px solid #424242;
   background-color: #FFFFFF;
   text-align: center;
 }
@@ -14,7 +14,7 @@
   margin: 3px 0;
 }
 .navbar-profile-menu .navbar-profile-menu-separator {
-  height: 15px;
+  height: 12px;
 }
 
 /*# sourceMappingURL=profileMenu.css.map */
