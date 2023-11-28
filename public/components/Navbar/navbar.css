@@ -2,43 +2,103 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 16px 48px;
   background: #4B357A;
   color: #ffffff;
 }
-
-.navbar_logo a {
+.navbar .navbar_logo a {
   font-weight: 700;
-  font-size: 29px;
   cursor: pointer;
 }
-
-.navbar_profile {
+.navbar .navbar_profile {
   display: flex;
   justify-content: space-evenly;
-  margin-left: 40px;
   cursor: pointer;
 }
-.navbar_profile .navbar_profile__picture {
-  height: 48px;
-  width: 48px;
+.navbar .navbar_profile .navbar_profile__picture {
   object-fit: contain;
   border-radius: 5px;
 }
-.navbar_profile .navbar_profile__name {
+.navbar .navbar_profile .navbar_profile__name {
   white-space: nowrap;
-  font-size: 24px;
-  margin: 12px 0 7px 16px;
+}
+.navbar .navbar_profile .navbar_button-container {
+  display: flex;
 }
 
-.navbar_button-container {
-  display: flex;
-  height: 44px;
-  padding: 2px 0;
+@media screen {
+  .navbar {
+    padding: 15px 18px;
+  }
+  .navbar .navbar_logo a {
+    font-size: 20px;
+  }
+  .navbar .navbar_profile__picture {
+    height: 35px;
+    width: 35px;
+  }
+  .navbar .navbar_profile__name {
+    display: none;
+  }
+  .navbar #navbar-signup-button {
+    display: none;
+  }
+  .navbar #navbar-login-button {
+    height: 40px;
+    width: 80px;
+  }
 }
-.navbar_button-container button {
-  width: 108px;
-  margin-left: 8px;
+@media (min-width: 480px) {
+  .navbar {
+    padding: 18px 24px;
+  }
+  .navbar .navbar_logo a {
+    font-size: 22px;
+  }
+  .navbar .navbar_profile {
+    margin-left: 40px;
+  }
+  .navbar .navbar_profile .navbar_profile__picture {
+    height: 35px;
+    width: 35px;
+  }
+  .navbar .navbar_profile .navbar_profile__name {
+    display: flex;
+    font-size: 20px;
+    margin: 6px 0 7px 16px;
+  }
+}
+@media (min-width: 768px) {
+  .navbar {
+    padding: 16px 48px;
+  }
+  .navbar .navbar_logo a {
+    font-size: 29px;
+  }
+  .navbar .navbar_profile {
+    margin-left: 40px;
+  }
+  .navbar .navbar_profile .navbar_profile__picture {
+    height: 48px;
+    width: 48px;
+  }
+  .navbar .navbar_profile .navbar_profile__name {
+    display: flex;
+    font-size: 24px;
+    margin: 12px 0 7px 16px;
+  }
+  .navbar #navbar-signup-button {
+    display: unset;
+    height: 44px;
+    width: 108px;
+    margin-left: 8px;
+    padding: 2px 0;
+  }
+  .navbar #navbar-login-button {
+    height: 44px;
+    width: 108px;
+    margin-left: 8px;
+    padding: 2px 0;
+  }
 }
 
 /*# sourceMappingURL=navbar.css.map */
