@@ -23,11 +23,12 @@
     .navbar_profile__name {
       white-space: nowrap;
     }
-
-    .navbar_button-container {
-      display: flex;
-    }
   }
+}
+
+.navbar_button-container {
+  display: flex;
+  padding: 3px 0;
 }
 
 @media screen {
@@ -46,20 +47,22 @@
     .navbar_profile__name {
       display: none;
     }
+  }
+
+  .navbar_button-container {
+    height: 40px;
+    button {
+      width: 80px;
+    }
 
     #navbar-signup-button {
       display: none;
-    }
-
-    #navbar-login-button {
-      height: 40px;
-      width: 80px;
     }
   }
 }
 
 
-@media (min-width: 480px) {
+@media screen and (min-width: 480px) {
   .navbar {
     padding: 18px 24px;
 
@@ -83,9 +86,21 @@
     }
 
   }
+
+  .navbar_button-container {
+    height: 42px;
+    button {
+      width: 100px;
+      margin-left: 10px;
+    }
+
+    #navbar-signup-button {
+      display: block;
+    }
+  }
 }
 
-@media (min-width: 768px) {
+@media screen and (min-width: 768px) {
   .navbar {
     padding: 16px 48px;
 
@@ -107,21 +122,14 @@
         margin: 12px 0 7px 16px;
       }
     }
-
-    #navbar-signup-button {
-      display: unset;
-      height: 44px;
-      width: 108px;
-      margin-left: 8px;
-      padding: 2px 0;
-    }
-
-    #navbar-login-button {
-      height: 44px;
-      width: 108px;
-      margin-left: 8px;
-      padding: 2px 0;
-
+  }
+  .navbar_button-container {
+    display: flex;
+    height: 46px;
+    padding: 3px 0;
+    button {
+      width: 135px;
+      margin-left: 10px;
     }
   }
 }

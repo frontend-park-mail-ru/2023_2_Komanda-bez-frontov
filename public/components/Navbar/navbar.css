@@ -21,8 +21,10 @@
 .navbar .navbar_profile .navbar_profile__name {
   white-space: nowrap;
 }
-.navbar .navbar_profile .navbar_button-container {
+
+.navbar_button-container {
   display: flex;
+  padding: 3px 0;
 }
 
 @media screen {
@@ -39,15 +41,17 @@
   .navbar .navbar_profile__name {
     display: none;
   }
-  .navbar #navbar-signup-button {
-    display: none;
-  }
-  .navbar #navbar-login-button {
+  .navbar_button-container {
     height: 40px;
+  }
+  .navbar_button-container button {
     width: 80px;
   }
+  .navbar_button-container #navbar-signup-button {
+    display: none;
+  }
 }
-@media (min-width: 480px) {
+@media screen and (min-width: 480px) {
   .navbar {
     padding: 18px 24px;
   }
@@ -66,8 +70,18 @@
     font-size: 20px;
     margin: 6px 0 7px 16px;
   }
+  .navbar_button-container {
+    height: 42px;
+  }
+  .navbar_button-container button {
+    width: 100px;
+    margin-left: 10px;
+  }
+  .navbar_button-container #navbar-signup-button {
+    display: block;
+  }
 }
-@media (min-width: 768px) {
+@media screen and (min-width: 768px) {
   .navbar {
     padding: 16px 48px;
   }
@@ -86,18 +100,14 @@
     font-size: 24px;
     margin: 12px 0 7px 16px;
   }
-  .navbar #navbar-signup-button {
-    display: unset;
-    height: 44px;
-    width: 108px;
-    margin-left: 8px;
-    padding: 2px 0;
+  .navbar_button-container {
+    display: flex;
+    height: 46px;
+    padding: 3px 0;
   }
-  .navbar #navbar-login-button {
-    height: 44px;
-    width: 108px;
-    margin-left: 8px;
-    padding: 2px 0;
+  .navbar_button-container button {
+    width: 135px;
+    margin-left: 10px;
   }
 }
 
