@@ -1088,6 +1088,7 @@ input {
 
 .login-form_container__input {
   height: 40px;
+  width: 272px;
   margin: 0 0 9px 0;
   border-radius: 9px;
   border: 1px solid #424242;
@@ -1123,6 +1124,7 @@ input {
 
 .signup-form_container__input {
   height: 40px;
+  width: 272px;
   margin: 0 0 9px 0;
   border-radius: 9px;
   border: 1px solid #424242;
