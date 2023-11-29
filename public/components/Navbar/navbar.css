@@ -18,34 +18,32 @@
   object-fit: contain;
   border-radius: 5px;
 }
-.navbar .navbar_profile .navbar_profile__name {
-  white-space: nowrap;
-}
 
 .navbar_button-container {
   display: flex;
-  padding: 3px 0;
 }
 
 @media screen {
   .navbar {
-    padding: 15px 18px;
+    padding: 8px 18px;
   }
   .navbar .navbar_logo a {
     font-size: 20px;
   }
   .navbar .navbar_profile__picture {
-    height: 35px;
+    height: 30px;
     width: 35px;
+    margin: 10px 0 10px 16px;
   }
   .navbar .navbar_profile__name {
     display: none;
   }
   .navbar_button-container {
-    height: 40px;
+    padding: 5px 0;
   }
   .navbar_button-container button {
-    width: 80px;
+    height: 38px;
+    width: 100px;
   }
   .navbar_button-container #navbar-signup-button {
     display: none;
@@ -53,7 +51,7 @@
 }
 @media screen and (min-width: 480px) {
   .navbar {
-    padding: 18px 24px;
+    padding: 17px 24px;
   }
   .navbar .navbar_logo a {
     font-size: 22px;
@@ -64,18 +62,20 @@
   .navbar .navbar_profile .navbar_profile__picture {
     height: 35px;
     width: 35px;
+    margin: 0;
   }
   .navbar .navbar_profile .navbar_profile__name {
     display: flex;
     font-size: 20px;
-    margin: 6px 0 7px 16px;
+    margin: 6px 0 6px 16px;
   }
   .navbar_button-container {
-    height: 42px;
+    padding: 0;
   }
   .navbar_button-container button {
+    height: 38px;
     width: 100px;
-    margin-left: 10px;
+    margin-left: 8px;
   }
   .navbar_button-container #navbar-signup-button {
     display: block;
@@ -83,7 +83,7 @@
 }
 @media screen and (min-width: 768px) {
   .navbar {
-    padding: 16px 48px;
+    padding: 15px 48px;
   }
   .navbar .navbar_logo a {
     font-size: 29px;
@@ -94,6 +94,7 @@
   .navbar .navbar_profile .navbar_profile__picture {
     height: 48px;
     width: 48px;
+    margin: 0;
   }
   .navbar .navbar_profile .navbar_profile__name {
     display: flex;
@@ -101,11 +102,10 @@
     margin: 12px 0 7px 16px;
   }
   .navbar_button-container {
-    display: flex;
-    height: 46px;
-    padding: 3px 0;
+    padding: 2px 0;
   }
   .navbar_button-container button {
+    height: 46px;
     width: 135px;
     margin-left: 10px;
   }
