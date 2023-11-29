@@ -5,6 +5,14 @@
   border: 1px solid #424242;
   background-color: #FFFFFF;
   text-align: center;
+
+  .primary-button {
+    margin: 3px 0;
+  }
+
+  .navbar-profile-menu-separator {
+    height: 12px;
+  }
 }
 
 @media screen {
@@ -13,14 +21,6 @@
     top: 70px;
     width: 130px;
     padding: 8px;
-  }
-
-  .primary-button {
-    margin: 3px 0;
-  }
-
-  .navbar-profile-menu-separator {
-    height: 12px;
   }
 }
 
@@ -31,14 +31,6 @@
     width: 150px;
     padding: 8px;
   }
-
-  .primary-button {
-    margin: 3px 0;
-  }
-
-  .navbar-profile-menu-separator {
-    height: 12px;
-  }
 }
 
 @media screen and (min-width: 768px) {
@@ -47,13 +39,5 @@
     top: 85px;
     width: 200px;
     padding: 8px;
-  }
-
-  .primary-button {
-    margin: 3px 0;
-  }
-
-  .navbar-profile-menu-separator {
-    height: 12px;
   }
 }

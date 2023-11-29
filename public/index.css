@@ -168,6 +168,12 @@ input {
   background-color: #FFFFFF;
   text-align: center;
 }
+.navbar-profile-menu .primary-button {
+  margin: 3px 0;
+}
+.navbar-profile-menu .navbar-profile-menu-separator {
+  height: 12px;
+}
 
 @media screen {
   .navbar-profile-menu {
@@ -175,12 +181,6 @@ input {
     top: 70px;
     width: 130px;
     padding: 8px;
-  }
-  .primary-button {
-    margin: 3px 0;
-  }
-  .navbar-profile-menu-separator {
-    height: 12px;
   }
 }
 @media screen and (min-width: 480px) {
@@ -190,12 +190,6 @@ input {
     width: 150px;
     padding: 8px;
   }
-  .primary-button {
-    margin: 3px 0;
-  }
-  .navbar-profile-menu-separator {
-    height: 12px;
-  }
 }
 @media screen and (min-width: 768px) {
   .navbar-profile-menu {
@@ -203,12 +197,6 @@ input {
     top: 85px;
     width: 200px;
     padding: 8px;
-  }
-  .primary-button {
-    margin: 3px 0;
-  }
-  .navbar-profile-menu-separator {
-    height: 12px;
   }
 }
 .form-author-menu {
