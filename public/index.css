@@ -1229,7 +1229,7 @@ input {
 
 @media screen {
   .success-container, .error-container {
-    padding: 14px;
+    padding: 12px;
     font-size: 20px;
   }
 }
@@ -1279,9 +1279,23 @@ textarea {
 
 #message-box, #root {
   position: relative;
-  top: 80px;
 }
 
+@media screen {
+  #message-box, #root {
+    top: 64px;
+  }
+}
+@media screen and (min-width: 480px) {
+  #message-box, #root {
+    top: 72px;
+  }
+}
+@media screen and (min-width: 768px) {
+  #message-box, #root {
+    top: 80px;
+  }
+}
 #footer {
   position: relative;
   height: 48px;

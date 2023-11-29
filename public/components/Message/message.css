@@ -18,7 +18,7 @@
 
 @media screen {
   .success-container, .error-container {
-    padding: 14px;
+    padding: 12px;
     font-size: 20px;
   }
 }
