@@ -2,51 +2,30 @@
   position: relative;
   text-align: center;
   font-size: 20px;
-  margin: 32px auto;
-  width: 640px;
-
-  .update-form__title-label {
-    font-size: 29px;
-    margin-bottom: 26px;
-  }
 
   .update-form__title {
-    padding: 12px;
     border-radius: 9px;
     border: 1px solid #424242;
-    margin-bottom: 15px;
   }
 
   .update-form__title-input {
-    padding: 10px 12px;
-    width: 575px;
-    font-size: 18px;
     background-color: #d5ceec;
     border-radius: 6px;
   }
 
   .button-container {
-    width: 440px;
     flex-wrap: wrap;
-    margin: 24px 16px;
-    gap: 12px;
-
-    button {
-      width: 200px;
-      margin-bottom: 4px;
-    }
   }
 }
 
 .update-form__description-title, .update-form__title-title {
-  padding-left: 4px;
   font-size: 18px;
   margin-bottom: 8px;
   text-align: left;
 }
 
 .update-form__description {
-  padding: 12px;
+  padding: 8px;
   border-radius: 9px;
   border: 1px solid #424242;
 }
@@ -90,4 +69,136 @@
   background-color: #fdc6c6 !important;
 }
 
+@media screen and (min-width: 769px) {
+  .update-form {
+    margin: 32px auto;
+    width: 640px;
+  }
 
+  .update-form__description {
+    padding: 12px;
+  }
+
+  .update-form__title-label {
+    font-size: 29px;
+    margin-bottom: 26px;
+  }
+
+  .update-form__title {
+    padding: 12px;
+    margin-bottom: 15px;
+  }
+
+  .update-form__title-input {
+    margin: 0 auto;
+    padding: 8px;
+    width: 590px;
+    font-size: 18px;
+  }
+
+  .update-form__description-textarea {
+    margin: 0 auto;
+    padding: 8px;
+    font-size: 18px;
+    width: 590px;
+  }
+
+  .button-container {
+    width: 440px;
+    margin: 24px 16px;
+    gap: 12px;
+
+    button {
+      width: 200px;
+      margin-bottom: 4px;
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .update-form {
+    margin: 16px auto;
+    width: 90%;
+  }
+
+  .update-form__title-label {
+    font-size: 25px;
+    margin-bottom: 16px;
+  }
+
+  .update-form__title {
+    padding: 8px;
+    margin-bottom: 8px;
+  }
+
+  .update-form__title-input {
+    margin: 0 auto;
+    padding: 8px;
+    width: 95%;
+    font-size: 18px;
+  }
+
+  .update-form__description-textarea {
+    margin: 0 auto;
+    padding: 8px;
+    font-size: 18px;
+    width: 95%;
+  }
+
+  .update-form_anonymous {
+    margin-top: 8px;
+  }
+
+  .button-container {
+    width: 90%;
+    gap: 8px;
+
+    button {
+      width: 180px;
+      margin-bottom: 4px;
+    }
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .update-form {
+    margin: 16px auto;
+    width: 90%;
+  }
+
+  .update-form__title-label {
+    font-size: 25px;
+    margin-bottom: 16px;
+  }
+
+  .update-form__title {
+    padding: 8px 8px;
+    margin-bottom: 8px;
+  }
+
+  .update-form__title-input {
+    padding: 8px 12px;
+    width: 90%;
+    font-size: 16px;
+  }
+
+  .update-form__description-textarea {
+    padding: 8px 12px;
+    font-size: 16px;
+    width: 90%;
+  }
+
+  .update-form_anonymous {
+    margin-top: 8px;
+  }
+
+  .button-container {
+    width: 90%;
+    gap: 8px;
+
+    button {
+      width: 140px;
+      margin-bottom: 4px;
+    }
+  }
+}

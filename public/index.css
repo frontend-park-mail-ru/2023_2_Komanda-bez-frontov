@@ -758,8 +758,6 @@ input {
 }
 
 .check-question {
-  margin-top: 15px;
-  padding: 10px 12px;
   border-radius: 9px;
   border: 1px solid #424242;
 }
@@ -795,7 +793,6 @@ input {
 
 .check-question__answer-title {
   padding-left: 4px;
-  font-size: 18px;
   margin-bottom: 8px;
   text-align: left;
 }
@@ -803,12 +800,10 @@ input {
 .check-question__answer-item {
   margin-bottom: 8px;
   text-align: left;
-  padding-left: 4px;
 }
 .check-question__answer-item .check-question__answer-item-label {
   font-size: 16px;
   font-weight: normal;
-  padding-left: 4px;
 }
 .check-question__answer-item .check-question__answer-item-checkbox {
   width: 15px;
@@ -832,8 +827,6 @@ input {
 }
 .check-question__answer-item .check-question__answers-item-textarea {
   font-size: 16px;
-  padding: 8px;
-  width: 590px;
   height: 95px;
   resize: none;
   background-color: #d5ceec;
@@ -844,6 +837,46 @@ input {
   margin-top: 15px;
 }
 
+@media screen and (min-width: 769px) {
+  .check-question {
+    margin-top: 15px;
+    padding: 10px 12px;
+  }
+  .check-question__answers-item-textarea {
+    width: 590px;
+  }
+  .check-question__answer-item {
+    padding: 5px 12px;
+  }
+}
+@media screen and (max-width: 768px) {
+  .check-question {
+    margin-top: 15px;
+    padding: 5px 12px;
+  }
+  .check-question__answers-item-textarea {
+    width: 95%;
+    padding: 12px;
+  }
+  .check-question__answer-item {
+    padding: 5px 8px;
+  }
+}
+@media screen and (max-width: 480px) {
+  .check-question {
+    margin-top: 15px;
+    padding: 5px 8px;
+  }
+  .check-question__answer-item {
+    padding: 5px 12px;
+    margin: 0 auto;
+  }
+  .check-question__answers-item-textarea {
+    width: 90%;
+    padding: 5px 12px;
+    margin: 0 auto;
+  }
+}
 .results-question {
   margin-top: 15px;
   padding: 10px 12px;
@@ -907,8 +940,6 @@ input {
 }
 
 .update-question {
-  margin-top: 15px;
-  padding: 12px 20px;
   border-radius: 9px;
   border: 1px solid #424242;
 }
@@ -918,9 +949,7 @@ input {
   justify-content: space-between;
 }
 .update-question__title-container .update-question__description-title {
-  padding-left: 4px;
   font-size: 18px;
-  margin-bottom: 8px;
   text-align: left;
 }
 .update-question__title-container .update-question__question-delete {
@@ -929,9 +958,6 @@ input {
 }
 
 .update-question__title-input {
-  padding: 5px 9px;
-  margin-bottom: 12px;
-  width: 575px;
   font-size: 16px;
   background-color: #d5ceec;
   border-radius: 6px;
@@ -939,23 +965,19 @@ input {
 
 .update-question__description-textarea {
   font-size: 16px;
-  width: 575px;
   height: 64px;
   resize: none;
   background-color: #d5ceec;
   border-radius: 6px;
-  padding: 5px 9px;
 }
 
 .update-question__answer-title {
-  padding-left: 4px;
   font-size: 18px;
   margin: 8px 0;
   text-align: left;
 }
 
 .update-question__answers-item {
-  padding-left: 8px;
   margin-bottom: 8px;
 }
 
@@ -963,12 +985,12 @@ input {
   text-align: left;
   margin-bottom: 8px;
   margin-left: 8px;
+  flex-wrap: wrap;
 }
 .update-question__answer-format .update-question__answer-format-radio {
   width: 15px;
   height: 15px;
   border: 1.5px solid #1E2534;
-  margin: 0;
   vertical-align: bottom;
   position: relative;
   top: -1px;
@@ -977,7 +999,7 @@ input {
 .update-question__answer-format .update-question__answer-format-label {
   font-size: 16px;
   font-weight: normal;
-  padding-right: 12px;
+  padding-right: 20px;
 }
 
 .update-question__button-container {
@@ -999,6 +1021,83 @@ input {
   font-size: 16px;
 }
 
+@media screen and (min-width: 769px) {
+  .update-question {
+    margin-top: 15px;
+    padding: 12px;
+  }
+  .update-question__title-container .update-question__description-title {
+    margin-bottom: 8px;
+  }
+  .update-question__title-input {
+    width: 590px;
+    padding: 5px 8px;
+    margin: 0 auto 12px;
+  }
+  .update-question__button-container {
+    margin: 15px 0 6px 6px;
+  }
+  .update-question__button-container .update-question_button-container__required-checkbox {
+    margin-left: 8px;
+  }
+  .update-question__description-textarea {
+    padding: 5px 8px;
+    width: 590px;
+  }
+}
+@media screen and (max-width: 768px) {
+  .update-question {
+    margin-top: 8px;
+    padding: 8px 8px;
+  }
+  .update-question__title-container .update-question__description-title {
+    margin-bottom: 8px;
+  }
+  .update-question__title-input {
+    padding: 8px 8px;
+    margin: 0 auto 8px;
+    width: 95%;
+  }
+  .update-question__button-container {
+    margin: 15px 0 6px 6px;
+  }
+  .update-question__button-container .update-question_button-container__required-checkbox {
+    margin-left: 8px;
+  }
+  .update-question__description-textarea {
+    padding: 5px 8px;
+    margin: 0 auto 8px;
+    width: 95%;
+  }
+}
+@media screen and (max-width: 480px) {
+  .update-question {
+    margin-top: 8px;
+    padding: 8px 8px;
+  }
+  .update-question__title-container .update-question__description-title {
+    margin-bottom: 8px;
+  }
+  .update-question__title-input {
+    padding: 8px 12px;
+    margin-bottom: 8px;
+    width: 90%;
+  }
+  .update-question__button-container {
+    margin: 15px 0 6px 8px;
+    flex-wrap: wrap;
+  }
+  .update-question__button-container .primary-button {
+    width: 160px;
+  }
+  .update-question__button-container .update-question_button-container__required-checkbox {
+    margin-left: 8px;
+  }
+  .update-question__description-textarea {
+    padding: 5px 12px;
+    width: 90%;
+  }
+}
 .update-question__answers-title {
   padding-left: 4px;
   font-size: 18px;
@@ -1049,7 +1148,6 @@ input {
   *overflow: hidden;
 }
 .update-question__answers-item .update-question__answers-item-textarea {
-  width: 590px;
   height: 95px;
   resize: none;
   font-size: 16px;
@@ -1062,103 +1160,165 @@ input {
   cursor: pointer;
 }
 
+@media screen and (min-width: 769px) {
+  .update-question__answers-item-textarea {
+    width: 590px;
+  }
+}
+@media screen and (max-width: 768px) {
+  .update-question__answers-item-textarea {
+    width: 95%;
+    margin: 0 auto;
+  }
+}
+@media screen and (max-width: 480px) {
+  .update-question__answers-item-textarea {
+    width: 90%;
+  }
+}
 .check-form {
   position: relative;
   text-align: center;
-  font-size: 19px;
-  margin: 32px auto;
-  width: 640px;
-}
-.check-form .check-form__title {
-  font-size: 29px;
-  margin-bottom: 26px;
 }
 .check-form .button-container {
-  margin: 15px 9px 8px 9px;
-  width: 440px;
   gap: 12px;
-}
-.check-form .button-container button {
-  width: 200px;
 }
 
 .check-form__description {
-  padding: 10px 12px;
   border-radius: 9px;
   border: 1px solid #424242;
   text-align: left;
-}
-
-.check-form__anonymous {
-  margin-top: 15px;
-  padding: 10px 12px;
-  border-radius: 9px;
-  border: 1px solid #424242;
-  text-align: left;
-}
-.check-form__anonymous p {
-  font-size: 16px;
-  color: #6e51a4;
-}
-.check-form__anonymous .check-form__anonymous-error {
-  color: #da2d28;
-}
-
-.check-form__description-title {
-  font-size: 20px;
-  margin-bottom: 8px;
 }
 
 .check-form__description-text {
-  padding-left: 8px;
-  font-size: 18px;
   font-weight: normal;
 }
 
+@media screen and (min-width: 769px) {
+  .check-form {
+    margin: 32px auto;
+    width: 640px;
+  }
+  .check-form .check-form__title {
+    font-size: 29px;
+    margin-bottom: 26px;
+  }
+  .check-form .button-container {
+    margin: 15px 9px 8px 9px;
+    width: 440px;
+  }
+  .check-form .button-container button {
+    width: 200px;
+  }
+  .check-form__description {
+    padding: 10px 12px;
+  }
+  .check-form__anonymous {
+    margin-top: 15px;
+    padding: 10px 12px;
+  }
+  .check-form__anonymous p {
+    font-size: 16px;
+  }
+  .check-form__description-title {
+    font-size: 20px;
+    margin-bottom: 8px;
+  }
+  .check-form__description-text {
+    padding-left: 8px;
+    font-size: 18px;
+    font-weight: normal;
+  }
+}
+@media screen and (max-width: 768px) {
+  .check-form {
+    margin: 16px auto;
+    width: 80%;
+  }
+  .check-form .check-form__title {
+    font-size: 25px;
+    margin-bottom: 16px;
+  }
+  .check-form .button-container {
+    margin: 15px 9px 8px 9px;
+    width: 95%;
+  }
+  .check-form .button-container button {
+    width: 200px;
+  }
+  .check-form__description {
+    padding: 10px 12px;
+  }
+  .check-form__anonymous {
+    margin-top: 15px;
+    padding: 10px 12px;
+  }
+  .check-form__anonymous p {
+    font-size: 16px;
+  }
+  .check-form__description-title {
+    font-size: 16px;
+    margin-bottom: 8px;
+  }
+  .check-form__description-text {
+    padding-left: 8px;
+    font-size: 18px;
+    font-weight: normal;
+  }
+}
+@media screen and (max-width: 480px) {
+  .check-form {
+    margin: 16px auto;
+    width: 90%;
+  }
+  .check-form .check-form__title {
+    font-size: 25px;
+    margin-bottom: 16px;
+  }
+  .check-form .button-container button {
+    width: 150px;
+  }
+  .check-form__description {
+    padding: 10px 12px;
+  }
+  .check-form__anonymous {
+    margin-top: 15px;
+    padding: 10px 12px;
+  }
+  .check-form__anonymous p {
+    font-size: 16px;
+  }
+  .check-form__description-text {
+    padding-left: 8px;
+    font-size: 16px;
+    font-weight: normal;
+  }
+}
 .update-form {
   position: relative;
   text-align: center;
   font-size: 20px;
-  margin: 32px auto;
-  width: 640px;
-}
-.update-form .update-form__title-label {
-  font-size: 29px;
-  margin-bottom: 26px;
 }
 .update-form .update-form__title {
-  padding: 12px;
   border-radius: 9px;
   border: 1px solid #424242;
-  margin-bottom: 15px;
 }
 .update-form .update-form__title-input {
-  padding: 10px 12px;
-  width: 575px;
-  font-size: 18px;
   background-color: #d5ceec;
   border-radius: 6px;
 }
 .update-form .button-container {
-  width: 440px;
   flex-wrap: wrap;
-  margin: 24px 16px;
-  gap: 12px;
-}
-.update-form .button-container button {
-  width: 200px;
-  margin-bottom: 4px;
 }
 
 .update-form__description-title, .update-form__title-title {
-  padding-left: 4px;
   font-size: 18px;
   margin-bottom: 8px;
   text-align: left;
 }
 
 .update-form__description {
-  padding: 12px;
+  padding: 8px;
   border-radius: 9px;
   border: 1px solid #424242;
 }
@@ -1199,6 +1359,116 @@ input {
   background-color: #fdc6c6 !important;
 }
 
+@media screen and (min-width: 769px) {
+  .update-form {
+    margin: 32px auto;
+    width: 640px;
+  }
+  .update-form__description {
+    padding: 12px;
+  }
+  .update-form__title-label {
+    font-size: 29px;
+    margin-bottom: 26px;
+  }
+  .update-form__title {
+    padding: 12px;
+    margin-bottom: 15px;
+  }
+  .update-form__title-input {
+    margin: 0 auto;
+    padding: 8px;
+    width: 590px;
+    font-size: 18px;
+  }
+  .update-form__description-textarea {
+    margin: 0 auto;
+    padding: 8px;
+    font-size: 18px;
+    width: 590px;
+  }
+  .button-container {
+    width: 440px;
+    margin: 24px 16px;
+    gap: 12px;
+  }
+  .button-container button {
+    width: 200px;
+    margin-bottom: 4px;
+  }
+}
+@media screen and (max-width: 768px) {
+  .update-form {
+    margin: 16px auto;
+    width: 90%;
+  }
+  .update-form__title-label {
+    font-size: 25px;
+    margin-bottom: 16px;
+  }
+  .update-form__title {
+    padding: 8px;
+    margin-bottom: 8px;
+  }
+  .update-form__title-input {
+    margin: 0 auto;
+    padding: 8px;
+    width: 95%;
+    font-size: 18px;
+  }
+  .update-form__description-textarea {
+    margin: 0 auto;
+    padding: 8px;
+    font-size: 18px;
+    width: 95%;
+  }
+  .update-form_anonymous {
+    margin-top: 8px;
+  }
+  .button-container {
+    width: 90%;
+    gap: 8px;
+  }
+  .button-container button {
+    width: 180px;
+    margin-bottom: 4px;
+  }
+}
+@media screen and (max-width: 480px) {
+  .update-form {
+    margin: 16px auto;
+    width: 90%;
+  }
+  .update-form__title-label {
+    font-size: 25px;
+    margin-bottom: 16px;
+  }
+  .update-form__title {
+    padding: 8px 8px;
+    margin-bottom: 8px;
+  }
+  .update-form__title-input {
+    padding: 8px 12px;
+    width: 90%;
+    font-size: 16px;
+  }
+  .update-form__description-textarea {
+    padding: 8px 12px;
+    font-size: 16px;
+    width: 90%;
+  }
+  .update-form_anonymous {
+    margin-top: 8px;
+  }
+  .button-container {
+    width: 90%;
+    gap: 8px;
+  }
+  .button-container button {
+    width: 140px;
+    margin-bottom: 4px;
+  }
+}
 .form-results {
   position: relative;
   text-align: center;
@@ -1353,7 +1623,7 @@ input {
     width: 250px;
   }
   .index_content-container_description__picture {
-    width: 100%;
+    display: none;
   }
 }
 .auth-container {

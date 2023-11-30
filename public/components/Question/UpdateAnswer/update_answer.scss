@@ -10,7 +10,6 @@
   margin-bottom: 8px;
 }
 
-
 .update-question__answers-item {
   display: flex;
   gap: 8px;
@@ -52,7 +51,6 @@
   }
 
   .update-question__answers-item-textarea {
-    width: 590px;
     height: 95px;
     resize: none;
     font-size: 16px;
@@ -64,5 +62,24 @@
 
   .update-question__answers-item-delete {
     cursor: pointer;
+  }
+}
+
+@media screen and (min-width: 769px) {
+  .update-question__answers-item-textarea {
+    width: 590px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .update-question__answers-item-textarea {
+    width: 95%;
+    margin: 0 auto;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .update-question__answers-item-textarea {
+    width: 90%;
   }
 }
