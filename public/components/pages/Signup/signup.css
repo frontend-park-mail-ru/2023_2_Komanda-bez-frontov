@@ -30,4 +30,17 @@
   cursor: pointer;
 }
 
+@media screen and (max-width: 768px) {
+  .signup-form_container h3 {
+    font-size: 22px;
+    margin: 0;
+  }
+  .signup-form_container button {
+    font-size: 14px;
+  }
+  .signup-form_container__input {
+    font-size: 18px;
+  }
+}
+
 /*# sourceMappingURL=signup.css.map */

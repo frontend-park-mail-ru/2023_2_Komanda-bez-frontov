@@ -75,21 +75,21 @@ input {
 
 @media screen {
   .navbar {
-    padding: 8px 18px;
+    padding: 4px 22px;
   }
   .navbar .navbar_logo a {
-    font-size: 20px;
+    font-size: 22px;
   }
   .navbar .navbar_profile__picture {
-    height: 30px;
-    width: 35px;
-    margin: 10px 0 10px 16px;
+    height: 42px;
+    width: 42px;
+    margin: 7px 0 7px 16px;
   }
   .navbar .navbar_profile__name {
     display: none;
   }
   .navbar_button-container {
-    padding: 5px 0;
+    padding: 9px 0;
   }
   .navbar_button-container button {
     height: 38px;
@@ -110,14 +110,14 @@ input {
     margin-left: 40px;
   }
   .navbar .navbar_profile .navbar_profile__picture {
-    height: 35px;
-    width: 35px;
+    height: 42px;
+    width: 42px;
     margin: 0;
   }
   .navbar .navbar_profile .navbar_profile__name {
     display: flex;
     font-size: 20px;
-    margin: 6px 0 6px 16px;
+    margin: 12px 0 6px 16px;
   }
   .navbar_button-container {
     padding: 0;
@@ -172,12 +172,12 @@ input {
 @media screen {
   .navbar-profile-menu {
     right: 4px;
-    top: 70px;
-    width: 130px;
+    top: 75px;
     padding: 8px;
   }
-  .primary-button {
-    margin: 3px 0;
+  .navbar-profile-menu .primary-button {
+    font-size: 14px;
+    margin: 4px 0;
   }
   .navbar-profile-menu-separator {
     height: 12px;
@@ -187,10 +187,9 @@ input {
   .navbar-profile-menu {
     right: 8px;
     top: 80px;
-    width: 150px;
     padding: 8px;
   }
-  .primary-button {
+  .navbar-profile-menu .primary-button {
     margin: 3px 0;
   }
   .navbar-profile-menu-separator {
@@ -201,12 +200,39 @@ input {
   .navbar-profile-menu {
     right: 16px;
     top: 85px;
-    width: 200px;
     padding: 8px;
   }
-  .primary-button {
+  .navbar-profile-menu .primary-button {
     margin: 3px 0;
   }
+}
+@media screen and (min-width: 768px) and (min-width: 480px) {
+  .navbar-profile-menu {
+    right: 8px;
+    top: 80px;
+    padding: 8px;
+  }
+  .navbar-profile-menu .primary-button {
+    margin: 3px 0;
+  }
+  .navbar-profile-menu-separator {
+    height: 12px;
+  }
+}
+@media screen and (min-width: 768px) and (min-width: 768px) {
+  .navbar-profile-menu {
+    right: 16px;
+    top: 85px;
+    padding: 8px;
+  }
+  .navbar-profile-menu .primary-button {
+    margin: 3px 0;
+  }
+  .navbar-profile-menu-separator {
+    height: 12px;
+  }
+}
+@media screen and (min-width: 768px) {
   .navbar-profile-menu-separator {
     height: 12px;
   }
@@ -215,7 +241,7 @@ input {
   position: fixed;
   z-index: 5;
   left: 0;
-  top: 80px;
+  top: 78px;
   width: 200px;
   height: 100%;
   padding: 40px 24px;
@@ -277,7 +303,7 @@ input {
 }
 
 .profile {
-  background-color: rgba(75, 53, 122, 0.6);
+  background-color: rgba(128, 102, 169, 0.6);
   margin: 0 auto;
   max-width: 800px;
   border-radius: 9px;
@@ -289,9 +315,8 @@ input {
   padding: 29px 0 29px 36px;
 }
 .profile_main-container .profile_main-container__picture {
-  max-height: 200px;
-  max-width: 200px;
-  min-width: 145px;
+  height: 200px;
+  width: 200px;
   object-fit: contain;
   border-radius: 9px;
 }
@@ -333,6 +358,35 @@ input {
   border-color: #696969;
 }
 
+@media screen and (max-width: 768px) {
+  .profile {
+    border-radius: 0;
+  }
+  .profile_main-container .profile_main-container__picture {
+    height: 120px;
+    width: 120px;
+  }
+}
+@media screen and (max-width: 480px) {
+  .profile-title h3 {
+    font-size: 22px;
+  }
+  .profile_main-container {
+    padding: 15px;
+  }
+  .profile_main-container_name-container {
+    margin: 10px 20px;
+  }
+  .profile_main-container_name-container h3 {
+    font-size: 24px;
+  }
+  .profile_main-container_name-container a {
+    font-size: 18px;
+  }
+  .profile_button-container {
+    padding: 20px 0 24px 20px;
+  }
+}
 .profile-title {
   margin: 20px 40px;
   text-align: center;
@@ -340,7 +394,7 @@ input {
 }
 
 .update-profile {
-  background-color: rgba(75, 53, 122, 0.6);
+  background-color: rgba(128, 102, 169, 0.6);
   margin: 0 auto;
   width: 820px;
   border-radius: 9px;
@@ -353,7 +407,6 @@ input {
 .update-profile_main-container .update-profile_main-container__picture {
   height: 200px;
   width: 200px;
-  min-width: 144px;
   object-fit: contain;
   border-radius: 9px;
   margin-bottom: 9px;
@@ -375,9 +428,11 @@ input {
   display: inline-flex;
   width: 185px;
   font-size: 20px;
+  align-self: center;
+  margin-bottom: 8px;
 }
 .update-profile_main-container_name-container .update-form__title-input {
-  width: 290px;
+  min-width: 270px;
   margin-left: 8px;
   margin-bottom: 8px;
   padding: 6px 8px;
@@ -443,6 +498,7 @@ input {
 
 .update-profile-form_container__input-container {
   display: flex;
+  flex-wrap: wrap;
 }
 
 .update-profile-form_container__input {
@@ -462,6 +518,44 @@ input {
   cursor: pointer;
 }
 
+@media screen and (max-width: 768px) {
+  .update-profile {
+    width: auto;
+    border-radius: 0;
+  }
+  .update-profile_main-container {
+    flex-flow: column;
+  }
+  .update-profile_main-container_name-container {
+    margin: 12px;
+  }
+  .update-profile-form_container__input-container .update-form__title-input {
+    width: 90%;
+    max-width: 350px;
+  }
+}
+@media screen and (max-width: 480px) {
+  .update-profile_main-container {
+    padding: 24px 16px;
+  }
+  .update-profile_main-container .update-profile_main-container__picture {
+    margin-left: 20px;
+    width: 120px;
+    height: 120px;
+  }
+  .update-profile_img-container_avatar-container a {
+    font-size: 18px;
+  }
+  .update-profile_main-container_name-container {
+    margin: 12px 0;
+  }
+  .update-profile-form_container__input-container .update-form__title-input {
+    min-width: initial;
+  }
+  .update-profile_button-container {
+    padding: 0 0 18px 18px;
+  }
+}
 .forms_list-container {
   margin: 32px 80px 0 80px;
   min-width: 185px;
@@ -485,10 +579,6 @@ input {
   min-width: max-content;
   top: 0;
 }
-.forms_title-container .forms_title-container__space {
-  min-width: 300px;
-  height: 45px;
-}
 
 .forms_title-container_button-container {
   display: flex;
@@ -499,10 +589,6 @@ input {
   height: 40px;
   padding: 0;
   margin-right: 12px;
-}
-.forms_title-container_button-container button.primary-button {
-  font-size: 23px;
-  font-weight: lighter;
 }
 .forms_title-container_button-container button.secondary-button {
   font-size: 26px;
@@ -525,11 +611,16 @@ input {
   padding: 3px 16px;
 }
 .forms_search-container .forms_search-container__button {
+  background-image: url("https://cdn-icons-png.flaticon.com/128/2414/2414255.png");
+  background-size: 30px;
+  background-repeat: no-repeat;
+  background-position: 5px center;
+  padding-left: 30px;
   border-radius: 0 9px 9px 0;
   border: 1px solid #424242;
   margin-left: -3px;
   height: 40px;
-  width: 80px;
+  width: 105px;
   font-size: 16px;
 }
 .forms_search-container .forms_search-container__button:hover {
@@ -568,6 +659,45 @@ input {
   display: none;
 }
 
+@media screen and (max-width: 768px) {
+  .forms_list-container {
+    margin: 32px 40px;
+  }
+  .forms_title-container {
+    margin-bottom: 15px;
+  }
+  .forms_title-container h3 {
+    font-size: 26px;
+  }
+  .forms_title-container_button-container button {
+    width: 40px;
+    height: 36px;
+    font-size: 24px;
+  }
+  .forms_search-container {
+    margin-bottom: 30px;
+  }
+  .forms_search-container .forms_search-container__button {
+    content-visibility: hidden;
+    width: 45px;
+  }
+  .forms__loading-screen {
+    top: 190px;
+  }
+  .forms__loading-screen img {
+    width: 40px;
+    height: 40px;
+    margin: 140px auto;
+  }
+}
+@media screen and (max-width: 480px) {
+  .forms_list-container {
+    margin: 32px 15px;
+  }
+  .forms_search-container .forms_search-container__input {
+    min-width: 210px;
+  }
+}
 .button-container {
   display: flex;
   gap: 5px;
@@ -1124,16 +1254,15 @@ input {
 .index h3 {
   text-align: center;
   font-size: 36px;
-  margin-bottom: 50px;
+  margin-bottom: 40px;
 }
 
 .index_content-container {
   display: flex;
   justify-content: center;
-  gap: 45px;
+  gap: 20px;
 }
 .index_content-container .index_content-container_description__picture {
-  display: none;
   max-width: 600px;
   object-fit: cover;
 }
@@ -1143,7 +1272,6 @@ input {
   font-size: 24px;
   text-align: left;
   max-width: 440px;
-  max-height: 338px;
 }
 .index_content-container_description .button-container {
   margin: 48px 0 25px 0;
@@ -1163,6 +1291,71 @@ input {
   cursor: pointer;
 }
 
+@media (max-width: 1000px) {
+  .index_content-container {
+    flex-wrap: wrap;
+  }
+  .index_content-container_description__picture {
+    max-width: none;
+    width: 80%;
+    margin: 0 100px;
+  }
+  .index_content-container_description {
+    margin: 0 50px 25px 50px;
+    max-width: none;
+    text-align: center;
+    align-items: center;
+  }
+  .index_content-container_description button {
+    margin: 0 auto;
+    width: 400px;
+  }
+}
+@media screen and (max-width: 768px) {
+  .index {
+    margin-top: 30px;
+  }
+  .index h3 {
+    font-size: 32px;
+    margin: 0 40px 30px 40px;
+  }
+  .index_content-container_description {
+    margin: 0 40px 20px 40px;
+    font-size: 20px;
+  }
+  .index_content-container_description .button-container {
+    margin: 36px 0 20px 0;
+  }
+  .index_content-container_description .button-container button {
+    font-size: 16px;
+    padding: 12px;
+    width: 300px;
+  }
+  .index_content-container_description a {
+    font-size: 18px;
+  }
+  .index_content-container_description__picture {
+    width: 90%;
+  }
+}
+@media screen and (max-width: 480px) {
+  .index {
+    margin-top: 25px;
+  }
+  .index h3 {
+    margin: 30px 25px 20px 20px;
+  }
+  .index_content-container_description .button-container {
+    margin: 32px 0 16px 0;
+  }
+  .index_content-container_description .button-container button {
+    padding: 10px;
+    width: 250px;
+  }
+  .index_content-container_description__picture {
+    width: 100%;
+  }
+}
 .auth-container {
   margin: 70px 0;
 }
@@ -1210,6 +1403,21 @@ input {
   cursor: pointer;
 }
 
+@media screen and (max-width: 768px) {
+  .auth-container {
+    margin: 50px 0;
+  }
+  .login-form_container h3 {
+    font-size: 22px;
+    margin: 0;
+  }
+  .login-form_container button {
+    font-size: 14px;
+  }
+  .login-form_container__input {
+    font-size: 18px;
+  }
+}
 .signup-form {
   display: flex;
   flex-direction: column;
@@ -1242,6 +1450,18 @@ input {
   cursor: pointer;
 }
 
+@media screen and (max-width: 768px) {
+  .signup-form_container h3 {
+    font-size: 22px;
+    margin: 0;
+  }
+  .signup-form_container button {
+    font-size: 14px;
+  }
+  .signup-form_container__input {
+    font-size: 18px;
+  }
+}
 .error-container, .success-container {
   display: flex;
   justify-content: center;
@@ -1304,7 +1524,7 @@ textarea {
 }
 
 #navbar, #popup {
-  position: absolute;
+  position: fixed;
   width: 100%;
   top: 0;
   z-index: 100;

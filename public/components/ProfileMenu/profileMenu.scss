@@ -10,13 +10,12 @@
 @media screen {
   .navbar-profile-menu {
     right: 4px;
-    top: 70px;
-    width: 130px;
+    top: 75px;
     padding: 8px;
-  }
-
-  .primary-button {
-    margin: 3px 0;
+    .primary-button {
+      font-size: 14px;
+      margin: 4px 0;
+    }
   }
 
   .navbar-profile-menu-separator {
@@ -28,12 +27,10 @@
   .navbar-profile-menu {
     right: 8px;
     top: 80px;
-    width: 150px;
     padding: 8px;
-  }
-
-  .primary-button {
-    margin: 3px 0;
+    .primary-button {
+      margin: 3px 0;
+    }
   }
 
   .navbar-profile-menu-separator {
@@ -45,13 +42,40 @@
   .navbar-profile-menu {
     right: 16px;
     top: 85px;
-    width: 200px;
     padding: 8px;
+    .primary-button {
+      margin: 3px 0;
+    }
+  }@media screen and (min-width: 480px) {
+  .navbar-profile-menu {
+    right: 8px;
+    top: 80px;
+    padding: 8px;
+    .primary-button {
+      margin: 3px 0;
+    }
   }
 
-  .primary-button {
-    margin: 3px 0;
+  .navbar-profile-menu-separator {
+    height: 12px;
   }
+}
+
+@media screen and (min-width: 768px) {
+  .navbar-profile-menu {
+    right: 16px;
+    top: 85px;
+    padding: 8px;
+    .primary-button {
+      margin: 3px 0;
+    }
+  }
+
+  .navbar-profile-menu-separator {
+    height: 12px;
+  }
+}
+
 
   .navbar-profile-menu-separator {
     height: 12px;

@@ -21,10 +21,6 @@
   min-width: max-content;
   top: 0;
 }
-.forms_title-container .forms_title-container__space {
-  min-width: 300px;
-  height: 45px;
-}
 
 .forms_title-container_button-container {
   display: flex;
@@ -35,10 +31,6 @@
   height: 40px;
   padding: 0;
   margin-right: 12px;
-}
-.forms_title-container_button-container button.primary-button {
-  font-size: 23px;
-  font-weight: lighter;
 }
 .forms_title-container_button-container button.secondary-button {
   font-size: 26px;
@@ -61,11 +53,16 @@
   padding: 3px 16px;
 }
 .forms_search-container .forms_search-container__button {
+  background-image: url("https://cdn-icons-png.flaticon.com/128/2414/2414255.png");
+  background-size: 30px;
+  background-repeat: no-repeat;
+  background-position: 5px center;
+  padding-left: 30px;
   border-radius: 0 9px 9px 0;
   border: 1px solid #424242;
   margin-left: -3px;
   height: 40px;
-  width: 80px;
+  width: 105px;
   font-size: 16px;
 }
 .forms_search-container .forms_search-container__button:hover {
@@ -102,6 +99,46 @@
 
 .display-none {
   display: none;
+}
+
+@media screen and (max-width: 768px) {
+  .forms_list-container {
+    margin: 32px 40px;
+  }
+  .forms_title-container {
+    margin-bottom: 15px;
+  }
+  .forms_title-container h3 {
+    font-size: 26px;
+  }
+  .forms_title-container_button-container button {
+    width: 40px;
+    height: 36px;
+    font-size: 24px;
+  }
+  .forms_search-container {
+    margin-bottom: 30px;
+  }
+  .forms_search-container .forms_search-container__button {
+    content-visibility: hidden;
+    width: 45px;
+  }
+  .forms__loading-screen {
+    top: 190px;
+  }
+  .forms__loading-screen img {
+    width: 40px;
+    height: 40px;
+    margin: 140px auto;
+  }
+}
+@media screen and (max-width: 480px) {
+  .forms_list-container {
+    margin: 32px 15px;
+  }
+  .forms_search-container .forms_search-container__input {
+    min-width: 210px;
+  }
 }
 
 /*# sourceMappingURL=forms.css.map */
