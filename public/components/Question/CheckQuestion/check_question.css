@@ -1,6 +1,4 @@
 .check-question {
-  margin-top: 15px;
-  padding: 10px 12px;
   border-radius: 9px;
   border: 1px solid #424242;
 }
@@ -36,7 +34,6 @@
 
 .check-question__answer-title {
   padding-left: 4px;
-  font-size: 18px;
   margin-bottom: 8px;
   text-align: left;
 }
@@ -44,12 +41,10 @@
 .check-question__answer-item {
   margin-bottom: 8px;
   text-align: left;
-  padding-left: 4px;
 }
 .check-question__answer-item .check-question__answer-item-label {
   font-size: 16px;
   font-weight: normal;
-  padding-left: 4px;
 }
 .check-question__answer-item .check-question__answer-item-checkbox {
   width: 15px;
@@ -73,8 +68,6 @@
 }
 .check-question__answer-item .check-question__answers-item-textarea {
   font-size: 16px;
-  padding: 8px;
-  width: 590px;
   height: 95px;
   resize: none;
   background-color: #d5ceec;
@@ -83,6 +76,47 @@
 
 .button-container {
   margin-top: 15px;
+}
+
+@media screen and (min-width: 769px) {
+  .check-question {
+    margin-top: 15px;
+    padding: 10px 12px;
+  }
+  .check-question__answers-item-textarea {
+    width: 590px;
+  }
+  .check-question__answer-item {
+    padding: 5px 12px;
+  }
+}
+@media screen and (max-width: 768px) {
+  .check-question {
+    margin-top: 12px;
+    padding: 5px 12px;
+  }
+  .check-question__answers-item-textarea {
+    width: 95%;
+    padding: 12px;
+  }
+  .check-question__answer-item {
+    padding: 5px 8px;
+  }
+}
+@media screen and (max-width: 480px) {
+  .check-question {
+    margin-top: 10px;
+    padding: 5px 8px;
+  }
+  .check-question__answer-item {
+    padding: 5px 12px;
+    margin: 0 auto;
+  }
+  .check-question__answers-item-textarea {
+    width: 90%;
+    padding: 5px 12px;
+    margin: 0 auto;
+  }
 }
 
 /*# sourceMappingURL=check_question.css.map */

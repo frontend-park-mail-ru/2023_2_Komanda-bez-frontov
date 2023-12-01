@@ -10,9 +10,9 @@ templates['form_results'] = template({"1":function(container,depth0,helpers,part
 
   return "    <div class=\"form-results\">\n        <h3 class=\"form-results__title\">Результаты опроса<br>"
     + alias2(alias1(((stack1 = (depth0 != null ? lookupProperty(depth0,"form") : depth0)) != null ? lookupProperty(stack1,"title") : stack1), depth0))
-    + "</h3>\n        <div class=\"form-results__description\">\n            <h3 class=\"form-results__description-title\">Описание опроса</h3>\n            <p class=\"form-results__description-text\">\n                Дата создания: &nbsp;&nbsp;&nbsp;"
+    + "</h3>\n        <div class=\"form-results__description\">\n            <h3 class=\"form-results__description-title\">Описание опроса</h3>\n            <p class=\"form-results__description-text\">\n            Дата создания: &nbsp;&nbsp;&nbsp;<a>"
     + alias2(alias1(((stack1 = (depth0 != null ? lookupProperty(depth0,"form") : depth0)) != null ? lookupProperty(stack1,"created_at") : stack1), depth0))
-    + "<br>\n                Количесто прохождений: &nbsp;&nbsp;&nbsp;"
+    + "</a><br>\n            Количесто прохождений: &nbsp;&nbsp;&nbsp;"
     + alias2(alias1(((stack1 = (depth0 != null ? lookupProperty(depth0,"form") : depth0)) != null ? lookupProperty(stack1,"number_of_passages") : stack1), depth0))
     + "<br>\n"
     + ((stack1 = (lookupProperty(helpers,"ifEquals")||(depth0 && lookupProperty(depth0,"ifEquals"))||alias4).call(alias3,((stack1 = (depth0 != null ? lookupProperty(depth0,"form") : depth0)) != null ? lookupProperty(stack1,"anonymous") : stack1),true,{"name":"ifEquals","hash":{},"fn":container.program(2, data, 0, blockParams, depths),"inverse":container.noop,"data":data,"loc":{"start":{"line":9,"column":12},"end":{"line":12,"column":25}}})) != null ? stack1 : "")

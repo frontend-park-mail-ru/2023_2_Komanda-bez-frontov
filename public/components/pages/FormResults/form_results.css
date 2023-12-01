@@ -34,6 +34,10 @@
   font-weight: normal;
   line-height: 29px;
 }
+.form-results__description-text a {
+  display: inline-block;
+  width: max-content;
+}
 
 .form-results_description-text_participants {
   margin-bottom: 8px;
@@ -45,6 +49,60 @@
   font-size: 18px;
   font-weight: normal;
   padding-left: 4px;
+}
+
+@media screen and (max-width: 768px) {
+  .form-results {
+    margin: 16px auto;
+    width: 80%;
+  }
+  .form-results .form-results__title {
+    font-size: 25px;
+    margin-bottom: 16px;
+  }
+  .form-results .button-container {
+    margin: 15px 9px 8px 9px;
+    width: 95%;
+  }
+  .form-results .button-container button {
+    width: 200px;
+  }
+  .form-results__description {
+    padding: 10px 12px;
+  }
+  .form-results__description-title {
+    font-size: 16px;
+    margin-bottom: 8px;
+  }
+  .form-results__description-text {
+    padding-left: 8px;
+    font-size: 18px;
+    font-weight: normal;
+  }
+}
+@media screen and (max-width: 480px) {
+  .form-results {
+    margin: 16px auto;
+    width: 90%;
+  }
+  .form-results .form-results__title {
+    font-size: 25px;
+    margin: 20px 0;
+  }
+  .form-results .button-container {
+    margin: 15px 0;
+  }
+  .form-results .button-container button {
+    width: 150px;
+  }
+  .form-results__description {
+    padding: 10px 12px;
+  }
+  .form-results__description-text {
+    padding-left: 8px;
+    font-size: 16px;
+    font-weight: normal;
+  }
 }
 
 /*# sourceMappingURL=form_results.css.map */

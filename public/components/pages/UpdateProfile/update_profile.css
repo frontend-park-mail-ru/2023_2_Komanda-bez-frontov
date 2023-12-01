@@ -42,7 +42,7 @@
   align-self: center;
   margin-bottom: 8px;
 }
-.update-profile_main-container_name-container .update-form__title-input {
+.update-profile_main-container_name-container .update-profile__title-input {
   min-width: 270px;
   margin-left: 8px;
   margin-bottom: 8px;
@@ -140,7 +140,7 @@
   .update-profile_main-container_name-container {
     margin: 12px;
   }
-  .update-profile-form_container__input-container .update-form__title-input {
+  .update-profile-form_container__input-container .update-profile__title-input {
     width: 90%;
     max-width: 350px;
   }
@@ -163,7 +163,7 @@
   .update-profile-form_container__input-container label {
     margin-left: 12px;
   }
-  .update-profile-form_container__input-container .update-form__title-input {
+  .update-profile-form_container__input-container .update-profile__title-input {
     min-width: initial;
   }
   .update-profile_button-container {

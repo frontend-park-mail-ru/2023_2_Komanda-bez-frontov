@@ -83,9 +83,8 @@ export const renderForm = async (id) => {
     });
   } else {
     if (!STORAGE.user && !formJSON.anonymous) {
-      goToPage(ROUTES.login);
-      renderMessage("Для прохождение опроса необходимо авторизироваться", true);
-      return;
+      // renderMessage("Для прохождение опроса необходимо авторизироваться", true);
+      updateSubmitButton.classList.add('display-none');
     }
     updateSubmitButton.innerHTML = 'Отправить';
 

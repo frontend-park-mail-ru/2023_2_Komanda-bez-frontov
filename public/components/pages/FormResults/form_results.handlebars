@@ -4,8 +4,8 @@
         <div class="form-results__description">
             <h3 class="form-results__description-title">Описание опроса</h3>
             <p class="form-results__description-text">
-                Дата создания: &nbsp;&nbsp;&nbsp;{{form.created_at}}<br>
-                Количесто прохождений: &nbsp;&nbsp;&nbsp;{{form.number_of_passages}}<br>
+            Дата создания: &nbsp;&nbsp;&nbsp;<a>{{form.created_at}}</a><br>
+            Количесто прохождений: &nbsp;&nbsp;&nbsp;{{form.number_of_passages}}<br>
             {{#ifEquals form.anonymous true}}
                     Это анонимный опрос. Участники скрыты.
                 </p>

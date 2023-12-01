@@ -48,7 +48,6 @@
   *overflow: hidden;
 }
 .update-question__answers-item .update-question__answers-item-textarea {
-  width: 590px;
   height: 95px;
   resize: none;
   font-size: 16px;
@@ -59,6 +58,26 @@
 }
 .update-question__answers-item .update-question__answers-item-delete {
   cursor: pointer;
+}
+
+@media screen and (min-width: 769px) {
+  .update-question__answers-item-textarea {
+    width: 590px;
+  }
+}
+@media screen and (max-width: 768px) {
+  .update-question__answers-item-textarea {
+    width: 95%;
+    margin: 0 auto;
+  }
+}
+@media screen and (max-width: 480px) {
+  .update-question__answers-item-textarea {
+    width: 90%;
+  }
+  .update-question__answers-item-input {
+    width: 80%;
+  }
 }
 
 /*# sourceMappingURL=update_answer.css.map */

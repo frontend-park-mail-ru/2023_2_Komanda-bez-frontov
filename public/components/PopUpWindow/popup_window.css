@@ -33,4 +33,25 @@
   gap: 9px;
 }
 
+@media screen and (max-width: 768px) {
+  .popup_window {
+    width: 280px;
+    height: 150px;
+    font-size: 18px;
+  }
+  .popup_window p {
+    height: 67px;
+  }
+}
+@media screen and (max-width: 480px) {
+  .popup_window {
+    width: 260px;
+    height: 140px;
+    font-size: 18px;
+  }
+  .popup_window p {
+    height: 57px;
+  }
+}
+
 /*# sourceMappingURL=popup_window.css.map */

@@ -72,6 +72,10 @@
       font-size: 12px;
     }
   }
+  .form-author-menu__close {
+    transition: transform 0s;
+    transform: none;
+  }
   #author-menu-check-button {
     border-radius: 18px 0 0 0;
   }
