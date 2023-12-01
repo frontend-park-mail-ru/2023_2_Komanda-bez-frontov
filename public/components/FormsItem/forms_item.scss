@@ -3,9 +3,9 @@
 .forms-list__item {
   @extend %button-common;
   background-color: #FFFFFF;
-  margin-bottom: 20px;
+  margin-bottom: 16px;
   min-width: min-content;
-  min-height: 70px;
+  min-height: 56px;
   max-height: min-content;
-  font-size: 22px;
+  font-size: 18px;
 }

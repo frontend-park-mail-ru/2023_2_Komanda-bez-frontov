@@ -22,11 +22,26 @@
 * {
   padding: 0;
   margin: 0;
-  font-family: 'Exo 2', sans-serif;
+  font-family: 'Roboto', sans-serif;
 }
 
 html {
   scroll-behavior: smooth;
+  -webkit-text-size-adjust: none;
+  text-size-adjust: none
+}
+
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="number"],
+textarea {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -ms-appearance: none;
+  appearance: none;
+  outline: 0;
+  box-shadow: none;
 }
 
 #navbar, #popup {
@@ -38,12 +53,29 @@ html {
 
 #message-box, #root{
   position: relative;
-  top: 100px;
+}
+
+@media screen {
+  #message-box, #root{
+    top: 64px;
+  }
+}
+
+@media screen and (min-width: 480px){
+  #message-box, #root{
+    top: 76px;
+  }
+}
+
+@media screen and (min-width: 768px){
+  #message-box, #root{
+    top: 80px;
+  }
 }
 
 #footer {
   position: relative;
-  height: 60px;
-  top: 60px;
+  height: 48px;
+  top: 80px;
   z-index: -1;
 }

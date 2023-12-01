@@ -30,11 +30,13 @@ export const renderProfileMenu = () => {
   const profileButton = document.querySelector('#navbar-menu-profile-button');
   profileButton.addEventListener('click', () => {
     document.body.removeEventListener('click', removeProfileMenu);
+    navbar();
     goToPage(ROUTES.profile);
   });
   const formsButton = document.querySelector('#navbar-menu-forms-button');
   formsButton.addEventListener('click', () => {
     document.body.removeEventListener('click', removeProfileMenu);
+    navbar();
     goToPage(ROUTES.forms);
   });
   // const historyButton = document.querySelector("#navbar-menu-history-button")

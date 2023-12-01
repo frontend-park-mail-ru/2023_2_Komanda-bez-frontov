@@ -10,9 +10,9 @@ templates['form_results'] = template({"1":function(container,depth0,helpers,part
 
   return "    <div class=\"form-results\">\n        <h3 class=\"form-results__title\">Результаты опроса<br>"
     + alias2(alias1(((stack1 = (depth0 != null ? lookupProperty(depth0,"form") : depth0)) != null ? lookupProperty(stack1,"title") : stack1), depth0))
-    + "</h3>\n        <div class=\"form-results__description\">\n            <h3 class=\"form-results__description-title\">Описание опроса</h3>\n            <p class=\"form-results__description-text\">\n                Дата создания: &nbsp;&nbsp;&nbsp;"
+    + "</h3>\n        <div class=\"form-results__description\">\n            <h3 class=\"form-results__description-title\">Описание опроса</h3>\n            <p class=\"form-results__description-text\">\n            Дата создания: &nbsp;&nbsp;&nbsp;<a>"
     + alias2(alias1(((stack1 = (depth0 != null ? lookupProperty(depth0,"form") : depth0)) != null ? lookupProperty(stack1,"created_at") : stack1), depth0))
-    + "<br>\n                Количесто прохождений: &nbsp;&nbsp;&nbsp;"
+    + "</a><br>\n            Количесто прохождений: &nbsp;&nbsp;&nbsp;"
     + alias2(alias1(((stack1 = (depth0 != null ? lookupProperty(depth0,"form") : depth0)) != null ? lookupProperty(stack1,"number_of_passages") : stack1), depth0))
     + "<br>\n"
     + ((stack1 = (lookupProperty(helpers,"ifEquals")||(depth0 && lookupProperty(depth0,"ifEquals"))||alias4).call(alias3,((stack1 = (depth0 != null ? lookupProperty(depth0,"form") : depth0)) != null ? lookupProperty(stack1,"anonymous") : stack1),true,{"name":"ifEquals","hash":{},"fn":container.program(2, data, 0, blockParams, depths),"inverse":container.noop,"data":data,"loc":{"start":{"line":9,"column":12},"end":{"line":12,"column":25}}})) != null ? stack1 : "")
@@ -40,7 +40,7 @@ templates['form_results'] = template({"1":function(container,depth0,helpers,part
     };
 
   return "                        <p class=\"form-results_description-text__participants-item\">"
-    + container.escapeExpression(((helper = (helper = lookupProperty(helpers,"name") || (depth0 != null ? lookupProperty(depth0,"name") : depth0)) != null ? helper : container.hooks.helperMissing),(typeof helper === "function" ? helper.call(depth0 != null ? depth0 : (container.nullContext || {}),{"name":"name","hash":{},"data":data,"loc":{"start":{"line":18,"column":84},"end":{"line":18,"column":92}}}) : helper)))
+    + container.escapeExpression(((helper = (helper = lookupProperty(helpers,"first_name") || (depth0 != null ? lookupProperty(depth0,"first_name") : depth0)) != null ? helper : container.hooks.helperMissing),(typeof helper === "function" ? helper.call(depth0 != null ? depth0 : (container.nullContext || {}),{"name":"first_name","hash":{},"data":data,"loc":{"start":{"line":18,"column":84},"end":{"line":18,"column":98}}}) : helper)))
     + "</p>\n";
 },"compiler":[8,">= 4.3.0"],"main":function(container,depth0,helpers,partials,data,blockParams,depths) {
     var stack1, lookupProperty = container.lookupProperty || function(parent, propertyName) {

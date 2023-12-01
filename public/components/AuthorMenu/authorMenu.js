@@ -49,4 +49,21 @@ export const renderAuthorMenu = (id) => {
     document.querySelector('#popup-ok-button').innerHTML = 'Скопировать';
   });
 
+  let flagClosed = false;
+  const closeButton = document.querySelector('#author-menu-close-button');
+  closeButton.addEventListener('click', () => {
+    const menu = document.querySelector('.form-author-menu');
+    if (flagClosed) {
+      menu.classList.add('form-author-menu__open');
+      menu.classList.remove('form-author-menu__close');
+      closeButton.innerHTML = 'menu_open';
+      flagClosed = false;
+    } else {
+      menu.classList.remove('form-author-menu__open');
+      menu.classList.add('form-author-menu__close');
+      closeButton.innerHTML = 'menu';
+      flagClosed = true;
+    }
+  });
+
 };

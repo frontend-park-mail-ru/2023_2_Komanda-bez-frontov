@@ -1,53 +1,52 @@
 .profile-title {
-  margin: 25px 50px;
+  margin: 20px 40px;
   text-align: center;
-  font-size: 30px;
+  font-size: 24px;
 }
 
 .profile {
-  background-color: rgba(75, 53, 122, 0.6);
+  background-color: rgba(128, 102, 169, 0.6);
   margin: 0 auto;
-  max-width: 1000px;
-  border-radius: 12px;
+  max-width: 800px;
+  border-radius: 9px;
 }
 
 .profile_main-container {
   display: flex;
   justify-content: left;
-  padding: 35px 0 35px 45px;
+  padding: 29px 0 29px 36px;
 }
 .profile_main-container .profile_main-container__picture {
-  max-height: 250px;
-  max-width: 250px;
-  min-width: 180px;
+  height: 200px;
+  width: 200px;
   object-fit: contain;
-  border-radius: 12px;
+  border-radius: 9px;
 }
 
 .profile_main-container_name-container {
   color: #FFFFFF;
-  margin: 15px 40px;
-  line-height: 30px;
+  margin: 12px 32px;
+  line-height: 24px;
 }
 .profile_main-container_name-container h3 {
-  font-size: 35px;
-  margin-bottom: 20px;
+  font-size: 29px;
+  margin-bottom: 16px;
 }
 .profile_main-container_name-container a {
-  font-size: 24px;
+  font-size: 20px;
 }
 
 .profile_button-container {
   display: flex;
   flex-wrap: wrap;
-  gap: 15px;
+  gap: 12px;
   justify-content: left;
-  padding: 0 0 40px 45px;
+  padding: 0 0 32px 36px;
 }
 .profile_button-container button {
   width: max-content;
-  min-width: 220px;
-  font-size: 20px;
+  min-width: 180px;
+  font-size: 16px;
   font-weight: bold;
 }
 .profile_button-container .primary-button:hover {
@@ -59,6 +58,36 @@
   opacity: 1;
   background-color: #6e51a4;
   border-color: #696969;
+}
+
+@media screen and (max-width: 768px) {
+  .profile {
+    border-radius: 0;
+  }
+  .profile_main-container .profile_main-container__picture {
+    height: 120px;
+    width: 120px;
+  }
+}
+@media screen and (max-width: 480px) {
+  .profile-title h3 {
+    font-size: 22px;
+  }
+  .profile_main-container {
+    padding: 30px;
+  }
+  .profile_main-container_name-container {
+    margin: 10px 20px;
+  }
+  .profile_main-container_name-container h3 {
+    font-size: 24px;
+  }
+  .profile_main-container_name-container a {
+    font-size: 18px;
+  }
+  .profile_button-container {
+    padding: 20px 0 24px 30px;
+  }
 }
 
 /*# sourceMappingURL=profile.css.map */

@@ -31,56 +31,7 @@ export const renderResultsForm = async (id) => {
     return;
   }
 
-  // TODO заменить на получение через апи, когда будет готово
   let formJSON;
-  //   id: 18,
-  //   title: "Test Form title",
-  //   description: "Description text",
-  //   created_at: "2023-11-18 15:27",
-  //   anonymous: true,
-  //   author: STORAGE.user,
-  //   number_of_passages: 24,
-  //   questions: [
-  //     {
-  //       id: 34,
-  //       title: "Question 1 Title",
-  //       description: "Description text",
-  //       type: 1,
-  //       required: true,
-  //       number_of_passages: 20,
-  //       answers: [
-  //         {
-  //           text: "Answer 1",
-  //           selected_times: 8,
-  //         },
-  //         {
-  //           text: "Answer 2",
-  //           selected_times: 5,
-  //         },
-  //         {
-  //           text: "Answer 3",
-  //           selected_times: 7,
-  //         },
-  //       ],
-  //     },
-  //     {
-  //       id: 35,
-  //       title: "Question 2 Title",
-  //       description: "Description text",
-  //       type: 3,
-  //       required: false,
-  //       number_of_passages: 16,
-  //       answers: [
-  //         {
-  //           text: "Text Answer 1",
-  //         },
-  //         {
-  //           text: "Text Answer 2",
-  //         },
-  //       ],
-  //     },
-  //   ],
-  // };
 
   try {
     const res = await api.getFormResultsByID(id);
@@ -107,6 +58,17 @@ export const renderResultsForm = async (id) => {
     return;
   }
 
+  // Перевод даты создания в читабельный вид
+  const date = new Date(formJSON.created_at);
+  const options = {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+    hour: '2-digit',
+    minute: '2-digit',
+  };
+  formJSON.created_at = date.toLocaleDateString('ru', options);
+
   const rootElement = document.querySelector('#root');
   rootElement.innerHTML = '';
 
@@ -118,7 +80,7 @@ export const renderResultsForm = async (id) => {
 
   rootElement.insertAdjacentHTML('beforeend', Handlebars.templates.form_results({form: formJSON}));
 
-  if (!formJSON.participants) {
+  if (!formJSON.participants && !formJSON.anonymous) {
     const description = document.querySelector('.form-results__description-text');
     description.innerHTML += '<br> &nbsp;&nbsp;&nbsp;Прохождений пока нет...';
   }

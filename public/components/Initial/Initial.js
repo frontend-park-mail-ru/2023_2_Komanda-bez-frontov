@@ -1,6 +1,7 @@
 import {API} from '../../modules/api.js';
 import {renderMessage} from '../Message/message.js';
 import {getAuthAvatar, STORAGE} from '../../modules/storage.js';
+import {navbar} from "../Navbar/navbar.js";
 
 /**
  * Функция для рендеринга страницы при первой загрузке.
@@ -25,4 +26,6 @@ export const renderInitial = async () => {
       renderMessage('Потеряно соединение с сервером', true);
     }
   }
+
+  navbar();
 };

@@ -1,38 +1,39 @@
 .auth-container {
-  margin: 40px 0;
+  margin: 70px 0;
 }
 
 .auth-container__form {
-  border-radius: 12px;
-  border: 3px solid #424242;
+  border-radius: 9px;
+  border: 1px solid #424242;
   text-align: center;
-  width: 400px;
+  width: 320px;
   margin: 0 auto;
 
   h3 {
-    font-size: 30px;
-    margin-bottom: 5px;
+    font-size: 24px;
+    margin-bottom: 4px;
   }
 }
 
 .login-form {
   display: flex;
   flex-direction: column;
-  margin: 25px 30px;
+  margin: 20px 24px;
 
   .button-container {
-    margin-top: 25px;
+    margin-top: 20px;
   }
 }
 
 .login-form_container__input {
-  height: 48px;
-  margin: 0 0 12px 0;
-  border-radius: 12px;
-  border: 2px solid #424242;
-  padding: 7px 15px;
+  height: 40px;
+  width: 272px;
+  margin: 0 0 9px 0;
+  border-radius: 9px;
+  border: 1px solid #424242;
+  padding: 4px 12px;
   box-sizing: border-box;
-  font-size: 25px;
+  font-size: 20px;
 }
 
 .login-form_container__input-container {
@@ -41,9 +42,48 @@
 
 .login-form_container__input-show-button {
   color: #000000;
-  margin-left: -40px;
-  margin-top: 13px;
-  &:hover {
-    cursor: pointer;
+  margin-left: -32px;
+  margin-top: 10px;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 768px) {
+  .auth-container {
+    margin: 50px 0;
+  }
+  .login-form_container {
+    h3 {
+      font-size: 22px;
+      margin: 0;
+    }
+    button {
+      font-size: 14px;
+    }
+  }
+  .login-form_container__input {
+    font-size: 18px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .auth-container__form {
+    border: none;
+    margin: 0 10px;
+    width: initial;
+  }
+  .login-form_container {
+    h3 {
+      font-size: 30px;
+      margin-bottom: 20px;
+    }
+    .login-form_container__input {
+      width: 100%;
+      font-size: 18px;
+    }
+    .button-container {
+      margin: 40px 0;
+      gap: 10px;
+      flex-flow: column;
+    }
   }
 }

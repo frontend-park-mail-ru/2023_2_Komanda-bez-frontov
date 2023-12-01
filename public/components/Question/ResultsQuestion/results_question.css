@@ -1,64 +1,114 @@
 .results-question {
-  margin-top: 18px;
-  padding: 13px 15px;
-  border-radius: 12px;
-  border: 2px solid #424242;
+  margin-top: 15px;
+  padding: 10px 12px;
+  border-radius: 9px;
+  border: 1px solid #424242;
 }
 
 .results-question_title-container {
   display: flex;
-  flex-flow: wrap;
   justify-content: space-between;
-  font-size: 20px;
+  font-size: 16px;
 }
 
 .results-question__description-title {
-  padding-left: 5px;
-  font-size: 22px;
-  margin-bottom: 10px;
+  padding-left: 4px;
+  font-size: 18px;
+  margin-bottom: 8px;
   text-align: left;
+}
+
+.results-question__passage-text {
+  line-height: 35px;
 }
 
 .results-question__required-title {
   color: #da2d28;
-  padding-left: 10px;
-  font-size: 18px;
+  padding-left: 8px;
+  font-size: 15px;
   font-weight: normal;
-  margin-bottom: 10px;
+  margin-bottom: 8px;
   text-align: left;
 }
 
 .results-question__answers-title {
-  padding-left: 5px;
-  font-size: 22px;
+  padding-left: 4px;
+  font-size: 18px;
   text-align: left;
 }
 
 .results-question_answers {
   text-align: left;
-  font-size: 22px;
+  font-size: 18px;
 }
 
 .results-question_answers_answer-item {
   display: flex;
-  margin: 20px 0;
+  margin: 18px 0;
   text-align: left;
   align-items: center;
-  padding-left: 5px;
+  padding-left: 4px;
+}
+.results-question_answers_answer-item span {
+  display: flex;
 }
 .results-question_answers_answer-item .results-question_answers_answer-item__label, .results-question_answers_answer-item .results-question_answers_answer-item__percentage {
-  width: 150px;
-  margin: 0 0 0 15px;
-  font-size: 20px;
+  width: 120px;
+  margin: 0 0 0 12px;
+  font-size: 16px;
   font-weight: normal;
-  padding-left: 5px;
+  padding-left: 4px;
 }
 .results-question_answers_answer-item .results-question_answers_answer-item__bar-container {
-  width: 400px;
+  width: 320px;
+  height: 18px;
+  background-color: #DDDDDD;
 }
 .results-question_answers_answer-item .results-question_answers_answer-item__bar-container .results-question_answers_answer-item__bar {
-  height: 20px;
+  min-width: 4px;
+  height: 18px;
   background-color: #6e51a4;
+}
+
+@media screen and (max-width: 768px) {
+  .results-question {
+    margin-top: 12px;
+    padding: 5px 12px;
+  }
+  .results-question_title-container {
+    flex-wrap: wrap;
+  }
+  .results-question_answers_answer-item {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .results-question_answers_answer-item .results-question_answers_answer-item__label {
+    line-height: 30px;
+    width: 100%;
+    text-align: left;
+  }
+  .results-question_answers_answer-item .results-question_answers_answer-item__percentage {
+    width: 80px;
+  }
+  .results-question_answers_answer-item span {
+    width: 90%;
+  }
+  .results-question_answers_answer-item span .results-question_answers_answer-item__bar-container {
+    width: 80%;
+  }
+  .results-question__answer-item {
+    padding: 5px 8px;
+  }
+}
+@media screen and (max-width: 480px) {
+  .results-question {
+    margin-top: 10px;
+    padding: 5px 8px;
+  }
+  .results-question__answer-item {
+    padding: 5px 12px;
+    margin: 0 auto;
+  }
 }
 
 /*# sourceMappingURL=results_question.css.map */

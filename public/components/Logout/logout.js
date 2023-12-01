@@ -3,6 +3,7 @@ import {renderMessage, removeMessage} from '../Message/message.js';
 import {ROUTES} from '../../config.js';
 import {clearStorage} from '../../modules/storage.js';
 import {goToPage} from "../../modules/router.js";
+import {navbar} from "../Navbar/navbar.js";
 
 /**
  * Функция для выполнения выхода из аккаунта.
@@ -33,5 +34,6 @@ export const renderMainLogout = async () => {
   }
 
   clearStorage();
+  navbar();
   goToPage(ROUTES.main, 0, true);
 };

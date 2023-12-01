@@ -65,13 +65,8 @@ export const renderForm = async (id) => {
 
   rootElement.insertAdjacentHTML('beforeend', Handlebars.templates.check_form({form: formJSON}));
 
-  // Чтоб красиво выглядело, но не получилось
-  // if (STORAGE.user && STORAGE.user.id === formJSON.author.id) {
-  //   document.querySelector('.check-form').style.left = '155px';
-  // }
-
   if (STORAGE.user && !formJSON.anonymous) {
-    document.querySelector('.check-form__anonymous').style.display = 'none';
+    document.querySelector('.check-form__anonymous').classList.add('display-none');
   }
 
   const questions = document.querySelector('#check-form__questions-container');
@@ -88,9 +83,8 @@ export const renderForm = async (id) => {
     });
   } else {
     if (!STORAGE.user && !formJSON.anonymous) {
-      goToPage(ROUTES.login);
-      renderMessage("Для прохождение опроса необходимо авторизироваться", true);
-      return;
+      // renderMessage("Для прохождение опроса необходимо авторизироваться", true);
+      updateSubmitButton.classList.add('display-none');
     }
     updateSubmitButton.innerHTML = 'Отправить';
 
@@ -101,6 +95,7 @@ export const renderForm = async (id) => {
         ]
       };
 
+      let err = false;
       formJSON.questions.forEach((question) => {
         if (question.type === TYPE_SINGLE_CHOICE || question.type === TYPE_MULTIPLE_CHOICE) {
           let isAnswered = false;
@@ -118,6 +113,12 @@ export const renderForm = async (id) => {
 
           if (question.required && !isAnswered) {
             renderMessage("Вы ответили не на все вопросы", true);
+            const answerContainer = document.querySelector(`#check-question_${question.id}__answers`);
+            answerContainer.classList.add('update-form__input-error');
+            answerContainer.addEventListener('click', () => {
+              answerContainer.classList.remove('update-form__input-error');
+            }, {once: true});
+            err = true;
           }
         }
 
@@ -130,10 +131,13 @@ export const renderForm = async (id) => {
               chosenAnswer.classList.remove('update-form__input-error');
             }, {once: true});
 
+            console.log("111")
             renderMessage("Вы ответили не на все вопросы", true);
+            err = true;
             return;
           }
 
+          console.log("222")
           const validator = textValidation(chosenAnswer.value);
           if (!validator.valid) {
             chosenAnswer.classList.add('update-form__input-error');
@@ -142,16 +146,27 @@ export const renderForm = async (id) => {
             }, {once: true});
 
             renderMessage(validator.message, true);
+            err = true;
             return;
           }
 
-          const passageAnswerJSON = {
-            question_id: question.id,
-            answer_text: chosenAnswer.value,
-          };
-          passageJSON.passage_answers.push(passageAnswerJSON);
+          if (chosenAnswer.value !== '') {
+            const passageAnswerJSON = {
+              question_id: question.id,
+              answer_text: chosenAnswer.value,
+            };
+            passageJSON.passage_answers.push(passageAnswerJSON);
+          }
         }
       });
+
+      if (err) {
+        return;
+      }
+      if (passageJSON.passage_answers.length === 0) {
+        renderMessage('Вы не ответили ни на один вопрос', true);
+        return;
+      }
 
       try {
         const res = await api.passageForm(passageJSON);
@@ -182,7 +197,7 @@ export const renderForm = async (id) => {
   }
 
   const createLinkButton = document.querySelector('#create-link-button');
-  if (STORAGE.user.id === formJSON.author.id) {
+  if (STORAGE.user && STORAGE.user.id === formJSON.author.id) {
     createLinkButton.addEventListener('click', (e) => {
       const link = `${frontendUrl}/forms/${id}`;
       e.stopImmediatePropagation();
@@ -196,6 +211,6 @@ export const renderForm = async (id) => {
       document.querySelector('#popup-ok-button').innerHTML = 'Скопировать';
     });
   } else {
-    createLinkButton.style.display = 'none';
+    createLinkButton.classList.add('display-none');
   }
 };

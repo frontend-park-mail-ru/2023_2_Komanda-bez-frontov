@@ -22,8 +22,7 @@ export const createQuestionUpdate = (question) => {
   const answers = question.answers;
 
   const renderAnswers = () => {
-    answerContainer.innerHTML = Handlebars.templates
-      .update_answer({answers, type});
+    answerContainer.innerHTML = Handlebars.templates.update_answer({answers, type});
     const cInputText = questionElement.querySelectorAll('.update-question__answers-item-input');
     cInputText.forEach((input, index) => {
       input.addEventListener('change', () => {
@@ -35,6 +34,7 @@ export const createQuestionUpdate = (question) => {
       const deleteButton = answerElement.querySelector('.update-question__answers-item-delete');
       if (deleteButton) {
         deleteButton.addEventListener('click', () => {
+          buttonAddAnswer.classList.remove('button__disabled');
           answers.splice(index, 1);
           if (answers.length === 0) {
             answers.push({
@@ -49,6 +49,11 @@ export const createQuestionUpdate = (question) => {
         });
       }
     });
+
+    if (answers.length >= 12) {
+      console.log("!!!")
+      buttonAddAnswer.classList.add('button__disabled');
+    }
   };
 
   switch (type) {
@@ -63,7 +68,7 @@ export const createQuestionUpdate = (question) => {
     default:
       textButton.checked = true;
       renderAnswers();
-      buttonAddAnswer.style.display = 'none';
+      buttonAddAnswer.classList.add('display-none');
       break;
   }
 
@@ -71,26 +76,25 @@ export const createQuestionUpdate = (question) => {
     checkboxButton.checked = false;
     textButton.checked = false;
     type = TYPE_SINGLE_CHOICE;
-    buttonAddAnswer.style.display = null;
+    buttonAddAnswer.classList.remove('display-none');
     renderAnswers();
   });
   checkboxButton.addEventListener('click', () => {
     radioButton.checked = false;
     textButton.checked = false;
     type = TYPE_MULTIPLE_CHOICE;
-    buttonAddAnswer.style.display = null;
+    buttonAddAnswer.classList.remove('display-none');
     renderAnswers();
   });
   textButton.addEventListener('click', () => {
     checkboxButton.checked = false;
     radioButton.checked = false;
     type = TYPE_TEXT;
-    buttonAddAnswer.style.display = 'none';
+    buttonAddAnswer.classList.add('display-none');
     renderAnswers();
   });
 
-  const addButton = questionElement.querySelector('#add-answer-button');
-  addButton.addEventListener('click', () => {
+  buttonAddAnswer.addEventListener('click', () => {
     if (answers.length >= 12) {
       return;
     }
@@ -100,16 +104,6 @@ export const createQuestionUpdate = (question) => {
     });
     renderAnswers();
   });
-
-  // const clearButton = questionElement.querySelector('#clear-answers-button');
-  // clearButton.addEventListener('click', () => {
-  //   answers.length = 0;
-  //   answers.push({
-  //     id: 0,
-  //     text: '',
-  //   });
-  //   renderAnswers();
-  // });
 
   return questionElement;
 };

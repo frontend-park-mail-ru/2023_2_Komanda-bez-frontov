@@ -87,13 +87,14 @@ export const renderFormNew = async () => {
       e.stopImmediatePropagation();
       renderPopUpWindow('Требуется подтверждение', 'Вы уверены, что хотите безвозвратно удалить вопрос?', true, () => {
         questionElement.remove();
+        closePopUpWindow();
       });
     });
     questions.appendChild(questionElement);
   });
 
   const deleteForm = document.querySelector('#delete-button');
-  deleteForm.style.display = 'none';
+  deleteForm.classList.add('display-none');;
 
   const saveForm = document.querySelector('#update-button');
   saveForm.innerHTML = 'Опубликовать';

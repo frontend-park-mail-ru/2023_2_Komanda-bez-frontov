@@ -15,20 +15,42 @@
 }
 
 .popup_window {
-  width: 400px;
-  height: 220px;
-  margin: 250px auto;
-  padding: 25px 30px;
+  width: 320px;
+  height: 180px;
+  margin: 200px auto;
+  padding: 20px 24px;
   background-color: #ffffff;
-  border: 2px #424242;
-  border-radius: 12px;
-  font-size: 24px;
+  border: 1px #424242;
+  border-radius: 9px;
+  font-size: 20px;
   text-align: center;
   p {
-    margin-top: 15px;
-    height: 110px;
+    margin-top: 12px;
+    height: 90px;
   }
   .button-container {
-    gap: 12px;
+    gap: 9px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .popup_window {
+    width: 280px;
+    height: 150px;
+    font-size: 18px;
+    p {
+      height: 67px;
+    }
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .popup_window {
+    width: 260px;
+    height: 140px;
+    font-size: 18px;
+    p {
+      height: 57px;
+    }
   }
 }
