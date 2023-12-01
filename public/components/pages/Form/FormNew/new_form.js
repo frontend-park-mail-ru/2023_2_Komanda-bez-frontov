@@ -87,6 +87,7 @@ export const renderFormNew = async () => {
       e.stopImmediatePropagation();
       renderPopUpWindow('Требуется подтверждение', 'Вы уверены, что хотите безвозвратно удалить вопрос?', true, () => {
         questionElement.remove();
+        closePopUpWindow();
       });
     });
     questions.appendChild(questionElement);
