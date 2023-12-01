@@ -11,6 +11,9 @@ import {renderAuthorMenu} from "../../../AuthorMenu/authorMenu.js";
 import {TYPE_SINGLE_CHOICE} from "../CheckForm/check_form.js";
 
 export let editInProcess = false;
+export const setEditInProcess = (bool) => {
+  editInProcess = bool;
+}
 
 /**
  * Функция для рендеринга страницы редактирования опроса по его id.
@@ -102,7 +105,6 @@ export const renderFormUpdate = async (id) => {
   const cButtons = document.querySelectorAll('#delete-question, #add-answer-button, .update-question__answers-item-delete');
   cButtons.forEach((input) => {
     input.addEventListener('click', () => {
-      console.log("!!!");
       editInProcess = true;
     }, {once: true})
   });
