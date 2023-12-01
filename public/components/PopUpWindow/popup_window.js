@@ -10,7 +10,7 @@
  */
 export const renderPopUpWindow = (titleText, messageText, error = false, action = null) => {
   const popupContainer = document.querySelector('#popup');
-  popupContainer.innerHTML += Handlebars.templates.popup_window();
+  popupContainer.innerHTML = Handlebars.templates.popup_window();
 
   if (error) {
     document.querySelector('#popup-ok-button').classList.add('red-button');
