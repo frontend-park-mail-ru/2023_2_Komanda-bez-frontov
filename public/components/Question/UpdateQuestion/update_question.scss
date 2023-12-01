@@ -75,6 +75,11 @@
     width: 200px;
   }
 
+  .update-question__required-container {
+    display: flex;
+    align-items: center;
+  }
+
   .update-question_button-container__required-checkbox {
     margin-left: 12px;
     width: 15px;
@@ -83,6 +88,7 @@
 
   .update-question_button-container__required-label {
     font-size: 16px;
+    margin-left: 6px;
   }
 }
 
@@ -172,7 +178,9 @@
       width: 160px;
     }
     .update-question_button-container__required-checkbox {
-      margin-left: 8px;
+      margin: 0 4px 0 8px;
+      width: 20px;
+      height: 20px;
     }
   }
   .update-question__description-textarea {

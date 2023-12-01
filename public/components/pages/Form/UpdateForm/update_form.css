@@ -170,6 +170,7 @@
   }
   .button-container button {
     width: 140px;
+    height: 42px;
     margin-bottom: 4px;
   }
 }

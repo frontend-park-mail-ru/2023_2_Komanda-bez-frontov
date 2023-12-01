@@ -48,6 +48,11 @@ input {
   opacity: 0.6;
 }
 
+@media screen {
+  button:hover {
+    opacity: 1 !important;
+  }
+}
 .navbar {
   display: flex;
   justify-content: space-between;
@@ -748,6 +753,11 @@ input {
   opacity: 0.6;
 }
 
+@media screen {
+  button:hover {
+    opacity: 1 !important;
+  }
+}
 .forms-list__item {
   background-color: #FFFFFF;
   margin-bottom: 16px;
@@ -1012,6 +1022,10 @@ input {
 .update-question__button-container button {
   width: 200px;
 }
+.update-question__button-container .update-question__required-container {
+  display: flex;
+  align-items: center;
+}
 .update-question__button-container .update-question_button-container__required-checkbox {
   margin-left: 12px;
   width: 15px;
@@ -1019,6 +1033,7 @@ input {
 }
 .update-question__button-container .update-question_button-container__required-label {
   font-size: 16px;
+  margin-left: 6px;
 }
 
 @media screen and (min-width: 769px) {
@@ -1091,7 +1106,9 @@ input {
     width: 160px;
   }
   .update-question__button-container .update-question_button-container__required-checkbox {
-    margin-left: 8px;
+    margin: 0 4px 0 8px;
+    width: 20px;
+    height: 20px;
   }
   .update-question__description-textarea {
     padding: 5px 12px;
@@ -1181,7 +1198,7 @@ input {
   text-align: center;
 }
 .check-form .button-container {
-  gap: 12px;
+  gap: 6px;
 }
 
 .check-form__description {
@@ -1194,7 +1211,22 @@ input {
   font-weight: normal;
 }
 
-@media screen and (min-width: 769px) {
+.check-form__anonymous {
+  margin-top: 15px;
+  padding: 10px 12px;
+  border-radius: 9px;
+  border: 1px solid #424242;
+  text-align: left;
+}
+.check-form__anonymous p {
+  font-size: 16px;
+  color: #6e51a4;
+}
+.check-form__anonymous .check-form__anonymous-error {
+  color: #da2d28;
+}
+
+@media screen and (min-width: 768px) {
   .check-form {
     margin: 32px auto;
     width: 640px;
@@ -1206,6 +1238,7 @@ input {
   .check-form .button-container {
     margin: 15px 9px 8px 9px;
     width: 440px;
+    gap: 12px;
   }
   .check-form .button-container button {
     width: 200px;
@@ -1274,6 +1307,9 @@ input {
   .check-form .check-form__title {
     font-size: 25px;
     margin-bottom: 16px;
+  }
+  .check-form .button-container {
+    margin: 15px 0;
   }
   .check-form .button-container button {
     width: 150px;
@@ -1466,6 +1502,7 @@ input {
   }
   .button-container button {
     width: 140px;
+    height: 42px;
     margin-bottom: 4px;
   }
 }

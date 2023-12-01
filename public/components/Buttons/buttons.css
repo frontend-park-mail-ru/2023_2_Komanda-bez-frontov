@@ -48,4 +48,10 @@ input {
   opacity: 0.6;
 }
 
+@media screen {
+  button:hover {
+    opacity: 1 !important;
+  }
+}
+
 /*# sourceMappingURL=buttons.css.map */

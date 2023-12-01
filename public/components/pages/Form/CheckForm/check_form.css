@@ -3,7 +3,7 @@
   text-align: center;
 }
 .check-form .button-container {
-  gap: 12px;
+  gap: 6px;
 }
 
 .check-form__description {
@@ -16,7 +16,22 @@
   font-weight: normal;
 }
 
-@media screen and (min-width: 769px) {
+.check-form__anonymous {
+  margin-top: 15px;
+  padding: 10px 12px;
+  border-radius: 9px;
+  border: 1px solid #424242;
+  text-align: left;
+}
+.check-form__anonymous p {
+  font-size: 16px;
+  color: #6e51a4;
+}
+.check-form__anonymous .check-form__anonymous-error {
+  color: #da2d28;
+}
+
+@media screen and (min-width: 768px) {
   .check-form {
     margin: 32px auto;
     width: 640px;
@@ -28,6 +43,7 @@
   .check-form .button-container {
     margin: 15px 9px 8px 9px;
     width: 440px;
+    gap: 12px;
   }
   .check-form .button-container button {
     width: 200px;
@@ -96,6 +112,9 @@
   .check-form .check-form__title {
     font-size: 25px;
     margin-bottom: 16px;
+  }
+  .check-form .button-container {
+    margin: 15px 0;
   }
   .check-form .button-container button {
     width: 150px;
