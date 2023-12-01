@@ -78,11 +78,7 @@
     margin: 20px 0;
   }
   .check-form .button-container {
-    margin: 15px 9px 8px 9px;
-    width: 95%;
-  }
-  .check-form .button-container button {
-    width: 200px;
+    display: none;
   }
   .check-form__description {
     padding: 10px 12px;
@@ -112,12 +108,6 @@
   .check-form .check-form__title {
     font-size: 25px;
     margin: 20px 0;
-  }
-  .check-form .button-container {
-    margin: 15px 0;
-  }
-  .check-form .button-container button {
-    width: 150px;
   }
   .check-form__description {
     padding: 10px 12px;

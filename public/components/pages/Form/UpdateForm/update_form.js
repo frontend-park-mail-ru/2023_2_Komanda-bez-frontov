@@ -64,8 +64,6 @@ export const renderFormUpdate = async (id) => {
     return;
   }
 
-  editInProcess = true;
-
   const removedQuestionsID = [];
   removedAnswersID.length = 0;
 
@@ -85,6 +83,7 @@ export const renderFormUpdate = async (id) => {
     const questionElement = createQuestionUpdate(question);
     questionElement.querySelector('#delete-question').addEventListener('click', (e) => {
       e.stopImmediatePropagation();
+      editInProcess = true;
       renderPopUpWindow('Требуется подтверждение', 'Вы уверены, что хотите безвозвратно удалить вопрос?', true, () => {
         questionElement.remove();
         removedQuestionsID.push(Number(question.id));
@@ -92,6 +91,20 @@ export const renderFormUpdate = async (id) => {
       });
     });
     questions.appendChild(questionElement);
+  });
+
+  const cInputs = document.querySelectorAll('input, textarea');
+  cInputs.forEach((input) => {
+    input.addEventListener('change', () => {
+      editInProcess = true;
+    }, {once: true})
+  });
+  const cButtons = document.querySelectorAll('#delete-question, #add-answer-button, .update-question__answers-item-delete');
+  cButtons.forEach((input) => {
+    input.addEventListener('click', () => {
+      console.log("!!!");
+      editInProcess = true;
+    }, {once: true})
   });
 
   const addQuestion = document.querySelector('#add-button');
@@ -109,6 +122,7 @@ export const renderFormUpdate = async (id) => {
         },
       ],
     };
+    editInProcess = true;
     const questionElement = createQuestionUpdate(defaultQuestion);
     questionElement.querySelector('#delete-question').addEventListener('click', (e) => {
       e.stopImmediatePropagation();
@@ -181,7 +195,6 @@ export const renderFormUpdate = async (id) => {
 };
 
 export const renderQuitEditingWindow = (page, id = '', redirect = false) => {
-  console.log("!!");
   setTimeout(() => {
     renderPopUpWindow('Требуется подтверждение', 'Вы уверены, что хотите выйти? Все несохраненные данные удалятся', false, (e) => {
       editInProcess = false;
