@@ -11,6 +11,7 @@ import {
 } from '../../../modules/validation.js';
 import {API} from '../../../modules/api.js';
 import {toggleFunc} from "../Signup/signup.js";
+import {navbar} from "../../Navbar/navbar.js";
 
 /**
  * Функция для рендеринга страницы изменения профиля авторизированного пользователя.
@@ -40,26 +41,26 @@ export const renderUpdateProfile = async () => {
     profilePicture.src = `data:image/png;base64, ${avatar}`;
   }
 
-  const showOldPasswordButton = document.querySelector('#login-form_container__input-show-old-button');
+  const showOldPasswordButton = document.querySelector('#update-profile-form_container__input-show-old-button');
   showOldPasswordButton.addEventListener('click',  () => {
     const password = document.querySelector('#update-profile_old-password');
-    const icon = document.querySelector('#login-form_container__input-show-old-button-icon');
+    const icon = document.querySelector('#update-profile-form_container__input-show-old-button-icon');
 
     toggleFunc(password, icon);
   });
 
-  const showPasswordButton = document.querySelector('#login-form_container__input-show-button');
+  const showPasswordButton = document.querySelector('#update-profile-form_container__input-show-button');
   showPasswordButton.addEventListener('click',  () => {
     const password = document.querySelector('#update-profile_new-password');
-    const icon = document.querySelector('#login-form_container__input-show-button-icon');
+    const icon = document.querySelector('#update-profile-form_container__input-show-button-icon');
 
     toggleFunc(password, icon);
   });
 
-  const showRepeatPasswordButton = document.querySelector('#login-form_container__input-show-rep-button');
+  const showRepeatPasswordButton = document.querySelector('#update-profile-form_container__input-show-rep-button');
   showRepeatPasswordButton.addEventListener('click',  () => {
     const password = document.querySelector('#update-profile_repeat-password');
-    const icon = document.querySelector('#login-form_container__input-show-rep-button-icon');
+    const icon = document.querySelector('#update-profile-form_container__input-show-rep-button-icon');
 
     toggleFunc(password, icon);
   });
@@ -86,10 +87,9 @@ export const renderUpdateProfile = async () => {
       };
       reader.readAsDataURL(avatarFile);
     }
-    const changeAvatarRender = setTimeout(() => {
+    setTimeout(() => {
       profilePicture.src = `data:image/png;base64, ${avatar}`;
     }, 500);
-    changeAvatarRender();
   });
 
   const cancelAvatar = document.querySelector('#update-profile-avatar-cancel');
@@ -177,6 +177,7 @@ export const renderUpdateProfile = async () => {
       STORAGE.user = res.updatedUser;
       STORAGE.avatar = avatar;
 
+      navbar();
       goToPage(ROUTES.profile);
       renderMessage('Изменения успешно применены');
     } catch (err) {

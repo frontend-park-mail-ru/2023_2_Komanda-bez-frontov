@@ -3,9 +3,10 @@ import {removeMessage, renderMessage} from '../../../Message/message.js';
 import {STORAGE} from '../../../../modules/storage.js';
 import {goToPage} from '../../../../modules/router.js';
 import {ROUTES} from '../../../../config.js';
-import {createQuestionUpdate} from '../../../Question/UpdateQuestion/update_question.js';
+import {createQuestionUpdate, removedAnswersID} from '../../../Question/UpdateQuestion/update_question.js';
 import {closePopUpWindow, renderPopUpWindow} from '../../../PopUpWindow/popup_window.js';
 import {textValidation} from '../../../../modules/validation.js';
+import {TYPE_SINGLE_CHOICE, TYPE_MULTIPLE_CHOICE, TYPE_TEXT} from "../CheckForm/check_form.js";
 
 /**
  * Функция для рендеринга страницы опроса по его id.
@@ -28,13 +29,14 @@ export const renderFormNew = async () => {
   const defaultForm = {
     title: '',
     description: '',
+    anonymous: false,
     questions: [
       {
         id: 0,
         title: '',
         description: '',
-        type: 1,
-        shuffle: false,
+        type: TYPE_SINGLE_CHOICE,
+        required: false,
         answers: [
           {
             id: 0,
@@ -71,8 +73,8 @@ export const renderFormNew = async () => {
       id: 0,
       title: '',
       description: '',
-      type: 1,
-      shuffle: false,
+      type: TYPE_SINGLE_CHOICE,
+      required: false,
       answers: [
         {
           id: 0,
@@ -85,13 +87,14 @@ export const renderFormNew = async () => {
       e.stopImmediatePropagation();
       renderPopUpWindow('Требуется подтверждение', 'Вы уверены, что хотите безвозвратно удалить вопрос?', true, () => {
         questionElement.remove();
+        closePopUpWindow();
       });
     });
     questions.appendChild(questionElement);
   });
 
   const deleteForm = document.querySelector('#delete-button');
-  deleteForm.style.display = 'none';
+  deleteForm.classList.add('display-none');;
 
   const saveForm = document.querySelector('#update-button');
   saveForm.innerHTML = 'Опубликовать';
@@ -138,6 +141,8 @@ export const formUpdatePageParser = () => {
   let flagRepeation = false;
   const form = {
     title: document.querySelector('#update-form__title').value,
+    description: document.querySelector('#update-form__description-textarea').value,
+    anonymous: document.querySelector('#update-form-anonymous-checkbox').checked,
     questions: [],
   };
   if (!form.title) {
@@ -151,19 +156,20 @@ export const formUpdatePageParser = () => {
 
   const cQuestions = document.querySelectorAll('.update-question');
   cQuestions.forEach((questionElement) => {
-    let type = 3;
+    let type = TYPE_TEXT;
     if (questionElement.querySelector('#update-question__answer-format-radio').checked) {
-      type = 1;
+      type = TYPE_SINGLE_CHOICE;
     }
     if (questionElement.querySelector('#update-question__answer-format-checkbox').checked) {
-      type = 2;
+      type = TYPE_MULTIPLE_CHOICE;
     }
 
     const question = {
+      id: Number(questionElement.id),
       title: questionElement.querySelector('#update-question__title').value,
       description: questionElement.querySelector('#update-question__description-textarea').value,
       type,
-      shuffle: false,
+      required: questionElement.querySelector('#required-question-checkbox').checked,
       answers: [],
     };
 
@@ -184,12 +190,14 @@ export const formUpdatePageParser = () => {
       flag = true;
     }
 
-    if (question.type === 3) {
+    if (question.type === TYPE_TEXT) {
       question.answers.push({
+        // id: Number(questionElement.querySelector('.update-question__answers-item-textarea').id),
+        id: 0,
         text: '',
       });
     } else {
-      const cAnswers = questionElement.querySelectorAll('#update-question__answers-item-input');
+      const cAnswers = questionElement.querySelectorAll('.update-question__answers-item-input');
       const uniqueAnswers = new Set();
       cAnswers.forEach((answer) => {
         if (!answer.value) {
@@ -200,6 +208,7 @@ export const formUpdatePageParser = () => {
           flag = true;
         }
         question.answers.push({
+          id: Number(answer.id),
           text: answer.value,
         });
         uniqueAnswers.add(answer.value);

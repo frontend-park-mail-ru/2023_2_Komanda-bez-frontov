@@ -1,46 +1,146 @@
 .navbar {
   display: flex;
-  justify-content:space-between;
+  justify-content: space-between;
   align-items: center;
-  padding: 20px 60px;
   background: #4B357A;
   color: #ffffff;
-}
 
-.navbar_logo a {
-  font-weight: bold;
-  font-size: 36px;
-  &:hover {
-    cursor: pointer;
+  .navbar_logo {
+    display: flex;
+    align-items: center;
+    span {
+      font-size: 32px;
+      margin: 0 6px 2px 0;
+    }
+    a {
+      font-weight: 700;
+      cursor: pointer;
+    }
   }
-}
 
-.navbar_profile {
-  display: flex;
-  justify-content: space-evenly;
-  margin-left: 50px;
-  &:hover {
+  .navbar_profile {
+    display: flex;
+    justify-content: space-evenly;
     cursor: pointer;
-  }
-  .navbar_profile__picture {
-    height: 60px;
-    width: 60px;
-    object-fit: contain;
-    border-radius: 6px;
-  }
-  .navbar_profile__name {
-    white-space: nowrap;
-    font-size: 30px;
-    margin: 15px 0 9px 20px;
+
+    .navbar_profile__picture {
+      object-fit: contain;
+      border-radius: 5px;
+    }
   }
 }
 
 .navbar_button-container {
   display: flex;
-  height: 54px;
-  padding: 3px 0;
-  button {
-    width: 135px;
-    margin-left: 10px;
+}
+
+@media screen {
+  .navbar {
+    padding: 4px 22px;
+
+    .navbar_logo a {
+      font-size: 22px;
+    }
+
+    .navbar_profile__picture {
+      height: 42px;
+      width: 42px;
+      margin: 7px 0 7px 16px;
+    }
+
+    .navbar_profile__name {
+      display: none;
+    }
+  }
+
+  .navbar_button-container {
+    padding: 9px 0;
+    button {
+      height: 38px;
+      width: 100px;
+    }
+
+    #navbar-signup-button {
+      display: none;
+    }
+  }
+}
+
+
+@media screen and (min-width: 480px) {
+  .navbar {
+    padding: 17px 24px;
+
+    .navbar_logo a {
+      font-size: 22px;
+    }
+
+    .navbar_profile {
+      margin-left: 40px;
+
+      .navbar_profile__picture {
+        height: 42px;
+        width: 42px;
+        margin: 0;
+      }
+
+      .navbar_profile__name {
+        display: flex;
+        font-size: 20px;
+        margin: 12px 0 6px 16px;
+      }
+    }
+
+  }
+
+  .navbar_button-container {
+    padding: 2px 0;
+    button {
+      height: 38px;
+      width: 100px;
+      margin-left: 8px;
+    }
+
+    #navbar-signup-button {
+      display: block;
+    }
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .navbar {
+    padding: 15px 48px;
+
+    .navbar_logo a {
+      span {
+        font-size: 36px;
+        margin: 0 8px 3px 0;
+      }
+      font-size: 29px;
+    }
+
+    .navbar_profile {
+      margin-left: 40px;
+
+      .navbar_profile__picture {
+        height: 48px;
+        width: 48px;
+        margin: 0;
+      }
+
+      .navbar_profile__name {
+        display: flex;
+        font-size: 24px;
+        margin: 12px 0 7px 16px;
+      }
+    }
+  }
+  .navbar_button-container {
+    padding: 2px 0;
+    button {
+      height: 46px;
+      width: 135px;
+      margin-left: 10px;
+    }
   }
 }

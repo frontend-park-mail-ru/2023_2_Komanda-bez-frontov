@@ -1,27 +1,26 @@
 .profile-title {
-  margin: 25px 50px;
+  margin: 20px 40px;
   text-align: center;
-  font-size: 30px;
+  font-size: 24px;
 }
 
 .update-profile {
-  background-color: rgba(75, 53, 122, 0.6);
+  background-color: rgba(128, 102, 169, 0.6);
   margin: 0 auto;
-  width: 1020px;
-  border-radius: 12px;
+  width: 820px;
+  border-radius: 9px;
 }
 
 .update-profile_main-container {
   display: flex;
-  padding: 35px 0 35px 45px;
+  padding: 29px 0 29px 36px;
 
   .update-profile_main-container__picture {
-    height: 250px;
-    width: 250px;
-    min-width: 180px;
+    height: 200px;
+    width: 200px;
     object-fit: contain;
-    border-radius: 12px;
-    margin-bottom: 12px;
+    border-radius: 9px;
+    margin-bottom: 9px;
   }
 }
 
@@ -33,39 +32,41 @@
   display: flex;
   flex-flow: column;
   color: #FFFFFF;
-  margin: 15px 0 0 40px;
-  line-height: 30px;
+  margin: 12px 0 0 32px;
+  line-height: 24px;
   justify-content: right;
 
   label {
     display: inline-flex;
-    width: 230px;
-    font-size: 25px;
+    width: 185px;
+    font-size: 20px;
+    align-self: center;
+    margin-bottom: 8px;
   }
 
-  .update-form__title-input {
-    width: 363px;
-    margin-left: 10px;
-    margin-bottom: 10px;
-    padding: 8px 10px;
-    font-size: 25px;
+  .update-profile__title-input {
+    min-width: 270px;
+    margin-left: 8px;
+    margin-bottom: 8px;
+    padding: 6px 8px;
+    font-size: 20px;
     background-color: #ffffff;
-    border: 2px solid #424242;
-    border-radius: 12px;
+    border: 1px solid #424242;
+    border-radius: 9px;
   }
 }
 
 .update-profile_button-container {
   display: flex;
   flex-wrap: wrap;
-  gap: 15px;
+  gap: 12px;
   justify-content: left;
-  padding: 0 0 40px 45px;
+  padding: 0 0 32px 36px;
 
   button {
     width: max-content;
-    min-width: 190px;
-    font-size: 20px;
+    min-width: 150px;
+    font-size: 16px;
     font-weight: bold;
   }
   .primary-button:hover {
@@ -84,28 +85,99 @@
   display: flex;
   justify-content: left;
   align-items: center;
-  gap: 10px;
-  margin: 10px 10px 30px 15px;
+  gap: 8px;
+  margin: 8px 8px 24px 12px;
   a {
-    font-size: 25px;
-    margin-right: 40px;
+    font-size: 20px;
+    margin-right: 32px;
   }
   label {
-    border-radius: 12px;
-    width: 170px;
+    border-radius: 9px;
+    width: 135px;
     background-color: #FFFFFF;
-    border: 2px solid #424242;
+    border: 1px solid #424242;
     display: inline-block;
-    padding: 6px 12px 8px 12px;
-    font-size: 22px;
+    padding: 5px 9px 6px 9px;
+    font-size: 18px;
     cursor: pointer;
     .update-profile_img-container_avatar-container__input {
       display: none;
     }
   }
   #update-profile-avatar-cancel {
-    font-size: 18px;
+    font-size: 15px;
     margin: 0;
     cursor: pointer;
+  }
+}
+
+.update-profile-form_container__input-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.update-profile-form_container__input {
+  height: 38px;
+  margin: 0 0 9px 0;
+  border-radius: 9px;
+  border: 1px solid #424242;
+  padding: 5px 12px;
+  box-sizing: border-box;
+  font-size: 20px;
+}
+
+.update-profile-form_container__input-show-button {
+  color: #000000;
+  margin-left: -32px;
+  margin-top: 10px;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 768px) {
+  .update-profile {
+    width: auto;
+    border-radius: 0;
+  }
+  .update-profile_main-container {
+    flex-flow: column;
+  }
+  .update-profile_main-container_name-container {
+    margin: 12px;
+  }
+  .update-profile-form_container__input-container {
+    .update-profile__title-input {
+      width: 90%;
+      max-width: 350px;
+    }
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .update-profile_main-container {
+    padding: 24px 16px;
+    .update-profile_main-container__picture {
+      margin-left: 20px;
+      width: 120px;
+      height: 120px;
+    }
+  }
+  .update-profile_img-container_avatar-container {
+    a {
+      font-size: 18px;
+    }
+  }
+  .update-profile_main-container_name-container {
+    margin: 12px 0;
+  }
+  .update-profile-form_container__input-container {
+    label {
+      margin-left: 12px;
+    }
+    .update-profile__title-input {
+      min-width: initial;
+    }
+  }
+  .update-profile_button-container {
+    padding: 0 0 18px 30px;
   }
 }

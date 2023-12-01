@@ -1,6 +1,6 @@
 import {renderMainLogout} from './components/Logout/logout.js';
 import {renderLogin} from './components/pages/Login/login.js';
-import {renderForms} from './components/pages/Forms/forms.js';
+import {renderForms} from './components/pages/MyForms/forms.js';
 import {renderForm} from './components/pages/Form/CheckForm/check_form.js';
 import {renderMain} from './components/pages/Main/main.js';
 import {renderSignup} from './components/pages/Signup/signup.js';
@@ -8,6 +8,7 @@ import {renderProfile} from './components/pages/Profile/profile.js';
 import {renderFormUpdate} from './components/pages/Form/UpdateForm/update_form.js';
 import {renderFormNew} from './components/pages/Form/FormNew/new_form.js';
 import {renderUpdateProfile} from './components/pages/UpdateProfile/update_profile.js';
+import {renderResultsForm} from './components/pages/FormResults/form_results.js';
 
 export const ROUTES = {
   main: {
@@ -34,6 +35,11 @@ export const ROUTES = {
     url: '/forms/:id/edit',
     state: 'formUpdate',
     open: renderFormUpdate,
+  },
+  formResults: {
+    url: '/forms/:id/results',
+    state: 'formResults',
+    open: renderResultsForm,
   },
   profile: {
     url: '/profile',
@@ -62,8 +68,9 @@ export const ROUTES = {
   },
 };
 
-export const backendUrl = 'http://localhost:8080/api/v1';
-export const frontendUrl = 'http://212.233.94.20:8000';
+const domain = 'localhost';
+export const backendUrl = `http://${domain}:8080/api/v1`;
+export const frontendUrl = `http://${domain}.site:8000`;
 
 const GET_METHOD = 'GET';
 const POST_METHOD = 'POST';
@@ -99,8 +106,16 @@ export const ROUTES_API = {
     url: '/forms',
     method: GET_METHOD,
   },
+  searchForms: {
+    url: '/forms/search',
+    method: GET_METHOD,
+  },
   form: {
     url: '/forms/:id',
+    method: GET_METHOD,
+  },
+  formResults: {
+    url: '/forms/:id/results',
     method: GET_METHOD,
   },
   saveForm: {
@@ -114,5 +129,9 @@ export const ROUTES_API = {
   updateForm: {
     url: '/forms/:id/update',
     method: PUT_METHOD,
+  },
+  passForm: {
+    url: '/forms/pass',
+    method: POST_METHOD,
   },
 };

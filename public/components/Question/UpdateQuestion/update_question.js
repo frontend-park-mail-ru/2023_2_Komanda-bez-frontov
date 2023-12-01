@@ -1,3 +1,6 @@
+import {TYPE_SINGLE_CHOICE, TYPE_MULTIPLE_CHOICE, TYPE_TEXT} from "../../pages/Form/CheckForm/check_form.js";
+export const removedAnswersID = [];
+
 /**
  * Функция для рендеринга одного вопроса (вариант для формы обновления и создания).
  *
@@ -13,84 +16,90 @@ export const createQuestionUpdate = (question) => {
   const checkboxButton = questionElement.querySelector('#update-question__answer-format-checkbox');
   const textButton = questionElement.querySelector('#update-question__answer-format-text');
   const answerContainer = questionElement.querySelector('#question-answers');
-  const buttonContainer = questionElement.querySelector('.update-question__button-container');
+  const buttonAddAnswer = questionElement.querySelector('#add-answer-button');
 
   let type = question.type;
-  const answers = [];
-  // eslint-disable-next-line no-restricted-syntax
-  for (const index in question.answers) {
-    answers.push({
-      id: index,
-      text: question.answers[index].text,
-    });
-  }
+  const answers = question.answers;
 
   const renderAnswers = () => {
-    answerContainer.innerHTML = Handlebars.templates
-      .update_answer({answers, type});
+    answerContainer.innerHTML = Handlebars.templates.update_answer({answers, type});
     const cInputText = questionElement.querySelectorAll('.update-question__answers-item-input');
     cInputText.forEach((input, index) => {
       input.addEventListener('change', () => {
         answers[index].text = input.value;
       });
     });
+    const cAnswers = questionElement.querySelectorAll('.update-question__answers-item');
+    cAnswers.forEach((answerElement, index) => {
+      const deleteButton = answerElement.querySelector('.update-question__answers-item-delete');
+      if (deleteButton) {
+        deleteButton.addEventListener('click', () => {
+          buttonAddAnswer.classList.remove('button__disabled');
+          answers.splice(index, 1);
+          if (answers.length === 0) {
+            answers.push({
+              id: 0,
+              text: '',
+            })
+          }
+          if (deleteButton.id !== '0') {
+            removedAnswersID.push(Number(deleteButton.id));
+          }
+          renderAnswers();
+        });
+      }
+    });
+
+    if (answers.length >= 12) {
+      console.log("!!!")
+      buttonAddAnswer.classList.add('button__disabled');
+    }
   };
 
   switch (type) {
-    case 1:
+    case TYPE_SINGLE_CHOICE:
       radioButton.checked = true;
       renderAnswers();
       break;
-    case 2:
+    case TYPE_MULTIPLE_CHOICE:
       checkboxButton.checked = true;
       renderAnswers();
       break;
     default:
       textButton.checked = true;
       renderAnswers();
-      buttonContainer.style.display = 'none';
+      buttonAddAnswer.classList.add('display-none');
       break;
   }
 
   radioButton.addEventListener('click', () => {
     checkboxButton.checked = false;
     textButton.checked = false;
-    type = 1;
-    buttonContainer.style.display = 'flex';
+    type = TYPE_SINGLE_CHOICE;
+    buttonAddAnswer.classList.remove('display-none');
     renderAnswers();
   });
   checkboxButton.addEventListener('click', () => {
     radioButton.checked = false;
     textButton.checked = false;
-    type = 2;
-    buttonContainer.style.display = 'flex';
+    type = TYPE_MULTIPLE_CHOICE;
+    buttonAddAnswer.classList.remove('display-none');
     renderAnswers();
   });
   textButton.addEventListener('click', () => {
     checkboxButton.checked = false;
     radioButton.checked = false;
-    type = 3;
-    buttonContainer.style.display = 'none';
+    type = TYPE_TEXT;
+    buttonAddAnswer.classList.add('display-none');
     renderAnswers();
   });
 
-  const addButton = questionElement.querySelector('#add-answer-button');
-  addButton.addEventListener('click', () => {
+  buttonAddAnswer.addEventListener('click', () => {
     if (answers.length >= 12) {
       return;
     }
     answers.push({
-      id: answers.length,
-      text: '',
-    });
-    renderAnswers();
-  });
-
-  const clearButton = questionElement.querySelector('#clear-answers-button');
-  clearButton.addEventListener('click', () => {
-    answers.length = 0;
-    answers.push({
-      id: answers.length,
+      id: 0,
       text: '',
     });
     renderAnswers();
