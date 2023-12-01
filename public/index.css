@@ -398,6 +398,11 @@ input {
   gap: 9px;
 }
 
+.stop-scrolling {
+  height: 100%;
+  overflow: hidden;
+}
+
 @media screen and (max-width: 768px) {
   .popup_window {
     width: 280px;
@@ -1501,7 +1506,11 @@ input {
     margin: 20px 0;
   }
   .check-form .button-container {
-    display: none;
+    margin: 15px 9px 8px 9px;
+    width: 95%;
+  }
+  .check-form .button-container button {
+    width: 200px;
   }
   .check-form__description {
     padding: 10px 12px;
@@ -1531,6 +1540,12 @@ input {
   .check-form .check-form__title {
     font-size: 25px;
     margin: 20px 0;
+  }
+  .check-form .button-container {
+    margin: 15px 0;
+  }
+  .check-form .button-container button {
+    width: 150px;
   }
   .check-form__description {
     padding: 10px 12px;
@@ -1819,6 +1834,7 @@ input {
     margin: 15px 0;
   }
   .form-results .button-container button {
+    height: 42px;
     width: 150px;
   }
   .form-results__description {
@@ -2137,6 +2153,11 @@ textarea {
   appearance: none;
   outline: 0;
   box-shadow: none;
+}
+
+p, h3 {
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 #navbar, #popup {

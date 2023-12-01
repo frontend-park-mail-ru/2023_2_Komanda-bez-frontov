@@ -33,6 +33,11 @@
   gap: 9px;
 }
 
+.stop-scrolling {
+  height: 100%;
+  overflow: hidden;
+}
+
 @media screen and (max-width: 768px) {
   .popup_window {
     width: 280px;

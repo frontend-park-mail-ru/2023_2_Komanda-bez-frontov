@@ -12,6 +12,8 @@ export const renderPopUpWindow = (titleText, messageText, error = false, action 
   const popupContainer = document.querySelector('#popup');
   popupContainer.innerHTML = Handlebars.templates.popup_window();
 
+  disableScroll();
+
   if (error) {
     document.querySelector('#popup-ok-button').classList.add('red-button');
   } else {
@@ -53,6 +55,15 @@ export const renderPopUpWindow = (titleText, messageText, error = false, action 
  * @return {void}
  */
 export const closePopUpWindow = () => {
+  enableScroll();
   const messageContainer = document.querySelector('#popup');
   messageContainer.innerHTML = '';
 };
+
+function disableScroll() {
+  document.body.classList.add("stop-scrolling");
+}
+
+function enableScroll() {
+  document.body.classList.remove("stop-scrolling");
+}
