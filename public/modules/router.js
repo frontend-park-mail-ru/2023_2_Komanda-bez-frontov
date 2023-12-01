@@ -61,7 +61,10 @@ export const parseUrl = (url) => {
  * @param redirect - Флаг, означающий, что случился редирект.
  * @return {void}
  */
-export const goToPage = (page, id = '', redirect = false) => {
+export const goToPage = (page, id = null, redirect = false) => {
+  if (!id) {
+    id = '';
+  }
   if (editInProcess) {
     renderQuitEditingWindow(page, id, redirect);
     return;
@@ -148,34 +151,34 @@ window.onpopstate = (event) => {
   const state = event.state;
   switch (state) {
     case 'main':
-      renderMain();
+      goToPage(ROUTES.main, '', true);
       break;
     case 'forms':
-      renderForms();
+      goToPage(ROUTES.forms, '', true);
       break;
     case 'form':
-      renderForm(parseUrl(window.location.pathname).id);
+      goToPage(ROUTES.form, parseUrl(window.location.pathname).id, true);
       break;
     case 'formUpdate':
-      renderFormUpdate(parseUrl(window.location.pathname).id);
+      goToPage(ROUTES.formUpdate, parseUrl(window.location.pathname).id, true);
       break;
     case 'formResults':
-      renderResultsForm(parseUrl(window.location.pathname).id);
+      goToPage(ROUTES.formResults, parseUrl(window.location.pathname).id, true);
       break;
     case 'formNew':
-      renderFormNew();
+      goToPage(ROUTES.formNew, '', true);
       break;
     case 'profile':
-      renderProfile();
+      goToPage(ROUTES.profile, '', true);
       break;
     case 'updateProfile':
-      renderUpdateProfile();
+      goToPage(ROUTES.updateProfile, '', true);
       break;
     case 'login':
-      renderLogin();
+      goToPage(ROUTES.login, '', true);
       break;
     case 'signup':
-      renderSignup();
+      goToPage(ROUTES.signup, '', true);
       break;
     default:
       render404();
