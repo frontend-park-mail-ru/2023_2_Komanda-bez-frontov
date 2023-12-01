@@ -10,6 +10,8 @@ import {formUpdatePageParser, formUpdateValidator} from '../FormNew/new_form.js'
 import {renderAuthorMenu} from "../../../AuthorMenu/authorMenu.js";
 import {TYPE_SINGLE_CHOICE} from "../CheckForm/check_form.js";
 
+export let editInProcess = false;
+
 /**
  * Функция для рендеринга страницы редактирования опроса по его id.
  * Если пользователь не авторизован, происходит редирект на страницу входа.
@@ -61,6 +63,8 @@ export const renderFormUpdate = async (id) => {
     renderMessage('У вас нет прав на редактирование этого опроса.', true);
     return;
   }
+
+  editInProcess = true;
 
   const removedQuestionsID = [];
   removedAnswersID.length = 0;
@@ -124,6 +128,7 @@ export const renderFormUpdate = async (id) => {
         const res = await api.deleteForm(id);
         if (res.message === 'ok') {
           renderMessage('Опрос успешно удален.');
+          editInProcess = false;
           goToPage(ROUTES.forms);
           closePopUpWindow();
           return;
@@ -160,6 +165,7 @@ export const renderFormUpdate = async (id) => {
       const res = await api.updateForm(updatedForm);
       if (res.message === 'ok') {
         renderMessage('Опрос успешно обновлен.');
+        editInProcess = false;
         goToPage(ROUTES.form, id);
         return;
       }
@@ -172,4 +178,15 @@ export const renderFormUpdate = async (id) => {
       renderMessage('Потеряно соединение с сервером', true);
     }
   });
+};
+
+export const renderQuitEditingWindow = (page, id = '', redirect = false) => {
+  console.log("!!");
+  setTimeout(() => {
+    renderPopUpWindow('Требуется подтверждение', 'Вы уверены, что хотите выйти? Все несохраненные данные удалятся', false, (e) => {
+      editInProcess = false;
+      goToPage(page, id, redirect);
+      closePopUpWindow();
+    });
+  }, 0);
 };

@@ -291,15 +291,21 @@ input {
 .form-author-menu__close {
   transform: translate(-250px, 0);
 }
+.form-author-menu__close #author-menu-close-button {
+  top: 10px;
+  right: -45px;
+}
 
 .form-author-menu__open {
   transform: translate(0, 0);
 }
+.form-author-menu__open #author-menu-close-button {
+  top: 6px;
+  right: 8px;
+}
 
 #author-menu-close-button {
   position: absolute;
-  top: 10px;
-  right: -55px;
   font-size: 36px;
   cursor: pointer;
 }
@@ -331,6 +337,9 @@ input {
     transition: transform 0s;
     transform: none;
   }
+  #author-menu-close-button {
+    display: none;
+  }
   #author-menu-check-button {
     border-radius: 18px 0 0 0;
   }
@@ -341,6 +350,7 @@ input {
 @media screen and (max-width: 570px) {
   .form-author-menu button {
     padding: 10px 6px;
+    gap: 4px;
     flex-wrap: wrap;
   }
   .form-author-menu button span {
@@ -399,12 +409,14 @@ input {
 }
 @media screen and (max-width: 480px) {
   .popup_window {
-    width: 260px;
+    width: 280px;
+    padding: 20px;
     height: 140px;
     font-size: 18px;
   }
   .popup_window p {
-    height: 57px;
+    margin-top: 8px;
+    height: 63px;
   }
 }
 .profile-title {
@@ -1391,6 +1403,12 @@ input {
     width: 95%;
     margin: 0 auto;
   }
+  .update-question__answers-item {
+    gap: 12px;
+  }
+  .update-question__answers-item .update-question__answers-item-input {
+    padding: 8px 12px;
+  }
 }
 @media screen and (max-width: 480px) {
   .update-question__answers-item-textarea {
@@ -1885,7 +1903,7 @@ input {
 }
 @media screen and (max-width: 768px) {
   .index {
-    margin-top: 30px;
+    margin-top: 60px;
   }
   .index h3 {
     font-size: 32px;
@@ -1896,26 +1914,26 @@ input {
     font-size: 20px;
   }
   .index_content-container_description .button-container {
-    margin: 36px 0 20px 0;
+    margin: 40px 0 20px 0;
   }
   .index_content-container_description .button-container button {
     font-size: 16px;
-    padding: 12px;
+    padding: 20px 12px;
     width: 300px;
   }
   .index_content-container_description a {
     font-size: 18px;
   }
   .index_content-container_description__picture {
-    width: 90%;
+    display: none;
   }
 }
 @media screen and (max-width: 480px) {
   .index {
-    margin-top: 25px;
+    margin-top: 40px;
   }
   .index h3 {
-    margin: 30px 25px 20px 20px;
+    margin: 30px 15px 20px 15px;
   }
   .index_content-container_description .button-container {
     margin: 32px 0 16px 0;

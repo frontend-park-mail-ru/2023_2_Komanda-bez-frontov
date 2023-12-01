@@ -70,6 +70,12 @@
     width: 95%;
     margin: 0 auto;
   }
+  .update-question__answers-item {
+    gap: 12px;
+  }
+  .update-question__answers-item .update-question__answers-item-input {
+    padding: 8px 12px;
+  }
 }
 @media screen and (max-width: 480px) {
   .update-question__answers-item-textarea {
