@@ -15,6 +15,7 @@
 
   .index_content-container_description__picture {
     max-width: 600px;
+    max-height: 350px;
     object-fit: cover;
   }
 }
@@ -103,22 +104,16 @@
   .index {
     margin-top: 25px;
     h3 {
-      //font-size: 32px;
       margin: 30px 25px 20px 20px;
     }
   }
   .index_content-container_description {
-    //font-size: 20px;
     .button-container {
       margin: 32px 0 16px 0;
       button {
-        //font-size: 14px;
         padding: 10px;
         width: 250px;
       }
-    }
-    a {
-      //font-size: 16px;
     }
   }
   .index_content-container_description__picture {

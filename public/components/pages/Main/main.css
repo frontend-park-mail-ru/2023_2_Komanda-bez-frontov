@@ -14,6 +14,7 @@
 }
 .index_content-container .index_content-container_description__picture {
   max-width: 600px;
+  max-height: 350px;
   object-fit: cover;
 }
 

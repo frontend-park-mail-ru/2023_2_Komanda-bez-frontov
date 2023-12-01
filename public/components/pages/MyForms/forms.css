@@ -78,6 +78,7 @@
   top: 225px;
   left: 0;
   background-color: rgba(255, 255, 255, 0.6);
+  transition: visibility 0.3s, opacity 0.5s;
 }
 .forms__loading-screen img {
   width: 48px;
@@ -98,7 +99,8 @@
 }
 
 .display-none {
-  display: none;
+  visibility: hidden;
+  opacity: 0;
 }
 
 @media screen and (max-width: 768px) {
@@ -134,7 +136,7 @@
 }
 @media screen and (max-width: 480px) {
   .forms_list-container {
-    margin: 32px 15px;
+    margin: 32px 28px;
   }
   .forms_search-container .forms_search-container__input {
     min-width: 210px;

@@ -5,9 +5,17 @@
   background: #4B357A;
   color: #ffffff;
 
-  .navbar_logo a {
-    font-weight: 700;
-    cursor: pointer;
+  .navbar_logo {
+    display: flex;
+    align-items: center;
+    span {
+      font-size: 32px;
+      margin: 0 6px 2px 0;
+    }
+    a {
+      font-weight: 700;
+      cursor: pointer;
+    }
   }
 
   .navbar_profile {
@@ -86,7 +94,7 @@
   }
 
   .navbar_button-container {
-    padding: 0;
+    padding: 2px 0;
     button {
       height: 38px;
       width: 100px;
@@ -104,6 +112,10 @@
     padding: 15px 48px;
 
     .navbar_logo a {
+      span {
+        font-size: 36px;
+        margin: 0 8px 3px 0;
+      }
       font-size: 29px;
     }
 

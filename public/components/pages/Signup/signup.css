@@ -42,5 +42,18 @@
     font-size: 18px;
   }
 }
+@media screen and (max-width: 480px) {
+  .signup-form_container h3 {
+    font-size: 30px;
+    margin-bottom: 20px;
+  }
+  .signup-form_container .signup-form_container__input {
+    width: 100%;
+    font-size: 18px;
+  }
+  .signup-form_container .button-container {
+    margin: 40px 0;
+  }
+}
 
 /*# sourceMappingURL=signup.css.map */

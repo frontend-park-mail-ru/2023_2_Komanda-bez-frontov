@@ -85,6 +85,7 @@
     height: 48px;
     margin: 120px auto;
   }
+  transition: visibility 0.3s, opacity 0.5s;
 }
 
 .forms_list_main-container {
@@ -100,7 +101,8 @@
 }
 
 .display-none {
-  display: none;
+  visibility: hidden;
+  opacity: 0;
 }
 
 @media screen and (max-width: 768px) {
@@ -139,7 +141,7 @@
 
 @media screen and (max-width: 480px) {
   .forms_list-container {
-    margin: 32px 15px;
+    margin: 32px 28px;
   }
   .forms_search-container {
     .forms_search-container__input {

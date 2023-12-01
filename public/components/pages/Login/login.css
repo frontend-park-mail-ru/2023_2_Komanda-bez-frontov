@@ -60,5 +60,25 @@
     font-size: 18px;
   }
 }
+@media screen and (max-width: 480px) {
+  .auth-container__form {
+    border: none;
+    margin: 0 10px;
+    width: initial;
+  }
+  .login-form_container h3 {
+    font-size: 30px;
+    margin-bottom: 20px;
+  }
+  .login-form_container .login-form_container__input {
+    width: 100%;
+    font-size: 18px;
+  }
+  .login-form_container .button-container {
+    margin: 40px 0;
+    gap: 10px;
+    flex-flow: column;
+  }
+}
 
 /*# sourceMappingURL=login.css.map */

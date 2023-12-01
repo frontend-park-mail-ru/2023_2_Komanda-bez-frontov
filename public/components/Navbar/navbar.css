@@ -5,6 +5,14 @@
   background: #4B357A;
   color: #ffffff;
 }
+.navbar .navbar_logo {
+  display: flex;
+  align-items: center;
+}
+.navbar .navbar_logo span {
+  font-size: 32px;
+  margin: 0 6px 2px 0;
+}
 .navbar .navbar_logo a {
   font-weight: 700;
   cursor: pointer;
@@ -70,7 +78,7 @@
     margin: 12px 0 6px 16px;
   }
   .navbar_button-container {
-    padding: 0;
+    padding: 2px 0;
   }
   .navbar_button-container button {
     height: 38px;
@@ -87,6 +95,10 @@
   }
   .navbar .navbar_logo a {
     font-size: 29px;
+  }
+  .navbar .navbar_logo a span {
+    font-size: 36px;
+    margin: 0 8px 3px 0;
   }
   .navbar .navbar_profile {
     margin-left: 40px;

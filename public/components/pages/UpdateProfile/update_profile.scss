@@ -170,11 +170,14 @@
     margin: 12px 0;
   }
   .update-profile-form_container__input-container {
+    label {
+      margin-left: 12px;
+    }
     .update-form__title-input {
       min-width: initial;
     }
   }
   .update-profile_button-container {
-    padding: 0 0 18px 18px;
+    padding: 0 0 18px 30px;
   }
 }
