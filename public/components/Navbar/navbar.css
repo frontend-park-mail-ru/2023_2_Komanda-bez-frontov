@@ -5,6 +5,14 @@
   background: #4B357A;
   color: #ffffff;
 }
+.navbar .navbar_logo {
+  display: flex;
+  align-items: center;
+}
+.navbar .navbar_logo span {
+  font-size: 32px;
+  margin: 0 6px 2px 0;
+}
 .navbar .navbar_logo a {
   font-weight: 700;
   cursor: pointer;
@@ -25,21 +33,21 @@
 
 @media screen {
   .navbar {
-    padding: 8px 18px;
+    padding: 4px 22px;
   }
   .navbar .navbar_logo a {
-    font-size: 20px;
+    font-size: 22px;
   }
   .navbar .navbar_profile__picture {
-    height: 30px;
-    width: 35px;
-    margin: 10px 0 10px 16px;
+    height: 42px;
+    width: 42px;
+    margin: 7px 0 7px 16px;
   }
   .navbar .navbar_profile__name {
     display: none;
   }
   .navbar_button-container {
-    padding: 5px 0;
+    padding: 9px 0;
   }
   .navbar_button-container button {
     height: 38px;
@@ -60,17 +68,17 @@
     margin-left: 40px;
   }
   .navbar .navbar_profile .navbar_profile__picture {
-    height: 35px;
-    width: 35px;
+    height: 42px;
+    width: 42px;
     margin: 0;
   }
   .navbar .navbar_profile .navbar_profile__name {
     display: flex;
     font-size: 20px;
-    margin: 6px 0 6px 16px;
+    margin: 12px 0 6px 16px;
   }
   .navbar_button-container {
-    padding: 0;
+    padding: 2px 0;
   }
   .navbar_button-container button {
     height: 38px;
@@ -87,6 +95,10 @@
   }
   .navbar .navbar_logo a {
     font-size: 29px;
+  }
+  .navbar .navbar_logo a span {
+    font-size: 36px;
+    margin: 0 8px 3px 0;
   }
   .navbar .navbar_profile {
     margin-left: 40px;

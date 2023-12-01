@@ -5,9 +5,17 @@
   background: #4B357A;
   color: #ffffff;
 
-  .navbar_logo a {
-    font-weight: 700;
-    cursor: pointer;
+  .navbar_logo {
+    display: flex;
+    align-items: center;
+    span {
+      font-size: 32px;
+      margin: 0 6px 2px 0;
+    }
+    a {
+      font-weight: 700;
+      cursor: pointer;
+    }
   }
 
   .navbar_profile {
@@ -28,16 +36,16 @@
 
 @media screen {
   .navbar {
-    padding: 8px 18px;
+    padding: 4px 22px;
 
     .navbar_logo a {
-      font-size: 20px;
+      font-size: 22px;
     }
 
     .navbar_profile__picture {
-      height: 30px;
-      width: 35px;
-      margin: 10px 0 10px 16px;
+      height: 42px;
+      width: 42px;
+      margin: 7px 0 7px 16px;
     }
 
     .navbar_profile__name {
@@ -46,7 +54,7 @@
   }
 
   .navbar_button-container {
-    padding: 5px 0;
+    padding: 9px 0;
     button {
       height: 38px;
       width: 100px;
@@ -71,22 +79,22 @@
       margin-left: 40px;
 
       .navbar_profile__picture {
-        height: 35px;
-        width: 35px;
+        height: 42px;
+        width: 42px;
         margin: 0;
       }
 
       .navbar_profile__name {
         display: flex;
         font-size: 20px;
-        margin: 6px 0 6px 16px;
+        margin: 12px 0 6px 16px;
       }
     }
 
   }
 
   .navbar_button-container {
-    padding: 0;
+    padding: 2px 0;
     button {
       height: 38px;
       width: 100px;
@@ -104,6 +112,10 @@
     padding: 15px 48px;
 
     .navbar_logo a {
+      span {
+        font-size: 36px;
+        margin: 0 8px 3px 0;
+      }
       font-size: 29px;
     }
 

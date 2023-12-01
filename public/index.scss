@@ -45,7 +45,7 @@ textarea {
 }
 
 #navbar, #popup {
-  position: absolute;
+  position: fixed;
   width: 100%;
   top: 0;
   z-index: 100;
@@ -63,7 +63,7 @@ textarea {
 
 @media screen and (min-width: 480px){
   #message-box, #root{
-    top: 72px;
+    top: 76px;
   }
 }
 
@@ -76,6 +76,6 @@ textarea {
 #footer {
   position: relative;
   height: 48px;
-  top: 48px;
+  top: 80px;
   z-index: -1;
 }

@@ -529,7 +529,7 @@ export class API {
       return {message: 'Ошибка сервера. Попробуйте позже', formResults: null};
     } catch (e) {
       // TODO убрать к РК4
-      console.log('Ошибка метода getForm:', e);
+      console.log('Ошибка метода getFormResultsByID:', e);
       throw (e);
     }
   }

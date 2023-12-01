@@ -29,12 +29,16 @@ export const renderResultsQuestion = (question) => {
           bar.style.width = `${barWidth}%`;
         }
       }
-      const percentage = question.answers[index].selected_times * 100 / question.number_of_passages;
-      percentageLabel.innerHTML += ` (${percentage}%)`;
+      if (question.number_of_passages === 0) {
+        percentageLabel.innerHTML += ` (0%)`;
+      } else {
+        const percentage = question.answers[index].selected_times * 100 / question.number_of_passages;
+        percentageLabel.innerHTML += ` (${Number.isInteger(percentage) ? 
+            percentage : percentage.toFixed(2)}%)`;
+      }
     });
   } else {
-    // TODO заменить на нормальный 0, когда будет апи
-    if (question.number_of_passages === TYPE_SINGLE_CHOICE) {
+    if (question.number_of_passages === 0) {
       const answerContainer = questionElement.querySelector('#question-answers');
       answerContainer.innerHTML = '<br> &nbsp;&nbsp;&nbsp;Ответов пока нет...';
       answerContainer.style.margin = '0 0 10px 0';

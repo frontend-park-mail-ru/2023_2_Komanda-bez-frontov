@@ -11,6 +11,7 @@ import {
 } from '../../../modules/validation.js';
 import {API} from '../../../modules/api.js';
 import {toggleFunc} from "../Signup/signup.js";
+import {navbar} from "../../Navbar/navbar.js";
 
 /**
  * Функция для рендеринга страницы изменения профиля авторизированного пользователя.
@@ -176,6 +177,7 @@ export const renderUpdateProfile = async () => {
       STORAGE.user = res.updatedUser;
       STORAGE.avatar = avatar;
 
+      navbar();
       goToPage(ROUTES.profile);
       renderMessage('Изменения успешно применены');
     } catch (err) {

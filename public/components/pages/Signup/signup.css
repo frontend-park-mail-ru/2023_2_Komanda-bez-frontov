@@ -14,6 +14,7 @@
 
 .signup-form_container__input {
   height: 40px;
+  width: 272px;
   margin: 0 0 9px 0;
   border-radius: 9px;
   border: 1px solid #424242;
@@ -27,6 +28,32 @@
   margin-left: -32px;
   margin-top: 10px;
   cursor: pointer;
+}
+
+@media screen and (max-width: 768px) {
+  .signup-form_container h3 {
+    font-size: 22px;
+    margin: 0;
+  }
+  .signup-form_container button {
+    font-size: 14px;
+  }
+  .signup-form_container__input {
+    font-size: 18px;
+  }
+}
+@media screen and (max-width: 480px) {
+  .signup-form_container h3 {
+    font-size: 30px;
+    margin-bottom: 20px;
+  }
+  .signup-form_container .signup-form_container__input {
+    width: 100%;
+    font-size: 18px;
+  }
+  .signup-form_container .button-container {
+    margin: 40px 0;
+  }
 }
 
 /*# sourceMappingURL=signup.css.map */

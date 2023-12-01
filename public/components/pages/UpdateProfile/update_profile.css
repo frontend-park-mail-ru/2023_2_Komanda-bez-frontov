@@ -5,7 +5,7 @@
 }
 
 .update-profile {
-  background-color: rgba(75, 53, 122, 0.6);
+  background-color: rgba(128, 102, 169, 0.6);
   margin: 0 auto;
   width: 820px;
   border-radius: 9px;
@@ -18,7 +18,6 @@
 .update-profile_main-container .update-profile_main-container__picture {
   height: 200px;
   width: 200px;
-  min-width: 144px;
   object-fit: contain;
   border-radius: 9px;
   margin-bottom: 9px;
@@ -40,9 +39,11 @@
   display: inline-flex;
   width: 185px;
   font-size: 20px;
+  align-self: center;
+  margin-bottom: 8px;
 }
 .update-profile_main-container_name-container .update-form__title-input {
-  width: 290px;
+  min-width: 270px;
   margin-left: 8px;
   margin-bottom: 8px;
   padding: 6px 8px;
@@ -108,6 +109,7 @@
 
 .update-profile-form_container__input-container {
   display: flex;
+  flex-wrap: wrap;
 }
 
 .update-profile-form_container__input {
@@ -125,6 +127,48 @@
   margin-left: -32px;
   margin-top: 10px;
   cursor: pointer;
+}
+
+@media screen and (max-width: 768px) {
+  .update-profile {
+    width: auto;
+    border-radius: 0;
+  }
+  .update-profile_main-container {
+    flex-flow: column;
+  }
+  .update-profile_main-container_name-container {
+    margin: 12px;
+  }
+  .update-profile-form_container__input-container .update-form__title-input {
+    width: 90%;
+    max-width: 350px;
+  }
+}
+@media screen and (max-width: 480px) {
+  .update-profile_main-container {
+    padding: 24px 16px;
+  }
+  .update-profile_main-container .update-profile_main-container__picture {
+    margin-left: 20px;
+    width: 120px;
+    height: 120px;
+  }
+  .update-profile_img-container_avatar-container a {
+    font-size: 18px;
+  }
+  .update-profile_main-container_name-container {
+    margin: 12px 0;
+  }
+  .update-profile-form_container__input-container label {
+    margin-left: 12px;
+  }
+  .update-profile-form_container__input-container .update-form__title-input {
+    min-width: initial;
+  }
+  .update-profile_button-container {
+    padding: 0 0 18px 30px;
+  }
 }
 
 /*# sourceMappingURL=update_profile.css.map */
