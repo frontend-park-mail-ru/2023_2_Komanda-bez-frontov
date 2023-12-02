@@ -34,22 +34,15 @@ export const renderForms = async () => {
   let message = 'ok';
 
   // Рендерит полученные опросы на страничке
-  const renderRequestedForms = () => {
+  const renderRequestedForms = (searchON = false) => {
     if (message === 'ok') {
       formsContainer.innerHTML = '';
 
       if (forms.length === 0) {
         const label = document.createElement('a');
         label.classList.add('forms_list_main-container_empty-label');
-        label.textContent = 'Опросов пока нет...';
-        const createNewLink = document.createElement('a');
-        createNewLink.classList.add('forms_list_main-container_create-new-label');
-        createNewLink.textContent = 'Создайте свой первый опрос';
-        createNewLink.addEventListener('click', () => {
-          goToPage(ROUTES.formNew);
-        });
+        label.textContent = 'Опросы не найдены';
         formsContainer.appendChild(label);
-        formsContainer.appendChild(createNewLink);
       }
 
       forms.forEach((form) => {
@@ -86,7 +79,7 @@ export const renderForms = async () => {
       renderMessage('Потеряно соединение с сервером', true);
     }
 
-    renderRequestedForms();
+    renderRequestedForms(true);
   };
 
   // Отображает все созданные пользователем опросы
@@ -142,16 +135,24 @@ export const renderForms = async () => {
 
   // Тестирование моментальных запросов
   const searchRequest = () => {
-    loadingScreen.classList.remove('display-invisible');
-    setTimeout(() => {
-      if (searchInput.value === '') {
-        showAllFormsRequest();
-        searchInput.addEventListener('input', searchRequest, {once: true});
-        return;
-      }
-      searchFormsRequest();
-      searchInput.addEventListener('input', searchRequest, {once: true});
-    }, 1000);
+    if (searchInput.value === '') {
+      showAllFormsRequest();
+      return;
+    }
+    searchFormsRequest();
   };
-  searchInput.addEventListener('input', searchRequest, {once: true});
+  searchInput.addEventListener('input', debounce(searchRequest, 500));
+  searchInput.addEventListener('input', () =>
+      loadingScreen.classList.remove('display-invisible')
+  );
 };
+
+export const debounce = (func, delay) => {
+  let timeout;
+  return function() {
+    const context = this;
+    const args = arguments;
+    clearTimeout(timeout);
+    timeout = setTimeout(() => func.apply(context, args), delay);
+  };
+}
