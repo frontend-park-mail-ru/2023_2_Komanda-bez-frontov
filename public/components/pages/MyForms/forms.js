@@ -42,7 +42,14 @@ export const renderForms = async () => {
         const label = document.createElement('a');
         label.classList.add('forms_list_main-container_empty-label');
         label.textContent = 'Опросов пока нет...';
+        const createNewLink = document.createElement('a');
+        createNewLink.classList.add('forms_list_main-container_create-new-label');
+        createNewLink.textContent = 'Создайте свой первый опрос';
+        createNewLink.addEventListener('click', () => {
+          goToPage(ROUTES.formNew);
+        });
         formsContainer.appendChild(label);
+        formsContainer.appendChild(createNewLink);
       }
 
       forms.forEach((form) => {

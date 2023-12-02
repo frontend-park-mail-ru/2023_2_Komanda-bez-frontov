@@ -788,6 +788,14 @@ input {
   font-size: 24px;
 }
 
+.forms_list_main-container_create-new-label {
+  margin-top: 12px;
+  text-align: center;
+  font-size: 24px;
+  color: #6e51a4;
+  cursor: pointer;
+}
+
 .display-invisible {
   visibility: hidden;
   opacity: 0;
@@ -934,10 +942,11 @@ input {
 .forms-list__item {
   background-color: #FFFFFF;
   margin-bottom: 16px;
-  min-width: min-content;
   min-height: 56px;
   max-height: min-content;
   font-size: 18px;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .check-question {
@@ -2183,7 +2192,7 @@ p, h3 {
 }
 @media screen and (min-width: 768px) {
   #message-box, #root {
-    top: 80px;
+    top: 78px;
   }
 }
 #footer {

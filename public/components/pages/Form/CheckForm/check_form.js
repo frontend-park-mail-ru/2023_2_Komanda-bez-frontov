@@ -13,6 +13,11 @@ export const TYPE_SINGLE_CHOICE = 1;
 export const TYPE_MULTIPLE_CHOICE = 2;
 export const TYPE_TEXT = 3;
 
+export let formIDToRedirect = 0;
+export const clearFormIDToRedirect = () => {
+  formIDToRedirect = 0;
+}
+
 /**
  * Функция для рендеринга страницы опроса по его id.
  *
@@ -83,7 +88,7 @@ export const renderForm = async (id) => {
     });
   } else {
     if (!STORAGE.user && !formJSON.anonymous) {
-      // renderMessage("Для прохождение опроса необходимо авторизироваться", true);
+      formIDToRedirect = id;
       updateSubmitButton.classList.add('display-none');
     }
     updateSubmitButton.innerHTML = 'Отправить';
@@ -191,7 +196,7 @@ export const renderForm = async (id) => {
       } else {
         goToPage(ROUTES.forms);
       }
-      renderMessage("Вы успешно прошли опрос! Ваши результаты сохранены");
+      renderMessage("Вы успешно прошли опрос! Ваш ответ записан");
 
     });
   }
@@ -206,7 +211,13 @@ export const renderForm = async (id) => {
         copyButton.innerHTML = 'Скопировано!';
         copyButton.classList.add('primary-button');
         copyButton.classList.remove('secondary-button');
-        navigator.clipboard.writeText(link);
+        // Копирование ссылки в буфер на компе
+        const input = document.querySelector('#popup-copy-input');
+        input.classList.remove('display-none');
+        input.value = link;
+        input.select();
+        document.execCommand('copy');
+        input.classList.add('display-none');
       });
       document.querySelector('#popup-ok-button').innerHTML = 'Скопировать';
     });
