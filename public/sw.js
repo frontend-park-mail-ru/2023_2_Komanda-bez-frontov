@@ -13,6 +13,7 @@ self.addEventListener('install', (event) => {
 
 self.addEventListener('fetch', (event) => {
   if (!event.request.url.includes(`/api/`)) {
+    // Запрос на скачивание статических файлов (cache, потом fetch)
     const request = (event.request.mode === 'navigate' ? 'index.html' : event.request);
     return event.respondWith(
         caches.match(request)
@@ -34,14 +35,18 @@ self.addEventListener('fetch', (event) => {
             })
     );
   }
+  // Запрос на бекенд (сначала fetch, потом cache)
   return event.respondWith(
       fetch(event.request)
           .then((responseFetch) => {
-            return caches.open('formhub-v1')
-                .then(cache => {
-                  cache.put(event.request, responseFetch.clone());
-                  return responseFetch;
-                });
+              if (event.request.method === 'GET') {
+                  return caches.open('formhub-v1')
+                      .then(cache => {
+                          cache.put(event.request, responseFetch.clone());
+                          return responseFetch;
+                      });
+              }
+              return responseFetch;
           })
           .catch(() => {
             return caches.match(event.request)
@@ -55,6 +60,7 @@ self.addEventListener('fetch', (event) => {
   );
 });
 
+// Прикольчик с аватарками
 // self.addEventListener('fetch', (event) => {
 //   const url = new URL(event.request.url);
 //

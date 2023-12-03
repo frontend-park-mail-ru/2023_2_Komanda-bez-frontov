@@ -1,7 +1,7 @@
 import {API} from '../../../../modules/api.js';
 import {render404} from '../../../404/404.js';
 import {renderMessage} from '../../../Message/message.js';
-import {storageGetFormByID, STORAGE} from '../../../../modules/storage.js';
+import {STORAGE} from '../../../../modules/storage.js';
 import {frontendUrl, ROUTES} from '../../../../config.js';
 import {goToPage} from '../../../../modules/router.js';
 import {createQuestion} from '../../../Question/CheckQuestion/check_question.js';
@@ -35,16 +35,27 @@ export const renderForm = async (id) => {
     return;
   }
 
+  const rootElement = document.querySelector('#root');
+  rootElement.innerHTML = '';
+  if (STORAGE.user) {
+    renderAuthorMenu(id);
+    const menuCheckButton = document.querySelector('#author-menu-check-button');
+    menuCheckButton.disabled = true;
+    menuCheckButton.classList.add('secondary-button');
+    menuCheckButton.classList.remove('primary-button');
+  }
+
   let formJSON;
   try {
     const res = await api.getFormByID(id);
     if (res.message !== 'ok') {
+      rootElement.innerHTML = '';
       if (res.message === '404') {
         render404();
         return;
       }
       renderMessage(res.message, true);
-      // return;
+      return;
     }
     formJSON = res.form;
   } catch (e) {
@@ -54,15 +65,8 @@ export const renderForm = async (id) => {
     }
   }
 
-  const rootElement = document.querySelector('#root');
-  rootElement.innerHTML = '';
-
-  if (STORAGE.user && STORAGE.user.id === formJSON.author.id) {
-    renderAuthorMenu(id);
-    const menuCheckButton = document.querySelector('#author-menu-check-button');
-    menuCheckButton.disabled = true;
-    menuCheckButton.classList.add('secondary-button');
-    menuCheckButton.classList.remove('primary-button');
+  if (!STORAGE.user || STORAGE.user.id !== formJSON.author.id) {
+    rootElement.innerHTML = '';
   }
 
   rootElement.insertAdjacentHTML('beforeend', Handlebars.templates.check_form({form: formJSON}));

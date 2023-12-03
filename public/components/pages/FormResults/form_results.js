@@ -31,17 +31,25 @@ export const renderResultsForm = async (id) => {
     return;
   }
 
-  let formJSON;
+  const rootElement = document.querySelector('#root');
+  rootElement.innerHTML = '';
+  renderAuthorMenu(id);
+  const menuResultsButton = document.querySelector('#author-menu-results-button');
+  menuResultsButton.disabled = true;
+  menuResultsButton.classList.add('secondary-button');
+  menuResultsButton.classList.remove('primary-button');
 
+  let formJSON;
   try {
     const res = await api.getFormResultsByID(id);
     if (res.message !== 'ok') {
+      rootElement.innerHTML = '';
       if (res.message === '404') {
         render404();
         return;
       }
       renderMessage(res.message, true);
-      // return;
+      return;
     }
     formJSON = res.formResults;
   } catch (e) {
@@ -50,6 +58,7 @@ export const renderResultsForm = async (id) => {
   }
 
   if (STORAGE.user.id !== formJSON.author.id) {
+    rootElement.innerHTML = '';
     renderMessage('У вас нет прав на просмотр результатов этого опроса.', true);
     return;
   }
@@ -64,15 +73,6 @@ export const renderResultsForm = async (id) => {
     minute: '2-digit',
   };
   formJSON.created_at = date.toLocaleDateString('ru', options);
-
-  const rootElement = document.querySelector('#root');
-  rootElement.innerHTML = '';
-
-  renderAuthorMenu(id);
-  const menuResultsButton = document.querySelector('#author-menu-results-button');
-  menuResultsButton.disabled = true;
-  menuResultsButton.classList.add('secondary-button');
-  menuResultsButton.classList.remove('primary-button');
 
   rootElement.insertAdjacentHTML('beforeend', Handlebars.templates.form_results({form: formJSON}));
 

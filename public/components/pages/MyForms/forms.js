@@ -41,8 +41,20 @@ export const renderForms = async () => {
       if (forms.length === 0) {
         const label = document.createElement('a');
         label.classList.add('forms_list_main-container_empty-label');
-        label.textContent = 'Опросы не найдены';
-        formsContainer.appendChild(label);
+        if (searchON) {
+          label.textContent = 'Опросы не найдены';
+          formsContainer.appendChild(label);
+        } else {
+          label.textContent = 'Опросов пока нет...';
+          const createNewLink = document.createElement('a');
+          createNewLink.classList.add('forms_list_main-container_create-new-label');
+          createNewLink.textContent = 'Создайте свой первый опрос';
+          createNewLink.addEventListener('click', () => {
+            goToPage(ROUTES.formNew);
+          });
+          formsContainer.appendChild(label);
+          formsContainer.appendChild(createNewLink);
+        }
       }
 
       forms.forEach((form) => {
@@ -86,7 +98,6 @@ export const renderForms = async () => {
       const res = await api.getForms(STORAGE.user.username);
       message = res.message;
       forms = res.forms;
-      STORAGE.forms = res.forms;
       loadingScreen.classList.add('display-invisible');
     } catch (e) {
       loadingScreen.classList.add('display-invisible');
@@ -135,7 +146,7 @@ export const renderForms = async () => {
     }
     searchFormsRequest();
   };
-  searchInput.addEventListener('input', debounce(searchRequest, 500));
+  searchInput.addEventListener('input', debounce(searchRequest, 600));
   searchInput.addEventListener('input', () =>
       loadingScreen.classList.remove('display-invisible')
   );

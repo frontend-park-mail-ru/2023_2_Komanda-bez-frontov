@@ -71,7 +71,7 @@ export class API {
       let message = 'Ошибка сервера. Попробуйте позже.';
 
       if (res.status === 450) {
-        message = 'Нет подключения к сети';
+        return {message: 'Нет подключения к сети', authorizedUser: null};
       }
       if (res.status === 400) {
         message = 'Невозможно выполнить вход. Завершите предыдущую сессию!';
@@ -158,6 +158,9 @@ export class API {
           first_name, username, email, password, avatar,
         }),
       });
+      if (res.status === 450) {
+        return {message: 'Нет подключения к сети', registeredUser: null};
+      }
 
       const body = await res.json();
 
@@ -213,12 +216,12 @@ export class API {
           first_name, username, email, oldPassword, newPassword, avatar,
         }),
       });
+      if (res.status === 450) {
+        return {message: 'Нет подключения к сети', updatedUser: null};
+      }
 
       let message = 'Ошибка сервера. Попробуйте позже.';
 
-      if (res.status === 450) {
-        message = 'Нет подключения к сети';
-      }
       if (res.status === 403) {
         message = 'Введен неправильный пароль';
       }

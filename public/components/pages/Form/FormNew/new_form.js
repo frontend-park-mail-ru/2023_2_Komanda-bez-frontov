@@ -27,6 +27,9 @@ export const renderFormNew = async () => {
     return;
   }
 
+  const rootElement = document.querySelector('#root');
+  rootElement.innerHTML = '';
+
   const defaultForm = {
     title: '',
     description: '',
@@ -48,8 +51,6 @@ export const renderFormNew = async () => {
     ],
   };
 
-  const rootElement = document.querySelector('#root');
-  rootElement.innerHTML = '';
   rootElement.innerHTML = Handlebars.templates.update_form({form: defaultForm});
 
   const pageTitle = document.querySelector('#update-form-title');
