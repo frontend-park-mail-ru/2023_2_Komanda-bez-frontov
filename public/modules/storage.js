@@ -35,13 +35,17 @@ export const getAuthAvatar = async () => {
     const res = await api.getAvatar(STORAGE.user.username);
     if (res.message === 'ok') {
       STORAGE.avatar = res.avatar;
+      const profilePicture = document.querySelector('#navbar-profile-picture');
+      profilePicture.src = `data:image/png;base64, ${res.avatar}`;
+      const profilePagePicture = document.querySelector('#profile-page-picture');
+      if (profilePagePicture) {
+        profilePagePicture.src = `data:image/png;base64, ${res.avatar}`;
+      }
     } else {
       renderMessage(res.message, true);
     }
   } catch (e) {
-    if (e.toString() === 'TypeError: Failed to fetch') {
-      renderMessage('Потеряно соединение с сервером', true);
-    }
+    renderMessage('Ошибка сеееервера. Попробуйте позже', true);
   }
 };
 

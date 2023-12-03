@@ -68,10 +68,11 @@ export class API {
         body: JSON.stringify({email, password}),
       });
 
-      const body = await res.json();
-
       let message = 'Ошибка сервера. Попробуйте позже.';
 
+      if (res.status === 450) {
+        message = 'Нет подключения к сети';
+      }
       if (res.status === 400) {
         message = 'Невозможно выполнить вход. Завершите предыдущую сессию!';
       }
@@ -81,6 +82,8 @@ export class API {
       if (res.status === 200) {
         message = 'ok';
       }
+
+      const body = await res.json();
 
       return {message, authorizedUser: body.data};
     } catch (e) {
@@ -106,6 +109,9 @@ export class API {
         method: POST_METHOD,
         credentials: 'include',
       });
+      if (res.status === 450) {
+        return {message: 'Нет подключения к сети'};
+      }
 
       if (res.status === 404) {
         return {message: 'Вы не авторизованы, обновите страницу'};
@@ -208,11 +214,11 @@ export class API {
         }),
       });
 
-      const body = await res.json();
-
-      const updatedUser = body.data;
       let message = 'Ошибка сервера. Попробуйте позже.';
 
+      if (res.status === 450) {
+        message = 'Нет подключения к сети';
+      }
       if (res.status === 403) {
         message = 'Введен неправильный пароль';
       }
@@ -225,6 +231,9 @@ export class API {
       if (res.ok) {
         message = 'ok';
       }
+
+      const body = await res.json();
+      const updatedUser = body.data;
 
       return {message, updatedUser};
     } catch (e) {
@@ -256,6 +265,9 @@ export class API {
         method: GET_METHOD,
         credentials: 'include',
       });
+      if (res.status === 450) {
+        return {message: 'Нет подключения к сети', forms: null};
+      }
 
       const body = await res.json();
 
@@ -294,6 +306,9 @@ export class API {
         method: GET_METHOD,
         credentials: 'include',
       });
+      if (res.status === 450) {
+        return {message: 'Нет подключения к сети', forms: null};
+      }
 
       const body = await res.json();
 
@@ -327,6 +342,9 @@ export class API {
         method: GET_METHOD,
         credentials: 'include',
       });
+      if (res.status === 450) {
+        return {message: 'Нет подключения к сети', form: null};
+      }
 
       const body = await res.json();
 
@@ -402,6 +420,9 @@ export class API {
         credentials: 'include',
         body: JSON.stringify(saveForm),
       });
+      if (res.status === 450) {
+        return {message: 'Нет подключения к сети', form: null};
+      }
 
       const body = await res.json();
 
@@ -443,6 +464,9 @@ export class API {
         credentials: 'include',
         body: JSON.stringify(updateForm),
       });
+      if (res.status === 450) {
+        return {message: 'Нет подключения к сети', form: null};
+      }
 
       const body = await res.json();
 
@@ -480,6 +504,9 @@ export class API {
         credentials: 'include',
       });
 
+      if (res.status === 450) {
+        return {message: 'Нет подключения к сети'};
+      }
       if (res.ok) {
         return {message: 'ok'};
       }
@@ -515,6 +542,9 @@ export class API {
         method: GET_METHOD,
         credentials: 'include',
       });
+      if (res.status === 450) {
+        return {message: 'Нет подключения к сети', formResults: null};
+      }
 
       const body = await res.json();
 
@@ -567,6 +597,10 @@ export class API {
 
       if (res.status === 401) {
         return {message: 'Пользователь не авторизирован для прохождения опроса', form: null};
+      }
+
+      if (res.status === 450) {
+        return {message: 'Нет подключения к сети', form: null};
       }
 
       return {message: 'Ошибка сервера. Попробуйте позже', form: null};

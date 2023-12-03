@@ -72,11 +72,8 @@ export const renderForms = async () => {
       loadingScreen.classList.add('display-invisible');
     } catch (e) {
       loadingScreen.classList.add('display-invisible');
-      if (e.toString() !== 'TypeError: Failed to fetch') {
-        renderMessage('Ошибка сервера. Попробуйте позже.', true);
-        return;
-      }
-      renderMessage('Потеряно соединение с сервером', true);
+      renderMessage('Ошибка сервера. Попробуйте позже.', true);
+      return;
     }
 
     renderRequestedForms(true);
@@ -93,16 +90,13 @@ export const renderForms = async () => {
       loadingScreen.classList.add('display-invisible');
     } catch (e) {
       loadingScreen.classList.add('display-invisible');
-      if (e.toString() !== 'TypeError: Failed to fetch') {
-        renderMessage('Ошибка сервера. Попробуйте позже.', true);
-        return;
-      }
-      renderMessage('Потеряно соединение с сервером', true);
-      // Попытка найти опросы в локальном хранилище
-      forms = STORAGE.forms;
+      renderMessage('Ошибка сервера. Попробуйте позже.', true);
+      return;
     }
 
-    forms = forms.sort((a, b) => b.id - a.id);
+    if (forms) {
+      forms = forms.sort((a, b) => b.id - a.id);
+    }
     renderRequestedForms();
   };
 

@@ -41,15 +41,11 @@ export const renderResultsForm = async (id) => {
         return;
       }
       renderMessage(res.message, true);
-      return;
+      // return;
     }
     formJSON = res.formResults;
   } catch (e) {
-    if (e.toString() !== 'TypeError: Failed to fetch') {
-      renderMessage('Ошибка сервера. Попробуйте позже', true);
-      return;
-    }
-    renderMessage('Потеряно соединение с сервером', true);
+    renderMessage('Ошибка сервера. Попробуйте позже.', true);
     return;
   }
 

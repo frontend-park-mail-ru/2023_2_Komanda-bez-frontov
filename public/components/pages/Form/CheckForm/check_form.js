@@ -44,7 +44,7 @@ export const renderForm = async (id) => {
         return;
       }
       renderMessage(res.message, true);
-      return;
+      // return;
     }
     formJSON = res.form;
   } catch (e) {
@@ -52,9 +52,6 @@ export const renderForm = async (id) => {
       renderMessage('Ошибка сервера. Попробуйте позже', true);
       return;
     }
-    // Попытка найти опрос в локальном хранилище
-    renderMessage('Потеряно соединение с сервером', true);
-    formJSON = storageGetFormByID(id);
   }
 
   const rootElement = document.querySelector('#root');
@@ -184,11 +181,7 @@ export const renderForm = async (id) => {
           return;
         }
       } catch (e) {
-        if (e.toString() !== 'TypeError: Failed to fetch') {
-          renderMessage('Ошибка сервера. Попробуйте позже', true);
-          return;
-        }
-        renderMessage('Потеряно соединение с сервером', true);
+        renderMessage('Ошибка сервера. Попробуйте позже', true);
         return;
       }
       if (!STORAGE.user) {

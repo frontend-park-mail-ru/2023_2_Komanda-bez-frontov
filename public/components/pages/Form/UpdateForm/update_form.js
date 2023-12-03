@@ -49,17 +49,12 @@ export const renderFormUpdate = async (id) => {
         return;
       }
       renderMessage(res.message, true);
-      return;
+      // return;
     }
     formJSON = res.form;
   } catch (e) {
-    if (e.toString() !== 'TypeError: Failed to fetch') {
-      renderMessage('Ошибка сервера. Попробуйте позже', true);
-      return;
-    }
-    // Попытка найти опрос в локальном хранилище
-    renderMessage('Потеряно соединение с сервером', true);
-    formJSON = storageGetFormByID(id);
+    renderMessage('Ошибка сервера. Попробуйте позже.', true);
+    return;
   }
 
   if (STORAGE.user.id !== formJSON.author.id) {
@@ -151,12 +146,9 @@ export const renderFormUpdate = async (id) => {
         }
         renderMessage(res.message, true);
       } catch (e) {
-        if (e.toString() !== 'TypeError: Failed to fetch') {
-          renderMessage('Ошибка сервера. Попробуйте позже', true);
-          closePopUpWindow();
-          return;
-        }
-        renderMessage('Потеряно соединение с сервером', true);
+        renderMessage('Ошибка сервера. Попробуйте позже.', true);
+        closePopUpWindow();
+        return;
       }
       closePopUpWindow();
     });
@@ -187,11 +179,8 @@ export const renderFormUpdate = async (id) => {
       }
       renderMessage(res.message, true);
     } catch (e) {
-      if (e.toString() !== 'TypeError: Failed to fetch') {
-        renderMessage('Ошибка сервера. Попробуйте позже', true);
-        return;
-      }
-      renderMessage('Потеряно соединение с сервером', true);
+      renderMessage('Ошибка сервера. Попробуйте позже.', true);
+      return;
     }
   });
 };

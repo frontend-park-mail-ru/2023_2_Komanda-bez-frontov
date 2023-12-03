@@ -5,7 +5,8 @@ self.addEventListener('install', (event) => {
       .then(cache => cache.addAll([
           '/index.html',
           '/index.css',
-          '/index.js'
+          '/index.js',
+          '/resources/images/loading.gif'
       ]))
   );
 });
@@ -33,24 +34,25 @@ self.addEventListener('fetch', (event) => {
             })
     );
   }
-  // return event.respondWith(
-  //     fetch(event.request)
-  //         .then((responseFetch) => {
-  //           return caches.open('formhub-v1')
-  //               .then(cache => {
-  //                 cache.put(request, responseFetch.clone());
-  //                 return responseFetch;
-  //               });
-  //         })
-  //         .catch(() => {
-  //           caches.match(event.request)
-  //               .then((responseCache) => {
-  //                 if (responseCache) {
-  //                   return responseCache;
-  //                 }
-  //               })
-  //         })
-  // );
+  return event.respondWith(
+      fetch(event.request)
+          .then((responseFetch) => {
+            return caches.open('formhub-v1')
+                .then(cache => {
+                  cache.put(event.request, responseFetch.clone());
+                  return responseFetch;
+                });
+          })
+          .catch(() => {
+            return caches.match(event.request)
+                .then((responseCache) => {
+                  if (responseCache) {
+                    return responseCache;
+                  }
+                  return new Response(null, { status: 450, statusText: 'No Connection' });
+                })
+          })
+  );
 });
 
 // self.addEventListener('fetch', (event) => {
