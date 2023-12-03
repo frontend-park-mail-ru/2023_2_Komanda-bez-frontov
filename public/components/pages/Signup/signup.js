@@ -54,15 +54,76 @@ export const renderSignup = async () => {
     toggleFunc(password, icon);
   });
 
+  const firstName = document.querySelector('#name');
+  const email = document.querySelector('#email');
+  const username = document.querySelector('#username');
+  const password = document.querySelector('#password');
+  const repeatPassword = document.querySelector('#repeat_password');
+
+  let isNameValid = true;
+  let isEmailValid = true;
+  let isUsernameValid = true;
+  let isPasswordValid = true;
+
+  firstName.addEventListener("change", (e) => {
+    e.preventDefault();
+
+    const nameValid = nameValidation(firstName.value);
+
+    if (nameValid.valid) {
+      removeMessage();
+      isNameValid = true;
+    } else {
+      renderMessage(nameValid.message, true);
+      isNameValid = false;
+    }
+  });
+
+  email.addEventListener("change", (e) => {
+    e.preventDefault();
+
+    const emailValid = emailValidation(e.target.value);
+
+    if (emailValid.valid) {
+      removeMessage();
+      isEmailValid = true;
+    } else {
+      renderMessage(emailValid.message, true);
+      isEmailValid = false;
+    }
+  });
+
+  username.addEventListener("change", (e) => {
+    e.preventDefault();
+
+    const usernameValid = usernameValidation(e.target.value);
+
+    if (usernameValid.valid) {
+      removeMessage();
+      isUsernameValid = true;
+    } else {
+      renderMessage(usernameValid.message, true);
+      isUsernameValid = false;
+    }
+  });
+
+  password.addEventListener("change", (e) => {
+    e.preventDefault();
+
+    const passwordValid = passwordValidation(e.target.value);
+
+    if (passwordValid.valid) {
+      removeMessage();
+      isPasswordValid = true;
+    } else {
+      renderMessage(passwordValid.message, true);
+      isPasswordValid = false;
+    }
+  });
+
   const signupButton = document.querySelector('#signup-button');
   signupButton.addEventListener('click', async (e) => {
     e.preventDefault();
-
-    const firstName = document.querySelector('#name');
-    const email = document.querySelector('#email');
-    const username = document.querySelector('#username');
-    const password = document.querySelector('#password');
-    const repeatPassword = document.querySelector('#repeat_password');
 
     if (password.value === '' || email.value === '' || firstName.value === ''
         || username.value === '' || repeatPassword.value === '') {
@@ -70,28 +131,7 @@ export const renderSignup = async () => {
       return;
     }
 
-    const isNameValid = nameValidation(firstName.value);
-    const isEmailValid = emailValidation(email.value);
-    const isUsernameValid = usernameValidation(username.value);
-    const isPasswordValid = passwordValidation(password.value);
-
-    if (!isNameValid.valid) {
-      renderMessage(isNameValid.message, true);
-      return;
-    }
-
-    if (!isEmailValid.valid) {
-      renderMessage(isEmailValid.message, true);
-      return;
-    }
-
-    if (!isUsernameValid.valid) {
-      renderMessage(isUsernameValid.message, true);
-      return;
-    }
-
-    if (!isPasswordValid.valid) {
-      renderMessage(isPasswordValid.message, true);
+    if (!isNameValid || !isEmailValid || !isUsernameValid || !isPasswordValid) {
       return;
     }
 

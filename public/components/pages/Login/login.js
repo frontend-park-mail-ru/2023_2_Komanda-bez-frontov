@@ -29,25 +29,46 @@ export const renderLogin = async () => {
     const icon = document.querySelector('#login-form_container__input-show-button-icon');
 
     toggleFunc(password, icon);
+  });
 
+  let isEmailValid = true;
+  let isPasswordValid = true;
+
+  const email = document.querySelector('#email');
+  const password = document.querySelector('#password');
+
+  email.addEventListener("change", (e) => {
+    e.preventDefault();
+
+    const emailValid = emailValidation(e.target.value);
+
+    if (emailValid.valid) {
+      removeMessage();
+      isEmailValid = true;
+    } else {
+      renderMessage(emailValid.message, true);
+      isEmailValid = false;
+    }
+  });
+
+  password.addEventListener("change", (e) => {
+    e.preventDefault();
+
+    const passwordValid = passwordValidation(e.target.value);
+
+    if (passwordValid.valid) {
+      removeMessage();
+      isPasswordValid = true;
+    } else {
+      renderMessage(passwordValid.message, true);
+      isPasswordValid = false;
+    }
   });
 
   loginButton.addEventListener('click', async (e) => {
     e.preventDefault();
 
-    const email = document.querySelector('#email');
-    const password = document.querySelector('#password');
-
-    const isEmailValid = emailValidation(email.value);
-    const isPasswordValid = passwordValidation(password.value);
-
-    if (!isEmailValid.valid) {
-      renderMessage(isEmailValid.message, true);
-      return;
-    }
-
-    if (!isPasswordValid.valid) {
-      renderMessage(isPasswordValid.message, true);
+    if (!isEmailValid || !isPasswordValid) {
       return;
     }
 
