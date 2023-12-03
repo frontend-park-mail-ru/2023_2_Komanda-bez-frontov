@@ -42,7 +42,7 @@ export const navbar = () => {
       goToPage(ROUTES.signup);
     });
   }
-  const logoButton = document.querySelector('#navbar-logo-label');
+  const logoButton = document.querySelector('#navbar-logo');
   logoButton.addEventListener('click', () => {
     removeMessage();
     if (!STORAGE.user) {
