@@ -36,7 +36,7 @@ export const renderLogin = async () => {
   const email = document.querySelector('#email');
   const password = document.querySelector('#password');
 
-  email.addEventListener("input", (e) => {
+  email.addEventListener("change", (e) => {
     e.preventDefault();
 
     const emailValid = emailValidation(e.target.value);
@@ -50,7 +50,7 @@ export const renderLogin = async () => {
     }
   });
 
-  password.addEventListener("input", (e) => {
+  password.addEventListener("change", (e) => {
     e.preventDefault();
 
     const passwordValid = passwordValidation(e.target.value);

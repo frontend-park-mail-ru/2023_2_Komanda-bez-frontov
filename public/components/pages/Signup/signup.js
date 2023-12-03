@@ -66,7 +66,7 @@ export const renderSignup = async () => {
   let isUsernameValid = true;
   let isPasswordValid = true;
 
-  firstName.addEventListener("input", (e) => {
+  firstName.addEventListener("change", (e) => {
     e.preventDefault();
 
     const nameValid = nameValidation(firstName.value);
@@ -80,7 +80,7 @@ export const renderSignup = async () => {
     }
   });
 
-  email.addEventListener("input", (e) => {
+  email.addEventListener("change", (e) => {
     e.preventDefault();
 
     const emailValid = emailValidation(e.target.value);
@@ -94,7 +94,7 @@ export const renderSignup = async () => {
     }
   });
 
-  username.addEventListener("input", (e) => {
+  username.addEventListener("change", (e) => {
     e.preventDefault();
 
     const usernameValid = usernameValidation(e.target.value);
@@ -108,7 +108,7 @@ export const renderSignup = async () => {
     }
   });
 
-  password.addEventListener("input", (e) => {
+  password.addEventListener("change", (e) => {
     e.preventDefault();
 
     const passwordValid = passwordValidation(e.target.value);

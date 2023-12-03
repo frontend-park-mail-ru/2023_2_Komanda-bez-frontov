@@ -99,16 +99,92 @@ export const renderUpdateProfile = async () => {
     profilePicture.src = '../../resources/images/profile_default.png';
   });
 
+  const firstName = document.querySelector('#update-profile_name');
+  const email = document.querySelector('#update-profile_email');
+  const username = document.querySelector('#update-profile_username');
+  const oldPassword = document.querySelector('#update-profile_old-password');
+  const newPassword = document.querySelector('#update-profile_new-password');
+  const repeatPassword = document.querySelector('#update-profile_repeat-password');
+
+  let isNameValid = true;
+  let isEmailValid = true;
+  let isUsernameValid = true;
+  let isOldPasswordValid = true;
+  let isNewPasswordValid = true;
+
+  firstName.addEventListener("change", (e) => {
+    e.preventDefault();
+
+    const nameValid = nameValidation(firstName.value);
+
+    if (nameValid.valid) {
+      removeMessage();
+      isNameValid = true;
+    } else {
+      renderMessage(nameValid.message, true);
+      isNameValid = false;
+    }
+  });
+
+  email.addEventListener("change", (e) => {
+    e.preventDefault();
+
+    const emailValid = emailValidation(e.target.value);
+
+    if (emailValid.valid) {
+      removeMessage();
+      isEmailValid = true;
+    } else {
+      renderMessage(emailValid.message, true);
+      isEmailValid = false;
+    }
+  });
+
+  username.addEventListener("change", (e) => {
+    e.preventDefault();
+
+    const usernameValid = usernameValidation(e.target.value);
+
+    if (usernameValid.valid) {
+      removeMessage();
+      isUsernameValid = true;
+    } else {
+      renderMessage(usernameValid.message, true);
+      isUsernameValid = false;
+    }
+  });
+
+  oldPassword.addEventListener("change", (e) => {
+    e.preventDefault();
+
+    const passwordValid = passwordValidation(e.target.value);
+
+    if (passwordValid.valid) {
+      removeMessage();
+      isOldPasswordValid = true;
+    } else {
+      renderMessage(passwordValid.message, true);
+      isOldPasswordValid = false;
+    }
+  });
+
+  newPassword.addEventListener("change", (e) => {
+    e.preventDefault();
+
+    const passwordValid = passwordValidation(e.target.value);
+
+    if (passwordValid.valid) {
+      removeMessage();
+      isNewPasswordValid = true;
+    } else {
+      renderMessage(passwordValid.message, true);
+      isNewPasswordValid = false;
+    }
+  });
+
   const saveButton = document.querySelector('#update-profile-save-button');
   saveButton.addEventListener('click', async (e) => {
     e.preventDefault();
-
-    const firstName = document.querySelector('#update-profile_name');
-    const email = document.querySelector('#update-profile_email');
-    const username = document.querySelector('#update-profile_username');
-    const oldPassword = document.querySelector('#update-profile_old-password');
-    const newPassword = document.querySelector('#update-profile_new-password');
-    const repeatPassword = document.querySelector('#update-profile_repeat-password');
 
     if (email.value === '' || firstName.value === ''
         || username.value === '') {
@@ -116,24 +192,7 @@ export const renderUpdateProfile = async () => {
       return;
     }
 
-    const isNameValid = nameValidation(firstName.value);
-    const isEmailValid = emailValidation(email.value);
-    const isUsernameValid = usernameValidation(username.value);
-    const isOldPasswordValid = passwordValidation(oldPassword.value);
-    const isNewPasswordValid = passwordValidation(newPassword.value);
-
-    if (!isNameValid.valid) {
-      renderMessage(isNameValid.message, true);
-      return;
-    }
-
-    if (!isEmailValid.valid) {
-      renderMessage(isEmailValid.message, true);
-      return;
-    }
-
-    if (!isUsernameValid.valid) {
-      renderMessage(isUsernameValid.message, true);
+    if (!isNameValid || !isEmailValid || !isUsernameValid || !isOldPasswordValid || !isNewPasswordValid) {
       return;
     }
 
