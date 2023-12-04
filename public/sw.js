@@ -21,8 +21,7 @@ self.addEventListener('fetch', (event) => {
               if (responseCache) {
                 return responseCache;
               }
-              return Promise.race([setTimeout('', 5000),
-                fetch(request)
+              return fetch(request)
                   .then((responseFetch) => {
                     return caches.open('formhub-v1')
                         .then(cache => {
@@ -31,38 +30,46 @@ self.addEventListener('fetch', (event) => {
                         });
                   })
                   .catch((err) => {
-                    console.log(err);
-                  })
-              ]);
+                    // console.log(err);
+                  });
             })
     );
   }
-  // Запрос на бекенд (сначала fetch, потом cache)
-  return event.respondWith(
-      Promise.race([setTimeout('', 5000),
-      fetch(event.request)
-          .then((responseFetch) => {
-              if (event.request.method === 'GET') {
-                  return caches.open('formhub-v1')
-                      .then(cache => {
-                          cache.put(event.request, responseFetch.clone());
-                          return responseFetch;
-                      });
-              }
-              return responseFetch;
-          })
-          .catch(() => {
-            return caches.match(event.request)
-                .then((responseCache) => {
-                  if (responseCache) {
-                    return responseCache;
-                  }
-                  return new Response(null, { status: 450, statusText: 'No Connection' });
-                })
-          })
-      ])
-  );
+    // Запрос на бекенд (сначала fetch, потом cache)
+    return event.respondWith(
+        Promise.race([ timeout(5000), fetch(event.request) ])
+            .then((responseFetch) => {
+                if (event.request.method === 'GET') {
+                    return caches.open('formhub-v1')
+                        .then(cache => {
+                            cache.put(event.request, responseFetch.clone());
+                            return responseFetch;
+                        });
+                }
+                return responseFetch;
+            })
+            .catch(() => {
+                return caches.match(event.request)
+                    .then((responseCache) => {
+                        if (responseCache) {
+                            return responseCache;
+                        }
+                        return new Response(null, { status: 450, statusText: 'No Connection' });
+                    })
+            })
+    );
 });
+
+function timeout(delay) {
+    return new Promise(function(resolve, reject) {
+        setTimeout(function() {
+            reject(new Response('', {
+                status: 408,
+                statusText: 'Request timed out.'
+            }));
+        }, delay);
+    });
+}
 
 // Прикольчик с аватарками
 // self.addEventListener('fetch', (event) => {
