@@ -14,7 +14,7 @@ self.addEventListener('install', (event) => {
 self.addEventListener('fetch', (event) => {
   if (!event.request.url.includes(`/api/`)) {
     // Запрос на скачивание статических файлов (cache, потом fetch)
-    const request = (event.request.mode === 'navigate' ? 'index.html' : event.request);
+    const request = (event.request.mode === 'navigate' ? '/index.html' : event.request);
     return event.respondWith(
         caches.match(request)
             .then((responseCache) => {
