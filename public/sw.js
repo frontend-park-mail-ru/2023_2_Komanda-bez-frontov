@@ -21,7 +21,8 @@ self.addEventListener('fetch', (event) => {
               if (responseCache) {
                 return responseCache;
               }
-              return fetch(request)
+              return Promise.race([setTimeout('', 5000),
+                fetch(request)
                   .then((responseFetch) => {
                     return caches.open('formhub-v1')
                         .then(cache => {
@@ -31,12 +32,14 @@ self.addEventListener('fetch', (event) => {
                   })
                   .catch((err) => {
                     console.log(err);
-                  });
+                  })
+              ]);
             })
     );
   }
   // Запрос на бекенд (сначала fetch, потом cache)
   return event.respondWith(
+      Promise.race([setTimeout('', 5000),
       fetch(event.request)
           .then((responseFetch) => {
               if (event.request.method === 'GET') {
@@ -57,6 +60,7 @@ self.addEventListener('fetch', (event) => {
                   return new Response(null, { status: 450, statusText: 'No Connection' });
                 })
           })
+      ])
   );
 });
 

@@ -22,7 +22,7 @@ export const renderInitial = async () => {
       getAuthAvatar();
     }
   } catch (e) {
-    renderMessage('Ошибка сервееееера. Попробуйте позже', true);
+    renderMessage('Ошибка сервера. Попробуйте позже', true);
   }
 
   navbar();

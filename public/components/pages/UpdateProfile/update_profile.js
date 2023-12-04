@@ -1,7 +1,7 @@
 import {ROUTES} from '../../../config.js';
 import {removeMessage, renderMessage} from '../../Message/message.js';
 import {goToPage} from '../../../modules/router.js';
-import {STORAGE} from '../../../modules/storage.js';
+import {getAuthAvatar, STORAGE} from '../../../modules/storage.js';
 import {
   avatarValidation,
   emailValidation,
@@ -175,7 +175,7 @@ export const renderUpdateProfile = async () => {
       }
 
       STORAGE.user = res.updatedUser;
-      STORAGE.avatar = avatar;
+      getAuthAvatar();
 
       navbar();
       goToPage(ROUTES.profile);

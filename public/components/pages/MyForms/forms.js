@@ -27,8 +27,26 @@ export const renderForms = async () => {
   rootElement.innerHTML = '';
   rootElement.innerHTML = Handlebars.templates.forms();
 
-  const formsContainer = document.querySelector('#forms-container');
+  const newFormButton = document.querySelector('#forms-list-add-button');
+  newFormButton.addEventListener('click', () => {
+    goToPage(ROUTES.formNew);
+  });
+
+  // Запрос с поиском по опросам
   const searchInput = document.querySelector('.forms_search-container__input');
+  const searchRequest = () => {
+    if (searchInput.value === '') {
+      showAllFormsRequest();
+      return;
+    }
+    searchFormsRequest();
+  };
+  searchInput.addEventListener('input', debounce(searchRequest, 600));
+  searchInput.addEventListener('input', () =>
+      loadingScreen.classList.remove('display-invisible')
+  );
+
+  const formsContainer = document.querySelector('#forms-container');
   const loadingScreen = document.querySelector('.forms__loading-screen');
   let forms = [];
   let message = 'ok';
@@ -113,11 +131,6 @@ export const renderForms = async () => {
 
   await showAllFormsRequest();
 
-  const newFormButton = document.querySelector('#forms-list-add-button');
-  newFormButton.addEventListener('click', () => {
-    goToPage(ROUTES.formNew);
-  });
-
   const searchButton = document.querySelector('#forms-list-search-button');
   searchButton.addEventListener('click', () => {
     loadingScreen.classList.remove('display-invisible');
@@ -137,19 +150,6 @@ export const renderForms = async () => {
       searchFormsRequest();
     }
   });
-
-  // Тестирование моментальных запросов
-  const searchRequest = () => {
-    if (searchInput.value === '') {
-      showAllFormsRequest();
-      return;
-    }
-    searchFormsRequest();
-  };
-  searchInput.addEventListener('input', debounce(searchRequest, 600));
-  searchInput.addEventListener('input', () =>
-      loadingScreen.classList.remove('display-invisible')
-  );
 };
 
 export const debounce = (func, delay) => {

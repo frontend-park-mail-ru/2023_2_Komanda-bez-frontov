@@ -209,12 +209,7 @@ export const renderForm = async (id) => {
         copyButton.classList.add('primary-button');
         copyButton.classList.remove('secondary-button');
         // Копирование ссылки в буфер на компе
-        const input = document.querySelector('#popup-copy-input');
-        input.classList.remove('display-none');
-        input.value = link;
-        input.select();
-        document.execCommand('copy');
-        input.classList.add('display-none');
+        navigator.clipboard.writeText(link);
       });
       document.querySelector('#popup-ok-button').innerHTML = 'Скопировать';
     });
