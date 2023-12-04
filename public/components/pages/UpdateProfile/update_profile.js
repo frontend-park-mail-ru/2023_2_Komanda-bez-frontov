@@ -36,7 +36,7 @@ export const renderUpdateProfile = async () => {
   rootElement.innerHTML = Handlebars.templates.update_profile({User: STORAGE.user});
 
   let avatar = STORAGE.avatar;
-  const profilePicture = document.querySelector('#update-profile-page-picture');
+  const profilePicture = document.querySelector('#profile-page-picture');
   if (STORAGE.avatar) {
     profilePicture.src = `data:image/png;base64, ${avatar}`;
   }
