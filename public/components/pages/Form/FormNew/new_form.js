@@ -263,6 +263,18 @@ export const formUpdateValidator = () => {
     message = validator.message;
   }
 
+  validator = textValidation(document.querySelector('#update-form__description-textarea').value);
+
+  if (!validator.valid) {
+    const descriptionInput = document.querySelector('#update-form__description-textarea ');
+    descriptionInput.classList.add('update-form__input-error');
+    descriptionInput.addEventListener('click', () => {
+      descriptionInput.classList.remove('update-form__input-error');
+    }, {once: true});
+    valid = false;
+    message = validator.message;
+  }
+
   const cQuestions = document.querySelectorAll('.update-question');
   cQuestions.forEach((questionElement) => {
 
@@ -288,7 +300,7 @@ export const formUpdateValidator = () => {
     }
 
     if (!questionElement.querySelector('#update-question__answer-format-text').checked) {
-      const cAnswers = questionElement.querySelectorAll('#update-question__answers-item-input');
+      const cAnswers = questionElement.querySelectorAll('.update-question__answers-item-input');
       cAnswers.forEach((answer) => {
         validator = textValidation(answer.value);
         if (!validator.valid) {
