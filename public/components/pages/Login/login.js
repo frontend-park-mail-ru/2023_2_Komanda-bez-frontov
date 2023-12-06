@@ -6,6 +6,7 @@ import {goToPage} from '../../../modules/router.js';
 import {STORAGE, getAuthAvatar} from '../../../modules/storage.js';
 import {toggleFunc} from "../Signup/signup.js";
 import {navbar} from "../../Navbar/navbar.js";
+import {debounce} from "../MyForms/forms.js";
 
 /**
  * Функция для рендеринга страницы аутенфикации.
@@ -37,7 +38,7 @@ export const renderLogin = async () => {
   const email = document.querySelector('#email');
   const password = document.querySelector('#password');
 
-  email.addEventListener("change", (e) => {
+  email.addEventListener("input", debounce((e) => {
     e.preventDefault();
 
     const emailValid = emailValidation(e.target.value);
@@ -49,9 +50,9 @@ export const renderLogin = async () => {
       renderMessage(emailValid.message, true);
       isEmailValid = false;
     }
-  });
+  }, 500));
 
-  password.addEventListener("change", (e) => {
+  password.addEventListener("input", debounce((e) => {
     e.preventDefault();
 
     const passwordValid = passwordValidation(e.target.value);
@@ -63,7 +64,7 @@ export const renderLogin = async () => {
       renderMessage(passwordValid.message, true);
       isPasswordValid = false;
     }
-  });
+  }, 500));
 
   loginButton.addEventListener('click', async (e) => {
     e.preventDefault();

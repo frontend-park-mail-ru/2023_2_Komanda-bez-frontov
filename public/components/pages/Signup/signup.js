@@ -11,6 +11,7 @@ import {
 import {goToPage} from '../../../modules/router.js';
 import {STORAGE} from '../../../modules/storage.js';
 import {navbar} from "../../Navbar/navbar.js";
+import {debounce} from "../MyForms/forms.js";
 
 /**
  * Функция для рендеринга страницы регистрации.
@@ -65,7 +66,7 @@ export const renderSignup = async () => {
   let isUsernameValid = true;
   let isPasswordValid = true;
 
-  firstName.addEventListener("change", (e) => {
+  firstName.addEventListener("input", debounce((e) => {
     e.preventDefault();
 
     const nameValid = nameValidation(firstName.value);
@@ -77,9 +78,9 @@ export const renderSignup = async () => {
       renderMessage(nameValid.message, true);
       isNameValid = false;
     }
-  });
+  }, 500));
 
-  email.addEventListener("change", (e) => {
+  email.addEventListener("input", debounce((e) => {
     e.preventDefault();
 
     const emailValid = emailValidation(e.target.value);
@@ -91,9 +92,9 @@ export const renderSignup = async () => {
       renderMessage(emailValid.message, true);
       isEmailValid = false;
     }
-  });
+  }, 500));
 
-  username.addEventListener("change", (e) => {
+  username.addEventListener("input", debounce((e) => {
     e.preventDefault();
 
     const usernameValid = usernameValidation(e.target.value);
@@ -105,9 +106,9 @@ export const renderSignup = async () => {
       renderMessage(usernameValid.message, true);
       isUsernameValid = false;
     }
-  });
+  }, 500) );
 
-  password.addEventListener("change", (e) => {
+  password.addEventListener("input", debounce((e) => {
     e.preventDefault();
 
     const passwordValid = passwordValidation(e.target.value);
@@ -119,7 +120,7 @@ export const renderSignup = async () => {
       renderMessage(passwordValid.message, true);
       isPasswordValid = false;
     }
-  });
+  }, 500));
 
   const signupButton = document.querySelector('#signup-button');
   signupButton.addEventListener('click', async (e) => {

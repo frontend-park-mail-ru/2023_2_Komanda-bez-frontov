@@ -12,6 +12,7 @@ import {
 import {API} from '../../../modules/api.js';
 import {toggleFunc} from "../Signup/signup.js";
 import {navbar} from "../../Navbar/navbar.js";
+import {debounce} from "../MyForms/forms.js";
 
 /**
  * Функция для рендеринга страницы изменения профиля авторизированного пользователя.
@@ -113,7 +114,7 @@ export const renderUpdateProfile = async () => {
   let isOldPasswordValid = true;
   let isNewPasswordValid = true;
 
-  firstName.addEventListener("change", (e) => {
+  firstName.addEventListener("input", debounce((e) => {
     e.preventDefault();
 
     const nameValid = nameValidation(firstName.value);
@@ -125,9 +126,9 @@ export const renderUpdateProfile = async () => {
       renderMessage(nameValid.message, true);
       isNameValid = false;
     }
-  });
+  }, 500));
 
-  email.addEventListener("change", (e) => {
+  email.addEventListener("input", debounce((e) => {
     e.preventDefault();
 
     const emailValid = emailValidation(e.target.value);
@@ -139,9 +140,9 @@ export const renderUpdateProfile = async () => {
       renderMessage(emailValid.message, true);
       isEmailValid = false;
     }
-  });
+  }, 500));
 
-  username.addEventListener("change", (e) => {
+  username.addEventListener("input", debounce((e) => {
     e.preventDefault();
 
     const usernameValid = usernameValidation(e.target.value);
@@ -153,9 +154,9 @@ export const renderUpdateProfile = async () => {
       renderMessage(usernameValid.message, true);
       isUsernameValid = false;
     }
-  });
+  }, 500));
 
-  oldPassword.addEventListener("change", (e) => {
+  oldPassword.addEventListener("input", debounce((e) => {
     e.preventDefault();
 
     const passwordValid = passwordValidation(e.target.value);
@@ -167,9 +168,9 @@ export const renderUpdateProfile = async () => {
       renderMessage(passwordValid.message, true);
       isOldPasswordValid = false;
     }
-  });
+  }, 500));
 
-  newPassword.addEventListener("change", (e) => {
+  newPassword.addEventListener("input", debounce((e) => {
     e.preventDefault();
 
     const passwordValid = passwordValidation(e.target.value);
@@ -181,7 +182,7 @@ export const renderUpdateProfile = async () => {
       renderMessage(passwordValid.message, true);
       isNewPasswordValid = false;
     }
-  });
+  }, 500));
 
   const saveButton = document.querySelector('#update-profile-save-button');
   saveButton.addEventListener('click', async (e) => {

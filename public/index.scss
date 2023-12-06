@@ -56,13 +56,24 @@ p, h3 {
   z-index: 100;
 }
 
-#message-box, #root{
+#message-box {
+  position: fixed;
+  width: 100%;
+  z-index: 10;
+}
+
+#root {
   position: relative;
 }
+
 
 @media screen {
   #message-box, #root{
     top: 64px;
+  }
+
+  #root {
+    margin-top: 65px;
   }
 }
 
@@ -70,11 +81,19 @@ p, h3 {
   #message-box, #root{
     top: 76px;
   }
+
+  #root {
+    margin-top: 60px;
+  }
 }
 
 @media screen and (min-width: 768px){
   #message-box, #root{
     top: 78px;
+  }
+
+  #root {
+    margin-top: 50px;
   }
 }
 

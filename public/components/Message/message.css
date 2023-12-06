@@ -18,20 +18,23 @@
 
 @media screen {
   .success-container, .error-container {
-    padding: 12px;
-    font-size: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-size: 16px;
   }
 }
 @media screen and (min-width: 480px) {
   .success-container, .error-container {
-    padding: 9px;
-    font-size: 23px;
+    padding-top: 9px;
+    padding-bottom: 9px;
+    font-size: 20px;
   }
 }
 @media screen and (min-width: 768px) {
   .success-container, .error-container {
-    padding: 10px;
-    font-size: 24px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-size: 18px;
   }
 }
 

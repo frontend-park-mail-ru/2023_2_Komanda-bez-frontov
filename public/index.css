@@ -257,7 +257,7 @@ input {
 }
 .form-author-menu {
   position: fixed;
-  z-index: 5;
+  z-index: 15;
   left: 0;
   top: 78px;
   width: 200px;
@@ -2123,20 +2123,23 @@ input {
 
 @media screen {
   .success-container, .error-container {
-    padding: 12px;
-    font-size: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-size: 16px;
   }
 }
 @media screen and (min-width: 480px) {
   .success-container, .error-container {
-    padding: 9px;
-    font-size: 23px;
+    padding-top: 9px;
+    padding-bottom: 9px;
+    font-size: 20px;
   }
 }
 @media screen and (min-width: 768px) {
   .success-container, .error-container {
-    padding: 10px;
-    font-size: 24px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-size: 18px;
   }
 }
 * {
@@ -2176,7 +2179,13 @@ p, h3 {
   z-index: 100;
 }
 
-#message-box, #root {
+#message-box {
+  position: fixed;
+  width: 100%;
+  z-index: 10;
+}
+
+#root {
   position: relative;
 }
 
@@ -2184,15 +2193,24 @@ p, h3 {
   #message-box, #root {
     top: 64px;
   }
+  #root {
+    margin-top: 65px;
+  }
 }
 @media screen and (min-width: 480px) {
   #message-box, #root {
     top: 76px;
   }
+  #root {
+    margin-top: 60px;
+  }
 }
 @media screen and (min-width: 768px) {
   #message-box, #root {
     top: 78px;
+  }
+  #root {
+    margin-top: 50px;
   }
 }
 #footer {
