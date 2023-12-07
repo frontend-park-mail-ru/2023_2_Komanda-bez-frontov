@@ -136,7 +136,7 @@ export const renderFormNew = async () => {
       }
       renderMessage(res.message, true);
     } catch (e) {
-      renderMessage('Ошибка сервера. Попробуйте позже.', true);
+      renderMessage('Ошибка сервера. Перезагрузите страницу', true);
     }
   });
 };
@@ -267,7 +267,7 @@ export const formUpdateValidator = () => {
   if (!validator.valid) {
     const titleInput = document.querySelector('#update-form__title');
     titleInput.classList.add('update-form__input-error');
-    titleInput.addEventListener('click', () => {
+    titleInput.addEventListener('input', () => {
       titleInput.classList.remove('update-form__input-error');
     }, {once: true});
     valid = false;
@@ -279,7 +279,7 @@ export const formUpdateValidator = () => {
   if (!validator.valid) {
     const descriptionInput = document.querySelector('#update-form__description-textarea ');
     descriptionInput.classList.add('update-form__input-error');
-    descriptionInput.addEventListener('click', () => {
+    descriptionInput.addEventListener('input', () => {
       descriptionInput.classList.remove('update-form__input-error');
     }, {once: true});
     valid = false;
@@ -293,7 +293,7 @@ export const formUpdateValidator = () => {
     if (!validator.valid) {
       const titleInput = questionElement.querySelector('#update-question__title');
       titleInput.classList.add('update-form__input-error');
-      titleInput.addEventListener('click', () => {
+      titleInput.addEventListener('input', () => {
         titleInput.classList.remove('update-form__input-error');
       }, {once: true});
       valid = false;
@@ -303,7 +303,7 @@ export const formUpdateValidator = () => {
     if (!validator.valid) {
       const descInput = questionElement.querySelector('#update-question__description-textarea');
       descInput.classList.add('update-form__input-error');
-      descInput.addEventListener('click', () => {
+      descInput.addEventListener('input', () => {
         descInput.classList.remove('update-form__input-error');
       }, {once: true});
       valid = false;
@@ -316,7 +316,7 @@ export const formUpdateValidator = () => {
         validator = textValidation(answer.value);
         if (!validator.valid) {
           answer.classList.add('update-form__input-error');
-          answer.addEventListener('click', () => {
+          answer.addEventListener('input', () => {
             answer.classList.remove('update-form__input-error');
           }, {once: true});
           valid = false;

@@ -53,7 +53,7 @@ export const renderResultsForm = async (id) => {
     }
     formJSON = res.formResults;
   } catch (e) {
-    renderMessage('Ошибка сервера. Попробуйте позже.', true);
+    renderMessage('Ошибка сервера. Перезагрузите страницу', true);
     return;
   }
 

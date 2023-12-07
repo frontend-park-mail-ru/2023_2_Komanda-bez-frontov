@@ -11,6 +11,7 @@ import {
 import {goToPage} from '../../../modules/router.js';
 import {STORAGE} from '../../../modules/storage.js';
 import {navbar} from "../../Navbar/navbar.js";
+import {debounce} from "../MyForms/forms.js";
 
 /**
  * Функция для рендеринга страницы регистрации.
@@ -28,7 +29,6 @@ export const toggleFunc = (password, icon) => {
   } else {
     password.type = 'password';
     icon.innerText = 'visibility';
-
   }
 };
 
@@ -65,7 +65,7 @@ export const renderSignup = async () => {
   let isUsernameValid = true;
   let isPasswordValid = true;
 
-  firstName.addEventListener("change", (e) => {
+  firstName.addEventListener("input", debounce((e) => {
     e.preventDefault();
 
     const nameValid = nameValidation(firstName.value);
@@ -75,11 +75,15 @@ export const renderSignup = async () => {
       isNameValid = true;
     } else {
       renderMessage(nameValid.message, true);
+      firstName.classList.add('update-form__input-error');
+      firstName.addEventListener('input', () => {
+        firstName.classList.remove('update-form__input-error');
+      }, {once: true});
       isNameValid = false;
     }
-  });
+  }, 1000));
 
-  email.addEventListener("change", (e) => {
+  email.addEventListener("input",  debounce((e) => {
     e.preventDefault();
 
     const emailValid = emailValidation(e.target.value);
@@ -89,11 +93,15 @@ export const renderSignup = async () => {
       isEmailValid = true;
     } else {
       renderMessage(emailValid.message, true);
+      email.classList.add('update-form__input-error');
+      email.addEventListener('input', () => {
+        email.classList.remove('update-form__input-error');
+      }, {once: true});
       isEmailValid = false;
     }
-  });
+  }, 1000));
 
-  username.addEventListener("change", (e) => {
+  username.addEventListener("input",  debounce((e) => {
     e.preventDefault();
 
     const usernameValid = usernameValidation(e.target.value);
@@ -103,11 +111,15 @@ export const renderSignup = async () => {
       isUsernameValid = true;
     } else {
       renderMessage(usernameValid.message, true);
+      username.classList.add('update-form__input-error');
+      username.addEventListener('input', () => {
+        username.classList.remove('update-form__input-error');
+      }, {once: true});
       isUsernameValid = false;
     }
-  });
+  }, 1000));
 
-  password.addEventListener("change", (e) => {
+  password.addEventListener("input",  debounce((e) => {
     e.preventDefault();
 
     const passwordValid = passwordValidation(e.target.value);
@@ -117,9 +129,13 @@ export const renderSignup = async () => {
       isPasswordValid = true;
     } else {
       renderMessage(passwordValid.message, true);
+      password.classList.add('update-form__input-error');
+      password.addEventListener('input', () => {
+        password.classList.remove('update-form__input-error');
+      }, {once: true});
       isPasswordValid = false;
     }
-  });
+  }, 1000));
 
   const signupButton = document.querySelector('#signup-button');
   signupButton.addEventListener('click', async (e) => {
@@ -160,7 +176,7 @@ export const renderSignup = async () => {
       goToPage(ROUTES.forms);
       renderMessage('Вы успешно зарегистрировались');
     } catch (err) {
-      renderMessage('Ошибка сервера. Попробуйте позже', true);
+      renderMessage('Ошибка сервера. Перезагрузите страницу', true);
     }
   });
 };

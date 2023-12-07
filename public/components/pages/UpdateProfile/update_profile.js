@@ -240,7 +240,7 @@ export const renderUpdateProfile = async () => {
       goToPage(ROUTES.profile);
       renderMessage('Изменения успешно применены');
     } catch (err) {
-      renderMessage('Ошибка сервера. Попробуйте позже', true);
+      renderMessage('Ошибка сервера. Перезагрузите страницу', true);
     }
   });
 

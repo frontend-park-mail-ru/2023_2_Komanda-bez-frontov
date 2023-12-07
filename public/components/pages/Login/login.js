@@ -6,6 +6,7 @@ import {goToPage} from '../../../modules/router.js';
 import {STORAGE, getAuthAvatar} from '../../../modules/storage.js';
 import {toggleFunc} from "../Signup/signup.js";
 import {navbar} from "../../Navbar/navbar.js";
+import {debounce} from "../MyForms/forms.js";
 
 /**
  * Функция для рендеринга страницы аутенфикации.
@@ -37,7 +38,7 @@ export const renderLogin = async () => {
   const email = document.querySelector('#email');
   const password = document.querySelector('#password');
 
-  email.addEventListener("change", (e) => {
+  email.addEventListener("input", debounce((e) => {
     e.preventDefault();
 
     const emailValid = emailValidation(e.target.value);
@@ -47,11 +48,15 @@ export const renderLogin = async () => {
       isEmailValid = true;
     } else {
       renderMessage(emailValid.message, true);
+      email.classList.add('update-form__input-error');
+      email.addEventListener('input', () => {
+        email.classList.remove('update-form__input-error');
+      }, {once: true});
       isEmailValid = false;
     }
-  });
+  }, 1000));
 
-  password.addEventListener("change", (e) => {
+  password.addEventListener("input", debounce((e) => {
     e.preventDefault();
 
     const passwordValid = passwordValidation(e.target.value);
@@ -61,9 +66,13 @@ export const renderLogin = async () => {
       isPasswordValid = true;
     } else {
       renderMessage(passwordValid.message, true);
+      password.classList.add('update-form__input-error');
+      password.addEventListener('input', () => {
+        password.classList.remove('update-form__input-error');
+      }, {once: true});
       isPasswordValid = false;
     }
-  });
+  }, 1000));
 
   loginButton.addEventListener('click', async (e) => {
     e.preventDefault();
@@ -87,7 +96,7 @@ export const renderLogin = async () => {
       goToPage(ROUTES.forms);
       renderMessage('Вы успешно вошли');
     } catch (err) {
-      renderMessage('Ошибка сервера. Попробуйте позже', true);
+      renderMessage('Ошибка сервера. Перезагрузите страницу', true);
     }
   });
 

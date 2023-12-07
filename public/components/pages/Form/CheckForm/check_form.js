@@ -60,7 +60,7 @@ export const renderForm = async (id) => {
     formJSON = res.form;
   } catch (e) {
     if (e.toString() !== 'TypeError: Failed to fetch') {
-      renderMessage('Ошибка сервера. Попробуйте позже', true);
+      renderMessage('Ошибка сервера. Перезагрузите страницу', true);
       return;
     }
   }
@@ -133,21 +133,19 @@ export const renderForm = async (id) => {
 
           if (question.required && chosenAnswer.value === "") {
             chosenAnswer.classList.add('update-form__input-error');
-            chosenAnswer.addEventListener('click', () => {
+            chosenAnswer.addEventListener('input', () => {
               chosenAnswer.classList.remove('update-form__input-error');
             }, {once: true});
 
-            console.log("111")
             renderMessage("Вы ответили не на все вопросы", true);
             err = true;
             return;
           }
 
-          console.log("222")
           const validator = textValidation(chosenAnswer.value);
           if (!validator.valid) {
             chosenAnswer.classList.add('update-form__input-error');
-            chosenAnswer.addEventListener('click', () => {
+            chosenAnswer.addEventListener('input', () => {
               chosenAnswer.classList.remove('update-form__input-error');
             }, {once: true});
 
@@ -185,7 +183,7 @@ export const renderForm = async (id) => {
           return;
         }
       } catch (e) {
-        renderMessage('Ошибка сервера. Попробуйте позже', true);
+        renderMessage('Ошибка сервера. Перезагрузите страницу', true);
         return;
       }
       if (!STORAGE.user) {

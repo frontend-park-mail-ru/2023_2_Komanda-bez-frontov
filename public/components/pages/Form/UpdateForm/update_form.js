@@ -62,7 +62,7 @@ export const renderFormUpdate = async (id) => {
     }
     formJSON = res.form;
   } catch (e) {
-    renderMessage('Ошибка сервера. Попробуйте позже.', true);
+    renderMessage('Ошибка сервера. Перезагрузите страницу', true);
     return;
   }
 
@@ -146,7 +146,7 @@ export const renderFormUpdate = async (id) => {
         }
         renderMessage(res.message, true);
       } catch (e) {
-        renderMessage('Ошибка сервера. Попробуйте позже.', true);
+        renderMessage('Ошибка сервера. Перезагрузите страницу', true);
         closePopUpWindow();
         return;
       }
@@ -178,7 +178,7 @@ export const renderFormUpdate = async (id) => {
       }
       renderMessage(res.message, true);
     } catch (e) {
-      renderMessage('Ошибка сервера. Попробуйте позже.', true);
+      renderMessage('Ошибка сервера. Перезагрузите страницу', true);
     }
   });
 };

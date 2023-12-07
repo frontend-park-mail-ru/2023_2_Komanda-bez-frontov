@@ -102,7 +102,7 @@ export const renderForms = async () => {
       loadingScreen.classList.add('display-invisible');
     } catch (e) {
       loadingScreen.classList.add('display-invisible');
-      renderMessage('Ошибка сервера. Попробуйте позже.', true);
+      renderMessage('Ошибка сервера. Перезагрузите страницу', true);
       return;
     }
 
@@ -119,7 +119,7 @@ export const renderForms = async () => {
       loadingScreen.classList.add('display-invisible');
     } catch (e) {
       loadingScreen.classList.add('display-invisible');
-      renderMessage('Ошибка сервера. Попробуйте позже.', true);
+      renderMessage('Ошибка сервера. Перезагрузите страницу', true);
       return;
     }
 

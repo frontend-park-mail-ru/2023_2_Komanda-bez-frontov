@@ -32,7 +32,7 @@ export const emailValidation = (email) => {
 
   if (!/^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/.test(email) ||
     !/^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[\w-]+$/.test(email)) {
-    const message = 'Неправильный формат ввода почты, пример: example@example.ru';
+    const message = 'Неправильный ввод почты, пример: example@example.ru';
     return { valid, message };
   }
 
@@ -60,7 +60,7 @@ export const usernameValidation = (username) => {
   let valid = false;
 
   if (!/^[a-zA-Z0-9_-]+$/.test(username)) {
-    const message = 'Имя пользователя должно содержать только латинские буквы и цифры';
+    const message = 'Username должен содержать только латинские буквы и цифры';
     return { valid, message };
   }
 

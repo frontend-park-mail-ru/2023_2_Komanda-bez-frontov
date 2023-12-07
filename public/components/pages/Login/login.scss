@@ -1,5 +1,8 @@
 .auth-container {
-  margin: 70px 0;
+  margin: 50px 0;
+  position: fixed;
+  top: 120px;
+  width: 100%;
 }
 
 .auth-container__form {
@@ -48,9 +51,6 @@
 }
 
 @media screen and (max-width: 768px) {
-  .auth-container {
-    margin: 50px 0;
-  }
   .login-form_container {
     h3 {
       font-size: 22px;
@@ -66,6 +66,9 @@
 }
 
 @media screen and (max-width: 480px) {
+  .auth-container {
+    top: 100px;
+  }
   .auth-container__form {
     border: none;
     margin: 0 10px;
