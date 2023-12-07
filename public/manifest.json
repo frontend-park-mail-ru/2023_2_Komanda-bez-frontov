@@ -1,0 +1,16 @@
+{
+  "name": "FormHub",
+  "lang": "ru",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "theme_color": "#4B357A",
+  "background_color": "#EEE",
+  "icons": [
+    {
+      "src": "resources/images/icon_desktop.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

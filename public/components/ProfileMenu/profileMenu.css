@@ -1,20 +1,79 @@
 .navbar-profile-menu {
   position: fixed;
   z-index: 20;
-  right: 20px;
-  top: 105px;
-  width: 250px;
-  padding: 10px;
-  border-radius: 12px;
-  border: 2px solid #424242;
+  border-radius: 9px;
+  border: 1px solid #424242;
   background-color: #FFFFFF;
   text-align: center;
 }
-.navbar-profile-menu .primary-button {
-  margin: 3px 0;
+
+@media screen {
+  .navbar-profile-menu {
+    right: 4px;
+    top: 75px;
+    padding: 8px;
+  }
+  .navbar-profile-menu .primary-button {
+    font-size: 14px;
+    margin: 4px 0;
+  }
+  .navbar-profile-menu-separator {
+    height: 12px;
+  }
 }
-.navbar-profile-menu .navbar-profile-menu-separator {
-  height: 15px;
+@media screen and (min-width: 480px) {
+  .navbar-profile-menu {
+    right: 8px;
+    top: 80px;
+    padding: 8px;
+  }
+  .navbar-profile-menu .primary-button {
+    margin: 3px 0;
+  }
+  .navbar-profile-menu-separator {
+    height: 12px;
+  }
+}
+@media screen and (min-width: 768px) {
+  .navbar-profile-menu {
+    right: 16px;
+    top: 85px;
+    padding: 8px;
+  }
+  .navbar-profile-menu .primary-button {
+    margin: 3px 0;
+  }
+}
+@media screen and (min-width: 768px) and (min-width: 480px) {
+  .navbar-profile-menu {
+    right: 8px;
+    top: 80px;
+    padding: 8px;
+  }
+  .navbar-profile-menu .primary-button {
+    margin: 3px 0;
+  }
+  .navbar-profile-menu-separator {
+    height: 12px;
+  }
+}
+@media screen and (min-width: 768px) and (min-width: 768px) {
+  .navbar-profile-menu {
+    right: 16px;
+    top: 85px;
+    padding: 8px;
+  }
+  .navbar-profile-menu .primary-button {
+    margin: 3px 0;
+  }
+  .navbar-profile-menu-separator {
+    height: 12px;
+  }
+}
+@media screen and (min-width: 768px) {
+  .navbar-profile-menu-separator {
+    height: 12px;
+  }
 }
 
-/*# sourceMappingURL=authorMenu.css.map */
+/*# sourceMappingURL=profileMenu.css.map */

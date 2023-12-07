@@ -8,12 +8,18 @@
         <textarea class="update-question__description-textarea" id="update-question__description-textarea" placeholder="Описание вопроса" maxlength="512">{{question.description}}</textarea>
         <h3 class="update-question__answer-title">Формат ответа</h3>
         <div class="update-question__answer-format">
-            <input class="update-question__answer-format-radio" id="update-question__answer-format-text" type="radio">
-            <label class="update-question__answer-format-label" id="update-question__answer-format-text-label">Текст</label>
-            <input class="update-question__answer-format-radio" id="update-question__answer-format-radio" type="radio">
-            <label class="update-question__answer-format-label" id="update-question__answer-format-radio-label">Один вариант</label>
-            <input class="update-question__answer-format-radio" id="update-question__answer-format-checkbox" type="radio">
-            <label class="update-question__answer-format-label" id="update-question__answer-format-checkbox-label">Несколько вариантов</label>
+            <div>
+                <input class="update-question__answer-format-radio" id="update-question__answer-format-text" type="radio">
+                <label class="update-question__answer-format-label" id="update-question__answer-format-text-label">Текст</label>
+            </div>
+           <div>
+               <input class="update-question__answer-format-radio" id="update-question__answer-format-radio" type="radio">
+               <label class="update-question__answer-format-label" id="update-question__answer-format-radio-label">Один вариант</label>
+           </div>
+           <div>
+               <input class="update-question__answer-format-radio" id="update-question__answer-format-checkbox" type="radio">
+               <label class="update-question__answer-format-label" id="update-question__answer-format-checkbox-label">Несколько вариантов</label>
+           </div>
         </div>
         <div class="update-question__answer" id="question-answers">
 <!--            Answers will be here-->
@@ -21,8 +27,15 @@
         <div class="update-question__button-container">
             <button class="primary-button" type="submit" id="add-answer-button">Добавить ответ</button>
 <!--            <button class="red-button" type="submit" id="clear-answers-button">Очистить все</button>-->
-            <input class="update-question_button-container__required-checkbox" id="required-question-checkbox" type="checkbox">
-            <label class="update-question_button-container__required-label">Обязательный вопрос</label>
+            <div class="update-question__required-container">
+                {{#ifEquals question.required true}}
+                    <input class="update-question_button-container__required-checkbox" id="required-question-checkbox" type="checkbox" checked>
+                {{/ifEquals}}
+                {{#ifEquals question.required false}}
+                    <input class="update-question_button-container__required-checkbox" id="required-question-checkbox" type="checkbox">
+                {{/ifEquals}}
+                <label class="update-question_button-container__required-label">Обязательный вопрос</label>
+            </div>
         </div>
     </div>
 {{/if}}

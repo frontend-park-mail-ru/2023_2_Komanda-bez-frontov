@@ -1,7 +1,9 @@
-/** Compares first value to the second one allowing entering IF clouse if true.
- * Otherwise entering ELSE clause if exist.
+/** Compares first value to the second one allowing entering IF clause if true.
+ * Otherwise, entering ELSE clause if exists.
  * eslint-disable-next-line func-names
  */
+import {TYPE_SINGLE_CHOICE, TYPE_MULTIPLE_CHOICE, TYPE_TEXT} from "../../pages/Form/CheckForm/check_form.js";
+
 Handlebars.registerHelper('ifEquals', (a, b, options) => {
   if (a === b) {
     return options.fn(this);
@@ -18,9 +20,6 @@ Handlebars.registerHelper('ifEquals', (a, b, options) => {
  */
 export const createQuestion = (question) => {
   const questionElement = document.createElement('div');
-
-  // TODO удалить потом, для теста
-  question.required = true;
 
   questionElement.innerHTML = Handlebars.templates.check_question({question});
 
@@ -42,17 +41,17 @@ export const createQuestion = (question) => {
   const clearButton = questionElement.querySelector('#check-question__clear-button');
   clearButton.addEventListener('click', () => {
     switch (question.type) {
-      case 1:
+      case TYPE_SINGLE_CHOICE:
         cRadioButtons.forEach( (rb) => {
           rb.checked = false;
         });
         break;
-      case 2:
+      case TYPE_MULTIPLE_CHOICE:
         cCheckboxButton.forEach( (cb) => {
           cb.checked = false;
         });
         break;
-      case 3:
+      case TYPE_TEXT:
         textArea.value = '';
         break;
       default:

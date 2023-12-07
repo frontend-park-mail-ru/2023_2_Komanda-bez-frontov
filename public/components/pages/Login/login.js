@@ -5,6 +5,7 @@ import {emailValidation, passwordValidation} from '../../../modules/validation.j
 import {goToPage} from '../../../modules/router.js';
 import {STORAGE, getAuthAvatar} from '../../../modules/storage.js';
 import {toggleFunc} from "../Signup/signup.js";
+import {navbar} from "../../Navbar/navbar.js";
 
 /**
  * Функция для рендеринга страницы аутенфикации.
@@ -82,14 +83,11 @@ export const renderLogin = async () => {
       STORAGE.user = res.authorizedUser;
       await getAuthAvatar();
 
+      navbar();
       goToPage(ROUTES.forms);
       renderMessage('Вы успешно вошли');
     } catch (err) {
-      if (err.toString() !== 'TypeError: Failed to fetch') {
-        renderMessage('Ошибка сервера. Попробуйте позже', true);
-        return;
-      }
-      renderMessage('Потеряно соединение с сервером', true);
+      renderMessage('Ошибка сервера. Попробуйте позже', true);
     }
   });
 

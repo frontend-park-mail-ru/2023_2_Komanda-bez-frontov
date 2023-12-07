@@ -3,9 +3,11 @@ import {removeMessage, renderMessage} from '../../../Message/message.js';
 import {STORAGE} from '../../../../modules/storage.js';
 import {goToPage} from '../../../../modules/router.js';
 import {ROUTES} from '../../../../config.js';
-import {createQuestionUpdate} from '../../../Question/UpdateQuestion/update_question.js';
+import {createQuestionUpdate, removedAnswersID} from '../../../Question/UpdateQuestion/update_question.js';
 import {closePopUpWindow, renderPopUpWindow} from '../../../PopUpWindow/popup_window.js';
 import {textValidation} from '../../../../modules/validation.js';
+import {TYPE_SINGLE_CHOICE, TYPE_MULTIPLE_CHOICE, TYPE_TEXT} from "../CheckForm/check_form.js";
+import {editInProcess, setEditInProcess} from "../UpdateForm/update_form.js";
 
 /**
  * Функция для рендеринга страницы опроса по его id.
@@ -25,16 +27,20 @@ export const renderFormNew = async () => {
     return;
   }
 
+  const rootElement = document.querySelector('#root');
+  rootElement.innerHTML = '';
+
   const defaultForm = {
     title: '',
     description: '',
+    anonymous: false,
     questions: [
       {
         id: 0,
         title: '',
         description: '',
-        type: 1,
-        shuffle: false,
+        type: TYPE_SINGLE_CHOICE,
+        required: false,
         answers: [
           {
             id: 0,
@@ -45,8 +51,6 @@ export const renderFormNew = async () => {
     ],
   };
 
-  const rootElement = document.querySelector('#root');
-  rootElement.innerHTML = '';
   rootElement.innerHTML = Handlebars.templates.update_form({form: defaultForm});
 
   const pageTitle = document.querySelector('#update-form-title');
@@ -65,14 +69,27 @@ export const renderFormNew = async () => {
     questions.appendChild(questionElement);
   }
 
+  const cInputs = document.querySelectorAll('input, textarea');
+  cInputs.forEach((input) => {
+    input.addEventListener('change', () => {
+      setEditInProcess(true);
+    }, {once: true})
+  });
+  const cButtons = document.querySelectorAll('#delete-question, #add-answer-button');
+  cButtons.forEach((input) => {
+    input.addEventListener('click', () => {
+      setEditInProcess(true);
+    }, {once: true})
+  });
+
   const addQuestion = document.querySelector('#add-button');
   addQuestion.addEventListener('click', () => {
     const defaultQuestion = {
       id: 0,
       title: '',
       description: '',
-      type: 1,
-      shuffle: false,
+      type: TYPE_SINGLE_CHOICE,
+      required: false,
       answers: [
         {
           id: 0,
@@ -80,18 +97,20 @@ export const renderFormNew = async () => {
         },
       ],
     };
+    setEditInProcess(true);
     const questionElement = createQuestionUpdate(defaultQuestion);
     questionElement.querySelector('#delete-question').addEventListener('click', (e) => {
       e.stopImmediatePropagation();
       renderPopUpWindow('Требуется подтверждение', 'Вы уверены, что хотите безвозвратно удалить вопрос?', true, () => {
         questionElement.remove();
+        closePopUpWindow();
       });
     });
     questions.appendChild(questionElement);
   });
 
   const deleteForm = document.querySelector('#delete-button');
-  deleteForm.style.display = 'none';
+  deleteForm.classList.add('display-none');
 
   const saveForm = document.querySelector('#update-button');
   saveForm.innerHTML = 'Опубликовать';
@@ -111,16 +130,13 @@ export const renderFormNew = async () => {
       const res = await api.saveForm(createdForm);
       if (res.message === 'ok') {
         renderMessage('Опрос успешно создан.');
+        setEditInProcess(false);
         goToPage(ROUTES.form, res.form.id);
         return;
       }
       renderMessage(res.message, true);
     } catch (e) {
-      if (e.toString() !== 'TypeError: Failed to fetch') {
-        renderMessage('Ошибка сервера. Попробуйте позже', true);
-        return;
-      }
-      renderMessage('Потеряно соединение с сервером', true);
+      renderMessage('Ошибка сервера. Попробуйте позже.', true);
     }
   });
 };
@@ -138,6 +154,8 @@ export const formUpdatePageParser = () => {
   let flagRepeation = false;
   const form = {
     title: document.querySelector('#update-form__title').value,
+    description: document.querySelector('#update-form__description-textarea').value,
+    anonymous: document.querySelector('#update-form-anonymous-checkbox').checked,
     questions: [],
   };
   if (!form.title) {
@@ -151,20 +169,20 @@ export const formUpdatePageParser = () => {
 
   const cQuestions = document.querySelectorAll('.update-question');
   cQuestions.forEach((questionElement) => {
-    let type = 3;
+    let type = TYPE_TEXT;
     if (questionElement.querySelector('#update-question__answer-format-radio').checked) {
-      type = 1;
+      type = TYPE_SINGLE_CHOICE;
     }
     if (questionElement.querySelector('#update-question__answer-format-checkbox').checked) {
-      type = 2;
+      type = TYPE_MULTIPLE_CHOICE;
     }
 
     const question = {
-      // id: questionElement.id,
+      id: Number(questionElement.id),
       title: questionElement.querySelector('#update-question__title').value,
       description: questionElement.querySelector('#update-question__description-textarea').value,
       type,
-      shuffle: false,
+      required: questionElement.querySelector('#required-question-checkbox').checked,
       answers: [],
     };
 
@@ -176,18 +194,11 @@ export const formUpdatePageParser = () => {
       }, {once: true});
       flag = true;
     }
-    if (!question.description) {
-      const descInput = questionElement.querySelector('#update-question__description-textarea');
-      descInput.classList.add('update-form__input-error');
-      descInput.addEventListener('click', () => {
-        descInput.classList.remove('update-form__input-error');
-      }, {once: true});
-      flag = true;
-    }
 
-    if (question.type === 3) {
+    if (question.type === TYPE_TEXT) {
       question.answers.push({
-        // id: questionElement.querySelector('#update-question__answers-item-input').id,
+        // id: Number(questionElement.querySelector('.update-question__answers-item-textarea').id),
+        id: 0,
         text: '',
       });
     } else {
@@ -202,7 +213,7 @@ export const formUpdatePageParser = () => {
           flag = true;
         }
         question.answers.push({
-          // id: answer.id,
+          id: Number(answer.id),
           text: answer.value,
         });
         uniqueAnswers.add(answer.value);

@@ -1,87 +1,178 @@
 .update-form {
   position: relative;
   text-align: center;
-  font-size: 24px;
-  margin: 40px auto;
-  width: 800px;
-}
-.update-form .update-form__title-label {
-  font-size: 36px;
-  margin-bottom: 32px;
+  font-size: 20px;
 }
 .update-form .update-form__title {
-  padding: 15px;
-  border-radius: 12px;
-  border: 2px solid #424242;
-  margin-bottom: 18px;
+  border-radius: 9px;
+  border: 1px solid #424242;
 }
 .update-form .update-form__title-input {
-  padding: 13px 15px;
-  width: 720px;
-  font-size: 22px;
-  background-color: #D8D3E2;
-  border-radius: 8px;
+  background-color: #d5ceec;
+  border-radius: 6px;
 }
 .update-form .button-container {
-  width: 550px;
   flex-wrap: wrap;
-  margin: 30px 20px;
-  gap: 15px;
-}
-.update-form .button-container button {
-  width: 247px;
-  margin-bottom: 5px;
 }
 
 .update-form__description-title, .update-form__title-title {
-  padding-left: 5px;
-  font-size: 22px;
-  margin-bottom: 10px;
+  font-size: 18px;
+  margin-bottom: 8px;
   text-align: left;
 }
 
 .update-form__description {
-  padding: 15px;
-  border-radius: 12px;
-  border: 2px solid #424242;
+  padding: 8px;
+  border-radius: 9px;
+  border: 1px solid #424242;
 }
 
 .update-form__description-textarea {
-  font-size: 20px;
-  width: 740px;
-  height: 118px;
+  font-size: 16px;
+  width: 590px;
+  height: 95px;
   resize: none;
-  background-color: #D8D3E2;
-  border-radius: 8px;
-  padding-left: 10px;
+  background-color: #d5ceec;
+  border-radius: 6px;
+  padding: 8px;
 }
 
 .update-form_anonymous {
-  margin-top: 18px;
-  padding: 18px;
-  border-radius: 12px;
-  border: 2px solid #424242;
+  margin-top: 15px;
+  padding: 15px;
+  border-radius: 9px;
+  border: 1px solid #424242;
   text-align: left;
 }
 .update-form_anonymous .update-form_anonymous__checkbox {
-  margin-left: 5px;
-  width: 18px;
-  height: 18px;
-}
-.update-form_anonymous .update-form_anonymous__checkbox-label {
-  margin-left: 10px;
-  font-size: 24px;
-}
-.update-form_anonymous .update-form_anonymous__checkbox-label:hover {
+  margin-left: 4px;
+  width: 15px;
+  height: 15px;
   cursor: pointer;
 }
-.update-form_anonymous p {
-  margin-top: 10px;
+.update-form_anonymous .update-form_anonymous__checkbox-label {
+  margin-left: 6px;
   font-size: 20px;
+}
+.update-form_anonymous p {
+  margin-top: 8px;
+  font-size: 16px;
 }
 
 .update-form__input-error {
   background-color: #fdc6c6 !important;
+}
+
+@media screen and (min-width: 769px) {
+  .update-form {
+    margin: 32px auto;
+    width: 640px;
+  }
+  .update-form .button-container {
+    width: 440px;
+    margin: 24px 16px;
+    gap: 12px;
+  }
+  .update-form .button-container button {
+    width: 200px;
+    margin-bottom: 4px;
+  }
+  .update-form__description {
+    padding: 12px;
+  }
+  .update-form__title-label {
+    font-size: 29px;
+    margin-bottom: 26px;
+  }
+  .update-form__title {
+    padding: 12px;
+    margin-bottom: 15px;
+  }
+  .update-form__title-input {
+    margin: 0 auto;
+    padding: 8px;
+    width: 590px;
+    font-size: 18px;
+  }
+  .update-form__description-textarea {
+    margin: 0 auto;
+    padding: 8px;
+    font-size: 18px;
+    width: 590px;
+  }
+}
+@media screen and (max-width: 768px) {
+  .update-form {
+    margin: 16px auto;
+    width: 90%;
+  }
+  .update-form .button-container {
+    width: 90%;
+    gap: 8px;
+  }
+  .update-form .button-container button {
+    width: 180px;
+    margin-bottom: 4px;
+  }
+  .update-form__title-label {
+    font-size: 25px;
+    margin: 30px 0 20px 0;
+  }
+  .update-form__title {
+    padding: 8px;
+    margin-bottom: 8px;
+  }
+  .update-form__title-input {
+    margin: 0 auto;
+    padding: 8px;
+    width: 95%;
+    font-size: 18px;
+  }
+  .update-form__description-textarea {
+    margin: 0 auto;
+    padding: 8px;
+    font-size: 18px;
+    width: 95%;
+  }
+  .update-form_anonymous {
+    margin-top: 8px;
+  }
+}
+@media screen and (max-width: 480px) {
+  .update-form {
+    margin: 16px auto;
+    width: 90%;
+  }
+  .update-form .button-container {
+    width: 90%;
+    gap: 8px;
+  }
+  .update-form .button-container button {
+    width: 140px;
+    height: 42px;
+    margin-bottom: 4px;
+  }
+  .update-form__title-label {
+    font-size: 25px;
+    margin: 20px 0;
+  }
+  .update-form__title {
+    padding: 8px 8px;
+    margin-bottom: 10px;
+  }
+  .update-form__title-input {
+    padding: 8px 12px;
+    width: 90%;
+    font-size: 16px;
+  }
+  .update-form__description-textarea {
+    padding: 8px 12px;
+    font-size: 16px;
+    width: 90%;
+  }
+  .update-form_anonymous {
+    margin-top: 8px;
+  }
 }
 
 /*# sourceMappingURL=update_form.css.map */

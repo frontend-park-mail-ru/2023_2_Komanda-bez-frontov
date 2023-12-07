@@ -1,16 +1,20 @@
 .button-container {
   display: flex;
-  gap: 6px;
+  gap: 5px;
 }
 
 button {
-  font-size: 15px;
+  font-size: 12px;
+}
+
+input {
+  border: 1px solid #424242;
 }
 
 %button-common {
-  padding: 13px 15px;
-  border-radius: 12px;
-  border: 2px solid #424242;
+  padding: 10px 12px;
+  border-radius: 9px;
+  border: 1px solid #424242;
   width: 100%;
   font-weight: bold;
 
@@ -28,6 +32,7 @@ button {
 
 .primary-button {
   @extend %button-common;
+  background-color: #f5f5f5;
   color: black;
 }
 
@@ -35,12 +40,24 @@ button {
   @extend %button-common;
   background-color: #000000;
   color: white;
-  border-radius: 12px;
+  border-radius: 9px;
 }
 
 .red-button {
   @extend %button-common;
   background-color: #da2d28;
   color: white;
-  border-radius: 12px;
+  border-radius: 9px;
+}
+
+.button__disabled {
+  opacity: 0.6;
+}
+
+@media screen {
+  button {
+    &:hover {
+      opacity: 1 !important;
+    }
+  }
 }

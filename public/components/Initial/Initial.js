@@ -1,6 +1,7 @@
 import {API} from '../../modules/api.js';
 import {renderMessage} from '../Message/message.js';
 import {getAuthAvatar, STORAGE} from '../../modules/storage.js';
+import {navbar} from "../Navbar/navbar.js";
 
 /**
  * Функция для рендеринга страницы при первой загрузке.
@@ -18,11 +19,11 @@ export const renderInitial = async () => {
     const isAuth = await api.isAuth();
     if (isAuth.isAuthorized) {
       STORAGE.user = isAuth.authorizedUser;
-      await getAuthAvatar();
+      getAuthAvatar();
     }
   } catch (e) {
-    if (e.toString() === 'TypeError: Failed to fetch') {
-      renderMessage('Потеряно соединение с сервером', true);
-    }
+    renderMessage('Ошибка сервера. Попробуйте позже', true);
   }
+
+  navbar();
 };

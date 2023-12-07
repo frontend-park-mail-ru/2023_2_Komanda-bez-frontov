@@ -10,6 +10,7 @@ import {
 } from '../../../modules/validation.js';
 import {goToPage} from '../../../modules/router.js';
 import {STORAGE} from '../../../modules/storage.js';
+import {navbar} from "../../Navbar/navbar.js";
 
 /**
  * Функция для рендеринга страницы регистрации.
@@ -36,8 +37,6 @@ export const renderSignup = async () => {
   const rootElement = document.querySelector('#root');
   rootElement.innerHTML = '';
   rootElement.innerHTML = Handlebars.templates.signup();
-
-  // let avatar = '';
 
   const showPasswordButton = document.querySelector('#signup-form_container__input-show-button');
   showPasswordButton.addEventListener('click',  () => {
@@ -148,7 +147,6 @@ export const renderSignup = async () => {
         username.value,
         email.value,
         password.value,
-        // avatar,
       );
 
       if (res.message !== 'ok') {
@@ -157,46 +155,12 @@ export const renderSignup = async () => {
       }
 
       STORAGE.user = res.registeredUser;
-      // STORAGE.avatar = avatar;
 
+      navbar();
       goToPage(ROUTES.forms);
       renderMessage('Вы успешно зарегистрировались');
     } catch (err) {
-      if (err.toString() !== 'TypeError: Failed to fetch') {
-        renderMessage('Ошибка сервера. Попробуйте позже', true);
-        return;
-      }
-      renderMessage('Потеряно соединение с сервером', true);
+      renderMessage('Ошибка сервера. Попробуйте позже', true);
     }
   });
-
-  // const inputAvatar = document.querySelector('#avatar');
-  // inputAvatar.addEventListener('change', (e) => {
-  //   const labelAvatar = document.querySelector('#signup-avatar-button');
-  //   labelAvatar.style.backgroundColor = '#caecaf';
-  //   const avatarFile = e.target.files[0];
-  //   const isAvatarValid = avatarValidation(avatarFile);
-  //
-  //   if (!isAvatarValid.valid) {
-  //     renderMessage(isAvatarValid.message, true);
-  //     return;
-  //   }
-  //   // Перевод аватарка из файла в Base64
-  //   if (avatarFile) {
-  //     const reader = new FileReader();
-  //     reader.onloadend = () => {
-  //       avatar = reader.result
-  //         .replace('data:', '')
-  //         .replace(/^.+,/, '');
-  //     };
-  //     reader.readAsDataURL(avatarFile);
-  //   }
-  // });
-  //
-  // const cancelAvatar = document.querySelector('#signup-avatar-cancel');
-  // cancelAvatar.addEventListener('click', () => {
-  //   const labelAvatar = document.querySelector('#signup-avatar-button');
-  //   labelAvatar.style.backgroundColor = '#ffffff';
-  //   avatar = '';
-  // });
 };

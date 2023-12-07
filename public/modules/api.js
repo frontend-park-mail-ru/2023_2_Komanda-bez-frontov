@@ -7,16 +7,16 @@ const PUT_METHOD = 'PUT';
 
 export class API {
   /**
- * Проверяет, является ли пользователь авторизованным.
- *
- * @async
- * @function
+   * Проверяет, является ли пользователь авторизованным.
+   *
+   * @async
+   * @function
    // eslint-disable-next-line max-len
- * @return {Promise<{isAuthorized: boolean,
- * authorizedUser: ({password: *, name: *, email: *, username: *} | null)}>} Объект* с информацией
- * о статусе авторизации и о пользователе.
- * @throws {Error} Если произошла ошибка при запросе или обработке данных.
- */
+   * @return {Promise<{isAuthorized: boolean,
+   * authorizedUser: ({password: *, name: *, email: *, username: *} | null)}>} Объект* с информацией
+   * о статусе авторизации и о пользователе.
+   * @throws {Error} Если произошла ошибка при запросе или обработке данных.
+   */
   async isAuth() {
     try {
       const url = backendUrl + ROUTES_API.isAuth.url;
@@ -35,7 +35,7 @@ export class API {
         authorizedUser = body.current_user;
       }
 
-      return { isAuthorized, authorizedUser };
+      return {isAuthorized, authorizedUser};
     } catch (e) {
       // TODO убрать к РК4
       console.log('Ошибка метода isAuth:', e);
@@ -65,13 +65,14 @@ export class API {
           'Content-Type': 'application/json',
         },
         credentials: 'include',
-        body: JSON.stringify({ email, password }),
+        body: JSON.stringify({email, password}),
       });
-
-      const body = await res.json();
 
       let message = 'Ошибка сервера. Попробуйте позже.';
 
+      if (res.status === 450) {
+        return {message: 'Нет подключения к сети', authorizedUser: null};
+      }
       if (res.status === 400) {
         message = 'Невозможно выполнить вход. Завершите предыдущую сессию!';
       }
@@ -82,7 +83,9 @@ export class API {
         message = 'ok';
       }
 
-      return { message, authorizedUser: body.data };
+      const body = await res.json();
+
+      return {message, authorizedUser: body.data};
     } catch (e) {
       // TODO убрать к РК4
       console.log('Ошибка метода userLogin:', e);
@@ -106,6 +109,9 @@ export class API {
         method: POST_METHOD,
         credentials: 'include',
       });
+      if (res.status === 450) {
+        return {message: 'Нет подключения к сети'};
+      }
 
       if (res.status === 404) {
         return {message: 'Вы не авторизованы, обновите страницу'};
@@ -152,6 +158,9 @@ export class API {
           first_name, username, email, password, avatar,
         }),
       });
+      if (res.status === 450) {
+        return {message: 'Нет подключения к сети', registeredUser: null};
+      }
 
       const body = await res.json();
 
@@ -207,10 +216,10 @@ export class API {
           first_name, username, email, oldPassword, newPassword, avatar,
         }),
       });
+      if (res.status === 450) {
+        return {message: 'Нет подключения к сети', updatedUser: null};
+      }
 
-      const body = await res.json();
-
-      const updatedUser = body.data;
       let message = 'Ошибка сервера. Попробуйте позже.';
 
       if (res.status === 403) {
@@ -225,6 +234,9 @@ export class API {
       if (res.ok) {
         message = 'ok';
       }
+
+      const body = await res.json();
+      const updatedUser = body.data;
 
       return {message, updatedUser};
     } catch (e) {
@@ -256,6 +268,9 @@ export class API {
         method: GET_METHOD,
         credentials: 'include',
       });
+      if (res.status === 450) {
+        return {message: 'Нет подключения к сети', forms: null};
+      }
 
       const body = await res.json();
 
@@ -268,6 +283,47 @@ export class API {
     } catch (e) {
       // TODO убрать к РК4
       console.log('Ошибка метода getForms:', e);
+      throw (e);
+    }
+  }
+
+  /**
+   * Функция для получения списка опросов по искомому названию.
+   * Возращает список всех созданных текущим пользователем опросов в порядке, где на первом месте стоит
+   * опрос с самым похожим названием на искомое, и так далее.
+   * Через Query запрос передается искомое название
+   *
+   * @async
+   * @function
+   * @param {string} title - название искомого опроса
+   * @return {Promise<{forms: ( null | [] )}>} Объект с массивом с опросами.
+   * @throws {Error} Если произошла ошибка при запросе или обработке данных.
+   */
+  async getFormsByTitle(title = '') {
+    try {
+      let url = backendUrl + ROUTES_API.searchForms.url;
+      const query = `?title=${title}`;
+      url += query;
+
+      const res = await fetch(url, {
+        method: GET_METHOD,
+        credentials: 'include',
+      });
+      if (res.status === 450) {
+        return {message: 'Нет подключения к сети', forms: null};
+      }
+
+      const body = await res.json();
+
+      if (res.ok) {
+        const forms = body.data.forms;
+        return {message: 'ok', forms};
+      }
+
+      return {message: 'Ошибка сервера. Попробуйте позже', forms: null};
+    } catch (e) {
+      // TODO убрать к РК4
+      console.log('Ошибка метода getFormsByTitle:', e);
       throw (e);
     }
   }
@@ -289,6 +345,9 @@ export class API {
         method: GET_METHOD,
         credentials: 'include',
       });
+      if (res.status === 450) {
+        return {message: 'Нет подключения к сети', form: null};
+      }
 
       const body = await res.json();
 
@@ -364,6 +423,9 @@ export class API {
         credentials: 'include',
         body: JSON.stringify(saveForm),
       });
+      if (res.status === 450) {
+        return {message: 'Нет подключения к сети', form: null};
+      }
 
       const body = await res.json();
 
@@ -405,6 +467,9 @@ export class API {
         credentials: 'include',
         body: JSON.stringify(updateForm),
       });
+      if (res.status === 450) {
+        return {message: 'Нет подключения к сети', form: null};
+      }
 
       const body = await res.json();
 
@@ -442,6 +507,9 @@ export class API {
         credentials: 'include',
       });
 
+      if (res.status === 450) {
+        return {message: 'Нет подключения к сети'};
+      }
       if (res.ok) {
         return {message: 'ok'};
       }
@@ -456,6 +524,92 @@ export class API {
     } catch (e) {
       // TODO убрать к РК4
       console.log('Ошибка метода deleteForm:', e);
+      throw (e);
+    }
+  }
+
+  /**
+   * Функция для получения результатов опроса по его id.
+   *
+   * @async
+   * @function
+   * @param {number} id - ID.
+   * @return {Promise<{formResults: any | null}>} Объект с информацией об искомом опросе.
+   * @throws {Error} Если произошла ошибка при запросе или обработке данных.
+   */
+  async getFormResultsByID(id) {
+    try {
+      const url = backendUrl + ROUTES_API.formResults.url.replace(':id', id.toString());
+
+      const res = await fetch(url, {
+        method: GET_METHOD,
+        credentials: 'include',
+      });
+      if (res.status === 450) {
+        return {message: 'Нет подключения к сети', formResults: null};
+      }
+
+      const body = await res.json();
+
+      if (res.ok) {
+        const formResults = body.data;
+        return {message: 'ok', formResults};
+      }
+      if (res.status === 404) {
+        return {message: '404', formResults: null};
+      }
+
+      return {message: 'Ошибка сервера. Попробуйте позже', formResults: null};
+    } catch (e) {
+      // TODO убрать к РК4
+      console.log('Ошибка метода getFormResultsByID:', e);
+      throw (e);
+    }
+  }
+
+  /**
+   * Функция для сохранения прохождении опроса на сервере.
+   *
+   * @async
+   * @function
+   * @param {{passage_answers: *[], form_id}} passageJSON - объект, содержащий информацию о прохождении опроса.
+   * @return {Promise<{form: * | null, message: string}>} Объект с информацией
+   * о статусе запроса и формой опубликованного опроса.
+   * @throws {Error} Если произошла ошибка при запросе или обработке данных.
+   */
+  async passageForm(passageJSON) {
+    try {
+      const url = backendUrl + ROUTES_API.passForm.url;
+
+      const res = await fetch(url, {
+        method: POST_METHOD,
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        credentials: 'include',
+        body: JSON.stringify(passageJSON),
+      });
+
+      if (res.ok) {
+        return {message: 'ok'};
+      }
+
+      if (res.status === 400) {
+        return {message: 'Введены не валидные данные', form: null};
+      }
+
+      if (res.status === 401) {
+        return {message: 'Пользователь не авторизирован для прохождения опроса', form: null};
+      }
+
+      if (res.status === 450) {
+        return {message: 'Нет подключения к сети', form: null};
+      }
+
+      return {message: 'Ошибка сервера. Попробуйте позже', form: null};
+    } catch (e) {
+      // TODO убрать к РК4
+      console.log('Ошибка метода passageForm:', e);
       throw (e);
     }
   }

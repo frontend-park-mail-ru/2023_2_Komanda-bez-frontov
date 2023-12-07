@@ -1,3 +1,4 @@
+import {TYPE_SINGLE_CHOICE, TYPE_MULTIPLE_CHOICE, TYPE_TEXT} from "../../pages/Form/CheckForm/check_form.js";
 export const removedAnswersID = [];
 
 /**
@@ -21,8 +22,7 @@ export const createQuestionUpdate = (question) => {
   const answers = question.answers;
 
   const renderAnswers = () => {
-    answerContainer.innerHTML = Handlebars.templates
-      .update_answer({answers, type});
+    answerContainer.innerHTML = Handlebars.templates.update_answer({answers, type});
     const cInputText = questionElement.querySelectorAll('.update-question__answers-item-input');
     cInputText.forEach((input, index) => {
       input.addEventListener('change', () => {
@@ -34,6 +34,7 @@ export const createQuestionUpdate = (question) => {
       const deleteButton = answerElement.querySelector('.update-question__answers-item-delete');
       if (deleteButton) {
         deleteButton.addEventListener('click', () => {
+          buttonAddAnswer.classList.remove('button__disabled');
           answers.splice(index, 1);
           if (answers.length === 0) {
             answers.push({
@@ -42,54 +43,57 @@ export const createQuestionUpdate = (question) => {
             })
           }
           if (deleteButton.id !== '0') {
-            removedAnswersID.push(deleteButton.id);
+            removedAnswersID.push(Number(deleteButton.id));
           }
           renderAnswers();
         });
       }
     });
+
+    if (answers.length >= 12) {
+      buttonAddAnswer.classList.add('button__disabled');
+    }
   };
 
   switch (type) {
-    case 1:
+    case TYPE_SINGLE_CHOICE:
       radioButton.checked = true;
       renderAnswers();
       break;
-    case 2:
+    case TYPE_MULTIPLE_CHOICE:
       checkboxButton.checked = true;
       renderAnswers();
       break;
     default:
       textButton.checked = true;
       renderAnswers();
-      buttonAddAnswer.style.display = 'none';
+      buttonAddAnswer.classList.add('display-none');
       break;
   }
 
   radioButton.addEventListener('click', () => {
     checkboxButton.checked = false;
     textButton.checked = false;
-    type = 1;
-    buttonAddAnswer.style.display = 'flex';
+    type = TYPE_SINGLE_CHOICE;
+    buttonAddAnswer.classList.remove('display-none');
     renderAnswers();
   });
   checkboxButton.addEventListener('click', () => {
     radioButton.checked = false;
     textButton.checked = false;
-    type = 2;
-    buttonAddAnswer.style.display = 'flex';
+    type = TYPE_MULTIPLE_CHOICE;
+    buttonAddAnswer.classList.remove('display-none');
     renderAnswers();
   });
   textButton.addEventListener('click', () => {
     checkboxButton.checked = false;
     radioButton.checked = false;
-    type = 3;
-    buttonAddAnswer.style.display = 'none';
+    type = TYPE_TEXT;
+    buttonAddAnswer.classList.add('display-none');
     renderAnswers();
   });
 
-  const addButton = questionElement.querySelector('#add-answer-button');
-  addButton.addEventListener('click', () => {
+  buttonAddAnswer.addEventListener('click', () => {
     if (answers.length >= 12) {
       return;
     }
@@ -99,16 +103,6 @@ export const createQuestionUpdate = (question) => {
     });
     renderAnswers();
   });
-
-  // const clearButton = questionElement.querySelector('#clear-answers-button');
-  // clearButton.addEventListener('click', () => {
-  //   answers.length = 0;
-  //   answers.push({
-  //     id: 0,
-  //     text: '',
-  //   });
-  //   renderAnswers();
-  // });
 
   return questionElement;
 };

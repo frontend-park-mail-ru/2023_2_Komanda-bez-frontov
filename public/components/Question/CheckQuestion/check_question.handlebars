@@ -8,7 +8,7 @@
         <div class="check-question__answer" id="question-answer">
             {{#ifEquals question.type 1}}
                 <h3 class="check-question__answer-title">Выберите один вариант из нижеперечисленных:</h3>
-                <div class="check-question__answer-item">
+                <div class="check-question__answers" id="check-question_{{../question.id}}__answers">
                     {{#each ../question.answers}}
                         <div class="check-question__answer-item">
                             <input class="check-question__answer-item-radio" id="check-question_{{../../question.id}}_answer-item_{{id}}" type="radio">
@@ -19,7 +19,7 @@
             {{/ifEquals}}
             {{#ifEquals question.type 2}}
                 <h3 class="check-question__answer-title">Выберите один или несколько вариантов из нижеперечисленных:</h3>
-                <div class="check-question__answers-item">
+                <div class="check-question__answers" id="check-question_{{../question.id}}__answers">
                     {{#each ../question.answers}}
                         <div class="check-question__answer-item">
                             <input class="check-question__answer-item-checkbox" id="check-question_{{../../question.id}}_answer-item_{{id}}" type="checkbox">

@@ -1,7 +1,7 @@
 import {ROUTES} from '../../../config.js';
 import {removeMessage, renderMessage} from '../../Message/message.js';
 import {goToPage} from '../../../modules/router.js';
-import {STORAGE} from '../../../modules/storage.js';
+import {getAuthAvatar, STORAGE} from '../../../modules/storage.js';
 import {
   avatarValidation,
   emailValidation,
@@ -11,6 +11,7 @@ import {
 } from '../../../modules/validation.js';
 import {API} from '../../../modules/api.js';
 import {toggleFunc} from "../Signup/signup.js";
+import {navbar} from "../../Navbar/navbar.js";
 
 /**
  * Функция для рендеринга страницы изменения профиля авторизированного пользователя.
@@ -35,7 +36,7 @@ export const renderUpdateProfile = async () => {
   rootElement.innerHTML = Handlebars.templates.update_profile({User: STORAGE.user});
 
   let avatar = STORAGE.avatar;
-  const profilePicture = document.querySelector('#update-profile-page-picture');
+  const profilePicture = document.querySelector('#profile-page-picture');
   if (STORAGE.avatar) {
     profilePicture.src = `data:image/png;base64, ${avatar}`;
   }
@@ -233,16 +234,13 @@ export const renderUpdateProfile = async () => {
       }
 
       STORAGE.user = res.updatedUser;
-      STORAGE.avatar = avatar;
+      getAuthAvatar();
 
+      navbar();
       goToPage(ROUTES.profile);
       renderMessage('Изменения успешно применены');
     } catch (err) {
-      if (err.toString() !== 'TypeError: Failed to fetch') {
-        renderMessage('Ошибка сервера. Попробуйте позже', true);
-        return;
-      }
-      renderMessage('Потеряно соединение с сервером', true);
+      renderMessage('Ошибка сервера. Попробуйте позже', true);
     }
   });
 

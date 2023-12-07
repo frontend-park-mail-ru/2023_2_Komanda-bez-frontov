@@ -1,6 +1,7 @@
 import {goToPage} from "../../../modules/router.js";
 import {ROUTES} from "../../../config.js";
 import {STORAGE} from "../../../modules/storage.js";
+import {renderMessage} from "../../Message/message.js";
 
 /**
  * Функция для рендеринга главной страницы с информацией о сервисе.

@@ -5,13 +5,15 @@
 @import './components/PopUpWindow/popup_window';
 @import './components/pages/Profile/profile';
 @import './components/pages/UpdateProfile/update_profile';
-@import './components/pages/Forms/forms';
+@import 'components/pages/MyForms/forms';
 @import './components/FormsItem/forms_item';
 @import './components/Question/CheckQuestion/check_question';
+@import './components/Question/ResultsQuestion/results_question';
 @import './components/Question/UpdateQuestion/update_question';
 @import './components/Question/UpdateAnswer/update_answer';
 @import './components/pages/Form/CheckForm/check_form';
 @import './components/pages/Form/UpdateForm/update_form';
+@import './components/pages/FormResults/form_results';
 @import './components/pages/Main/main';
 @import './components/pages/Login/login';
 @import './components/pages/Signup/signup';
@@ -20,11 +22,31 @@
 * {
   padding: 0;
   margin: 0;
-  font-family: 'Exo 2', sans-serif;
+  font-family: 'Roboto', sans-serif;
 }
 
 html {
   scroll-behavior: smooth;
+  -webkit-text-size-adjust: none;
+  text-size-adjust: none
+}
+
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="number"],
+textarea {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -ms-appearance: none;
+  appearance: none;
+  outline: 0;
+  box-shadow: none;
+}
+
+p, h3 {
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 #navbar, #popup {
@@ -34,13 +56,42 @@ html {
   z-index: 100;
 }
 
+#navbar {
+  background-color: #4B357A;
+  height: 64px;
+}
+
 #message-box, #root{
   position: relative;
-  top: 100px;
+}
+
+@media screen {
+  #message-box, #root{
+    top: 64px;
+  }
+}
+
+@media screen and (min-width: 480px){
+  #message-box, #root{
+    top: 76px;
+  }
+  #navbar {
+    height: 76px;
+  }
+}
+
+@media screen and (min-width: 768px){
+  #message-box, #root{
+    top: 78px;
+  }
+  #navbar {
+    height: 78px;
+  }
 }
 
 #footer {
   position: relative;
-  height: 60px;
-  top: 60px;
+  height: 48px;
+  top: 80px;
+  z-index: -1;
 }
