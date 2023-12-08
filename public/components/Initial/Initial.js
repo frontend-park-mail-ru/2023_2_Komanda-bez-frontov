@@ -1,6 +1,6 @@
 import {API} from '../../modules/api.js';
 import {renderMessage} from '../Message/message.js';
-import {getAuthAvatar, STORAGE} from '../../modules/storage.js';
+import {clearStorage, getAuthAvatar, STORAGE} from '../../modules/storage.js';
 import {navbar} from "../Navbar/navbar.js";
 
 /**
@@ -20,6 +20,8 @@ export const renderInitial = async () => {
     if (isAuth.isAuthorized) {
       STORAGE.user = isAuth.authorizedUser;
       getAuthAvatar();
+    } else {
+      localStorage.removeItem('avatar');
     }
   } catch (e) {
     renderMessage('Ошибка сервера. Перезагрузите страницу', true);
