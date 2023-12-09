@@ -44,7 +44,13 @@ export const renderAuthorMenu = (id) => {
       copyButton.innerHTML = 'Скопировано!';
       copyButton.classList.add('primary-button');
       copyButton.classList.remove('secondary-button');
-      navigator.clipboard.writeText(link);
+      // navigator.clipboard.writeText(link);
+      const input = document.querySelector('#popup-copy-input');
+      input.classList.remove('display-none');
+      input.value = link;
+      input.select();
+      document.execCommand('copy');
+      input.classList.add('display-none');
     });
     document.querySelector('#popup-ok-button').innerHTML = 'Скопировать';
   });

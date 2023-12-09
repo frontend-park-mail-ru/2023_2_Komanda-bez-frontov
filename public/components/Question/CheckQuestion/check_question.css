@@ -84,7 +84,8 @@
     padding: 10px 12px;
   }
   .check-question__answers-item-textarea {
-    width: 590px;
+    width: 565px;
+    padding: 8px 12px;
   }
   .check-question__answer-item {
     padding: 5px 12px;
@@ -97,7 +98,7 @@
   }
   .check-question__answers-item-textarea {
     width: 95%;
-    padding: 12px;
+    padding: 8px 12px;
   }
   .check-question__answer-item {
     padding: 5px 8px;

@@ -7,6 +7,7 @@ import {createQuestionUpdate, removedAnswersID} from '../../../Question/UpdateQu
 import {closePopUpWindow, renderPopUpWindow} from '../../../PopUpWindow/popup_window.js';
 import {textValidation} from '../../../../modules/validation.js';
 import {TYPE_SINGLE_CHOICE, TYPE_MULTIPLE_CHOICE, TYPE_TEXT} from "../CheckForm/check_form.js";
+import {editInProcess, setEditInProcess} from "../UpdateForm/update_form.js";
 
 /**
  * Функция для рендеринга страницы опроса по его id.
@@ -67,6 +68,19 @@ export const renderFormNew = async () => {
     questions.appendChild(questionElement);
   }
 
+  const cInputs = document.querySelectorAll('input, textarea');
+  cInputs.forEach((input) => {
+    input.addEventListener('change', () => {
+      setEditInProcess(true);
+    }, {once: true})
+  });
+  const cButtons = document.querySelectorAll('#delete-question, #add-answer-button');
+  cButtons.forEach((input) => {
+    input.addEventListener('click', () => {
+      setEditInProcess(true);
+    }, {once: true})
+  });
+
   const addQuestion = document.querySelector('#add-button');
   addQuestion.addEventListener('click', () => {
     const defaultQuestion = {
@@ -82,6 +96,7 @@ export const renderFormNew = async () => {
         },
       ],
     };
+    setEditInProcess(true);
     const questionElement = createQuestionUpdate(defaultQuestion);
     questionElement.querySelector('#delete-question').addEventListener('click', (e) => {
       e.stopImmediatePropagation();
@@ -94,7 +109,7 @@ export const renderFormNew = async () => {
   });
 
   const deleteForm = document.querySelector('#delete-button');
-  deleteForm.classList.add('display-none');;
+  deleteForm.classList.add('display-none');
 
   const saveForm = document.querySelector('#update-button');
   saveForm.innerHTML = 'Опубликовать';
@@ -114,6 +129,7 @@ export const renderFormNew = async () => {
       const res = await api.saveForm(createdForm);
       if (res.message === 'ok') {
         renderMessage('Опрос успешно создан.');
+        setEditInProcess(false);
         goToPage(ROUTES.form, res.form.id);
         return;
       }
@@ -178,14 +194,6 @@ export const formUpdatePageParser = () => {
       titleInput.classList.add('update-form__input-error');
       titleInput.addEventListener('click', () => {
         titleInput.classList.remove('update-form__input-error');
-      }, {once: true});
-      flag = true;
-    }
-    if (!question.description) {
-      const descInput = questionElement.querySelector('#update-question__description-textarea');
-      descInput.classList.add('update-form__input-error');
-      descInput.addEventListener('click', () => {
-        descInput.classList.remove('update-form__input-error');
       }, {once: true});
       flag = true;
     }

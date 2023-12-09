@@ -93,6 +93,7 @@
     margin: 15px 0;
   }
   .form-results .button-container button {
+    height: 42px;
     width: 150px;
   }
   .form-results__description {

@@ -70,7 +70,7 @@ export const ROUTES = {
 
 const domain = 'localhost';
 export const backendUrl = `http://${domain}:8080/api/v1`;
-export const frontendUrl = `http://${domain}.site:8000`;
+export const frontendUrl = `http://${domain}:8000`;
 
 const GET_METHOD = 'GET';
 const POST_METHOD = 'POST';

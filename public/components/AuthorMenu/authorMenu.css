@@ -35,15 +35,21 @@
 .form-author-menu__close {
   transform: translate(-250px, 0);
 }
+.form-author-menu__close #author-menu-close-button {
+  top: 10px;
+  right: -45px;
+}
 
 .form-author-menu__open {
   transform: translate(0, 0);
 }
+.form-author-menu__open #author-menu-close-button {
+  top: 6px;
+  right: 8px;
+}
 
 #author-menu-close-button {
   position: absolute;
-  top: 10px;
-  right: -55px;
   font-size: 36px;
   cursor: pointer;
 }
@@ -75,6 +81,9 @@
     transition: transform 0s;
     transform: none;
   }
+  #author-menu-close-button {
+    display: none;
+  }
   #author-menu-check-button {
     border-radius: 18px 0 0 0;
   }
@@ -85,6 +94,7 @@
 @media screen and (max-width: 570px) {
   .form-author-menu button {
     padding: 10px 6px;
+    gap: 4px;
     flex-wrap: wrap;
   }
   .form-author-menu button span {

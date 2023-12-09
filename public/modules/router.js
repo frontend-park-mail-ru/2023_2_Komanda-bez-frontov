@@ -8,7 +8,11 @@ import {renderInitial} from '../components/Initial/Initial.js';
 import {render404} from '../components/404/404.js';
 import {renderProfile} from '../components/pages/Profile/profile.js';
 import {navbar} from '../components/Navbar/navbar.js';
-import {renderFormUpdate} from '../components/pages/Form/UpdateForm/update_form.js';
+import {
+  editInProcess,
+  renderFormUpdate,
+  renderQuitEditingWindow
+} from '../components/pages/Form/UpdateForm/update_form.js';
 import {renderFormNew} from '../components/pages/Form/FormNew/new_form.js';
 import {renderUpdateProfile} from '../components/pages/UpdateProfile/update_profile.js';
 import {removeMessage} from "../components/Message/message.js";
@@ -60,6 +64,10 @@ export const parseUrl = (url) => {
 export const goToPage = (page, id = null, redirect = false) => {
   if (!id) {
     id = '';
+  }
+  if (editInProcess) {
+    renderQuitEditingWindow(page, id, redirect);
+    return;
   }
   const url = page.url.replace(':id', id.toString());
   window.scroll(0, 0);
@@ -143,34 +151,34 @@ window.onpopstate = (event) => {
   const state = event.state;
   switch (state) {
     case 'main':
-      renderMain();
+      goToPage(ROUTES.main, '', true);
       break;
     case 'forms':
-      renderForms();
+      goToPage(ROUTES.forms, '', true);
       break;
     case 'form':
-      renderForm(parseUrl(window.location.pathname).id);
+      goToPage(ROUTES.form, parseUrl(window.location.pathname).id, true);
       break;
     case 'formUpdate':
-      renderFormUpdate(parseUrl(window.location.pathname).id);
+      goToPage(ROUTES.formUpdate, parseUrl(window.location.pathname).id, true);
       break;
     case 'formResults':
-      renderResultsForm(parseUrl(window.location.pathname).id);
+      goToPage(ROUTES.formResults, parseUrl(window.location.pathname).id, true);
       break;
     case 'formNew':
-      renderFormNew();
+      goToPage(ROUTES.formNew, '', true);
       break;
     case 'profile':
-      renderProfile();
+      goToPage(ROUTES.profile, '', true);
       break;
     case 'updateProfile':
-      renderUpdateProfile();
+      goToPage(ROUTES.updateProfile, '', true);
       break;
     case 'login':
-      renderLogin();
+      goToPage(ROUTES.login, '', true);
       break;
     case 'signup':
-      renderSignup();
+      goToPage(ROUTES.signup, '', true);
       break;
     default:
       render404();

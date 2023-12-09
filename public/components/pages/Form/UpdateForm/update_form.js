@@ -10,6 +10,11 @@ import {formUpdatePageParser, formUpdateValidator} from '../FormNew/new_form.js'
 import {renderAuthorMenu} from "../../../AuthorMenu/authorMenu.js";
 import {TYPE_SINGLE_CHOICE} from "../CheckForm/check_form.js";
 
+export let editInProcess = false;
+export const setEditInProcess = (bool) => {
+  editInProcess = bool;
+}
+
 /**
  * Функция для рендеринга страницы редактирования опроса по его id.
  * Если пользователь не авторизован, происходит редирект на страницу входа.
@@ -81,6 +86,7 @@ export const renderFormUpdate = async (id) => {
     const questionElement = createQuestionUpdate(question);
     questionElement.querySelector('#delete-question').addEventListener('click', (e) => {
       e.stopImmediatePropagation();
+      editInProcess = true;
       renderPopUpWindow('Требуется подтверждение', 'Вы уверены, что хотите безвозвратно удалить вопрос?', true, () => {
         questionElement.remove();
         removedQuestionsID.push(Number(question.id));
@@ -88,6 +94,19 @@ export const renderFormUpdate = async (id) => {
       });
     });
     questions.appendChild(questionElement);
+  });
+
+  const cInputs = document.querySelectorAll('input, textarea');
+  cInputs.forEach((input) => {
+    input.addEventListener('change', () => {
+      editInProcess = true;
+    }, {once: true})
+  });
+  const cButtons = document.querySelectorAll('#delete-question, #add-answer-button, .update-question__answers-item-delete');
+  cButtons.forEach((input) => {
+    input.addEventListener('click', () => {
+      editInProcess = true;
+    }, {once: true})
   });
 
   const addQuestion = document.querySelector('#add-button');
@@ -105,6 +124,7 @@ export const renderFormUpdate = async (id) => {
         },
       ],
     };
+    editInProcess = true;
     const questionElement = createQuestionUpdate(defaultQuestion);
     questionElement.querySelector('#delete-question').addEventListener('click', (e) => {
       e.stopImmediatePropagation();
@@ -124,6 +144,7 @@ export const renderFormUpdate = async (id) => {
         const res = await api.deleteForm(id);
         if (res.message === 'ok') {
           renderMessage('Опрос успешно удален.');
+          editInProcess = false;
           goToPage(ROUTES.forms);
           closePopUpWindow();
           return;
@@ -160,6 +181,7 @@ export const renderFormUpdate = async (id) => {
       const res = await api.updateForm(updatedForm);
       if (res.message === 'ok') {
         renderMessage('Опрос успешно обновлен.');
+        editInProcess = false;
         goToPage(ROUTES.form, id);
         return;
       }
@@ -172,4 +194,14 @@ export const renderFormUpdate = async (id) => {
       renderMessage('Потеряно соединение с сервером', true);
     }
   });
+};
+
+export const renderQuitEditingWindow = (page, id = '', redirect = false) => {
+  setTimeout(() => {
+    renderPopUpWindow('Требуется подтверждение', 'Вы уверены, что хотите выйти? Все несохраненные данные удалятся', false, (e) => {
+      editInProcess = false;
+      goToPage(page, id, redirect);
+      closePopUpWindow();
+    });
+  }, 0);
 };

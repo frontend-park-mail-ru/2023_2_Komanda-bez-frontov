@@ -32,6 +32,7 @@ input {
 
 .primary-button {
   @extend %button-common;
+  background-color: #f5f5f5;
   color: black;
 }
 
