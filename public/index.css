@@ -11,14 +11,14 @@ input {
   border: 1px solid #424242;
 }
 
-.forms-list__item, .red-button, .black-button, .primary-button, .secondary-button {
+.forms-list__item, .usual-button, .red-button, .black-button, .primary-button, .secondary-button {
   padding: 10px 12px;
   border-radius: 9px;
   border: 1px solid #424242;
   width: 100%;
   font-weight: bold;
 }
-.forms-list__item:hover, .red-button:hover, .black-button:hover, .primary-button:hover, .secondary-button:hover {
+.forms-list__item:hover, .usual-button:hover, .red-button:hover, .black-button:hover, .primary-button:hover, .secondary-button:hover {
   opacity: 0.6;
   cursor: pointer;
 }
@@ -45,15 +45,17 @@ input {
   border-radius: 9px;
 }
 
+.usual-button {
+  border: none;
+  background-color: #FFFFFF;
+  color: #4B357A;
+  border-radius: 9px;
+}
+
 .button__disabled {
   opacity: 0.6;
 }
 
-@media screen {
-  button:hover {
-    opacity: 1 !important;
-  }
-}
 .navbar {
   display: flex;
   justify-content: space-between;
@@ -103,7 +105,7 @@ input {
     display: none;
   }
   .navbar_button-container {
-    padding: 9px 0;
+    padding: 2px 0;
   }
   .navbar_button-container button {
     height: 38px;
@@ -132,7 +134,7 @@ input {
   }
   .navbar_button-container button {
     height: 38px;
-    width: 100px;
+    width: 120px;
     margin-left: 8px;
   }
   .navbar_button-container #navbar-signup-button {
@@ -163,12 +165,11 @@ input {
     align-items: center;
   }
   .navbar_button-container {
-    padding: 2px 0;
+    padding: 7px 0;
   }
   .navbar_button-container button {
     height: 46px;
-    width: 135px;
-    margin-left: 10px;
+    width: 150px;
   }
 }
 .navbar-profile-menu {
@@ -889,14 +890,14 @@ input {
   border: 1px solid #424242;
 }
 
-.forms-list__item, .secondary-button, .primary-button, .black-button, .red-button {
+.forms-list__item, .secondary-button, .primary-button, .black-button, .red-button, .usual-button {
   padding: 10px 12px;
   border-radius: 9px;
   border: 1px solid #424242;
   width: 100%;
   font-weight: bold;
 }
-.forms-list__item:hover, .secondary-button:hover, .primary-button:hover, .black-button:hover, .red-button:hover {
+.forms-list__item:hover, .secondary-button:hover, .primary-button:hover, .black-button:hover, .red-button:hover, .usual-button:hover {
   opacity: 0.6;
   cursor: pointer;
 }
@@ -923,15 +924,17 @@ input {
   border-radius: 9px;
 }
 
+.usual-button {
+  border: none;
+  background-color: #FFFFFF;
+  color: #4B357A;
+  border-radius: 9px;
+}
+
 .button__disabled {
   opacity: 0.6;
 }
 
-@media screen {
-  button:hover {
-    opacity: 1 !important;
-  }
-}
 .forms-list__item {
   background-color: #FFFFFF;
   margin-bottom: 16px;
@@ -1860,19 +1863,27 @@ input {
 .index_content-container {
   display: flex;
   justify-content: center;
-  gap: 20px;
+  gap: 30px;
 }
 .index_content-container .index_content-container_description__picture {
+  box-shadow: 0 0 8px 0 rgba(34, 60, 80, 0.2);
+  border-radius: 16px;
+  background-color: #FFFFFF;
+  padding: 20px;
   max-width: 600px;
   max-height: 350px;
   object-fit: cover;
 }
 
 .index_content-container_description {
+  box-shadow: 0 0 8px 0 rgba(34, 60, 80, 0.2);
+  border-radius: 16px;
+  padding: 25px;
   margin-left: 40px;
   font-size: 24px;
   text-align: left;
   max-width: 440px;
+  background-color: #FFFFFF;
 }
 .index_content-container_description .button-container {
   margin: 48px 0 25px 0;
@@ -1902,14 +1913,16 @@ input {
     margin: 0 100px;
   }
   .index_content-container_description {
-    margin: 0 50px 25px 50px;
+    padding: 20px;
+    margin: 0 40px 0 40px;
     max-width: none;
-    text-align: center;
-    align-items: center;
+    text-align: left;
   }
-  .index_content-container_description button {
-    margin: 0 auto;
-    width: 400px;
+  .index_content-container_description .button-container {
+    display: block;
+  }
+  .index_content-container_description .button-container button {
+    width: 300px;
   }
 }
 @media screen and (max-width: 768px) {
@@ -1923,14 +1936,17 @@ input {
   .index_content-container_description {
     margin: 0 40px 20px 40px;
     font-size: 20px;
+    padding: 20px;
+    text-align: left;
   }
   .index_content-container_description .button-container {
-    margin: 40px 0 20px 0;
+    display: block;
+    margin: 30px 0 20px 0;
   }
   .index_content-container_description .button-container button {
+    padding: 10px 5px;
     font-size: 16px;
-    padding: 20px 12px;
-    width: 300px;
+    width: 250px;
   }
   .index_content-container_description a {
     font-size: 18px;
@@ -1940,13 +1956,13 @@ input {
   }
 }
 @media screen and (max-width: 480px) {
-  .index {
-    margin-top: 40px;
-  }
-  .index h3 {
-    margin: 30px 15px 20px 15px;
+  .index_content-container_description {
+    margin: 0 18px 0 18px;
+    padding: 15px;
+    text-align: left;
   }
   .index_content-container_description .button-container {
+    display: block;
     margin: 32px 0 16px 0;
   }
   .index_content-container_description .button-container button {
@@ -1957,13 +1973,10 @@ input {
     width: 100%;
   }
 }
-.auth-container {
-  margin: 70px 0;
-}
-
 .auth-container__form {
-  border-radius: 9px;
-  border: 1px solid #424242;
+  box-shadow: 0 0 8px 0 rgba(34, 60, 80, 0.2);
+  border-radius: 16px;
+  background-color: #FFFFFF;
   text-align: center;
   width: 320px;
   margin: 0 auto;
@@ -1974,6 +1987,8 @@ input {
 }
 
 .login-form {
+  padding-top: 17px;
+  padding-bottom: 22px;
   display: flex;
   flex-direction: column;
   margin: 20px 24px;
@@ -1987,7 +2002,7 @@ input {
   width: 272px;
   margin: 0 0 9px 0;
   border-radius: 9px;
-  border: 1px solid #424242;
+  border: 1px solid rgba(0, 0, 0, 0.1);
   padding: 4px 12px;
   box-sizing: border-box;
   font-size: 20px;
@@ -2006,7 +2021,10 @@ input {
 
 @media screen and (max-width: 768px) {
   .auth-container {
-    margin: 50px 0;
+    margin: 70px 0;
+  }
+  .auth-container__form {
+    padding: 5px;
   }
   .login-form_container h3 {
     font-size: 22px;
@@ -2022,19 +2040,23 @@ input {
 @media screen and (max-width: 480px) {
   .auth-container__form {
     border: none;
-    margin: 0 10px;
+    margin: 0 20px;
     width: initial;
   }
+  .login-form {
+    padding-bottom: 0;
+    padding-top: 0;
+    margin: 10px 15px;
+  }
   .login-form_container h3 {
-    font-size: 30px;
-    margin-bottom: 20px;
+    font-size: 25px;
+    margin-bottom: 10px;
   }
   .login-form_container .login-form_container__input {
     width: 100%;
     font-size: 18px;
   }
   .login-form_container .button-container {
-    margin: 40px 0;
     gap: 10px;
     flex-flow: column;
   }
@@ -2044,8 +2066,11 @@ input {
   flex-direction: column;
   margin: 20px 24px 0 24px;
 }
+.signup-form h3 {
+  margin-top: 15px;
+}
 .signup-form .button-container {
-  margin: 20px 24px;
+  margin: 25px 24px;
   font-size: 15px;
 }
 
@@ -2058,7 +2083,7 @@ input {
   width: 272px;
   margin: 0 0 9px 0;
   border-radius: 9px;
-  border: 1px solid #424242;
+  border: 1px solid rgba(0, 0, 0, 0.1);
   padding: 4px 12px;
   box-sizing: border-box;
   font-size: 20px;
@@ -2072,6 +2097,9 @@ input {
 }
 
 @media screen and (max-width: 768px) {
+  .signup-form {
+    margin: 10px 15px;
+  }
   .signup-form_container h3 {
     font-size: 22px;
     margin: 0;
@@ -2080,20 +2108,23 @@ input {
     font-size: 14px;
   }
   .signup-form_container__input {
+    width: 100%;
     font-size: 18px;
   }
 }
 @media screen and (max-width: 480px) {
+  .signup-form {
+    margin: 10px 15px;
+  }
   .signup-form_container h3 {
-    font-size: 30px;
-    margin-bottom: 20px;
+    font-size: 25px;
+  }
+  .signup-form_container .button-container {
+    margin: 20px 0;
   }
   .signup-form_container .signup-form_container__input {
     width: 100%;
     font-size: 18px;
-  }
-  .signup-form_container .button-container {
-    margin: 40px 0;
   }
 }
 .error-container, .success-container {

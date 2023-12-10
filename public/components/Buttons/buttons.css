@@ -11,14 +11,14 @@ input {
   border: 1px solid #424242;
 }
 
-.red-button, .black-button, .primary-button, .secondary-button {
+.usual-button, .red-button, .black-button, .primary-button, .secondary-button {
   padding: 10px 12px;
   border-radius: 9px;
   border: 1px solid #424242;
   width: 100%;
   font-weight: bold;
 }
-.red-button:hover, .black-button:hover, .primary-button:hover, .secondary-button:hover {
+.usual-button:hover, .red-button:hover, .black-button:hover, .primary-button:hover, .secondary-button:hover {
   opacity: 0.6;
   cursor: pointer;
 }
@@ -45,14 +45,15 @@ input {
   border-radius: 9px;
 }
 
-.button__disabled {
-  opacity: 0.6;
+.usual-button {
+  border: none;
+  background-color: #FFFFFF;
+  color: #4B357A;
+  border-radius: 9px;
 }
 
-@media screen {
-  button:hover {
-    opacity: 1 !important;
-  }
+.button__disabled {
+  opacity: 0.6;
 }
 
 /*# sourceMappingURL=buttons.css.map */

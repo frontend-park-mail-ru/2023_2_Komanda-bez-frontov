@@ -11,14 +11,14 @@ input {
   border: 1px solid #424242;
 }
 
-.forms-list__item, .red-button, .black-button, .primary-button, .secondary-button {
+.forms-list__item, .usual-button, .red-button, .black-button, .primary-button, .secondary-button {
   padding: 10px 12px;
   border-radius: 9px;
   border: 1px solid #424242;
   width: 100%;
   font-weight: bold;
 }
-.forms-list__item:hover, .red-button:hover, .black-button:hover, .primary-button:hover, .secondary-button:hover {
+.forms-list__item:hover, .usual-button:hover, .red-button:hover, .black-button:hover, .primary-button:hover, .secondary-button:hover {
   opacity: 0.6;
   cursor: pointer;
 }
@@ -45,15 +45,17 @@ input {
   border-radius: 9px;
 }
 
+.usual-button {
+  border: none;
+  background-color: #FFFFFF;
+  color: #4B357A;
+  border-radius: 9px;
+}
+
 .button__disabled {
   opacity: 0.6;
 }
 
-@media screen {
-  button:hover {
-    opacity: 1 !important;
-  }
-}
 .forms-list__item {
   background-color: #FFFFFF;
   margin-bottom: 16px;

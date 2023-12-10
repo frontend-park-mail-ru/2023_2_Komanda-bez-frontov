@@ -47,7 +47,7 @@
     display: none;
   }
   .navbar_button-container {
-    padding: 9px 0;
+    padding: 2px 0;
   }
   .navbar_button-container button {
     height: 38px;
@@ -76,7 +76,7 @@
   }
   .navbar_button-container button {
     height: 38px;
-    width: 100px;
+    width: 120px;
     margin-left: 8px;
   }
   .navbar_button-container #navbar-signup-button {
@@ -107,12 +107,11 @@
     align-items: center;
   }
   .navbar_button-container {
-    padding: 2px 0;
+    padding: 7px 0;
   }
   .navbar_button-container button {
     height: 46px;
-    width: 135px;
-    margin-left: 10px;
+    width: 150px;
   }
 }
 
