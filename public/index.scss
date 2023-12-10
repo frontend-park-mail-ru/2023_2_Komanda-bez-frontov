@@ -22,7 +22,8 @@
 * {
   padding: 0;
   margin: 0;
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Montserrat', sans-serif;
+
 }
 
 html {
@@ -66,7 +67,9 @@ p, h3 {
   position: relative;
 }
 
-
+body {
+  background-color: #F1F1F1;
+}
 @media screen {
   #message-box, #root{
     top: 64px;
@@ -103,3 +106,4 @@ p, h3 {
   top: 80px;
   z-index: -1;
 }
+

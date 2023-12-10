@@ -207,7 +207,7 @@ export class API {
           first_name, username, email, oldPassword, newPassword, avatar,
         }),
       });
-
+      console.log()
       const body = await res.json();
 
       const updatedUser = body.data;

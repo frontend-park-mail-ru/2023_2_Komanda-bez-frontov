@@ -10,7 +10,7 @@
   align-items: center;
 }
 .navbar .navbar_logo span {
-  font-size: 32px;
+  font-size: 30px;
   margin: 0 6px 2px 0;
 }
 .navbar .navbar_logo a {
@@ -19,12 +19,10 @@
 }
 .navbar .navbar_profile {
   display: flex;
-  justify-content: space-evenly;
   cursor: pointer;
 }
 .navbar .navbar_profile .navbar_profile__picture {
-  object-fit: contain;
-  border-radius: 5px;
+  border-radius: 50px;
 }
 
 .navbar_button-container {
@@ -33,15 +31,17 @@
 
 @media screen {
   .navbar {
-    padding: 4px 22px;
+    padding: 10px 15px;
   }
   .navbar .navbar_logo a {
     font-size: 22px;
   }
+  .navbar .navbar_profile {
+    gap: 24px;
+  }
   .navbar .navbar_profile__picture {
     height: 42px;
     width: 42px;
-    margin: 7px 0 7px 16px;
   }
   .navbar .navbar_profile__name {
     display: none;
@@ -59,23 +59,17 @@
 }
 @media screen and (min-width: 480px) {
   .navbar {
-    padding: 17px 24px;
+    padding: 10px 24px;
   }
   .navbar .navbar_logo a {
     font-size: 22px;
   }
-  .navbar .navbar_profile {
-    margin-left: 40px;
-  }
-  .navbar .navbar_profile .navbar_profile__picture {
+  .navbar .navbar_profile__picture {
     height: 42px;
     width: 42px;
-    margin: 0;
   }
-  .navbar .navbar_profile .navbar_profile__name {
-    display: flex;
+  .navbar .navbar_profile__name {
     font-size: 20px;
-    margin: 12px 0 6px 16px;
   }
   .navbar_button-container {
     padding: 2px 0;
@@ -91,27 +85,26 @@
 }
 @media screen and (min-width: 768px) {
   .navbar {
-    padding: 15px 48px;
+    padding: 10px 30px;
   }
   .navbar .navbar_logo a {
     font-size: 29px;
   }
   .navbar .navbar_logo a span {
-    font-size: 36px;
-    margin: 0 8px 3px 0;
+    font-size: 30px;
   }
   .navbar .navbar_profile {
-    margin-left: 40px;
+    gap: 24px;
   }
-  .navbar .navbar_profile .navbar_profile__picture {
-    height: 48px;
-    width: 48px;
-    margin: 0;
+  .navbar .navbar_profile__picture {
+    height: 60px;
+    width: 60px;
   }
-  .navbar .navbar_profile .navbar_profile__name {
+  .navbar .navbar_profile__name {
+    font-weight: 600;
     display: flex;
-    font-size: 24px;
-    margin: 12px 0 7px 16px;
+    font-size: 20px;
+    align-items: center;
   }
   .navbar_button-container {
     padding: 2px 0;
