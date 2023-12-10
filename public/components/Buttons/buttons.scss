@@ -50,14 +50,22 @@ input {
   border-radius: 9px;
 }
 
+.usual-button {
+  @extend %button-common;
+  border: none;
+  background-color: #FFFFFF;
+  color: #4B357A;
+  border-radius: 9px;
+}
+
 .button__disabled {
   opacity: 0.6;
 }
 
-@media screen {
-  button {
-    &:hover {
-      opacity: 1 !important;
-    }
-  }
-}
+//@media screen {
+//  button {
+//    &:hover {
+//      opacity: 1 !important;
+//    }
+//  }
+//}
