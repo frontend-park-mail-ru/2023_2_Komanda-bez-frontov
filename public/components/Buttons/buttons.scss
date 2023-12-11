@@ -28,6 +28,7 @@ input {
   @extend %button-common;
   background-color: #4B357A;
   color: white;
+  border: none;
 }
 
 .primary-button {
@@ -57,6 +58,15 @@ input {
   color: #4B357A;
   border-radius: 9px;
 }
+
+.outline-button {
+  @extend %button-common;
+  border: 1px solid #FFFFFF;
+  border-radius: 9px;
+  background-color: #4B357A;
+  color: #FFFFFF;
+}
+
 
 .button__disabled {
   opacity: 0.6;
