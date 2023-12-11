@@ -34,7 +34,12 @@ export const getAuthAvatar = async () => {
     const res = await api.getAvatar(STORAGE.user.username);
     if (res.message === 'ok') {
       STORAGE.avatar = res.avatar;
-      localStorage.setItem('avatar', res.avatar);
+      if (res.avatar.length >= 5200000) {
+        localStorage.setItem('avatar', '');
+      } else {
+        localStorage.setItem('avatar', res.avatar);
+      }
+
       const profilePicture = document.querySelector('#navbar-profile-picture');
       const profilePagePicture = document.querySelector('#profile-page-picture');
       if (res.avatar === '') {
@@ -52,6 +57,6 @@ export const getAuthAvatar = async () => {
       renderMessage(res.message, true);
     }
   } catch (e) {
-    renderMessage('Ошибка сеееервера. Перезагрузите страницу', true);
+    renderMessage(`Ошибка сеееервера. Перезагрузите страницу ${e}`, true);
   }
 };
