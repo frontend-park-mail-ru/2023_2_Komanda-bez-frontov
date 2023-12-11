@@ -4,8 +4,9 @@
   @extend %button-common;
   background-color: #FFFFFF;
   margin-bottom: 16px;
-  min-width: min-content;
   min-height: 56px;
   max-height: min-content;
   font-size: 18px;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }

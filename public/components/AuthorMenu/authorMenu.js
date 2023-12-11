@@ -44,7 +44,7 @@ export const renderAuthorMenu = (id) => {
       copyButton.innerHTML = 'Скопировано!';
       copyButton.classList.add('primary-button');
       copyButton.classList.remove('secondary-button');
-      // navigator.clipboard.writeText(link);
+      // Копирование ссылки в буфер на компе
       const input = document.querySelector('#popup-copy-input');
       input.classList.remove('display-none');
       input.value = link;
@@ -53,8 +53,7 @@ export const renderAuthorMenu = (id) => {
       input.classList.add('display-none');
     });
     document.querySelector('#popup-ok-button').innerHTML = 'Скопировать';
-  });
-
+  })
   let flagClosed = false;
   const closeButton = document.querySelector('#author-menu-close-button');
   closeButton.addEventListener('click', () => {
