@@ -5,6 +5,7 @@ const POST_METHOD = 'POST';
 const DELETE_METHOD = 'DELETE';
 const PUT_METHOD = 'PUT';
 
+
 export class API {
   /**
    * Проверяет, является ли пользователь авторизованным.
@@ -59,7 +60,7 @@ export class API {
     try {
       const url = backendUrl + ROUTES_API.login.url;
 
-      const res = await fetch(url, {
+      let res = await fetch(url, {
         method: POST_METHOD,
         headers: {
           'Content-Type': 'application/json',
@@ -67,6 +68,8 @@ export class API {
         credentials: 'include',
         body: JSON.stringify({email, password}),
       });
+
+      localStorage.setItem('csrf-token', res.headers.get('x-csrf-token'));
 
       const body = await res.json();
 
@@ -104,8 +107,13 @@ export class API {
 
       const res = await fetch(url, {
         method: POST_METHOD,
+        headers: {
+          'X-CSRF-Token': localStorage.getItem('csrf-token'),
+        },
         credentials: 'include',
       });
+
+      localStorage.removeItem('csrf-token');
 
       if (res.status === 404) {
         return {message: 'Вы не авторизованы, обновите страницу'};
@@ -152,6 +160,8 @@ export class API {
           first_name, username, email, password, avatar,
         }),
       });
+
+      localStorage.setItem('csrf-token', res.headers.get('x-csrf-token'));
 
       const body = await res.json();
 
@@ -200,6 +210,7 @@ export class API {
         method: PUT_METHOD,
         headers: {
           'Content-Type': 'application/json',
+          'X-CSRF-Token': localStorage.getItem('csrf-token'),
         },
         credentials: 'include',
         body: JSON.stringify({
@@ -398,6 +409,7 @@ export class API {
         method: POST_METHOD,
         headers: {
           'Content-Type': 'application/json',
+          'X-CSRF-Token': localStorage.getItem('csrf-token'),
         },
         credentials: 'include',
         body: JSON.stringify(saveForm),
@@ -439,6 +451,7 @@ export class API {
         method: PUT_METHOD,
         headers: {
           'Content-Type': 'application/json',
+          'X-CSRF-Token': localStorage.getItem('csrf-token'),
         },
         credentials: 'include',
         body: JSON.stringify(updateForm),
@@ -552,6 +565,7 @@ export class API {
         method: POST_METHOD,
         headers: {
           'Content-Type': 'application/json',
+          'X-CSRF-Token': localStorage.getItem('csrf-token'),
         },
         credentials: 'include',
         body: JSON.stringify(passageJSON),
