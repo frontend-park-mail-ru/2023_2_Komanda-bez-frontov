@@ -3,20 +3,22 @@
   z-index: 15;
   left: 0;
   top: 78px;
-  width: 200px;
+  width: 250px;
   height: 100%;
-  padding: 40px 24px;
-  background-color: rgba(127, 93, 213, 0.35);
+  padding: 45px 0;
+  background-color: #FFFFFF;
   text-align: center;
+  box-shadow: 0 0 8px 0 rgba(34, 60, 80, 0.2);
   transition: transform 0.8s;
 }
 .form-author-menu button {
+  border: none;
+  border-radius: 0;
   display: flex;
   gap: 10px;
   align-items: center;
 }
 .form-author-menu .primary-button {
-  margin: 5px 0;
   font-size: 15px;
 }
 .form-author-menu .primary-button:hover {
@@ -24,7 +26,6 @@
   background-color: #DDDDDD;
 }
 .form-author-menu .secondary-button {
-  margin: 5px 0;
   font-size: 15px;
 }
 .form-author-menu .secondary-button:hover {
