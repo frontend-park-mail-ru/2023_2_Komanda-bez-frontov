@@ -11,21 +11,21 @@
   box-shadow: 0 0 8px 0 rgba(34, 60, 80, 0.2);
 
   button {
+    font-size: 16px;
     border: none;
     border-radius: 0;
     display: flex;
-    gap: 10px;
+    gap: 15px;
     align-items: center;
   }
   .primary-button {
-    font-size: 15px;
+    background-color: #FFFFFF;
     &:hover {
       opacity: 1;
       background-color: #DDDDDD;
     }
   }
   .secondary-button {
-    font-size: 15px;
     &:hover {
       opacity: 1;
       background-color: #7458b6;

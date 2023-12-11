@@ -1,68 +1,37 @@
-.update-form {
-  position: relative;
-  text-align: center;
-  font-size: 20px;
-
-  .update-form__title {
-    border-radius: 9px;
-    border: 1px solid #424242;
-  }
-
-  .update-form__title-input {
-    background-color: #d5ceec;
-    border-radius: 6px;
-  }
-
-  .button-container {
-    flex-wrap: wrap;
-  }
-}
-
-.update-form__description-title, .update-form__title-title {
-  font-size: 18px;
-  margin-bottom: 8px;
-  text-align: left;
+.update-form__title-input {
+  border: none;
+  cursor: pointer;
 }
 
 .update-form__description {
-  padding: 8px;
-  border-radius: 9px;
-  border: 1px solid #424242;
+  text-align: left;
+  border: none;
+  background-color: #FFFFFF;
+  padding: 24px;
+  border-radius: 16px;
+  box-shadow: 0 0 8px 0 rgba(34, 60, 80, 0.2);
+  ::placeholder {
+    color: rgba(187, 187, 187, 1);
+  }
 }
 
 .update-form__description-textarea {
+  margin-top: 16px;
   font-size: 16px;
-  width: 590px;
-  height: 95px;
+  height: 90px;
   resize: none;
-  background-color: #d5ceec;
-  border-radius: 6px;
-  padding: 8px;
+  border-radius: 8px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
 }
 
-.update-form_anonymous {
-  margin-top: 15px;
-  padding: 15px;
-  border-radius: 9px;
-  border: 1px solid #424242;
-  text-align: left;
+.update-form_anonymous__checkbox-container {
+  display: flex;
+  align-items: center
+}
 
-  .update-form_anonymous__checkbox {
-    margin-left: 4px;
-    width: 15px;
-    height: 15px;
-    cursor: pointer;
-  }
 
-  .update-form_anonymous__checkbox-label {
-    margin-left: 6px;
-    font-size: 20px;
-  }
-
-  p {
-    margin-top: 8px;
-    font-size: 16px;
-  }
+.check-form__anonymous-warning-container {
+  display: flex;
 }
 
 .update-form__input-error {
@@ -71,8 +40,8 @@
 
 @media screen and (min-width: 769px) {
   .update-form {
-    margin: 32px auto;
-    width: 640px;
+    margin: 0 auto;
+    width: 910px;
 
     .button-container {
       width: 440px;
@@ -86,32 +55,42 @@
     }
   }
 
-  .update-form__description {
-    padding: 12px;
-  }
-
-  .update-form__title-label {
-    font-size: 29px;
-    margin-bottom: 26px;
-  }
-
-  .update-form__title {
-    padding: 12px;
-    margin-bottom: 15px;
-  }
-
   .update-form__title-input {
-    margin: 0 auto;
-    padding: 8px;
-    width: 590px;
-    font-size: 18px;
+    font-size: 24px;
+    width: 331px;
   }
 
   .update-form__description-textarea {
-    margin: 0 auto;
-    padding: 8px;
+    width: 846px;
+    padding: 7px;
     font-size: 18px;
-    width: 590px;
+  }
+
+  .update-form_anonymous__checkbox-container {
+    margin-top: 16px;
+    gap: 8px;
+  }
+
+  .update-form_anonymous__checkbox {
+    border-radius: 4px;
+    width: 12px;
+    height: 12px;
+    cursor: pointer;
+  }
+
+
+  .update-form_anonymous__checkbox-label {
+    font-size: 12px;
+  }
+
+  .check-form__anonymous-warning-container {
+    margin-top: 8px;
+    font-size: 12px;
+    gap: 8px;
+  }
+
+  .check-form__anonymous-warning-icon {
+    font-size: 10px;
   }
 }
 
@@ -131,33 +110,19 @@
     }
   }
 
-  .update-form__title-label {
-    font-size: 25px;
-    margin-bottom: 16px;
-  }
 
-  .update-form__title {
-    padding: 8px;
-    margin-bottom: 8px;
-  }
 
-  .update-form__title-input {
-    margin: 0 auto;
-    padding: 8px;
-    width: 95%;
-    font-size: 18px;
-  }
+  //.update-form__title-input {
+  //  padding: 8px;
+  //  width: 95%;
+  //}
 
   .update-form__description-textarea {
-    margin: 0 auto;
     padding: 8px;
     font-size: 18px;
     width: 95%;
   }
 
-  .update-form_anonymous {
-    margin-top: 8px;
-  }
 }
 
 @media screen and (max-width: 480px) {
@@ -177,21 +142,12 @@
     }
   }
 
-  .update-form__title-label {
-    font-size: 25px;
-    margin: 20px 0;
-  }
 
-  .update-form__title {
-    padding: 8px 8px;
-    margin-bottom: 10px;
-  }
 
-  .update-form__title-input {
-    padding: 8px 12px;
-    width: 90%;
-    font-size: 16px;
-  }
+  //.update-form__title-input {
+  //  padding: 8px 12px;
+  //  width: 90%;
+  //}
 
   .update-form__description-textarea {
     padding: 8px 12px;
@@ -199,7 +155,4 @@
     width: 90%;
   }
 
-  .update-form_anonymous {
-    margin-top: 8px;
-  }
 }

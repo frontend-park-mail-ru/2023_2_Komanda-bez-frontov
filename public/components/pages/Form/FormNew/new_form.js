@@ -53,9 +53,6 @@ export const renderFormNew = async () => {
   rootElement.innerHTML = '';
   rootElement.innerHTML = Handlebars.templates.update_form({form: defaultForm});
 
-  const pageTitle = document.querySelector('#update-form-title');
-  pageTitle.innerHTML = 'Создание опроса';
-
   const questions = document.querySelector('#check-form__questions-container');
   {
     const questionElement = createQuestionUpdate(defaultForm.questions[0]);

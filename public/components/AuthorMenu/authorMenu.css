@@ -12,21 +12,19 @@
   transition: transform 0.8s;
 }
 .form-author-menu button {
+  font-size: 16px;
   border: none;
   border-radius: 0;
   display: flex;
-  gap: 10px;
+  gap: 15px;
   align-items: center;
 }
 .form-author-menu .primary-button {
-  font-size: 15px;
+  background-color: #FFFFFF;
 }
 .form-author-menu .primary-button:hover {
   opacity: 1;
   background-color: #DDDDDD;
-}
-.form-author-menu .secondary-button {
-  font-size: 15px;
 }
 .form-author-menu .secondary-button:hover {
   opacity: 1;
