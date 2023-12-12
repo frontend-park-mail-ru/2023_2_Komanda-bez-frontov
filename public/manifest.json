@@ -1,5 +1,6 @@
 {
   "name": "FormHub",
+  "lang": "ru",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
@@ -7,8 +8,8 @@
   "background_color": "#EEE",
   "icons": [
     {
-      "src": "/resources/images/icon.png",
-      "size": "192x192",
+      "src": "resources/images/icon_desktop.png",
+      "sizes": "512x512",
       "type": "image/png"
     }
   ]

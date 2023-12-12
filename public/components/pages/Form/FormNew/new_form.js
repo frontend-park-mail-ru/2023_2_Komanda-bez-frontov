@@ -27,6 +27,9 @@ export const renderFormNew = async () => {
     return;
   }
 
+  const rootElement = document.querySelector('#root');
+  rootElement.innerHTML = '';
+
   const defaultForm = {
     title: '',
     description: '',
@@ -48,8 +51,6 @@ export const renderFormNew = async () => {
     ],
   };
 
-  const rootElement = document.querySelector('#root');
-  rootElement.innerHTML = '';
   rootElement.innerHTML = Handlebars.templates.update_form({form: defaultForm});
 
   const pageTitle = document.querySelector('#update-form-title');
@@ -135,11 +136,7 @@ export const renderFormNew = async () => {
       }
       renderMessage(res.message, true);
     } catch (e) {
-      if (e.toString() !== 'TypeError: Failed to fetch') {
-        renderMessage('Ошибка сервера. Попробуйте позже', true);
-        return;
-      }
-      renderMessage('Потеряно соединение с сервером', true);
+      renderMessage('Ошибка сервера. Попробуйте позже.', true);
     }
   });
 };

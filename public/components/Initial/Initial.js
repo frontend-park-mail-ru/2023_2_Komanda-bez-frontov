@@ -19,12 +19,10 @@ export const renderInitial = async () => {
     const isAuth = await api.isAuth();
     if (isAuth.isAuthorized) {
       STORAGE.user = isAuth.authorizedUser;
-      await getAuthAvatar();
+      getAuthAvatar();
     }
   } catch (e) {
-    if (e.toString() === 'TypeError: Failed to fetch') {
-      renderMessage('Потеряно соединение с сервером', true);
-    }
+    renderMessage('Ошибка сервера. Попробуйте позже', true);
   }
 
   navbar();

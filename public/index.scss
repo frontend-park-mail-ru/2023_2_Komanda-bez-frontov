@@ -56,6 +56,11 @@ p, h3 {
   z-index: 100;
 }
 
+#navbar {
+  background-color: #4B357A;
+  height: 64px;
+}
+
 #message-box, #root{
   position: relative;
 }
@@ -70,11 +75,17 @@ p, h3 {
   #message-box, #root{
     top: 76px;
   }
+  #navbar {
+    height: 76px;
+  }
 }
 
 @media screen and (min-width: 768px){
   #message-box, #root{
     top: 78px;
+  }
+  #navbar {
+    height: 78px;
   }
 }
 
