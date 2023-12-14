@@ -12,7 +12,7 @@ import {goToPage} from '../../../modules/router.js';
 import {STORAGE} from '../../../modules/storage.js';
 import {navbar} from "../../Navbar/navbar.js";
 import {debounce} from "../MyForms/forms.js";
-import {addValidationToInput} from "../Login/login.js";
+import {addValidationToInput, submitPageValidation, submitPageValidationCheck} from "../Login/login.js";
 
 /**
  * Функция для рендеринга страницы регистрации.
@@ -35,6 +35,8 @@ export const toggleFunc = (password, icon) => {
 
 export const renderSignup = async () => {
   removeMessage();
+  submitPageValidationCheck();
+
   const rootElement = document.querySelector('#root');
   rootElement.innerHTML = '';
   rootElement.innerHTML = Handlebars.templates.signup();
@@ -62,13 +64,18 @@ export const renderSignup = async () => {
   const password = document.querySelector('#password');
   const repeatPassword = document.querySelector('#repeat_password');
 
-  addValidationToInput(firstName, nameValidation, signupButton);
-  addValidationToInput(email, nameValidation, signupButton);
-  addValidationToInput(username, nameValidation, signupButton);
-  addValidationToInput(password, nameValidation, signupButton);
+  addValidationToInput(firstName, nameValidation);
+  addValidationToInput(email, emailValidation);
+  addValidationToInput(username, usernameValidation);
+  addValidationToInput(password, passwordValidation);
 
   signupButton.addEventListener('click', async (e) => {
     e.preventDefault();
+
+    if (!submitPageValidation) {
+      renderMessage('Исправлены не все данные', true);
+      return;
+    }
 
     if (password.value === '' || email.value === '' || firstName.value === ''
         || username.value === '' || repeatPassword.value === '') {

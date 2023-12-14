@@ -7,7 +7,7 @@ import {goToPage} from '../../../../modules/router.js';
 import {createQuestion} from '../../../Question/CheckQuestion/check_question.js';
 import {renderPopUpWindow} from '../../../PopUpWindow/popup_window.js';
 import {renderAuthorMenu} from '../../../AuthorMenu/authorMenu.js';
-import {textValidation} from "../../../../modules/validation.js";
+import {submitPageValidation, submitPageValidationCheck} from "../../Login/login.js";
 
 export const TYPE_SINGLE_CHOICE = 1;
 export const TYPE_MULTIPLE_CHOICE = 2;
@@ -27,6 +27,8 @@ export const clearFormIDToRedirect = () => {
  * @return {void}
  */
 export const renderForm = async (id) => {
+  submitPageValidationCheck();
+
   const api = new API();
   if (!id) {
     const page = ROUTES.forms;
@@ -95,6 +97,11 @@ export const renderForm = async (id) => {
     updateSubmitButton.innerHTML = 'Отправить';
 
     updateSubmitButton.addEventListener('click', async () => {
+      if (!submitPageValidation) {
+        renderMessage('Исправлены не все данные', true);
+        return;
+      }
+
       const passageJSON = {
         form_id: formJSON.id,
         passage_answers: [
@@ -138,18 +145,6 @@ export const renderForm = async (id) => {
             }, {once: true});
 
             renderMessage("Вы ответили не на все вопросы", true);
-            err = true;
-            return;
-          }
-
-          const validator = textValidation(chosenAnswer.value);
-          if (!validator.valid) {
-            chosenAnswer.classList.add('update-form__input-error');
-            chosenAnswer.addEventListener('input', () => {
-              chosenAnswer.classList.remove('update-form__input-error');
-            }, {once: true});
-
-            renderMessage(validator.message, true);
             err = true;
             return;
           }

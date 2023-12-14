@@ -12,7 +12,7 @@ import {
 import {API} from '../../../modules/api.js';
 import {toggleFunc} from "../Signup/signup.js";
 import {navbar} from "../../Navbar/navbar.js";
-import {addValidationToInput} from "../Login/login.js";
+import {addValidationToInput, submitPageValidation, submitPageValidationCheck} from "../Login/login.js";
 
 /**
  * Функция для рендеринга страницы изменения профиля авторизированного пользователя.
@@ -24,6 +24,7 @@ import {addValidationToInput} from "../Login/login.js";
  */
 export const renderUpdateProfile = async () => {
   removeMessage();
+  submitPageValidationCheck();
 
   // Проверка авторизации
   if (!STORAGE.user) {
@@ -109,19 +110,23 @@ export const renderUpdateProfile = async () => {
   const newPassword = document.querySelector('#update-profile_new-password');
   const repeatPassword = document.querySelector('#update-profile_repeat-password');
 
-  addValidationToInput(firstName, nameValidation, saveButton);
-  addValidationToInput(email, emailValidation, saveButton);
-  addValidationToInput(username, usernameValidation, saveButton);
-  addValidationToInput(oldPassword, passwordValidation, saveButton);
-  addValidationToInput(newPassword, passwordValidation, saveButton);
+  addValidationToInput(firstName, nameValidation);
+  addValidationToInput(email, emailValidation);
+  addValidationToInput(username, usernameValidation);
+  addValidationToInput(oldPassword, passwordValidation);
+  addValidationToInput(newPassword, passwordValidation);
 
   saveButton.addEventListener('click', async (e) => {
     e.preventDefault();
 
+    if (!submitPageValidation) {
+      renderMessage('Исправлены не все данные', true);
+      return;
+    }
+
     email.value = !email.value ? STORAGE.user.email : email.value;
     firstName.value = !firstName.value ? STORAGE.user.first_name: firstName.value;
     username.value = !username.value ? STORAGE.user.username : username.value;
-    console.log(email.value, firstName.value, username.value);
 
     if (username.value !== STORAGE.user.username || email.value !== STORAGE.user.email || newPassword.value !== '') {
       if (oldPassword.value === '') {
