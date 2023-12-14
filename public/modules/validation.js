@@ -123,7 +123,7 @@ export const avatarValidation = (avatar) => {
     return {valid, message};
   }
 
-  const maxSize = 5;
+  const maxSize = 4;
   const fileSize = avatar.size / 1024 / 1024;
 
   if (fileSize > maxSize) {

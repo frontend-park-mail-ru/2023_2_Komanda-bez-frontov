@@ -32,52 +32,17 @@ export const renderLogin = async () => {
     toggleFunc(password, icon);
   });
 
-  let isEmailValid = true;
-  let isPasswordValid = true;
-
   const email = document.querySelector('#email');
   const password = document.querySelector('#password');
 
-  email.addEventListener("input", debounce((e) => {
-    e.preventDefault();
-
-    const emailValid = emailValidation(e.target.value);
-
-    if (emailValid.valid) {
-      removeMessage();
-      isEmailValid = true;
-    } else {
-      renderMessage(emailValid.message, true);
-      email.classList.add('update-form__input-error');
-      email.addEventListener('input', () => {
-        email.classList.remove('update-form__input-error');
-      }, {once: true});
-      isEmailValid = false;
-    }
-  }, 1000));
-
-  password.addEventListener("input", debounce((e) => {
-    e.preventDefault();
-
-    const passwordValid = passwordValidation(e.target.value);
-
-    if (passwordValid.valid) {
-      removeMessage();
-      isPasswordValid = true;
-    } else {
-      renderMessage(passwordValid.message, true);
-      password.classList.add('update-form__input-error');
-      password.addEventListener('input', () => {
-        password.classList.remove('update-form__input-error');
-      }, {once: true});
-      isPasswordValid = false;
-    }
-  }, 1000));
+  addEventListener(email, emailValidation, loginButton);
+  addEventListener(password, passwordValidation, loginButton);
 
   loginButton.addEventListener('click', async (e) => {
     e.preventDefault();
 
-    if (!isEmailValid || !isPasswordValid) {
+    if (password.value === '' || email.value === '') {
+      renderMessage('Вы ввели не все данные', true);
       return;
     }
 
@@ -103,4 +68,24 @@ export const renderLogin = async () => {
   signupButton.addEventListener('click', () => {
     goToPage(ROUTES.signup);
   });
+};
+
+export const addValidationToInput = (input, validator, submitButton) => {
+  input.addEventListener("input", debounce((e) => {
+    e.preventDefault();
+
+    const validation = validator(e.target.value);
+
+    if (validation.valid || e.target.value === '') {
+      removeMessage();
+      submitButton.disabled = false;
+    } else {
+      renderMessage(validation.message, true);
+      e.target.classList.add('update-form__input-error');
+      e.target.addEventListener('input', () => {
+        e.target.classList.remove('update-form__input-error');
+      }, {once: true});
+      submitButton.disabled = true;
+    }
+  }, 1000));
 };
