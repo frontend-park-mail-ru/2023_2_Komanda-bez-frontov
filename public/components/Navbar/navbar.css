@@ -22,11 +22,16 @@
   cursor: pointer;
 }
 .navbar .navbar_profile .navbar_profile__picture {
-  border-radius: 50px;
+  border-radius: 45px;
+  width: 45px;
+  height: 45px;
 }
 
 .navbar_button-container {
   display: flex;
+}
+.navbar_button-container button {
+  font-size: 14px;
 }
 
 @media screen {
@@ -37,9 +42,9 @@
     font-size: 22px;
   }
   .navbar .navbar_profile {
-    gap: 24px;
+    gap: 16px;
   }
-  .navbar .navbar_profile__picture {
+  .navbar .navbar_profile .navbar_profile__picture {
     height: 42px;
     width: 42px;
   }
@@ -64,7 +69,7 @@
   .navbar .navbar_logo a {
     font-size: 22px;
   }
-  .navbar .navbar_profile__picture {
+  .navbar .navbar_profile .navbar_profile__picture {
     height: 42px;
     width: 42px;
   }
@@ -88,26 +93,24 @@
     padding: 10px 30px;
   }
   .navbar .navbar_logo a {
-    font-size: 29px;
+    font-size: 26px;
   }
   .navbar .navbar_logo a span {
     font-size: 30px;
   }
   .navbar .navbar_profile {
-    gap: 24px;
+    gap: 16px;
   }
-  .navbar .navbar_profile__picture {
-    height: 60px;
-    width: 60px;
+  .navbar .navbar_profile .navbar_profile__picture {
+    height: 45px;
+    width: 45px;
+    margin: 3px;
   }
   .navbar .navbar_profile__name {
     font-weight: 600;
     display: flex;
     font-size: 20px;
     align-items: center;
-  }
-  .navbar_button-container {
-    padding: 7px 0;
   }
   .navbar_button-container button {
     font-size: 16px;

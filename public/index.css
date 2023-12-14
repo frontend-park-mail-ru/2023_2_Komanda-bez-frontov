@@ -8,7 +8,8 @@ button {
 }
 
 input {
-  border: 1px solid #424242;
+  border: none;
+  outline: 0;
 }
 
 .forms-list__item, .outline-button, .usual-button, .red-button, .black-button, .primary-button, .secondary-button {
@@ -30,7 +31,7 @@ input {
 }
 
 .primary-button {
-  background-color: #f5f5f5;
+  background-color: #FFFFFF;
   color: black;
 }
 
@@ -88,11 +89,16 @@ input {
   cursor: pointer;
 }
 .navbar .navbar_profile .navbar_profile__picture {
-  border-radius: 50px;
+  border-radius: 45px;
+  width: 45px;
+  height: 45px;
 }
 
 .navbar_button-container {
   display: flex;
+}
+.navbar_button-container button {
+  font-size: 14px;
 }
 
 @media screen {
@@ -103,9 +109,9 @@ input {
     font-size: 22px;
   }
   .navbar .navbar_profile {
-    gap: 24px;
+    gap: 16px;
   }
-  .navbar .navbar_profile__picture {
+  .navbar .navbar_profile .navbar_profile__picture {
     height: 42px;
     width: 42px;
   }
@@ -130,7 +136,7 @@ input {
   .navbar .navbar_logo a {
     font-size: 22px;
   }
-  .navbar .navbar_profile__picture {
+  .navbar .navbar_profile .navbar_profile__picture {
     height: 42px;
     width: 42px;
   }
@@ -154,26 +160,24 @@ input {
     padding: 10px 30px;
   }
   .navbar .navbar_logo a {
-    font-size: 29px;
+    font-size: 26px;
   }
   .navbar .navbar_logo a span {
     font-size: 30px;
   }
   .navbar .navbar_profile {
-    gap: 24px;
+    gap: 16px;
   }
-  .navbar .navbar_profile__picture {
-    height: 60px;
-    width: 60px;
+  .navbar .navbar_profile .navbar_profile__picture {
+    height: 45px;
+    width: 45px;
+    margin: 3px;
   }
   .navbar .navbar_profile__name {
     font-weight: 600;
     display: flex;
     font-size: 20px;
     align-items: center;
-  }
-  .navbar_button-container {
-    padding: 7px 0;
   }
   .navbar_button-container button {
     font-size: 16px;
@@ -185,8 +189,9 @@ input {
   position: fixed;
   z-index: 20;
   border-radius: 9px;
-  border: 1px solid #424242;
+  border: none;
   background-color: #FFFFFF;
+  box-shadow: 0 0 8px 0 rgba(34, 60, 80, 0.3);
   text-align: center;
 }
 
@@ -262,7 +267,7 @@ input {
   position: fixed;
   z-index: 15;
   left: 0;
-  top: 78px;
+  top: 71px;
   width: 250px;
   height: 100%;
   padding: 45px 0;
@@ -734,7 +739,10 @@ input {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-bottom: 20px;
+  margin: 20px auto;
+  width: fit-content;
+  border-radius: 9px;
+  box-shadow: 0 0 8px 0 rgba(34, 60, 80, 0.2);
 }
 .forms_search-container .forms_search-container__input {
   border-radius: 9px 0 0 9px;
@@ -751,8 +759,8 @@ input {
   background-position: 5px center;
   padding-left: 30px;
   border-radius: 0 9px 9px 0;
-  border: 1px solid #424242;
-  margin-left: -3px;
+  border: none;
+  margin-left: -2px;
   height: 40px;
   width: 105px;
   font-size: 16px;
@@ -769,7 +777,7 @@ input {
   height: 100%;
   top: 225px;
   left: 0;
-  background-color: rgba(255, 255, 255, 0.6);
+  background-color: rgba(241, 241, 241, 0.6);
   transition: visibility 0.3s, opacity 0.5s;
 }
 .forms__loading-screen img {
@@ -895,7 +903,8 @@ button {
 }
 
 input {
-  border: 1px solid #424242;
+  border: none;
+  outline: 0;
 }
 
 .forms-list__item, .secondary-button, .primary-button, .black-button, .red-button, .usual-button, .outline-button {
@@ -917,7 +926,7 @@ input {
 }
 
 .primary-button {
-  background-color: #f5f5f5;
+  background-color: #FFFFFF;
   color: black;
 }
 
@@ -1829,9 +1838,6 @@ input {
   gap: 30px;
 }
 .index_content-container .index_content-container_description__picture {
-  box-shadow: 0 0 8px 0 rgba(34, 60, 80, 0.2);
-  border-radius: 16px;
-  background-color: #FFFFFF;
   padding: 20px;
   max-width: 600px;
   max-height: 350px;
@@ -2182,7 +2188,7 @@ body {
 
 @media screen {
   #message-box, #root {
-    top: 64px;
+    top: 62px;
   }
   #root {
     margin-top: 65px;
@@ -2190,7 +2196,7 @@ body {
 }
 @media screen and (min-width: 480px) {
   #message-box, #root {
-    top: 76px;
+    top: 62px;
   }
   #root {
     margin-top: 60px;
@@ -2198,7 +2204,7 @@ body {
 }
 @media screen and (min-width: 768px) {
   #message-box, #root {
-    top: 78px;
+    top: 70px;
   }
   #root {
     margin-top: 50px;

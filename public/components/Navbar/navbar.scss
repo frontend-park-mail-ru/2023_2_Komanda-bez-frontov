@@ -23,7 +23,9 @@
     cursor: pointer;
 
     .navbar_profile__picture {
-      border-radius: 50px;
+      border-radius: 45px;
+      width: 45px;
+      height: 45px;
     }
 
   }
@@ -31,6 +33,9 @@
 
 .navbar_button-container {
   display: flex;
+  button {
+    font-size: 14px;
+  }
 }
 
 @media screen {
@@ -42,12 +47,11 @@
     }
 
     .navbar_profile {
-      gap: 24px;
-    }
-
-    .navbar_profile__picture {
-      height: 42px;
-      width: 42px;
+      gap: 16px;
+      .navbar_profile__picture {
+        height: 42px;
+        width: 42px;
+      }
     }
 
     .navbar_profile__name {
@@ -77,9 +81,11 @@
       font-size: 22px;
     }
 
-    .navbar_profile__picture {
-      height: 42px;
-      width: 42px;
+    .navbar_profile {
+      .navbar_profile__picture {
+        height: 42px;
+        width: 42px;
+      }
     }
 
     .navbar_profile__name {
@@ -111,16 +117,16 @@
       span {
         font-size: 30px;
       }
-      font-size: 29px;
+      font-size: 26px;
     }
 
     .navbar_profile {
-      gap: 24px;
-    }
-
-    .navbar_profile__picture {
-      height: 60px;
-      width: 60px;
+      gap: 16px;
+      .navbar_profile__picture {
+        height: 45px;
+        width: 45px;
+        margin: 3px;
+      }
     }
 
     .navbar_profile__name {
@@ -132,7 +138,7 @@
   }
 
   .navbar_button-container {
-    padding: 7px 0;
+    //padding: 7px 0;
     button {
       font-size: 16px;
       height: 46px;

@@ -159,7 +159,7 @@ export const renderSignup = async () => {
 
       navbar();
       goToPage(ROUTES.forms);
-      renderMessage('Вы успешно зарегистрировались');
+      // renderMessage('Вы успешно зарегистрировались');
     } catch (err) {
       if (err.toString() !== 'TypeError: Failed to fetch') {
         renderMessage('Ошибка сервера. Попробуйте позже', true);

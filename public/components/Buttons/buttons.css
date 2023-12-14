@@ -8,7 +8,8 @@ button {
 }
 
 input {
-  border: 1px solid #424242;
+  border: none;
+  outline: 0;
 }
 
 .outline-button, .usual-button, .red-button, .black-button, .primary-button, .secondary-button {
@@ -30,7 +31,7 @@ input {
 }
 
 .primary-button {
-  background-color: #f5f5f5;
+  background-color: #FFFFFF;
   color: black;
 }
 

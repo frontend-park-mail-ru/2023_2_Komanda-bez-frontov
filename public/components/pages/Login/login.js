@@ -86,7 +86,7 @@ export const renderLogin = async () => {
 
       navbar();
       goToPage(ROUTES.forms);
-      renderMessage('Вы успешно вошли');
+      // renderMessage('Вы успешно вошли');
     } catch (err) {
       if (err.toString() !== 'TypeError: Failed to fetch') {
         renderMessage('Ошибка сервера. Попробуйте позже', true);
