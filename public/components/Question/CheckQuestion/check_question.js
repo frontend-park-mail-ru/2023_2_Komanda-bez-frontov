@@ -3,6 +3,10 @@
  * eslint-disable-next-line func-names
  */
 import {TYPE_SINGLE_CHOICE, TYPE_MULTIPLE_CHOICE, TYPE_TEXT} from "../../pages/Form/CheckForm/check_form.js";
+import {submitPageValidationCheck, submitPageValidationUncheck} from "../../pages/Login/login.js";
+import {textValidation} from "../../../modules/validation.js";
+import {debounce} from "../../pages/MyForms/forms.js";
+import {renderMessage} from "../../Message/message.js";
 
 Handlebars.registerHelper('ifEquals', (a, b, options) => {
   if (a === b) {
@@ -57,6 +61,27 @@ export const createQuestion = (question) => {
       default:
     }
   });
+
+  if (question.type === TYPE_TEXT) {
+    textArea.addEventListener("input", debounce((e) => {
+      e.preventDefault();
+
+      const errorLabel = questionElement.querySelector('#check-question-validation-error');
+      const validation = textValidation(e.target.value);
+
+      if (validation.valid || e.target.value === '') {
+        errorLabel.classList.add('display-none');
+        submitPageValidationCheck();
+      } else {
+        errorLabel.classList.remove('display-none');
+        e.target.classList.add('update-form__input-error');
+        e.target.addEventListener('input', () => {
+          e.target.classList.remove('update-form__input-error');
+        }, {once: true});
+        submitPageValidationUncheck();
+      }
+    }, 1000));
+  }
 
   return questionElement;
 };
