@@ -3,10 +3,12 @@
         <h3 class="update-form__title-label" id="update-form-title">Редактирование</h3>
         <div class="update-form__title">
             <h3 class="update-form__title-title">Название опроса</h3>
+            <p class="check-question__required-title display-none" id="update-form-title-validation-error">Текст должен состоять из русских или английских слов, цифр и знаков препинания</p>
             <input class="update-form__title-input" id="update-form__title" placeholder="Заголовок опроса" value="{{form.title}}" maxlength="64">
         </div>
         <div class="update-form__description">
             <h3 class="update-form__description-title">Описание опроса</h3>
+            <p class="check-question__required-title display-none" id="update-form-description-validation-error">Текст должен состоять из русских или английских слов, цифр и знаков препинания</p>
             <textarea class="update-form__description-textarea" id="update-form__description-textarea" maxlength="512">{{form.description}}</textarea>
         </div>
         <div class="update-form_anonymous">
