@@ -9,4 +9,9 @@
   font-size: 18px;
   overflow: hidden;
   text-overflow: ellipsis;
+
+  &:hover {
+    opacity: 1;
+    background-color: #eeeeee;
+  }
 }

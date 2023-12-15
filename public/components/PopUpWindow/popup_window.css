@@ -15,7 +15,7 @@
 }
 
 .popup_window {
-  width: 320px;
+  width: 340px;
   height: 180px;
   margin: 200px auto;
   padding: 20px 24px;
@@ -40,7 +40,7 @@
 
 @media screen and (max-width: 768px) {
   .popup_window {
-    width: 280px;
+    width: 300px;
     height: 150px;
     font-size: 18px;
   }
@@ -53,7 +53,7 @@
     width: 280px;
     padding: 20px;
     height: 140px;
-    font-size: 18px;
+    font-size: 16px;
   }
   .popup_window p {
     margin-top: 8px;

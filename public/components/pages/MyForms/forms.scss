@@ -49,8 +49,8 @@
 
   .forms_search-container__input {
     border-radius: 9px 0 0 9px;
-    border-color: #424242;
-    height: 32px;
+    border: 1px solid rgba(66, 66, 66, 0.25);
+    height: 36px;
     width: 560px;
     font-size: 20px;
     padding: 3px 16px;
@@ -63,9 +63,9 @@
     background-position: 5px center;
     padding-left: 30px;
     border-radius: 0 9px 9px 0;
-    border: none;
+    border: 1px solid rgba(66, 66, 66, 0.25);
     margin-left: -2px;
-    height: 40px;
+    height: 44px;
     width: 105px;
     font-size: 16px;
     &:hover {

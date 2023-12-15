@@ -15,7 +15,8 @@ input {
 .forms-list__item, .outline-button, .usual-button, .red-button, .black-button, .primary-button, .secondary-button {
   padding: 10px 12px;
   border-radius: 9px;
-  border: 1px solid #424242;
+  border: 1px solid rgba(66, 66, 66, 0.25);
+  box-shadow: 0 0 8px 0 rgba(34, 60, 80, 0.2);
   width: 100%;
   font-weight: bold;
 }
@@ -33,6 +34,10 @@ input {
 .primary-button {
   background-color: #FFFFFF;
   color: black;
+}
+.primary-button:hover {
+  opacity: 1;
+  background-color: #eeeeee;
 }
 
 .black-button {
@@ -283,6 +288,7 @@ input {
   display: flex;
   gap: 15px;
   align-items: center;
+  box-shadow: none;
 }
 .form-author-menu .primary-button {
   background-color: #FFFFFF;
@@ -387,7 +393,7 @@ input {
 }
 
 .popup_window {
-  width: 320px;
+  width: 340px;
   height: 180px;
   margin: 200px auto;
   padding: 20px 24px;
@@ -412,7 +418,7 @@ input {
 
 @media screen and (max-width: 768px) {
   .popup_window {
-    width: 280px;
+    width: 300px;
     height: 150px;
     font-size: 18px;
   }
@@ -425,7 +431,7 @@ input {
     width: 280px;
     padding: 20px;
     height: 140px;
-    font-size: 18px;
+    font-size: 16px;
   }
   .popup_window p {
     margin-top: 8px;
@@ -440,6 +446,7 @@ input {
 
 .profile {
   background-color: rgba(128, 102, 169, 0.6);
+  box-shadow: 0 0 8px 0 rgba(34, 60, 80, 0.2);
   margin: 0 auto;
   max-width: 800px;
   border-radius: 9px;
@@ -746,8 +753,8 @@ input {
 }
 .forms_search-container .forms_search-container__input {
   border-radius: 9px 0 0 9px;
-  border-color: #424242;
-  height: 32px;
+  border: 1px solid rgba(66, 66, 66, 0.25);
+  height: 36px;
   width: 560px;
   font-size: 20px;
   padding: 3px 16px;
@@ -759,9 +766,9 @@ input {
   background-position: 5px center;
   padding-left: 30px;
   border-radius: 0 9px 9px 0;
-  border: none;
+  border: 1px solid rgba(66, 66, 66, 0.25);
   margin-left: -2px;
-  height: 40px;
+  height: 44px;
   width: 105px;
   font-size: 16px;
 }
@@ -910,7 +917,8 @@ input {
 .forms-list__item, .secondary-button, .primary-button, .black-button, .red-button, .usual-button, .outline-button {
   padding: 10px 12px;
   border-radius: 9px;
-  border: 1px solid #424242;
+  border: 1px solid rgba(66, 66, 66, 0.25);
+  box-shadow: 0 0 8px 0 rgba(34, 60, 80, 0.2);
   width: 100%;
   font-weight: bold;
 }
@@ -928,6 +936,10 @@ input {
 .primary-button {
   background-color: #FFFFFF;
   color: black;
+}
+.primary-button:hover {
+  opacity: 1;
+  background-color: #eeeeee;
 }
 
 .black-button {
@@ -968,6 +980,10 @@ input {
   font-size: 18px;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+.forms-list__item:hover {
+  opacity: 1;
+  background-color: #eeeeee;
 }
 
 .check-question {

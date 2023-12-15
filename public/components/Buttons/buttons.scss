@@ -16,7 +16,8 @@ input {
 %button-common {
   padding: 10px 12px;
   border-radius: 9px;
-  border: 1px solid #424242;
+  border: 1px solid rgba(66, 66, 66, 0.25);
+  box-shadow: 0 0 8px 0 rgba(34, 60, 80, 0.2);
   width: 100%;
   font-weight: bold;
 
@@ -37,6 +38,11 @@ input {
   @extend %button-common;
   background-color: #FFFFFF;
   color: black;
+
+  &:hover {
+    opacity: 1;
+    background-color: #eeeeee;
+  }
 }
 
 .black-button {
