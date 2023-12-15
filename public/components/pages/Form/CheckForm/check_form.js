@@ -7,7 +7,7 @@ import {goToPage} from '../../../../modules/router.js';
 import {createQuestion} from '../../../Question/CheckQuestion/check_question.js';
 import {renderPopUpWindow} from '../../../PopUpWindow/popup_window.js';
 import {renderAuthorMenu} from '../../../AuthorMenu/authorMenu.js';
-import {submitPageValidation, submitPageValidationCheck} from "../../Login/login.js";
+import {checkInputsValidation} from "../../Login/login.js";
 
 export const TYPE_SINGLE_CHOICE = 1;
 export const TYPE_MULTIPLE_CHOICE = 2;
@@ -27,7 +27,6 @@ export const clearFormIDToRedirect = () => {
  * @return {void}
  */
 export const renderForm = async (id) => {
-  submitPageValidationCheck();
 
   const api = new API();
   if (!id) {
@@ -97,7 +96,7 @@ export const renderForm = async (id) => {
     updateSubmitButton.innerHTML = 'Отправить';
 
     updateSubmitButton.addEventListener('click', async () => {
-      if (!submitPageValidation) {
+      if (!checkInputsValidation()) {
         renderMessage('Исправлены не все данные', true);
         return;
       }

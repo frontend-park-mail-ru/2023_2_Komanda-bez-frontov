@@ -8,15 +8,6 @@ import {toggleFunc} from "../Signup/signup.js";
 import {navbar} from "../../Navbar/navbar.js";
 import {debounce} from "../MyForms/forms.js";
 
-export let submitPageValidation = true;
-export const submitPageValidationCheck = () => {
-  submitPageValidation = true;
-};
-export const submitPageValidationUncheck = () => {
-  submitPageValidation = false;
-};
-
-
 /**
  * Функция для рендеринга страницы аутенфикации.
  *
@@ -26,7 +17,6 @@ export const submitPageValidationUncheck = () => {
  */
 export const renderLogin = async () => {
   removeMessage();
-  submitPageValidationCheck();
 
   const rootElement = document.querySelector('#root');
   rootElement.innerHTML = '';
@@ -45,13 +35,13 @@ export const renderLogin = async () => {
   const email = document.querySelector('#email');
   const password = document.querySelector('#password');
 
-  addValidationToInput(email, emailValidation);
-  addValidationToInput(password, passwordValidation);
+  addValidationToInput(email, emailValidation, loginButton);
+  addValidationToInput(password, passwordValidation, loginButton);
 
   loginButton.addEventListener('click', async (e) => {
     e.preventDefault();
 
-    if (!submitPageValidation) {
+    if (!checkInputsValidation()) {
       renderMessage('Исправлены не все данные', true);
       return;
     }
@@ -65,7 +55,7 @@ export const renderLogin = async () => {
       const api = new API();
       const res = await api.userLogin(email.value, password.value);
       if (res.message !== 'ok') {
-        renderMessage(res.message, true);
+        renderMessage("Неправильные почта и/или пароль", true);
         return;
       }
 
@@ -85,7 +75,7 @@ export const renderLogin = async () => {
   });
 };
 
-export const addValidationToInput = (input, validator) => {
+export const addValidationToInput = (input, validator, submitButton) => {
   input.addEventListener("input", debounce((e) => {
     e.preventDefault();
 
@@ -93,14 +83,25 @@ export const addValidationToInput = (input, validator) => {
 
     if (validation.valid || e.target.value === '') {
       removeMessage();
-      submitPageValidationCheck();
+      submitButton.disabled = false;
     } else {
       renderMessage(validation.message, true);
       e.target.classList.add('update-form__input-error');
       e.target.addEventListener('input', () => {
         e.target.classList.remove('update-form__input-error');
       }, {once: true});
-      submitPageValidationUncheck();
+      submitButton.disabled = true;
     }
   }, 1000));
+};
+
+export const checkInputsValidation = () => {
+  const cInputs = document.querySelectorAll('input, textarea');
+  let isValid = true;
+  cInputs.forEach((input) => {
+    if (input.classList.contains('update-form__input-error')) {
+      isValid = false;
+    }
+  });
+  return isValid;
 };
