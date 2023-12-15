@@ -51,7 +51,6 @@ export const createQuestionUpdate = (question) => {
     });
 
     if (answers.length >= 12) {
-      console.log("!!!")
       buttonAddAnswer.classList.add('button__disabled');
     }
   };

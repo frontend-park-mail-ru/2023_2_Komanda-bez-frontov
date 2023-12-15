@@ -75,6 +75,9 @@ export class API {
 
       let message = 'Ошибка сервера. Попробуйте позже.';
 
+      if (res.status === 450) {
+        return {message: 'Нет подключения к сети', authorizedUser: null};
+      }
       if (res.status === 400) {
         message = 'Невозможно выполнить вход. Завершите предыдущую сессию!';
       }
@@ -84,6 +87,8 @@ export class API {
       if (res.status === 200) {
         message = 'ok';
       }
+
+      const body = await res.json();
 
       return {message, authorizedUser: body.data};
     } catch (e) {
@@ -112,6 +117,9 @@ export class API {
         },
         credentials: 'include',
       });
+      if (res.status === 450) {
+        return {message: 'Нет подключения к сети'};
+      }
 
       localStorage.removeItem('csrf-token');
 
@@ -160,6 +168,9 @@ export class API {
           first_name, username, email, password, avatar,
         }),
       });
+      if (res.status === 450) {
+        return {message: 'Нет подключения к сети', registeredUser: null};
+      }
 
       localStorage.setItem('csrf-token', res.headers.get('x-csrf-token'));
 
@@ -218,10 +229,10 @@ export class API {
           first_name, username, email, oldPassword, newPassword, avatar,
         }),
       });
+      if (res.status === 450) {
+        return {message: 'Нет подключения к сети', updatedUser: null};
+      }
 
-      const body = await res.json();
-
-      const updatedUser = body.data;
       let message = 'Ошибка сервера. Попробуйте позже.';
 
       if (res.status === 403) {
@@ -236,6 +247,9 @@ export class API {
       if (res.ok) {
         message = 'ok';
       }
+
+      const body = await res.json();
+      const updatedUser = body.data;
 
       return {message, updatedUser};
     } catch (e) {
@@ -267,6 +281,9 @@ export class API {
         method: GET_METHOD,
         credentials: 'include',
       });
+      if (res.status === 450) {
+        return {message: 'Нет подключения к сети', forms: null};
+      }
 
       const body = await res.json();
 
@@ -305,6 +322,9 @@ export class API {
         method: GET_METHOD,
         credentials: 'include',
       });
+      if (res.status === 450) {
+        return {message: 'Нет подключения к сети', forms: null};
+      }
 
       const body = await res.json();
 
@@ -338,6 +358,9 @@ export class API {
         method: GET_METHOD,
         credentials: 'include',
       });
+      if (res.status === 450) {
+        return {message: 'Нет подключения к сети', form: null};
+      }
 
       const body = await res.json();
 
@@ -414,6 +437,9 @@ export class API {
         credentials: 'include',
         body: JSON.stringify(saveForm),
       });
+      if (res.status === 450) {
+        return {message: 'Нет подключения к сети', form: null};
+      }
 
       const body = await res.json();
 
@@ -456,6 +482,9 @@ export class API {
         credentials: 'include',
         body: JSON.stringify(updateForm),
       });
+      if (res.status === 450) {
+        return {message: 'Нет подключения к сети', form: null};
+      }
 
       const body = await res.json();
 
@@ -493,6 +522,9 @@ export class API {
         credentials: 'include',
       });
 
+      if (res.status === 450) {
+        return {message: 'Нет подключения к сети'};
+      }
       if (res.ok) {
         return {message: 'ok'};
       }
@@ -528,6 +560,9 @@ export class API {
         method: GET_METHOD,
         credentials: 'include',
       });
+      if (res.status === 450) {
+        return {message: 'Нет подключения к сети', formResults: null};
+      }
 
       const body = await res.json();
 
@@ -581,6 +616,10 @@ export class API {
 
       if (res.status === 401) {
         return {message: 'Пользователь не авторизирован для прохождения опроса', form: null};
+      }
+
+      if (res.status === 450) {
+        return {message: 'Нет подключения к сети', form: null};
       }
 
       return {message: 'Ошибка сервера. Попробуйте позже', form: null};

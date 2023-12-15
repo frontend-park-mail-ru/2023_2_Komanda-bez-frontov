@@ -1,118 +1,83 @@
-// self.addEventListener('activate', (event) => {
-//   event.waitUntil(self.registration?.navigationPreload.enable());
-// });
-//
-// const addResourcesToCache = async (resources) => {
-//   const cache = await caches.open('FormHub_CACHE');
-//   await cache.addAll(resources);
-// };
-//
-// self.addEventListener('install', (event) => {
-//   event.waitUntil(
-//     addResourcesToCache([
-//       '/',
-//       '/forms/',
-//       '/profile',
-//       '/login',
-//       '/signup',
-//       './index.html',
-//       './index.js',
-//     ]),
-//   );
-// });
-//
-// const putInCache = async (request, response) => {
-//   const cache = await caches.open('FormHub_CACHE');
-//   await cache.put(request, response);
-// };
-//
-// const cacheFirst = async (request) => {
-//   const responseFromCache = await caches.match(request);
-//
-//   try {
-//     const responseFromNetwork = await fetch(request);
-//     if (responseFromNetwork.status < 400) {
-//       if (request.method === 'GET') {
-//         putInCache(request, responseFromNetwork.clone());
-//       }
-//       return responseFromNetwork;
-//     }
-//   } catch (error) {
-//     // const fallbackResponse = await caches.match(fallbackUrl);
-//     // if (fallbackResponse) {
-//     //   return fallbackResponse;
-//     // }
-//     if (responseFromCache && request.method === 'GET') {
-//       return responseFromCache;
-//     }
-//     return new Response({
-//       status: 408,
-//       headers: { 'Content-Type': 'text/plain' },
-//     });
-//   }
-// };
-//
-// self.addEventListener('fetch', (event) => {
-//   event.respondWith(
-//     cacheFirst(event.request),
-//   );
-// });
-
 self.addEventListener('install', (event) => {
-  console.log('Service worker Установлен');
-});
-
-self.addEventListener('activate', (event) => {
-  console.log('Service worker Активирован');
-});
-
-self.addEventListener('fetch', (event) => {
-  console.log('Service worker Происходит запрос на сервер');
-});
-
-const CACHE = 'FormHub-v1';
-const timeout = 500;
-// При установке воркера мы должны закешировать часть данных (статику).
-self.addEventListener('install', (event) => {
+  self.skipWaiting();
   event.waitUntil(
-    caches.open(CACHE).then((cache) => cache.addAll([
-      './index.css',
-      './index.js',
-    ])),
+    caches.open('formhub-v1')
+      .then(cache => cache.addAll([
+          '/index.html',
+          '/index.css',
+          '/index.js',
+          '/resources/images/loading.gif'
+      ]))
   );
 });
 
-// при событии fetch, мы и делаем запрос, но используем кэш, только после истечения timeout.
-self.addEventListener('fetch', (event) => { // eslint-disable-next-line no-use-before-define
-  event.respondWith(fromNetwork(event.request, timeout)
-    .catch((err) => {
-      console.log(`Error: ${err.message()}`);
-      return fromCache(event.request);
-    }));
+self.addEventListener('fetch', (event) => {
+  if (!event.request.url.includes(`/api/`)) {
+    // Запрос на скачивание статических файлов (cache, потом fetch)
+    const request = (event.request.mode === 'navigate' ? '/index.html' : event.request);
+    return event.respondWith(
+        caches.match(request)
+            .then((responseCache) => {
+              if (responseCache) {
+                return responseCache;
+              }
+              return fetch(request)
+                  .then((responseFetch) => {
+                    return caches.open('formhub-v1')
+                        .then(cache => {
+                          cache.put(request, responseFetch.clone());
+                          return responseFetch;
+                        });
+                  })
+                  .catch((err) => {
+                    // console.log(err);
+                  });
+            })
+    );
+  }
+    // Запрос на бекенд (сначала fetch, потом cache)
+    return event.respondWith(
+        Promise.race([ timeout(5000), fetch(event.request) ])
+            .then((responseFetch) => {
+                if (event.request.method === 'GET') {
+                    return caches.open('formhub-v1')
+                        .then(cache => {
+                            cache.put(event.request, responseFetch.clone());
+                            return responseFetch;
+                        });
+                }
+                return responseFetch;
+            })
+            .catch(() => {
+                return caches.match(event.request)
+                    .then((responseCache) => {
+                        if (responseCache) {
+                            return responseCache;
+                        }
+                        return new Response(null, { status: 450, statusText: 'No Connection' });
+                    })
+            })
+    );
 });
 
-// Временно-ограниченный запрос.
-function fromNetwork(request, thisTimeout) {
-  return new Promise((fulfill, reject) => {
-    const timeoutId = setTimeout(reject, thisTimeout);
-    fetch(request).then((response) => {
-      clearTimeout(timeoutId);
-      fulfill(response);
-      putInCache(request, response);
-    }, reject);
-  });
-}
-
-function fromCache(request) {
-// Открываем наше хранилище кэша (CacheStorage API), выполняем поиск запрошенного ресурса.
-  return caches.open(CACHE).then((cache) => {
-    cache.match(request).then((matching) => {
-      matching || Promise.reject('no-match');
+function timeout(delay) {
+    return new Promise(function(resolve, reject) {
+        setTimeout(function() {
+            reject(new Response('', {
+                status: 408,
+                statusText: 'Request timed out.'
+            }));
+        }, delay);
     });
-  });
 }
 
-const putInCache = async (request, response) => {
-  const cache = await caches.open(CACHE);
-  await cache.put(request, response);
-};
+// Прикольчик с аватарками
+// self.addEventListener('fetch', (event) => {
+//   const url = new URL(event.request.url);
+//
+//   if (url.pathname.endsWith('avatar')) {
+//     event.respondWith(
+//         fetch('http://localhost:8080/api/v1/user/user1/avatar')
+//     );
+//   }
+// });

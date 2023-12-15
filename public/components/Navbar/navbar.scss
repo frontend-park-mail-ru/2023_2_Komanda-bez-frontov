@@ -8,13 +8,13 @@
   .navbar_logo {
     display: flex;
     align-items: center;
+    cursor: pointer;
     span {
       font-size: 32px;
       margin: 0 6px 2px 0;
     }
     a {
       font-weight: 700;
-      cursor: pointer;
     }
   }
 

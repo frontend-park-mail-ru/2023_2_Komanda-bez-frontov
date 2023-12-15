@@ -1,7 +1,7 @@
 import {API} from '../../../../modules/api.js';
 import {render404} from '../../../404/404.js';
 import {renderMessage} from '../../../Message/message.js';
-import {storageGetFormByID, STORAGE} from '../../../../modules/storage.js';
+import {STORAGE} from '../../../../modules/storage.js';
 import {frontendUrl, ROUTES} from '../../../../config.js';
 import {goToPage} from '../../../../modules/router.js';
 import {createQuestion} from '../../../Question/CheckQuestion/check_question.js';
@@ -12,6 +12,11 @@ import {textValidation} from "../../../../modules/validation.js";
 export const TYPE_SINGLE_CHOICE = 1;
 export const TYPE_MULTIPLE_CHOICE = 2;
 export const TYPE_TEXT = 3;
+
+export let formIDToRedirect = 0;
+export const clearFormIDToRedirect = () => {
+  formIDToRedirect = 0;
+}
 
 /**
  * Функция для рендеринга страницы опроса по его id.
@@ -30,10 +35,21 @@ export const renderForm = async (id) => {
     return;
   }
 
+  const rootElement = document.querySelector('#root');
+  rootElement.innerHTML = '';
+  if (STORAGE.user) {
+    renderAuthorMenu(id);
+    const menuCheckButton = document.querySelector('#author-menu-check-button');
+    menuCheckButton.disabled = true;
+    menuCheckButton.classList.add('secondary-button');
+    menuCheckButton.classList.remove('primary-button');
+  }
+
   let formJSON;
   try {
     const res = await api.getFormByID(id);
     if (res.message !== 'ok') {
+      rootElement.innerHTML = '';
       if (res.message === '404') {
         render404();
         return;
@@ -47,20 +63,10 @@ export const renderForm = async (id) => {
       renderMessage('Ошибка сервера. Попробуйте позже', true);
       return;
     }
-    // Попытка найти опрос в локальном хранилище
-    renderMessage('Потеряно соединение с сервером', true);
-    formJSON = storageGetFormByID(id);
   }
 
-  const rootElement = document.querySelector('#root');
-  rootElement.innerHTML = '';
-
-  if (STORAGE.user && STORAGE.user.id === formJSON.author.id) {
-    renderAuthorMenu(id);
-    const menuCheckButton = document.querySelector('#author-menu-check-button');
-    menuCheckButton.disabled = true;
-    menuCheckButton.classList.add('secondary-button');
-    menuCheckButton.classList.remove('primary-button');
+  if (!STORAGE.user || STORAGE.user.id !== formJSON.author.id) {
+    rootElement.innerHTML = '';
   }
 
   rootElement.insertAdjacentHTML('beforeend', Handlebars.templates.check_form({form: formJSON}));
@@ -83,7 +89,7 @@ export const renderForm = async (id) => {
     });
   } else {
     if (!STORAGE.user && !formJSON.anonymous) {
-      // renderMessage("Для прохождение опроса необходимо авторизироваться", true);
+      formIDToRedirect = id;
       updateSubmitButton.classList.add('display-none');
     }
     updateSubmitButton.innerHTML = 'Отправить';
@@ -179,11 +185,7 @@ export const renderForm = async (id) => {
           return;
         }
       } catch (e) {
-        if (e.toString() !== 'TypeError: Failed to fetch') {
-          renderMessage('Ошибка сервера. Попробуйте позже', true);
-          return;
-        }
-        renderMessage('Потеряно соединение с сервером', true);
+        renderMessage('Ошибка сервера. Попробуйте позже', true);
         return;
       }
       if (!STORAGE.user) {
@@ -191,7 +193,7 @@ export const renderForm = async (id) => {
       } else {
         goToPage(ROUTES.forms);
       }
-      renderMessage("Вы успешно прошли опрос! Ваши результаты сохранены");
+      renderMessage("Вы успешно прошли опрос! Ваш ответ записан");
 
     });
   }
@@ -206,6 +208,7 @@ export const renderForm = async (id) => {
         copyButton.innerHTML = 'Скопировано!';
         copyButton.classList.add('primary-button');
         copyButton.classList.remove('secondary-button');
+        // Копирование ссылки в буфер на компе
         navigator.clipboard.writeText(link);
       });
       document.querySelector('#popup-ok-button').innerHTML = 'Скопировать';

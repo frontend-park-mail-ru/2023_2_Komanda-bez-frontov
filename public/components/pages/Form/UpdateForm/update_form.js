@@ -1,7 +1,7 @@
 import {API} from '../../../../modules/api.js';
 import {render404} from '../../../404/404.js';
 import {removeMessage, renderMessage} from '../../../Message/message.js';
-import {STORAGE, storageGetFormByID} from '../../../../modules/storage.js';
+import {STORAGE} from '../../../../modules/storage.js';
 import {goToPage} from '../../../../modules/router.js';
 import {ROUTES} from '../../../../config.js';
 import {createQuestionUpdate, removedAnswersID} from '../../../Question/UpdateQuestion/update_question.js';
@@ -40,10 +40,19 @@ export const renderFormUpdate = async (id) => {
     return;
   }
 
+  const rootElement = document.querySelector('#root');
+  rootElement.innerHTML = '';
+  renderAuthorMenu(id);
+  const menuUpdateButton = document.querySelector('#author-menu-update-button');
+  menuUpdateButton.disabled = true;
+  menuUpdateButton.classList.add('secondary-button');
+  menuUpdateButton.classList.remove('primary-button');
+
   let formJSON;
   try {
     const res = await api.getFormByID(id);
     if (res.message !== 'ok') {
+      rootElement.innerHTML = '';
       if (res.message === '404') {
         render404();
         return;
@@ -53,13 +62,8 @@ export const renderFormUpdate = async (id) => {
     }
     formJSON = res.form;
   } catch (e) {
-    if (e.toString() !== 'TypeError: Failed to fetch') {
-      renderMessage('Ошибка сервера. Попробуйте позже', true);
-      return;
-    }
-    // Попытка найти опрос в локальном хранилище
-    renderMessage('Потеряно соединение с сервером', true);
-    formJSON = storageGetFormByID(id);
+    renderMessage('Ошибка сервера. Попробуйте позже.', true);
+    return;
   }
 
   if (STORAGE.user.id !== formJSON.author.id) {
@@ -69,15 +73,6 @@ export const renderFormUpdate = async (id) => {
 
   const removedQuestionsID = [];
   removedAnswersID.length = 0;
-
-  const rootElement = document.querySelector('#root');
-  rootElement.innerHTML = '';
-
-  renderAuthorMenu(id);
-  const menuUpdateButton = document.querySelector('#author-menu-update-button');
-  menuUpdateButton.disabled = true;
-  menuUpdateButton.classList.add('secondary-button');
-  menuUpdateButton.classList.remove('primary-button');
 
   rootElement.insertAdjacentHTML('beforeend', Handlebars.templates.update_form({form: formJSON}));
 
@@ -151,12 +146,9 @@ export const renderFormUpdate = async (id) => {
         }
         renderMessage(res.message, true);
       } catch (e) {
-        if (e.toString() !== 'TypeError: Failed to fetch') {
-          renderMessage('Ошибка сервера. Попробуйте позже', true);
-          closePopUpWindow();
-          return;
-        }
-        renderMessage('Потеряно соединение с сервером', true);
+        renderMessage('Ошибка сервера. Попробуйте позже.', true);
+        closePopUpWindow();
+        return;
       }
       closePopUpWindow();
     });
@@ -176,7 +168,6 @@ export const renderFormUpdate = async (id) => {
     updatedForm.id = Number(id);
     updatedForm.removed_questions = removedQuestionsID;
     updatedForm.removed_answers = removedAnswersID;
-    console.log(updatedForm);
     try {
       const res = await api.updateForm(updatedForm);
       if (res.message === 'ok') {
@@ -187,11 +178,7 @@ export const renderFormUpdate = async (id) => {
       }
       renderMessage(res.message, true);
     } catch (e) {
-      if (e.toString() !== 'TypeError: Failed to fetch') {
-        renderMessage('Ошибка сервера. Попробуйте позже', true);
-        return;
-      }
-      renderMessage('Потеряно соединение с сервером', true);
+      renderMessage('Ошибка сервера. Попробуйте позже.', true);
     }
   });
 };

@@ -788,6 +788,14 @@ input {
   font-size: 24px;
 }
 
+.forms_list_main-container_create-new-label {
+  margin-top: 12px;
+  text-align: center;
+  font-size: 24px;
+  color: #6e51a4;
+  cursor: pointer;
+}
+
 .display-invisible {
   visibility: hidden;
   opacity: 0;
@@ -797,37 +805,6 @@ input {
   display: none;
 }
 
-@media screen and (max-width: 768px) {
-  .forms_list-container {
-    margin: 32px 40px;
-  }
-  .forms_title-container {
-    margin-bottom: 15px;
-  }
-  .forms_title-container h3 {
-    font-size: 26px;
-  }
-  .forms_title-container_button-container button {
-    width: 40px;
-    height: 36px;
-    font-size: 24px;
-  }
-  .forms_search-container {
-    margin-bottom: 30px;
-  }
-  .forms_search-container .forms_search-container__button {
-    content-visibility: hidden;
-    width: 45px;
-  }
-  .forms__loading-screen {
-    top: 190px;
-  }
-  .forms__loading-screen img {
-    width: 40px;
-    height: 40px;
-    margin: 140px auto;
-  }
-}
 @media screen and (max-width: 480px) {
   .forms_list-container {
     margin: 32px 28px;
@@ -859,7 +836,7 @@ input {
     width: 45px;
   }
   .forms__loading-screen {
-    top: 190px;
+    top: 210px;
   }
   .forms__loading-screen img {
     width: 40px;
@@ -934,10 +911,11 @@ input {
 .forms-list__item {
   background-color: #FFFFFF;
   margin-bottom: 16px;
-  min-width: min-content;
   min-height: 56px;
   max-height: min-content;
   font-size: 18px;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .check-question {
@@ -1503,7 +1481,7 @@ input {
   }
   .check-form .check-form__title {
     font-size: 25px;
-    margin: 20px 0;
+    margin: 30px 0 20px 0;
   }
   .check-form .button-container {
     margin: 15px 9px 8px 9px;
@@ -1681,7 +1659,7 @@ input {
   }
   .update-form__title-label {
     font-size: 25px;
-    margin-bottom: 16px;
+    margin: 30px 0 20px 0;
   }
   .update-form__title {
     padding: 8px;
@@ -1799,7 +1777,7 @@ input {
   }
   .form-results .form-results__title {
     font-size: 25px;
-    margin-bottom: 16px;
+    margin: 30px 0 20px 0;
   }
   .form-results .button-container {
     margin: 15px 9px 8px 9px;
@@ -2167,6 +2145,11 @@ p, h3 {
   z-index: 100;
 }
 
+#navbar {
+  background-color: #4B357A;
+  height: 64px;
+}
+
 #message-box, #root {
   position: relative;
 }
@@ -2180,10 +2163,16 @@ p, h3 {
   #message-box, #root {
     top: 76px;
   }
+  #navbar {
+    height: 76px;
+  }
 }
 @media screen and (min-width: 768px) {
   #message-box, #root {
-    top: 80px;
+    top: 78px;
+  }
+  #navbar {
+    height: 78px;
   }
 }
 #footer {
