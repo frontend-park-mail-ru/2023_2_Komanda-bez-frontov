@@ -1,6 +1,12 @@
 import path from 'path';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
+import ImageMinimizerPlugin from 'image-minimizer-webpack-plugin';
+import CssMinimizerPlugin from 'css-minimizer-webpack-plugin';
+import OptimizeJsPlugin from "optimize-js-plugin";
+
+
+
 const __dirname = path.resolve();
 
 export default {
@@ -60,7 +66,29 @@ export default {
     filename: 'index_bundle.js',
   },
   plugins: [
+    new MiniCssExtractPlugin(),
     new HtmlWebpackPlugin({template: './public/index.html'}),
   ],
+  optimization: {
+    minimizer: [
+      new ImageMinimizerPlugin({
+        minimizer: {
+          implementation: ImageMinimizerPlugin.imageminMinify,
+          options: {
+            plugins: [
+              ['gifsicle', { interlaced: true }],
+              ['jpegtran', { progressive: true }],
+              ['optipng', { optimizationLevel: 5 }],
+              ['svgo', { name: 'preset-default' }],
+            ],
+          },
+        },
+      }),
+      new CssMinimizerPlugin(),
+      new OptimizeJsPlugin({
+        sourceMap: false
+      })
+    ],
+  },
   mode: 'development',
 };
