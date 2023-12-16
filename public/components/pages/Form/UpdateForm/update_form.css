@@ -1,6 +1,10 @@
 .update-form__title-input {
   border: none;
-  cursor: pointer;
+  outline: none;
+}
+
+.update-form__title-input:hover {
+  background-color: #F1F1F1;
 }
 
 .update-form__description {
@@ -24,6 +28,10 @@
   border: 1px solid rgba(0, 0, 0, 0.1);
 }
 
+.update-form__description-textarea:hover {
+  background-color: #F1F1F1;
+}
+
 .update-form_anonymous__checkbox-container {
   display: flex;
   align-items: center;
@@ -37,6 +45,19 @@
   background-color: #fdc6c6 !important;
 }
 
+.update-form_add-question-button {
+  margin-top: 32px;
+  background-color: #FFFFFF;
+  border: none;
+  border-radius: 16px;
+  box-shadow: 0 0 8px 0 rgba(34, 60, 80, 0.2);
+  color: rgba(0, 0, 0, 0.5);
+}
+
+.update-form_add-question-button:hover {
+  background-color: #F1F1F1;
+}
+
 @media screen and (min-width: 769px) {
   .update-form {
     margin: 0 auto;
@@ -44,7 +65,7 @@
   }
   .update-form .button-container {
     width: 440px;
-    margin: 24px 16px;
+    margin: 32px 0;
     gap: 12px;
   }
   .update-form .button-container button {
@@ -53,7 +74,7 @@
   }
   .update-form__title-input {
     font-size: 24px;
-    width: 331px;
+    width: 860px;
   }
   .update-form__description-textarea {
     width: 846px;
@@ -81,6 +102,12 @@
   .check-form__anonymous-warning-icon {
     font-size: 10px;
   }
+  .update-form_add-question-button {
+    align-items: center;
+    font-size: 30px;
+    height: 36px;
+    width: 100%;
+  }
 }
 @media screen and (max-width: 768px) {
   .update-form {
@@ -94,10 +121,6 @@
   .update-form .button-container button {
     width: 180px;
     margin-bottom: 4px;
-  }
-  .update-form__title-label {
-    font-size: 25px;
-    margin: 30px 0 20px 0;
   }
   .update-form__description-textarea {
     padding: 8px;

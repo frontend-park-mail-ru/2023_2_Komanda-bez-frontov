@@ -2,7 +2,9 @@
     <div class="update-form">
         <div class="update-form__description">
             <p class="check-question__required-title display-none" id="update-form-title-validation-error">Текст должен состоять из русских или английских слов, цифр и знаков препинания</p>
-            <input class="update-form__title-input" id="update-form__title" placeholder="Введите название опроса" value="{{form.title}}" maxlength="64">
+            <div class="update-form__description-header">
+                <input class="update-form__title-input" id="update-form__title" placeholder="Введите название опроса" value="{{form.title}}" maxlength="64">
+            </div>
             <textarea class="update-form__description-textarea" placeholder="Описание" id="update-form__description-textarea" maxlength="512">{{form.description}}</textarea>
             <div class="update-form_anonymous__checkbox-container">
                 {{#ifEquals form.anonymous true}}
@@ -13,15 +15,17 @@
                 {{/ifEquals}}
                 <label class="update-form_anonymous__checkbox-label" for="update-form-anonymous-checkbox">Анонимный опрос</label>
             </div>
+
             <div class="check-form__anonymous-warning-container">
                 <p class="check-form__anonymous-warning-icon">⚠️</p>
                 <p class="check-form__anonymous-warning">Включив анонимный опрос вы не сможете получать информацию о участниках опроса</p>
             </div>
         </div>
         <div class="update-form__questions-container" id="check-form__questions-container"></div>
+        <button class="update-form_add-question-button" type="submit" id="add-button">+</button>
+
         <div class="button-container">
             <button class="secondary-button" type="submit" id="update-button">Cохранить</button>
-            <button class="primary-button" type="submit" id="add-button">Добавить вопрос</button>
             <button class="red-button" type="submit" id="delete-button">Удалить опрос</button>
         </div>
     </div>

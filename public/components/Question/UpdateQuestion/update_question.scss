@@ -1,43 +1,42 @@
 .update-question {
-  border-radius: 9px;
-  border: 1px solid #424242;
-  background-color: #ffffff;
+  background-color: #FFFFFF;
+  border-radius: 16px;
+  box-shadow: 0 0 8px 0 rgba(34, 60, 80, 0.2);
+  ::placeholder {
+    color: rgba(187, 187, 187, 1);
+  }
 }
 
 .update-question__title-container {
   display: flex;
   justify-content: space-between;
 
-  .update-question__description-title {
-    font-size: 18px;
-    text-align: left;
+  .update-question__title-input {
+    border: none;
+    outline: none;
   }
 
-  .update-question__question-delete {
-    cursor: pointer;
-    font-size: 16px;
+  .update-question__title-input:hover {
+    background-color: #F1F1F1;
   }
-}
 
-.update-question__title-input {
-  font-size: 16px;
-  background-color: #d5ceec;
-  border-radius: 6px;
+  .update-question__select {
+    font-weight: 600;
+  }
 }
 
 .update-question__description-textarea {
   font-size: 16px;
-  height: 64px;
+  height: 60px;
   resize: none;
-  background-color: #d5ceec;
-  border-radius: 6px;
+  border-radius: 8px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
 }
 
-.update-question__answer-title {
-   font-size: 18px;
-   margin: 8px 0;
-   text-align: left;
- }
+.update-question__description-textarea:hover {
+  background-color: #F1F1F1;
+}
+
 
 .update-question__answers-item {
   margin-bottom: 8px;
@@ -46,12 +45,11 @@
 .update-question__answer-format {
   text-align: left;
   margin-bottom: 8px;
-  margin-left: 8px;
   flex-wrap: wrap;
   .update-question__answer-format-radio {
-    width: 15px;
-    height: 15px;
-    border: 1.5px solid #1E2534;
+    width: 12px;
+    height: 12px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
     vertical-align: bottom;
     position: relative;
     top: -1px;
@@ -66,25 +64,33 @@
 }
 
 .update-question__button-container {
-  margin: 15px 0 6px 0;
   display: flex;
-  justify-content: left;
+  justify-content: right;
   align-items: center;
-  gap: 8px;
+  gap: 16px;
 
   button {
     width: 200px;
   }
 
   .update-question__required-container {
+    gap: 4px;
     display: flex;
     align-items: center;
   }
 
+  .material-symbols-outlined {
+    font-size: 20px;
+    color: #B42525;
+  }
+
+  .update-question__question-delete {
+    cursor: pointer;
+  }
+
   .update-question_button-container__required-checkbox {
-    margin-left: 12px;
-    width: 15px;
-    height: 15px;
+    width: 12px;
+    height: 12px;
   }
 
   .update-question_button-container__required-label {
@@ -93,33 +99,53 @@
   }
 }
 
+
 @media screen and (min-width: 769px) {
   .update-question {
-    margin-top: 15px;
-    padding: 12px;
-  }
-  .update-question__title-container {
-    .update-question__description-title {
-      margin-bottom: 8px;
-    }
+    margin-top: 32px;
+    padding: 24px;
   }
 
   .update-question__title-input {
-    width: 590px;
-    padding: 5px 8px;
-    margin: 0 auto 12px;
+    width: 550px;
+    font-size: 20px;
   }
 
-  .update-question__button-container {
-    margin: 15px 0 6px 6px;
-
-    .update-question_button-container__required-checkbox {
-      margin-left: 8px;
-    }
+  .update-question__select {
+    position: relative;
   }
+
+  .update-question__select select {
+    appearance: none;
+    font-size: 18px;
+    background-color: #FFFFFF;
+    border: none;
+    outline: none;
+    padding-right: 25px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+  }
+
+  .update-question__select_custom-arrow {
+    width: 20px;
+    height: 100%;
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 0;
+    overflow: hidden;
+    pointer-events: none;
+  }
+
+  .custom-arrow-show {
+    transform: rotate(180deg);
+  }
+
   .update-question__description-textarea {
-    padding: 5px 8px;
-    width: 590px;
+    margin-top: 16px;
+    font-size: 16px;
+    padding: 8px 8px;
+    width: 846px;
   }
 }
 
@@ -128,9 +154,13 @@
     margin-top: 8px;
     padding: 8px 8px;
   }
+
   .update-question__title-container {
     .update-question__description-title {
       margin-bottom: 8px;
+    }
+    .update-question__select {
+      margin-left: 10px;
     }
   }
 
@@ -141,7 +171,6 @@
   }
 
   .update-question__button-container {
-    margin: 15px 0 6px 6px;
 
     .update-question_button-container__required-checkbox {
       margin-left: 8px;
@@ -172,7 +201,6 @@
   }
 
   .update-question__button-container {
-    margin: 15px 0 6px 8px;
     flex-wrap: wrap;
 
     .primary-button {

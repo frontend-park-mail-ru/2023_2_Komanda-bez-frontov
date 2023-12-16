@@ -1,15 +1,3 @@
-.update-question__answers-title {
-  padding-left: 4px;
-  font-size: 18px;
-  margin-bottom: 8px;
-  text-align: left;
-}
-
-.update-question__answers-item {
-  padding-left: 8px;
-  margin-bottom: 8px;
-}
-
 .update-question__answers-item {
   display: flex;
   gap: 8px;
@@ -17,52 +5,89 @@
   align-items: center;
   border: none;
   margin: 0;
-  padding: 5px;
-  font-size: 16px;
 }
 .update-question__answers-item .update-question__answers-item-input {
   font-size: 16px;
   font-weight: normal;
-  padding: 3px 8px;
-  border: none;
   margin: 0;
-  background-color: #d5ceec;
-  border-radius: 6px;
+  outline: none;
+  border: none;
 }
-.update-question__answers-item .update-question__answers-item-checkbox {
-  width: 15px;
-  height: 15px;
-  border: 1.5px solid #1E2534;
-  vertical-align: bottom;
-  position: relative;
-  top: -1px;
-  *overflow: hidden;
-}
-.update-question__answers-item .update-question__answers-item-radio {
-  width: 15px;
-  height: 15px;
-  border: 1.5px solid #1E2534;
-  vertical-align: bottom;
-  position: relative;
-  top: -1px;
-  *overflow: hidden;
+.update-question__answers-item .update-question__answers-item-input:hover {
+  background-color: #F1F1F1;
 }
 .update-question__answers-item .update-question__answers-item-textarea {
   height: 95px;
   resize: none;
   font-size: 16px;
-  background-color: #d5ceec;
+  background-color: #FFFFFF;
   border-radius: 6px;
   padding: 8px;
   *overflow: hidden;
 }
 .update-question__answers-item .update-question__answers-item-delete {
   cursor: pointer;
+  color: rgba(0, 0, 0, 0.5);
+  font-size: 20px;
+}
+.update-question__answers-item .update-question__answers-item-delete:hover {
+  color: #B42525;
+}
+
+.update-question__answers-item-checkbox {
+  width: 15px;
+  height: 15px;
+  border: 1.5px solid #1E2534;
+  vertical-align: bottom;
+  position: relative;
+  top: -1px;
+  *overflow: hidden;
+}
+
+.update-question__answers-item-radio {
+  width: 15px;
+  height: 15px;
+  border: 1.5px solid #1E2534;
+  vertical-align: bottom;
+  position: relative;
+  top: -1px;
+  *overflow: hidden;
+}
+
+.add-button-display-none {
+  display: none;
+}
+
+.update-question__answers_add_button {
+  display: flex;
+  gap: 8px;
+  text-align: left;
+  align-items: center;
+  border: none;
+  margin: 0;
+}
+
+.update-question__answers-add-input {
+  font-size: 16px;
+  font-weight: normal;
+  margin: 0;
+  outline: none;
+  border: none;
+  pointer-events: none;
 }
 
 @media screen and (min-width: 769px) {
+  .update-question__answers {
+    margin-top: 16px;
+  }
   .update-question__answers-item-textarea {
     width: 590px;
+  }
+  .update-question__answers-item {
+    margin-bottom: 8px;
+  }
+  .update-question__answers-item-input {
+    width: 400px;
   }
 }
 @media screen and (max-width: 768px) {
