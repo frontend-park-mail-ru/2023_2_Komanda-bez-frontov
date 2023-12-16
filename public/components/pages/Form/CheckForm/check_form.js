@@ -1,13 +1,13 @@
 import {API} from '../../../../modules/api.js';
 import {render404} from '../../../404/404.js';
 import {renderMessage} from '../../../Message/message.js';
-import {storageGetFormByID, STORAGE} from '../../../../modules/storage.js';
+import {STORAGE} from '../../../../modules/storage.js';
 import {frontendUrl, ROUTES} from '../../../../config.js';
 import {goToPage} from '../../../../modules/router.js';
 import {createQuestion} from '../../../Question/CheckQuestion/check_question.js';
 import {renderPopUpWindow} from '../../../PopUpWindow/popup_window.js';
 import {renderAuthorMenu} from '../../../AuthorMenu/authorMenu.js';
-import {textValidation} from "../../../../modules/validation.js";
+import {checkInputsValidation} from "../../Login/login.js";
 
 export const TYPE_SINGLE_CHOICE = 1;
 export const TYPE_MULTIPLE_CHOICE = 2;
@@ -27,6 +27,7 @@ export const clearFormIDToRedirect = () => {
  * @return {void}
  */
 export const renderForm = async (id) => {
+
   const api = new API();
   if (!id) {
     const page = ROUTES.forms;
@@ -35,10 +36,20 @@ export const renderForm = async (id) => {
     return;
   }
 
+  const rootElement = document.querySelector('#root');
+  rootElement.innerHTML = '';
+  if (STORAGE.user) {
+    renderAuthorMenu(id);
+    const menuCheckButton = document.querySelector('#author-menu-check-button');
+    menuCheckButton.classList.add('secondary-button');
+    menuCheckButton.classList.remove('primary-button');
+  }
+
   let formJSON;
   try {
     const res = await api.getFormByID(id);
     if (res.message !== 'ok') {
+      rootElement.innerHTML = '';
       if (res.message === '404') {
         render404();
         return;
@@ -49,23 +60,13 @@ export const renderForm = async (id) => {
     formJSON = res.form;
   } catch (e) {
     if (e.toString() !== 'TypeError: Failed to fetch') {
-      renderMessage('Ошибка сервера. Попробуйте позже', true);
+      renderMessage('Ошибка сервера. Перезагрузите страницу', true);
       return;
     }
-    // Попытка найти опрос в локальном хранилище
-    renderMessage('Потеряно соединение с сервером', true);
-    formJSON = storageGetFormByID(id);
   }
 
-  const rootElement = document.querySelector('#root');
-  rootElement.innerHTML = '';
-
-  if (STORAGE.user && STORAGE.user.id === formJSON.author.id) {
-    renderAuthorMenu(id);
-    const menuCheckButton = document.querySelector('#author-menu-check-button');
-    menuCheckButton.disabled = true;
-    menuCheckButton.classList.add('secondary-button');
-    menuCheckButton.classList.remove('primary-button');
+  if (!STORAGE.user || STORAGE.user.id !== formJSON.author.id) {
+    rootElement.innerHTML = '';
   }
 
   rootElement.insertAdjacentHTML('beforeend', Handlebars.templates.check_form({form: formJSON}));
@@ -94,6 +95,11 @@ export const renderForm = async (id) => {
     updateSubmitButton.innerHTML = 'Отправить';
 
     updateSubmitButton.addEventListener('click', async () => {
+      if (!checkInputsValidation()) {
+        renderMessage('Исправлены не все данные', true);
+        return;
+      }
+
       const passageJSON = {
         form_id: formJSON.id,
         passage_answers: [
@@ -132,25 +138,11 @@ export const renderForm = async (id) => {
 
           if (question.required && chosenAnswer.value === "") {
             chosenAnswer.classList.add('update-form__input-error');
-            chosenAnswer.addEventListener('click', () => {
+            chosenAnswer.addEventListener('input', () => {
               chosenAnswer.classList.remove('update-form__input-error');
             }, {once: true});
 
-            console.log("111")
             renderMessage("Вы ответили не на все вопросы", true);
-            err = true;
-            return;
-          }
-
-          console.log("222")
-          const validator = textValidation(chosenAnswer.value);
-          if (!validator.valid) {
-            chosenAnswer.classList.add('update-form__input-error');
-            chosenAnswer.addEventListener('click', () => {
-              chosenAnswer.classList.remove('update-form__input-error');
-            }, {once: true});
-
-            renderMessage(validator.message, true);
             err = true;
             return;
           }
@@ -184,11 +176,7 @@ export const renderForm = async (id) => {
           return;
         }
       } catch (e) {
-        if (e.toString() !== 'TypeError: Failed to fetch') {
-          renderMessage('Ошибка сервера. Попробуйте позже', true);
-          return;
-        }
-        renderMessage('Потеряно соединение с сервером', true);
+        renderMessage('Ошибка сервера. Перезагрузите страницу', true);
         return;
       }
       if (!STORAGE.user) {
@@ -212,12 +200,7 @@ export const renderForm = async (id) => {
         copyButton.classList.add('primary-button');
         copyButton.classList.remove('secondary-button');
         // Копирование ссылки в буфер на компе
-        const input = document.querySelector('#popup-copy-input');
-        input.classList.remove('display-none');
-        input.value = link;
-        input.select();
-        document.execCommand('copy');
-        input.classList.add('display-none');
+        navigator.clipboard.writeText(link);
       });
       document.querySelector('#popup-ok-button').innerHTML = 'Скопировать';
     });

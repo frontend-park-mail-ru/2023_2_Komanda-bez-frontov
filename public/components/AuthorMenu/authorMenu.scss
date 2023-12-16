@@ -12,6 +12,7 @@
 
   button {
     font-size: 16px;
+    padding-left: 20px;
     border: none;
     border-radius: 0;
     display: flex;
@@ -69,15 +70,16 @@
     button {
       border-radius: 0;
       justify-content: center;
+      padding-left: 12px;
     }
     .secondary-button {
       margin: 0;
-      font-size: 12px;
+      font-size: 14px;
     }
     .primary-button {
       margin: 0 0 0 -1px;
       background-color: white;
-      font-size: 12px;
+      font-size: 14px;
     }
   }
   .form-author-menu__close {
@@ -104,6 +106,12 @@
       }
       gap: 4px;
       flex-wrap: wrap;
+    }
+    .secondary-button {
+      font-size: 12px;
+    }
+    .primary-button {
+      font-size: 12px;
     }
   }
 }

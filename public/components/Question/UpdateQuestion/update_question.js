@@ -1,4 +1,6 @@
 import {TYPE_SINGLE_CHOICE, TYPE_MULTIPLE_CHOICE, TYPE_TEXT} from "../../pages/Form/CheckForm/check_form.js";
+import {textValidation} from "../../../modules/validation.js";
+import {addValidationToFormInput} from "../../pages/Form/UpdateForm/update_form.js";
 export const removedAnswersID = [];
 
 /**
@@ -18,16 +20,25 @@ export const createQuestionUpdate = (question) => {
   const answerContainer = questionElement.querySelector('#question-answers');
   const buttonAddAnswer = questionElement.querySelector('#add-answer-button');
 
+  const title = questionElement.querySelector('#update-question__title');
+  const description = questionElement.querySelector('#update-question__description-textarea');
+  const errorLabel = questionElement.querySelector('#update-question-title-validation-error');
+
+  addValidationToFormInput(title, textValidation, errorLabel);
+  addValidationToFormInput(description, textValidation, errorLabel);
+
   let type = question.type;
   const answers = question.answers;
 
   const renderAnswers = () => {
     answerContainer.innerHTML = Handlebars.templates.update_answer({answers, type});
+    const errorLabelAnswers = questionElement.querySelector('#update-answers-validation-error');
     const cInputText = questionElement.querySelectorAll('.update-question__answers-item-input');
     cInputText.forEach((input, index) => {
       input.addEventListener('change', () => {
         answers[index].text = input.value;
       });
+      addValidationToFormInput(input, textValidation, errorLabelAnswers);
     });
     const cAnswers = questionElement.querySelectorAll('.update-question__answers-item');
     cAnswers.forEach((answerElement, index) => {
@@ -51,7 +62,6 @@ export const createQuestionUpdate = (question) => {
     });
 
     if (answers.length >= 12) {
-      console.log("!!!")
       buttonAddAnswer.classList.add('button__disabled');
     }
   };

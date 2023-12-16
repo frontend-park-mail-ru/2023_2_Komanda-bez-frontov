@@ -30,6 +30,7 @@
             {{/ifEquals}}
             {{#ifEquals question.type 3}}
                 <h3 class="check-question__answer-title">Дайте ответ в формате текста:</h3>
+                <p class="check-question__required-title display-none" id="check-question-validation-error">Текст должен состоять из русских или английских слов, цифр и знаков препинания</p>
                 <div class="check-question__answer-item">
                     <textarea class="check-question__answers-item-textarea" id="check-question_{{../question.id}}_answers-item" maxlength="512"></textarea>
                 </div>

@@ -95,6 +95,10 @@
     width: 180px;
     margin-bottom: 4px;
   }
+  .update-form__title-label {
+    font-size: 25px;
+    margin: 30px 0 20px 0;
+  }
   .update-form__description-textarea {
     padding: 8px;
     font-size: 18px;

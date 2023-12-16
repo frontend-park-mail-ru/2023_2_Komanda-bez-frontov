@@ -1,22 +1,10 @@
 import {ROUTES} from '../config.js';
-import {renderLogin} from '../components/pages/Login/login.js';
-import {renderSignup} from '../components/pages/Signup/signup.js';
-import {renderForms} from '../components/pages/MyForms/forms.js';
-import {clearFormIDToRedirect, formIDToRedirect, renderForm} from '../components/pages/Form/CheckForm/check_form.js';
-import {renderMain} from '../components/pages/Main/main.js';
+import {clearFormIDToRedirect, formIDToRedirect,} from '../components/pages/Form/CheckForm/check_form.js';
 import {renderInitial} from '../components/Initial/Initial.js';
 import {render404} from '../components/404/404.js';
-import {renderProfile} from '../components/pages/Profile/profile.js';
 import {navbar} from '../components/Navbar/navbar.js';
-import {
-  editInProcess,
-  renderFormUpdate,
-  renderQuitEditingWindow
-} from '../components/pages/Form/UpdateForm/update_form.js';
-import {renderFormNew} from '../components/pages/Form/FormNew/new_form.js';
-import {renderUpdateProfile} from '../components/pages/UpdateProfile/update_profile.js';
+import {editInProcess, renderQuitEditingWindow} from '../components/pages/Form/UpdateForm/update_form.js';
 import {removeMessage} from "../components/Message/message.js";
-import {renderResultsForm} from "../components/pages/FormResults/form_results.js";
 import {STORAGE} from "./storage.js";
 
 /**

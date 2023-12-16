@@ -11,7 +11,10 @@ import {
 import {goToPage} from '../../../modules/router.js';
 import {STORAGE} from '../../../modules/storage.js';
 import {navbar} from "../../Navbar/navbar.js";
-import {debounce} from "../MyForms/forms.js";
+import {
+  addValidationToInput,
+  checkInputsValidation,
+} from "../Login/login.js";
 
 /**
  * Функция для рендеринга страницы регистрации.
@@ -29,12 +32,12 @@ export const toggleFunc = (password, icon) => {
   } else {
     password.type = 'password';
     icon.innerText = 'visibility';
-
   }
 };
 
 export const renderSignup = async () => {
   removeMessage();
+
   const rootElement = document.querySelector('#root');
   rootElement.innerHTML = '';
   rootElement.innerHTML = Handlebars.templates.signup();
@@ -55,84 +58,29 @@ export const renderSignup = async () => {
     toggleFunc(password, icon);
   });
 
+  const signupButton = document.querySelector('#signup-button');
   const firstName = document.querySelector('#name');
   const email = document.querySelector('#email');
   const username = document.querySelector('#username');
   const password = document.querySelector('#password');
   const repeatPassword = document.querySelector('#repeat_password');
 
-  let isNameValid = true;
-  let isEmailValid = true;
-  let isUsernameValid = true;
-  let isPasswordValid = true;
+  addValidationToInput(firstName, nameValidation, signupButton);
+  addValidationToInput(email, emailValidation, signupButton);
+  addValidationToInput(username, usernameValidation, signupButton);
+  addValidationToInput(password, passwordValidation, signupButton);
 
-  firstName.addEventListener("input", debounce((e) => {
-    e.preventDefault();
-
-    const nameValid = nameValidation(firstName.value);
-
-    if (nameValid.valid) {
-      removeMessage();
-      isNameValid = true;
-    } else {
-      renderMessage(nameValid.message, true);
-      isNameValid = false;
-    }
-  }, 500));
-
-  email.addEventListener("input", debounce((e) => {
-    e.preventDefault();
-
-    const emailValid = emailValidation(e.target.value);
-
-    if (emailValid.valid) {
-      removeMessage();
-      isEmailValid = true;
-    } else {
-      renderMessage(emailValid.message, true);
-      isEmailValid = false;
-    }
-  }, 500));
-
-  username.addEventListener("input", debounce((e) => {
-    e.preventDefault();
-
-    const usernameValid = usernameValidation(e.target.value);
-
-    if (usernameValid.valid) {
-      removeMessage();
-      isUsernameValid = true;
-    } else {
-      renderMessage(usernameValid.message, true);
-      isUsernameValid = false;
-    }
-  }, 500) );
-
-  password.addEventListener("input", debounce((e) => {
-    e.preventDefault();
-
-    const passwordValid = passwordValidation(e.target.value);
-
-    if (passwordValid.valid) {
-      removeMessage();
-      isPasswordValid = true;
-    } else {
-      renderMessage(passwordValid.message, true);
-      isPasswordValid = false;
-    }
-  }, 500));
-
-  const signupButton = document.querySelector('#signup-button');
   signupButton.addEventListener('click', async (e) => {
     e.preventDefault();
+
+    if (!checkInputsValidation()) {
+      renderMessage('Исправлены не все данные', true);
+      return;
+    }
 
     if (password.value === '' || email.value === '' || firstName.value === ''
         || username.value === '' || repeatPassword.value === '') {
       renderMessage('Вы ввели не все данные', true);
-      return;
-    }
-
-    if (!isNameValid || !isEmailValid || !isUsernameValid || !isPasswordValid) {
       return;
     }
 
@@ -159,13 +107,9 @@ export const renderSignup = async () => {
 
       navbar();
       goToPage(ROUTES.forms);
-      // renderMessage('Вы успешно зарегистрировались');
+      renderMessage('Вы успешно зарегистрировались');
     } catch (err) {
-      if (err.toString() !== 'TypeError: Failed to fetch') {
-        renderMessage('Ошибка сервера. Попробуйте позже', true);
-        return;
-      }
-      renderMessage('Потеряно соединение с сервером', true);
+      renderMessage('Ошибка сервера. Перезагрузите страницу', true);
     }
   });
 };

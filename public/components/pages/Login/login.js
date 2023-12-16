@@ -32,44 +32,22 @@ export const renderLogin = async () => {
     toggleFunc(password, icon);
   });
 
-  let isEmailValid = true;
-  let isPasswordValid = true;
-
   const email = document.querySelector('#email');
   const password = document.querySelector('#password');
 
-  email.addEventListener("input", debounce((e) => {
-    e.preventDefault();
-
-    const emailValid = emailValidation(e.target.value);
-
-    if (emailValid.valid) {
-      removeMessage();
-      isEmailValid = true;
-    } else {
-      renderMessage(emailValid.message, true);
-      isEmailValid = false;
-    }
-  }, 500));
-
-  password.addEventListener("input", debounce((e) => {
-    e.preventDefault();
-
-    const passwordValid = passwordValidation(e.target.value);
-
-    if (passwordValid.valid) {
-      removeMessage();
-      isPasswordValid = true;
-    } else {
-      renderMessage(passwordValid.message, true);
-      isPasswordValid = false;
-    }
-  }, 500));
+  addValidationToInput(email, emailValidation, loginButton);
+  addValidationToInput(password, passwordValidation, loginButton);
 
   loginButton.addEventListener('click', async (e) => {
     e.preventDefault();
 
-    if (!isEmailValid || !isPasswordValid) {
+    if (!checkInputsValidation()) {
+      renderMessage('Исправлены не все данные', true);
+      return;
+    }
+
+    if (password.value === '' || email.value === '') {
+      renderMessage('Вы ввели не все данные', true);
       return;
     }
 
@@ -77,7 +55,7 @@ export const renderLogin = async () => {
       const api = new API();
       const res = await api.userLogin(email.value, password.value);
       if (res.message !== 'ok') {
-        renderMessage(res.message, true);
+        renderMessage("Неправильные почта и/или пароль", true);
         return;
       }
 
@@ -88,15 +66,42 @@ export const renderLogin = async () => {
       goToPage(ROUTES.forms);
       // renderMessage('Вы успешно вошли');
     } catch (err) {
-      if (err.toString() !== 'TypeError: Failed to fetch') {
-        renderMessage('Ошибка сервера. Попробуйте позже', true);
-        return;
-      }
-      renderMessage('Потеряно соединение с сервером', true);
+      renderMessage('Ошибка сервера. Перезагрузите страницу', true);
     }
   });
 
   signupButton.addEventListener('click', () => {
     goToPage(ROUTES.signup);
   });
+};
+
+export const addValidationToInput = (input, validator, submitButton) => {
+  input.addEventListener("input", debounce((e) => {
+    e.preventDefault();
+
+    const validation = validator(e.target.value);
+
+    if (validation.valid || e.target.value === '') {
+      removeMessage();
+      submitButton.disabled = false;
+    } else {
+      renderMessage(validation.message, true);
+      e.target.classList.add('update-form__input-error');
+      e.target.addEventListener('input', () => {
+        e.target.classList.remove('update-form__input-error');
+      }, {once: true});
+      submitButton.disabled = true;
+    }
+  }, 1000));
+};
+
+export const checkInputsValidation = () => {
+  const cInputs = document.querySelectorAll('input, textarea');
+  let isValid = true;
+  cInputs.forEach((input) => {
+    if (input.classList.contains('update-form__input-error')) {
+      isValid = false;
+    }
+  });
+  return isValid;
 };

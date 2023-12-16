@@ -1,3 +1,10 @@
+.auth-container {
+  margin: 50px 0;
+  position: fixed;
+  top: 120px;
+  width: 100%;
+}
+
 .auth-container__form {
   box-shadow: 0 0 8px 0 rgba(34, 60, 80, 0.2);
   border-radius: 16px;
@@ -70,6 +77,9 @@
 }
 
 @media screen and (max-width: 480px) {
+  .auth-container {
+    top: 100px;
+  }
   .auth-container__form {
     border: none;
     margin: 0 20px;

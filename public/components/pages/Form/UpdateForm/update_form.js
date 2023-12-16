@@ -1,7 +1,7 @@
 import {API} from '../../../../modules/api.js';
 import {render404} from '../../../404/404.js';
 import {removeMessage, renderMessage} from '../../../Message/message.js';
-import {STORAGE, storageGetFormByID} from '../../../../modules/storage.js';
+import {STORAGE} from '../../../../modules/storage.js';
 import {goToPage} from '../../../../modules/router.js';
 import {ROUTES} from '../../../../config.js';
 import {createQuestionUpdate, removedAnswersID} from '../../../Question/UpdateQuestion/update_question.js';
@@ -10,6 +10,7 @@ import {formUpdatePageParser} from '../FormNew/new_form.js';
 import {renderAuthorMenu} from "../../../AuthorMenu/authorMenu.js";
 import {TYPE_SINGLE_CHOICE} from "../CheckForm/check_form.js";
 import {textValidation} from "../../../../modules/validation.js";
+import {checkInputsValidation} from "../../Login/login.js";
 import {debounce} from "../../MyForms/forms.js";
 
 export let editInProcess = false;
@@ -42,10 +43,18 @@ export const renderFormUpdate = async (id) => {
     return;
   }
 
+  const rootElement = document.querySelector('#root');
+  rootElement.innerHTML = '';
+  renderAuthorMenu(id);
+  const menuUpdateButton = document.querySelector('#author-menu-update-button');
+  menuUpdateButton.classList.add('secondary-button');
+  menuUpdateButton.classList.remove('primary-button');
+
   let formJSON;
   try {
     const res = await api.getFormByID(id);
     if (res.message !== 'ok') {
+      rootElement.innerHTML = '';
       if (res.message === '404') {
         render404();
         return;
@@ -55,13 +64,8 @@ export const renderFormUpdate = async (id) => {
     }
     formJSON = res.form;
   } catch (e) {
-    if (e.toString() !== 'TypeError: Failed to fetch') {
-      renderMessage('Ошибка сервера. Попробуйте позже', true);
-      return;
-    }
-    // Попытка найти опрос в локальном хранилище
-    renderMessage('Потеряно соединение с сервером', true);
-    formJSON = storageGetFormByID(id);
+    renderMessage('Ошибка сервера. Перезагрузите страницу', true);
+    return;
   }
 
   if (STORAGE.user.id !== formJSON.author.id) {
@@ -72,16 +76,14 @@ export const renderFormUpdate = async (id) => {
   const removedQuestionsID = [];
   removedAnswersID.length = 0;
 
-  const rootElement = document.querySelector('#root');
-  rootElement.innerHTML = '';
-
-  renderAuthorMenu(id);
-  const menuUpdateButton = document.querySelector('#author-menu-update-button');
-  menuUpdateButton.disabled = true;
-  menuUpdateButton.classList.add('secondary-button');
-  menuUpdateButton.classList.remove('primary-button');
-
   rootElement.insertAdjacentHTML('beforeend', Handlebars.templates.update_form({form: formJSON}));
+
+  const title = document.querySelector('#update-form__title');
+  const description = document.querySelector('#update-form__description-textarea');
+  const errorLabel = document.querySelector('#update-form-title-validation-error');
+
+  addValidationToFormInput(title, textValidation, errorLabel);
+  addValidationToFormInput(description, textValidation, errorLabel);
 
   const questions = document.querySelector('#check-form__questions-container');
   formJSON.questions.forEach((question) => {
@@ -153,148 +155,12 @@ export const renderFormUpdate = async (id) => {
         }
         renderMessage(res.message, true);
       } catch (e) {
-        if (e.toString() !== 'TypeError: Failed to fetch') {
-          renderMessage('Ошибка сервера. Попробуйте позже', true);
-          closePopUpWindow();
-          return;
-        }
-        renderMessage('Потеряно соединение с сервером', true);
+        renderMessage('Ошибка сервера. Перезагрузите страницу', true);
+        closePopUpWindow();
+        return;
       }
       closePopUpWindow();
     });
-  });
-
-  let isTitleValid = true;
-  const titleInput = document.querySelector('#update-form__title');
-
-  titleInput.addEventListener("input", debounce((e) => {
-    e.preventDefault();
-
-    const titleValid = textValidation(titleInput.value);
-
-    if (titleValid.valid) {
-      titleInput.classList.remove('update-form__input-error');
-      isTitleValid = true;
-      removeMessage();
-    } else {
-      titleInput.classList.add('update-form__input-error');
-      titleInput.addEventListener('click', () => {
-        titleInput.classList.remove('update-form__input-error');
-      }, {once: true});
-      renderMessage(titleValid.message, true);
-      isTitleValid = false;
-    }
-  }, 500));
-
-  let isDescriptionValid = true;
-  const descriptionInput = document.querySelector('#update-form__description-textarea');
-
-  descriptionInput.addEventListener("input", debounce((e) => {
-    e.preventDefault();
-
-    const descriptionValid = textValidation(descriptionInput.value);
-    if (descriptionValid.valid) {
-      descriptionInput.classList.remove('update-form__input-error');
-      removeMessage();
-      isDescriptionValid = true;
-    } else {
-      descriptionInput.classList.add('update-form__input-error');
-      descriptionInput.addEventListener('click', () => {
-        descriptionInput.classList.remove('update-form__input-error');
-      }, {once: true});
-      renderMessage(descriptionValid.message, true);
-      isDescriptionValid = false;
-    }
-  }, 500));
-
-
-  let isQuestionsValid = 0;
-  const cQuestions = document.querySelectorAll('.update-question');
-  cQuestions.forEach((questionElement) => {
-    let isQuestionTitleValid = true;
-    const questionTitleInput = questionElement.querySelector('#update-question__title');
-
-    questionTitleInput.addEventListener("input", debounce((e) => {
-      e.preventDefault();
-
-      const questionTitleValid = textValidation(questionTitleInput.value);
-      if (questionTitleValid.valid) {
-        questionTitleInput.classList.remove('update-form__input-error');
-        isQuestionTitleValid = true;
-        removeMessage();
-        if (isQuestionsValid > 0) {
-          isQuestionsValid -= 1;
-        }
-      } else {
-        questionTitleInput.classList.add('update-form__input-error');
-        questionTitleInput.addEventListener('click', () => {
-          questionTitleInput.classList.remove('update-form__input-error');
-        }, {once: true});
-        renderMessage(questionTitleValid.message, true);
-        isQuestionTitleValid = false;
-        isQuestionsValid += 1;
-      }
-    }, 500));
-
-
-    let isQuestionDescriptionValid = true;
-    const questionDescriptionInput = questionElement.querySelector('#update-question__description-textarea');
-
-    questionDescriptionInput.addEventListener("input", debounce((e) => {
-      e.preventDefault();
-
-      const questionDescriptionValid = textValidation(questionDescriptionInput.value);
-      if (questionDescriptionValid.valid) {
-        questionDescriptionInput.classList.remove('update-form__input-error');
-        removeMessage();
-        isQuestionDescriptionValid = true;
-        if (isQuestionsValid > 0) {
-          isQuestionsValid -= 1;
-        }
-      } else {
-        questionDescriptionInput.classList.add('update-form__input-error');
-        questionDescriptionInput.addEventListener('click', () => {
-          questionDescriptionInput.classList.remove('update-form__input-error');
-        }, {once: true});
-        renderMessage(questionDescriptionValid.message, true);
-        isQuestionDescriptionValid = false;
-        isQuestionsValid += 1;
-      }
-    }, 500));
-
-    let isAnswersValid = 0;
-    if (!questionElement.querySelector('#update-question__answer-format-text').checked) {
-      const cAnswers = questionElement.querySelectorAll('#update-question__answers-item-input');
-      cAnswers.forEach((answer) => {
-        let isAnswerValid = true;
-        answer.addEventListener("input", debounce((e) => {
-          e.preventDefault();
-
-          const answerValid = textValidation(answer.value);
-
-          if (answerValid.valid) {
-            answer.classList.remove('update-form__input-error');
-            removeMessage();
-            isAnswerValid = true;
-            if (isAnswersValid > 0) {
-              isAnswersValid -= 1;
-            }
-
-          } else {
-            answer.classList.add('update-form__input-error');
-            answer.addEventListener('click', () => {
-              answer.classList.remove('update-form__input-error');
-            }, {once: true});
-            renderMessage(answerValid.message, true);
-            isAnswerValid = false;
-            isAnswersValid += 1;
-          }
-        }, 500))
-      });
-      if (isAnswersValid > 0) {
-        isQuestionsValid += 1;
-      }
-    }
   });
 
   const updateForm = document.querySelector('#update-button');
@@ -304,13 +170,13 @@ export const renderFormUpdate = async (id) => {
       return;
     }
 
-    if (!isTitleValid || !isDescriptionValid || isQuestionsValid !== 0) {
+    if (!checkInputsValidation()) {
+      renderMessage('Исправлены не все данные', true);
       return;
     }
     updatedForm.id = Number(id);
     updatedForm.removed_questions = removedQuestionsID;
     updatedForm.removed_answers = removedAnswersID;
-    console.log(updatedForm);
     try {
       const res = await api.updateForm(updatedForm);
       if (res.message === 'ok') {
@@ -321,11 +187,7 @@ export const renderFormUpdate = async (id) => {
       }
       renderMessage(res.message, true);
     } catch (e) {
-      if (e.toString() !== 'TypeError: Failed to fetch') {
-        renderMessage('Ошибка сервера. Попробуйте позже', true);
-        return;
-      }
-      renderMessage('Потеряно соединение с сервером', true);
+      renderMessage('Ошибка сервера. Перезагрузите страницу', true);
     }
   });
 };
@@ -338,4 +200,22 @@ export const renderQuitEditingWindow = (page, id = '', redirect = false) => {
       closePopUpWindow();
     });
   }, 0);
+};
+
+export const addValidationToFormInput = (input, validator, errorLabel) => {
+  input.addEventListener("input", debounce((e) => {
+    e.preventDefault();
+
+    const validation = validator(e.target.value);
+
+    if (validation.valid || e.target.value === '') {
+      errorLabel.classList.add('display-none');
+    } else {
+      errorLabel.classList.remove('display-none');
+      e.target.classList.add('update-form__input-error');
+      e.target.addEventListener('input', () => {
+        e.target.classList.remove('update-form__input-error');
+      }, {once: true});
+    }
+  }, 1000));
 };

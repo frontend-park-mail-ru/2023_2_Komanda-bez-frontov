@@ -5,6 +5,8 @@ const POST_METHOD = 'POST';
 const DELETE_METHOD = 'DELETE';
 const PUT_METHOD = 'PUT';
 
+const defaultErrorMessage = 'Ошибка сервера. Перезагрузите страницу или попробуйте позже.'
+
 export class API {
   /**
    * Проверяет, является ли пользователь авторизованным.
@@ -68,10 +70,13 @@ export class API {
         body: JSON.stringify({email, password}),
       });
 
-      const body = await res.json();
+      localStorage.setItem('csrf-token', res.headers.get('x-csrf-token'));
 
-      let message = 'Ошибка сервера. Попробуйте позже.';
+      let message = defaultErrorMessage;
 
+      if (res.status === 450) {
+        return {message: 'Нет подключения к сети', authorizedUser: null};
+      }
       if (res.status === 400) {
         message = 'Невозможно выполнить вход. Завершите предыдущую сессию!';
       }
@@ -81,6 +86,8 @@ export class API {
       if (res.status === 200) {
         message = 'ok';
       }
+
+      const body = await res.json();
 
       return {message, authorizedUser: body.data};
     } catch (e) {
@@ -104,8 +111,16 @@ export class API {
 
       const res = await fetch(url, {
         method: POST_METHOD,
+        headers: {
+          'X-CSRF-Token': localStorage.getItem('csrf-token'),
+        },
         credentials: 'include',
       });
+      if (res.status === 450) {
+        return {message: 'Нет подключения к сети'};
+      }
+
+      localStorage.removeItem('csrf-token');
 
       if (res.status === 404) {
         return {message: 'Вы не авторизованы, обновите страницу'};
@@ -152,11 +167,16 @@ export class API {
           first_name, username, email, password, avatar,
         }),
       });
+      if (res.status === 450) {
+        return {message: 'Нет подключения к сети', registeredUser: null};
+      }
+
+      localStorage.setItem('csrf-token', res.headers.get('x-csrf-token'));
 
       const body = await res.json();
 
       const registeredUser = body.data;
-      let message = 'Ошибка сервера. Попробуйте позже.';
+      let message = defaultErrorMessage;
 
       if (res.status === 409) {
         message = 'Пользователь уже существует';
@@ -200,6 +220,7 @@ export class API {
         method: PUT_METHOD,
         headers: {
           'Content-Type': 'application/json',
+          'X-CSRF-Token': localStorage.getItem('csrf-token'),
         },
         credentials: 'include',
         body: JSON.stringify({
@@ -207,11 +228,12 @@ export class API {
           first_name, username, email, oldPassword, newPassword, avatar,
         }),
       });
-      console.log()
-      const body = await res.json();
 
-      const updatedUser = body.data;
-      let message = 'Ошибка сервера. Попробуйте позже.';
+      if (res.status === 450) {
+        return {message: 'Нет подключения к сети', updatedUser: null};
+      }
+
+      let message = defaultErrorMessage;
 
       if (res.status === 403) {
         message = 'Введен неправильный пароль';
@@ -225,6 +247,9 @@ export class API {
       if (res.ok) {
         message = 'ok';
       }
+
+      const body = await res.json();
+      const updatedUser = body.data;
 
       return {message, updatedUser};
     } catch (e) {
@@ -256,6 +281,9 @@ export class API {
         method: GET_METHOD,
         credentials: 'include',
       });
+      if (res.status === 450) {
+        return {message: 'Нет подключения к сети', forms: null};
+      }
 
       const body = await res.json();
 
@@ -264,7 +292,7 @@ export class API {
         return {message: 'ok', forms};
       }
 
-      return {message: 'Ошибка сервера. Попробуйте позже', forms: null};
+      return {message: defaultErrorMessage, forms: null};
     } catch (e) {
       // TODO убрать к РК4
       console.log('Ошибка метода getForms:', e);
@@ -294,6 +322,9 @@ export class API {
         method: GET_METHOD,
         credentials: 'include',
       });
+      if (res.status === 450) {
+        return {message: 'Нет подключения к сети', forms: null};
+      }
 
       const body = await res.json();
 
@@ -302,7 +333,7 @@ export class API {
         return {message: 'ok', forms};
       }
 
-      return {message: 'Ошибка сервера. Попробуйте позже', forms: null};
+      return {message: defaultErrorMessage, forms: null};
     } catch (e) {
       // TODO убрать к РК4
       console.log('Ошибка метода getFormsByTitle:', e);
@@ -327,6 +358,9 @@ export class API {
         method: GET_METHOD,
         credentials: 'include',
       });
+      if (res.status === 450) {
+        return {message: 'Нет подключения к сети', form: null};
+      }
 
       const body = await res.json();
 
@@ -338,7 +372,7 @@ export class API {
         return {message: '404', form: null};
       }
 
-      return {message: 'Ошибка сервера. Попробуйте позже', form: null};
+      return {message: defaultErrorMessage, form: null};
     } catch (e) {
       // TODO убрать к РК4
       console.log('Ошибка метода getForm:', e);
@@ -372,7 +406,7 @@ export class API {
         return {message: 'ok', avatar};
       }
 
-      return {message: 'Ошибка сервера. Попробуйте позже', avatar: null};
+      return {message: defaultErrorMessage, avatar: null};
     } catch (e) {
       // TODO убрать к РК4
       console.log('Ошибка метода getForm:', e);
@@ -398,10 +432,14 @@ export class API {
         method: POST_METHOD,
         headers: {
           'Content-Type': 'application/json',
+          'X-CSRF-Token': localStorage.getItem('csrf-token'),
         },
         credentials: 'include',
         body: JSON.stringify(saveForm),
       });
+      if (res.status === 450) {
+        return {message: 'Нет подключения к сети', form: null};
+      }
 
       const body = await res.json();
 
@@ -413,7 +451,7 @@ export class API {
         return {message: 'Потеряно соединение с сервером', form: null};
       }
 
-      return {message: 'Ошибка сервера. Попробуйте позже', form: null};
+      return {message: defaultErrorMessage, form: null};
     } catch (e) {
       // TODO убрать к РК4
       console.log('Ошибка метода saveForm:', e);
@@ -439,10 +477,14 @@ export class API {
         method: PUT_METHOD,
         headers: {
           'Content-Type': 'application/json',
+          'X-CSRF-Token': localStorage.getItem('csrf-token'),
         },
         credentials: 'include',
         body: JSON.stringify(updateForm),
       });
+      if (res.status === 450) {
+        return {message: 'Нет подключения к сети', form: null};
+      }
 
       const body = await res.json();
 
@@ -454,7 +496,7 @@ export class API {
         return {message: 'Потеряно соединение с сервером', form: null};
       }
 
-      return {message: 'Ошибка сервера. Попробуйте позже', form: null};
+      return {message: defaultErrorMessage, form: null};
     } catch (e) {
       // TODO убрать к РК4
       console.log('Ошибка метода updateForm:', e);
@@ -480,6 +522,9 @@ export class API {
         credentials: 'include',
       });
 
+      if (res.status === 450) {
+        return {message: 'Нет подключения к сети'};
+      }
       if (res.ok) {
         return {message: 'ok'};
       }
@@ -490,7 +535,7 @@ export class API {
         return {message: 'Опрос не удалось обнаружить: уже удален.'};
       }
 
-      return {message: 'Ошибка сервера. Попробуйте позже'};
+      return {message: defaultErrorMessage};
     } catch (e) {
       // TODO убрать к РК4
       console.log('Ошибка метода deleteForm:', e);
@@ -515,6 +560,9 @@ export class API {
         method: GET_METHOD,
         credentials: 'include',
       });
+      if (res.status === 450) {
+        return {message: 'Нет подключения к сети', formResults: null};
+      }
 
       const body = await res.json();
 
@@ -526,7 +574,7 @@ export class API {
         return {message: '404', formResults: null};
       }
 
-      return {message: 'Ошибка сервера. Попробуйте позже', formResults: null};
+      return {message: defaultErrorMessage, formResults: null};
     } catch (e) {
       // TODO убрать к РК4
       console.log('Ошибка метода getFormResultsByID:', e);
@@ -552,6 +600,7 @@ export class API {
         method: POST_METHOD,
         headers: {
           'Content-Type': 'application/json',
+          'X-CSRF-Token': localStorage.getItem('csrf-token'),
         },
         credentials: 'include',
         body: JSON.stringify(passageJSON),
@@ -569,7 +618,11 @@ export class API {
         return {message: 'Пользователь не авторизирован для прохождения опроса', form: null};
       }
 
-      return {message: 'Ошибка сервера. Попробуйте позже', form: null};
+      if (res.status === 450) {
+        return {message: 'Нет подключения к сети', form: null};
+      }
+
+      return {message: defaultErrorMessage, form: null};
     } catch (e) {
       // TODO убрать к РК4
       console.log('Ошибка метода passageForm:', e);

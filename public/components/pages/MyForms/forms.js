@@ -27,8 +27,26 @@ export const renderForms = async () => {
   rootElement.innerHTML = '';
   rootElement.innerHTML = Handlebars.templates.forms();
 
-  const formsContainer = document.querySelector('#forms-container');
+  const newFormButton = document.querySelector('#forms-list-add-button');
+  newFormButton.addEventListener('click', () => {
+    goToPage(ROUTES.formNew);
+  });
+
+  // Запрос с поиском по опросам
   const searchInput = document.querySelector('.forms_search-container__input');
+  const searchRequest = () => {
+    if (searchInput.value === '') {
+      showAllFormsRequest();
+      return;
+    }
+    searchFormsRequest();
+  };
+  searchInput.addEventListener('input', debounce(searchRequest, 600));
+  searchInput.addEventListener('input', () =>
+      loadingScreen.classList.remove('display-invisible')
+  );
+
+  const formsContainer = document.querySelector('#forms-container');
   const loadingScreen = document.querySelector('.forms__loading-screen');
   let forms = [];
   let message = 'ok';
@@ -41,8 +59,20 @@ export const renderForms = async () => {
       if (forms.length === 0) {
         const label = document.createElement('a');
         label.classList.add('forms_list_main-container_empty-label');
-        label.textContent = 'Опросы не найдены';
-        formsContainer.appendChild(label);
+        if (searchON) {
+          label.textContent = 'Опросы не найдены';
+          formsContainer.appendChild(label);
+        } else {
+          label.textContent = 'Опросов пока нет...';
+          const createNewLink = document.createElement('a');
+          createNewLink.classList.add('forms_list_main-container_create-new-label');
+          createNewLink.textContent = 'Создайте свой первый опрос';
+          createNewLink.addEventListener('click', () => {
+            goToPage(ROUTES.formNew);
+          });
+          formsContainer.appendChild(label);
+          formsContainer.appendChild(createNewLink);
+        }
       }
 
       forms.forEach((form) => {
@@ -72,11 +102,8 @@ export const renderForms = async () => {
       loadingScreen.classList.add('display-invisible');
     } catch (e) {
       loadingScreen.classList.add('display-invisible');
-      if (e.toString() !== 'TypeError: Failed to fetch') {
-        renderMessage('Ошибка сервера. Попробуйте позже.', true);
-        return;
-      }
-      renderMessage('Потеряно соединение с сервером', true);
+      renderMessage('Ошибка сервера. Перезагрузите страницу', true);
+      return;
     }
 
     renderRequestedForms(true);
@@ -89,29 +116,20 @@ export const renderForms = async () => {
       const res = await api.getForms(STORAGE.user.username);
       message = res.message;
       forms = res.forms;
-      STORAGE.forms = res.forms;
       loadingScreen.classList.add('display-invisible');
     } catch (e) {
       loadingScreen.classList.add('display-invisible');
-      if (e.toString() !== 'TypeError: Failed to fetch') {
-        renderMessage('Ошибка сервера. Попробуйте позже.', true);
-        return;
-      }
-      renderMessage('Потеряно соединение с сервером', true);
-      // Попытка найти опросы в локальном хранилище
-      forms = STORAGE.forms;
+      renderMessage('Ошибка сервера. Перезагрузите страницу', true);
+      return;
     }
 
-    forms = forms.sort((a, b) => b.id - a.id);
+    if (forms) {
+      forms = forms.sort((a, b) => b.id - a.id);
+    }
     renderRequestedForms();
   };
 
   await showAllFormsRequest();
-
-  const newFormButton = document.querySelector('#forms-list-add-button');
-  newFormButton.addEventListener('click', () => {
-    goToPage(ROUTES.formNew);
-  });
 
   const searchButton = document.querySelector('#forms-list-search-button');
   searchButton.addEventListener('click', () => {
@@ -132,19 +150,6 @@ export const renderForms = async () => {
       searchFormsRequest();
     }
   });
-
-  // Тестирование моментальных запросов
-  const searchRequest = () => {
-    if (searchInput.value === '') {
-      showAllFormsRequest();
-      return;
-    }
-    searchFormsRequest();
-  };
-  searchInput.addEventListener('input', debounce(searchRequest, 500));
-  searchInput.addEventListener('input', () =>
-      loadingScreen.classList.remove('display-invisible')
-  );
 };
 
 export const debounce = (func, delay) => {

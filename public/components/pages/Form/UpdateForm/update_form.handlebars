@@ -1,6 +1,7 @@
 {{#if form}}
     <div class="update-form">
         <div class="update-form__description">
+            <p class="check-question__required-title display-none" id="update-form-title-validation-error">Текст должен состоять из русских или английских слов, цифр и знаков препинания</p>
             <input class="update-form__title-input" id="update-form__title" placeholder="Введите название опроса" value="{{form.title}}" maxlength="64">
             <textarea class="update-form__description-textarea" placeholder="Описание" id="update-form__description-textarea" maxlength="512">{{form.description}}</textarea>
             <div class="update-form_anonymous__checkbox-container">

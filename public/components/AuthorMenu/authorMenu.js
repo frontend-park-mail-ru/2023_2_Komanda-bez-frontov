@@ -2,8 +2,6 @@ import {frontendUrl, ROUTES} from '../../config.js';
 import {goToPage} from '../../modules/router.js';
 import {STORAGE} from '../../modules/storage.js';
 import {renderPopUpWindow} from '../PopUpWindow/popup_window.js';
-import {renderResultsQuestion} from "../Question/ResultsQuestion/results_question.js";
-import {renderResultsForm} from "../pages/FormResults/form_results.js";
 
 /**
  * Функция для рендеринга меню с инструментами автора опроса.
@@ -19,20 +17,44 @@ export const renderAuthorMenu = (id) => {
   }
   const rootElement = document.querySelector('#root');
   rootElement.innerHTML = Handlebars.templates.authorMenu();
+
+  const menu = document.querySelector('.form-author-menu');
+  let flagClosed = false;
   
   const checkButton = document.querySelector('#author-menu-check-button');
   checkButton.addEventListener('click', () => {
-    goToPage(ROUTES.form, id);
+    if (checkButton.classList.contains('secondary-button')) {
+      menu.classList.remove('form-author-menu__open');
+      menu.classList.add('form-author-menu__close');
+      closeButton.innerHTML = 'menu';
+      flagClosed = true;
+    } else {
+      goToPage(ROUTES.form, id);
+    }
   });
 
   const updateButton = document.querySelector('#author-menu-update-button');
   updateButton.addEventListener('click', () => {
-    goToPage(ROUTES.formUpdate, id);
+    if (updateButton.classList.contains('secondary-button')) {
+      menu.classList.remove('form-author-menu__open');
+      menu.classList.add('form-author-menu__close');
+      closeButton.innerHTML = 'menu';
+      flagClosed = true;
+    } else {
+      goToPage(ROUTES.formUpdate, id);
+    }
   });
 
   const resultsButton = document.querySelector('#author-menu-results-button');
   resultsButton.addEventListener('click', () => {
-    goToPage(ROUTES.formResults, id);
+    if (resultsButton.classList.contains('secondary-button')) {
+      menu.classList.remove('form-author-menu__open');
+      menu.classList.add('form-author-menu__close');
+      closeButton.innerHTML = 'menu';
+      flagClosed = true;
+    } else {
+      goToPage(ROUTES.formResults, id);
+    }
   });
 
   const createLinkButton = document.querySelector('#author-menu-link-button');
@@ -45,19 +67,13 @@ export const renderAuthorMenu = (id) => {
       copyButton.classList.add('primary-button');
       copyButton.classList.remove('secondary-button');
       // Копирование ссылки в буфер на компе
-      const input = document.querySelector('#popup-copy-input');
-      input.classList.remove('display-none');
-      input.value = link;
-      input.select();
-      document.execCommand('copy');
-      input.classList.add('display-none');
+      navigator.clipboard.writeText(link);
     });
     document.querySelector('#popup-ok-button').innerHTML = 'Скопировать';
   })
-  let flagClosed = false;
+
   const closeButton = document.querySelector('#author-menu-close-button');
   closeButton.addEventListener('click', () => {
-    const menu = document.querySelector('.form-author-menu');
     if (flagClosed) {
       menu.classList.add('form-author-menu__open');
       menu.classList.remove('form-author-menu__close');
