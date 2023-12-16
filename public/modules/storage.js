@@ -3,7 +3,7 @@ import {API} from './api.js';
 
 export const STORAGE = {
   user: null,
-  avatar: null,
+  avatar: localStorage.getItem('avatar'),
 };
 
 /**
@@ -15,6 +15,7 @@ export const STORAGE = {
 export const clearStorage = () => {
   STORAGE.user = null;
   STORAGE.avatar = null;
+  localStorage.removeItem('avatar');
 };
 
 /**
@@ -33,16 +34,29 @@ export const getAuthAvatar = async () => {
     const res = await api.getAvatar(STORAGE.user.username);
     if (res.message === 'ok') {
       STORAGE.avatar = res.avatar;
+      // Проверка на то, сможет ли аватар поместится в localStorage, иначе храним только в оперативной памяти
+      try {
+        localStorage.setItem('avatar', res.avatar);
+      } catch {
+        localStorage.setItem('avatar', '');
+      }
       const profilePicture = document.querySelector('#navbar-profile-picture');
-      profilePicture.src = `data:image/png;base64, ${res.avatar}`;
       const profilePagePicture = document.querySelector('#profile-page-picture');
-      if (profilePagePicture) {
-        profilePagePicture.src = `data:image/png;base64, ${res.avatar}`;
+      if (res.avatar === '') {
+        profilePicture.src = `../../../resources/images/profile_default.png`;
+        if (profilePagePicture) {
+          profilePagePicture.src = `../../../resources/images/profile_default.png`;
+        }
+      } else {
+        profilePicture.src = `data:image/png;base64, ${res.avatar}`;
+        if (profilePagePicture) {
+          profilePagePicture.src = `data:image/png;base64, ${res.avatar}`;
+        }
       }
     } else {
       renderMessage(res.message, true);
     }
   } catch (e) {
-    renderMessage('Ошибка сеееервера. Попробуйте позже', true);
+    renderMessage(`Ошибка сеееервера. Перезагрузите страницу ${e}`, true);
   }
 };

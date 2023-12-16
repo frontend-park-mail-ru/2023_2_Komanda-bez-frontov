@@ -12,6 +12,7 @@ import {
 import {API} from '../../../modules/api.js';
 import {toggleFunc} from "../Signup/signup.js";
 import {navbar} from "../../Navbar/navbar.js";
+import {addValidationToInput, checkInputsValidation} from "../Login/login.js";
 
 /**
  * Функция для рендеринга страницы изменения профиля авторизированного пользователя.
@@ -101,58 +102,39 @@ export const renderUpdateProfile = async () => {
   });
 
   const saveButton = document.querySelector('#update-profile-save-button');
+  const firstName = document.querySelector('#update-profile_name');
+  const email = document.querySelector('#update-profile_email');
+  const username = document.querySelector('#update-profile_username');
+  const oldPassword = document.querySelector('#update-profile_old-password');
+  const newPassword = document.querySelector('#update-profile_new-password');
+  const repeatPassword = document.querySelector('#update-profile_repeat-password');
+
+  addValidationToInput(firstName, nameValidation, saveButton);
+  addValidationToInput(email, emailValidation, saveButton);
+  addValidationToInput(username, usernameValidation, saveButton);
+  addValidationToInput(oldPassword, passwordValidation, saveButton);
+  addValidationToInput(newPassword, passwordValidation, saveButton);
+
   saveButton.addEventListener('click', async (e) => {
     e.preventDefault();
 
-    const firstName = document.querySelector('#update-profile_name');
-    const email = document.querySelector('#update-profile_email');
-    const username = document.querySelector('#update-profile_username');
-    const oldPassword = document.querySelector('#update-profile_old-password');
-    const newPassword = document.querySelector('#update-profile_new-password');
-    const repeatPassword = document.querySelector('#update-profile_repeat-password');
-
-    if (email.value === '' || firstName.value === ''
-        || username.value === '') {
-      renderMessage('Вы ввели не все данные', true);
+    if (!checkInputsValidation()) {
+      renderMessage('Исправлены не все данные', true);
       return;
     }
 
-    const isNameValid = nameValidation(firstName.value);
-    const isEmailValid = emailValidation(email.value);
-    const isUsernameValid = usernameValidation(username.value);
-    const isOldPasswordValid = passwordValidation(oldPassword.value);
-    const isNewPasswordValid = passwordValidation(newPassword.value);
-
-    if (!isNameValid.valid) {
-      renderMessage(isNameValid.message, true);
-      return;
-    }
-
-    if (!isEmailValid.valid) {
-      renderMessage(isEmailValid.message, true);
-      return;
-    }
-
-    if (!isUsernameValid.valid) {
-      renderMessage(isUsernameValid.message, true);
-      return;
-    }
+    email.value = !email.value ? STORAGE.user.email : email.value;
+    firstName.value = !firstName.value ? STORAGE.user.first_name: firstName.value;
+    username.value = !username.value ? STORAGE.user.username : username.value;
 
     if (username.value !== STORAGE.user.username || email.value !== STORAGE.user.email || newPassword.value !== '') {
       if (oldPassword.value === '') {
         renderMessage('Для сохранения изменений введите текущий пароль', true);
         return;
-      } if (!isOldPasswordValid.valid) {
-        renderMessage(isOldPasswordValid.message, true);
-        return;
       }
     }
 
     if (newPassword.value) {
-      if (!isNewPasswordValid.valid) {
-        renderMessage(isNewPasswordValid.message, true);
-        return;
-      }
       if (newPassword.value !== repeatPassword.value) {
         renderMessage('Новые пароли не совпадают', true);
       }
@@ -181,7 +163,7 @@ export const renderUpdateProfile = async () => {
       goToPage(ROUTES.profile);
       renderMessage('Изменения успешно применены');
     } catch (err) {
-      renderMessage('Ошибка сервера. Попробуйте позже', true);
+      renderMessage('Ошибка сервера. Перезагрузите страницу', true);
     }
   });
 

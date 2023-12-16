@@ -11,6 +11,10 @@ import {
 import {goToPage} from '../../../modules/router.js';
 import {STORAGE} from '../../../modules/storage.js';
 import {navbar} from "../../Navbar/navbar.js";
+import {
+  addValidationToInput,
+  checkInputsValidation,
+} from "../Login/login.js";
 
 /**
  * Функция для рендеринга страницы регистрации.
@@ -28,12 +32,12 @@ export const toggleFunc = (password, icon) => {
   } else {
     password.type = 'password';
     icon.innerText = 'visibility';
-
   }
 };
 
 export const renderSignup = async () => {
   removeMessage();
+
   const rootElement = document.querySelector('#root');
   rootElement.innerHTML = '';
   rootElement.innerHTML = Handlebars.templates.signup();
@@ -55,43 +59,28 @@ export const renderSignup = async () => {
   });
 
   const signupButton = document.querySelector('#signup-button');
+  const firstName = document.querySelector('#name');
+  const email = document.querySelector('#email');
+  const username = document.querySelector('#username');
+  const password = document.querySelector('#password');
+  const repeatPassword = document.querySelector('#repeat_password');
+
+  addValidationToInput(firstName, nameValidation, signupButton);
+  addValidationToInput(email, emailValidation, signupButton);
+  addValidationToInput(username, usernameValidation, signupButton);
+  addValidationToInput(password, passwordValidation, signupButton);
+
   signupButton.addEventListener('click', async (e) => {
     e.preventDefault();
 
-    const firstName = document.querySelector('#name');
-    const email = document.querySelector('#email');
-    const username = document.querySelector('#username');
-    const password = document.querySelector('#password');
-    const repeatPassword = document.querySelector('#repeat_password');
+    if (!checkInputsValidation()) {
+      renderMessage('Исправлены не все данные', true);
+      return;
+    }
 
     if (password.value === '' || email.value === '' || firstName.value === ''
         || username.value === '' || repeatPassword.value === '') {
       renderMessage('Вы ввели не все данные', true);
-      return;
-    }
-
-    const isNameValid = nameValidation(firstName.value);
-    const isEmailValid = emailValidation(email.value);
-    const isUsernameValid = usernameValidation(username.value);
-    const isPasswordValid = passwordValidation(password.value);
-
-    if (!isNameValid.valid) {
-      renderMessage(isNameValid.message, true);
-      return;
-    }
-
-    if (!isEmailValid.valid) {
-      renderMessage(isEmailValid.message, true);
-      return;
-    }
-
-    if (!isUsernameValid.valid) {
-      renderMessage(isUsernameValid.message, true);
-      return;
-    }
-
-    if (!isPasswordValid.valid) {
-      renderMessage(isPasswordValid.message, true);
       return;
     }
 
@@ -120,7 +109,7 @@ export const renderSignup = async () => {
       goToPage(ROUTES.forms);
       renderMessage('Вы успешно зарегистрировались');
     } catch (err) {
-      renderMessage('Ошибка сервера. Попробуйте позже', true);
+      renderMessage('Ошибка сервера. Перезагрузите страницу', true);
     }
   });
 };

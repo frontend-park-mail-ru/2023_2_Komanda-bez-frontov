@@ -6,6 +6,7 @@ import {goToPage} from '../../../modules/router.js';
 import {STORAGE, getAuthAvatar} from '../../../modules/storage.js';
 import {toggleFunc} from "../Signup/signup.js";
 import {navbar} from "../../Navbar/navbar.js";
+import {debounce} from "../MyForms/forms.js";
 
 /**
  * Функция для рендеринга страницы аутенфикации.
@@ -29,25 +30,24 @@ export const renderLogin = async () => {
     const icon = document.querySelector('#login-form_container__input-show-button-icon');
 
     toggleFunc(password, icon);
-
   });
+
+  const email = document.querySelector('#email');
+  const password = document.querySelector('#password');
+
+  addValidationToInput(email, emailValidation, loginButton);
+  addValidationToInput(password, passwordValidation, loginButton);
 
   loginButton.addEventListener('click', async (e) => {
     e.preventDefault();
 
-    const email = document.querySelector('#email');
-    const password = document.querySelector('#password');
-
-    const isEmailValid = emailValidation(email.value);
-    const isPasswordValid = passwordValidation(password.value);
-
-    if (!isEmailValid.valid) {
-      renderMessage(isEmailValid.message, true);
+    if (!checkInputsValidation()) {
+      renderMessage('Исправлены не все данные', true);
       return;
     }
 
-    if (!isPasswordValid.valid) {
-      renderMessage(isPasswordValid.message, true);
+    if (password.value === '' || email.value === '') {
+      renderMessage('Вы ввели не все данные', true);
       return;
     }
 
@@ -55,7 +55,7 @@ export const renderLogin = async () => {
       const api = new API();
       const res = await api.userLogin(email.value, password.value);
       if (res.message !== 'ok') {
-        renderMessage(res.message, true);
+        renderMessage("Неправильные почта и/или пароль", true);
         return;
       }
 
@@ -66,11 +66,42 @@ export const renderLogin = async () => {
       goToPage(ROUTES.forms);
       renderMessage('Вы успешно вошли');
     } catch (err) {
-      renderMessage('Ошибка сервера. Попробуйте позже', true);
+      renderMessage('Ошибка сервера. Перезагрузите страницу', true);
     }
   });
 
   signupButton.addEventListener('click', () => {
     goToPage(ROUTES.signup);
   });
+};
+
+export const addValidationToInput = (input, validator, submitButton) => {
+  input.addEventListener("input", debounce((e) => {
+    e.preventDefault();
+
+    const validation = validator(e.target.value);
+
+    if (validation.valid || e.target.value === '') {
+      removeMessage();
+      submitButton.disabled = false;
+    } else {
+      renderMessage(validation.message, true);
+      e.target.classList.add('update-form__input-error');
+      e.target.addEventListener('input', () => {
+        e.target.classList.remove('update-form__input-error');
+      }, {once: true});
+      submitButton.disabled = true;
+    }
+  }, 1000));
+};
+
+export const checkInputsValidation = () => {
+  const cInputs = document.querySelectorAll('input, textarea');
+  let isValid = true;
+  cInputs.forEach((input) => {
+    if (input.classList.contains('update-form__input-error')) {
+      isValid = false;
+    }
+  });
+  return isValid;
 };

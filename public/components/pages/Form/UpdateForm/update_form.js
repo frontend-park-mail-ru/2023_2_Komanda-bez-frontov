@@ -6,9 +6,12 @@ import {goToPage} from '../../../../modules/router.js';
 import {ROUTES} from '../../../../config.js';
 import {createQuestionUpdate, removedAnswersID} from '../../../Question/UpdateQuestion/update_question.js';
 import {closePopUpWindow, renderPopUpWindow} from '../../../PopUpWindow/popup_window.js';
-import {formUpdatePageParser, formUpdateValidator} from '../FormNew/new_form.js';
+import {formUpdatePageParser} from '../FormNew/new_form.js';
 import {renderAuthorMenu} from "../../../AuthorMenu/authorMenu.js";
 import {TYPE_SINGLE_CHOICE} from "../CheckForm/check_form.js";
+import {textValidation} from "../../../../modules/validation.js";
+import {checkInputsValidation} from "../../Login/login.js";
+import {debounce} from "../../MyForms/forms.js";
 
 export let editInProcess = false;
 export const setEditInProcess = (bool) => {
@@ -62,7 +65,7 @@ export const renderFormUpdate = async (id) => {
     }
     formJSON = res.form;
   } catch (e) {
-    renderMessage('Ошибка сервера. Попробуйте позже.', true);
+    renderMessage('Ошибка сервера. Перезагрузите страницу', true);
     return;
   }
 
@@ -75,6 +78,13 @@ export const renderFormUpdate = async (id) => {
   removedAnswersID.length = 0;
 
   rootElement.insertAdjacentHTML('beforeend', Handlebars.templates.update_form({form: formJSON}));
+
+  const title = document.querySelector('#update-form__title');
+  const description = document.querySelector('#update-form__description-textarea');
+  const errorLabel = document.querySelector('#update-form-title-validation-error');
+
+  addValidationToFormInput(title, textValidation, errorLabel);
+  addValidationToFormInput(description, textValidation, errorLabel);
 
   const questions = document.querySelector('#check-form__questions-container');
   formJSON.questions.forEach((question) => {
@@ -146,7 +156,7 @@ export const renderFormUpdate = async (id) => {
         }
         renderMessage(res.message, true);
       } catch (e) {
-        renderMessage('Ошибка сервера. Попробуйте позже.', true);
+        renderMessage('Ошибка сервера. Перезагрузите страницу', true);
         closePopUpWindow();
         return;
       }
@@ -160,9 +170,8 @@ export const renderFormUpdate = async (id) => {
     if (!updatedForm) {
       return;
     }
-    const formValidation = formUpdateValidator();
-    if (!formValidation.valid) {
-      renderMessage(formValidation.message, true);
+    if (!checkInputsValidation()) {
+      renderMessage('Исправлены не все данные', true);
       return;
     }
     updatedForm.id = Number(id);
@@ -178,7 +187,7 @@ export const renderFormUpdate = async (id) => {
       }
       renderMessage(res.message, true);
     } catch (e) {
-      renderMessage('Ошибка сервера. Попробуйте позже.', true);
+      renderMessage('Ошибка сервера. Перезагрузите страницу', true);
     }
   });
 };
@@ -191,4 +200,22 @@ export const renderQuitEditingWindow = (page, id = '', redirect = false) => {
       closePopUpWindow();
     });
   }, 0);
+};
+
+export const addValidationToFormInput = (input, validator, errorLabel) => {
+  input.addEventListener("input", debounce((e) => {
+    e.preventDefault();
+
+    const validation = validator(e.target.value);
+
+    if (validation.valid || e.target.value === '') {
+      errorLabel.classList.add('display-none');
+    } else {
+      errorLabel.classList.remove('display-none');
+      e.target.classList.add('update-form__input-error');
+      e.target.addEventListener('input', () => {
+        e.target.classList.remove('update-form__input-error');
+      }, {once: true});
+    }
+  }, 1000));
 };
