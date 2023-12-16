@@ -34,6 +34,8 @@ export const getAuthAvatar = async () => {
     const res = await api.getAvatar(STORAGE.user.username);
     if (res.message === 'ok') {
       STORAGE.avatar = res.avatar;
+      // Проверка на то, сможет ли аватар поместится в localStorage, иначе храним только в оперативной памяти
+      // Максимальная длина записи - 5200000 символов
       if (res.avatar.length >= 5200000) {
         localStorage.setItem('avatar', '');
       } else {

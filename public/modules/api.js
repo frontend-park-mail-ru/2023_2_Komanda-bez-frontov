@@ -5,6 +5,7 @@ const POST_METHOD = 'POST';
 const DELETE_METHOD = 'DELETE';
 const PUT_METHOD = 'PUT';
 
+const defaultErrorMessage = 'Ошибка сервера. Перезагрузите страницу или попробуйте позже.'
 
 export class API {
   /**
@@ -71,7 +72,7 @@ export class API {
 
       localStorage.setItem('csrf-token', res.headers.get('x-csrf-token'));
 
-      let message = 'Ошибка сервера. Перезагрузите страницу.';
+      let message = defaultErrorMessage;
 
       if (res.status === 450) {
         return {message: 'Нет подключения к сети', authorizedUser: null};
@@ -175,7 +176,7 @@ export class API {
       const body = await res.json();
 
       const registeredUser = body.data;
-      let message = 'Ошибка сервера. Перезагрузите страницу';
+      let message = defaultErrorMessage;
 
       if (res.status === 409) {
         message = 'Пользователь уже существует';
@@ -231,7 +232,7 @@ export class API {
         return {message: 'Нет подключения к сети', updatedUser: null};
       }
 
-      let message = 'Ошибка сервера. Перезагрузите страницу';
+      let message = defaultErrorMessage;
 
       if (res.status === 403) {
         message = 'Введен неправильный пароль';
@@ -290,7 +291,7 @@ export class API {
         return {message: 'ok', forms};
       }
 
-      return {message: 'Ошибка сервера. Перезагрузите страницу', forms: null};
+      return {message: defaultErrorMessage, forms: null};
     } catch (e) {
       // TODO убрать к РК4
       console.log('Ошибка метода getForms:', e);
@@ -331,7 +332,7 @@ export class API {
         return {message: 'ok', forms};
       }
 
-      return {message: 'Ошибка сервера. Перезагрузите страницу', forms: null};
+      return {message: defaultErrorMessage, forms: null};
     } catch (e) {
       // TODO убрать к РК4
       console.log('Ошибка метода getFormsByTitle:', e);
@@ -370,7 +371,7 @@ export class API {
         return {message: '404', form: null};
       }
 
-      return {message: 'Ошибка сервера. Перезагрузите страницу', form: null};
+      return {message: defaultErrorMessage, form: null};
     } catch (e) {
       // TODO убрать к РК4
       console.log('Ошибка метода getForm:', e);
@@ -404,7 +405,7 @@ export class API {
         return {message: 'ok', avatar};
       }
 
-      return {message: 'Ошибка сервера. Перезагрузите страницу', avatar: null};
+      return {message: defaultErrorMessage, avatar: null};
     } catch (e) {
       // TODO убрать к РК4
       console.log('Ошибка метода getForm:', e);
@@ -449,7 +450,7 @@ export class API {
         return {message: 'Потеряно соединение с сервером', form: null};
       }
 
-      return {message: 'Ошибка сервера. Перезагрузите страницу', form: null};
+      return {message: defaultErrorMessage, form: null};
     } catch (e) {
       // TODO убрать к РК4
       console.log('Ошибка метода saveForm:', e);
@@ -494,7 +495,7 @@ export class API {
         return {message: 'Потеряно соединение с сервером', form: null};
       }
 
-      return {message: 'Ошибка сервера. Перезагрузите страницу', form: null};
+      return {message: defaultErrorMessage, form: null};
     } catch (e) {
       // TODO убрать к РК4
       console.log('Ошибка метода updateForm:', e);
@@ -533,7 +534,7 @@ export class API {
         return {message: 'Опрос не удалось обнаружить: уже удален.'};
       }
 
-      return {message: 'Ошибка сервера. Перезагрузите страницу'};
+      return {message: defaultErrorMessage};
     } catch (e) {
       // TODO убрать к РК4
       console.log('Ошибка метода deleteForm:', e);
@@ -572,7 +573,7 @@ export class API {
         return {message: '404', formResults: null};
       }
 
-      return {message: 'Ошибка сервера. Перезагрузите страницу', formResults: null};
+      return {message: defaultErrorMessage, formResults: null};
     } catch (e) {
       // TODO убрать к РК4
       console.log('Ошибка метода getFormResultsByID:', e);
@@ -620,7 +621,7 @@ export class API {
         return {message: 'Нет подключения к сети', form: null};
       }
 
-      return {message: 'Ошибка сервера. Перезагрузите страницу', form: null};
+      return {message: defaultErrorMessage, form: null};
     } catch (e) {
       // TODO убрать к РК4
       console.log('Ошибка метода passageForm:', e);
