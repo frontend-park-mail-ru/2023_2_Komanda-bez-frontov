@@ -262,8 +262,9 @@ export const renderFormUpdate = async (id) => {
       }
     }, 500));
 
+    const options = questionElement.querySelectorAll('.update-question__answer-format-radio');
     let isAnswersValid = 0;
-    if (!questionElement.querySelector('#update-question__answer-format-text').checked) {
+    if (!options[2].selected) {
       const cAnswers = questionElement.querySelectorAll('#update-question__answers-item-input');
       cAnswers.forEach((answer) => {
         let isAnswerValid = true;

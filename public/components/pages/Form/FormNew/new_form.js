@@ -56,13 +56,13 @@ export const renderFormNew = async () => {
   const questions = document.querySelector('#check-form__questions-container');
   {
     const questionElement = createQuestionUpdate(defaultForm.questions[0]);
-    questionElement.querySelector('#delete-question').addEventListener('click', (e) => {
-      e.stopImmediatePropagation();
-      renderPopUpWindow('Требуется подтверждение', 'Вы уверены, что хотите безвозвратно удалить вопрос?', true, () => {
-        questionElement.remove();
-        closePopUpWindow();
+      questionElement.querySelector('#delete-question').addEventListener('click', (e) => {
+        e.stopImmediatePropagation();
+        renderPopUpWindow('Требуется подтверждение', 'Вы уверены, что хотите безвозвратно удалить вопрос?', true, () => {
+          questionElement.remove();
+          closePopUpWindow();
+        });
       });
-    });
     questions.appendChild(questionElement);
   }
 
@@ -211,7 +211,9 @@ export const renderFormNew = async () => {
     }, 500));
 
     let isAnswersValid = 0;
-    if (!questionElement.querySelector('#update-question__answer-format-text').checked) {
+    const options = questionElement.querySelectorAll('.update-question__answer-format-radio');
+
+    if (!options[2].selected) {
       const cAnswers = questionElement.querySelectorAll('.update-question__answers-item-input');
       cAnswers.forEach((answer) => {
         let isAnswerValid = true;
@@ -311,12 +313,23 @@ export const formUpdatePageParser = () => {
   const cQuestions = document.querySelectorAll('.update-question');
   cQuestions.forEach((questionElement) => {
     let type = TYPE_TEXT;
-    if (questionElement.querySelector('#update-question__answer-format-radio').checked) {
-      type = TYPE_SINGLE_CHOICE;
+    const options = questionElement.querySelectorAll('.update-question__answer-format-radio');
+    for (let typeIndex = 1; typeIndex <= options.length; typeIndex++) {
+      if (options[typeIndex - 1].selected) {
+        switch (typeIndex) {
+          case TYPE_SINGLE_CHOICE:
+            type = TYPE_SINGLE_CHOICE;
+            break;
+          case TYPE_MULTIPLE_CHOICE:
+            type = TYPE_MULTIPLE_CHOICE;
+            break;
+          default:
+            type = TYPE_TEXT;
+            break;
+        }
+      }
     }
-    if (questionElement.querySelector('#update-question__answer-format-checkbox').checked) {
-      type = TYPE_MULTIPLE_CHOICE;
-    }
+
 
     const question = {
       id: Number(questionElement.id),

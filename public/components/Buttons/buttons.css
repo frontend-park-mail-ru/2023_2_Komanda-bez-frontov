@@ -7,10 +7,6 @@ button {
   font-size: 12px;
 }
 
-input {
-  border: 1px solid #424242;
-}
-
 .outline-button, .usual-button, .red-button, .black-button, .primary-button, .secondary-button {
   padding: 10px 12px;
   border-radius: 9px;
@@ -41,8 +37,9 @@ input {
 }
 
 .red-button {
-  background-color: #da2d28;
+  background-color: #B42525;
   color: white;
+  border: none;
   border-radius: 9px;
 }
 

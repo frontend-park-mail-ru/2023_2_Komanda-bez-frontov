@@ -7,9 +7,6 @@ button {
   font-size: 12px;
 }
 
-input {
-  border: 1px solid #424242;
-}
 
 %button-common {
   padding: 10px 12px;
@@ -46,8 +43,9 @@ input {
 
 .red-button {
   @extend %button-common;
-  background-color: #da2d28;
+  background-color: #B42525;
   color: white;
+  border: none;
   border-radius: 9px;
 }
 
