@@ -5,6 +5,7 @@ const POST_METHOD = 'POST';
 const DELETE_METHOD = 'DELETE';
 const PUT_METHOD = 'PUT';
 
+
 export class API {
   /**
    * Проверяет, является ли пользователь авторизованным.
@@ -68,6 +69,8 @@ export class API {
         body: JSON.stringify({email, password}),
       });
 
+      localStorage.setItem('csrf-token', res.headers.get('x-csrf-token'));
+
       let message = 'Ошибка сервера. Попробуйте позже.';
 
       if (res.status === 450) {
@@ -107,11 +110,16 @@ export class API {
 
       const res = await fetch(url, {
         method: POST_METHOD,
+        headers: {
+          'X-CSRF-Token': localStorage.getItem('csrf-token'),
+        },
         credentials: 'include',
       });
       if (res.status === 450) {
         return {message: 'Нет подключения к сети'};
       }
+
+      localStorage.removeItem('csrf-token');
 
       if (res.status === 404) {
         return {message: 'Вы не авторизованы, обновите страницу'};
@@ -162,6 +170,8 @@ export class API {
         return {message: 'Нет подключения к сети', registeredUser: null};
       }
 
+      localStorage.setItem('csrf-token', res.headers.get('x-csrf-token'));
+
       const body = await res.json();
 
       const registeredUser = body.data;
@@ -209,6 +219,7 @@ export class API {
         method: PUT_METHOD,
         headers: {
           'Content-Type': 'application/json',
+          'X-CSRF-Token': localStorage.getItem('csrf-token'),
         },
         credentials: 'include',
         body: JSON.stringify({
@@ -419,6 +430,7 @@ export class API {
         method: POST_METHOD,
         headers: {
           'Content-Type': 'application/json',
+          'X-CSRF-Token': localStorage.getItem('csrf-token'),
         },
         credentials: 'include',
         body: JSON.stringify(saveForm),
@@ -463,6 +475,7 @@ export class API {
         method: PUT_METHOD,
         headers: {
           'Content-Type': 'application/json',
+          'X-CSRF-Token': localStorage.getItem('csrf-token'),
         },
         credentials: 'include',
         body: JSON.stringify(updateForm),
@@ -585,6 +598,7 @@ export class API {
         method: POST_METHOD,
         headers: {
           'Content-Type': 'application/json',
+          'X-CSRF-Token': localStorage.getItem('csrf-token'),
         },
         credentials: 'include',
         body: JSON.stringify(passageJSON),
