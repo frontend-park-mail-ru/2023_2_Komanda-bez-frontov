@@ -1,6 +1,7 @@
 .check-question {
   border-radius: 9px;
   border: 1px solid #424242;
+  background-color: #ffffff;
 }
 .check-question .button-container button {
   font-size: 15px;

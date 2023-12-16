@@ -278,7 +278,7 @@ input {
   padding: 45px 0;
   background-color: #FFFFFF;
   text-align: center;
-  box-shadow: 0 0 8px 0 rgba(34, 60, 80, 0.2);
+  box-shadow: 0 0 8px 0 rgba(34, 60, 80, 0.3);
   transition: transform 0.8s;
 }
 .form-author-menu button {
@@ -966,6 +966,7 @@ input {
 .check-question {
   border-radius: 9px;
   border: 1px solid #424242;
+  background-color: #ffffff;
 }
 .check-question .button-container button {
   font-size: 15px;
@@ -1089,6 +1090,7 @@ input {
   padding: 10px 12px;
   border-radius: 9px;
   border: 1px solid #424242;
+  background-color: #ffffff;
 }
 
 .results-question_title-container {
@@ -1199,6 +1201,7 @@ input {
 .update-question {
   border-radius: 9px;
   border: 1px solid #424242;
+  background-color: #ffffff;
 }
 
 .update-question__title-container {
@@ -1461,6 +1464,7 @@ input {
   border-radius: 9px;
   border: 1px solid #424242;
   text-align: left;
+  background-color: #ffffff;
 }
 
 .check-form__description-text {
@@ -1472,6 +1476,7 @@ input {
   padding: 10px 12px;
   border-radius: 9px;
   border: 1px solid #424242;
+  background-color: #ffffff;
   text-align: left;
 }
 .check-form__anonymous p {
@@ -1735,6 +1740,7 @@ input {
   padding: 10px 12px;
   border-radius: 9px;
   border: 1px solid #424242;
+  background-color: #ffffff;
   text-align: left;
 }
 
