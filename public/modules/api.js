@@ -60,7 +60,7 @@ export class API {
     try {
       const url = backendUrl + ROUTES_API.login.url;
 
-      let res = await fetch(url, {
+      const res = await fetch(url, {
         method: POST_METHOD,
         headers: {
           'Content-Type': 'application/json',
@@ -70,8 +70,6 @@ export class API {
       });
 
       localStorage.setItem('csrf-token', res.headers.get('x-csrf-token'));
-
-      const body = await res.json();
 
       let message = 'Ошибка сервера. Попробуйте позже.';
 
