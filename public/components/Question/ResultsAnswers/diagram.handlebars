@@ -1,0 +1,14 @@
+{{#if question}}
+    <div class="diagram__button-container">
+        <button class="primary-button" id="histogram-button">Гистограмма</button>
+        <button class="secondary-button" id="diagram-button">Диаграмма</button>
+    </div>
+    <canvas class="diagram__canvas" width="180" height="180"></canvas>
+    {{#each question.answers}}
+        <div class="results-question_answers_answer-item">
+            <div class="results-question__answers-answer-item__color"></div>
+            <p class="results-question_answers_answer-item__diagram-label">{{text}}</p>
+            <p class="results-question_answers_answer-item__percentage">{{selected_times}}</p>
+        </div>
+    {{/each}}
+{{/if}}

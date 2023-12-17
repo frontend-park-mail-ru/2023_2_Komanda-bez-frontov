@@ -9,6 +9,7 @@
 @import './components/FormsItem/forms_item';
 @import './components/Question/CheckQuestion/check_question';
 @import './components/Question/ResultsQuestion/results_question';
+@import './components/Question/ResultsAnswers/diagram';
 @import './components/Question/UpdateQuestion/update_question';
 @import './components/Question/UpdateAnswer/update_answer';
 @import './components/pages/Form/CheckForm/check_form';
@@ -59,7 +60,7 @@ p, h3 {
 
 #navbar {
   background-color: #4B357A;
-  height: 64px;
+  height: 62px;
 }
 
 #message-box, #root{
@@ -85,11 +86,8 @@ body {
     top: 62px;
   }
 
-  #root {
-    margin-top: 60px;
-  }
-  #navbar {
-    height: 76px;
+  #root, #navbar {
+    height: 62px;
   }
 }
 
@@ -102,7 +100,7 @@ body {
     margin-top: 50px;
   }
   #navbar {
-    height: 78px;
+    height: 70px;
   }
 }
 

@@ -12,6 +12,8 @@ import '../components/pages/FormResults/form_results.precompiled.js';
 import '../components/pages/Login/login.precompiled.js';
 import '../components/pages/Signup/signup.precompiled.js';
 import '../components/Question/ResultsQuestion/results_question.precompiled.js';
+import '../components/Question/ResultsAnswers/diagram.precompiled.js';
+import '../components/Question/ResultsAnswers/histogram.precompiled.js';
 import '../components/Question/CheckQuestion/check_question.precompiled.js';
 import '../components/Question/UpdateQuestion/update_question.precompiled.js';
 import '../components/Question/UpdateAnswer/update_answer.precompiled.js';
