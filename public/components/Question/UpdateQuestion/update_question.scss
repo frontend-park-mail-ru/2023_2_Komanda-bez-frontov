@@ -23,6 +23,10 @@
   .update-question__select {
     font-weight: 600;
   }
+
+  .update-question__select:hover {
+    background-color: #a9a9a9;
+  }
 }
 
 .update-question__description-textarea {
@@ -77,6 +81,10 @@
     gap: 4px;
     display: flex;
     align-items: center;
+  }
+
+  .update-question__required-container:hover {
+    background-color: #a9a9a9;
   }
 
   .material-symbols-outlined {

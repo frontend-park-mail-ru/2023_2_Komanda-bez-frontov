@@ -21,6 +21,9 @@
 .update-question__title-container .update-question__select {
   font-weight: 600;
 }
+.update-question__title-container .update-question__select:hover {
+  background-color: #a9a9a9;
+}
 
 .update-question__description-textarea {
   font-size: 16px;
@@ -71,6 +74,9 @@
   gap: 4px;
   display: flex;
   align-items: center;
+}
+.update-question__button-container .update-question__required-container:hover {
+  background-color: #a9a9a9;
 }
 .update-question__button-container .material-symbols-outlined {
   font-size: 20px;

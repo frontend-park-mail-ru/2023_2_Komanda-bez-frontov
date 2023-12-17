@@ -1264,6 +1264,9 @@ input {
 .update-question__title-container .update-question__select {
   font-weight: 600;
 }
+.update-question__title-container .update-question__select:hover {
+  background-color: #a9a9a9;
+}
 
 .update-question__description-textarea {
   font-size: 16px;
@@ -1314,6 +1317,9 @@ input {
   gap: 4px;
   display: flex;
   align-items: center;
+}
+.update-question__button-container .update-question__required-container:hover {
+  background-color: #a9a9a9;
 }
 .update-question__button-container .material-symbols-outlined {
   font-size: 20px;
@@ -1442,9 +1448,6 @@ input {
   outline: none;
   border: none;
 }
-.update-question__answers-item .update-question__answers-item-input:hover {
-  background-color: #F1F1F1;
-}
 .update-question__answers-item .update-question__answers-item-textarea {
   height: 95px;
   resize: none;
@@ -1503,6 +1506,10 @@ input {
   outline: none;
   border: none;
   pointer-events: none;
+}
+
+#update-question__answers-add-input:hover {
+  background-color: #F1F1F1;
 }
 
 @media screen and (min-width: 769px) {
@@ -1715,6 +1722,10 @@ input {
 .update-form_anonymous__checkbox-container {
   display: flex;
   align-items: center;
+}
+
+.update-form_anonymous__checkbox:hover, .update-form_anonymous__checkbox-label:hover {
+  background-color: #a9a9a9;
 }
 
 .check-form__anonymous-warning-container {

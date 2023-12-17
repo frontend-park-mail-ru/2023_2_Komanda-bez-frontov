@@ -13,9 +13,6 @@
   outline: none;
   border: none;
 }
-.update-question__answers-item .update-question__answers-item-input:hover {
-  background-color: #F1F1F1;
-}
 .update-question__answers-item .update-question__answers-item-textarea {
   height: 95px;
   resize: none;
@@ -74,6 +71,10 @@
   outline: none;
   border: none;
   pointer-events: none;
+}
+
+#update-question__answers-add-input:hover {
+  background-color: #F1F1F1;
 }
 
 @media screen and (min-width: 769px) {
