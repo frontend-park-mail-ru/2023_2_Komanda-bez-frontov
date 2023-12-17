@@ -9,6 +9,7 @@ import '../components/FormsItem/forms_item.precompiled.js';
 import '../components/pages/Form/CheckForm/check_form.precompiled.js';
 import '../components/pages/Form/UpdateForm/update_form.precompiled.js';
 import '../components/pages/FormResults/form_results.precompiled.js';
+import '../components/pages/FormResults/popup_export.precompiled.js';
 import '../components/pages/Login/login.precompiled.js';
 import '../components/pages/Signup/signup.precompiled.js';
 import '../components/Question/ResultsQuestion/results_question.precompiled.js';

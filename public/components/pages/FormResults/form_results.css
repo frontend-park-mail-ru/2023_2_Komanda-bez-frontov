@@ -52,6 +52,21 @@
   padding-left: 4px;
 }
 
+.popup_window_radio-container {
+  text-align: left;
+  padding: 10px 0 0 10px;
+  height: 60px;
+}
+.popup_window_radio-container input {
+  margin: 10px 15px 0 0;
+}
+
+.button-container-diagram {
+  display: flex;
+  gap: 9px;
+  margin-top: 15px;
+}
+
 @media screen and (max-width: 768px) {
   .form-results {
     margin: 16px auto;
@@ -80,6 +95,13 @@
     font-size: 18px;
     font-weight: normal;
   }
+  .popup_window_radio-container {
+    padding: 0 0 0 10px;
+    height: auto;
+  }
+  .popup_window_radio-container input {
+    margin: 10px 15px 0 0;
+  }
 }
 @media screen and (max-width: 480px) {
   .form-results {
@@ -104,6 +126,9 @@
     padding-left: 8px;
     font-size: 16px;
     font-weight: normal;
+  }
+  .button-container-diagram {
+    margin-top: 10px;
   }
 }
 

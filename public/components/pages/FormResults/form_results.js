@@ -6,6 +6,7 @@ import {ROUTES} from '../../../config.js';
 import {goToPage} from '../../../modules/router.js';
 import {renderAuthorMenu} from '../../AuthorMenu/authorMenu.js';
 import {renderResultsQuestion} from "../../Question/ResultsQuestion/results_question.js";
+import {closePopUpWindow, renderPopUpWindow} from "../../PopUpWindow/popup_window.js";
 
 /**
  * Функция для рендеринга страницы опроса по его id.
@@ -84,6 +85,52 @@ export const renderResultsForm = async (id) => {
   formJSON.questions.forEach((question) => {
     const questionElement = renderResultsQuestion(question);
     questions.appendChild(questionElement);
+  });
+
+  const exportButton = document.querySelector('#results-export-button');
+  exportButton.addEventListener('click', (e) => {
+    e.stopImmediatePropagation();
+
+    const popupContainer = document.querySelector('#popup');
+    popupContainer.innerHTML = Handlebars.templates.popup_export();
+    document.body.classList.add("stop-scrolling");
+
+    const radioExcel = popupContainer.querySelector('#format-type-excel');
+    const radioCSV = popupContainer.querySelector('#format-type-csv');
+    radioExcel.addEventListener('click', () => {
+      radioExcel.checked = true;
+      radioCSV.checked = false;
+    });
+    radioCSV.addEventListener('click', () => {
+      radioExcel.checked = false;
+      radioCSV.checked = true;
+    });
+
+    const cancelButton = document.querySelector('#popup-cancel-button');
+    cancelButton.addEventListener('click', () => {
+      closePopUpWindow();
+    });
+    const okButton = document.querySelector('#popup-ok-button');
+    okButton.addEventListener('click', () => {
+      // TODO Заменить на нормальный API
+      if (radioExcel.checked) {
+        alert('Excel Downloaded!');
+      } else {
+        alert('CSV Downloaded!');
+      }
+    });
+
+    const closePopUpWindowByBody = (e) => {
+      if (!e.target.classList.contains('popup_window')
+          && !e.target.parentNode.classList.contains('popup_window')
+          && !e.target.parentNode.classList.contains('button-container-diagram')
+          && !e.target.parentNode.classList.contains('popup_window_radio-container')) {
+        document.body.removeEventListener('click', closePopUpWindowByBody);
+        closePopUpWindow();
+      }
+    };
+
+    document.body.addEventListener('click', closePopUpWindowByBody);
   });
 
 };

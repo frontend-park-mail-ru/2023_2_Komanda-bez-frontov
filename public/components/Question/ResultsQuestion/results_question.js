@@ -1,4 +1,4 @@
-import {TYPE_MULTIPLE_CHOICE, TYPE_SINGLE_CHOICE} from "../../pages/Form/CheckForm/check_form.js";
+import {TYPE_MULTIPLE_CHOICE, TYPE_SINGLE_CHOICE, TYPE_TEXT} from "../../pages/Form/CheckForm/check_form.js";
 
 const colors = [
   '#337EFF', // Синий
@@ -119,13 +119,20 @@ export const renderResultsQuestion = (question) => {
     });
   };
 
-  if (question.type === TYPE_SINGLE_CHOICE || question.type === TYPE_MULTIPLE_CHOICE) {
-    renderHistogram();
-  } else {
-    if (question.number_of_passages === 0) {
-      container.innerHTML = '<br> &nbsp;&nbsp;&nbsp;Ответов пока нет...';
-      container.style.margin = '0 0 10px 0';
-    }
+  switch (question.type) {
+    case TYPE_SINGLE_CHOICE:
+      renderDiagram();
+      break;
+    case TYPE_MULTIPLE_CHOICE:
+      renderHistogram();
+      break;
+    case TYPE_TEXT:
+      if (question.number_of_passages === 0) {
+        container.innerHTML = '<br> &nbsp;&nbsp;&nbsp;Ответов пока нет...';
+        container.style.margin = '0 0 10px 0';
+      }
+      break;
+    default:
   }
 
   return questionElement;
