@@ -196,7 +196,7 @@ input {
   border-radius: 9px;
   border: none;
   background-color: #FFFFFF;
-  box-shadow: 0 0 8px 0 rgba(34, 60, 80, 0.3);
+  box-shadow: 0 0 6px 0 rgba(34, 60, 80, 0.3);
   text-align: center;
 }
 
@@ -278,7 +278,7 @@ input {
   padding: 45px 0;
   background-color: #FFFFFF;
   text-align: center;
-  box-shadow: 0 0 8px 0 rgba(34, 60, 80, 0.3);
+  box-shadow: 0 4px 4px 0 rgba(34, 60, 80, 0.3);
   transition: transform 0.8s;
 }
 .form-author-menu button {
@@ -458,7 +458,7 @@ input {
 
 .profile {
   position: fixed;
-  top: 150px;
+  top: 140px;
   left: 50%;
   transform: translateX(-50%);
   display: flex;
@@ -607,7 +607,7 @@ input {
   width: 135px;
   background-color: #FFFFFF;
   border: 1px solid rgba(66, 66, 66, 0.25);
-  box-shadow: 0 0 8px 0 rgba(34, 60, 80, 0.2);
+  box-shadow: 0 0 4px 0 rgba(34, 60, 80, 0.2);
   display: inline-block;
   padding: 5px 9px 6px 15px;
   font-size: 18px;
@@ -642,7 +642,7 @@ input {
   font-size: 18px;
   border-radius: 9px;
   border: 1px solid rgba(66, 66, 66, 0.25);
-  box-shadow: 0 0 8px 0 rgba(34, 60, 80, 0.2);
+  box-shadow: 0 0 4px 0 rgba(34, 60, 80, 0.2);
 }
 
 .update-profile_right-container {
@@ -690,7 +690,7 @@ input {
   font-size: 18px;
   border-radius: 9px;
   border: 1px solid rgba(66, 66, 66, 0.25);
-  box-shadow: 0 0 8px 0 rgba(34, 60, 80, 0.2);
+  box-shadow: 0 0 4px 0 rgba(34, 60, 80, 0.2);
 }
 
 .update-profile-form_container__input-show-button {
@@ -762,7 +762,7 @@ input {
   height: 220px;
   width: 360px;
   border-radius: 16px;
-  box-shadow: 0 0 8px 0 rgba(34, 60, 80, 0.2);
+  box-shadow: 0 4px 4px 0 rgba(34, 60, 80, 0.2);
 }
 .forms-list__item .forms-list_item__hat {
   border-radius: 16px 16px 0 0;
@@ -835,7 +835,7 @@ input {
   margin: 20px auto;
   max-width: fit-content;
   border-radius: 9px;
-  box-shadow: 0 0 8px 0 rgba(34, 60, 80, 0.2);
+  box-shadow: 0 2px 4px 0 rgba(34, 60, 80, 0.2);
 }
 .forms_search-container .forms_search-container__input {
   border-radius: 9px 0 0 9px;
@@ -1265,7 +1265,7 @@ input {
 .update-question {
   background-color: #FFFFFF;
   border-radius: 16px;
-  box-shadow: 0 0 8px 0 rgba(34, 60, 80, 0.2);
+  box-shadow: 0 4px 4px 0 rgba(34, 60, 80, 0.2);
 }
 .update-question ::placeholder {
   color: rgb(187, 187, 187);
@@ -1794,7 +1794,7 @@ input {
   border: none;
   background-color: #FFFFFF;
   border-radius: 16px;
-  box-shadow: 0 0 8px 0 rgba(34, 60, 80, 0.2);
+  box-shadow: 0 4px 4px 0 rgba(34, 60, 80, 0.2);
 }
 .update-form__description ::placeholder {
   color: rgb(187, 187, 187);
@@ -1834,7 +1834,7 @@ input {
   background-color: #FFFFFF;
   border: none;
   border-radius: 16px;
-  box-shadow: 0 0 8px 0 rgba(34, 60, 80, 0.2);
+  box-shadow: 0 4px 4px 0 rgba(34, 60, 80, 0.2);
   color: rgba(0, 0, 0, 0.5);
 }
 
@@ -2200,7 +2200,7 @@ input {
 }
 
 .index_content-container_description {
-  box-shadow: 0 0 8px 0 rgba(34, 60, 80, 0.2);
+  box-shadow: 0 4px 4px 0 rgba(34, 60, 80, 0.2);
   border-radius: 16px;
   padding: 25px;
   margin-left: 40px;
@@ -2305,7 +2305,7 @@ input {
 }
 
 .auth-container__form {
-  box-shadow: 0 0 8px 0 rgba(34, 60, 80, 0.2);
+  box-shadow: 0 4px 4px 0 rgba(34, 60, 80, 0.2);
   border-radius: 16px;
   background-color: #FFFFFF;
   text-align: center;

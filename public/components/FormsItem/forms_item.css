@@ -3,7 +3,7 @@
   height: 220px;
   width: 360px;
   border-radius: 16px;
-  box-shadow: 0 0 8px 0 rgba(34, 60, 80, 0.2);
+  box-shadow: 0 4px 4px 0 rgba(34, 60, 80, 0.2);
 }
 .forms-list__item .forms-list_item__hat {
   border-radius: 16px 16px 0 0;

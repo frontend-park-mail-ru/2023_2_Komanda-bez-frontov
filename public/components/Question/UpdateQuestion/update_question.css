@@ -1,7 +1,7 @@
 .update-question {
   background-color: #FFFFFF;
   border-radius: 16px;
-  box-shadow: 0 0 8px 0 rgba(34, 60, 80, 0.2);
+  box-shadow: 0 4px 4px 0 rgba(34, 60, 80, 0.2);
 }
 .update-question ::placeholder {
   color: rgb(187, 187, 187);

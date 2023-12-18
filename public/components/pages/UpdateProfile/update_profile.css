@@ -17,7 +17,7 @@
   width: 135px;
   background-color: #FFFFFF;
   border: 1px solid rgba(66, 66, 66, 0.25);
-  box-shadow: 0 0 8px 0 rgba(34, 60, 80, 0.2);
+  box-shadow: 0 0 4px 0 rgba(34, 60, 80, 0.2);
   display: inline-block;
   padding: 5px 9px 6px 15px;
   font-size: 18px;
@@ -52,7 +52,7 @@
   font-size: 18px;
   border-radius: 9px;
   border: 1px solid rgba(66, 66, 66, 0.25);
-  box-shadow: 0 0 8px 0 rgba(34, 60, 80, 0.2);
+  box-shadow: 0 0 4px 0 rgba(34, 60, 80, 0.2);
 }
 
 .update-profile_right-container {
@@ -100,7 +100,7 @@
   font-size: 18px;
   border-radius: 9px;
   border: 1px solid rgba(66, 66, 66, 0.25);
-  box-shadow: 0 0 8px 0 rgba(34, 60, 80, 0.2);
+  box-shadow: 0 0 4px 0 rgba(34, 60, 80, 0.2);
 }
 
 .update-profile-form_container__input-show-button {
