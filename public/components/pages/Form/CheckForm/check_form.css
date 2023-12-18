@@ -7,67 +7,59 @@
 }
 
 .check-form__description {
-  border-radius: 9px;
-  border: 1px solid #424242;
+  border-radius: 16px;
+  border: none;
   text-align: left;
   background-color: #ffffff;
+  box-shadow: 0 0 8px 0 rgba(34, 60, 80, 0.2);
 }
 
 .check-form__description-text {
   font-weight: normal;
 }
 
-.check-form__anonymous {
-  margin-top: 15px;
-  padding: 10px 12px;
-  border-radius: 9px;
-  border: 1px solid #424242;
-  background-color: #ffffff;
-  text-align: left;
-}
-.check-form__anonymous p {
-  font-size: 16px;
-  color: #6e51a4;
-}
-.check-form__anonymous .check-form__anonymous-error {
-  color: #da2d28;
+.check-form__anonymous-warning-container {
+  display: flex;
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 769px) {
   .check-form {
     margin: 32px auto;
     width: 640px;
   }
   .check-form .check-form__title {
-    font-size: 29px;
-    margin-bottom: 26px;
+    font-size: 22px;
   }
   .check-form .button-container {
-    margin: 15px 9px 8px 9px;
-    width: 440px;
+    align-items: center;
+    margin-top: 32px;
     gap: 12px;
   }
   .check-form .button-container button {
-    width: 200px;
+    padding: 10px 5px;
+    width: 160px;
+  }
+  .check-form .button-container .material-symbols-outlined {
+    background-color: #FFFFFF;
+    box-shadow: 0 0 8px 0 rgba(34, 60, 80, 0.2);
+    padding: 5px;
+    border-radius: 9px;
   }
   .check-form__description {
-    padding: 10px 12px;
-  }
-  .check-form__anonymous {
-    margin-top: 15px;
-    padding: 10px 12px;
-  }
-  .check-form__anonymous p {
-    font-size: 16px;
+    padding: 20px;
   }
   .check-form__description-title {
-    font-size: 20px;
-    margin-bottom: 8px;
+    font-size: 16px;
   }
   .check-form__description-text {
-    padding-left: 8px;
+    margin-top: 12px;
     font-size: 18px;
     font-weight: normal;
+  }
+  .check-form__anonymous-warning-container {
+    margin-top: 14px;
+    font-size: 14px;
+    gap: 8px;
   }
 }
 @media screen and (max-width: 768px) {
@@ -76,34 +68,43 @@
     width: 80%;
   }
   .check-form .check-form__title {
-    font-size: 25px;
-    margin: 30px 0 20px 0;
+    font-size: 20px;
+    margin-bottom: 8px;
   }
   .check-form .button-container {
-    margin: 15px 9px 8px 9px;
-    width: 95%;
+    align-items: center;
+    margin-top: 16px;
+    gap: 12px;
   }
   .check-form .button-container button {
-    width: 200px;
+    padding: 10px 5px;
+    width: 160px;
+  }
+  .check-form .button-container .material-symbols-outlined {
+    background-color: #FFFFFF;
+    box-shadow: 0 0 8px 0 rgba(34, 60, 80, 0.2);
+    padding: 5px;
+    border-radius: 9px;
   }
   .check-form__description {
-    padding: 10px 12px;
-  }
-  .check-form__anonymous {
-    margin-top: 12px;
-    padding: 10px 12px;
-  }
-  .check-form__anonymous p {
-    font-size: 16px;
+    padding: 20px;
   }
   .check-form__description-title {
     font-size: 16px;
     margin-bottom: 8px;
   }
   .check-form__description-text {
-    padding-left: 8px;
-    font-size: 18px;
+    font-size: 16px;
     font-weight: normal;
+    margin-bottom: 12px;
+  }
+  .check-form__anonymous-warning-container {
+    margin-top: 14px;
+    font-size: 12px;
+    gap: 8px;
+  }
+  .check-form__anonymous-warning-container .check-form__anonymous-warning-icon {
+    font-size: 10px;
   }
 }
 @media screen and (max-width: 480px) {
@@ -112,29 +113,43 @@
     width: 90%;
   }
   .check-form .check-form__title {
-    font-size: 25px;
-    margin: 20px 0;
+    font-size: 20px;
+    margin-bottom: 8px;
   }
   .check-form .button-container {
-    margin: 15px 0;
+    align-items: center;
+    margin-top: 16px;
+    gap: 12px;
   }
   .check-form .button-container button {
-    width: 150px;
+    padding: 10px 5px;
+    width: 160px;
+  }
+  .check-form .button-container .material-symbols-outlined {
+    background-color: #FFFFFF;
+    box-shadow: 0 0 8px 0 rgba(34, 60, 80, 0.2);
+    padding: 5px;
+    border-radius: 9px;
   }
   .check-form__description {
-    padding: 10px 12px;
+    padding: 18px;
   }
-  .check-form__anonymous {
-    margin-top: 10px;
-    padding: 10px 12px;
-  }
-  .check-form__anonymous p {
+  .check-form__description-title {
     font-size: 16px;
+    margin-bottom: 8px;
   }
   .check-form__description-text {
-    padding-left: 8px;
     font-size: 16px;
     font-weight: normal;
+    margin-bottom: 12px;
+  }
+  .check-form__anonymous-warning-container {
+    margin-top: 14px;
+    font-size: 14px;
+    gap: 8px;
+  }
+  .check-form__anonymous-warning-container .check-form__anonymous-warning-icon {
+    font-size: 11px;
   }
 }
 

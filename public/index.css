@@ -356,12 +356,6 @@ input {
   #author-menu-close-button {
     display: none;
   }
-  #author-menu-check-button {
-    border-radius: 18px 0 0 0;
-  }
-  #author-menu-link-button {
-    border-radius: 0 18px 0 0;
-  }
 }
 @media screen and (max-width: 570px) {
   .form-author-menu button {
@@ -964,18 +958,20 @@ input {
 }
 
 .check-question {
-  border-radius: 9px;
-  border: 1px solid #424242;
+  border-radius: 16px;
+  border: none;
   background-color: #ffffff;
+  box-shadow: 0 0 8px 0 rgba(34, 60, 80, 0.2);
+}
+.check-question .material-symbols-outlined {
+  font-size: 20px;
 }
 .check-question .button-container button {
   font-size: 15px;
   font-weight: normal;
-  padding: 6px;
 }
 
 .check-question__description-title {
-  padding-left: 4px;
   font-size: 18px;
   margin-bottom: 8px;
   text-align: left;
@@ -983,15 +979,12 @@ input {
 
 .check-question__required-title {
   color: #da2d28;
-  padding-left: 8px;
   font-size: 15px;
   font-weight: normal;
-  margin-bottom: 8px;
   text-align: left;
 }
 
 .check-question__description-text {
-  padding-left: 8px;
   font-size: 18px;
   font-weight: normal;
   margin-bottom: 12px;
@@ -999,22 +992,23 @@ input {
 }
 
 .check-question__answer-title {
-  padding-left: 4px;
   margin-bottom: 8px;
   text-align: left;
 }
 
 .check-question__answer-item {
+  display: flex;
   margin-bottom: 8px;
   text-align: left;
+  align-items: center;
 }
 .check-question__answer-item .check-question__answer-item-label {
   font-size: 16px;
   font-weight: normal;
 }
 .check-question__answer-item .check-question__answer-item-checkbox {
-  width: 15px;
-  height: 15px;
+  width: 14px;
+  height: 14px;
   border: 1.5px solid #1E2534;
   margin: 0;
   vertical-align: bottom;
@@ -1023,8 +1017,8 @@ input {
   *overflow: hidden;
 }
 .check-question__answer-item .check-question__answer-item-radio {
-  width: 15px;
-  height: 15px;
+  width: 14px;
+  height: 14px;
   border: 1.5px solid #1E2534;
   margin: 0;
   vertical-align: bottom;
@@ -1036,53 +1030,61 @@ input {
   font-size: 16px;
   height: 95px;
   resize: none;
-  background-color: #d5ceec;
   border-radius: 6px;
-}
-
-.button-container {
-  margin-top: 15px;
 }
 
 @media screen and (min-width: 769px) {
   .check-question {
-    margin-top: 15px;
-    padding: 10px 12px;
+    margin-top: 32px;
+    padding: 20px;
   }
   .check-question__answers-item-textarea {
     width: 565px;
-    padding: 8px 12px;
   }
   .check-question__answer-item {
-    padding: 5px 12px;
+    padding: 5px 0;
+    gap: 12px;
+  }
+  .button-container {
+    margin-top: 16px;
+  }
+  .check-question__answers-item-textarea {
+    padding: 5px;
+    width: 98%;
   }
 }
 @media screen and (max-width: 768px) {
   .check-question {
-    margin-top: 12px;
-    padding: 5px 12px;
+    margin-top: 16px;
+    padding: 20px;
   }
   .check-question__answers-item-textarea {
-    width: 95%;
-    padding: 8px 12px;
+    padding: 5px;
+    width: 98%;
   }
   .check-question__answer-item {
-    padding: 5px 8px;
+    padding: 5px 0;
+    gap: 12px;
+  }
+  .button-container {
+    margin-top: 16px;
   }
 }
 @media screen and (max-width: 480px) {
   .check-question {
-    margin-top: 10px;
-    padding: 5px 8px;
-  }
-  .check-question__answer-item {
-    padding: 5px 12px;
-    margin: 0 auto;
+    margin-top: 16px;
+    padding: 20px;
   }
   .check-question__answers-item-textarea {
-    width: 90%;
-    padding: 5px 12px;
-    margin: 0 auto;
+    padding: 5px;
+    width: 98%;
+  }
+  .check-question__answer-item {
+    padding: 5px 0;
+    gap: 12px;
+  }
+  .button-container {
+    margin-top: 16px;
   }
 }
 .results-question {
@@ -1629,67 +1631,59 @@ input {
 }
 
 .check-form__description {
-  border-radius: 9px;
-  border: 1px solid #424242;
+  border-radius: 16px;
+  border: none;
   text-align: left;
   background-color: #ffffff;
+  box-shadow: 0 0 8px 0 rgba(34, 60, 80, 0.2);
 }
 
 .check-form__description-text {
   font-weight: normal;
 }
 
-.check-form__anonymous {
-  margin-top: 15px;
-  padding: 10px 12px;
-  border-radius: 9px;
-  border: 1px solid #424242;
-  background-color: #ffffff;
-  text-align: left;
-}
-.check-form__anonymous p {
-  font-size: 16px;
-  color: #6e51a4;
-}
-.check-form__anonymous .check-form__anonymous-error {
-  color: #da2d28;
+.check-form__anonymous-warning-container {
+  display: flex;
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 769px) {
   .check-form {
     margin: 32px auto;
     width: 640px;
   }
   .check-form .check-form__title {
-    font-size: 29px;
-    margin-bottom: 26px;
+    font-size: 22px;
   }
   .check-form .button-container {
-    margin: 15px 9px 8px 9px;
-    width: 440px;
+    align-items: center;
+    margin-top: 32px;
     gap: 12px;
   }
   .check-form .button-container button {
-    width: 200px;
+    padding: 10px 5px;
+    width: 160px;
+  }
+  .check-form .button-container .material-symbols-outlined {
+    background-color: #FFFFFF;
+    box-shadow: 0 0 8px 0 rgba(34, 60, 80, 0.2);
+    padding: 5px;
+    border-radius: 9px;
   }
   .check-form__description {
-    padding: 10px 12px;
-  }
-  .check-form__anonymous {
-    margin-top: 15px;
-    padding: 10px 12px;
-  }
-  .check-form__anonymous p {
-    font-size: 16px;
+    padding: 20px;
   }
   .check-form__description-title {
-    font-size: 20px;
-    margin-bottom: 8px;
+    font-size: 16px;
   }
   .check-form__description-text {
-    padding-left: 8px;
+    margin-top: 12px;
     font-size: 18px;
     font-weight: normal;
+  }
+  .check-form__anonymous-warning-container {
+    margin-top: 14px;
+    font-size: 14px;
+    gap: 8px;
   }
 }
 @media screen and (max-width: 768px) {
@@ -1698,34 +1692,43 @@ input {
     width: 80%;
   }
   .check-form .check-form__title {
-    font-size: 25px;
-    margin: 30px 0 20px 0;
+    font-size: 20px;
+    margin-bottom: 8px;
   }
   .check-form .button-container {
-    margin: 15px 9px 8px 9px;
-    width: 95%;
+    align-items: center;
+    margin-top: 16px;
+    gap: 12px;
   }
   .check-form .button-container button {
-    width: 200px;
+    padding: 10px 5px;
+    width: 160px;
+  }
+  .check-form .button-container .material-symbols-outlined {
+    background-color: #FFFFFF;
+    box-shadow: 0 0 8px 0 rgba(34, 60, 80, 0.2);
+    padding: 5px;
+    border-radius: 9px;
   }
   .check-form__description {
-    padding: 10px 12px;
-  }
-  .check-form__anonymous {
-    margin-top: 12px;
-    padding: 10px 12px;
-  }
-  .check-form__anonymous p {
-    font-size: 16px;
+    padding: 20px;
   }
   .check-form__description-title {
     font-size: 16px;
     margin-bottom: 8px;
   }
   .check-form__description-text {
-    padding-left: 8px;
-    font-size: 18px;
+    font-size: 16px;
     font-weight: normal;
+    margin-bottom: 12px;
+  }
+  .check-form__anonymous-warning-container {
+    margin-top: 14px;
+    font-size: 12px;
+    gap: 8px;
+  }
+  .check-form__anonymous-warning-container .check-form__anonymous-warning-icon {
+    font-size: 10px;
   }
 }
 @media screen and (max-width: 480px) {
@@ -1734,29 +1737,43 @@ input {
     width: 90%;
   }
   .check-form .check-form__title {
-    font-size: 25px;
-    margin: 20px 0;
+    font-size: 20px;
+    margin-bottom: 8px;
   }
   .check-form .button-container {
-    margin: 15px 0;
+    align-items: center;
+    margin-top: 16px;
+    gap: 12px;
   }
   .check-form .button-container button {
-    width: 150px;
+    padding: 10px 5px;
+    width: 160px;
+  }
+  .check-form .button-container .material-symbols-outlined {
+    background-color: #FFFFFF;
+    box-shadow: 0 0 8px 0 rgba(34, 60, 80, 0.2);
+    padding: 5px;
+    border-radius: 9px;
   }
   .check-form__description {
-    padding: 10px 12px;
+    padding: 18px;
   }
-  .check-form__anonymous {
-    margin-top: 10px;
-    padding: 10px 12px;
-  }
-  .check-form__anonymous p {
+  .check-form__description-title {
     font-size: 16px;
+    margin-bottom: 8px;
   }
   .check-form__description-text {
-    padding-left: 8px;
     font-size: 16px;
     font-weight: normal;
+    margin-bottom: 12px;
+  }
+  .check-form__anonymous-warning-container {
+    margin-top: 14px;
+    font-size: 14px;
+    gap: 8px;
+  }
+  .check-form__anonymous-warning-container .check-form__anonymous-warning-icon {
+    font-size: 11px;
   }
 }
 .update-form__title-input {
@@ -1801,7 +1818,7 @@ input {
   background-color: #a9a9a9;
 }
 
-.check-form__anonymous-warning-container {
+.update-form__anonymous-warning-container {
   display: flex;
 }
 
@@ -1864,13 +1881,13 @@ input {
   .update-form_anonymous__checkbox-label {
     font-size: 12px;
   }
-  .check-form__anonymous-warning-container {
+  .update-form__anonymous-warning-container {
     margin-top: 8px;
     font-size: 12px;
     gap: 8px;
   }
   .check-form__anonymous-warning-icon {
-    font-size: 9px;
+    font-size: 11px;
   }
   .update-form_add-question-button {
     margin-top: 32px;
@@ -1919,12 +1936,12 @@ input {
   .update-form_anonymous__checkbox-label {
     font-size: 12px;
   }
-  .check-form__anonymous-warning-container {
+  .update-form__anonymous-warning-container {
     margin-top: 8px;
     font-size: 12px;
     gap: 8px;
   }
-  .check-form__anonymous-warning-icon {
+  .update-form__anonymous-warning-container .check-form__anonymous-warning-icon {
     font-size: 9px;
   }
   .update-form_add-question-button {
@@ -1967,7 +1984,7 @@ input {
     font-size: 12px;
     gap: 10px;
   }
-  .check-form__anonymous-warning-container {
+  .update-form__anonymous-warning-container {
     margin-top: 16px;
     font-size: 12px;
     gap: 10px;
@@ -2012,7 +2029,7 @@ input {
     font-size: 12px;
     gap: 10px;
   }
-  .check-form__anonymous-warning-container {
+  .update-form__anonymous-warning-container {
     margin-top: 16px;
     font-size: 12px;
     gap: 10px;
