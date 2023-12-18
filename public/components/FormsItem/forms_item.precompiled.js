@@ -11,7 +11,7 @@ templates['forms_item'] = template({"1":function(container,depth0,helpers,partia
   return "    <div class=\"forms-list__item\" id=\"forms-list-item\">\n        <div class=\"forms-list_item__hat\"></div>\n        <div class=\"forms-list_item__content\">\n            <h3 class=\"forms-list_item__title\">"
     + alias2(alias1(((stack1 = (depth0 != null ? lookupProperty(depth0,"form") : depth0)) != null ? lookupProperty(stack1,"title") : stack1), depth0))
     + "</h3>\n            <p class=\"forms-list_item__description\">\n                Прохождений:  &nbsp;&nbsp;"
-    + alias2(alias1(((stack1 = (depth0 != null ? lookupProperty(depth0,"form") : depth0)) != null ? lookupProperty(stack1,"passage_times") : stack1), depth0))
+    + alias2(alias1(((stack1 = (depth0 != null ? lookupProperty(depth0,"form") : depth0)) != null ? lookupProperty(stack1,"number_of_passages") : stack1), depth0))
     + " <br>\n                Создан:  &nbsp;"
     + alias2(alias1(((stack1 = (depth0 != null ? lookupProperty(depth0,"form") : depth0)) != null ? lookupProperty(stack1,"created_at") : stack1), depth0))
     + "\n            </p>\n        </div>\n    </div>\n";
