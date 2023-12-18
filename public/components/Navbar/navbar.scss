@@ -85,6 +85,8 @@
       .navbar_profile__picture {
         height: 42px;
         width: 42px;
+        object-fit: contain;
+        background-color: #ffffff;
       }
     }
 

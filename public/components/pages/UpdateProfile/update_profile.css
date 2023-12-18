@@ -3,6 +3,8 @@
   width: 220px;
   object-fit: contain;
   border-radius: 110px;
+  box-shadow: 0 0 8px 0 rgba(34, 60, 80, 0.3);
+  background-color: #ffffff;
 }
 
 .update-profile_img-container_avatar-container {

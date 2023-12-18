@@ -16,7 +16,7 @@ input {
   padding: 10px 12px;
   border-radius: 9px;
   border: 1px solid rgba(66, 66, 66, 0.25);
-  box-shadow: 0 0 8px 0 rgba(34, 60, 80, 0.2);
+  box-shadow: 0 0 4px 0 rgba(34, 60, 80, 0.2);
   width: 100%;
   font-weight: bold;
 }
@@ -144,6 +144,8 @@ input {
   .navbar .navbar_profile .navbar_profile__picture {
     height: 42px;
     width: 42px;
+    object-fit: contain;
+    background-color: #ffffff;
   }
   .navbar .navbar_profile__name {
     font-weight: 600;
@@ -480,6 +482,8 @@ input {
   width: 220px;
   object-fit: contain;
   border-radius: 110px;
+  box-shadow: 0 0 8px 0 rgba(34, 60, 80, 0.3);
+  background-color: #ffffff;
 }
 
 .profile_main-container_name-container {
@@ -593,6 +597,8 @@ input {
   width: 220px;
   object-fit: contain;
   border-radius: 110px;
+  box-shadow: 0 0 8px 0 rgba(34, 60, 80, 0.3);
+  background-color: #ffffff;
 }
 
 .update-profile_img-container_avatar-container {

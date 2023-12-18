@@ -72,6 +72,8 @@
   .navbar .navbar_profile .navbar_profile__picture {
     height: 42px;
     width: 42px;
+    object-fit: contain;
+    background-color: #ffffff;
   }
   .navbar .navbar_profile__name {
     font-weight: 600;
