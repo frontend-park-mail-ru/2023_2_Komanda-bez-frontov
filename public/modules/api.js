@@ -35,8 +35,7 @@ export class API {
       if (res.ok) {
         isAuthorized = true;
         authorizedUser = body.current_user;
-        // TODO когда на беке появится!
-        // localStorage.setItem('csrf-token', res.headers.get('x-csrf-token'));
+        localStorage.setItem('csrf-token', res.headers.get('x-csrf-token'));
       }
 
       return {isAuthorized, authorizedUser};
@@ -354,6 +353,9 @@ export class API {
       });
       if (res.status === 450) {
         return {message: 'Нет подключения к сети', form: null};
+      }
+      if (res.status === 404) {
+        return {message: '404', form: null};
       }
 
       const body = await res.json();
