@@ -21,7 +21,7 @@ input {
   font-weight: bold;
 }
 .outline-button:hover, .usual-button:hover, .red-button:hover, .black-button:hover, .primary-button:hover, .secondary-button:hover {
-  opacity: 0.6;
+  opacity: 0.8;
   cursor: pointer;
 }
 
@@ -446,98 +446,82 @@ input {
     height: 63px;
   }
 }
-.profile-title {
-  margin: 20px 40px;
-  text-align: center;
-  font-size: 24px;
+.profile-background {
+  position: fixed;
+  z-index: -1;
+  top: 0;
+  right: 0;
+  height: 100%;
+  width: 60%;
+  background-color: #ffffff;
 }
 
 .profile {
-  background-color: rgba(128, 102, 169, 0.6);
-  box-shadow: 0 0 8px 0 rgba(34, 60, 80, 0.2);
-  margin: 0 auto;
-  max-width: 800px;
-  border-radius: 9px;
+  display: flex;
+  margin: 80px auto;
+  width: fit-content;
 }
 
 .profile_main-container {
+  border-radius: 6px;
+  background-color: #F8F8F8;
+  box-shadow: 0 0 12px 0 rgba(34, 60, 80, 0.2);
   display: flex;
-  justify-content: left;
-  padding: 29px 0 29px 36px;
+  flex-flow: column;
+  align-items: center;
+  padding: 30px 0;
+  width: 400px;
 }
 .profile_main-container .profile_main-container__picture {
-  height: 200px;
-  width: 200px;
+  height: 220px;
+  width: 220px;
   object-fit: contain;
-  border-radius: 9px;
+  border-radius: 110px;
 }
 
 .profile_main-container_name-container {
-  color: #FFFFFF;
-  margin: 12px 32px;
-  line-height: 24px;
+  color: #000000;
+  margin: 20px;
+  width: 300px;
 }
 .profile_main-container_name-container h3 {
-  font-size: 29px;
-  margin-bottom: 16px;
+  text-align: center;
+  font-size: 32px;
+}
+.profile_main-container_name-container .line {
+  background-color: #7458b6;
+  margin: 25px auto;
+  width: 120px;
+  height: 3px;
 }
 .profile_main-container_name-container a {
-  font-size: 20px;
+  line-height: 32px;
+  font-size: 22px;
 }
 
-.profile_button-container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-  justify-content: left;
-  padding: 0 0 32px 36px;
+.profile_right-container {
+  padding: 10px 50px;
+  width: 450px;
+  text-align: left;
 }
-.profile_button-container button {
-  width: max-content;
+.profile_right-container h3 {
+  font-size: 42px;
+  margin-bottom: 20px;
+}
+.profile_right-container p {
+  font-size: 20px;
+}
+.profile_right-container .button-container {
+  gap: 12px;
+  margin: 35px 0;
+}
+.profile_right-container .button-container button {
+  width: 200px;
   min-width: 180px;
   font-size: 16px;
   font-weight: bold;
 }
-.profile_button-container .primary-button:hover {
-  opacity: 1;
-  color: #696969;
-  border-color: #696969;
-}
-.profile_button-container .secondary-button:hover {
-  opacity: 1;
-  background-color: #6e51a4;
-  border-color: #696969;
-}
 
-@media screen and (max-width: 768px) {
-  .profile {
-    border-radius: 0;
-  }
-  .profile_main-container .profile_main-container__picture {
-    height: 120px;
-    width: 120px;
-  }
-}
-@media screen and (max-width: 480px) {
-  .profile-title h3 {
-    font-size: 22px;
-  }
-  .profile_main-container {
-    padding: 30px;
-  }
-  .profile_main-container_name-container {
-    margin: 10px 20px;
-  }
-  .profile_main-container_name-container h3 {
-    font-size: 24px;
-  }
-  .profile_main-container_name-container a {
-    font-size: 18px;
-  }
-  .profile_button-container {
-    padding: 20px 0 24px 30px;
-  }
-}
 .profile-title {
   margin: 20px 40px;
   text-align: center;
