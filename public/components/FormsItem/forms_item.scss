@@ -1,17 +1,38 @@
-@import '../Buttons/buttons';
-
 .forms-list__item {
-  @extend %button-common;
   background-color: #FFFFFF;
-  margin-bottom: 16px;
-  min-height: 56px;
-  max-height: min-content;
-  font-size: 18px;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  height: 220px;
+  width: 360px;
+  border-radius: 16px;
+  box-shadow: 0 0 8px 0 rgba(34, 60, 80, 0.2);
+
+  .forms-list_item__hat {
+    border-radius: 16px 16px 0 0;
+    height: 16px;
+    width: 100%;
+    background-color: #D9D9D9;
+  }
 
   &:hover {
-    opacity: 1;
-    background-color: #eeeeee;
+    .forms-list_item__hat {
+      background-color: #4B357A;
+    }
   }
 }
+
+.forms-list_item__content {
+  overflow-wrap: anywhere;
+  padding: 10px 15px;
+
+  h3 {
+    font-size: 22px;
+    line-height: 35px;
+    height: 105px;
+  }
+
+  p {
+    margin-top: 30px;
+    font-size: 18px;
+  }
+
+}
+

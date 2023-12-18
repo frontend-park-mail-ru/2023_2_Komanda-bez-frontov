@@ -75,16 +75,22 @@ export const renderForms = async () => {
         }
       }
 
+      const temp = document.createElement('div');
       forms.forEach((form) => {
-        const item = document.createElement('div');
-        item.innerHTML = Handlebars.templates.forms_item();
-
-        const itemButton = item.querySelector('#forms-list-item');
-        itemButton.textContent = form.title;
-        itemButton.addEventListener('click', () => {
+        const date = new Date(form.created_at);
+        const options = {
+          year: 'numeric',
+          month: 'numeric',
+          day: 'numeric',
+          hour: '2-digit',
+          minute: '2-digit',
+        };
+        form.created_at = date.toLocaleDateString('ru', options);
+        temp.innerHTML = Handlebars.templates.forms_item({form: form});
+        const item = temp.querySelector('#forms-list-item');
+        item.addEventListener('click', () => {
           goToPage(ROUTES.form, form.id);
         });
-
         formsContainer.appendChild(item);
       });
     } else {

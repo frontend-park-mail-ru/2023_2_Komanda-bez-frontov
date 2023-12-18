@@ -12,7 +12,7 @@ input {
   outline: 0;
 }
 
-.forms-list__item, .outline-button, .usual-button, .red-button, .black-button, .primary-button, .secondary-button {
+.outline-button, .usual-button, .red-button, .black-button, .primary-button, .secondary-button {
   padding: 10px 12px;
   border-radius: 9px;
   border: 1px solid rgba(66, 66, 66, 0.25);
@@ -20,7 +20,7 @@ input {
   width: 100%;
   font-weight: bold;
 }
-.forms-list__item:hover, .outline-button:hover, .usual-button:hover, .red-button:hover, .black-button:hover, .primary-button:hover, .secondary-button:hover {
+.outline-button:hover, .usual-button:hover, .red-button:hover, .black-button:hover, .primary-button:hover, .secondary-button:hover {
   opacity: 0.6;
   cursor: pointer;
 }
@@ -710,6 +710,37 @@ input {
     padding: 0 0 18px 30px;
   }
 }
+.forms-list__item {
+  background-color: #FFFFFF;
+  height: 220px;
+  width: 360px;
+  border-radius: 16px;
+  box-shadow: 0 0 8px 0 rgba(34, 60, 80, 0.2);
+}
+.forms-list__item .forms-list_item__hat {
+  border-radius: 16px 16px 0 0;
+  height: 16px;
+  width: 100%;
+  background-color: #D9D9D9;
+}
+.forms-list__item:hover .forms-list_item__hat {
+  background-color: #4B357A;
+}
+
+.forms-list_item__content {
+  overflow-wrap: anywhere;
+  padding: 10px 15px;
+}
+.forms-list_item__content h3 {
+  font-size: 22px;
+  line-height: 35px;
+  height: 105px;
+}
+.forms-list_item__content p {
+  margin-top: 30px;
+  font-size: 18px;
+}
+
 .forms_list-container {
   margin: 32px 80px 0 80px;
   min-width: 185px;
@@ -802,11 +833,40 @@ input {
 }
 
 .forms_list_main-container {
+  width: 1515px;
+  margin: 25px auto;
   display: flex;
-  flex-flow: column;
-  justify-content: center;
+  flex-wrap: wrap;
+  gap: 25px;
+  justify-content: flex-start;
 }
 
+@media (max-width: 1675px) {
+  .forms_list_main-container {
+    width: 1130px;
+  }
+}
+@media (max-width: 1305px) {
+  .forms_list_main-container {
+    width: 745px;
+  }
+}
+@media (max-width: 920px) {
+  .forms-list__item {
+    width: 280px;
+  }
+  .forms_list_main-container {
+    width: 585px;
+  }
+}
+@media (max-width: 660px) {
+  .forms-list__item {
+    width: 100%;
+  }
+  .forms_list_main-container {
+    width: 100%;
+  }
+}
 .forms_list_main-container_empty-label {
   margin-top: 16px;
   text-align: center;
@@ -861,12 +921,12 @@ input {
     width: 45px;
   }
   .forms__loading-screen {
-    top: 210px;
+    top: 230px;
   }
   .forms__loading-screen img {
     width: 40px;
     height: 40px;
-    margin: 140px auto;
+    margin: 160px auto;
   }
 }
 @media screen and (max-width: 480px) {
@@ -877,92 +937,6 @@ input {
     min-width: 210px;
   }
 }
-.button-container {
-  display: flex;
-  gap: 5px;
-}
-
-button {
-  font-size: 12px;
-}
-
-input {
-  border: none;
-  outline: 0;
-}
-
-.forms-list__item, .secondary-button, .primary-button, .black-button, .red-button, .usual-button, .outline-button {
-  padding: 10px 12px;
-  border-radius: 9px;
-  border: 1px solid rgba(66, 66, 66, 0.25);
-  box-shadow: 0 0 8px 0 rgba(34, 60, 80, 0.2);
-  width: 100%;
-  font-weight: bold;
-}
-.forms-list__item:hover, .secondary-button:hover, .primary-button:hover, .black-button:hover, .red-button:hover, .usual-button:hover, .outline-button:hover {
-  opacity: 0.6;
-  cursor: pointer;
-}
-
-.secondary-button {
-  background-color: #4B357A;
-  color: white;
-  border: none;
-}
-
-.primary-button {
-  background-color: #FFFFFF;
-  color: black;
-}
-.primary-button:hover {
-  opacity: 1;
-  background-color: #eeeeee;
-}
-
-.black-button {
-  background-color: #000000;
-  color: white;
-  border-radius: 9px;
-}
-
-.red-button {
-  background-color: #B42525;
-  color: white;
-  border-radius: 9px;
-}
-
-.usual-button {
-  border: none;
-  background-color: #FFFFFF;
-  color: #4B357A;
-  border-radius: 9px;
-}
-
-.outline-button {
-  border: 1px solid #FFFFFF;
-  border-radius: 9px;
-  background-color: #4B357A;
-  color: #FFFFFF;
-}
-
-.button__disabled {
-  opacity: 0.6;
-}
-
-.forms-list__item {
-  background-color: #FFFFFF;
-  margin-bottom: 16px;
-  min-height: 56px;
-  max-height: min-content;
-  font-size: 18px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-.forms-list__item:hover {
-  opacity: 1;
-  background-color: #eeeeee;
-}
-
 .check-question {
   border-radius: 9px;
   border: 1px solid #424242;
