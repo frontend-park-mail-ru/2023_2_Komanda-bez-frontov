@@ -72,7 +72,7 @@ export const renderForm = async (id) => {
   rootElement.insertAdjacentHTML('beforeend', Handlebars.templates.check_form({form: formJSON}));
 
   if (STORAGE.user && !formJSON.anonymous) {
-    document.querySelector('.check-form__anonymous').classList.add('display-none');
+    document.querySelector('.check-form__anonymous-warning-container').classList.add('display-none');
   }
 
   const questions = document.querySelector('#check-form__questions-container');
