@@ -1,1 +1,12 @@
-<button class="forms-list__item" id="forms-list-item">Опрос загружается...</button>
+{{#if form}}
+    <div class="forms-list__item" id="forms-list-item">
+        <div class="forms-list_item__hat"></div>
+        <div class="forms-list_item__content">
+            <h3 class="forms-list_item__title">{{form.title}}</h3>
+            <p class="forms-list_item__description">
+                Прохождений:  &nbsp;&nbsp;{{form.passage_times}} <br>
+                Создан:  &nbsp;{{form.created_at}}
+            </p>
+        </div>
+    </div>
+{{/if}}

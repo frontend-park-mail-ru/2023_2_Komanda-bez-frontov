@@ -5,8 +5,8 @@
 @import './components/PopUpWindow/popup_window';
 @import './components/pages/Profile/profile';
 @import './components/pages/UpdateProfile/update_profile';
-@import './components/pages/MyForms/forms';
 @import './components/FormsItem/forms_item';
+@import './components/pages/MyForms/forms';
 @import './components/Question/CheckQuestion/check_question';
 @import './components/Question/ResultsQuestion/results_question';
 @import './components/Question/ResultsAnswers/diagram';
@@ -63,8 +63,14 @@ p, h3 {
   height: 62px;
 }
 
-#message-box, #root{
+#root{
   position: relative;
+}
+
+#message-box {
+  position: fixed;
+  z-index: 10;
+  width: 100%;
 }
 
 body {
@@ -92,6 +98,10 @@ body {
 }
 
 @media screen and (min-width: 768px){
+  #message-box {
+    position: relative;
+  }
+
   #message-box, #root{
     top: 70px;
   }

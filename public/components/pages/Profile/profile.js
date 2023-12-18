@@ -23,19 +23,12 @@ export const renderProfile = async () => {
 
   const rootElement = document.querySelector('#root');
   rootElement.innerHTML = '';
-  rootElement.innerHTML = Handlebars.templates.profile();
+  rootElement.innerHTML = Handlebars.templates.profile({user: STORAGE.user});
 
-  const user = STORAGE.user;
   const profilePicture = document.querySelector('#profile-page-picture');
   if (STORAGE.avatar) {
     profilePicture.src = `data:image/png;base64, ${STORAGE.avatar}`;
   }
-  const name = document.querySelector('#profile-page-name');
-  name.textContent = user.first_name;
-  const username = document.querySelector('#profile-page-username');
-  username.textContent = user.username;
-  const email = document.querySelector('#profile-page-email');
-  email.textContent = user.email;
 
   const settingButton = document.querySelector('#profile-settings-button');
   settingButton.addEventListener('click', () => {
@@ -45,8 +38,4 @@ export const renderProfile = async () => {
   formsButton.addEventListener('click', () => {
     goToPage(ROUTES.forms);
   });
-  // const historyButton = document.querySelector("#profile-history-button");
-  // historyButton.addEventListener("click", function (e) {
-  //     goToPage(ROUTES.history);
-  // });
 };
