@@ -63,8 +63,13 @@ p, h3 {
   height: 62px;
 }
 
-#message-box, #root{
+#root{
   position: relative;
+}
+
+#message-box {
+  position: fixed;
+  z-index: 10;
 }
 
 body {
@@ -92,6 +97,10 @@ body {
 }
 
 @media screen and (min-width: 768px){
+  #message-box {
+    position: relative;
+  }
+
   #message-box, #root{
     top: 70px;
   }

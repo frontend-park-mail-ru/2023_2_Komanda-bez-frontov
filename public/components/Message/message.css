@@ -27,14 +27,14 @@
   .success-container, .error-container {
     padding-top: 9px;
     padding-bottom: 9px;
-    font-size: 20px;
+    font-size: 18px;
   }
 }
 @media screen and (min-width: 768px) {
   .success-container, .error-container {
     padding-top: 10px;
     padding-bottom: 10px;
-    font-size: 18px;
+    font-size: 20px;
   }
 }
 
