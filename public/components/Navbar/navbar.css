@@ -74,7 +74,10 @@
     width: 42px;
   }
   .navbar .navbar_profile__name {
-    font-size: 20px;
+    font-weight: 600;
+    display: flex;
+    font-size: 18px;
+    align-items: center;
   }
   .navbar_button-container {
     padding: 2px 0;
@@ -107,10 +110,7 @@
     margin: 3px;
   }
   .navbar .navbar_profile__name {
-    font-weight: 600;
-    display: flex;
     font-size: 20px;
-    align-items: center;
   }
   .navbar_button-container button {
     font-size: 16px;

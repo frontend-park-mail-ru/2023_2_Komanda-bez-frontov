@@ -89,8 +89,10 @@
     }
 
     .navbar_profile__name {
-      font-size: 20px;
-      //margin:12px 0 6px 16px;
+      font-weight: 600;
+      display: flex;
+      font-size: 18px;
+      align-items: center;
     }
 
   }
@@ -130,10 +132,7 @@
     }
 
     .navbar_profile__name {
-      font-weight: 600;
-      display: flex;
       font-size: 20px;
-      align-items: center;
     }
   }
 
