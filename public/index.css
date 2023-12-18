@@ -2549,6 +2549,7 @@ p, h3 {
 #message-box {
   position: fixed;
   z-index: 10;
+  width: 100%;
 }
 
 body {
