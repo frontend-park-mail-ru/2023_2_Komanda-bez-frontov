@@ -4,19 +4,15 @@
   text-align: left;
   align-items: center;
   border: none;
-  margin: 0;
+
 
   .update-question__answers-item-input {
-    font-size: 16px;
     font-weight: normal;
     margin: 0;
     outline: none;
     border: none;
   }
 
-  .update-question__answers-item-input:hover {
-    background-color: #F1F1F1;
-  }
 
   .update-question__answers-item-textarea {
     height: 95px;
@@ -79,6 +75,11 @@
   outline: none;
   border: none;
   pointer-events: none;
+  }
+
+
+#update-question__answers-add-input:hover {
+  background-color: #F1F1F1;
 }
 
 @media screen and (min-width: 769px) {
@@ -95,20 +96,39 @@
   }
 
   .update-question__answers-item-input {
+    font-size: 16px;
     width: 400px;
+  }
+
+  .update-question__answers-add-input {
+    font-size: 16px;
   }
 }
 
 @media screen and (max-width: 768px) {
   .update-question__answers-item-textarea {
-    width: 95%;
-    margin: 0 auto;
+    width: 90%;
   }
-  .update-question__answers-item {
-    gap: 12px;
-    .update-question__answers-item-input {
-      padding: 8px 12px;
-    }
+
+  .update-question__answers {
+    margin-top: 10px;
+  }
+
+  .update-question__answers-item-input {
+    width: 80%;
+  }
+
+  .update-question__answers-item-checkbox {
+    width: 12px;
+    height: 12px;
+  }
+
+  .update-question__answers-add-input {
+    font-size: 13px;
+  }
+
+  .update-question__answers_add_button {
+    margin-top: 10px;
   }
 }
 
@@ -116,7 +136,25 @@
   .update-question__answers-item-textarea {
     width: 90%;
   }
+
+  .update-question__answers {
+    margin-top: 10px;
+  }
+
   .update-question__answers-item-input {
     width: 80%;
+  }
+
+  .update-question__answers-item-checkbox {
+    width: 12px;
+    height: 12px;
+  }
+
+  .update-question__answers-add-input {
+    font-size: 13px;
+  }
+
+  .update-question__answers_add_button {
+    margin-top: 10px;
   }
 }

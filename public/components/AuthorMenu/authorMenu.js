@@ -73,6 +73,27 @@ export const renderAuthorMenu = (id) => {
   })
 
   const closeButton = document.querySelector('#author-menu-close-button');
+  if (window.screen.width <= 1500) {
+    closeButton.innerHTML = 'menu';
+    menu.classList.remove('form-author-menu__open');
+    menu.classList.add('form-author-menu__close');
+    flagClosed = true;
+  }
+
+  window.addEventListener('resize', () => {
+    if (window.screen.width <= 1500) {
+      closeButton.innerHTML = 'menu';
+      menu.classList.remove('form-author-menu__open');
+      menu.classList.add('form-author-menu__close');
+      flagClosed = true;
+    } else {
+      menu.classList.add('form-author-menu__open');
+      menu.classList.remove('form-author-menu__close');
+      closeButton.innerHTML = 'menu_open';
+      flagClosed = false;
+    }
+  }, true);
+
   closeButton.addEventListener('click', () => {
     if (flagClosed) {
       menu.classList.add('form-author-menu__open');

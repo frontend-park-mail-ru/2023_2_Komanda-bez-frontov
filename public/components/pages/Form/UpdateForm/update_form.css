@@ -11,7 +11,6 @@
   text-align: left;
   border: none;
   background-color: #FFFFFF;
-  padding: 24px;
   border-radius: 16px;
   box-shadow: 0 0 8px 0 rgba(34, 60, 80, 0.2);
 }
@@ -37,6 +36,10 @@
   align-items: center;
 }
 
+.update-form_anonymous__checkbox:hover, .update-form_anonymous__checkbox-label:hover {
+  background-color: #a9a9a9;
+}
+
 .check-form__anonymous-warning-container {
   display: flex;
 }
@@ -46,7 +49,6 @@
 }
 
 .update-form_add-question-button {
-  margin-top: 32px;
   background-color: #FFFFFF;
   border: none;
   border-radius: 16px;
@@ -58,7 +60,11 @@
   background-color: #F1F1F1;
 }
 
-@media screen and (min-width: 769px) {
+.update-form_add-question-button {
+  align-items: center;
+}
+
+@media screen and (min-width: 1001px) {
   .update-form {
     margin: 0 auto;
     width: 910px;
@@ -75,6 +81,9 @@
   .update-form__title-input {
     font-size: 24px;
     width: 860px;
+  }
+  .update-form__description {
+    padding: 24px;
   }
   .update-form__description-textarea {
     width: 846px;
@@ -100,9 +109,65 @@
     gap: 8px;
   }
   .check-form__anonymous-warning-icon {
-    font-size: 10px;
+    font-size: 9px;
   }
   .update-form_add-question-button {
+    margin-top: 32px;
+    align-items: center;
+    font-size: 30px;
+    height: 36px;
+    width: 100%;
+  }
+}
+@media screen and (max-width: 1000px) {
+  .update-form {
+    margin: 0 auto;
+    width: 80%;
+  }
+  .update-form .button-container {
+    width: 440px;
+    margin: 16px 0;
+    gap: 12px;
+  }
+  .update-form .button-container button {
+    width: 200px;
+    margin-bottom: 4px;
+  }
+  .update-form__title-input {
+    font-size: 20px;
+    width: 80%;
+  }
+  .update-form__description {
+    padding: 24px;
+  }
+  .update-form__description-textarea {
+    width: 98%;
+    padding: 7px;
+    font-size: 18px;
+  }
+  .update-form_anonymous__checkbox-container {
+    margin-top: 16px;
+    gap: 8px;
+  }
+  .update-form_anonymous__checkbox {
+    border-radius: 4px;
+    width: 12px;
+    height: 12px;
+    cursor: pointer;
+  }
+  .update-form_anonymous__checkbox-label {
+    font-size: 12px;
+  }
+  .check-form__anonymous-warning-container {
+    margin-top: 8px;
+    font-size: 12px;
+    gap: 8px;
+  }
+  .check-form__anonymous-warning-icon {
+    font-size: 9px;
+  }
+  .update-form_add-question-button {
+    margin-top: 16px;
     align-items: center;
     font-size: 30px;
     height: 36px;
@@ -122,10 +187,35 @@
     width: 180px;
     margin-bottom: 4px;
   }
+  .update-form__title-input {
+    font-size: 16px;
+  }
+  .update-form__description {
+    padding: 18px;
+  }
+  .update-form__description-header {
+    font-size: 16px;
+  }
   .update-form__description-textarea {
     padding: 8px;
-    font-size: 18px;
-    width: 95%;
+    font-size: 13px;
+    width: 96%;
+  }
+  .update-form_anonymous__checkbox-container {
+    margin-top: 16px;
+    font-size: 12px;
+    gap: 10px;
+  }
+  .check-form__anonymous-warning-container {
+    margin-top: 16px;
+    font-size: 12px;
+    gap: 10px;
+  }
+  .update-form_add-question-button {
+    margin-top: 16px;
+    font-size: 30px;
+    height: 36px;
+    width: 100%;
   }
 }
 @media screen and (max-width: 480px) {
@@ -142,10 +232,35 @@
     height: 42px;
     margin-bottom: 4px;
   }
-  .update-form__description-textarea {
-    padding: 8px 12px;
+  .update-form__title-input {
+    font-size: 13px;
+  }
+  .update-form__description {
+    padding: 18px;
+  }
+  .update-form__description-header {
     font-size: 16px;
-    width: 90%;
+  }
+  .update-form__description-textarea {
+    padding: 8px;
+    font-size: 13px;
+    width: 94%;
+  }
+  .update-form_anonymous__checkbox-container {
+    margin-top: 16px;
+    font-size: 12px;
+    gap: 10px;
+  }
+  .check-form__anonymous-warning-container {
+    margin-top: 16px;
+    font-size: 12px;
+    gap: 10px;
+  }
+  .update-form_add-question-button {
+    margin-top: 16px;
+    font-size: 30px;
+    height: 36px;
+    width: 100%;
   }
 }
 
