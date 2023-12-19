@@ -95,34 +95,29 @@ export const createQuestionUpdate = (question) => {
       break;
   }
 
-  selectElement.addEventListener('click', () => {
-    options = questionElement.querySelectorAll('.update-question__answer-format-radio');
-    for (let typeIndex = 1; typeIndex <= options.length; typeIndex++) {
-      if (options[typeIndex - 1].selected) {
-        switch (typeIndex) {
-          case TYPE_SINGLE_CHOICE:
-            type = TYPE_SINGLE_CHOICE;
-            buttonAddAnswer.classList.add('update-question__answers_add_button');
-            buttonAddAnswer.classList.remove('add-button-display-none');
-            buttonAddAnswerItem.type = 'radio';
-            renderAnswers();
-            break;
-          case TYPE_MULTIPLE_CHOICE:
-            type = TYPE_MULTIPLE_CHOICE;
-            buttonAddAnswer.classList.add('update-question__answers_add_button');
-            buttonAddAnswer.classList.remove('add-button-display-none');
-            buttonAddAnswerItem.type = 'checkbox';
-            renderAnswers();
-            break;
-          default:
-            type = TYPE_TEXT;
-            buttonAddAnswer.classList.remove('update-question__answers_add_button');
-            buttonAddAnswer.classList.add('add-button-display-none');
-            renderAnswers();
-            break;
-        }
-      }
-    }
+  selectElement.addEventListener('change', () => {
+  switch (selectElement.selectedIndex + 1) {
+    case TYPE_SINGLE_CHOICE:
+      type = TYPE_SINGLE_CHOICE;
+      buttonAddAnswer.classList.add('update-question__answers_add_button');
+      buttonAddAnswer.classList.remove('add-button-display-none');
+      buttonAddAnswerItem.type = 'radio';
+      renderAnswers();
+      break;
+    case TYPE_MULTIPLE_CHOICE:
+      type = TYPE_MULTIPLE_CHOICE;
+      buttonAddAnswer.classList.add('update-question__answers_add_button');
+      buttonAddAnswer.classList.remove('add-button-display-none');
+      buttonAddAnswerItem.type = 'checkbox';
+      renderAnswers();
+      break;
+    default:
+      type = TYPE_TEXT;
+      buttonAddAnswer.classList.remove('update-question__answers_add_button');
+      buttonAddAnswer.classList.add('add-button-display-none');
+      renderAnswers();
+      break;
+  }
   });
 
   if (buttonAddAnswer) {
