@@ -104,7 +104,7 @@ export const renderResultsQuestion = (question) => {
     }
 
     cAnswers.forEach((answerElement, index) => {
-      const percentageLabel = answerElement.querySelector('.results-question_answers_answer-item__percentage');
+      const percentageLabel = answerElement.querySelector('.results-question_answers_answer-item__percentage-diagram');
       const answerColor = answerElement.querySelector('.results-question__answers-answer-item__color');
 
       if (question.number_of_passages === 0) {

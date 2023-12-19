@@ -1,4 +1,4 @@
-import {API} from '../../../../modules/api.js';
+import {API, defaultFetchErrorMessage} from '../../../../modules/api.js';
 import {render404} from '../../../404/404.js';
 import {removeMessage, renderMessage} from '../../../Message/message.js';
 import {STORAGE} from '../../../../modules/storage.js';
@@ -64,7 +64,7 @@ export const renderFormUpdate = async (id) => {
     }
     formJSON = res.form;
   } catch (e) {
-    renderMessage('Ошибка сервера. Перезагрузите страницу', true);
+    renderMessage(defaultFetchErrorMessage, true);
     return;
   }
 
@@ -155,7 +155,7 @@ export const renderFormUpdate = async (id) => {
         }
         renderMessage(res.message, true);
       } catch (e) {
-        renderMessage('Ошибка сервера. Перезагрузите страницу', true);
+        renderMessage(defaultFetchErrorMessage, true);
         closePopUpWindow();
         return;
       }
@@ -187,7 +187,7 @@ export const renderFormUpdate = async (id) => {
       }
       renderMessage(res.message, true);
     } catch (e) {
-      renderMessage('Ошибка сервера. Перезагрузите страницу', true);
+      renderMessage(defaultFetchErrorMessage, true);
     }
   });
 };

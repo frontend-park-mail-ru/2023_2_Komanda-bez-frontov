@@ -1,4 +1,4 @@
-import {API} from '../../../../modules/api.js';
+import {API, defaultFetchErrorMessage} from '../../../../modules/api.js';
 import {render404} from '../../../404/404.js';
 import {renderMessage} from '../../../Message/message.js';
 import {STORAGE} from '../../../../modules/storage.js';
@@ -60,7 +60,7 @@ export const renderForm = async (id) => {
     formJSON = res.form;
   } catch (e) {
     if (e.toString() !== 'TypeError: Failed to fetch') {
-      renderMessage('Ошибка сервера. Перезагрузите страницу', true);
+      renderMessage(defaultFetchErrorMessage, true);
       return;
     }
   }
@@ -176,7 +176,7 @@ export const renderForm = async (id) => {
           return;
         }
       } catch (e) {
-        renderMessage('Ошибка сервера. Перезагрузите страницу', true);
+        renderMessage(defaultFetchErrorMessage, true);
         return;
       }
       if (!STORAGE.user) {

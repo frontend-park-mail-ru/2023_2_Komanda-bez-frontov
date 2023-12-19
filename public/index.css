@@ -15,8 +15,8 @@ input {
 .outline-button, .usual-button, .red-button, .black-button, .primary-button, .secondary-button {
   padding: 10px 12px;
   border-radius: 9px;
-  border: 1px solid rgba(66, 66, 66, 0.25);
-  box-shadow: 0 0 4px 0 rgba(34, 60, 80, 0.2);
+  border: 1px solid rgba(66, 66, 66, 0.3);
+  box-shadow: 0 0 2px 0 rgba(34, 60, 80, 0.2);
   width: 100%;
   font-weight: bold;
 }
@@ -53,7 +53,6 @@ input {
 }
 
 .usual-button {
-  border: none;
   background-color: #FFFFFF;
   color: #4B357A;
   border-radius: 9px;
@@ -606,8 +605,7 @@ input {
   border-radius: 9px;
   width: 135px;
   background-color: #FFFFFF;
-  border: 1px solid rgba(66, 66, 66, 0.25);
-  box-shadow: 0 0 4px 0 rgba(34, 60, 80, 0.2);
+  box-shadow: 0 0 4px 0 rgba(34, 60, 80, 0.3);
   display: inline-block;
   padding: 5px 9px 6px 15px;
   font-size: 18px;
@@ -633,7 +631,7 @@ input {
 }
 .update-profile__name-input-container label {
   font-size: 18px;
-  margin: 0 0 8px 20px;
+  margin: 0 0 8px 8px;
 }
 .update-profile__name-input-container .update-profile_input-container__input {
   height: 24px;
@@ -641,8 +639,7 @@ input {
   padding: 6px 8px;
   font-size: 18px;
   border-radius: 9px;
-  border: 1px solid rgba(66, 66, 66, 0.25);
-  box-shadow: 0 0 4px 0 rgba(34, 60, 80, 0.2);
+  box-shadow: 0 0 4px 0 rgba(34, 60, 80, 0.3);
 }
 
 .update-profile_right-container {
@@ -676,7 +673,7 @@ input {
 }
 .update-profile__input-container label {
   display: inline-flex;
-  width: 185px;
+  width: 190px;
   font-size: 18px;
   align-self: center;
   margin-bottom: 8px;
@@ -684,13 +681,11 @@ input {
 .update-profile__input-container .update-profile_input-container__input {
   width: 230px;
   height: 24px;
-  margin-left: 8px;
   margin-bottom: 8px;
   padding: 6px 8px;
   font-size: 18px;
   border-radius: 9px;
-  border: 1px solid rgba(66, 66, 66, 0.25);
-  box-shadow: 0 0 4px 0 rgba(34, 60, 80, 0.2);
+  box-shadow: 0 0 4px 0 rgba(34, 60, 80, 0.3);
 }
 
 .update-profile-form_container__input-show-button {
@@ -706,7 +701,7 @@ input {
     padding: 20px 0 20px 30px;
   }
   .update-profile__input-container label {
-    width: 150px;
+    width: 155px;
   }
   .update-profile__input-container .update-profile_input-container__input {
     width: 205px;
@@ -842,7 +837,6 @@ input {
 }
 .forms_search-container .forms_search-container__input {
   border-radius: 9px 0 0 9px;
-  border: 1px solid rgba(66, 66, 66, 0.25);
   height: 36px;
   width: 560px;
   font-size: 20px;
@@ -855,7 +849,7 @@ input {
   background-position: 5px center;
   padding-left: 30px;
   border-radius: 0 9px 9px 0;
-  border: 1px solid rgba(66, 66, 66, 0.25);
+  border: none;
   margin-left: -2px;
   height: 44px;
   width: 105px;
@@ -1120,28 +1114,28 @@ input {
   }
 }
 .results-question {
-  margin-top: 15px;
-  padding: 10px 12px;
-  border-radius: 9px;
-  border: 1px solid #424242;
+  border-radius: 16px;
+  border: none;
   background-color: #ffffff;
+  box-shadow: 0 0 8px 0 rgba(34, 60, 80, 0.2);
+  margin-top: 20px;
+  padding: 15px;
 }
 
 .results-question_title-container {
+  padding-right: 8px;
   display: flex;
   justify-content: space-between;
+  align-items: center;
   font-size: 16px;
+  height: 35px;
+  margin-bottom: 10px;
 }
 
 .results-question__description-title {
   padding-left: 4px;
   font-size: 18px;
-  margin-bottom: 8px;
   text-align: left;
-}
-
-.results-question__passage-text {
-  line-height: 35px;
 }
 
 .results-question__required-title {
@@ -1193,11 +1187,17 @@ input {
 
 @media screen and (max-width: 768px) {
   .results-question {
-    margin-top: 12px;
-    padding: 5px 12px;
+    margin-top: 32px;
+    padding: 20px;
   }
   .results-question_title-container {
     flex-wrap: wrap;
+    height: unset;
+    gap: 6px;
+    margin-bottom: 12px;
+  }
+  .results-question__passage-text {
+    padding-left: 5px;
   }
   .results-question_answers_answer-item {
     flex-wrap: wrap;
@@ -1209,10 +1209,10 @@ input {
     text-align: left;
   }
   .results-question_answers_answer-item .results-question_answers_answer-item__percentage {
-    width: 80px;
+    min-width: 80px;
   }
   .results-question_answers_answer-item span {
-    width: 90%;
+    width: 95%;
   }
   .results-question_answers_answer-item span .results-question_answers_answer-item__bar-container {
     width: 80%;
@@ -1223,8 +1223,14 @@ input {
 }
 @media screen and (max-width: 480px) {
   .results-question {
-    margin-top: 10px;
-    padding: 5px 8px;
+    margin-top: 16px;
+    padding: 20px;
+  }
+  .results-question_title-container {
+    margin-bottom: 16px;
+  }
+  .results-question__description-title {
+    width: 100%;
   }
   .results-question__answer-item {
     padding: 5px 12px;
@@ -1232,7 +1238,7 @@ input {
   }
 }
 .diagram__button-container {
-  margin: 10px 0;
+  margin: 10px 0 25px 0;
   display: flex;
   gap: 15px;
 }
@@ -1242,7 +1248,6 @@ input {
 }
 
 .diagram__canvas {
-  margin-top: 10px;
   margin-right: 50px;
 }
 
@@ -1256,9 +1261,20 @@ input {
   width: 350px;
 }
 
+.results-question_answers_answer-item__percentage-diagram {
+  width: 120px;
+  margin: 0 0 0 12px;
+  font-size: 16px;
+  font-weight: normal;
+  padding-left: 4px;
+}
+
 @media screen and (max-width: 768px) {
   .diagram__canvas {
     margin-right: 0px;
+  }
+  .results-question_answers_answer-item__percentage-diagram {
+    width: 80px;
   }
   .results-question_answers_answer-item .results-question__answers-answer-item__color {
     margin: 0 15px 0 0;
@@ -2080,23 +2096,20 @@ input {
   margin: 32px auto;
   width: 640px;
 }
-.form-results .form-results__title {
-  font-size: 29px;
-  margin-bottom: 26px;
-}
 .form-results .button-container {
-  margin: 15px 9px 8px 9px;
+  margin: 20px 0 0 9px;
 }
 .form-results .button-container button {
   width: 200px;
 }
 
 .form-results__description {
-  padding: 10px 12px;
-  border-radius: 9px;
-  border: 1px solid #424242;
-  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 16px;
+  border: none;
   text-align: left;
+  background-color: #ffffff;
+  box-shadow: 0 0 8px 0 rgba(34, 60, 80, 0.2);
 }
 
 .form-results__description-title {
@@ -2152,23 +2165,25 @@ input {
     margin: 30px 0 20px 0;
   }
   .form-results .button-container {
-    margin: 15px 9px 8px 9px;
-    width: 95%;
+    align-items: center;
+    margin-top: 16px;
+    gap: 12px;
   }
   .form-results .button-container button {
-    width: 200px;
+    padding: 10px 5px;
+    width: 160px;
   }
-  .form-results__description {
-    padding: 10px 12px;
+  .form-result__description {
+    padding: 20px;
   }
-  .form-results__description-title {
+  .form-result__description-title {
     font-size: 16px;
     margin-bottom: 8px;
   }
-  .form-results__description-text {
-    padding-left: 8px;
-    font-size: 18px;
+  .form-result__description-text {
+    font-size: 16px;
     font-weight: normal;
+    margin-bottom: 12px;
   }
   .popup_window_radio-container {
     padding: 0 0 0 10px;
@@ -2188,19 +2203,24 @@ input {
     margin: 20px 0;
   }
   .form-results .button-container {
-    margin: 15px 0;
+    align-items: center;
+    gap: 12px;
   }
   .form-results .button-container button {
-    height: 42px;
-    width: 150px;
+    padding: 10px 5px;
+    width: 160px;
   }
   .form-results__description {
-    padding: 10px 12px;
+    padding: 18px;
+  }
+  .form-results__description-title {
+    font-size: 18px;
+    margin-bottom: 8px;
   }
   .form-results__description-text {
-    padding-left: 8px;
     font-size: 16px;
     font-weight: normal;
+    margin-bottom: 8px;
   }
   .button-container-diagram {
     margin-top: 10px;
@@ -2343,6 +2363,7 @@ input {
 .auth-container__form h3 {
   font-size: 24px;
   margin-bottom: 4px;
+  margin-top: 6px;
 }
 
 .login-form {
@@ -2355,13 +2376,16 @@ input {
 .login-form .button-container {
   margin-top: 20px;
 }
+.login-form .button-container button {
+  font-size: 13px;
+}
 
 .login-form_container__input {
   height: 40px;
   width: 272px;
   margin: 0 0 9px 0;
   border-radius: 9px;
-  border: 1px solid rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(0, 0, 0, 0.2);
   padding: 4px 12px;
   box-sizing: border-box;
   font-size: 20px;
@@ -2429,11 +2453,14 @@ input {
   margin: 20px 24px 0 24px;
 }
 .signup-form h3 {
-  margin-top: 15px;
+  margin-top: 18px;
 }
 .signup-form .button-container {
   margin: 25px 24px;
   font-size: 15px;
+}
+.signup-form .button-container button {
+  font-size: 13px;
 }
 
 .signup-form_container__input-container {
@@ -2445,7 +2472,7 @@ input {
   width: 272px;
   margin: 0 0 9px 0;
   border-radius: 9px;
-  border: 1px solid rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(0, 0, 0, 0.2);
   padding: 4px 12px;
   box-sizing: border-box;
   font-size: 20px;

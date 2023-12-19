@@ -49,7 +49,7 @@
 
   .forms_search-container__input {
     border-radius: 9px 0 0 9px;
-    border: 1px solid rgba(66, 66, 66, 0.25);
+    //border: 1px solid rgba(66, 66, 66, 0.25);
     height: 36px;
     width: 560px;
     font-size: 20px;
@@ -63,7 +63,8 @@
     background-position: 5px center;
     padding-left: 30px;
     border-radius: 0 9px 9px 0;
-    border: 1px solid rgba(66, 66, 66, 0.25);
+    //border: 1px solid rgba(66, 66, 66, 0.25);
+    border: none;
     margin-left: -2px;
     height: 44px;
     width: 105px;

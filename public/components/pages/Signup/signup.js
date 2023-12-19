@@ -1,5 +1,5 @@
 import {ROUTES} from '../../../config.js';
-import {API} from '../../../modules/api.js';
+import {API, defaultFetchErrorMessage} from '../../../modules/api.js';
 import {renderMessage, removeMessage} from '../../Message/message.js';
 import {
   nameValidation,
@@ -109,7 +109,7 @@ export const renderSignup = async () => {
       goToPage(ROUTES.forms);
       renderMessage('Вы успешно зарегистрировались');
     } catch (err) {
-      renderMessage('Ошибка сервера. Перезагрузите страницу', true);
+      renderMessage(defaultFetchErrorMessage, true);
     }
   });
 };

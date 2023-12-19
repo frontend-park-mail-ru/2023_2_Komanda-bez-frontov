@@ -18,8 +18,7 @@
     border-radius: 9px;
     width: 135px;
     background-color: #FFFFFF;
-    border: 1px solid rgba(66, 66, 66, 0.25);
-    box-shadow: 0 0 4px 0 rgba(34, 60, 80, 0.2);
+    box-shadow: 0 0 4px 0 rgba(34, 60, 80, 0.3);
     display: inline-block;
     padding: 5px 9px 6px 15px;
     font-size: 18px;
@@ -46,7 +45,7 @@
 
   label {
     font-size: 18px;
-    margin: 0 0 8px 20px;
+    margin: 0 0 8px 8px;
   }
 
   .update-profile_input-container__input {
@@ -55,8 +54,7 @@
     padding: 6px 8px;
     font-size: 18px;
     border-radius: 9px;
-    border: 1px solid rgba(66, 66, 66, 0.25);
-    box-shadow: 0 0 4px 0 rgba(34, 60, 80, 0.2);
+    box-shadow: 0 0 4px 0 rgba(34, 60, 80, 0.3);
   }
 }
 
@@ -94,7 +92,7 @@
 
   label {
     display: inline-flex;
-    width: 185px;
+    width: 190px;
     font-size: 18px;
     align-self: center;
     margin-bottom: 8px;
@@ -103,13 +101,11 @@
   .update-profile_input-container__input {
     width: 230px;
     height: 24px;
-    margin-left: 8px;
     margin-bottom: 8px;
     padding: 6px 8px;
     font-size: 18px;
     border-radius: 9px;
-    border: 1px solid rgba(66, 66, 66, 0.25);
-    box-shadow: 0 0 4px 0 rgba(34, 60, 80, 0.2);
+    box-shadow: 0 0 4px 0 rgba(34, 60, 80, 0.3);
   }
 }
 
@@ -127,7 +123,7 @@
   }
   .update-profile__input-container {
     label {
-      width: 150px;
+      width: 155px;
     }
     .update-profile_input-container__input {
       width: 205px;

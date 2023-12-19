@@ -1,4 +1,4 @@
-import {API} from '../../../modules/api.js';
+import {API, defaultFetchErrorMessage} from '../../../modules/api.js';
 import {ROUTES} from '../../../config.js';
 import {removeMessage, renderMessage} from '../../Message/message.js';
 import {goToPage} from '../../../modules/router.js';
@@ -108,7 +108,7 @@ export const renderForms = async () => {
       loadingScreen.classList.add('display-invisible');
     } catch (e) {
       loadingScreen.classList.add('display-invisible');
-      renderMessage('Ошибка сервера. Перезагрузите страницу', true);
+      renderMessage(defaultFetchErrorMessage, true);
       return;
     }
 
@@ -125,7 +125,7 @@ export const renderForms = async () => {
       loadingScreen.classList.add('display-invisible');
     } catch (e) {
       loadingScreen.classList.add('display-invisible');
-      renderMessage('Ошибка сервера. Перезагрузите страницу', true);
+      renderMessage(defaultFetchErrorMessage, true);
       return;
     }
 

@@ -4,11 +4,14 @@
   margin: 20px 24px 0 24px;
 
   h3 {
-    margin-top: 15px;
+    margin-top: 18px;
   }
   .button-container {
     margin: 25px 24px;
     font-size: 15px;
+    button {
+      font-size: 13px;
+    }
   }
 }
 
@@ -22,7 +25,7 @@
   width: 272px;
   margin: 0 0 9px 0;
   border-radius: 9px;
-  border: 1px solid rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(0, 0, 0, 0.2);
   padding: 4px 12px;
   box-sizing: border-box;
   font-size: 20px;

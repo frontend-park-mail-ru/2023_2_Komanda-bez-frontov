@@ -5,13 +5,8 @@
   margin: 32px auto;
   width: 640px;
 
-  .form-results__title {
-    font-size: 29px;
-    margin-bottom: 26px;
-  }
-
   .button-container {
-    margin: 15px 9px 8px 9px;
+    margin: 20px 0 0 9px;
 
     button {
       width: 200px;
@@ -20,11 +15,12 @@
 }
 
 .form-results__description {
-  padding: 10px 12px;
-  border-radius: 9px;
-  border: 1px solid #424242;
-  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 16px;
+  border: none;
   text-align: left;
+  background-color: #ffffff;
+  box-shadow: 0 0 8px 0 rgba(34, 60, 80, 0.2);
 }
 
 .form-results__description-title {
@@ -81,28 +77,30 @@
     }
 
     .button-container {
-      margin: 15px 9px 8px 9px;
-      width: 95%;
+      align-items: center;
+      margin-top: 16px;
+      gap: 12px;
 
       button {
-        width: 200px;
+        padding: 10px 5px;
+        width: 160px;
       }
     }
   }
 
-  .form-results__description {
-    padding: 10px 12px;
+  .form-result__description {
+    padding: 20px;
   }
 
-  .form-results__description-title {
+  .form-result__description-title {
     font-size: 16px;
     margin-bottom: 8px;
   }
 
-  .form-results__description-text {
-    padding-left: 8px;
-    font-size: 18px;
+  .form-result__description-text {
+    font-size: 16px;
     font-weight: normal;
+    margin-bottom: 12px;
   }
 
   .popup_window_radio-container {
@@ -125,22 +123,28 @@
     }
 
     .button-container {
-      margin: 15px 0;
+      align-items: center;
+      gap: 12px;
       button {
-        height: 42px;
-        width: 150px;
+        padding: 10px 5px;
+        width: 160px;
       }
     }
   }
 
   .form-results__description {
-    padding: 10px 12px;
+    padding: 18px;
+  }
+
+  .form-results__description-title {
+    font-size: 18px;
+    margin-bottom: 8px;
   }
 
   .form-results__description-text {
-    padding-left: 8px;
     font-size: 16px;
     font-weight: normal;
+    margin-bottom: 8px;
   }
 
   .button-container-diagram {

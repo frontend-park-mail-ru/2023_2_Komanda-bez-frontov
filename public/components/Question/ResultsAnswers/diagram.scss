@@ -1,5 +1,5 @@
 .diagram__button-container {
-  margin: 10px 0;
+  margin: 10px 0 25px 0;
   display: flex;
   gap: 15px;
 
@@ -10,7 +10,6 @@
 }
 
 .diagram__canvas {
-  margin-top: 10px;
   margin-right: 50px;
 }
 
@@ -26,9 +25,21 @@
   }
 }
 
+.results-question_answers_answer-item__percentage-diagram {
+  width: 120px;
+  margin: 0 0 0 12px;
+  font-size: 16px;
+  font-weight: normal;
+  padding-left: 4px;
+}
+
 @media screen and (max-width: 768px) {
   .diagram__canvas {
     margin-right: 0px;
+  }
+
+  .results-question_answers_answer-item__percentage-diagram {
+    width: 80px;
   }
 
   .results-question_answers_answer-item {

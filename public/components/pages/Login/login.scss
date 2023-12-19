@@ -16,6 +16,7 @@
   h3 {
     font-size: 24px;
     margin-bottom: 4px;
+    margin-top: 6px;
   }
 }
 
@@ -28,6 +29,9 @@
 
   .button-container {
     margin-top: 20px;
+    button {
+      font-size: 13px;
+    }
   }
 }
 
@@ -36,7 +40,7 @@
   width: 272px;
   margin: 0 0 9px 0;
   border-radius: 9px;
-  border: 1px solid rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(0, 0, 0, 0.2 );
   padding: 4px 12px;
   box-sizing: border-box;
   font-size: 20px;

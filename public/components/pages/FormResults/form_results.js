@@ -1,12 +1,12 @@
-import {API} from '../../../modules/api.js';
+import {API, defaultFetchErrorMessage} from '../../../modules/api.js';
 import {render404} from '../../404/404.js';
 import {removeMessage, renderMessage} from '../../Message/message.js';
 import {STORAGE} from '../../../modules/storage.js';
-import {ROUTES} from '../../../config.js';
+import {backendUrl, ROUTES, ROUTES_API} from '../../../config.js';
 import {goToPage} from '../../../modules/router.js';
 import {renderAuthorMenu} from '../../AuthorMenu/authorMenu.js';
 import {renderResultsQuestion} from "../../Question/ResultsQuestion/results_question.js";
-import {closePopUpWindow, renderPopUpWindow} from "../../PopUpWindow/popup_window.js";
+import {closePopUpWindow} from "../../PopUpWindow/popup_window.js";
 
 /**
  * Функция для рендеринга страницы опроса по его id.
@@ -53,7 +53,7 @@ export const renderResultsForm = async (id) => {
     }
     formJSON = res.formResults;
   } catch (e) {
-    renderMessage('Ошибка сервера. Перезагрузите страницу', true);
+    renderMessage(defaultFetchErrorMessage, true);
     return;
   }
 
@@ -111,12 +111,13 @@ export const renderResultsForm = async (id) => {
       closePopUpWindow();
     });
     const okButton = document.querySelector('#popup-ok-button');
-    okButton.addEventListener('click', () => {
-      // TODO Заменить на нормальный API
+    okButton.addEventListener('click', async() => {
       if (radioExcel.checked) {
-        alert('Excel Downloaded!');
+        // Excel download
+        window.location.href = backendUrl + ROUTES_API.formResultsExcel.url.replace(':id', id.toString());
       } else {
-        alert('CSV Downloaded!');
+        // CSV download
+        window.location.href = backendUrl + ROUTES_API.formResultsCSV.url.replace(':id', id.toString());
       }
     });
 

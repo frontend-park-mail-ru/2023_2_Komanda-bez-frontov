@@ -7,7 +7,9 @@
         {{#ifEquals question.required true}}
             <p class="results-question__required-title">Это обязательный вопрос</p>
         {{/ifEquals}}
-        <h3 class="results-question__answers-title">Ответы</h3>
+        {{#ifEquals question.type 3}}
+                <h3 class="results-question__answers-title">Ответы</h3>
+        {{/ifEquals}}
         <div class="results-question_answers" id="question-answers">
             {{#ifEquals question.type 3}}
                 {{#each ../question.answers}}

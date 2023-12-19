@@ -20,8 +20,8 @@ templates['diagram'] = template({"1":function(container,depth0,helpers,partials,
 
   return "        <div class=\"results-question_answers_answer-item\">\n            <div class=\"results-question__answers-answer-item__color\"></div>\n            <p class=\"results-question_answers_answer-item__diagram-label\">"
     + alias4(((helper = (helper = lookupProperty(helpers,"text") || (depth0 != null ? lookupProperty(depth0,"text") : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"text","hash":{},"data":data,"loc":{"start":{"line":10,"column":75},"end":{"line":10,"column":83}}}) : helper)))
-    + "</p>\n            <p class=\"results-question_answers_answer-item__percentage\">"
-    + alias4(((helper = (helper = lookupProperty(helpers,"selected_times") || (depth0 != null ? lookupProperty(depth0,"selected_times") : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"selected_times","hash":{},"data":data,"loc":{"start":{"line":11,"column":72},"end":{"line":11,"column":90}}}) : helper)))
+    + "</p>\n            <p class=\"results-question_answers_answer-item__percentage-diagram\">"
+    + alias4(((helper = (helper = lookupProperty(helpers,"selected_times") || (depth0 != null ? lookupProperty(depth0,"selected_times") : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"selected_times","hash":{},"data":data,"loc":{"start":{"line":11,"column":80},"end":{"line":11,"column":98}}}) : helper)))
     + "</p>\n        </div>\n";
 },"compiler":[8,">= 4.3.0"],"main":function(container,depth0,helpers,partials,data) {
     var stack1, lookupProperty = container.lookupProperty || function(parent, propertyName) {

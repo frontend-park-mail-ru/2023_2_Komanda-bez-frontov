@@ -1,5 +1,5 @@
 import {ROUTES} from '../../../config.js';
-import {API} from '../../../modules/api.js';
+import {API, defaultFetchErrorMessage} from '../../../modules/api.js';
 import {renderMessage, removeMessage} from '../../Message/message.js';
 import {emailValidation, passwordValidation} from '../../../modules/validation.js';
 import {goToPage} from '../../../modules/router.js';
@@ -66,7 +66,7 @@ export const renderLogin = async () => {
       goToPage(ROUTES.forms);
       // renderMessage('Вы успешно вошли');
     } catch (err) {
-      renderMessage('Ошибка сервера. Перезагрузите страницу', true);
+      renderMessage(defaultFetchErrorMessage, true);
     }
   });
 

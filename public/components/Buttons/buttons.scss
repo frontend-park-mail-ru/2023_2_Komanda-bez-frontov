@@ -16,8 +16,8 @@ input {
 %button-common {
   padding: 10px 12px;
   border-radius: 9px;
-  border: 1px solid rgba(66, 66, 66, 0.25);
-  box-shadow: 0 0 4px 0 rgba(34, 60, 80, 0.2);
+  border: 1px solid rgba(66, 66, 66, 0.3);
+  box-shadow: 0 0 2px 0 rgba(34, 60, 80, 0.2);
   width: 100%;
   font-weight: bold;
 
@@ -61,7 +61,6 @@ input {
 
 .usual-button {
   @extend %button-common;
-  border: none;
   background-color: #FFFFFF;
   color: #4B357A;
   border-radius: 9px;
