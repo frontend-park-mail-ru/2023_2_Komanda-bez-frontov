@@ -12,7 +12,9 @@
   justify-content: space-between;
 }
 .update-question__title-container .update-question__title-input {
-  border: none;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 9px;
+  padding: 8px 12px;
   outline: none;
 }
 .update-question__title-container .update-question__title-input:hover {
@@ -20,6 +22,9 @@
 }
 .update-question__title-container .update-question__select {
   font-weight: 600;
+  align-items: center;
+  display: flex;
+  margin-left: 5px;
 }
 
 .update-question__description-textarea {
@@ -99,7 +104,7 @@
 .update-question__select_custom-arrow {
   display: block;
   position: absolute;
-  top: 0;
+  top: 10px;
   left: 210px;
   overflow: hidden;
   pointer-events: none;

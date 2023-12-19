@@ -118,7 +118,7 @@ export const renderFormNew = async () => {
   deleteForm.classList.add('display-none');
 
   const saveForm = document.querySelector('#update-button');
-  saveForm.innerHTML = 'Опубликовать';
+  saveForm.innerHTML = 'Создать';
 
   saveForm.addEventListener('click', async () => {
     // eslint-disable-next-line no-use-before-define

@@ -9,8 +9,10 @@
   .update-question__answers-item-input {
     font-weight: normal;
     margin: 0;
+    padding: 4px 12px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 9px;
     outline: none;
-    border: none;
   }
 
   .update-question__answers-item-input:hover {
@@ -65,7 +67,7 @@
 
 .update-question__answers_add_button {
   display: flex;
-  gap: 8px;
+  gap: 16px;
   text-align: left;
   align-items: center;
   border: none;
@@ -80,7 +82,7 @@
   outline: none;
   border: none;
   pointer-events: none;
-  }
+}
 
 
 #update-question__answers-add-input:hover {

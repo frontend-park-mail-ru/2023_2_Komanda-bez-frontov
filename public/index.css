@@ -1320,7 +1320,9 @@ input {
   justify-content: space-between;
 }
 .update-question__title-container .update-question__title-input {
-  border: none;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 9px;
+  padding: 8px 12px;
   outline: none;
 }
 .update-question__title-container .update-question__title-input:hover {
@@ -1328,6 +1330,9 @@ input {
 }
 .update-question__title-container .update-question__select {
   font-weight: 600;
+  align-items: center;
+  display: flex;
+  margin-left: 5px;
 }
 
 .update-question__description-textarea {
@@ -1407,7 +1412,7 @@ input {
 .update-question__select_custom-arrow {
   display: block;
   position: absolute;
-  top: 0;
+  top: 10px;
   left: 210px;
   overflow: hidden;
   pointer-events: none;
@@ -1554,8 +1559,10 @@ input {
 .update-question__answers-item .update-question__answers-item-input {
   font-weight: normal;
   margin: 0;
+  padding: 4px 12px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 9px;
   outline: none;
-  border: none;
 }
 .update-question__answers-item .update-question__answers-item-input:hover {
   background-color: #F1F1F1;
@@ -1604,7 +1611,7 @@ input {
 
 .update-question__answers_add_button {
   display: flex;
-  gap: 8px;
+  gap: 16px;
   text-align: left;
   align-items: center;
   border: none;
