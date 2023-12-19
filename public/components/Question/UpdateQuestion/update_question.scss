@@ -27,7 +27,7 @@
     font-weight: 600;
     align-items: center;
     display: flex;
-    margin-left: 5px;
+    margin-left: 15px;
   }
 
 }
@@ -124,12 +124,12 @@
 
 @media screen and (min-width: 769px) {
   .update-question {
-    margin-top: 32px;
+    margin-top: 24px;
     padding: 24px;
   }
 
   .update-question__title-input {
-    width: 550px;
+    width: 535px;
     font-size: 20px;
   }
 
@@ -141,7 +141,7 @@
     margin-top: 16px;
     font-size: 16px;
     padding: 8px 8px;
-    width: 846px;
+    width: 535px;
   }
 
   .update-question_button-container__required-checkbox {
