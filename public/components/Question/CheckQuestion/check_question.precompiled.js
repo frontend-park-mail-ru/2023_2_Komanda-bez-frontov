@@ -78,7 +78,7 @@ templates['check_question'] = template({"1":function(container,depth0,helpers,pa
     + alias2(((helper = (helper = lookupProperty(helpers,"id") || (depth0 != null ? lookupProperty(depth0,"id") : depth0)) != null ? helper : alias4),(typeof helper === alias5 ? helper.call(alias3,{"name":"id","hash":{},"data":data,"loc":{"start":{"line":20,"column":133},"end":{"line":20,"column":139}}}) : helper)))
     + "\" type=\"checkbox\">\n                            <label class=\"check-question__answer-item-label\" for=\"check-question_"
     + alias2(alias1(((stack1 = (depths[2] != null ? lookupProperty(depths[2],"question") : depths[2])) != null ? lookupProperty(stack1,"id") : stack1), depth0))
-    + "_answer-item-"
+    + "_answer-item_"
     + alias2(((helper = (helper = lookupProperty(helpers,"id") || (depth0 != null ? lookupProperty(depth0,"id") : depth0)) != null ? helper : alias4),(typeof helper === alias5 ? helper.call(alias3,{"name":"id","hash":{},"data":data,"loc":{"start":{"line":21,"column":131},"end":{"line":21,"column":137}}}) : helper)))
     + "\">"
     + alias2(((helper = (helper = lookupProperty(helpers,"text") || (depth0 != null ? lookupProperty(depth0,"text") : depth0)) != null ? helper : alias4),(typeof helper === alias5 ? helper.call(alias3,{"name":"text","hash":{},"data":data,"loc":{"start":{"line":21,"column":139},"end":{"line":21,"column":147}}}) : helper)))

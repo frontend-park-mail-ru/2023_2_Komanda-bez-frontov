@@ -27,6 +27,14 @@
   border: 1px solid rgba(0, 0, 0, 0.1);
 }
 
+.update-question__question-delete {
+  cursor: pointer;
+}
+
+#create-link-button {
+  cursor: pointer;
+}
+
 .update-form__description-textarea:hover {
   background-color: #F1F1F1;
 }
@@ -57,7 +65,7 @@
 }
 
 .update-form_add-question-button:hover {
-  background-color: #F1F1F1;
+  background-color: #F6F6F6;
 }
 
 .update-form_add-question-button {
@@ -102,6 +110,7 @@
   }
   .update-form_anonymous__checkbox-label {
     font-size: 12px;
+    cursor: pointer;
   }
   .update-form__anonymous-warning-container {
     margin-top: 8px;
@@ -117,6 +126,7 @@
     font-size: 30px;
     height: 36px;
     width: 100%;
+    cursor: pointer;
   }
 }
 @media screen and (max-width: 1000px) {

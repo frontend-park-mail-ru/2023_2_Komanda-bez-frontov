@@ -71,6 +71,7 @@
   gap: 4px;
   display: flex;
   align-items: center;
+  cursor: pointer;
 }
 .update-question__button-container .material-symbols-outlined {
   font-size: 20px;
@@ -85,19 +86,21 @@
 }
 
 .update-question__select select {
+  width: 240px;
   appearance: none;
   background-color: #FFFFFF;
   border: none;
   outline: none;
   -webkit-appearance: none;
   -moz-appearance: none;
+  cursor: pointer;
 }
 
 .update-question__select_custom-arrow {
   display: block;
   position: absolute;
   top: 0;
-  right: 0;
+  left: 210px;
   overflow: hidden;
   pointer-events: none;
 }
@@ -113,11 +116,6 @@
   }
   .update-question__select select {
     font-size: 18px;
-    padding-right: 25px;
-  }
-  .update-question__select_custom-arrow {
-    top: 0;
-    right: 0;
   }
   .update-question__description-textarea {
     margin-top: 16px;
@@ -128,10 +126,12 @@
   .update-question_button-container__required-checkbox {
     width: 12px;
     height: 12px;
+    cursor: pointer;
   }
   .update-question_button-container__required-label {
     font-size: 16px;
     margin-left: 6px;
+    cursor: pointer;
   }
 }
 @media screen and (max-width: 1000px) {
@@ -148,11 +148,6 @@
   }
   .update-question__title-container .update-question__select {
     margin-top: 8px;
-  }
-  .update-question__select_custom-arrow {
-    top: auto;
-    right: auto;
-    position: absolute;
   }
   .update-question_button-container__required-label {
     font-size: 13px;
@@ -185,10 +180,12 @@
   .update-question__title-container .update-question__select {
     margin-top: 8px;
   }
+  .update-question__select select {
+    width: 180px;
+  }
   .update-question__select_custom-arrow {
-    top: auto;
-    right: auto;
-    position: absolute;
+    left: 157px;
+    font-size: 20px;
   }
   .update-question_button-container__required-label {
     font-size: 13px;
@@ -219,11 +216,6 @@
   }
   .update-question__title-container {
     margin-top: 6px;
-  }
-  .update-question__select_custom-arrow {
-    top: auto;
-    right: auto;
-    position: absolute;
   }
   .update-question__description-textarea {
     margin-top: 16px;

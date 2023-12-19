@@ -47,10 +47,10 @@
   text-align: left;
   align-items: center;
 
-
   .check-question__answer-item-label {
     font-size: 16px;
     font-weight: normal;
+    cursor: pointer;
   }
 
   .check-question__answer-item-checkbox {
@@ -62,6 +62,7 @@
     position: relative;
     top: -1px;
     *overflow: hidden;
+    cursor: pointer;
   }
 
   .check-question__answer-item-radio {
@@ -73,6 +74,7 @@
     position: relative;
     top: -1px;
     *overflow: hidden;
+    cursor: pointer;
   }
 
   .check-question__answers-item-textarea {
@@ -80,6 +82,7 @@
     height: 95px;
     resize: none;
     border-radius: 6px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
   }
 }
 

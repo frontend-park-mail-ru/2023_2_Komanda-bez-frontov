@@ -13,6 +13,10 @@
     border: none;
   }
 
+  .update-question__answers-item-input:hover {
+    background-color: #F1F1F1;
+  }
+
 
   .update-question__answers-item-textarea {
     height: 95px;
@@ -66,6 +70,7 @@
   align-items: center;
   border: none;
   margin: 0;
+  cursor: pointer;
 }
 
 .update-question__answers-add-input {
