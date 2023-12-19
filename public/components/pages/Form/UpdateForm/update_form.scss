@@ -39,15 +39,9 @@
   background-color: #F1F1F1;
 }
 
-.update-form_anonymous__checkbox-container {
-  display: flex;
-  align-items: center
-}
-
 .update-form_anonymous__checkbox:hover, .update-form_anonymous__checkbox-label:hover {
   background-color: #a9a9a9;
 }
-
 
 .update-form__anonymous-warning-container {
   display: flex;
@@ -106,8 +100,8 @@
   }
 
   .update-form_anonymous__checkbox-container {
+    padding-left: 2px;
     margin-top: 16px;
-    gap: 8px;
   }
 
   .update-form_anonymous__checkbox {
@@ -118,18 +112,19 @@
   }
 
   .update-form_anonymous__checkbox-label {
-    font-size: 12px;
+    margin-left: 7px;
+    font-size: 16px;
     cursor: pointer;
   }
 
   .update-form__anonymous-warning-container {
     margin-top: 8px;
-    font-size: 12px;
+    font-size: 16px;
     gap: 8px;
   }
 
   .check-form__anonymous-warning-icon {
-    font-size: 11px;
+    font-size: 13px;
   }
 
   .update-form_add-question-button {
@@ -175,8 +170,8 @@
   }
 
   .update-form_anonymous__checkbox-container {
+    padding-left: 2px;
     margin-top: 16px;
-    gap: 8px;
   }
 
   .update-form_anonymous__checkbox {
@@ -187,18 +182,19 @@
   }
 
   .update-form_anonymous__checkbox-label {
-    font-size: 12px;
+    margin-left: 4px;
+    font-size: 13px;
   }
 
   .update-form__anonymous-warning-container {
     margin-top: 8px;
-    font-size: 12px;
+    font-size: 13px;
     gap: 8px;
   }
 
   .update-form__anonymous-warning-container {
     .check-form__anonymous-warning-icon {
-      font-size: 9px;
+      font-size: 11px;
     }
   }
 
@@ -210,8 +206,6 @@
     width: 100%;
   }
 }
-
-
 
 @media screen and (max-width: 768px) {
   .update-form {
@@ -228,7 +222,6 @@
       }
     }
   }
-
 
   .update-form__title-input {
     font-size: 16px;
@@ -250,14 +243,17 @@
 
   .update-form_anonymous__checkbox-container {
     margin-top: 16px;
-    font-size: 12px;
-    gap: 10px
+    font-size: 13px;
   }
 
+  .update-form_anonymous__checkbox-label {
+    margin-left: 7px;
+    font-size: 13px;
+  }
 
   .update-form__anonymous-warning-container {
-    margin-top: 16px;
-    font-size: 12px;
+    margin-top: 12px;
+    font-size: 13px;
     gap: 10px;
   }
 
@@ -311,11 +307,22 @@
     gap: 10px
   }
 
+  .update-form_anonymous__checkbox {
+    border-radius: 4px;
+    width: 11px;
+    height: 11px;
+    cursor: pointer;
+  }
+
+  .update-form_anonymous__checkbox-label {
+    margin-left: 5px;
+    font-size: 13px;
+  }
 
   .update-form__anonymous-warning-container {
-    margin-top: 16px;
-    font-size: 12px;
-    gap: 10px;
+    margin-top: 8px;
+    font-size: 13px;
+    gap: 8px;
   }
 
   .update-form_add-question-button {

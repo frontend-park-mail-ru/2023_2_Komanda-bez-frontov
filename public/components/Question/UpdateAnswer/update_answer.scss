@@ -124,8 +124,8 @@
   }
 
   .update-question__answers-item-checkbox {
-    width: 12px;
-    height: 12px;
+    width: 15px;
+    height: 15px;
   }
 
   .update-question__answers-add-input {
@@ -151,8 +151,8 @@
   }
 
   .update-question__answers-item-checkbox {
-    width: 12px;
-    height: 12px;
+    width: 14px;
+    height: 14px;
   }
 
   .update-question__answers-add-input {
@@ -161,5 +161,11 @@
 
   .update-question__answers_add_button {
     margin-top: 10px;
+    font-size: 13px;
+  }
+
+  .update-question_button-container__required-checkbox {
+    width: 11px;
+    height: 11px;
   }
 }

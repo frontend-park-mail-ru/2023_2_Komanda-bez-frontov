@@ -1484,13 +1484,17 @@ input {
     left: 157px;
     font-size: 20px;
   }
+  .update-question_button-container__required-checkbox {
+    width: 12px;
+    height: 12px;
+  }
   .update-question_button-container__required-label {
     font-size: 13px;
-    margin-left: 6px;
+    margin-left: 3px;
   }
   .update-question__button-container {
     margin-top: 16px;
-    gap: 4px;
+    gap: 8px;
   }
   .update-question__description-textarea {
     font-size: 13px;
@@ -1522,11 +1526,11 @@ input {
   }
   .update-question__button-container {
     margin-top: 16px;
-    gap: 4px;
+    gap: 8px;
   }
   .update-question_button-container__required-label {
     font-size: 13px;
-    margin-left: 6px;
+    margin-left: 2px;
   }
 }
 .update-question__answers-item {
@@ -1639,8 +1643,8 @@ input {
     width: 80%;
   }
   .update-question__answers-item-checkbox {
-    width: 12px;
-    height: 12px;
+    width: 15px;
+    height: 15px;
   }
   .update-question__answers-add-input {
     font-size: 13px;
@@ -1660,14 +1664,19 @@ input {
     width: 80%;
   }
   .update-question__answers-item-checkbox {
-    width: 12px;
-    height: 12px;
+    width: 14px;
+    height: 14px;
   }
   .update-question__answers-add-input {
     font-size: 13px;
   }
   .update-question__answers_add_button {
     margin-top: 10px;
+    font-size: 13px;
+  }
+  .update-question_button-container__required-checkbox {
+    width: 11px;
+    height: 11px;
   }
 }
 .check-form {
@@ -1866,11 +1875,6 @@ input {
   background-color: #F1F1F1;
 }
 
-.update-form_anonymous__checkbox-container {
-  display: flex;
-  align-items: center;
-}
-
 .update-form_anonymous__checkbox:hover, .update-form_anonymous__checkbox-label:hover {
   background-color: #a9a9a9;
 }
@@ -1926,8 +1930,8 @@ input {
     font-size: 18px;
   }
   .update-form_anonymous__checkbox-container {
+    padding-left: 2px;
     margin-top: 16px;
-    gap: 8px;
   }
   .update-form_anonymous__checkbox {
     border-radius: 4px;
@@ -1936,16 +1940,17 @@ input {
     cursor: pointer;
   }
   .update-form_anonymous__checkbox-label {
-    font-size: 12px;
+    margin-left: 7px;
+    font-size: 16px;
     cursor: pointer;
   }
   .update-form__anonymous-warning-container {
     margin-top: 8px;
-    font-size: 12px;
+    font-size: 16px;
     gap: 8px;
   }
   .check-form__anonymous-warning-icon {
-    font-size: 11px;
+    font-size: 13px;
   }
   .update-form_add-question-button {
     margin-top: 32px;
@@ -1983,8 +1988,8 @@ input {
     font-size: 18px;
   }
   .update-form_anonymous__checkbox-container {
+    padding-left: 2px;
     margin-top: 16px;
-    gap: 8px;
   }
   .update-form_anonymous__checkbox {
     border-radius: 4px;
@@ -1993,15 +1998,16 @@ input {
     cursor: pointer;
   }
   .update-form_anonymous__checkbox-label {
-    font-size: 12px;
+    margin-left: 4px;
+    font-size: 13px;
   }
   .update-form__anonymous-warning-container {
     margin-top: 8px;
-    font-size: 12px;
+    font-size: 13px;
     gap: 8px;
   }
   .update-form__anonymous-warning-container .check-form__anonymous-warning-icon {
-    font-size: 9px;
+    font-size: 11px;
   }
   .update-form_add-question-button {
     margin-top: 16px;
@@ -2040,12 +2046,15 @@ input {
   }
   .update-form_anonymous__checkbox-container {
     margin-top: 16px;
-    font-size: 12px;
-    gap: 10px;
+    font-size: 13px;
+  }
+  .update-form_anonymous__checkbox-label {
+    margin-left: 7px;
+    font-size: 13px;
   }
   .update-form__anonymous-warning-container {
-    margin-top: 16px;
-    font-size: 12px;
+    margin-top: 12px;
+    font-size: 13px;
     gap: 10px;
   }
   .update-form_add-question-button {
@@ -2088,10 +2097,20 @@ input {
     font-size: 12px;
     gap: 10px;
   }
+  .update-form_anonymous__checkbox {
+    border-radius: 4px;
+    width: 11px;
+    height: 11px;
+    cursor: pointer;
+  }
+  .update-form_anonymous__checkbox-label {
+    margin-left: 5px;
+    font-size: 13px;
+  }
   .update-form__anonymous-warning-container {
-    margin-top: 16px;
-    font-size: 12px;
-    gap: 10px;
+    margin-top: 8px;
+    font-size: 13px;
+    gap: 8px;
   }
   .update-form_add-question-button {
     margin-top: 16px;
