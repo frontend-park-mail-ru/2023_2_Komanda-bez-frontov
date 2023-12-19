@@ -1,8 +1,9 @@
 .update-form__title-input {
-  outline: none;
   border: 1px solid rgba(0, 0, 0, 0.1);
   border-radius: 9px;
   padding: 8px;
+  outline: none;
+  width: 98%;
 }
 
 .update-form__title-input:hover {
@@ -69,14 +70,14 @@
   align-items: center;
 }
 
-@media screen and (min-width: 769px) {
+@media screen and (min-width: 1001px) {
   .update-form {
     margin: 0 auto;
-    width: 600px;
+    width: 910px;
 
     .button-container {
       width: 440px;
-      margin: 24px 0;
+      margin: 32px 0;
       gap: 12px;
 
       button {
@@ -88,7 +89,7 @@
 
   .update-form__title-input {
     font-size: 24px;
-    width: 535px;
+    width: 860px;
   }
 
   .update-form__description {
@@ -96,7 +97,7 @@
   }
 
   .update-form__description-textarea {
-    width: 535px;
+    width: 846px;
     padding: 7px;
     font-size: 18px;
   }
@@ -130,7 +131,7 @@
   }
 
   .update-form_add-question-button {
-    margin-top: 24px;
+    margin-top: 32px;
     align-items: center;
     font-size: 30px;
     height: 36px;
@@ -139,75 +140,74 @@
   }
 }
 
-//@media screen and (max-width: 1000px) {
-//  .update-form {
-//    margin: 0 auto;
-//    width: 80%;
-//
-//    .button-container {
-//      width: 440px;
-//      margin: 16px 0;
-//      gap: 12px;
-//
-//      button {
-//        width: 200px;
-//        margin-bottom: 4px;
-//      }
-//    }
-//  }
-//
-//  .update-form__title-input {
-//    font-size: 20px;
-//    width: 80%;
-//  }
-//
-//  .update-form__description {
-//    padding: 24px;
-//  }
-//
-//  .update-form__description-textarea {
-//    width: 98%;
-//    padding: 7px;
-//    font-size: 18px;
-//  }
-//
-//  .update-form_anonymous__checkbox-container {
-//    padding-left: 2px;
-//    margin-top: 16px;
-//  }
-//
-//  .update-form_anonymous__checkbox {
-//    border-radius: 4px;
-//    width: 12px;
-//    height: 12px;
-//    cursor: pointer;
-//  }
-//
-//  .update-form_anonymous__checkbox-label {
-//    margin-left: 4px;
-//    font-size: 13px;
-//  }
-//
-//  .update-form__anonymous-warning-container {
-//    margin-top: 8px;
-//    font-size: 13px;
-//    gap: 8px;
-//  }
-//
-//  .update-form__anonymous-warning-container {
-//    .check-form__anonymous-warning-icon {
-//      font-size: 11px;
-//    }
-//  }
-//
-//  .update-form_add-question-button {
-//    margin-top: 16px;
-//    align-items: center;
-//    font-size: 30px;
-//    height: 36px;
-//    width: 100%;
-//  }
-//}
+@media screen and (max-width: 1000px) {
+  .update-form {
+    margin: 0 auto;
+    width: 80%;
+
+    .button-container {
+      width: 440px;
+      margin: 16px 0;
+      gap: 12px;
+
+      button {
+        width: 200px;
+        margin-bottom: 4px;
+      }
+    }
+  }
+
+  .update-form__title-input {
+    font-size: 20px;
+  }
+
+  .update-form__description {
+    padding: 24px;
+  }
+
+  .update-form__description-textarea {
+    width: 98%;
+    padding: 7px;
+    font-size: 18px;
+  }
+
+  .update-form_anonymous__checkbox-container {
+    padding-left: 2px;
+    margin-top: 16px;
+  }
+
+  .update-form_anonymous__checkbox {
+    border-radius: 4px;
+    width: 12px;
+    height: 12px;
+    cursor: pointer;
+  }
+
+  .update-form_anonymous__checkbox-label {
+    margin-left: 4px;
+    font-size: 13px;
+  }
+
+  .update-form__anonymous-warning-container {
+    margin-top: 8px;
+    font-size: 13px;
+    gap: 8px;
+  }
+
+  .update-form__anonymous-warning-container {
+    .check-form__anonymous-warning-icon {
+      font-size: 11px;
+    }
+  }
+
+  .update-form_add-question-button {
+    margin-top: 16px;
+    align-items: center;
+    font-size: 30px;
+    height: 36px;
+    width: 100%;
+  }
+}
 
 @media screen and (max-width: 768px) {
   .update-form {
@@ -227,6 +227,7 @@
 
   .update-form__title-input {
     font-size: 16px;
+    width: 96%;
   }
 
   .update-form__description {
@@ -287,6 +288,7 @@
 
   .update-form__title-input {
     font-size: 13px;
+    width: 94%;
   }
 
   .update-form__description {
