@@ -170,3 +170,16 @@
     gap: 8px;
   }
 }
+
+@media (min-width: 1200px) {
+  .check-form {
+    margin: 32px auto;
+    width: 820px;
+
+    .button-container {
+      button {
+        width: 200px;
+      }
+    }
+  }
+}

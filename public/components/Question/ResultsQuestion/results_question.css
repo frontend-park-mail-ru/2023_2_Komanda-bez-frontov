@@ -14,7 +14,7 @@
   align-items: center;
   font-size: 16px;
   height: 35px;
-  margin-bottom: 10px;
+  margin-bottom: 15px;
 }
 
 .results-question__description-title {
@@ -46,6 +46,7 @@
   display: flex;
   margin: 18px 0;
   text-align: left;
+  justify-content: center;
   align-items: center;
   padding-left: 4px;
 }

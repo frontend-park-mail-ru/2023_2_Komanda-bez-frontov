@@ -153,3 +153,16 @@
     margin-top: 10px;
   }
 }
+
+@media (min-width: 1200px) {
+  .form-results {
+    margin: 32px auto;
+    width: 820px;
+
+    .button-container {
+      button {
+        width: 200px;
+      }
+    }
+  }
+}

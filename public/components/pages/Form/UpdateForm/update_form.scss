@@ -267,3 +267,24 @@
     width: 100%;
   }
 }
+
+@media (min-width: 1200px) {
+  .update-form {
+    margin: 32px auto;
+    width: 820px;
+
+    .update-form__title-input {
+      width: 755px;
+    }
+
+    .update-form__description-textarea {
+      width: 755px;
+    }
+
+    .button-container {
+      button {
+        width: 200px;
+      }
+    }
+  }
+}

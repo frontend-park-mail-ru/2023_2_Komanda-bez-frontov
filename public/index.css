@@ -1015,7 +1015,7 @@ input {
   font-size: 15px;
   font-weight: normal;
   text-align: left;
-  margin-bottom: 10px;
+  margin-left: 10px;
 }
 
 .check-question__description-text {
@@ -1150,7 +1150,7 @@ input {
   align-items: center;
   font-size: 16px;
   height: 35px;
-  margin-bottom: 10px;
+  margin-bottom: 15px;
 }
 
 .results-question__description-title {
@@ -1182,6 +1182,7 @@ input {
   display: flex;
   margin: 18px 0;
   text-align: left;
+  justify-content: center;
   align-items: center;
   padding-left: 4px;
 }
@@ -1279,12 +1280,11 @@ input {
   background-color: #4B357A;
 }
 .results-question_answers_answer-item .results-question_answers_answer-item__diagram-label {
-  width: 350px;
+  width: 450px;
 }
 
 .results-question_answers_answer-item__percentage-diagram {
   width: 120px;
-  margin: 0 0 0 12px;
   font-size: 16px;
   font-weight: normal;
   padding-left: 4px;
@@ -1532,6 +1532,11 @@ input {
     margin-left: 4px;
   }
 }
+@media (min-width: 1200px) {
+  .update-question__description-textarea {
+    width: 745px;
+  }
+}
 .update-question__answers-item {
   display: flex;
   gap: 8px;
@@ -1682,6 +1687,11 @@ input {
     height: 11px;
   }
 }
+@media (min-width: 1200px) {
+  .update-question__answers-item-input {
+    width: 450px;
+  }
+}
 .check-form {
   position: relative;
   text-align: center;
@@ -1825,6 +1835,15 @@ input {
   }
   .check-form__anonymous-warning-container .check-form__anonymous-warning-icon {
     font-size: 11px;
+  }
+}
+@media (min-width: 1200px) {
+  .check-form {
+    margin: 32px auto;
+    width: 820px;
+  }
+  .check-form .button-container button {
+    width: 200px;
   }
 }
 .update-form__title-input {
@@ -2060,6 +2079,21 @@ input {
     width: 100%;
   }
 }
+@media (min-width: 1200px) {
+  .update-form {
+    margin: 32px auto;
+    width: 820px;
+  }
+  .update-form .update-form__title-input {
+    width: 755px;
+  }
+  .update-form .update-form__description-textarea {
+    width: 755px;
+  }
+  .update-form .button-container button {
+    width: 200px;
+  }
+}
 .form-results {
   position: relative;
   text-align: center;
@@ -2197,6 +2231,15 @@ input {
   }
   .button-container-diagram {
     margin-top: 10px;
+  }
+}
+@media (min-width: 1200px) {
+  .form-results {
+    margin: 32px auto;
+    width: 820px;
+  }
+  .form-results .button-container button {
+    width: 200px;
   }
 }
 .index {

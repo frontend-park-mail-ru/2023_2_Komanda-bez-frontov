@@ -143,5 +143,14 @@
     font-size: 11px;
   }
 }
+@media (min-width: 1200px) {
+  .check-form {
+    margin: 32px auto;
+    width: 820px;
+  }
+  .check-form .button-container button {
+    width: 200px;
+  }
+}
 
 /*# sourceMappingURL=check_form.css.map */

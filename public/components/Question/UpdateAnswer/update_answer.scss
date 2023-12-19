@@ -173,3 +173,9 @@
     height: 11px;
   }
 }
+
+@media (min-width: 1200px) {
+  .update-question__answers-item-input {
+    width: 450px;
+  }
+}

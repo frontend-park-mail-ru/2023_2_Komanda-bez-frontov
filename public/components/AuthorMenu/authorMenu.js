@@ -88,7 +88,7 @@ export const renderAuthorMenu = (id) => {
   });
 
   setTimeout(() => {
-    if (window.innerWidth <= 1150) {
+    if (window.innerWidth <= 1150 || (window.innerWidth >= 1200 && window.innerWidth <= 1340)) {
       menu.classList.add('form-author-menu__close');
       menu.classList.remove('form-author-menu__open');
       closeButton.innerHTML = 'menu';

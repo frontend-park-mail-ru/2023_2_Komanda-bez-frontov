@@ -295,3 +295,9 @@
     margin-left: 4px;
   }
 }
+
+@media (min-width: 1200px) {
+  .update-question__description-textarea {
+    width: 745px;
+  }
+}
