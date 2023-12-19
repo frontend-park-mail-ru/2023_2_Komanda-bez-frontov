@@ -217,14 +217,19 @@
     font-size: 20px;
   }
 
+  .update-question_button-container__required-checkbox {
+    width: 12px;
+    height: 12px;
+  }
+
   .update-question_button-container__required-label {
     font-size: 13px;
-    margin-left: 6px;
+    margin-left: 3px;
   }
 
   .update-question__button-container {
     margin-top: 16px;
-    gap: 4px
+    gap: 8px
   }
 
   .update-question__description-textarea {
@@ -264,11 +269,11 @@
 
   .update-question__button-container {
     margin-top: 16px;
-    gap: 4px
+    gap: 8px
   }
 
   .update-question_button-container__required-label {
     font-size: 13px;
-    margin-left: 6px;
+    margin-left: 2px;
   }
 }

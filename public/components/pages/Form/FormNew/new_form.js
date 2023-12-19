@@ -194,7 +194,6 @@ export const formUpdatePageParser = () => {
       }
     }
 
-
     const question = {
       id: Number(questionElement.id),
       title: questionElement.querySelector('#update-question__title').value,
