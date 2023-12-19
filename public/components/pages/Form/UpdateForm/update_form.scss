@@ -1,16 +1,13 @@
 .update-form__title-input {
-  border: none;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 9px;
+  padding: 8px;
   outline: none;
+  width: 98%;
 }
 
 .update-form__title-input:hover {
   background-color: #F1F1F1;
-}
-
-.update-form__description-header {
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  border-radius: 9px;
-  padding: 8px;
 }
 
 .update-form__description {
@@ -162,7 +159,6 @@
 
   .update-form__title-input {
     font-size: 20px;
-    width: 80%;
   }
 
   .update-form__description {
@@ -231,6 +227,7 @@
 
   .update-form__title-input {
     font-size: 16px;
+    width: 96%;
   }
 
   .update-form__description {
@@ -291,6 +288,7 @@
 
   .update-form__title-input {
     font-size: 13px;
+    width: 94%;
   }
 
   .update-form__description {
