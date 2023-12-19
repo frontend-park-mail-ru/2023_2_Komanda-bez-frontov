@@ -5,6 +5,16 @@
 .check-form .button-container {
   gap: 6px;
 }
+.check-form .button-container #create-link-button {
+  padding: 6px;
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+  align-items: center;
+}
+.check-form .button-container #create-link-button span {
+  font-size: 22px;
+}
 
 .check-form__description {
   border-radius: 16px;
@@ -39,13 +49,6 @@
     padding: 10px 5px;
     width: 160px;
   }
-  .check-form .button-container .material-symbols-outlined {
-    background-color: #FFFFFF;
-    box-shadow: 0 0 8px 0 rgba(34, 60, 80, 0.2);
-    padding: 5px;
-    border-radius: 9px;
-    cursor: pointer;
-  }
   .check-form__description {
     padding: 20px;
   }
@@ -65,8 +68,7 @@
 }
 @media screen and (max-width: 768px) {
   .check-form {
-    margin: 16px auto;
-    width: 80%;
+    margin: 16px 40px;
   }
   .check-form .check-form__title {
     font-size: 20px;
@@ -78,14 +80,8 @@
     gap: 12px;
   }
   .check-form .button-container button {
-    padding: 10px 5px;
+    padding: 12px;
     width: 160px;
-  }
-  .check-form .button-container .material-symbols-outlined {
-    background-color: #FFFFFF;
-    box-shadow: 0 0 8px 0 rgba(34, 60, 80, 0.2);
-    padding: 5px;
-    border-radius: 9px;
   }
   .check-form__description {
     padding: 20px;
@@ -101,7 +97,7 @@
   }
   .check-form__anonymous-warning-container {
     margin-top: 14px;
-    font-size: 12px;
+    font-size: 14px;
     gap: 8px;
   }
   .check-form__anonymous-warning-container .check-form__anonymous-warning-icon {
@@ -125,12 +121,6 @@
   .check-form .button-container button {
     padding: 10px 5px;
     width: 160px;
-  }
-  .check-form .button-container .material-symbols-outlined {
-    background-color: #FFFFFF;
-    box-shadow: 0 0 8px 0 rgba(34, 60, 80, 0.2);
-    padding: 5px;
-    border-radius: 9px;
   }
   .check-form__description {
     padding: 18px;

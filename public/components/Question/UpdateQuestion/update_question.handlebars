@@ -27,7 +27,7 @@
             <span class="material-symbols-outlined update-question__question-delete" id="delete-question">delete</span>
             <div class="update-question__required-container">
                 {{#ifEquals question.required true}}
-                    <input class="update-question_button-container__required-checkbox" id="required-question-checkbox_{{../question.id}}" type="checkbox" checked>
+                    <input class="update-question_button-container__required-checkbox" id="required-question-checkbox" type="checkbox" checked>
                 {{/ifEquals}}
                 {{#ifEquals question.required false}}
                     <input class="update-question_button-container__required-checkbox" id="required-question-checkbox" type="checkbox">

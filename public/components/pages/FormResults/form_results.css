@@ -10,6 +10,7 @@
 }
 .form-results .button-container button {
   width: 200px;
+  font-size: 14px;
 }
 
 .form-results__description {
@@ -66,8 +67,8 @@
 
 @media screen and (max-width: 768px) {
   .form-results {
-    margin: 16px auto;
-    width: 80%;
+    margin: 16px 40px;
+    width: unset;
   }
   .form-results .form-results__title {
     font-size: 25px;
@@ -79,8 +80,9 @@
     gap: 12px;
   }
   .form-results .button-container button {
-    padding: 10px 5px;
+    padding: 12px 5px;
     width: 160px;
+    font-size: 13px;
   }
   .form-result__description {
     padding: 20px;

@@ -4,6 +4,18 @@
 
   .button-container {
     gap: 6px;
+
+    #create-link-button {
+      padding: 6px;
+      display: flex;
+      justify-content: center;
+      gap: 5px;
+      align-items: center;
+
+      span {
+        font-size: 22px;
+      }
+    }
   }
 }
 
@@ -41,15 +53,6 @@
         padding: 10px 5px;
         width: 160px;
       }
-
-      .material-symbols-outlined {
-        background-color: #FFFFFF;
-        box-shadow: 0 0 8px 0 rgba(34, 60, 80, 0.2);
-        padding: 5px;
-        border-radius: 9px;
-        cursor: pointer;
-      }
-
     }
   }
 
@@ -76,8 +79,8 @@
 
 @media screen and (max-width: 768px) {
   .check-form {
-    margin: 16px auto;
-    width: 80%;
+    margin: 16px 40px;
+    //width: 80%;
 
     .check-form__title {
       font-size: 20px;
@@ -89,15 +92,8 @@
       margin-top: 16px;
       gap: 12px;
       button {
-        padding: 10px 5px;
+        padding: 12px;
         width: 160px;
-      }
-
-      .material-symbols-outlined {
-        background-color: #FFFFFF;
-        box-shadow: 0 0 8px 0 rgba(34, 60, 80, 0.2);
-        padding: 5px;
-        border-radius: 9px;
       }
 
     }
@@ -124,7 +120,7 @@
       font-size: 10px;
     }
     margin-top: 14px;
-    font-size: 12px;
+    font-size: 14px;
     gap: 8px;
   }
 }
@@ -147,14 +143,6 @@
         padding: 10px 5px;
         width: 160px;
       }
-
-      .material-symbols-outlined {
-        background-color: #FFFFFF;
-        box-shadow: 0 0 8px 0 rgba(34, 60, 80, 0.2);
-        padding: 5px;
-        border-radius: 9px;
-      }
-
     }
   }
 

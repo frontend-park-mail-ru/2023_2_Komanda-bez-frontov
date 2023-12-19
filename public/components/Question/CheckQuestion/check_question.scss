@@ -144,10 +144,16 @@
   .check-question {
     margin-top: 16px;
     padding: 20px;
+
+    .button-container {
+      flex-wrap: wrap;
+      gap: 8px;
+    }
   }
 
   .check-question__clear-button {
     width: 180px !important;
+    min-width: max-content;
   }
 
   .check-question__answers-item-textarea {

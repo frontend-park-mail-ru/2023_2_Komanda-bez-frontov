@@ -78,7 +78,7 @@
   .results-question_title-container {
     flex-wrap: wrap;
     height: unset;
-    gap: 6px;
+    gap: 8px;
     margin-bottom: 12px;
   }
   .results-question__passage-text {

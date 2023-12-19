@@ -128,8 +128,13 @@
     margin-top: 16px;
     padding: 20px;
   }
+  .check-question .button-container {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
   .check-question__clear-button {
     width: 180px !important;
+    min-width: max-content;
   }
   .check-question__answers-item-textarea {
     padding: 5px;
