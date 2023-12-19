@@ -31,7 +31,10 @@
             {{/ifEquals}}
         </div>
         <div class="button-container">
-            <span class="material-symbols-outlined update-question__question-delete" id="check-question__clear-button">delete</span>
+            <button class="primary-button check-question__clear-button" id="check-question__clear-button">
+<!--                <span class="material-symbols-outlined update-question__question-delete">delete</span>-->
+                Отменить выбор
+            </button>
             {{#ifEquals question.required true}}
                 <p class="check-question__required-title">Это обязательный вопрос</p>
             {{/ifEquals}}
