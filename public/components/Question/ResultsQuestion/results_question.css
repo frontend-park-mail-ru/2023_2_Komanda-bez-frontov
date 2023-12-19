@@ -72,7 +72,7 @@
 
 @media screen and (max-width: 768px) {
   .results-question {
-    margin-top: 32px;
+    margin-top: 16px;
     padding: 20px;
   }
   .results-question_title-container {
