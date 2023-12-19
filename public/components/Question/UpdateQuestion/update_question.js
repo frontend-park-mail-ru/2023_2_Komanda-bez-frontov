@@ -136,8 +136,13 @@ export const createQuestionUpdate = (question) => {
       });
       renderAnswers();
     });
-
   }
+
+  const requiredCheckbox = questionElement.querySelector('#required-question-checkbox');
+  const requiredLabel = questionElement.querySelector('.update-question_button-container__required-label');
+  requiredLabel.addEventListener('click', () => {
+    requiredCheckbox.checked = !requiredCheckbox.checked;
+  });
 
   return questionElement;
 };

@@ -30,9 +30,9 @@
                     <input class="update-question_button-container__required-checkbox" id="required-question-checkbox_{{../question.id}}" type="checkbox" checked>
                 {{/ifEquals}}
                 {{#ifEquals question.required false}}
-                    <input class="update-question_button-container__required-checkbox" id="required-question-checkbox_{{../question.id}}" type="checkbox">
+                    <input class="update-question_button-container__required-checkbox" id="required-question-checkbox" type="checkbox">
                 {{/ifEquals}}
-                <label class="update-question_button-container__required-label" for="required-question-checkbox_{{question.id}}">Обязательный вопрос</label>
+                <label class="update-question_button-container__required-label">Обязательный вопрос</label>
             </div>
         </div>
     </div>

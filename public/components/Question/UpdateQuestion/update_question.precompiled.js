@@ -17,9 +17,7 @@ templates['update_question'] = template({"1":function(container,depth0,helpers,p
     + "</textarea>\n        <div class=\"update-question__answer\" id=\"question-answers\">\n<!--            Answers will be here-->\n        </div>\n        <div class=\"update-question__answers_add_button\" id=\"update-question__answers_add_button\">\n            <input class=\"update-question__answers-item-checkbox\" id=\"update-question__answers-item-button\" type=\"checkbox\" disabled></input>\n            <input class=\"update-question__answers-add-input\" id=\"update-question__answers-add-input\" placeholder=\"Добавить ответ\" type=\"text\" readonly></input>\n        </div>\n        <div class=\"update-question__button-container\">\n            <span class=\"material-symbols-outlined update-question__question-delete\" id=\"delete-question\">delete</span>\n            <div class=\"update-question__required-container\">\n"
     + ((stack1 = (lookupProperty(helpers,"ifEquals")||(depth0 && lookupProperty(depth0,"ifEquals"))||alias4).call(alias3,((stack1 = (depth0 != null ? lookupProperty(depth0,"question") : depth0)) != null ? lookupProperty(stack1,"required") : stack1),true,{"name":"ifEquals","hash":{},"fn":container.program(2, data, 0, blockParams, depths),"inverse":container.noop,"data":data,"loc":{"start":{"line":29,"column":16},"end":{"line":31,"column":29}}})) != null ? stack1 : "")
     + ((stack1 = (lookupProperty(helpers,"ifEquals")||(depth0 && lookupProperty(depth0,"ifEquals"))||alias4).call(alias3,((stack1 = (depth0 != null ? lookupProperty(depth0,"question") : depth0)) != null ? lookupProperty(stack1,"required") : stack1),false,{"name":"ifEquals","hash":{},"fn":container.program(4, data, 0, blockParams, depths),"inverse":container.noop,"data":data,"loc":{"start":{"line":32,"column":16},"end":{"line":34,"column":29}}})) != null ? stack1 : "")
-    + "                <label class=\"update-question_button-container__required-label\" for=\"required-question-checkbox_"
-    + alias2(alias1(((stack1 = (depth0 != null ? lookupProperty(depth0,"question") : depth0)) != null ? lookupProperty(stack1,"id") : stack1), depth0))
-    + "\">Обязательный вопрос</label>\n            </div>\n        </div>\n    </div>\n";
+    + "                <label class=\"update-question_button-container__required-label\">Обязательный вопрос</label>\n            </div>\n        </div>\n    </div>\n";
 },"2":function(container,depth0,helpers,partials,data,blockParams,depths) {
     var stack1, lookupProperty = container.lookupProperty || function(parent, propertyName) {
         if (Object.prototype.hasOwnProperty.call(parent, propertyName)) {
@@ -31,17 +29,8 @@ templates['update_question'] = template({"1":function(container,depth0,helpers,p
   return "                    <input class=\"update-question_button-container__required-checkbox\" id=\"required-question-checkbox_"
     + container.escapeExpression(container.lambda(((stack1 = (depths[1] != null ? lookupProperty(depths[1],"question") : depths[1])) != null ? lookupProperty(stack1,"id") : stack1), depth0))
     + "\" type=\"checkbox\" checked>\n";
-},"4":function(container,depth0,helpers,partials,data,blockParams,depths) {
-    var stack1, lookupProperty = container.lookupProperty || function(parent, propertyName) {
-        if (Object.prototype.hasOwnProperty.call(parent, propertyName)) {
-          return parent[propertyName];
-        }
-        return undefined
-    };
-
-  return "                    <input class=\"update-question_button-container__required-checkbox\" id=\"required-question-checkbox_"
-    + container.escapeExpression(container.lambda(((stack1 = (depths[1] != null ? lookupProperty(depths[1],"question") : depths[1])) != null ? lookupProperty(stack1,"id") : stack1), depth0))
-    + "\" type=\"checkbox\">\n";
+},"4":function(container,depth0,helpers,partials,data) {
+    return "                    <input class=\"update-question_button-container__required-checkbox\" id=\"required-question-checkbox\" type=\"checkbox\">\n";
 },"compiler":[8,">= 4.3.0"],"main":function(container,depth0,helpers,partials,data,blockParams,depths) {
     var stack1, lookupProperty = container.lookupProperty || function(parent, propertyName) {
         if (Object.prototype.hasOwnProperty.call(parent, propertyName)) {
