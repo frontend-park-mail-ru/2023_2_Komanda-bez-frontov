@@ -1845,6 +1845,12 @@ input {
   background-color: #F1F1F1;
 }
 
+.update-form__description-header {
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 9px;
+  padding: 8px;
+}
+
 .update-form__description {
   text-align: left;
   border: none;
@@ -1857,7 +1863,7 @@ input {
 }
 
 .update-form__description-textarea {
-  margin-top: 16px;
+  margin-top: 10px;
   font-size: 16px;
   height: 90px;
   resize: none;
