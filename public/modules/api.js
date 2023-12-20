@@ -35,6 +35,7 @@ export class API {
       if (res.ok) {
         isAuthorized = true;
         authorizedUser = body.current_user;
+        localStorage.setItem('csrf-token', res.headers.get('x-csrf-token'));
       }
 
       return {isAuthorized, authorizedUser};

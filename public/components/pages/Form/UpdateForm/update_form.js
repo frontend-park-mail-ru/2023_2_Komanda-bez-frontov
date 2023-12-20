@@ -17,6 +17,7 @@ export let editInProcess = false;
 export const setEditInProcess = (bool) => {
   editInProcess = bool;
 }
+let cQuestions = [];
 
 /**
  * Функция для рендеринга страницы редактирования опроса по его id.
@@ -125,8 +126,10 @@ export const renderFormUpdate = async (id) => {
         questionElement.remove();
         removedQuestionsID.push(Number(question.id));
         closePopUpWindow();
+        cQuestions = document.querySelectorAll('.update-question');
       });
     });
+    moveQuestionUpDown(questionElement);
     questions.appendChild(questionElement);
   });
 
@@ -165,9 +168,13 @@ export const renderFormUpdate = async (id) => {
       renderPopUpWindow('Требуется подтверждение', 'Вы уверены, что хотите безвозвратно удалить вопрос?', true, () => {
         questionElement.remove();
         closePopUpWindow();
+        cQuestions = document.querySelectorAll('.update-question');
       });
     });
+    moveQuestionUpDown(questionElement);
     questions.appendChild(questionElement);
+
+    cQuestions = document.querySelectorAll('.update-question');
   });
 
   const deleteForm = document.querySelector('#delete-button');
@@ -220,6 +227,8 @@ export const renderFormUpdate = async (id) => {
       renderMessage(defaultFetchErrorMessage, true);
     }
   });
+
+  cQuestions = document.querySelectorAll('.update-question');
 };
 
 export const renderQuitEditingWindow = (page, id = '', redirect = false) => {
@@ -248,4 +257,46 @@ export const addValidationToFormInput = (input, validator, errorLabel) => {
       }, {once: true});
     }
   }, 1000));
+};
+
+const moveQuestionUpDown = (questionElement) => {
+  const questionContainer = document.querySelector('#check-form__questions-container');
+
+  questionElement.querySelector('#question-move-up').addEventListener('click', () => {
+    editInProcess = true;
+    const index = Array.from(cQuestions).indexOf(questionElement);
+    if (index === 0 || index === -1) {
+      return;
+    }
+    replaceTwoElements(cQuestions[index], cQuestions[index - 1]);
+  });
+
+  questionElement.querySelector('#question-move-down').addEventListener('click', () => {
+    editInProcess = true;
+    const index = Array.from(cQuestions).indexOf(questionElement);
+    if (index === cQuestions.length - 1 || index === -1) {
+      return;
+    }
+    replaceTwoElements(cQuestions[index + 1], cQuestions[index]);
+  });
+
+  const replaceTwoElements = (element1, element2) => {
+    const temp = document.createElement('div');
+    const margin = window.innerWidth >= 768 ? 24 : 16;
+
+    element1.style.transform = `translate(0, -${element2.clientHeight + margin}px)`;
+    element2.style.transform = `translate(0, ${element1.clientHeight + margin}px)`;
+
+    setTimeout(() => {
+      element1.style.transform = `none`;
+      element2.style.transform = `none`;
+
+      questionContainer.insertBefore(temp, element1);
+      questionContainer.insertBefore(element1, element2);
+      questionContainer.insertBefore(element2, temp);
+      questionContainer.removeChild(temp);
+
+      cQuestions = document.querySelectorAll('.update-question');
+    }, 1000);
+  }
 };

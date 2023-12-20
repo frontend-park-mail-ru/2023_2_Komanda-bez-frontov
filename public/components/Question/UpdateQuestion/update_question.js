@@ -139,5 +139,5 @@ export const createQuestionUpdate = (question) => {
     requiredCheckbox.checked = !requiredCheckbox.checked;
   });
 
-  return questionElement;
+  return questionElement.querySelector('.update-question');
 };

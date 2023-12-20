@@ -3,12 +3,14 @@ import {removeMessage, renderMessage} from '../../../Message/message.js';
 import {STORAGE} from '../../../../modules/storage.js';
 import {goToPage} from '../../../../modules/router.js';
 import {ROUTES} from '../../../../config.js';
-import {createQuestionUpdate, removedAnswersID} from '../../../Question/UpdateQuestion/update_question.js';
+import {createQuestionUpdate} from '../../../Question/UpdateQuestion/update_question.js';
 import {closePopUpWindow, renderPopUpWindow} from '../../../PopUpWindow/popup_window.js';
-import {textValidation, usernameValidation} from '../../../../modules/validation.js';
+import {textValidation} from '../../../../modules/validation.js';
 import {TYPE_SINGLE_CHOICE, TYPE_MULTIPLE_CHOICE, TYPE_TEXT} from "../CheckForm/check_form.js";
-import {addValidationToFormInput, setEditInProcess} from "../UpdateForm/update_form.js";
+import {addValidationToFormInput, editInProcess, setEditInProcess} from "../UpdateForm/update_form.js";
 import {checkInputsValidation} from "../../Login/login.js";
+
+let cQuestions = [];
 
 /**
  * Функция для рендеринга страницы опроса по его id.
@@ -71,7 +73,9 @@ export const renderFormNew = async () => {
           closePopUpWindow();
         });
       });
-    questions.appendChild(questionElement);
+      moveQuestionUpDown(questionElement);
+      questions.appendChild(questionElement);
+      cQuestions = document.querySelectorAll('.update-question');
   }
 
   const cInputs = document.querySelectorAll('input, textarea');
@@ -111,7 +115,9 @@ export const renderFormNew = async () => {
         closePopUpWindow();
       });
     });
+    moveQuestionUpDown(questionElement);
     questions.appendChild(questionElement);
+    cQuestions = document.querySelectorAll('.update-question');
   });
 
   const deleteForm = document.querySelector('#delete-button');
@@ -177,7 +183,7 @@ export const formUpdatePageParser = () => {
   }
 
   const cQuestions = document.querySelectorAll('.update-question');
-  cQuestions.forEach((questionElement) => {
+  cQuestions.forEach((questionElement, index) => {
     let type = TYPE_TEXT;
     const options = questionElement.querySelectorAll('.update-question__answer-format-radio');
     for (let typeIndex = 1; typeIndex <= options.length; typeIndex++) {
@@ -202,6 +208,7 @@ export const formUpdatePageParser = () => {
       description: questionElement.querySelector('#update-question__description-textarea').value,
       type,
       required: questionElement.querySelector('#required-question-checkbox').checked,
+      position: index + 1,
       answers: [],
     };
 
@@ -268,3 +275,42 @@ export const formUpdatePageParser = () => {
   return form;
 };
 
+const moveQuestionUpDown = (questionElement) => {
+  const questionContainer = document.querySelector('#check-form__questions-container');
+
+  questionElement.querySelector('#question-move-up').addEventListener('click', () => {
+    const index = Array.from(cQuestions).indexOf(questionElement);
+    if (index === 0 || index === -1) {
+      return;
+    }
+    replaceTwoElements(cQuestions[index], cQuestions[index - 1]);
+  });
+
+  questionElement.querySelector('#question-move-down').addEventListener('click', () => {
+    const index = Array.from(cQuestions).indexOf(questionElement);
+    if (index === cQuestions.length - 1 || index === -1) {
+      return;
+    }
+    replaceTwoElements(cQuestions[index + 1], cQuestions[index]);
+  });
+
+  const replaceTwoElements = (element1, element2) => {
+    const temp = document.createElement('div');
+    const margin = window.innerWidth >= 768 ? 24 : 16;
+
+    element1.style.transform = `translate(0, -${element2.clientHeight + margin}px)`;
+    element2.style.transform = `translate(0, ${element1.clientHeight + margin}px)`;
+
+    setTimeout(() => {
+      element1.style.transform = `none`;
+      element2.style.transform = `none`;
+
+      questionContainer.insertBefore(temp, element1);
+      questionContainer.insertBefore(element1, element2);
+      questionContainer.insertBefore(element2, temp);
+      questionContainer.removeChild(temp);
+
+      cQuestions = document.querySelectorAll('.update-question');
+    }, 1000);
+  }
+};

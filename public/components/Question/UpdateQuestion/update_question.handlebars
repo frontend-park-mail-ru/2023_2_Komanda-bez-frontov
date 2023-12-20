@@ -24,15 +24,21 @@
             <input class="update-question__answers-add-input" id="update-question__answers-add-input" placeholder="Добавить ответ" type="text" readonly></input>
         </div>
         <div class="update-question__button-container">
-            <span class="material-symbols-outlined update-question__question-delete" id="delete-question">delete</span>
-            <div class="update-question__required-container">
-                {{#ifEquals question.required true}}
-                    <input class="update-question_button-container__required-checkbox" id="required-question-checkbox" type="checkbox" checked>
-                {{/ifEquals}}
-                {{#ifEquals question.required false}}
-                    <input class="update-question_button-container__required-checkbox" id="required-question-checkbox" type="checkbox">
-                {{/ifEquals}}
-                <label class="update-question_button-container__required-label">Обязательный вопрос</label>
+            <div class="update-question__required-delete-container">
+                <span class="material-symbols-outlined update-question__question-delete" id="delete-question">delete</span>
+                <div class="update-question__required-container">
+                    {{#ifEquals question.required true}}
+                        <input class="update-question_button-container__required-checkbox" id="required-question-checkbox" type="checkbox" checked>
+                    {{/ifEquals}}
+                    {{#ifEquals question.required false}}
+                        <input class="update-question_button-container__required-checkbox" id="required-question-checkbox" type="checkbox">
+                    {{/ifEquals}}
+                    <label class="update-question_button-container__required-label">Обязательный вопрос</label>
+                </div>
+            </div>
+            <div class="update-question__move-buttons-container">
+                <span class="material-symbols-outlined" id="question-move-up" title="Поменять с верхним вопросом">move_up</span>
+                <span class="material-symbols-outlined" id="question-move-down" title="Поменять с нижним вопросом">move_down</span>
             </div>
         </div>
     </div>
