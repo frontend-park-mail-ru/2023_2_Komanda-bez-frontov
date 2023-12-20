@@ -85,6 +85,36 @@ export const renderFormUpdate = async (id) => {
   addValidationToFormInput(title, textValidation, errorLabel);
   addValidationToFormInput(description, textValidation, errorLabel);
 
+  const anonymousCheckbox = document.querySelector('#update-form-anonymous-checkbox');
+  const limitContainer = document.querySelector('.update-form__max-passage-container');
+  const limitInput = document.querySelector('#update-form__max-passage');
+
+  if (anonymousCheckbox.checked) {
+    limitContainer.classList.add('display-none');
+  }
+  anonymousCheckbox.addEventListener('change', () => {
+    if (anonymousCheckbox.checked) {
+      limitContainer.classList.add('display-none');
+    } else {
+      limitContainer.classList.remove('display-none');
+    }
+  });
+
+  if (Number(limitInput.value) < 1) {
+    limitInput.value = '';
+  }
+  limitInput.addEventListener('change', () => {
+    if (Number(limitInput.value) < 1) {
+      limitInput.value = '';
+      return;
+    }
+    if (Number(limitInput.value) > 100) {
+      limitInput.value = '100';
+      return;
+    }
+    limitInput.value = Math.floor(limitInput.value);
+  });
+
   const questions = document.querySelector('#check-form__questions-container');
   formJSON.questions.forEach((question) => {
     const questionElement = createQuestionUpdate(question);

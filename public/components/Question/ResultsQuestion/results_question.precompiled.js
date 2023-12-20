@@ -39,8 +39,8 @@ templates['results_question'] = template({"1":function(container,depth0,helpers,
         return undefined
     };
 
-  return "                    <div class=\"results-question_answers_answer-item\">\n                        <p class=\"results-question_answers_answer-item__label\">"
-    + container.escapeExpression(((helper = (helper = lookupProperty(helpers,"text") || (depth0 != null ? lookupProperty(depth0,"text") : depth0)) != null ? helper : container.hooks.helperMissing),(typeof helper === "function" ? helper.call(depth0 != null ? depth0 : (container.nullContext || {}),{"name":"text","hash":{},"data":data,"loc":{"start":{"line":17,"column":79},"end":{"line":17,"column":87}}}) : helper)))
+  return "                    <div class=\"results-question_answers_answer-item\">\n                        <p class=\"results-question_answers_answer-item__answer-text\">"
+    + container.escapeExpression(((helper = (helper = lookupProperty(helpers,"text") || (depth0 != null ? lookupProperty(depth0,"text") : depth0)) != null ? helper : container.hooks.helperMissing),(typeof helper === "function" ? helper.call(depth0 != null ? depth0 : (container.nullContext || {}),{"name":"text","hash":{},"data":data,"loc":{"start":{"line":17,"column":85},"end":{"line":17,"column":93}}}) : helper)))
     + "</p>\n                    </div>\n";
 },"compiler":[8,">= 4.3.0"],"main":function(container,depth0,helpers,partials,data,blockParams,depths) {
     var stack1, lookupProperty = container.lookupProperty || function(parent, propertyName) {

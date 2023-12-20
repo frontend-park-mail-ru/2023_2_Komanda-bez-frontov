@@ -50,6 +50,19 @@
   display: flex;
 }
 
+.update-form__max-passage-container {
+  margin: 20px 0 10px 10px;
+
+  .update-form_max-passage__input {
+    width: 170px;
+    margin-left: 12px;
+    padding: 8px 12px;
+    font-size: 16px;
+    border-radius: 8px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+  }
+}
+
 .update-form__input-error {
   background-color: #fdc6c6 !important;
 }
@@ -191,6 +204,15 @@
     gap: 10px;
   }
 
+  .update-form__max-passage-container {
+    font-size: 14px;
+
+    .update-form_max-passage__input {
+      width: 150px;
+      font-size: 14px;
+    }
+  }
+
   .update-form_add-question-button {
     margin-top: 16px;
     font-size: 30px;
@@ -258,6 +280,19 @@
     margin-top: 8px;
     font-size: 14px;
     gap: 8px;
+  }
+
+  .update-form__max-passage-container {
+    display: flex;
+    flex-flow: column;
+    gap: 8px;
+
+    label {
+      margin-left: 5px;
+    }
+    .update-form_max-passage__input {
+      margin-left: 0;
+    }
   }
 
   .update-form_add-question-button {

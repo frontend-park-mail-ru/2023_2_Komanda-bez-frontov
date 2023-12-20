@@ -28,8 +28,13 @@
   font-weight: normal;
 }
 
-.check-form__anonymous-warning-container {
+.check-form__anonymous-warning-container, .check-form__max-passage-container {
   display: flex;
+}
+
+#check-form-passages-left {
+  margin-left: 5px;
+  font-weight: bold;
 }
 
 @media screen and (min-width: 769px) {
@@ -60,10 +65,10 @@
     font-size: 18px;
     font-weight: normal;
   }
-  .check-form__anonymous-warning-container {
+  .check-form__anonymous-warning-container, .check-form__max-passage-container {
     margin-top: 14px;
     font-size: 14px;
-    gap: 8px;
+    gap: 12px;
   }
 }
 @media screen and (max-width: 768px) {
@@ -95,12 +100,12 @@
     font-weight: normal;
     margin-bottom: 12px;
   }
-  .check-form__anonymous-warning-container {
+  .check-form__anonymous-warning-container, .check-form__max-passage-container {
     margin-top: 14px;
     font-size: 14px;
-    gap: 8px;
+    gap: 12px;
   }
-  .check-form__anonymous-warning-container .check-form__anonymous-warning-icon {
+  .check-form__anonymous-warning-container .check-form__anonymous-warning-icon, .check-form__max-passage-container .check-form__anonymous-warning-icon {
     font-size: 10px;
   }
 }
@@ -134,12 +139,12 @@
     font-weight: normal;
     margin-bottom: 12px;
   }
-  .check-form__anonymous-warning-container {
+  .check-form__anonymous-warning-container, .check-form__max-passage-container {
     margin-top: 14px;
     font-size: 14px;
-    gap: 8px;
+    gap: 12px;
   }
-  .check-form__anonymous-warning-container .check-form__anonymous-warning-icon {
+  .check-form__anonymous-warning-container .check-form__anonymous-warning-icon, .check-form__max-passage-container .check-form__anonymous-warning-icon {
     font-size: 11px;
   }
 }

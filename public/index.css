@@ -1196,6 +1196,13 @@ input {
   font-weight: normal;
   padding-left: 4px;
 }
+.results-question_answers_answer-item .results-question_answers_answer-item__answer-text {
+  width: 100%;
+  margin: 0 0 0 12px;
+  font-size: 16px;
+  font-weight: normal;
+  padding-left: 4px;
+}
 .results-question_answers_answer-item .results-question_answers_answer-item__bar-container {
   width: 320px;
   height: 18px;
@@ -1722,8 +1729,13 @@ input {
   font-weight: normal;
 }
 
-.check-form__anonymous-warning-container {
+.check-form__anonymous-warning-container, .check-form__max-passage-container {
   display: flex;
+}
+
+#check-form-passages-left {
+  margin-left: 5px;
+  font-weight: bold;
 }
 
 @media screen and (min-width: 769px) {
@@ -1754,10 +1766,10 @@ input {
     font-size: 18px;
     font-weight: normal;
   }
-  .check-form__anonymous-warning-container {
+  .check-form__anonymous-warning-container, .check-form__max-passage-container {
     margin-top: 14px;
     font-size: 14px;
-    gap: 8px;
+    gap: 12px;
   }
 }
 @media screen and (max-width: 768px) {
@@ -1789,12 +1801,12 @@ input {
     font-weight: normal;
     margin-bottom: 12px;
   }
-  .check-form__anonymous-warning-container {
+  .check-form__anonymous-warning-container, .check-form__max-passage-container {
     margin-top: 14px;
     font-size: 14px;
-    gap: 8px;
+    gap: 12px;
   }
-  .check-form__anonymous-warning-container .check-form__anonymous-warning-icon {
+  .check-form__anonymous-warning-container .check-form__anonymous-warning-icon, .check-form__max-passage-container .check-form__anonymous-warning-icon {
     font-size: 10px;
   }
 }
@@ -1828,12 +1840,12 @@ input {
     font-weight: normal;
     margin-bottom: 12px;
   }
-  .check-form__anonymous-warning-container {
+  .check-form__anonymous-warning-container, .check-form__max-passage-container {
     margin-top: 14px;
     font-size: 14px;
-    gap: 8px;
+    gap: 12px;
   }
-  .check-form__anonymous-warning-container .check-form__anonymous-warning-icon {
+  .check-form__anonymous-warning-container .check-form__anonymous-warning-icon, .check-form__max-passage-container .check-form__anonymous-warning-icon {
     font-size: 11px;
   }
 }
@@ -1896,6 +1908,18 @@ input {
 
 .update-form__anonymous-warning-container {
   display: flex;
+}
+
+.update-form__max-passage-container {
+  margin: 20px 0 10px 10px;
+}
+.update-form__max-passage-container .update-form_max-passage__input {
+  width: 170px;
+  margin-left: 12px;
+  padding: 8px 12px;
+  font-size: 16px;
+  border-radius: 8px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 .update-form__input-error {
@@ -2016,6 +2040,13 @@ input {
     font-size: 14px;
     gap: 10px;
   }
+  .update-form__max-passage-container {
+    font-size: 14px;
+  }
+  .update-form__max-passage-container .update-form_max-passage__input {
+    width: 150px;
+    font-size: 14px;
+  }
   .update-form_add-question-button {
     margin-top: 16px;
     font-size: 30px;
@@ -2071,6 +2102,17 @@ input {
     margin-top: 8px;
     font-size: 14px;
     gap: 8px;
+  }
+  .update-form__max-passage-container {
+    display: flex;
+    flex-flow: column;
+    gap: 8px;
+  }
+  .update-form__max-passage-container label {
+    margin-left: 5px;
+  }
+  .update-form__max-passage-container .update-form_max-passage__input {
+    margin-left: 0;
   }
   .update-form_add-question-button {
     margin-top: 16px;
@@ -2139,7 +2181,7 @@ input {
 }
 .form-results_description-text_participants .form-results_description-text__participants-item {
   width: 120px;
-  margin: 0 12px;
+  margin: 0 20px;
   line-height: 24px;
   font-size: 18px;
   font-weight: normal;

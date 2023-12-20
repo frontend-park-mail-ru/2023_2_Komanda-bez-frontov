@@ -75,13 +75,26 @@ export const renderForm = async (id) => {
     document.querySelector('.check-form__anonymous-warning-container').classList.add('display-none');
   }
 
+  const updateSubmitButton = document.querySelector('#update-submit-button');
+  if (formJSON.anonymous || formJSON.passage_max === -1) {
+    const passagesMaxContainer = document.querySelector('.check-form__max-passage-container');
+    passagesMaxContainer.classList.add('display-none');
+  } else {
+    const passagesLeftLabel = document.querySelector('#check-form-passages-left');
+    const passagesLeft = formJSON.passage_max - formJSON.cur_passage_total >= 0 ?
+        formJSON.passage_max - formJSON.cur_passage_total : 0;
+    passagesLeftLabel.innerText = passagesLeft;
+    if (passagesLeft <= 0) {
+      updateSubmitButton.classList.add('display-none');
+    }
+  }
+
   const questions = document.querySelector('#check-form__questions-container');
   formJSON.questions.forEach((question) => {
     const questionElement = createQuestion(question);
     questions.appendChild(questionElement);
   });
 
-  const updateSubmitButton = document.querySelector('#update-submit-button');
   if (STORAGE.user && STORAGE.user.id === formJSON.author.id) {
     updateSubmitButton.innerHTML = 'Редактировать';
     updateSubmitButton.addEventListener('click', () => {

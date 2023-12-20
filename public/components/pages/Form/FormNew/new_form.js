@@ -164,7 +164,8 @@ export const formUpdatePageParser = () => {
     description: document.querySelector('#update-form__description-textarea').value,
     anonymous: document.querySelector('#update-form-anonymous-checkbox').checked,
     questions: [],
-    passage_max: 1,
+    passage_max: document.querySelector('#update-form__max-passage').value ?
+        Number(document.querySelector('#update-form__max-passage').value) : -1,
   };
   if (!form.title) {
     const titleInput = document.querySelector('#update-form__title');
