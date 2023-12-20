@@ -108,7 +108,7 @@ export const renderForms = async () => {
               .forEach(it => it.classList.add('display-invisible'));
           menu.classList.remove('display-invisible');
           e.stopPropagation();
-          document.body.addEventListener('click', (e) => {
+          window.addEventListener('click', (e) => {
             menu.classList.add('display-invisible');
           }, {once: true});
         });

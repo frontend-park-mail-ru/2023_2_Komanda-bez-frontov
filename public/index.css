@@ -896,6 +896,7 @@ input {
 
 .forms__loading-screen {
   position: fixed;
+  z-index: 120;
   display: flex;
   width: 100%;
   height: 100%;
@@ -907,7 +908,7 @@ input {
 .forms__loading-screen img {
   width: 48px;
   height: 48px;
-  margin: 120px auto;
+  margin: 100px auto;
 }
 
 .forms_list_main-container {
@@ -1006,7 +1007,7 @@ input {
   .forms__loading-screen img {
     width: 40px;
     height: 40px;
-    margin: 160px auto;
+    margin: 85px auto;
   }
 }
 @media screen and (max-width: 480px) {
