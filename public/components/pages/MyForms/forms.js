@@ -3,6 +3,8 @@ import {ROUTES} from '../../../config.js';
 import {removeMessage, renderMessage} from '../../Message/message.js';
 import {goToPage} from '../../../modules/router.js';
 import {STORAGE} from '../../../modules/storage.js';
+import {closePopUpWindow, renderPopUpWindow} from "../../PopUpWindow/popup_window.js";
+import {editInProcess} from "../Form/UpdateForm/update_form.js";
 
 /**
  * Функция для рендеринга страницы с созданными пользователем опросами.
@@ -88,9 +90,61 @@ export const renderForms = async () => {
         form.created_at = date.toLocaleDateString('ru', options);
         temp.innerHTML = Handlebars.templates.forms_item({form: form});
         const item = temp.querySelector('#forms-list-item');
-        item.addEventListener('click', () => {
+        const menu = item.querySelector('.forms-list_item__select-menu');
+        item.addEventListener('click', (e) => {
+          if (e.target.id === 'forms-list-item-menu-button') {
+            return;
+          }
+          if (!menu.classList.contains('display-invisible')) {
+            return;
+          }
           goToPage(ROUTES.form, form.id);
         });
+
+        const menuButton = temp.querySelector('#forms-list-item-menu-button');
+        menuButton.addEventListener('click', (e) => {
+          // 🩼🩼🩼
+          document.querySelectorAll('.forms-list_item__select-menu')
+              .forEach(it => it.classList.add('display-invisible'));
+          menu.classList.remove('display-invisible');
+          e.stopPropagation();
+          document.body.addEventListener('click', (e) => {
+            menu.classList.add('display-invisible');
+          }, {once: true});
+        });
+
+        const menuEditButton = item.querySelector('#forms-list-item-button-edit');
+        const menuDeleteButton = item.querySelector('#forms-list-item-button-delete');
+        const menuOpenNewButton = item.querySelector('#forms-list-item-button-open-new');
+
+        menuEditButton.addEventListener('click', () => {
+          goToPage(ROUTES.formUpdate, form.id);
+        });
+        menuOpenNewButton.addEventListener('click', () => {
+          const url = ROUTES.form.url.replace(':id', form.id.toString());
+          window.open(url, '_blank').focus();
+        });
+        menuDeleteButton.addEventListener('click', (e) => {
+          e.stopImmediatePropagation();
+          renderPopUpWindow('Требуется подтверждение', 'Вы уверены, что хотите удалить опрос? Это действие необратимо.', true, async () => {
+            try {
+              const res = await api.deleteForm(form.id);
+              if (res.message === 'ok') {
+                goToPage(ROUTES.forms);
+                renderMessage('Опрос успешно удален.');
+                closePopUpWindow();
+                return;
+              }
+              renderMessage(res.message, true);
+            } catch (e) {
+              renderMessage(defaultFetchErrorMessage, true);
+              closePopUpWindow();
+              return;
+            }
+            closePopUpWindow();
+          });
+        });
+
         formsContainer.appendChild(item);
       });
     } else {

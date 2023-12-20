@@ -520,6 +520,10 @@ export class API {
 
       const res = await fetch(url, {
         method: DELETE_METHOD,
+        headers: {
+          'Content-Type': 'application/json',
+          'X-CSRF-Token': localStorage.getItem('csrf-token'),
+        },
         credentials: 'include',
       });
 
