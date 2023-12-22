@@ -182,7 +182,7 @@ export const renderFormUpdate = async (id) => {
     e.stopImmediatePropagation();
     renderPopUpWindow('Требуется подтверждение', 'Вы уверены, что хотите удалить опрос? Это действие необратимо.', true, async () => {
       try {
-        const res = await api.deleteForm(id);
+        const res = await api.archiveForm(id);
         if (res.message === 'ok') {
           renderMessage('Опрос успешно удален.');
           editInProcess = false;

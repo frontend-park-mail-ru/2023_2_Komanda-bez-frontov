@@ -134,6 +134,10 @@ export const ROUTES_API = {
     url: '/forms/:id/delete',
     method: DELETE_METHOD,
   },
+  archiveForm: {
+    url: '/forms/:id/archive',
+    method: PUT_METHOD,
+  },
   updateForm: {
     url: '/forms/:id/update',
     method: PUT_METHOD,

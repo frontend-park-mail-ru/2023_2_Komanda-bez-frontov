@@ -372,6 +372,9 @@ export class API {
       if (res.status === 404) {
         return {message: '404', form: null};
       }
+      if (res.status === 403) {
+        return {message: 'У вас нет прав на просмотр этой страницы', form: null};
+      }
 
       return {message: defaultErrorMessage, form: null};
     } catch (e) {
@@ -538,6 +541,48 @@ export class API {
       }
       if (res.status === 404) {
         return {message: 'Опрос не удалось обнаружить: уже удален.'};
+      }
+
+      return {message: defaultErrorMessage};
+    } catch (e) {
+      // TODO убрать к РК4
+      console.log('Ошибка метода deleteForm:', e);
+      throw (e);
+    }
+  }
+
+  /**
+   * Функция для архивации опроса (или разархивации).
+   *
+   * @async
+   * @function
+   * @param {number} id - ID архивируемого опроса.
+   * @param {boolean} archive - если true - кладем в архив, иначе - вытаксиваем.
+   * @return {Promise<{message: string}>} Объект с информацией о статусе запроса.
+   * @throws {Error} Если произошла ошибка при запросе или обработке данных.
+   */
+  async archiveForm(id, archive = true) {
+    try {
+      const url = backendUrl + ROUTES_API.archiveForm.url.replace(':id', id.toString())
+          + (archive ? '?archive=true' : '?archive=false');
+
+      const res = await fetch(url, {
+        method: PUT_METHOD,
+        headers: {
+          'Content-Type': 'application/json',
+          'X-CSRF-Token': localStorage.getItem('csrf-token'),
+        },
+        credentials: 'include',
+      });
+
+      if (res.status === 450) {
+        return {message: 'Нет подключения к сети'};
+      }
+      if (res.ok) {
+        return {message: 'ok'};
+      }
+      if (res.status === 404) {
+        return {message: 'Опрос не удалось обнаружить.'};
       }
 
       return {message: defaultErrorMessage};
