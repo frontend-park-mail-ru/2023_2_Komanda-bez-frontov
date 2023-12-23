@@ -78,6 +78,10 @@ export const renderFormUpdate = async (id) => {
   const removedQuestionsID = [];
   removedAnswersID.length = 0;
 
+  if (formJSON.archive_when) {
+    formJSON.archive_when = formJSON.archive_when.slice(0, 10);
+  }
+
   rootElement.insertAdjacentHTML('beforeend', Handlebars.templates.update_form({form: formJSON}));
 
   const title = document.querySelector('#update-form__title');
