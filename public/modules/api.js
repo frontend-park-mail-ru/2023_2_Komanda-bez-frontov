@@ -75,22 +75,23 @@ export class API {
 
       let message = defaultErrorMessage;
 
+      const body = await res.json();
+
+      if (res.status === 200) {
+        return {message: 'ok', authorizedUser: body.data};
+      }
       if (res.status === 450) {
         return {message: 'Нет подключения к сети', authorizedUser: null};
       }
-      if (res.status === 400) {
+      if (body.data.errors[0].status === 'already logged in') {
         message = 'Невозможно выполнить вход. Завершите предыдущую сессию!';
       }
-      if (res.status === 401) {
+      if (body.data.errors[0].status === 'rpc error: code = NotFound desc = login credentials are wrong'
+            || body.data.errors[0].status === 'rpc error: code = NotFound desc = invalid username or password') {
         message = 'Неправильный логин или пароль';
       }
-      if (res.status === 200) {
-        message = 'ok';
-      }
 
-      const body = await res.json();
-
-      return {message, authorizedUser: body.data};
+      return {message, authorizedUser: null};
     } catch (e) {
       // TODO убрать к РК4
       console.log('Ошибка метода userLogin:', e);
@@ -122,13 +123,6 @@ export class API {
       }
 
       localStorage.removeItem('csrf-token');
-
-      if (res.status === 404) {
-        return {message: 'Вы не авторизованы, обновите страницу'};
-      }
-      if (res.status === 408) {
-        return {message: 'Потеряно соединение с сервером'};
-      }
 
       return {message: 'ok'};
     } catch (e) {
@@ -179,14 +173,17 @@ export class API {
       const registeredUser = body.data;
       let message = defaultErrorMessage;
 
-      if (res.status === 409) {
-        message = 'Пользователь уже существует';
-      }
-      if (res.status === 400) {
-        message = 'Невозможно зарегистрироваться. Завершите предыдущую сессию!';
-      }
       if (res.ok) {
-        message = 'ok';
+        return {message: 'ok', registeredUser};
+      }
+      if (body.data.errors[0].status === 'rpc error: code = Canceled desc = email taken') {
+        message = 'Пользователь с такой почтой уже существует';
+      }
+      if (body.data.errors[0].status === 'rpc error: code = Canceled desc = username taken') {
+        message = 'Пользователь с таким username уже существует';
+      }
+      if (body.data.errors[0].status === 'already logged in') {
+        message = 'Невозможно зарегистрироваться. Завершите предыдущую сессию!';
       }
 
       return {message, registeredUser};
@@ -235,24 +232,20 @@ export class API {
       }
 
       let message = defaultErrorMessage;
+      const body = await res.json();
 
-      if (res.status === 403) {
+      if (res.ok) {
+        const updatedUser = body.data;
+        return {message: 'ok', updatedUser};
+      }
+      if (body.data.errors[0].status === 'rpc error: code = Unknown desc = invalid password') {
         message = 'Введен неправильный пароль';
       }
-      if (res.status === 404) {
-        message = 'Пользователь не найден';
-      }
-      if (res.status === 409) {
+      if (body.data.errors[0].status ===  'rpc error: code = Unknown desc = current user differs from searched one') {
         message = 'Пользователь с такими email/username уже существует';
       }
-      if (res.ok) {
-        message = 'ok';
-      }
 
-      const body = await res.json();
-      const updatedUser = body.data;
-
-      return {message, updatedUser};
+      return {message, updatedUser: null};
     } catch (e) {
       // TODO убрать к РК4
       console.log('Ошибка метода userSignup:', e);
@@ -267,16 +260,15 @@ export class API {
    * @async
    * @function
    * @param {string} authorUsername - Опционально. Username автора
+   * @param {boolean} archive - Опционально. Возвращает только фоормы из архива, если true
    * @return {Promise<{forms: ( null | [] )}>} Объект с массивом с опросами.
    * @throws {Error} Если произошла ошибка при запросе или обработке данных.
    */
-  async getForms(authorUsername = '') {
+  async getForms(authorUsername = '', archive = false) {
     try {
       let url = backendUrl + ROUTES_API.forms.url;
-      if (authorUsername !== '') {
-        const query = `?author=${authorUsername}`;
-        url += query;
-      }
+      const query = `?author=${authorUsername}&archive=${archive}`;
+      url += query;
 
       const res = await fetch(url, {
         method: GET_METHOD,
@@ -310,13 +302,14 @@ export class API {
    * @async
    * @function
    * @param {string} title - название искомого опроса
+   * @param {boolean} archive - Опционально. Возвращает только фоормы из архива, если true
    * @return {Promise<{forms: ( null | [] )}>} Объект с массивом с опросами.
    * @throws {Error} Если произошла ошибка при запросе или обработке данных.
    */
-  async getFormsByTitle(title = '') {
+  async getFormsByTitle(title = '', archive = false) {
     try {
       let url = backendUrl + ROUTES_API.searchForms.url;
-      const query = `?title=${title}`;
+      const query = `?title=${title}&archive=${archive}`;
       url += query;
 
       const res = await fetch(url, {
@@ -362,18 +355,18 @@ export class API {
       if (res.status === 450) {
         return {message: 'Нет подключения к сети', form: null};
       }
+      if (res.status === 404) {
+        return {message: '404', form: null};
+      }
+      if (res.status === 403) {
+        return {message: 'У вас нет прав на просмотр этой страницы', form: null};
+      }
 
       const body = await res.json();
 
       if (res.ok) {
         const form = body.data;
         return {message: 'ok', form};
-      }
-      if (res.status === 404) {
-        return {message: '404', form: null};
-      }
-      if (res.status === 403) {
-        return {message: 'У вас нет прав на просмотр этой страницы', form: null};
       }
 
       return {message: defaultErrorMessage, form: null};
@@ -451,9 +444,6 @@ export class API {
         const form = body.data;
         return {message: 'ok', form};
       }
-      if (res.status === 408) {
-        return {message: 'Потеряно соединение с сервером', form: null};
-      }
 
       return {message: defaultErrorMessage, form: null};
     } catch (e) {
@@ -496,9 +486,6 @@ export class API {
         const form = body.data;
         return {message: 'ok', form};
       }
-      if (res.status === 408) {
-        return {message: 'Потеряно соединение с сервером', form: null};
-      }
 
       return {message: defaultErrorMessage, form: null};
     } catch (e) {
@@ -535,9 +522,6 @@ export class API {
       }
       if (res.ok) {
         return {message: 'ok'};
-      }
-      if (res.status === 408) {
-        return {message: 'Потеряно соединение с сервером'};
       }
       if (res.status === 404) {
         return {message: 'Опрос не удалось обнаружить: уже удален.'};
@@ -582,7 +566,10 @@ export class API {
         return {message: 'ok'};
       }
       if (res.status === 404) {
-        return {message: 'Опрос не удалось обнаружить.'};
+        return {message: 'Опрос не удалось обнаружить'};
+      }
+      if (res.status === 403) {
+        return {message: 'У вас нет прав на редактирование этого опроса'};
       }
 
       return {message: defaultErrorMessage};
@@ -623,6 +610,9 @@ export class API {
       if (res.status === 404) {
         return {message: '404', formResults: null};
       }
+      if (res.status === 403) {
+        return {message: 'У вас нет прав на просмотр этой страницы', formResults: null};
+      }
 
       return {message: defaultErrorMessage, formResults: null};
     } catch (e) {
@@ -660,11 +650,13 @@ export class API {
         return {message: 'ok'};
       }
 
-      if (res.status === 400) {
-        return {message: 'Введены не валидные данные', form: null};
+      const body = await res.json();
+
+      if (body.data.errors[0].status === 'rpc error: code = Unknown desc = error validating answer: answer to non-existent question was given') {
+        return {message: 'Введены невалидные данные', form: null};
       }
 
-      if (res.status === 401) {
+      if (res.status === 400) {
         return {message: 'Пользователь не авторизирован для прохождения опроса', form: null};
       }
 

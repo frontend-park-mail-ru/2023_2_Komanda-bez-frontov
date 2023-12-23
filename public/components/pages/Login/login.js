@@ -55,7 +55,7 @@ export const renderLogin = async () => {
       const api = new API();
       const res = await api.userLogin(email.value, password.value);
       if (res.message !== 'ok') {
-        renderMessage("Неправильные почта и/или пароль", true);
+        renderMessage(res.message, true);
         return;
       }
 
