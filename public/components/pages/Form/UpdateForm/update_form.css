@@ -94,7 +94,7 @@
   }
   .update-form .button-container button {
     width: 200px;
-    margin-bottom: 4px;
+    font-size: 14px;
   }
   .update-form__title-input {
     font-size: 24px;

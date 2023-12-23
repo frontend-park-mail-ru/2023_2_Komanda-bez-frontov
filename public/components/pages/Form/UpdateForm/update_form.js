@@ -179,29 +179,6 @@ export const renderFormUpdate = async (id) => {
     cQuestions = document.querySelectorAll('.update-question');
   });
 
-  const deleteForm = document.querySelector('#delete-button');
-  deleteForm.addEventListener('click', (e) => {
-    e.stopImmediatePropagation();
-    renderPopUpWindow('Требуется подтверждение', 'Вы уверены, что хотите удалить опрос? Это действие необратимо.', true, async () => {
-      try {
-        const res = await api.archiveForm(id);
-        if (res.message === 'ok') {
-          renderMessage('Опрос успешно удален.');
-          editInProcess = false;
-          goToPage(ROUTES.forms);
-          closePopUpWindow();
-          return;
-        }
-        renderMessage(res.message, true);
-      } catch (e) {
-        renderMessage(defaultFetchErrorMessage, true);
-        closePopUpWindow();
-        return;
-      }
-      closePopUpWindow();
-    });
-  });
-
   const updateForm = document.querySelector('#update-button');
   updateForm.addEventListener('click', async () => {
     const updatedForm = formUpdatePageParser();

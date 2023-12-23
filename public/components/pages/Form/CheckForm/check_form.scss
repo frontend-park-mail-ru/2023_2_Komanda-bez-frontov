@@ -5,8 +5,13 @@
   .button-container {
     gap: 6px;
 
+    button {
+      padding: 8px;
+      font-size: 14px;
+    }
+
     #create-link-button {
-      padding: 6px;
+      padding: 8px;
       display: flex;
       justify-content: center;
       gap: 5px;
@@ -107,6 +112,7 @@
       button {
         padding: 12px;
         width: 160px;
+        font-size: 13px;
       }
 
     }

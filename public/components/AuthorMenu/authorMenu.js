@@ -83,7 +83,7 @@ export const renderAuthorMenu = (id, archive = false) => {
   } else {
     archiveButton.addEventListener('click', (e) => {
       e.stopImmediatePropagation();
-      renderPopUpWindow('Перемещение в архив', 'Опрос будет невозможно пройти, пока он в архиве. Вы можете восстановить его в любой момент', true, async () => {
+      renderPopUpWindow('Перемещение в архив', 'Опрос будет невозможно пройти, пока он в архиве. Вы можете восстановить его в любой момент', false, async () => {
         try {
           const res = await api.archiveForm(id, true);
           if (res.message === 'ok') {
