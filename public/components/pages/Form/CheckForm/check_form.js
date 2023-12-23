@@ -37,8 +37,6 @@ export const renderForm = async (id) => {
   }
 
   const rootElement = document.querySelector('#root');
-  rootElement.innerHTML = '';
-  renderAuthorMenu(id);
 
   let formJSON;
   try {
@@ -60,9 +58,9 @@ export const renderForm = async (id) => {
     }
   }
 
-  if (!STORAGE.user || STORAGE.user.id !== formJSON.author.id) {
-    rootElement.innerHTML = '';
-  } else {
+  rootElement.innerHTML = '';
+
+  if (STORAGE.user && STORAGE.user.id === formJSON.author.id) {
     renderAuthorMenu(id, formJSON.is_archived);
     const menuCheckButton = document.querySelector('#author-menu-check-button');
     menuCheckButton.classList.add('secondary-button');
@@ -73,6 +71,17 @@ export const renderForm = async (id) => {
 
   if (STORAGE.user && !formJSON.anonymous) {
     document.querySelector('.check-form__anonymous-warning-container').classList.add('display-none');
+    if (formJSON.archive_when && STORAGE.user.id === formJSON.author.id) {
+      const archiveLabel = document.querySelector('.form__archive-warning');
+      const date = new Date(formJSON.archive_when);
+      const options = {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+      };
+      formJSON.archive_when= date.toLocaleDateString('ru', options);
+      archiveLabel.innerHTML += formJSON.archive_when;
+    }
   }
 
   const updateSubmitButton = document.querySelector('#update-submit-button');

@@ -40,7 +40,6 @@ export class API {
 
       return {isAuthorized, authorizedUser};
     } catch (e) {
-      // TODO убрать к РК4
       console.log('Ошибка метода isAuth:', e);
       throw (e);
     }
@@ -93,7 +92,6 @@ export class API {
 
       return {message, authorizedUser: null};
     } catch (e) {
-      // TODO убрать к РК4
       console.log('Ошибка метода userLogin:', e);
       throw (e);
     }
@@ -126,7 +124,6 @@ export class API {
 
       return {message: 'ok'};
     } catch (e) {
-      // TODO убрать к РК4
       console.log('Ошибка метода userLogout:', e);
       throw (e);
     }
@@ -188,7 +185,6 @@ export class API {
 
       return {message, registeredUser};
     } catch (e) {
-      // TODO убрать к РК4
       console.log('Ошибка метода userSignup:', e);
       throw (e);
     }
@@ -247,7 +243,6 @@ export class API {
 
       return {message, updatedUser: null};
     } catch (e) {
-      // TODO убрать к РК4
       console.log('Ошибка метода userSignup:', e);
       throw (e);
     }
@@ -287,7 +282,6 @@ export class API {
 
       return {message: defaultErrorMessage, forms: null};
     } catch (e) {
-      // TODO убрать к РК4
       console.log('Ошибка метода getForms:', e);
       throw (e);
     }
@@ -329,7 +323,6 @@ export class API {
 
       return {message: defaultErrorMessage, forms: null};
     } catch (e) {
-      // TODO убрать к РК4
       console.log('Ошибка метода getFormsByTitle:', e);
       throw (e);
     }
@@ -371,7 +364,6 @@ export class API {
 
       return {message: defaultErrorMessage, form: null};
     } catch (e) {
-      // TODO убрать к РК4
       console.log('Ошибка метода getForm:', e);
       throw (e);
     }
@@ -405,7 +397,6 @@ export class API {
 
       return {message: defaultErrorMessage, avatar: null};
     } catch (e) {
-      // TODO убрать к РК4
       console.log('Ошибка метода getForm:', e);
       throw (e);
     }
@@ -447,7 +438,6 @@ export class API {
 
       return {message: defaultErrorMessage, form: null};
     } catch (e) {
-      // TODO убрать к РК4
       console.log('Ошибка метода saveForm:', e);
       throw (e);
     }
@@ -489,7 +479,6 @@ export class API {
 
       return {message: defaultErrorMessage, form: null};
     } catch (e) {
-      // TODO убрать к РК4
       console.log('Ошибка метода updateForm:', e);
       throw (e);
     }
@@ -529,7 +518,6 @@ export class API {
 
       return {message: defaultErrorMessage};
     } catch (e) {
-      // TODO убрать к РК4
       console.log('Ошибка метода deleteForm:', e);
       throw (e);
     }
@@ -574,7 +562,6 @@ export class API {
 
       return {message: defaultErrorMessage};
     } catch (e) {
-      // TODO убрать к РК4
       console.log('Ошибка метода deleteForm:', e);
       throw (e);
     }
@@ -616,7 +603,6 @@ export class API {
 
       return {message: defaultErrorMessage, formResults: null};
     } catch (e) {
-      // TODO убрать к РК4
       console.log('Ошибка метода getFormResultsByID:', e);
       throw (e);
     }
@@ -666,7 +652,6 @@ export class API {
 
       return {message: defaultErrorMessage, form: null};
     } catch (e) {
-      // TODO убрать к РК4
       console.log('Ошибка метода passageForm:', e);
       throw (e);
     }

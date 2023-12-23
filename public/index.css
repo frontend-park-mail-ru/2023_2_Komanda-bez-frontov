@@ -2001,6 +2001,9 @@ input {
   border-radius: 8px;
   border: 1px solid rgba(0, 0, 0, 0.1);
 }
+.update-form__max-passage-container p {
+  margin-top: 6px;
+}
 
 .update-form__input-error {
   background-color: #fdc6c6 !important;

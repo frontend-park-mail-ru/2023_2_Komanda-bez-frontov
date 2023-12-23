@@ -24,6 +24,13 @@
                 <input class="update-form_max-passage__input" id="update-form__max-passage"
                        type="number" min="0" placeholder="Без ограничений" value="{{form.passage_max}}">
             </div>
+            <div class="update-form__max-passage-container">
+                <label>Дата архивации: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                <input class="update-form_max-passage__input" id="update-form-archive-time"
+                       type="date" value="{{form.archive_when}}">
+                <p class="check-form__anonymous-warning">Вы можете задать дату, когда опрос автоматически перейдет в архив.
+                    Оставьте поле пустым, чтобы опрос оставался активным</p>
+            </div>
         </div>
         <div class="update-form__questions-container" id="check-form__questions-container"></div>
         <button class="update-form_add-question-button" type="submit" id="add-button">+</button>

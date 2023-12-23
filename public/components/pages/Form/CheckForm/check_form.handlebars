@@ -8,6 +8,12 @@
                     Это архивированный опрос. Просмотр доступен только вам
                 </p>
             {{/ifEquals}}
+            {{#ifEquals form.is_archived false}}{{#if ../form.archive_when}}
+                <p class="form__archive-warning">
+                    <span class="material-symbols-outlined">archive</span>
+                    Этот опрос автоматически переместится в архив
+                </p>
+            {{/if}}{{/ifEquals}}
             <p class="check-form__description-text" id="check-form__description-text">{{form.description}}</p>
             <div class="check-form__anonymous-warning-container">
                 {{#ifEquals form.anonymous true}}

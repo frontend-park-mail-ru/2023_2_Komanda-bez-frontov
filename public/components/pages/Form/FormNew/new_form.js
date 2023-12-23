@@ -165,6 +165,10 @@ export const formUpdatePageParser = () => {
   // Флаг того, что не все данные введены
   let flag = false;
   let flagRepeation = false;
+
+  const currentDate = new Date();
+  const inputDate = new Date(document.querySelector('#update-form-archive-time').value + 'T00:00:00Z');
+
   const form = {
     title: document.querySelector('#update-form__title').value,
     description: document.querySelector('#update-form__description-textarea').value,
@@ -172,6 +176,9 @@ export const formUpdatePageParser = () => {
     questions: [],
     passage_max: document.querySelector('#update-form__max-passage').value ?
         Number(document.querySelector('#update-form__max-passage').value) : -1,
+    archive_when: currentDate <= inputDate ?
+        document.querySelector('#update-form-archive-time').value + 'T00:00:00Z' : null,
+    is_archived: currentDate >= inputDate,
   };
   if (!form.title) {
     const titleInput = document.querySelector('#update-form__title');

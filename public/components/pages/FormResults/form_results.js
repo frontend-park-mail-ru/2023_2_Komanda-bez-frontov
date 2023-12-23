@@ -33,8 +33,6 @@ export const renderResultsForm = async (id) => {
   }
 
   const rootElement = document.querySelector('#root');
-  rootElement.innerHTML = '';
-  renderAuthorMenu(id);
 
   let formJSON;
   try {
@@ -54,8 +52,8 @@ export const renderResultsForm = async (id) => {
     return;
   }
 
+  rootElement.innerHTML = '';
   if (STORAGE.user.id !== formJSON.author.id) {
-    rootElement.innerHTML = '';
     renderMessage('У вас нет прав на просмотр результатов этого опроса.', true);
     return;
   } else {

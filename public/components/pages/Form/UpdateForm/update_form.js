@@ -45,8 +45,6 @@ export const renderFormUpdate = async (id) => {
   }
 
   const rootElement = document.querySelector('#root');
-  rootElement.innerHTML = '';
-  renderAuthorMenu(id);
 
   let formJSON;
   try {
@@ -66,6 +64,7 @@ export const renderFormUpdate = async (id) => {
     return;
   }
 
+  rootElement.innerHTML = '';
   if (STORAGE.user.id !== formJSON.author.id) {
     renderMessage('У вас нет прав на редактирование этого опроса.', true);
     return;
@@ -116,6 +115,15 @@ export const renderFormUpdate = async (id) => {
       return;
     }
     limitInput.value = Math.floor(limitInput.value);
+  });
+
+  const archiveTimeInput = document.querySelector('#update-form-archive-time');
+  archiveTimeInput.addEventListener('change', () => {
+    const currentDate = new Date();
+    const inputDate = new Date(archiveTimeInput.value + 'T00:00:00Z');
+    if (inputDate <= currentDate) {
+      archiveTimeInput.value = `${currentDate.getFullYear()}-${currentDate.getMonth()+1}-${currentDate.getDate()}`;
+    }
   });
 
   const questions = document.querySelector('#check-form__questions-container');
