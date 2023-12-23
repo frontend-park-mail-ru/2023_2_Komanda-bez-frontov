@@ -44,11 +44,12 @@ export const renderProfileMenu = () => {
   //     document.body.removeEventListener("click", removeProfileMenu)
   //     goToPage(ROUTES.history);
   // });
-  // const settingsButton = document.querySelector("#navbar-menu-settings-button")
-  // settingsButton.addEventListener("click", (e) => {
-  //     document.body.removeEventListener("click", removeProfileMenu)
-  //     goToPage(ROUTES.settings);
-  // });
+  const archiveButton = document.querySelector("#navbar-menu-archive-button")
+  archiveButton.addEventListener("click", (e) => {
+    document.body.removeEventListener("click", removeProfileMenu);
+    navbar();
+    goToPage(ROUTES.archive);
+  });
 
   const logoutButton = document.querySelector('#navbar-menu-logout-button');
   logoutButton.addEventListener('click', () => {

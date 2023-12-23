@@ -47,9 +47,6 @@ export const renderFormUpdate = async (id) => {
   const rootElement = document.querySelector('#root');
   rootElement.innerHTML = '';
   renderAuthorMenu(id);
-  const menuUpdateButton = document.querySelector('#author-menu-update-button');
-  menuUpdateButton.classList.add('secondary-button');
-  menuUpdateButton.classList.remove('primary-button');
 
   let formJSON;
   try {
@@ -72,6 +69,11 @@ export const renderFormUpdate = async (id) => {
   if (STORAGE.user.id !== formJSON.author.id) {
     renderMessage('У вас нет прав на редактирование этого опроса.', true);
     return;
+  } else {
+    renderAuthorMenu(id, formJSON.is_archived);
+    const menuUpdateButton = document.querySelector('#author-menu-update-button');
+    menuUpdateButton.classList.add('secondary-button');
+    menuUpdateButton.classList.remove('primary-button');
   }
 
   const removedQuestionsID = [];

@@ -35,9 +35,6 @@ export const renderResultsForm = async (id) => {
   const rootElement = document.querySelector('#root');
   rootElement.innerHTML = '';
   renderAuthorMenu(id);
-  const menuResultsButton = document.querySelector('#author-menu-results-button');
-  menuResultsButton.classList.add('secondary-button');
-  menuResultsButton.classList.remove('primary-button');
 
   let formJSON;
   try {
@@ -61,6 +58,11 @@ export const renderResultsForm = async (id) => {
     rootElement.innerHTML = '';
     renderMessage('У вас нет прав на просмотр результатов этого опроса.', true);
     return;
+  } else {
+    renderAuthorMenu(id, formJSON.is_archived);
+    const menuResultsButton = document.querySelector('#author-menu-results-button');
+    menuResultsButton.classList.add('secondary-button');
+    menuResultsButton.classList.remove('primary-button');
   }
 
   // Перевод даты создания в читабельный вид

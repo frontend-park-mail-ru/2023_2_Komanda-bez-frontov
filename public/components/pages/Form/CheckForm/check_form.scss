@@ -27,6 +27,14 @@
   box-shadow: 0 0 8px 0 rgba(34, 60, 80, 0.2);
 }
 
+.form__archive-warning {
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
 .check-form__description-text {
   font-weight: normal;
 }
@@ -47,6 +55,7 @@
 
     .check-form__title {
       font-size: 22px;
+      margin-bottom: 10px;
     }
 
     .button-container {
@@ -88,7 +97,7 @@
 
     .check-form__title {
       font-size: 20px;
-      margin-bottom: 8px;
+      margin-bottom: 10px;
     }
 
     .button-container {
@@ -115,7 +124,7 @@
   .check-form__description-text {
     font-size: 16px;
     font-weight: normal;
-    margin-bottom: 12px;
+    margin-top: 12px;
   }
 
 
@@ -123,9 +132,14 @@
     margin-top: 14px;
     font-size: 14px;
     gap: 12px;
-    .check-form__anonymous-warning-icon {
-      font-size: 10px;
-    }
+  }
+
+  .form__archive-warning {
+    font-size: 14px;
+  }
+
+  .check-form__anonymous-warning-icon {
+    font-size: 10px;
   }
 
 }
@@ -163,7 +177,7 @@
   .check-form__description-text {
     font-size: 16px;
     font-weight: normal;
-    margin-bottom: 12px;
+    margin-top: 12px;
   }
 
   .check-form__anonymous-warning-container, .check-form__max-passage-container {

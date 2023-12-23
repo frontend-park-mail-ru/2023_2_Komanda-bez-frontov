@@ -9,6 +9,7 @@ import {renderFormUpdate} from './components/pages/Form/UpdateForm/update_form.j
 import {renderFormNew} from './components/pages/Form/FormNew/new_form.js';
 import {renderUpdateProfile} from './components/pages/UpdateProfile/update_profile.js';
 import {renderResultsForm} from './components/pages/FormResults/form_results.js';
+import {renderArchive} from "./components/pages/Archive/archive.js";
 
 export const ROUTES = {
   main: {
@@ -20,6 +21,11 @@ export const ROUTES = {
     url: '/forms',
     state: 'forms',
     open: renderForms,
+  },
+  archive: {
+    url: '/archive',
+    state: 'archive',
+    open: renderArchive,
   },
   form: {
     url: '/forms/:id',

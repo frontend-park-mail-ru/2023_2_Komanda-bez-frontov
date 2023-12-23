@@ -12,9 +12,10 @@ import {editInProcess} from "../Form/UpdateForm/update_form.js";
  *
  * @async
  * @function
+ * @param {boolean} archive - Флаг показывающий, является ли список архивом.
  * @return {void}
  */
-export const renderForms = async () => {
+export const renderForms = async (archive = false) => {
   removeMessage();
 
   // Проверка авторизации
@@ -65,15 +66,20 @@ export const renderForms = async () => {
           label.textContent = 'Опросы не найдены';
           formsContainer.appendChild(label);
         } else {
-          label.textContent = 'Опросов пока нет...';
-          const createNewLink = document.createElement('a');
-          createNewLink.classList.add('forms_list_main-container_create-new-label');
-          createNewLink.textContent = 'Создайте свой первый опрос';
-          createNewLink.addEventListener('click', () => {
-            goToPage(ROUTES.formNew);
-          });
-          formsContainer.appendChild(label);
-          formsContainer.appendChild(createNewLink);
+          if (archive) {
+            label.textContent = 'У вас нет архивированных опросов';
+            formsContainer.appendChild(label);
+          } else {
+            label.textContent = 'Опросов пока нет...';
+            const createNewLink = document.createElement('a');
+            createNewLink.classList.add('forms_list_main-container_create-new-label');
+            createNewLink.textContent = 'Создайте свой первый опрос';
+            createNewLink.addEventListener('click', () => {
+              goToPage(ROUTES.formNew);
+            });
+            formsContainer.appendChild(label);
+            formsContainer.appendChild(createNewLink);
+          }
         }
       }
 
@@ -156,7 +162,7 @@ export const renderForms = async () => {
   const searchFormsRequest = async () => {
     // Получение формы
     try {
-      const res = await api.getFormsByTitle(searchInput.value);
+      const res = await api.getFormsByTitle(searchInput.value, archive);
       message = res.message;
       forms = res.forms;
       loadingScreen.classList.add('display-invisible');
@@ -173,7 +179,7 @@ export const renderForms = async () => {
   const showAllFormsRequest = async () => {
     // Получение формы
     try {
-      const res = await api.getForms(STORAGE.user.username);
+      const res = await api.getForms(STORAGE.user.username, archive);
       message = res.message;
       forms = res.forms;
       loadingScreen.classList.add('display-invisible');

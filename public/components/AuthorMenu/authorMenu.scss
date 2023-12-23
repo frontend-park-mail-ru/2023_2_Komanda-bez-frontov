@@ -60,13 +60,18 @@
 
 @media screen and (max-width: 768px) {
   .form-author-menu {
-    height: 60px;
+    height: 120px;
     width: 100%;
     background: none;
     bottom: 0;
     top: unset;
     display: flex;
+    flex-wrap: wrap;
     padding: 0;
+    div {
+      width: 100%;
+      display: flex;
+    }
     button {
       border-radius: 0;
       justify-content: center;

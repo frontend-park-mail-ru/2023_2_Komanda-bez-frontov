@@ -2,6 +2,12 @@
     <div class="check-form">
         <div class="check-form__description" id="check-form-description">
             <h3 class="check-form__title" id="check-form-title">{{form.title}}</h3>
+            {{#ifEquals form.is_archived true}}
+                <p class="form__archive-warning">
+                    <span class="material-symbols-outlined">archive</span>
+                    Это архивированный опрос. Просмотр доступен только вам
+                </p>
+            {{/ifEquals}}
             <p class="check-form__description-text" id="check-form__description-text">{{form.description}}</p>
             <div class="check-form__anonymous-warning-container">
                 {{#ifEquals form.anonymous true}}
