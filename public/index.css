@@ -199,6 +199,7 @@ input {
   background-color: #FFFFFF;
   box-shadow: 0 0 6px 0 rgba(34, 60, 80, 0.3);
   text-align: center;
+  max-width: 300px;
 }
 
 @media screen {
@@ -824,6 +825,32 @@ input {
   border-radius: 20px;
 }
 
+.forms-pass-list__item {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  background-color: #FFFFFF;
+  width: 100%;
+  border-radius: 16px;
+  padding: 10px 24px;
+  box-shadow: 0 4px 8px 0 rgba(34, 60, 80, 0.2);
+}
+.forms-pass-list__item:hover {
+  background-color: #e5e5e5;
+  cursor: pointer;
+}
+.forms-pass-list__item h3 {
+  width: 100%;
+  font-size: 20px;
+  line-height: 35px;
+}
+.forms-pass-list__item p {
+  width: 100%;
+  text-align: right;
+  margin-top: 6px;
+  font-size: 18px;
+}
+
 .forms_list-container {
   margin: 32px 80px 0 80px;
   min-width: 185px;
@@ -956,6 +983,7 @@ input {
   margin-top: 16px;
   text-align: center;
   font-size: 24px;
+  color: #7e7e7e;
   width: 100%;
 }
 
@@ -2721,7 +2749,7 @@ textarea {
   box-shadow: none;
 }
 
-p, h3 {
+p, h3, label {
   overflow: hidden;
   text-overflow: ellipsis;
 }

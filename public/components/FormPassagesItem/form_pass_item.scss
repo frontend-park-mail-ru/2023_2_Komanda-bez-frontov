@@ -1,0 +1,27 @@
+.forms-pass-list__item {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  background-color: #FFFFFF;
+  width: 100%;
+  border-radius: 16px;
+  padding: 10px 24px;
+  box-shadow: 0 4px 8px 0 rgba(34, 60, 80, 0.2);
+
+  &:hover {
+    background-color: #e5e5e5;
+    cursor: pointer;
+  }
+
+  h3 {
+    width: 100%;
+    font-size: 20px;
+    line-height: 35px;
+  }
+  p {
+    width: 100%;
+    text-align: right;
+    margin-top: 6px;
+    font-size: 18px;
+  }
+}

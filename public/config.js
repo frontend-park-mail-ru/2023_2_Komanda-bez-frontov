@@ -10,6 +10,8 @@ import {renderFormNew} from './components/pages/Form/FormNew/new_form.js';
 import {renderUpdateProfile} from './components/pages/UpdateProfile/update_profile.js';
 import {renderResultsForm} from './components/pages/FormResults/form_results.js';
 import {renderArchive} from "./components/pages/Archive/archive.js";
+import {renderPassages} from "./components/pages/MyPassages/passages.js";
+import {renderFormPassage} from "./components/pages/FormPassage/form_pass.js";
 
 export const ROUTES = {
   main: {
@@ -26,6 +28,16 @@ export const ROUTES = {
     url: '/archive',
     state: 'archive',
     open: renderArchive,
+  },
+  history: {
+    url: '/history',
+    state: 'history',
+    open: renderPassages,
+  },
+  passage: {
+    url: '/history/:id',
+    state: 'passage',
+    open: renderFormPassage,
   },
   form: {
     url: '/forms/:id',
@@ -114,6 +126,14 @@ export const ROUTES_API = {
   },
   searchForms: {
     url: '/forms/search',
+    method: GET_METHOD,
+  },
+  passages: {
+    url: '/forms/pass/list',
+    method: GET_METHOD,
+  },
+  passage: {
+    url: '/forms/pass/:id',
     method: GET_METHOD,
   },
   form: {

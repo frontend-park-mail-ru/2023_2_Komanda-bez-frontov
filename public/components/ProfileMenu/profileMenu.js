@@ -39,11 +39,12 @@ export const renderProfileMenu = () => {
     navbar();
     goToPage(ROUTES.forms);
   });
-  // const historyButton = document.querySelector("#navbar-menu-history-button")
-  // historyButton.addEventListener("click", (e) => {
-  //     document.body.removeEventListener("click", removeProfileMenu)
-  //     goToPage(ROUTES.history);
-  // });
+  const historyButton = document.querySelector("#navbar-menu-history-button")
+  historyButton.addEventListener("click", (e) => {
+    document.body.removeEventListener("click", removeProfileMenu);
+    navbar();
+    goToPage(ROUTES.history);
+  });
   const archiveButton = document.querySelector("#navbar-menu-archive-button")
   archiveButton.addEventListener("click", (e) => {
     document.body.removeEventListener("click", removeProfileMenu);

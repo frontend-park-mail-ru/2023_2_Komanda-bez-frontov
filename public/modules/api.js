@@ -290,6 +290,81 @@ export class API {
   }
 
   /**
+   * Функция для получения всех пройденных опросов.
+   *
+   * @async
+   * @function
+   * @return {Promise<{forms: ( null | [] )}>} Объект с массивом с опросами.
+   * @throws {Error} Если произошла ошибка при запросе или обработке данных.
+   */
+  async getPassageForms(authorUsername = '', archive = false) {
+    try {
+      let url = backendUrl + ROUTES_API.passages.url;
+
+      const res = await fetch(url, {
+        method: GET_METHOD,
+        credentials: 'include',
+      });
+      if (res.status === 450) {
+        return {message: 'Нет подключения к сети', forms: null};
+      }
+
+      const body = await res.json();
+
+      if (res.ok) {
+        const forms = body.data.forms;
+        return {message: 'ok', forms};
+      }
+
+      return {message: defaultErrorMessage, forms: null};
+    } catch (e) {
+      console.log('Ошибка метода getForms:', e);
+      throw (e);
+    }
+  }
+
+  /**
+   * Функция для получения прохождения опроса по его id.
+   *
+   * @async
+   * @function
+   * @param {number} id - ID.
+   * @return {Promise<{form: any | null}>} Объект с информацией об искомом опросе.
+   * @throws {Error} Если произошла ошибка при запросе или обработке данных.
+   */
+  async getFormPassageByID(id) {
+    try {
+      const url = backendUrl + ROUTES_API.passage.url.replace(':id', id.toString());
+
+      const res = await fetch(url, {
+        method: GET_METHOD,
+        credentials: 'include',
+      });
+      if (res.status === 450) {
+        return {message: 'Нет подключения к сети', form: null};
+      }
+      if (res.status === 404) {
+        return {message: '404', form: null};
+      }
+      if (res.status === 403) {
+        return {message: 'У вас нет прав на просмотр этой страницы', form: null};
+      }
+
+      const body = await res.json();
+
+      if (res.ok) {
+        const form = body.data;
+        return {message: 'ok', form};
+      }
+
+      return {message: defaultErrorMessage, form: null};
+    } catch (e) {
+      console.log('Ошибка метода getForm:', e);
+      throw (e);
+    }
+  }
+
+  /**
    * Функция для получения списка опросов по искомому названию.
    * Возращает список всех созданных текущим пользователем опросов в порядке, где на первом месте стоит
    * опрос с самым похожим названием на искомое, и так далее.

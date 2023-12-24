@@ -84,6 +84,11 @@ export const renderForm = async (id) => {
     }
   }
 
+  if (!STORAGE.user || STORAGE.user.id !== formJSON.author.id) {
+    const warning = document.querySelector('.form__archive-warning');
+    warning.remove();
+  }
+
   const updateSubmitButton = document.querySelector('#update-submit-button');
   if (formJSON.anonymous || formJSON.passage_max === -1) {
     const passagesMaxContainer = document.querySelector('.check-form__max-passage-container');

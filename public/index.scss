@@ -6,6 +6,7 @@
 @import './components/pages/Profile/profile';
 @import './components/pages/UpdateProfile/update_profile';
 @import './components/FormsItem/forms_item';
+@import './components/FormPassagesItem/form_pass_item';
 @import './components/pages/MyForms/forms';
 @import './components/Question/CheckQuestion/check_question';
 @import './components/Question/ResultsQuestion/results_question';
@@ -46,7 +47,7 @@ textarea {
   box-shadow: none;
 }
 
-p, h3 {
+p, h3, label {
   overflow: hidden;
   text-overflow: ellipsis;
 }

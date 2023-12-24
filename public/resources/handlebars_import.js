@@ -6,6 +6,7 @@ import '../components/PopUpWindow/popup_window.precompiled.js';
 import '../components/pages/Profile/profile.precompiled.js';
 import '../components/pages/MyForms/forms.precompiled.js';
 import '../components/FormsItem/forms_item.precompiled.js';
+import '../components/FormPassagesItem/form_pass_item.precompiled.js';
 import '../components/pages/Form/CheckForm/check_form.precompiled.js';
 import '../components/pages/Form/UpdateForm/update_form.precompiled.js';
 import '../components/pages/FormResults/form_results.precompiled.js';

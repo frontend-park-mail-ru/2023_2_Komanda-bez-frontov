@@ -103,22 +103,28 @@ export const initialRouter = async () => {
       goToPage(ROUTES.main);
       break;
     case '/profile':
-      goToPage(ROUTES.profile, 0, true);
+      goToPage(ROUTES.profile);
       break;
     case '/profile/update':
       goToPage(ROUTES.updateProfile);
       break;
     case '/forms':
-      goToPage(ROUTES.forms, 0, true);
+      goToPage(ROUTES.forms);
       break;
     case '/archive':
-      goToPage(ROUTES.archive, 0, true);
+      goToPage(ROUTES.archive);
+      break;
+    case '/history':
+      goToPage(ROUTES.history);
+      break;
+    case '/history/:id':
+      goToPage(ROUTES.passage, id);
       break;
     case '/forms/new':
       goToPage(ROUTES.formNew);
       break;
     case '/forms/:id':
-      goToPage(ROUTES.form, id, true);
+      goToPage(ROUTES.form, id);
       break;
     case '/forms/:id/edit':
       goToPage(ROUTES.formUpdate, id);
@@ -160,6 +166,12 @@ window.onpopstate = (event) => {
       break;
     case 'archive':
       goToPage(ROUTES.archive, '', true);
+      break;
+    case 'history':
+      goToPage(ROUTES.history, '', true);
+      break;
+    case 'passage':
+      goToPage(ROUTES.passage, parseUrl(window.location.pathname).id, true);
       break;
     case 'form':
       goToPage(ROUTES.form, parseUrl(window.location.pathname).id, true);
