@@ -1,4 +1,4 @@
-import {API} from '../../../../modules/api.js';
+import {API, defaultFetchErrorMessage} from '../../../../modules/api.js';
 import {render404} from '../../../404/404.js';
 import {removeMessage, renderMessage} from '../../../Message/message.js';
 import {STORAGE} from '../../../../modules/storage.js';
@@ -17,6 +17,7 @@ export let editInProcess = false;
 export const setEditInProcess = (bool) => {
   editInProcess = bool;
 }
+let cQuestions = [];
 
 /**
  * Функция для рендеринга страницы редактирования опроса по его id.
@@ -44,12 +45,6 @@ export const renderFormUpdate = async (id) => {
   }
 
   const rootElement = document.querySelector('#root');
-  rootElement.innerHTML = '';
-  renderAuthorMenu(id);
-  const menuUpdateButton = document.querySelector('#author-menu-update-button');
-  menuUpdateButton.disabled = true;
-  menuUpdateButton.classList.add('secondary-button');
-  menuUpdateButton.classList.remove('primary-button');
 
   let formJSON;
   try {
@@ -65,17 +60,27 @@ export const renderFormUpdate = async (id) => {
     }
     formJSON = res.form;
   } catch (e) {
-    renderMessage('Ошибка сервера. Перезагрузите страницу', true);
+    renderMessage(defaultFetchErrorMessage, true);
     return;
   }
 
+  rootElement.innerHTML = '';
   if (STORAGE.user.id !== formJSON.author.id) {
     renderMessage('У вас нет прав на редактирование этого опроса.', true);
     return;
+  } else {
+    renderAuthorMenu(id, formJSON.is_archived);
+    const menuUpdateButton = document.querySelector('#author-menu-update-button');
+    menuUpdateButton.classList.add('secondary-button');
+    menuUpdateButton.classList.remove('primary-button');
   }
 
   const removedQuestionsID = [];
   removedAnswersID.length = 0;
+
+  if (formJSON.archive_when) {
+    formJSON.archive_when = formJSON.archive_when.slice(0, 10);
+  }
 
   rootElement.insertAdjacentHTML('beforeend', Handlebars.templates.update_form({form: formJSON}));
 
@@ -85,6 +90,45 @@ export const renderFormUpdate = async (id) => {
 
   addValidationToFormInput(title, textValidation, errorLabel);
   addValidationToFormInput(description, textValidation, errorLabel);
+
+  const anonymousCheckbox = document.querySelector('#update-form-anonymous-checkbox');
+  const limitContainer = document.querySelector('.update-form__max-passage-container');
+  const limitInput = document.querySelector('#update-form__max-passage');
+
+  if (anonymousCheckbox.checked) {
+    limitContainer.classList.add('display-none');
+  }
+  anonymousCheckbox.addEventListener('change', () => {
+    if (anonymousCheckbox.checked) {
+      limitContainer.classList.add('display-none');
+    } else {
+      limitContainer.classList.remove('display-none');
+    }
+  });
+
+  if (Number(limitInput.value) < 1) {
+    limitInput.value = '';
+  }
+  limitInput.addEventListener('change', () => {
+    if (Number(limitInput.value) < 1) {
+      limitInput.value = '';
+      return;
+    }
+    if (Number(limitInput.value) > 100) {
+      limitInput.value = '100';
+      return;
+    }
+    limitInput.value = Math.floor(limitInput.value);
+  });
+
+  const archiveTimeInput = document.querySelector('#update-form-archive-time');
+  archiveTimeInput.addEventListener('change', () => {
+    const currentDate = new Date();
+    const inputDate = new Date(archiveTimeInput.value + 'T00:00:00Z');
+    if (inputDate <= currentDate) {
+      archiveTimeInput.value = `${currentDate.getFullYear()}-${currentDate.getMonth()+1}-${currentDate.getDate()}`;
+    }
+  });
 
   const questions = document.querySelector('#check-form__questions-container');
   formJSON.questions.forEach((question) => {
@@ -96,8 +140,10 @@ export const renderFormUpdate = async (id) => {
         questionElement.remove();
         removedQuestionsID.push(Number(question.id));
         closePopUpWindow();
+        cQuestions = document.querySelectorAll('.update-question');
       });
     });
+    moveQuestionUpDown(questionElement);
     questions.appendChild(questionElement);
   });
 
@@ -136,32 +182,13 @@ export const renderFormUpdate = async (id) => {
       renderPopUpWindow('Требуется подтверждение', 'Вы уверены, что хотите безвозвратно удалить вопрос?', true, () => {
         questionElement.remove();
         closePopUpWindow();
+        cQuestions = document.querySelectorAll('.update-question');
       });
     });
+    moveQuestionUpDown(questionElement);
     questions.appendChild(questionElement);
-  });
 
-  const deleteForm = document.querySelector('#delete-button');
-  deleteForm.addEventListener('click', (e) => {
-    e.stopImmediatePropagation();
-    renderPopUpWindow('Требуется подтверждение', 'Вы уверены, что хотите удалить опрос? Это действие необратимо.', true, async () => {
-      try {
-        const res = await api.deleteForm(id);
-        if (res.message === 'ok') {
-          renderMessage('Опрос успешно удален.');
-          editInProcess = false;
-          goToPage(ROUTES.forms);
-          closePopUpWindow();
-          return;
-        }
-        renderMessage(res.message, true);
-      } catch (e) {
-        renderMessage('Ошибка сервера. Перезагрузите страницу', true);
-        closePopUpWindow();
-        return;
-      }
-      closePopUpWindow();
-    });
+    cQuestions = document.querySelectorAll('.update-question');
   });
 
   const updateForm = document.querySelector('#update-button');
@@ -170,6 +197,7 @@ export const renderFormUpdate = async (id) => {
     if (!updatedForm) {
       return;
     }
+
     if (!checkInputsValidation()) {
       renderMessage('Исправлены не все данные', true);
       return;
@@ -187,9 +215,11 @@ export const renderFormUpdate = async (id) => {
       }
       renderMessage(res.message, true);
     } catch (e) {
-      renderMessage('Ошибка сервера. Перезагрузите страницу', true);
+      renderMessage(defaultFetchErrorMessage, true);
     }
   });
+
+  cQuestions = document.querySelectorAll('.update-question');
 };
 
 export const renderQuitEditingWindow = (page, id = '', redirect = false) => {
@@ -218,4 +248,59 @@ export const addValidationToFormInput = (input, validator, errorLabel) => {
       }, {once: true});
     }
   }, 1000));
+};
+
+export const validateFormInput = (input, validator, errorLabel) => {
+    const validation = validator(input.value);
+    if (validation.valid || input.value === '') {
+      errorLabel.classList.add('display-none');
+    } else {
+      errorLabel.classList.remove('display-none');
+      input.classList.add('update-form__input-error');
+      input.addEventListener('input', () => {
+        input.classList.remove('update-form__input-error');
+      }, {once: true});
+    }
+};
+
+const moveQuestionUpDown = (questionElement) => {
+  const questionContainer = document.querySelector('#check-form__questions-container');
+
+  questionElement.querySelector('#question-move-up').addEventListener('click', () => {
+    editInProcess = true;
+    const index = Array.from(cQuestions).indexOf(questionElement);
+    if (index === 0 || index === -1) {
+      return;
+    }
+    replaceTwoElements(cQuestions[index], cQuestions[index - 1]);
+  });
+
+  questionElement.querySelector('#question-move-down').addEventListener('click', () => {
+    editInProcess = true;
+    const index = Array.from(cQuestions).indexOf(questionElement);
+    if (index === cQuestions.length - 1 || index === -1) {
+      return;
+    }
+    replaceTwoElements(cQuestions[index + 1], cQuestions[index]);
+  });
+
+  const replaceTwoElements = (element1, element2) => {
+    const temp = document.createElement('div');
+    const margin = window.innerWidth >= 768 ? 24 : 16;
+
+    element1.style.transform = `translate(0, -${element2.clientHeight + margin}px)`;
+    element2.style.transform = `translate(0, ${element1.clientHeight + margin}px)`;
+
+    setTimeout(() => {
+      element1.style.transform = `none`;
+      element2.style.transform = `none`;
+
+      questionContainer.insertBefore(temp, element1);
+      questionContainer.insertBefore(element1, element2);
+      questionContainer.insertBefore(element2, temp);
+      questionContainer.removeChild(temp);
+
+      cQuestions = document.querySelectorAll('.update-question');
+    }, 1000);
+  }
 };

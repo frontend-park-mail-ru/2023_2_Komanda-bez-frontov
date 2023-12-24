@@ -1,56 +1,53 @@
-<div class="profile-title"><h3>Редактирование профиля</h3></div>
-{{#if User}}
-<div class="update-profile">
-    <div class="update-profile_main-container">
-        <div class="update-profile_main-container_img-container">
-            <img class="update-profile_main-container__picture" id="profile-page-picture" src="../../../resources/images/profile_default.png" alt="">
-            <div class="update-profile_img-container_avatar-container">
-                <label id="update-profile-avatar-button">
-                    <input class="update-profile_img-container_avatar-container__input" type="file" id="avatar" name="avatar" accept="image/*">
-                    <a>Загрузить</a>
-                </label>
-                <a id="update-profile-avatar-cancel">❌</a>
-            </div>
+<div class="profile-background"></div>
+<div class="profile">
+    <div class="profile_main-container">
+        <img class="update-profile_main-container__picture" id="profile-page-picture" src="../../../resources/images/profile_default.png" alt="">
+        <div class="update-profile_img-container_avatar-container">
+            <label id="update-profile-avatar-button">
+                <input class="update-profile_img-container_avatar-container__input" type="file" id="avatar" name="avatar" accept="image/*">
+                <a>Загрузить</a>
+            </label>
+            <span class="material-symbols-outlined" id="update-profile-avatar-cancel">delete</span>
         </div>
-        <div class="update-profile_main-container_name-container">
-            <div class="update-profile-form_container__input-container">
-                <label>Имя</label>
-                <input class="update-profile__title-input" id="update-profile_name" placeholder="Имя" value="{{User.first_name}}">
-            </div>
-            <div class="update-profile-form_container__input-container">
-                <label>Username</label>
-                <input class="update-profile__title-input" id="update-profile_username" placeholder="Username" value="{{User.username}}">
-            </div>
-            <div class="update-profile-form_container__input-container">
-                <label>Почта</label>
-                <input class="update-profile__title-input" type="email" id="update-profile_email" placeholder="Почта" value="{{User.email}}">
-            </div>
-            <div class="update-profile-form_container__input-container">
-                <label>Старый пароль</label>
-                <input class="update-profile__title-input" type="password" id="update-profile_old-password" placeholder="Старый пароль">
-                <i id="update-profile-form_container__input-show-old-button" class="update-profile-form_container__input-show-button" >
-                    <span id="update-profile-form_container__input-show-old-button-icon" class="material-symbols-outlined">visibility</span>
-                </i>
-            </div>
-            <div class="update-profile-form_container__input-container">
-                <label>Новый пароль</label>
-                <input class="update-profile__title-input" type="password" id="update-profile_new-password" placeholder="Новый пароль">
-                <i id="update-profile-form_container__input-show-button" class="update-profile-form_container__input-show-button" >
-                    <span id="update-profile-form_container__input-show-button-icon" class="material-symbols-outlined">visibility</span>
-                </i>
-            </div>
-            <div class="update-profile-form_container__input-container">
-                <label>Повторите пароль</label>
-                <input class="update-profile__title-input" type="password" id="update-profile_repeat-password" placeholder="Повторите пароль">
-                <i id="update-profile-form_container__input-show-rep-button" class="update-profile-form_container__input-show-button" >
-                    <span id="update-profile-form_container__input-show-rep-button-icon" class="material-symbols-outlined">visibility</span>
-                </i>
-            </div>
+        <div class="update-profile__name-input-container">
+            <label>Имя</label>
+            <input class="update-profile_input-container__input" id="update-profile_name" placeholder="Имя" value="{{User.first_name}}">
         </div>
     </div>
-    <div class="update-profile_button-container">
-        <button class="secondary-button" id="update-profile-save-button">Сохранить</button>
-        <button class="primary-button" id="update-profile-cancel-button">Отмена</button>
+    <div class="update-profile_right-container">
+        <h3> Редактирование профиля </h3>
+        <div class="update-profile__input-container">
+            <label>Username</label>
+            <input class="update-profile_input-container__input" id="update-profile_username" placeholder="Username" value="{{User.username}}">
+        </div>
+        <div class="update-profile__input-container">
+            <label>Почта</label>
+            <input class="update-profile_input-container__input" type="email" id="update-profile_email" placeholder="Почта" value="{{User.email}}">
+        </div>
+        <div class="update-profile__input-container">
+            <label>Старый пароль</label>
+            <input class="update-profile_input-container__input" type="password" id="update-profile_old-password" placeholder="Старый пароль">
+            <i id="update-profile-form_container__input-show-old-button" class="update-profile-form_container__input-show-button" >
+                <span id="update-profile-form_container__input-show-old-button-icon" class="material-symbols-outlined">visibility</span>
+            </i>
+        </div>
+        <div class="update-profile__input-container">
+            <label>Новый пароль</label>
+            <input class="update-profile_input-container__input" type="password" id="update-profile_new-password" placeholder="Новый пароль">
+            <i id="update-profile-form_container__input-show-button" class="update-profile-form_container__input-show-button" >
+                <span id="update-profile-form_container__input-show-button-icon" class="material-symbols-outlined">visibility</span>
+            </i>
+        </div>
+        <div class="update-profile__input-container">
+            <label></label>
+            <input class="update-profile_input-container__input" type="password" id="update-profile_repeat-password" placeholder="Повторите пароль">
+            <i id="update-profile-form_container__input-show-rep-button" class="update-profile-form_container__input-show-button" >
+                <span id="update-profile-form_container__input-show-rep-button-icon" class="material-symbols-outlined">visibility</span>
+            </i>
+        </div>
+        <div class="button-container">
+            <button class="secondary-button" id="update-profile-save-button">Сохранить</button>
+            <button class="primary-button" id="update-profile-cancel-button">Отмена</button>
+        </div>
     </div>
 </div>
-{{/if}}

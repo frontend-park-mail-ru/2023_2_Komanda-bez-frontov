@@ -1,34 +1,26 @@
-{{#ifEquals type 1}}
-    <div class="update-question__answers">
-        <h3 class="update-question__answers-title">Ответы</h3>
-        <p class="check-question__required-title display-none" id="update-answers-validation-error">Текст должен состоять из русских или английских слов, цифр и знаков препинания</p>
+<div class="update-question__answers">
+    <p class="check-question__required-title display-none" id="update-answers-validation-error">Текст должен состоять из русских или английских слов, цифр и знаков препинания</p>
+    {{#ifEquals type 1}}
         {{#each ../answers}}
             <div class="update-question__answers-item">
                 <input class="update-question__answers-item-radio" id="update-question__answers-item-radio" type="radio" disabled></input>
                 <input class="update-question__answers-item-input" id="{{id}}" placeholder="Новый ответ" type="text" value="{{text}}" maxlength="64"></input>
-                <a class="update-question__answers-item-delete" id="{{id}}">❌</a>
+                <span class="material-symbols-outlined update-question__answers-item-delete" id="{{id}}">delete</span>
             </div>
         {{/each}}
-    </div>
-{{/ifEquals}}
-{{#ifEquals type 2}}
-    <div class="update-question__answers">
-        <h3 class="update-question__answers-title">Ответы</h3>
-        <p class="check-question__required-title display-none" id="update-answers-validation-error">Текст должен состоять из русских или английских слов, цифр и знаков препинания</p>
+    {{/ifEquals}}
+    {{#ifEquals type 2}}
         {{#each ../answers}}
             <div class="update-question__answers-item">
                 <input class="update-question__answers-item-checkbox" id="update-question__answers-item-checkbox" type="checkbox" disabled></input>
                 <input class="update-question__answers-item-input" id="{{id}}" placeholder="Новый ответ" type="text" value="{{text}}" maxlength="64"></input>
-                <a class="update-question__answers-item-delete" id="{{id}}">❌</a>
+                <span class="material-symbols-outlined update-question__answers-item-delete" id="{{id}}">delete</span>
             </div>
         {{/each}}
-    </div>
-{{/ifEquals}}
-{{#ifEquals type 3}}
-    <div class="update-question__answers">
-        <h3 class="update-question__answers-title">Ответ</h3>
+    {{/ifEquals}}
+    {{#ifEquals type 3}}
         <div class="update-question__answers-item">
-            <textarea class="update-question__answers-item-textarea" id="{{answers.id}}" placeholder="Поле для ответа" maxlength="512" disabled></textarea>
+<!--            <textarea class="update-question__answers-item-textarea" id="{{answers.id}}" placeholder="Поле для ответа" maxlength="512" disabled></textarea>-->
         </div>
-    </div>
-{{/ifEquals}}
+    {{/ifEquals}}
+</div>

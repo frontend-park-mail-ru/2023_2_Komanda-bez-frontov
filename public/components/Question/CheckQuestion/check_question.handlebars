@@ -1,13 +1,9 @@
 {{#if question}}
     <div class="check-question">
         <h3 class="check-question__description-title">{{question.title}}</h3>
-        {{#ifEquals question.required true}}
-            <p class="check-question__required-title">Это обязательный вопрос</p>
-        {{/ifEquals}}
         <p class="check-question__description-text">{{question.description}}</p>
         <div class="check-question__answer" id="question-answer">
             {{#ifEquals question.type 1}}
-                <h3 class="check-question__answer-title">Выберите один вариант из нижеперечисленных:</h3>
                 <div class="check-question__answers" id="check-question_{{../question.id}}__answers">
                     {{#each ../question.answers}}
                         <div class="check-question__answer-item">
@@ -18,26 +14,37 @@
                 </div>
             {{/ifEquals}}
             {{#ifEquals question.type 2}}
-                <h3 class="check-question__answer-title">Выберите один или несколько вариантов из нижеперечисленных:</h3>
                 <div class="check-question__answers" id="check-question_{{../question.id}}__answers">
                     {{#each ../question.answers}}
                         <div class="check-question__answer-item">
                             <input class="check-question__answer-item-checkbox" id="check-question_{{../../question.id}}_answer-item_{{id}}" type="checkbox">
-                            <label class="check-question__answer-item-label" for="check-question_{{../../question.id}}_answer-item-{{id}}">{{text}}</label>
+                            <label class="check-question__answer-item-label" for="check-question_{{../../question.id}}_answer-item_{{id}}">{{text}}</label>
                         </div>
                     {{/each}}
                 </div>
             {{/ifEquals}}
             {{#ifEquals question.type 3}}
-                <h3 class="check-question__answer-title">Дайте ответ в формате текста:</h3>
                 <p class="check-question__required-title display-none" id="check-question-validation-error">Текст должен состоять из русских или английских слов, цифр и знаков препинания</p>
                 <div class="check-question__answer-item">
-                    <textarea class="check-question__answers-item-textarea" id="check-question_{{../question.id}}_answers-item" maxlength="512"></textarea>
+                    <textarea class="check-question__answers-item-textarea" id="check-question_{{../question.id}}_answers-item" placeholder="Развернутый ответ" maxlength="512"></textarea>
                 </div>
             {{/ifEquals}}
         </div>
         <div class="button-container">
-            <button class="primary-button" id="check-question__clear-button">Отменить выбор</button>
+                <button class="primary-button check-question__clear-button" id="check-question__clear-button">
+                    {{#ifEquals question.type 1}}
+                        Отменить выбор
+                    {{/ifEquals}}
+                    {{#ifEquals question.type 2}}
+                        Отменить выбор
+                    {{/ifEquals}}
+                    {{#ifEquals question.type 3}}
+                        Очистить ввод
+                    {{/ifEquals}}
+                </button>
+            {{#ifEquals question.required true}}
+                <p class="check-question__required-title">Это обязательный вопрос</p>
+            {{/ifEquals}}
         </div>
     </div>
 {{/if}}

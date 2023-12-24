@@ -5,10 +5,11 @@
 @import './components/PopUpWindow/popup_window';
 @import './components/pages/Profile/profile';
 @import './components/pages/UpdateProfile/update_profile';
-@import 'components/pages/MyForms/forms';
 @import './components/FormsItem/forms_item';
+@import './components/pages/MyForms/forms';
 @import './components/Question/CheckQuestion/check_question';
 @import './components/Question/ResultsQuestion/results_question';
+@import './components/Question/ResultsAnswers/diagram';
 @import './components/Question/UpdateQuestion/update_question';
 @import './components/Question/UpdateAnswer/update_answer';
 @import './components/pages/Form/CheckForm/check_form';
@@ -22,7 +23,8 @@
 * {
   padding: 0;
   margin: 0;
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Montserrat', sans-serif;
+
 }
 
 html {
@@ -58,40 +60,64 @@ p, h3 {
 
 #navbar {
   background-color: #4B357A;
-  height: 64px;
+  height: 62px;
 }
 
-#message-box, #root{
+#root{
   position: relative;
+}
+
+#message-box {
+  position: fixed;
+  z-index: 10;
+  width: 100%;
+}
+
+body {
+  background-color: #F1F1F1;
 }
 
 @media screen {
   #message-box, #root{
-    top: 64px;
+    top: 62px;
+  }
+
+  #root {
+    margin-top: 45px;
   }
 }
 
 @media screen and (min-width: 480px){
   #message-box, #root{
-    top: 76px;
+    top: 62px;
   }
+
   #navbar {
-    height: 76px;
+    height: 62px;
   }
 }
 
 @media screen and (min-width: 768px){
+  #message-box {
+    position: relative;
+  }
+
   #message-box, #root{
-    top: 78px;
+    top: 70px;
+  }
+
+  #root {
+    margin-top: 50px;
   }
   #navbar {
-    height: 78px;
+    height: 70px;
   }
 }
 
 #footer {
   position: relative;
-  height: 48px;
+  height: 100px;
   top: 80px;
   z-index: -1;
 }
+

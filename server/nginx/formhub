@@ -29,6 +29,6 @@ server {
 
     location / {
         try_files $uri /index.html;
-        expires 2d;
+        expires 7d;
     }
 }

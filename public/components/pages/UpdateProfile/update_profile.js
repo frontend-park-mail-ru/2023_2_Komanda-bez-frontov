@@ -9,7 +9,7 @@ import {
   passwordValidation,
   usernameValidation,
 } from '../../../modules/validation.js';
-import {API} from '../../../modules/api.js';
+import {API, defaultFetchErrorMessage} from '../../../modules/api.js';
 import {toggleFunc} from "../Signup/signup.js";
 import {navbar} from "../../Navbar/navbar.js";
 import {addValidationToInput, checkInputsValidation} from "../Login/login.js";
@@ -140,12 +140,17 @@ export const renderUpdateProfile = async () => {
       }
     }
 
+    const age = 0;
+    const gender = 'u';
+
     try {
       const api = new API();
       const res = await api.updateProfile(
         firstName.value,
         username.value,
         email.value,
+        age,
+        gender,
         oldPassword.value,
         newPassword.value,
         avatar,
@@ -163,7 +168,7 @@ export const renderUpdateProfile = async () => {
       goToPage(ROUTES.profile);
       renderMessage('Изменения успешно применены');
     } catch (err) {
-      renderMessage('Ошибка сервера. Перезагрузите страницу', true);
+      renderMessage(defaultFetchErrorMessage, true);
     }
   });
 

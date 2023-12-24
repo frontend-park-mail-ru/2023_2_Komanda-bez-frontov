@@ -9,6 +9,7 @@ import {renderFormUpdate} from './components/pages/Form/UpdateForm/update_form.j
 import {renderFormNew} from './components/pages/Form/FormNew/new_form.js';
 import {renderUpdateProfile} from './components/pages/UpdateProfile/update_profile.js';
 import {renderResultsForm} from './components/pages/FormResults/form_results.js';
+import {renderArchive} from "./components/pages/Archive/archive.js";
 
 export const ROUTES = {
   main: {
@@ -20,6 +21,11 @@ export const ROUTES = {
     url: '/forms',
     state: 'forms',
     open: renderForms,
+  },
+  archive: {
+    url: '/archive',
+    state: 'archive',
+    open: renderArchive,
   },
   form: {
     url: '/forms/:id',
@@ -118,6 +124,14 @@ export const ROUTES_API = {
     url: '/forms/:id/results',
     method: GET_METHOD,
   },
+  formResultsExcel: {
+    url: '/forms/:id/results/excel',
+    method: GET_METHOD,
+  },
+  formResultsCSV: {
+    url: '/forms/:id/results/csv',
+    method: GET_METHOD,
+  },
   saveForm: {
     url: '/forms/save',
     method: POST_METHOD,
@@ -125,6 +139,10 @@ export const ROUTES_API = {
   deleteForm: {
     url: '/forms/:id/delete',
     method: DELETE_METHOD,
+  },
+  archiveForm: {
+    url: '/forms/:id/archive',
+    method: PUT_METHOD,
   },
   updateForm: {
     url: '/forms/:id/update',

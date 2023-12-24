@@ -1,8 +1,14 @@
 {{#if form}}
     <div class="form-results">
-        <h3 class="form-results__title">Результаты опроса<br>{{form.title}}</h3>
         <div class="form-results__description">
-            <h3 class="form-results__description-title">Описание опроса</h3>
+            <h3 class="form-results__description-title">Результаты опроса</h3>
+            <h3 class="form-results__description-title">{{form.title}}</h3>
+            {{#ifEquals form.is_archived true}}
+                <p class="form__archive-warning">
+                    <span class="material-symbols-outlined">archive</span>
+                    Это архивированный опрос. Прохождение в данный момент приостановлено
+                </p>
+            {{/ifEquals}}
             <p class="form-results__description-text">
             Дата создания: &nbsp;&nbsp;&nbsp;<a>{{form.created_at}}</a><br>
             Количесто прохождений: &nbsp;&nbsp;&nbsp;{{form.number_of_passages}}<br>

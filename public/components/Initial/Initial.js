@@ -1,4 +1,4 @@
-import {API} from '../../modules/api.js';
+import {API, defaultFetchErrorMessage} from '../../modules/api.js';
 import {renderMessage} from '../Message/message.js';
 import {clearStorage, getAuthAvatar, STORAGE} from '../../modules/storage.js';
 import {navbar} from "../Navbar/navbar.js";
@@ -24,7 +24,7 @@ export const renderInitial = async () => {
       localStorage.removeItem('avatar');
     }
   } catch (e) {
-    renderMessage('Ошибка сервера. Перезагрузите страницу', true);
+    renderMessage(defaultFetchErrorMessage, true);
   }
 
   navbar();

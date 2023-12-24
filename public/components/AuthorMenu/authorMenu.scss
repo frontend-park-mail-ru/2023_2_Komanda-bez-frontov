@@ -1,30 +1,33 @@
 .form-author-menu {
   position: fixed;
-  z-index: 5;
+  z-index: 15;
   left: 0;
-  top: 78px;
-  width: 200px;
+  top: 71px;
+  width: 250px;
   height: 100%;
-  padding: 40px 24px;
-  background-color: rgba(127, 93, 213, 0.35);
+  padding: 45px 0;
+  background-color: #FFFFFF;
   text-align: center;
+  box-shadow: 0 4px 4px 0 rgba(34, 60, 80, 0.3);
 
   button {
+    font-size: 16px;
+    padding-left: 20px;
+    border: none;
+    border-radius: 0;
     display: flex;
-    gap: 10px;
+    gap: 15px;
     align-items: center;
+    box-shadow: none;
   }
   .primary-button {
-    margin: 5px 0;
-    font-size: 15px;
+    background-color: #FFFFFF;
     &:hover {
       opacity: 1;
       background-color: #DDDDDD;
     }
   }
   .secondary-button {
-    margin: 5px 0;
-    font-size: 15px;
     &:hover {
       opacity: 1;
       background-color: #7458b6;
@@ -57,25 +60,31 @@
 
 @media screen and (max-width: 768px) {
   .form-author-menu {
-    height: 60px;
+    height: 120px;
     width: 100%;
     background: none;
     bottom: 0;
     top: unset;
     display: flex;
+    flex-wrap: wrap;
     padding: 0;
+    div {
+      width: 100%;
+      display: flex;
+    }
     button {
       border-radius: 0;
       justify-content: center;
+      padding-left: 12px;
     }
     .secondary-button {
       margin: 0;
-      font-size: 12px;
+      font-size: 14px;
     }
     .primary-button {
       margin: 0 0 0 -1px;
       background-color: white;
-      font-size: 12px;
+      font-size: 14px;
     }
   }
   .form-author-menu__close {
@@ -84,12 +93,6 @@
   }
   #author-menu-close-button {
     display: none;
-  }
-  #author-menu-check-button {
-    border-radius: 18px 0 0 0;
-  }
-  #author-menu-link-button {
-    border-radius: 0 18px 0 0;
   }
 }
 
@@ -102,6 +105,12 @@
       }
       gap: 4px;
       flex-wrap: wrap;
+    }
+    .secondary-button {
+      font-size: 12px;
+    }
+    .primary-button {
+      font-size: 12px;
     }
   }
 }

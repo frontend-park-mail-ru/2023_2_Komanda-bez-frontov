@@ -1,18 +1,19 @@
 <nav class="navbar">
     <div class="navbar_logo" id="navbar-logo">
-        <span class="material-symbols-outlined" >description</span>
+        <img src="../../resources/images/icon.jpg" alt="">
+        <span class="material-symbols-outlined">description</span>
         <a id="navbar-logo-label">
             FormHub
         </a>
     </div>
     <div class="navbar_profile" id="navbar-profile">
     {{#if user}}
-        <img class="navbar_profile__picture" id="navbar-profile-picture" src="../../resources/images/profile_default.png" alt="">
         <a class="navbar_profile__name">{{user.first_name}}</a>
+        <img class="navbar_profile__picture" id="navbar-profile-picture" src="../../resources/images/profile_default.png" alt="">
     {{else}}
         <div class="navbar_button-container">
-            <button class="black-button" id="navbar-login-button">Войти</button>
-            <button class="primary-button" id="navbar-signup-button">Регистрация</button>
+            <button class="secondary-button" id="navbar-login-button">Войти</button>
+            <button class="outline-button" id="navbar-signup-button">Регистрация</button>
         </div>
     {{/if}}
     </div>

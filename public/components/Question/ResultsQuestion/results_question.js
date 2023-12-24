@@ -1,4 +1,20 @@
-import {TYPE_MULTIPLE_CHOICE, TYPE_SINGLE_CHOICE} from "../../pages/Form/CheckForm/check_form.js";
+import {TYPE_MULTIPLE_CHOICE, TYPE_SINGLE_CHOICE, TYPE_TEXT} from "../../pages/Form/CheckForm/check_form.js";
+
+const colors = [
+  '#337EFF', // Синий
+  '#f13e26', // Красный
+  '#FFCE33', // Желтый
+  '#20d03d', // Зеленый
+  '#8C33FF', // Фиолетовый
+  '#33ffc2', // Бирюзовый
+  '#FF33D1', // Розовый
+  '#A8A9AC', // Серый
+  '#a9ea52', // Светло-зеленый
+  '#f57c19', // Оранжевый
+  '#c45eec', // Лиловый
+  '#a14c2f', // Коричневый
+];
+const colorEmpty = '#DDDDDD';
 
 /**
  * Функция для рендеринга результата одного вопроса.
@@ -12,7 +28,14 @@ export const renderResultsQuestion = (question) => {
 
   questionElement.innerHTML = Handlebars.templates.results_question({question});
 
-  if (question.type === TYPE_SINGLE_CHOICE || question.type === TYPE_MULTIPLE_CHOICE) {
+  const container = questionElement.querySelector('#question-answers');
+  const renderHistogram = () => {
+    container.innerHTML = Handlebars.templates.histogram({question});
+
+    container.querySelector('#diagram-button').addEventListener('click', () => {
+      renderDiagram();
+    });
+
     const max_selected_times = question.answers.reduce((accum, answer) => Math.max(accum, answer.selected_times), 0);
 
     const cAnswers = questionElement.querySelectorAll('.results-question_answers_answer-item');
@@ -33,16 +56,83 @@ export const renderResultsQuestion = (question) => {
         percentageLabel.innerHTML += ` (0%)`;
       } else {
         const percentage = question.answers[index].selected_times * 100 / question.number_of_passages;
-        percentageLabel.innerHTML += ` (${Number.isInteger(percentage) ? 
+        percentageLabel.innerHTML += ` (${Number.isInteger(percentage) ?
             percentage : percentage.toFixed(2)}%)`;
       }
     });
-  } else {
-    if (question.number_of_passages === 0) {
-      const answerContainer = questionElement.querySelector('#question-answers');
-      answerContainer.innerHTML = '<br> &nbsp;&nbsp;&nbsp;Ответов пока нет...';
-      answerContainer.style.margin = '0 0 10px 0';
+  };
+
+  const renderDiagram = () => {
+    container.innerHTML = Handlebars.templates.diagram({question});
+
+    container.querySelector('#histogram-button').addEventListener('click', () => {
+      renderHistogram();
+    });
+
+    const cAnswers = questionElement.querySelectorAll('.results-question_answers_answer-item');
+    const canvas = questionElement.querySelector('.diagram__canvas');
+    const ctx = canvas.getContext('2d');
+
+    const x = canvas.width / 2;
+    const y = canvas.height / 2;
+    const radius = 90;
+    let startAngle = 0;
+    const selectedTimesAll = question.answers.reduce((acc, answer) => {
+      return acc + answer.selected_times;
+    }, 0);
+
+    if (selectedTimesAll === 0) {
+      const endAngle = Math.PI * 2;
+      ctx.beginPath();
+        ctx.arc(x, y, radius, startAngle, endAngle);
+        ctx.fillStyle = colorEmpty;
+        ctx.fill();
+      ctx.closePath();
+    } else {
+      question.answers.forEach((answer, index) => {
+        const endAngle = Math.PI * 2 * answer.selected_times / selectedTimesAll;
+
+        ctx.beginPath();
+          ctx.arc(x, y, radius, startAngle, startAngle + endAngle);
+          ctx.lineTo(x, y);
+          ctx.fillStyle = colors[index];
+          ctx.fill();
+        ctx.closePath();
+
+        startAngle += endAngle;
+      });
     }
+
+    cAnswers.forEach((answerElement, index) => {
+      const percentageLabel = answerElement.querySelector('.results-question_answers_answer-item__percentage-diagram');
+      const answerColor = answerElement.querySelector('.results-question__answers-answer-item__color');
+
+      if (question.number_of_passages === 0) {
+        percentageLabel.innerHTML += ` (0%)`;
+      } else {
+        const percentage = question.answers[index].selected_times * 100 / question.number_of_passages;
+        percentageLabel.innerHTML += ` (${Number.isInteger(percentage) ? 
+            percentage : percentage.toFixed(2)}%)`;
+      }
+
+      answerColor.style.backgroundColor = colors[index];
+    });
+  };
+
+  switch (question.type) {
+    case TYPE_SINGLE_CHOICE:
+      renderDiagram();
+      break;
+    case TYPE_MULTIPLE_CHOICE:
+      renderHistogram();
+      break;
+    case TYPE_TEXT:
+      if (question.number_of_passages === 0) {
+        container.innerHTML = '<br> &nbsp;&nbsp;&nbsp;Ответов пока нет...';
+        container.style.margin = '0 0 10px 0';
+      }
+      break;
+    default:
   }
 
   return questionElement;

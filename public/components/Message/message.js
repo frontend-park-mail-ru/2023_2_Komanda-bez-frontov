@@ -21,7 +21,10 @@ export const renderMessage = (text, error = false) => {
   message.textContent = text;
 
   messageContainer.appendChild(message);
-  window.scroll(0, 0);
+
+  if (window.screen.width > 768) {
+    window.scroll(0, 0);
+  }
 };
 
 /**

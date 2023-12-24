@@ -1,67 +1,68 @@
-.button-container {
-  display: flex;
-  gap: 5px;
+.forms-list__item {
+  position: relative;
+  background-color: #FFFFFF;
+  height: 220px;
+  width: 360px;
+  border-radius: 16px;
+  box-shadow: 0 4px 4px 0 rgba(34, 60, 80, 0.2);
 }
-
-button {
-  font-size: 12px;
-}
-
-input {
-  border: 1px solid #424242;
-}
-
-.forms-list__item, .red-button, .black-button, .primary-button, .secondary-button {
-  padding: 10px 12px;
-  border-radius: 9px;
-  border: 1px solid #424242;
+.forms-list__item .forms-list_item__hat {
+  border-radius: 16px 16px 0 0;
+  height: 16px;
   width: 100%;
-  font-weight: bold;
+  background-color: #D9D9D9;
 }
-.forms-list__item:hover, .red-button:hover, .black-button:hover, .primary-button:hover, .secondary-button:hover {
-  opacity: 0.6;
+.forms-list__item:hover {
   cursor: pointer;
 }
-
-.secondary-button {
+.forms-list__item:hover .forms-list_item__hat {
   background-color: #4B357A;
-  color: white;
 }
 
-.primary-button {
-  background-color: #f5f5f5;
-  color: black;
+.forms-list_item__content {
+  overflow-wrap: anywhere;
+  padding: 10px 35px 10px 15px;
 }
-
-.black-button {
-  background-color: #000000;
-  color: white;
-  border-radius: 9px;
+.forms-list_item__content h3 {
+  font-size: 22px;
+  line-height: 35px;
+  height: 105px;
 }
-
-.red-button {
-  background-color: #da2d28;
-  color: white;
-  border-radius: 9px;
-}
-
-.button__disabled {
-  opacity: 0.6;
-}
-
-@media screen {
-  button:hover {
-    opacity: 1 !important;
-  }
-}
-.forms-list__item {
-  background-color: #FFFFFF;
-  margin-bottom: 16px;
-  min-height: 56px;
-  max-height: min-content;
+.forms-list_item__content p {
+  margin-top: 30px;
   font-size: 18px;
-  overflow: hidden;
-  text-overflow: ellipsis;
+}
+
+.forms-list_item__select-menu {
+  position: absolute;
+  top: 65px;
+  right: -20px;
+  width: 250px;
+  border-radius: 4px;
+  background-color: #ffffff;
+  box-shadow: 0 0 8px 0 rgba(34, 60, 80, 0.3);
+  transition: 0.2s;
+}
+.forms-list_item__select-menu button {
+  border: none;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: normal;
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+
+#forms-list-item-menu-button {
+  position: absolute;
+  top: 25px;
+  right: 5px;
+  padding: 4px;
+  font-size: 28px;
+}
+#forms-list-item-menu-button:hover {
+  background-color: #DDDDDD;
+  border-radius: 20px;
 }
 
 /*# sourceMappingURL=forms_item.css.map */

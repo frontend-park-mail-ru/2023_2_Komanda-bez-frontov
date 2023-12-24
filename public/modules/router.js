@@ -111,6 +111,9 @@ export const initialRouter = async () => {
     case '/forms':
       goToPage(ROUTES.forms, 0, true);
       break;
+    case '/archive':
+      goToPage(ROUTES.archive, 0, true);
+      break;
     case '/forms/new':
       goToPage(ROUTES.formNew);
       break;
@@ -154,6 +157,9 @@ window.onpopstate = (event) => {
       break;
     case 'forms':
       goToPage(ROUTES.forms, '', true);
+      break;
+    case 'archive':
+      goToPage(ROUTES.archive, '', true);
       break;
     case 'form':
       goToPage(ROUTES.form, parseUrl(window.location.pathname).id, true);

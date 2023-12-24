@@ -5,8 +5,8 @@ const POST_METHOD = 'POST';
 const DELETE_METHOD = 'DELETE';
 const PUT_METHOD = 'PUT';
 
-const defaultErrorMessage = 'Ошибка сервера. Перезагрузите страницу или попробуйте позже.'
-
+const defaultErrorMessage = 'Ошибка сервера. Перезагрузите страницу или попробуйте позже.';
+export const defaultFetchErrorMessage = 'Ошибка сети. Проверьте ваше подключение';
 export class API {
   /**
    * Проверяет, является ли пользователь авторизованным.
@@ -40,7 +40,6 @@ export class API {
 
       return {isAuthorized, authorizedUser};
     } catch (e) {
-      // TODO убрать к РК4
       console.log('Ошибка метода isAuth:', e);
       throw (e);
     }
@@ -93,7 +92,6 @@ export class API {
 
       return {message, authorizedUser: null};
     } catch (e) {
-      // TODO убрать к РК4
       console.log('Ошибка метода userLogin:', e);
       throw (e);
     }
@@ -126,7 +124,6 @@ export class API {
 
       return {message: 'ok'};
     } catch (e) {
-      // TODO убрать к РК4
       console.log('Ошибка метода userLogout:', e);
       throw (e);
     }
@@ -188,7 +185,6 @@ export class API {
 
       return {message, registeredUser};
     } catch (e) {
-      // TODO убрать к РК4
       console.log('Ошибка метода userSignup:', e);
       throw (e);
     }
@@ -202,6 +198,8 @@ export class API {
    * @param {string} first_name - Имя.
    * @param {string} username - Имя пользователя.
    * @param {string} email - Почта.
+   * @param {Number} age - Возраст.
+   * @param {string} gender - Пол.
    * @param {string} oldPassword - Текущий пароль.
    * @param {string} newPassword - Новый пароль.
    * @param {string} avatar - Аватар пользователя в формате Base64.
@@ -210,7 +208,7 @@ export class API {
    * @throws {Error} Если произошла ошибка при запросе или обработке данных.
    */
   // eslint-disable-next-line camelcase
-  async updateProfile(first_name, username, email, oldPassword, newPassword, avatar = '') {
+  async updateProfile(first_name, username, email, age, gender, oldPassword, newPassword, avatar = '') {
     try {
       const url = backendUrl + ROUTES_API.updateProfile.url;
 
@@ -223,9 +221,10 @@ export class API {
         credentials: 'include',
         body: JSON.stringify({
           // eslint-disable-next-line camelcase
-          first_name, username, email, oldPassword, newPassword, avatar,
+          first_name, username, email, age, gender, oldPassword, newPassword, avatar,
         }),
       });
+
       if (res.status === 450) {
         return {message: 'Нет подключения к сети', updatedUser: null};
       }
@@ -246,7 +245,6 @@ export class API {
 
       return {message, updatedUser: null};
     } catch (e) {
-      // TODO убрать к РК4
       console.log('Ошибка метода userSignup:', e);
       throw (e);
     }
@@ -259,56 +257,14 @@ export class API {
    * @async
    * @function
    * @param {string} authorUsername - Опционально. Username автора
+   * @param {boolean} archive - Опционально. Возвращает только фоормы из архива, если true
    * @return {Promise<{forms: ( null | [] )}>} Объект с массивом с опросами.
    * @throws {Error} Если произошла ошибка при запросе или обработке данных.
    */
-  async getForms(authorUsername = '') {
+  async getForms(authorUsername = '', archive = false) {
     try {
       let url = backendUrl + ROUTES_API.forms.url;
-      if (authorUsername !== '') {
-        const query = `?author=${authorUsername}`;
-        url += query;
-      }
-
-      const res = await fetch(url, {
-        method: GET_METHOD,
-        credentials: 'include',
-      });
-      if (res.status === 450) {
-        return {message: 'Нет подключения к сети', forms: null};
-      }
-
-      const body = await res.json();
-
-      if (res.ok) {
-        const forms = body.data.forms;
-        return {message: 'ok', forms};
-      }
-
-      return {message: defaultErrorMessage, forms: null};
-    } catch (e) {
-      // TODO убрать к РК4
-      console.log('Ошибка метода getForms:', e);
-      throw (e);
-    }
-  }
-
-  /**
-   * Функция для получения списка опросов по искомому названию.
-   * Возращает список всех созданных текущим пользователем опросов в порядке, где на первом месте стоит
-   * опрос с самым похожим названием на искомое, и так далее.
-   * Через Query запрос передается искомое название
-   *
-   * @async
-   * @function
-   * @param {string} title - название искомого опроса
-   * @return {Promise<{forms: ( null | [] )}>} Объект с массивом с опросами.
-   * @throws {Error} Если произошла ошибка при запросе или обработке данных.
-   */
-  async getFormsByTitle(title = '') {
-    try {
-      let url = backendUrl + ROUTES_API.searchForms.url;
-      const query = `?title=${title}`;
+      const query = `?author=${authorUsername}&archive=${archive}`;
       url += query;
 
       const res = await fetch(url, {
@@ -328,7 +284,47 @@ export class API {
 
       return {message: defaultErrorMessage, forms: null};
     } catch (e) {
-      // TODO убрать к РК4
+      console.log('Ошибка метода getForms:', e);
+      throw (e);
+    }
+  }
+
+  /**
+   * Функция для получения списка опросов по искомому названию.
+   * Возращает список всех созданных текущим пользователем опросов в порядке, где на первом месте стоит
+   * опрос с самым похожим названием на искомое, и так далее.
+   * Через Query запрос передается искомое название
+   *
+   * @async
+   * @function
+   * @param {string} title - название искомого опроса
+   * @param {boolean} archive - Опционально. Возвращает только фоормы из архива, если true
+   * @return {Promise<{forms: ( null | [] )}>} Объект с массивом с опросами.
+   * @throws {Error} Если произошла ошибка при запросе или обработке данных.
+   */
+  async getFormsByTitle(title = '', archive = false) {
+    try {
+      let url = backendUrl + ROUTES_API.searchForms.url;
+      const query = `?title=${title}&archive=${archive}`;
+      url += query;
+
+      const res = await fetch(url, {
+        method: GET_METHOD,
+        credentials: 'include',
+      });
+      if (res.status === 450) {
+        return {message: 'Нет подключения к сети', forms: null};
+      }
+
+      const body = await res.json();
+
+      if (res.ok) {
+        const forms = body.data.forms;
+        return {message: 'ok', forms};
+      }
+
+      return {message: defaultErrorMessage, forms: null};
+    } catch (e) {
       console.log('Ошибка метода getFormsByTitle:', e);
       throw (e);
     }
@@ -357,6 +353,9 @@ export class API {
       if (res.status === 404) {
         return {message: '404', form: null};
       }
+      if (res.status === 403) {
+        return {message: 'У вас нет прав на просмотр этой страницы', form: null};
+      }
 
       const body = await res.json();
 
@@ -367,7 +366,6 @@ export class API {
 
       return {message: defaultErrorMessage, form: null};
     } catch (e) {
-      // TODO убрать к РК4
       console.log('Ошибка метода getForm:', e);
       throw (e);
     }
@@ -401,7 +399,6 @@ export class API {
 
       return {message: defaultErrorMessage, avatar: null};
     } catch (e) {
-      // TODO убрать к РК4
       console.log('Ошибка метода getForm:', e);
       throw (e);
     }
@@ -443,7 +440,6 @@ export class API {
 
       return {message: defaultErrorMessage, form: null};
     } catch (e) {
-      // TODO убрать к РК4
       console.log('Ошибка метода saveForm:', e);
       throw (e);
     }
@@ -485,7 +481,6 @@ export class API {
 
       return {message: defaultErrorMessage, form: null};
     } catch (e) {
-      // TODO убрать к РК4
       console.log('Ошибка метода updateForm:', e);
       throw (e);
     }
@@ -525,7 +520,50 @@ export class API {
 
       return {message: defaultErrorMessage};
     } catch (e) {
-      // TODO убрать к РК4
+      console.log('Ошибка метода deleteForm:', e);
+      throw (e);
+    }
+  }
+
+  /**
+   * Функция для архивации опроса (или разархивации).
+   *
+   * @async
+   * @function
+   * @param {number} id - ID архивируемого опроса.
+   * @param {boolean} archive - если true - кладем в архив, иначе - вытаксиваем.
+   * @return {Promise<{message: string}>} Объект с информацией о статусе запроса.
+   * @throws {Error} Если произошла ошибка при запросе или обработке данных.
+   */
+  async archiveForm(id, archive = true) {
+    try {
+      const url = backendUrl + ROUTES_API.archiveForm.url.replace(':id', id.toString())
+          + (archive ? '?archive=true' : '?archive=false');
+
+      const res = await fetch(url, {
+        method: PUT_METHOD,
+        headers: {
+          'Content-Type': 'application/json',
+          'X-CSRF-Token': localStorage.getItem('csrf-token'),
+        },
+        credentials: 'include',
+      });
+
+      if (res.status === 450) {
+        return {message: 'Нет подключения к сети'};
+      }
+      if (res.ok) {
+        return {message: 'ok'};
+      }
+      if (res.status === 404) {
+        return {message: 'Опрос не удалось обнаружить'};
+      }
+      if (res.status === 403) {
+        return {message: 'У вас нет прав на редактирование этого опроса'};
+      }
+
+      return {message: defaultErrorMessage};
+    } catch (e) {
       console.log('Ошибка метода deleteForm:', e);
       throw (e);
     }
@@ -561,10 +599,12 @@ export class API {
       if (res.status === 404) {
         return {message: '404', formResults: null};
       }
+      if (res.status === 403) {
+        return {message: 'У вас нет прав на просмотр этой страницы', formResults: null};
+      }
 
       return {message: defaultErrorMessage, formResults: null};
     } catch (e) {
-      // TODO убрать к РК4
       console.log('Ошибка метода getFormResultsByID:', e);
       throw (e);
     }
@@ -614,7 +654,6 @@ export class API {
 
       return {message: defaultErrorMessage, form: null};
     } catch (e) {
-      // TODO убрать к РК4
       console.log('Ошибка метода passageForm:', e);
       throw (e);
     }

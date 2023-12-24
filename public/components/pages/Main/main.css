@@ -10,19 +10,24 @@
 .index_content-container {
   display: flex;
   justify-content: center;
-  gap: 20px;
+  gap: 30px;
 }
 .index_content-container .index_content-container_description__picture {
+  padding: 20px;
   max-width: 600px;
   max-height: 350px;
   object-fit: cover;
 }
 
 .index_content-container_description {
+  box-shadow: 0 4px 4px 0 rgba(34, 60, 80, 0.2);
+  border-radius: 16px;
+  padding: 25px;
   margin-left: 40px;
   font-size: 24px;
   text-align: left;
   max-width: 440px;
+  background-color: #FFFFFF;
 }
 .index_content-container_description .button-container {
   margin: 48px 0 25px 0;
@@ -52,14 +57,16 @@
     margin: 0 100px;
   }
   .index_content-container_description {
-    margin: 0 50px 25px 50px;
+    padding: 20px;
+    margin: 0 40px 0 40px;
     max-width: none;
-    text-align: center;
-    align-items: center;
+    text-align: left;
   }
-  .index_content-container_description button {
-    margin: 0 auto;
-    width: 400px;
+  .index_content-container_description .button-container {
+    display: block;
+  }
+  .index_content-container_description .button-container button {
+    width: 300px;
   }
 }
 @media screen and (max-width: 768px) {
@@ -73,14 +80,17 @@
   .index_content-container_description {
     margin: 0 40px 20px 40px;
     font-size: 20px;
+    padding: 20px;
+    text-align: left;
   }
   .index_content-container_description .button-container {
-    margin: 40px 0 20px 0;
+    display: block;
+    margin: 30px 0 20px 0;
   }
   .index_content-container_description .button-container button {
+    padding: 10px 5px;
     font-size: 16px;
-    padding: 20px 12px;
-    width: 300px;
+    width: 250px;
   }
   .index_content-container_description a {
     font-size: 18px;
@@ -90,13 +100,13 @@
   }
 }
 @media screen and (max-width: 480px) {
-  .index {
-    margin-top: 40px;
-  }
-  .index h3 {
-    margin: 30px 15px 20px 15px;
+  .index_content-container_description {
+    margin: 0 18px 0 18px;
+    padding: 15px;
+    text-align: left;
   }
   .index_content-container_description .button-container {
+    display: block;
     margin: 32px 0 16px 0;
   }
   .index_content-container_description .button-container button {
