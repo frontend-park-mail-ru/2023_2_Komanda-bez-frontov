@@ -120,9 +120,6 @@ export const renderFormNew = async () => {
     cQuestions = document.querySelectorAll('.update-question');
   });
 
-  const deleteForm = document.querySelector('#delete-button');
-  deleteForm.classList.add('display-none');
-
   const saveForm = document.querySelector('#update-button');
   saveForm.innerHTML = 'Создать';
 

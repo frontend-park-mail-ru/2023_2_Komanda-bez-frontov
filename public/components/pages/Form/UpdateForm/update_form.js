@@ -250,6 +250,19 @@ export const addValidationToFormInput = (input, validator, errorLabel) => {
   }, 1000));
 };
 
+export const validateFormInput = (input, validator, errorLabel) => {
+    const validation = validator(input.value);
+    if (validation.valid || input.value === '') {
+      errorLabel.classList.add('display-none');
+    } else {
+      errorLabel.classList.remove('display-none');
+      input.classList.add('update-form__input-error');
+      input.addEventListener('input', () => {
+        input.classList.remove('update-form__input-error');
+      }, {once: true});
+    }
+};
+
 const moveQuestionUpDown = (questionElement) => {
   const questionContainer = document.querySelector('#check-form__questions-container');
 

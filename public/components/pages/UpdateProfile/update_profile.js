@@ -140,12 +140,17 @@ export const renderUpdateProfile = async () => {
       }
     }
 
+    const age = 0;
+    const gender = 'u';
+
     try {
       const api = new API();
       const res = await api.updateProfile(
         firstName.value,
         username.value,
         email.value,
+        age,
+        gender,
         oldPassword.value,
         newPassword.value,
         avatar,

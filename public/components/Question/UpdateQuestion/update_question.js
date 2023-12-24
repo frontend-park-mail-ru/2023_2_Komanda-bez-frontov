@@ -1,6 +1,6 @@
 import {TYPE_SINGLE_CHOICE, TYPE_MULTIPLE_CHOICE, TYPE_TEXT} from "../../pages/Form/CheckForm/check_form.js";
 import {textValidation} from "../../../modules/validation.js";
-import {addValidationToFormInput} from "../../pages/Form/UpdateForm/update_form.js";
+import {addValidationToFormInput, validateFormInput} from "../../pages/Form/UpdateForm/update_form.js";
 export const removedAnswersID = [];
 
 /**
@@ -18,7 +18,6 @@ export const createQuestionUpdate = (question) => {
   const buttonAddAnswer = questionElement.querySelector('#update-question__answers_add_button');
   const buttonAddAnswerItem = questionElement.querySelector('#update-question__answers-item-button');
 
-
   const title = questionElement.querySelector('#update-question__title');
   const description = questionElement.querySelector('#update-question__description-textarea');
   const errorLabel = questionElement.querySelector('#update-question-title-validation-error');
@@ -29,38 +28,38 @@ export const createQuestionUpdate = (question) => {
   let type = question.type;
   const answers = question.answers;
 
-  let isLastAnswer = -1;
   const renderAnswers = () => {
+    console.log(answers);
+    answerContainer.innerHTML = '';
     answerContainer.innerHTML = Handlebars.templates.update_answer({answers, type});
-    const errorLabelAnswers = questionElement.querySelector('#update-answers-validation-error');
-    const cInputText = questionElement.querySelectorAll('.update-question__answers-item-input');
+    const errorLabelAnswers = answerContainer.querySelector('#update-answers-validation-error');
+    const cInputText = answerContainer.querySelectorAll('.update-question__answers-item-input');
     cInputText.forEach((input, index) => {
+      validateFormInput(input, textValidation, errorLabelAnswers);
       input.addEventListener('change', () => {
         answers[index].text = input.value;
       });
       addValidationToFormInput(input, textValidation, errorLabelAnswers);
     });
-    const cAnswers = questionElement.querySelectorAll('.update-question__answers-item');
+    const cAnswers = answerContainer.querySelectorAll('.update-question__answers-item');
     cAnswers.forEach((answerElement, index) => {
       const deleteButton = answerElement.querySelector('.update-question__answers-item-delete');
-      if (deleteButton) {
-        deleteButton.addEventListener('click', () => {
-          if (buttonAddAnswer) {
-            buttonAddAnswer.classList.remove('button__disabled');
-          }
-          answers.splice(index, 1);
-          if (answers.length === 0) {
-            answers.push({
-              id: 0,
-              text: '',
-            })
-          }
-          if (deleteButton.id !== '0') {
-            removedAnswersID.push(Number(deleteButton.id));
-          }
-          renderAnswers();
-        });
-      }
+      deleteButton.addEventListener('click', () => {
+        if (buttonAddAnswer) {
+          buttonAddAnswer.classList.remove('button__disabled');
+        }
+        answers.splice(index, 1);
+        if (answers.length === 0) {
+          answers.push({
+            id: 0,
+            text: '',
+          })
+        }
+        if (deleteButton.id !== '0') {
+          removedAnswersID.push(Number(deleteButton.id));
+        }
+        renderAnswers();
+      });
     });
 
     if (answers.length >= 12) {
