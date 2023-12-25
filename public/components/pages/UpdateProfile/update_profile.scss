@@ -69,7 +69,6 @@
 }
 
 .update-profile__select select {
-  width: 500px;
   appearance: none;
   background-color: #FFFFFF;
   border: none;
@@ -89,8 +88,10 @@
 }
 
 .update-profile__select select {
-  width: 320px;
+  width: 280px;
+  height: 24px;
   font-size: 16px;
+  background-color: rgba(34, 60, 80, 0);
 }
 
 .update-profile__select_custom-arrow {
@@ -181,6 +182,10 @@
     h3 {
       font-size: 30px;
     }
+  }
+
+  .update-profile__select select {
+    width: 320px;
   }
 
   .update-profile__input-container {

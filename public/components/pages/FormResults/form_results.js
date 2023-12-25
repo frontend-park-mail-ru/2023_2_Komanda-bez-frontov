@@ -96,7 +96,7 @@ export const renderResultsForm = async (id) => {
   }
 
   const participantsQuestion = {
-    title: 'Статистика по участникам(Пол)',
+    title: 'Статистика по участникам (Пол)',
     type: 1,
     number_of_passages: 0,
     answers: [
@@ -126,8 +126,8 @@ export const renderResultsForm = async (id) => {
   }
 
   const participantsAgeQuestion = {
-    title: 'Статистика по участникам(Возраст)',
-    type: 1,
+    title: 'Статистика по участникам (Возраст)',
+    type: 2,
     number_of_passages: 0,
     answers: [
       {text: '0 - 18', selected_times: 0},
@@ -159,6 +159,9 @@ export const renderResultsForm = async (id) => {
   const questions = document.querySelector('#check-form__questions-container');
   const participantsElement = renderResultsQuestion(participantsQuestion);
   const participantAgesElement = renderResultsQuestion(participantsAgeQuestion);
+
+  participantsElement.querySelector('.results-question__passage-text').remove();
+  participantAgesElement.querySelector('.results-question__passage-text').remove();
 
   questions.appendChild(participantsElement);
   questions.appendChild(participantAgesElement)
