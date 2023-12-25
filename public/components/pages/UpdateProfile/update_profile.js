@@ -127,7 +127,7 @@ export const renderUpdateProfile = async () => {
   birthdayTimeInput.addEventListener('change', () => {
     const currentDate = new Date();
     const inputDate = new Date(birthdayTimeInput.value + 'T00:00:00Z');
-    if (inputDate <= currentDate) {
+    if (inputDate > currentDate) {
       birthdayTimeInput.value = `${currentDate.getFullYear()}-${currentDate.getMonth()+1}-${currentDate.getDate()}`;
     }
   })
