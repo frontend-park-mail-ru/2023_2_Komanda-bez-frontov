@@ -13,6 +13,23 @@
             <label>Имя</label>
             <input class="update-profile_input-container__input" id="update-profile_name" placeholder="Имя" value="{{User.first_name}}">
         </div>
+        <div class="update-profile__name-input-container">
+            <label>Дата рождения</label>
+            <input class="update-profile_max-passage__input" id="update-profile-birthday-time" value="{{User.birthday}}"
+                   type="date">
+        </div>
+        <div class="update-profile__name-input-container">
+            <label>Пол</label>
+            <div class="update-profile_max-passage__input update-profile__select">
+                <select id="gender-select">
+                    <option selected="selected" disabled>Не указан</option>
+                    <option class="update-question__answer-format-radio" id="update-profile__male-input">Мужской
+                    </option>
+                    <option class="update-question__answer-format-radio" id="update-profile__female-input">Женский
+                    </option>
+                </select>
+            </div>
+        </div>
     </div>
     <div class="update-profile_right-container">
         <h3> Редактирование профиля </h3>
