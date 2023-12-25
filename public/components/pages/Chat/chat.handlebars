@@ -24,12 +24,14 @@
                         <h3>{{author.first_name}}, &nbsp;&nbsp;&nbsp;{{send_at}}</h3>
                         <p>{{text}}</p>
                     </div>
-                    {{#ifEquals is_read true}}
-                        <span class="material-symbols-outlined">done_all</span>
-                    {{/ifEquals}}
-                    {{#ifEquals is_read false}}
-                        <span class="material-symbols-outlined">done</span>
-                    {{/ifEquals}}
+                    {{#if sent_message}}
+                        {{#ifEquals is_read true}}
+                            <span class="material-symbols-outlined">done_all</span>
+                        {{/ifEquals}}
+                        {{#ifEquals is_read false}}
+                            <span class="material-symbols-outlined">done</span>
+                        {{/ifEquals}}
+                    {{/if}}
                 </div>
             {{/each}}
         </div>

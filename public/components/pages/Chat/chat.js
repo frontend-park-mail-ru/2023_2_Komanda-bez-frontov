@@ -52,8 +52,6 @@ export const renderChat = async (id) => {
 
   await checkUnreadMessages();
 
-  console.log(chat);
-
   chat.avatar_check = !!chat.user.avatar;
   chat.messages.forEach((mes) => {
     const date = new Date(mes.send_at);
@@ -71,9 +69,8 @@ export const renderChat = async (id) => {
       mes.author.avatar = STORAGE.avatar;
     }
     mes.avatar_check = !!mes.author.avatar;
+    mes.sent_message = mes.sender_id === STORAGE.user.id;
   });
-
-  console.log(chat)
 
   rootElement.innerHTML = '';
   rootElement.innerHTML = Handlebars.templates.chat({chat: chat});
@@ -114,8 +111,10 @@ export const checkUnreadMessages = async () => {
     const res = await api.checkUnreadMessages();
     if (res.unread > 0) {
       changeMailIconUnread(true);
+      localStorage.setItem('unread', 'true');
     } else {
       changeMailIconUnread(false);
+      localStorage.setItem('unread', 'false');
     }
   } catch (e) {
     renderMessage(defaultFetchErrorMessage, true);
