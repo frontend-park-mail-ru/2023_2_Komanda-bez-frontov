@@ -1,4 +1,4 @@
-import {API} from '../../../../modules/api.js';
+import {API, defaultFetchErrorMessage} from '../../../../modules/api.js';
 import {render404} from '../../../404/404.js';
 import {renderMessage} from '../../../Message/message.js';
 import {STORAGE} from '../../../../modules/storage.js';
@@ -41,7 +41,6 @@ export const renderForm = async (id) => {
   if (STORAGE.user) {
     renderAuthorMenu(id);
     const menuCheckButton = document.querySelector('#author-menu-check-button');
-    menuCheckButton.disabled = true;
     menuCheckButton.classList.add('secondary-button');
     menuCheckButton.classList.remove('primary-button');
   }
@@ -61,7 +60,7 @@ export const renderForm = async (id) => {
     formJSON = res.form;
   } catch (e) {
     if (e.toString() !== 'TypeError: Failed to fetch') {
-      renderMessage('Ошибка сервера. Перезагрузите страницу', true);
+      renderMessage(defaultFetchErrorMessage, true);
       return;
     }
   }
@@ -73,7 +72,21 @@ export const renderForm = async (id) => {
   rootElement.insertAdjacentHTML('beforeend', Handlebars.templates.check_form({form: formJSON}));
 
   if (STORAGE.user && !formJSON.anonymous) {
-    document.querySelector('.check-form__anonymous').classList.add('display-none');
+    document.querySelector('.check-form__anonymous-warning-container').classList.add('display-none');
+  }
+
+  const updateSubmitButton = document.querySelector('#update-submit-button');
+  if (formJSON.anonymous || formJSON.passage_max === -1) {
+    const passagesMaxContainer = document.querySelector('.check-form__max-passage-container');
+    passagesMaxContainer.classList.add('display-none');
+  } else {
+    const passagesLeftLabel = document.querySelector('#check-form-passages-left');
+    const passagesLeft = formJSON.passage_max - formJSON.cur_passage_total >= 0 ?
+        formJSON.passage_max - formJSON.cur_passage_total : 0;
+    passagesLeftLabel.innerText = passagesLeft;
+    if (passagesLeft <= 0) {
+      updateSubmitButton.classList.add('display-none');
+    }
   }
 
   const questions = document.querySelector('#check-form__questions-container');
@@ -82,7 +95,6 @@ export const renderForm = async (id) => {
     questions.appendChild(questionElement);
   });
 
-  const updateSubmitButton = document.querySelector('#update-submit-button');
   if (STORAGE.user && STORAGE.user.id === formJSON.author.id) {
     updateSubmitButton.innerHTML = 'Редактировать';
     updateSubmitButton.addEventListener('click', () => {
@@ -177,7 +189,7 @@ export const renderForm = async (id) => {
           return;
         }
       } catch (e) {
-        renderMessage('Ошибка сервера. Перезагрузите страницу', true);
+        renderMessage(defaultFetchErrorMessage, true);
         return;
       }
       if (!STORAGE.user) {

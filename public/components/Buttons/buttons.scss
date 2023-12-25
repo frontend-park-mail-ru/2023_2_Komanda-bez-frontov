@@ -8,18 +8,21 @@ button {
 }
 
 input {
-  border: 1px solid #424242;
+  //border: 1px solid #424242;
+  border: none;
+  outline: 0;
 }
 
 %button-common {
   padding: 10px 12px;
   border-radius: 9px;
-  border: 1px solid #424242;
+  border: 1px solid rgba(66, 66, 66, 0.3);
+  box-shadow: 0 0 2px 0 rgba(34, 60, 80, 0.2);
   width: 100%;
   font-weight: bold;
 
   &:hover {
-    opacity: 0.6;
+    opacity: 0.8;
     cursor: pointer;
   }
 }
@@ -28,12 +31,18 @@ input {
   @extend %button-common;
   background-color: #4B357A;
   color: white;
+  border: none;
 }
 
 .primary-button {
   @extend %button-common;
-  background-color: #f5f5f5;
+  background-color: #FFFFFF;
   color: black;
+
+  &:hover {
+    opacity: 1;
+    background-color: #eeeeee;
+  }
 }
 
 .black-button {
@@ -45,19 +54,35 @@ input {
 
 .red-button {
   @extend %button-common;
-  background-color: #da2d28;
+  background-color: #B42525;
   color: white;
   border-radius: 9px;
 }
+
+.usual-button {
+  @extend %button-common;
+  background-color: #FFFFFF;
+  color: #4B357A;
+  border-radius: 9px;
+}
+
+.outline-button {
+  @extend %button-common;
+  border: 1px solid #FFFFFF;
+  border-radius: 9px;
+  background-color: #4B357A;
+  color: #FFFFFF;
+}
+
 
 .button__disabled {
   opacity: 0.6;
 }
 
-@media screen {
-  button {
-    &:hover {
-      opacity: 1 !important;
-    }
-  }
-}
+//@media screen {
+//  button {
+//    &:hover {
+//      opacity: 1 !important;
+//    }
+//  }
+//}

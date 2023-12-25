@@ -11,7 +11,7 @@
   cursor: pointer;
 }
 .navbar .navbar_logo span {
-  font-size: 32px;
+  font-size: 30px;
   margin: 0 6px 2px 0;
 }
 .navbar .navbar_logo a {
@@ -19,35 +19,40 @@
 }
 .navbar .navbar_profile {
   display: flex;
-  justify-content: space-evenly;
   cursor: pointer;
 }
 .navbar .navbar_profile .navbar_profile__picture {
-  object-fit: contain;
-  border-radius: 5px;
+  border-radius: 45px;
+  width: 45px;
+  height: 45px;
 }
 
 .navbar_button-container {
   display: flex;
 }
+.navbar_button-container button {
+  font-size: 14px;
+}
 
 @media screen {
   .navbar {
-    padding: 4px 22px;
+    padding: 10px 15px;
   }
   .navbar .navbar_logo a {
     font-size: 22px;
   }
-  .navbar .navbar_profile__picture {
+  .navbar .navbar_profile {
+    gap: 16px;
+  }
+  .navbar .navbar_profile .navbar_profile__picture {
     height: 42px;
     width: 42px;
-    margin: 7px 0 7px 16px;
   }
   .navbar .navbar_profile__name {
     display: none;
   }
   .navbar_button-container {
-    padding: 9px 0;
+    padding: 2px 0;
   }
   .navbar_button-container button {
     height: 38px;
@@ -59,30 +64,29 @@
 }
 @media screen and (min-width: 480px) {
   .navbar {
-    padding: 17px 24px;
+    padding: 10px 24px;
   }
   .navbar .navbar_logo a {
     font-size: 22px;
   }
-  .navbar .navbar_profile {
-    margin-left: 40px;
-  }
   .navbar .navbar_profile .navbar_profile__picture {
     height: 42px;
     width: 42px;
-    margin: 0;
+    object-fit: contain;
+    background-color: #ffffff;
   }
-  .navbar .navbar_profile .navbar_profile__name {
+  .navbar .navbar_profile__name {
+    font-weight: 600;
     display: flex;
-    font-size: 20px;
-    margin: 12px 0 6px 16px;
+    font-size: 18px;
+    align-items: center;
   }
   .navbar_button-container {
     padding: 2px 0;
   }
   .navbar_button-container button {
     height: 38px;
-    width: 100px;
+    width: 120px;
     margin-left: 8px;
   }
   .navbar_button-container #navbar-signup-button {
@@ -91,35 +95,29 @@
 }
 @media screen and (min-width: 768px) {
   .navbar {
-    padding: 15px 48px;
+    padding: 10px 30px;
   }
   .navbar .navbar_logo a {
-    font-size: 29px;
+    font-size: 26px;
   }
   .navbar .navbar_logo a span {
-    font-size: 36px;
-    margin: 0 8px 3px 0;
+    font-size: 30px;
   }
   .navbar .navbar_profile {
-    margin-left: 40px;
+    gap: 16px;
   }
   .navbar .navbar_profile .navbar_profile__picture {
-    height: 48px;
-    width: 48px;
-    margin: 0;
+    height: 45px;
+    width: 45px;
+    margin: 3px;
   }
-  .navbar .navbar_profile .navbar_profile__name {
-    display: flex;
-    font-size: 24px;
-    margin: 12px 0 7px 16px;
-  }
-  .navbar_button-container {
-    padding: 2px 0;
+  .navbar .navbar_profile__name {
+    font-size: 20px;
   }
   .navbar_button-container button {
+    font-size: 16px;
     height: 46px;
-    width: 135px;
-    margin-left: 10px;
+    width: 150px;
   }
 }
 

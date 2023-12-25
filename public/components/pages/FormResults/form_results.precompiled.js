@@ -8,9 +8,9 @@ templates['form_results'] = template({"1":function(container,depth0,helpers,part
         return undefined
     };
 
-  return "    <div class=\"form-results\">\n        <h3 class=\"form-results__title\">Результаты опроса<br>"
+  return "    <div class=\"form-results\">\n        <div class=\"form-results__description\">\n            <h3 class=\"form-results__description-title\">Результаты опроса</h3>\n            <h3 class=\"form-results__description-title\">"
     + alias2(alias1(((stack1 = (depth0 != null ? lookupProperty(depth0,"form") : depth0)) != null ? lookupProperty(stack1,"title") : stack1), depth0))
-    + "</h3>\n        <div class=\"form-results__description\">\n            <h3 class=\"form-results__description-title\">Описание опроса</h3>\n            <p class=\"form-results__description-text\">\n            Дата создания: &nbsp;&nbsp;&nbsp;<a>"
+    + "</h3>\n            <p class=\"form-results__description-text\">\n            Дата создания: &nbsp;&nbsp;&nbsp;<a>"
     + alias2(alias1(((stack1 = (depth0 != null ? lookupProperty(depth0,"form") : depth0)) != null ? lookupProperty(stack1,"created_at") : stack1), depth0))
     + "</a><br>\n            Количесто прохождений: &nbsp;&nbsp;&nbsp;"
     + alias2(alias1(((stack1 = (depth0 != null ? lookupProperty(depth0,"form") : depth0)) != null ? lookupProperty(stack1,"number_of_passages") : stack1), depth0))

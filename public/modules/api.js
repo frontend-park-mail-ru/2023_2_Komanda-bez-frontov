@@ -5,8 +5,8 @@ const POST_METHOD = 'POST';
 const DELETE_METHOD = 'DELETE';
 const PUT_METHOD = 'PUT';
 
-const defaultErrorMessage = 'Ошибка сервера. Перезагрузите страницу или попробуйте позже.'
-
+const defaultErrorMessage = 'Ошибка сервера. Перезагрузите страницу или попробуйте позже.';
+export const defaultFetchErrorMessage = 'Ошибка сети. Проверьте ваше подключение';
 export class API {
   /**
    * Проверяет, является ли пользователь авторизованным.
@@ -226,6 +226,7 @@ export class API {
           first_name, username, email, oldPassword, newPassword, avatar,
         }),
       });
+
       if (res.status === 450) {
         return {message: 'Нет подключения к сети', updatedUser: null};
       }

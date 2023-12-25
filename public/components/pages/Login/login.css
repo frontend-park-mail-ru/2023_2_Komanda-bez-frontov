@@ -6,8 +6,9 @@
 }
 
 .auth-container__form {
-  border-radius: 9px;
-  border: 1px solid #424242;
+  box-shadow: 0 4px 4px 0 rgba(34, 60, 80, 0.2);
+  border-radius: 16px;
+  background-color: #FFFFFF;
   text-align: center;
   width: 320px;
   margin: 0 auto;
@@ -15,9 +16,12 @@
 .auth-container__form h3 {
   font-size: 24px;
   margin-bottom: 4px;
+  margin-top: 6px;
 }
 
 .login-form {
+  padding-top: 17px;
+  padding-bottom: 22px;
   display: flex;
   flex-direction: column;
   margin: 20px 24px;
@@ -25,13 +29,16 @@
 .login-form .button-container {
   margin-top: 20px;
 }
+.login-form .button-container button {
+  font-size: 13px;
+}
 
 .login-form_container__input {
   height: 40px;
   width: 272px;
   margin: 0 0 9px 0;
   border-radius: 9px;
-  border: 1px solid #424242;
+  border: 1px solid rgba(0, 0, 0, 0.2);
   padding: 4px 12px;
   box-sizing: border-box;
   font-size: 20px;
@@ -49,6 +56,12 @@
 }
 
 @media screen and (max-width: 768px) {
+  .auth-container {
+    margin: 70px 0;
+  }
+  .auth-container__form {
+    padding: 5px;
+  }
   .login-form_container h3 {
     font-size: 22px;
     margin: 0;
@@ -66,19 +79,23 @@
   }
   .auth-container__form {
     border: none;
-    margin: 0 10px;
+    margin: 0 20px;
     width: initial;
   }
+  .login-form {
+    padding-bottom: 0;
+    padding-top: 0;
+    margin: 10px 15px;
+  }
   .login-form_container h3 {
-    font-size: 30px;
-    margin-bottom: 20px;
+    font-size: 25px;
+    margin-bottom: 10px;
   }
   .login-form_container .login-form_container__input {
     width: 100%;
     font-size: 18px;
   }
   .login-form_container .button-container {
-    margin: 40px 0;
     gap: 10px;
     flex-flow: column;
   }

@@ -118,6 +118,14 @@ export const ROUTES_API = {
     url: '/forms/:id/results',
     method: GET_METHOD,
   },
+  formResultsExcel: {
+    url: '/forms/:id/results/excel',
+    method: GET_METHOD,
+  },
+  formResultsCSV: {
+    url: '/forms/:id/results/csv',
+    method: GET_METHOD,
+  },
   saveForm: {
     url: '/forms/save',
     method: POST_METHOD,

@@ -1,25 +1,27 @@
 .results-question {
-  margin-top: 15px;
-  padding: 10px 12px;
-  border-radius: 9px;
-  border: 1px solid #424242;
+  border-radius: 16px;
+  border: none;
+  background-color: #ffffff;
+  box-shadow: 0 0 8px 0 rgba(34, 60, 80, 0.2);
+
+  margin-top: 20px;
+  padding: 15px;
 }
 
 .results-question_title-container {
+  padding-right: 8px;
   display: flex;
   justify-content: space-between;
+  align-items: center;
   font-size: 16px;
+  height: 35px;
+  margin-bottom: 15px;
 }
 
 .results-question__description-title {
   padding-left: 4px;
   font-size: 18px;
-  margin-bottom: 8px;
   text-align: left;
-}
-
-.results-question__passage-text {
-  line-height: 35px;
 }
 
 .results-question__required-title {
@@ -38,7 +40,7 @@
 }
 
 .results-question_answers {
-  text-align: left;
+  //text-align: left;
   font-size: 18px;
 }
 
@@ -46,6 +48,7 @@
   display: flex;
   margin: 18px 0;
   text-align: left;
+  justify-content: center;
   align-items: center;
   padding-left: 4px;
 
@@ -55,6 +58,14 @@
 
   .results-question_answers_answer-item__label, .results-question_answers_answer-item__percentage {
     width: 120px;
+    margin: 0 0 0 12px;
+    font-size: 16px;
+    font-weight: normal;
+    padding-left: 4px;
+  }
+
+  .results-question_answers_answer-item__answer-text {
+    width: 100%;
     margin: 0 0 0 12px;
     font-size: 16px;
     font-weight: normal;
@@ -75,12 +86,19 @@
 
 @media screen and (max-width: 768px) {
   .results-question {
-    margin-top: 12px;
-    padding: 5px 12px;
+    margin-top: 16px;
+    padding: 20px;
   }
 
   .results-question_title-container {
     flex-wrap: wrap;
+    height: unset;
+    gap: 8px;
+    margin-bottom: 12px;
+  }
+
+  .results-question__passage-text {
+    padding-left: 5px;
   }
 
   .results-question_answers_answer-item {
@@ -92,11 +110,11 @@
       text-align: left;
     }
     .results-question_answers_answer-item__percentage {
-      width: 80px;
+      min-width: 80px;
     }
 
     span {
-      width: 90%;
+      width: 95%;
       .results-question_answers_answer-item__bar-container {
         width: 80%;
       }
@@ -111,8 +129,16 @@
 
 @media screen and (max-width: 480px) {
   .results-question {
-    margin-top: 10px;
-    padding: 5px 8px;
+    margin-top: 16px;
+    padding: 20px;
+  }
+
+  .results-question_title-container {
+    margin-bottom: 16px;
+  }
+
+  .results-question__description-title {
+    width: 100%;
   }
 
   .results-question__answer-item {

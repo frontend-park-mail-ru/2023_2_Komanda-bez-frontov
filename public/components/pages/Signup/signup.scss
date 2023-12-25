@@ -3,9 +3,15 @@
   flex-direction: column;
   margin: 20px 24px 0 24px;
 
+  h3 {
+    margin-top: 18px;
+  }
   .button-container {
-    margin: 20px 24px;
+    margin: 25px 24px;
     font-size: 15px;
+    button {
+      font-size: 13px;
+    }
   }
 }
 
@@ -19,7 +25,7 @@
   width: 272px;
   margin: 0 0 9px 0;
   border-radius: 9px;
-  border: 1px solid #424242;
+  border: 1px solid rgba(0, 0, 0, 0.2);
   padding: 4px 12px;
   box-sizing: border-box;
   font-size: 20px;
@@ -33,6 +39,9 @@
 }
 
 @media screen and (max-width: 768px) {
+  .signup-form {
+    margin: 10px 15px;
+  }
   .signup-form_container {
     h3 {
       font-size: 22px;
@@ -43,22 +52,25 @@
     }
   }
   .signup-form_container__input {
+    width: 100%;
     font-size: 18px;
   }
 }
 
 @media screen and (max-width: 480px) {
+  .signup-form {
+    margin: 10px 15px;
+  }
   .signup-form_container {
     h3 {
-      font-size: 30px;
-      margin-bottom: 20px;
+      font-size: 25px;
+    }
+    .button-container {
+      margin: 20px 0;
     }
     .signup-form_container__input {
       width: 100%;
       font-size: 18px;
-    }
-    .button-container {
-      margin: 40px 0;
     }
   }
 }
