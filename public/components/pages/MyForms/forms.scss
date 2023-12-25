@@ -112,7 +112,7 @@
 }
 @media (max-width: 660px) {
   .forms-list__item { width: 100%; }
-  .forms_list_main-container { width: 100%; }
+  .forms_list_main-container { width: 100%; gap: 20px; }
 }
 
 .forms_list_main-container_empty-label {
@@ -141,9 +141,12 @@
   display: none !important;
 }
 
-@media screen and (max-width: 480px) {
+@media (max-width: 480px) {
   .forms_list-container {
     margin: 32px 28px;
+  }
+  .forms_list_main-container {
+    gap: 16px;
   }
   .forms_search-container {
     .forms_search-container__input {

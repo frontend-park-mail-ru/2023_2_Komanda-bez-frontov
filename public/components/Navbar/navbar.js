@@ -33,6 +33,12 @@ export const navbar = () => {
       }
       renderProfileMenu();
     });
+
+    const mailButton = document.querySelector('#navbar-mail-button');
+    mailButton.innerHTML = localStorage.getItem('unread') === 'true' ? "mark_email_unread" : "mail";
+    mailButton.addEventListener('click', () => {
+      goToPage(ROUTES.chats);
+    });
   } else {
     navbarElement.innerHTML = Handlebars.templates.navbar();
     const loginButton = document.querySelector('#navbar-login-button');
@@ -54,14 +60,12 @@ export const navbar = () => {
       goToPage(ROUTES.forms);
     }
   });
-  const mailButton = document.querySelector('#navbar-mail-button');
-  mailButton.addEventListener('click', () => {
-    goToPage(ROUTES.chats);
-  });
 
 };
 
 export const changeMailIconUnread = (unread) => {
   const mailButton = document.querySelector('#navbar-mail-button');
-  mailButton.innerHTML = unread ? "mark_email_unread" : "mail";
+  if (mailButton) {
+    mailButton.innerHTML = unread ? "mark_email_unread" : "mail";
+  }
 }

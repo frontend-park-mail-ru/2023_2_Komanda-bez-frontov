@@ -7,6 +7,7 @@ import {STORAGE, getAuthAvatar} from '../../../modules/storage.js';
 import {toggleFunc} from "../Signup/signup.js";
 import {navbar} from "../../Navbar/navbar.js";
 import {debounce} from "../MyForms/forms.js";
+import {checkUnreadMessages} from "../Chat/chat.js";
 
 /**
  * Функция для рендеринга страницы аутенфикации.
@@ -64,7 +65,8 @@ export const renderLogin = async () => {
 
       navbar();
       goToPage(ROUTES.forms);
-      startWebsocketConnection();
+      await checkUnreadMessages();
+      // startWebsocketConnection();
       // renderMessage('Вы успешно вошли');
     } catch (err) {
       renderMessage(defaultFetchErrorMessage, true);

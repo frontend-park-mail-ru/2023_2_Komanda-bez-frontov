@@ -71,7 +71,7 @@ export const renderChatList = async () => {
                     minute: '2-digit',
                     month: 'numeric',
                     day: 'numeric',
-                    year: 'numeric',
+                    // year: 'numeric',
                 };
                 chat.time = date.toLocaleDateString('ru', options);
                 chat.avatar_check = !!chat.user.avatar;
@@ -91,8 +91,6 @@ export const renderChatList = async () => {
                     goToPage(ROUTES.chat, chat.user.id);
                 });
                 chatsContainer.appendChild(item);
-
-                console.log(chat);
             });
         }
 

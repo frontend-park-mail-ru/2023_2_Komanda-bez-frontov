@@ -1,5 +1,8 @@
 import {backendUrl, ROUTES_API, websocketUrl} from '../config.js';
 import {changeMailIconUnread} from "../components/Navbar/navbar.js";
+import {renderChatList} from "../components/pages/ChatList/chatlist.js";
+import {parseUrl} from "./router.js";
+import {renderChat} from "../components/pages/Chat/chat.js";
 
 const GET_METHOD = 'GET';
 const POST_METHOD = 'POST';
@@ -896,6 +899,14 @@ export const startWebsocketConnection = () => {
       return;
     }
     changeMailIconUnread(true);
+    if (window.location.pathname.includes('/chats')) {
+      if (window.location.pathname === '/chats') {
+        renderChatList();
+      } else {
+        const id = parseUrl(window.location.pathname).id;
+        renderChat(id);
+      }
+    }
   };
 
   socket.onclose = function(event) {

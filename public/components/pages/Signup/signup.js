@@ -15,6 +15,7 @@ import {
   addValidationToInput,
   checkInputsValidation,
 } from "../Login/login.js";
+import {checkUnreadMessages} from "../Chat/chat.js";
 
 /**
  * Функция для рендеринга страницы регистрации.
@@ -107,7 +108,8 @@ export const renderSignup = async () => {
 
       navbar();
       goToPage(ROUTES.forms);
-      startWebsocketConnection();
+      await checkUnreadMessages();
+      // startWebsocketConnection();
       renderMessage('Вы успешно зарегистрировались');
     } catch (err) {
       renderMessage(defaultFetchErrorMessage, true);

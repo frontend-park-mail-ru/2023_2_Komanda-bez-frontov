@@ -29,7 +29,6 @@ export const createQuestionUpdate = (question) => {
   const answers = question.answers;
 
   const renderAnswers = () => {
-    console.log(answers);
     answerContainer.innerHTML = '';
     answerContainer.innerHTML = Handlebars.templates.update_answer({answers, type});
     const errorLabelAnswers = answerContainer.querySelector('#update-answers-validation-error');

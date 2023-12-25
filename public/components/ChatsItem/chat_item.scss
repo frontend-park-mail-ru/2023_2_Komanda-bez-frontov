@@ -34,14 +34,43 @@
       width: 100%;
       margin-top: 6px;
       font-size: 18px;
-      //line-height: 35px;
+      height: 24px;
     }
   }
 
   .chat-item__unread-mark {
-    height: 24px;
-    min-width: 24px;
+    height: 20px;
+    min-width: 20px;
     background-color: #7458b6;
     border-radius: 24px;
+  }
+}
+
+@media (max-width: 768px) {
+  .chat-item {
+    .chat-item__container {
+      h3 {
+        font-size: 16px;
+      }
+      p {
+        font-size: 16px;
+        height: 40px;
+      }
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .chat-item {
+    gap: 12px;
+    padding: 12px 16px;
+    .chat-item__container {
+      h3 {
+        font-size: 15px;
+      }
+      p {
+        font-size: 15px;
+      }
+    }
   }
 }
