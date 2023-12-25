@@ -7,6 +7,17 @@
             <div class="line"></div>
             <a id="profile-page-username">{{user.username}}</a><br>
             <a id="profile-page-email">{{user.email}}</a>
+            {{#if user.birthday}}
+                <br>
+                <a id="profile-page-email">Дата рождения: {{user.birthday}}</a>
+            {{/if}}
+            <br>
+            {{#ifEquals user.gender 'M'}}
+                <a id="profile-page-email">Пол: Мужской</a>
+            {{/ifEquals}}
+            {{#ifEquals user.gender 'F'}}
+                <a id="profile-page-email">Пол: Женский</a>
+            {{/ifEquals}}
         </div>
     </div>
     <div class="profile_right-container">

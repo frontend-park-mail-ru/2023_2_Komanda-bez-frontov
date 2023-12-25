@@ -13,6 +13,7 @@ import {API, defaultFetchErrorMessage} from '../../../modules/api.js';
 import {toggleFunc} from "../Signup/signup.js";
 import {navbar} from "../../Navbar/navbar.js";
 import {addValidationToInput, checkInputsValidation} from "../Login/login.js";
+import {TYPE_MULTIPLE_CHOICE, TYPE_SINGLE_CHOICE, TYPE_TEXT} from "../Form/CheckForm/check_form.js";
 
 /**
  * Функция для рендеринга страницы изменения профиля авторизированного пользователя.
@@ -35,8 +36,22 @@ export const renderUpdateProfile = async () => {
   const rootElement = document.querySelector('#root');
   rootElement.innerHTML = '';
   rootElement.innerHTML = Handlebars.templates.update_profile({User: STORAGE.user});
-
   let avatar = STORAGE.avatar;
+  let genderSelect = document.querySelector('#gender-select');
+  let options = genderSelect.querySelectorAll('.update-question__answer-format-radio');
+  switch (STORAGE.user.gender) {
+    case 'M':
+      genderSelect.value = options[0].value;
+      break;
+    case 'F':
+      genderSelect.value = options[1].value;
+      break;
+    default:
+      genderSelect.value = 'Не указан'
+      break;
+  }
+
+
   const profilePicture = document.querySelector('#profile-page-picture');
   if (STORAGE.avatar) {
     profilePicture.src = `data:image/png;base64, ${avatar}`;
@@ -108,6 +123,14 @@ export const renderUpdateProfile = async () => {
   const oldPassword = document.querySelector('#update-profile_old-password');
   const newPassword = document.querySelector('#update-profile_new-password');
   const repeatPassword = document.querySelector('#update-profile_repeat-password');
+  const birthdayTimeInput = document.querySelector('#update-profile-birthday-time');
+  birthdayTimeInput.addEventListener('change', () => {
+    const currentDate = new Date();
+    const inputDate = new Date(birthdayTimeInput.value + 'T00:00:00Z');
+    if (inputDate > currentDate) {
+      birthdayTimeInput.value = `${currentDate.getFullYear()}-${currentDate.getMonth()+1}-${currentDate.getDate()}`;
+    }
+  })
 
   addValidationToInput(firstName, nameValidation, saveButton);
   addValidationToInput(email, emailValidation, saveButton);
@@ -140,8 +163,15 @@ export const renderUpdateProfile = async () => {
       }
     }
 
-    const age = 0;
-    const gender = 'u';
+    let birthday = birthdayTimeInput.value;
+    let gender = 'U';
+
+    let genderSelect = document.querySelector('#gender-select');
+    if (genderSelect.selectedIndex  === 1) {
+      gender = 'M';
+    } else {
+      gender = 'F';
+    }
 
     try {
       const api = new API();
@@ -149,7 +179,7 @@ export const renderUpdateProfile = async () => {
         firstName.value,
         username.value,
         email.value,
-        age,
+        birthday,
         gender,
         oldPassword.value,
         newPassword.value,
