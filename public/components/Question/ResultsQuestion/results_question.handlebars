@@ -2,7 +2,13 @@
     <div class="results-question">
         <div class="results-question_title-container">
             <h3 class="results-question__description-title">{{question.title}}</h3>
-            <p class="results-question__passage-text">Количество ответов: &nbsp;{{question.number_of_passages}}</p>
+            {{#ifEquals question.title 'Статистика по участникам(Пол)'}}
+                <p class="results-question__passage-text">Количество участников: &nbsp;{{question.number_of_passages}}</p>
+            {{else ifEquals question.title 'Статистика по участникам(Возраст)'}}
+                <p class="results-question__passage-text">Количество участников: &nbsp;{{question.number_of_passages}}</p>
+            {{else}}
+                <p class="results-question__passage-text">Количество ответов: &nbsp;{{question.number_of_passages}}</p>
+            {{/ifEquals}}
         </div>
         {{#ifEquals question.required true}}
             <p class="results-question__required-title">Это обязательный вопрос</p>
