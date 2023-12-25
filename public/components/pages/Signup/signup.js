@@ -1,5 +1,5 @@
 import {ROUTES} from '../../../config.js';
-import {API, defaultFetchErrorMessage} from '../../../modules/api.js';
+import {API, defaultFetchErrorMessage, startWebsocketConnection} from '../../../modules/api.js';
 import {renderMessage, removeMessage} from '../../Message/message.js';
 import {
   nameValidation,
@@ -107,6 +107,7 @@ export const renderSignup = async () => {
 
       navbar();
       goToPage(ROUTES.forms);
+      startWebsocketConnection();
       renderMessage('Вы успешно зарегистрировались');
     } catch (err) {
       renderMessage(defaultFetchErrorMessage, true);

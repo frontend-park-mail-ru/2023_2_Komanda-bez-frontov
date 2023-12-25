@@ -51,4 +51,14 @@ export const navbar = () => {
       goToPage(ROUTES.forms);
     }
   });
+  const mailButton = document.querySelector('#navbar-mail-button');
+  mailButton.addEventListener('click', () => {
+    goToPage(ROUTES.chats);
+  });
+
 };
+
+export const changeMailIconUnread = (unread) => {
+  const mailButton = document.querySelector('#navbar-mail-button');
+  mailButton.innerHTML = unread ? "mark_email_unread" : "mail";
+}

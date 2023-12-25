@@ -1,4 +1,4 @@
-import {backendUrl, ROUTES_API} from '../config.js';
+import {backendUrl, ROUTES_API, websocketUrl} from '../config.js';
 
 const GET_METHOD = 'GET';
 const POST_METHOD = 'POST';
@@ -733,4 +733,172 @@ export class API {
       throw (e);
     }
   }
+
+  /**
+   * Функция для получения всех чатов.
+   *
+   * @async
+   * @function
+   * @return {Promise<{message: string, chats: ( null | [] )}>} Объект с массивом с чатами.
+   * @throws {Error} Если произошла ошибка при запросе или обработке данных.
+   */
+  async getChats() {
+    try {
+      let url = backendUrl + ROUTES_API.getChats.url;
+
+      const res = await fetch(url, {
+        method: GET_METHOD,
+        credentials: 'include',
+      });
+      if (res.status === 450) {
+        return {message: 'Нет подключения к сети', chats: null};
+      }
+
+      const body = await res.json();
+
+      if (res.ok) {
+        const chats = body.data.chats;
+        return {message: 'ok', chats};
+      }
+
+      return {message: defaultErrorMessage, chats: null};
+    } catch (e) {
+      console.log('Ошибка метода getChats:', e);
+      throw (e);
+    }
+  }
+
+  /**
+   * Функция для получения чата по ID.
+   *
+   * @async
+   * @function
+   * @param {Number} id
+   * @return {Promise<{chat: ( null | any )}>} Объект с массивом с чатами.
+   * @throws {Error} Если произошла ошибка при запросе или обработке данных.
+   */
+  async getChatByID(id) {
+    try {
+      const url = backendUrl + ROUTES_API.getChat.url.replace(':id', id.toString());
+
+      const res = await fetch(url, {
+        method: GET_METHOD,
+        credentials: 'include',
+      });
+      if (res.status === 450) {
+        return {message: 'Нет подключения к сети', chat: null};
+      }
+      if (res.status === 404) {
+        return {message: '404', chat: null};
+      }
+      if (res.status === 403) {
+        return {message: 'У вас нет прав на просмотр этой страницы', chat: null};
+      }
+
+      const body = await res.json();
+
+      if (res.ok) {
+        const chat = body.data;
+        return {message: 'ok', chat};
+      }
+
+      return {message: defaultErrorMessage, chat: null};
+    } catch (e) {
+      console.log('Ошибка метода getChat:', e);
+      throw (e);
+    }
+  }
+
+  /**
+   * Проверяет, скольлко у польлзователя непрочитанных сообщений
+   *
+   * @async
+   * @function
+   * @return {Promise<{unread: Number}>} - количество непрочитанных сообщенний
+   * @throws {Error} Если произошла ошибка при запросе или обработке данных.
+   */
+  async checkUnreadMessages() {
+    try {
+      const url = backendUrl + ROUTES_API.checkUnread.url;
+
+      const res = await fetch(url, {
+        method: GET_METHOD,
+        credentials: 'include',
+      });
+
+      const body = await res.json();
+      let unread = 0;
+
+      if (res.ok) {
+        unread = res.body.data.unread;
+        localStorage.setItem('csrf-token', res.headers.get('x-csrf-token'));
+      }
+
+      return {unread};
+    } catch (e) {
+      console.log('Ошибка метода checkUnreadMessages:', e);
+      throw (e);
+    }
+  }
+
+  /**
+   * Функция для отправки сообщения.
+   *
+   * @async
+   * @function
+   * @param {Number} receiver_id - ID получателя.
+   * @param {string} text - Текст письма.
+   * @return {Promise<{message: string}>} Объект с информацией о статусе
+   * @throws {Error} Если произошла ошибка при запросе или обработке данных.
+   */
+  async sendMessage(receiver_id, text) {
+    try {
+      const url = backendUrl + ROUTES_API.sendMessage.url;
+
+      const res = await fetch(url, {
+        method: POST_METHOD,
+        headers: {
+          'Content-Type': 'application/json',
+          'X-CSRF-Token': localStorage.getItem('csrf-token'),
+        },
+        credentials: 'include',
+        body: JSON.stringify({receiver_id, text}),
+      });
+
+      let message = defaultErrorMessage;
+
+      if (res.status === 200) {
+        return {message: 'ok'};
+      }
+      if (res.status === 450) {
+        return {message: 'Нет подключения к сети'};
+      }
+
+      return {message};
+    } catch (e) {
+      console.log('Ошибка метода sendMessage:', e);
+      throw (e);
+    }
+  }
+}
+
+export const startWebsocketConnection = () => {
+  const socket = new WebSocket(websocketUrl);
+
+  socket.onopen = function(event) {
+    console.log('WebSocket соединение установлено');
+  };
+
+  socket.onmessage = function(event) {
+    const message = event.data;
+    console.log('Получено новое сообщение от сервера: ', message);
+  };
+
+  socket.onclose = function(event) {
+    console.log('WebSocket соединение закрыто');
+  };
+
+  socket.onerror = function(error) {
+    console.error('Произошла ошибка в WebSocket соединении: ', error);
+  };
 }

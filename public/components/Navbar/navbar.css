@@ -19,12 +19,17 @@
 }
 .navbar .navbar_profile {
   display: flex;
+  align-items: center;
   cursor: pointer;
 }
 .navbar .navbar_profile .navbar_profile__picture {
   border-radius: 45px;
   width: 45px;
   height: 45px;
+}
+.navbar .navbar_profile span {
+  font-size: 28px;
+  cursor: pointer;
 }
 
 .navbar_button-container {

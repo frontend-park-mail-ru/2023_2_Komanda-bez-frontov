@@ -1,0 +1,17 @@
+{{#if chat}}
+    <div class="chat-item" id="chat-item">
+        {{#ifEquals chat.avatar_check true}}
+            <img class="chat-item__picture" id="chat-item-picture" src="data:image/png;base64, {{../chat.user.avatar}}" alt="">
+        {{/ifEquals}}
+        {{#ifEquals chat.avatar_check false}}
+            <img class="chat-item__picture" id="chat-item-picture" src="../../resources/images/profile_default.png" alt="">
+        {{/ifEquals}}
+        <div class="chat-item__container">
+            <h3>{{chat.user.first_name}}, &nbsp;&nbsp;&nbsp;{{chat.time}}</h3>
+            <p>{{chat.last_message}}</p>
+        </div>
+        {{#ifEquals chat.unread true}}
+            <div class="chat-item__unread-mark"></div>
+        {{/ifEquals}}
+    </div>
+{{/if}}

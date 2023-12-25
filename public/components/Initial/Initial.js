@@ -1,4 +1,4 @@
-import {API, defaultFetchErrorMessage} from '../../modules/api.js';
+import {API, defaultFetchErrorMessage, startWebsocketConnection} from '../../modules/api.js';
 import {renderMessage} from '../Message/message.js';
 import {clearStorage, getAuthAvatar, STORAGE} from '../../modules/storage.js';
 import {navbar} from "../Navbar/navbar.js";
@@ -20,6 +20,7 @@ export const renderInitial = async () => {
     if (isAuth.isAuthorized) {
       STORAGE.user = isAuth.authorizedUser;
       getAuthAvatar();
+      startWebsocketConnection();
     } else {
       localStorage.removeItem('avatar');
     }

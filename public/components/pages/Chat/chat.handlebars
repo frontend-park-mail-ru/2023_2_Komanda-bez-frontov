@@ -1,0 +1,41 @@
+{{#if chat}}
+    <div class="chat">
+        <div class="chat__background"></div>
+        <div class="chat__header">
+            <span class="material-symbols-outlined" id="chat-back-button">arrow_back</span>
+            <h3>{{chat.user.first_name}}</h3>
+            {{#ifEquals chat.avatar_check true}}
+                <img class="chat_header__picture" id="chat-item-picture" src="data:image/png;base64, {{../chat.user.avatar}}" alt="">
+            {{/ifEquals}}
+            {{#ifEquals chat.avatar_check false}}
+                <img class="chat_header__picture" id="chat-item-picture" src="../../../resources/images/profile_default.png" alt="">
+            {{/ifEquals}}
+        </div>
+        <div class="chat__messages-container">
+            {{#each chat.messages}}
+                <div class="chat_message-item">
+                    {{#ifEquals avatar_check true}}
+                        <img class="chat_message-item__picture" id="chat-item-picture" src="data:image/png;base64, {{../author.avatar}}" alt="">
+                    {{/ifEquals}}
+                    {{#ifEquals avatar_check false}}
+                        <img class="chat_message-item__picture" id="chat-item-picture" src="../../../resources/images/profile_default.png" alt="">
+                    {{/ifEquals}}
+                    <div class="chat_message-item__container">
+                        <h3>{{author.first_name}}, &nbsp;&nbsp;&nbsp;{{send_at}}</h3>
+                        <p>{{text}}</p>
+                    </div>
+                    {{#ifEquals is_read true}}
+                        <span class="material-symbols-outlined">done_all</span>
+                    {{/ifEquals}}
+                    {{#ifEquals is_read false}}
+                        <span class="material-symbols-outlined">done</span>
+                    {{/ifEquals}}
+                </div>
+            {{/each}}
+        </div>
+        <div class="chat__send-form">
+            <input class="chat_send-form__input" id="chat-send-input" placeholder="Сообщение" maxlength="256">
+            <span class="material-symbols-outlined" id="chat-send-button">send</span>
+        </div>
+    </div>
+{{/if}}

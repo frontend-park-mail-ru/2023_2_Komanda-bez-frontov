@@ -12,6 +12,8 @@ import {renderResultsForm} from './components/pages/FormResults/form_results.js'
 import {renderArchive} from "./components/pages/Archive/archive.js";
 import {renderPassages} from "./components/pages/MyPassages/passages.js";
 import {renderFormPassage} from "./components/pages/FormPassage/form_pass.js";
+import {renderChatList} from "./components/pages/ChatList/chatlist.js";
+import {renderChat} from "./components/pages/Chat/chat.js";
 
 export const ROUTES = {
   main: {
@@ -84,11 +86,22 @@ export const ROUTES = {
     state: 'main',
     open: renderMainLogout,
   },
+  chats: {
+    url: '/chats',
+    state: 'chats',
+    open: renderChatList,
+  },
+  chat: {
+    url: '/chats/:id',
+    state: 'chat',
+    open: renderChat,
+  },
 };
 
 const domain = 'localhost';
 export const backendUrl = `http://${domain}:8080/api/v1`;
 export const frontendUrl = `http://${domain}:8000`;
+export const websocketUrl = `ws://${domain}:8080/api/v1/message/subscribe`;
 
 const GET_METHOD = 'GET';
 const POST_METHOD = 'POST';
@@ -170,6 +183,22 @@ export const ROUTES_API = {
   },
   passForm: {
     url: '/forms/pass',
+    method: POST_METHOD,
+  },
+  getChats: {
+    url: '/message/chats',
+    method: GET_METHOD,
+  },
+  getChat: {
+    url: '/message/chats/:id',
+    method: GET_METHOD,
+  },
+  checkUnread: {
+    url: '/message/check',
+    method: GET_METHOD,
+  },
+  sendMessage: {
+    url: '/message/send',
     method: POST_METHOD,
   },
 };

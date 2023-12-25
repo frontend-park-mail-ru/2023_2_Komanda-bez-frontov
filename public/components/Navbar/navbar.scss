@@ -20,6 +20,7 @@
 
   .navbar_profile {
     display: flex;
+    align-items: center;
     cursor: pointer;
 
     .navbar_profile__picture {
@@ -28,6 +29,10 @@
       height: 45px;
     }
 
+    span {
+      font-size: 28px;
+      cursor: pointer;
+    }
   }
 }
 

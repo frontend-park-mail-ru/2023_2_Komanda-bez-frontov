@@ -138,8 +138,13 @@ export const initialRouter = async () => {
     case '/signup':
       goToPage(ROUTES.signup);
       break;
+    case '/chats':
+      goToPage(ROUTES.chats);
+      break;
+    case '/chats/:id':
+      goToPage(ROUTES.chat, id);
+      break;
     default:
-      // window.history.pushState('404', '', url);
       navbar();
       render404();
   }
@@ -196,6 +201,12 @@ window.onpopstate = (event) => {
       break;
     case 'signup':
       goToPage(ROUTES.signup, '', true);
+      break;
+    case 'chats':
+      goToPage(ROUTES.chats, '', true);
+      break;
+    case 'chat':
+      goToPage(ROUTES.chat, parseUrl(window.location.pathname).id, true);
       break;
     default:
       render404();
