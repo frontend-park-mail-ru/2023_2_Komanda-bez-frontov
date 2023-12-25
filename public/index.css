@@ -647,6 +647,45 @@ input {
   border-radius: 9px;
   box-shadow: 0 0 4px 0 rgba(34, 60, 80, 0.3);
 }
+.update-profile__name-input-container .update-profile_max-passage__input {
+  height: 24px;
+  margin-bottom: 8px;
+  padding: 8px 8px;
+  font-size: 18px;
+  border-radius: 9px;
+  box-shadow: 0 0 4px 0 rgba(34, 60, 80, 0.3);
+}
+
+.update-profile__select select {
+  width: 500px;
+  appearance: none;
+  background-color: #FFFFFF;
+  border: none;
+  outline: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  cursor: pointer;
+}
+
+.update-profile__select_custom-arrow {
+  display: block;
+  position: absolute;
+  top: 10px;
+  left: 210px;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.update-profile__select select {
+  width: 320px;
+  font-size: 16px;
+}
+
+.update-profile__select_custom-arrow {
+  left: 190px;
+  top: -1px;
+  font-size: 20px;
+}
 
 .update-profile_right-container {
   display: flex;

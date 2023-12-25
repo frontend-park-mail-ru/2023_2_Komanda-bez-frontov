@@ -198,7 +198,7 @@ export class API {
    * @param {string} first_name - Имя.
    * @param {string} username - Имя пользователя.
    * @param {string} email - Почта.
-   * @param {Number} age - Возраст.
+   * @param {string} birthday - дата рождения.
    * @param {string} gender - Пол.
    * @param {string} oldPassword - Текущий пароль.
    * @param {string} newPassword - Новый пароль.
@@ -208,7 +208,7 @@ export class API {
    * @throws {Error} Если произошла ошибка при запросе или обработке данных.
    */
   // eslint-disable-next-line camelcase
-  async updateProfile(first_name, username, email, age, gender, oldPassword, newPassword, avatar = '') {
+  async updateProfile(first_name, username, email, birthday, gender, oldPassword, newPassword, avatar = '') {
     try {
       const url = backendUrl + ROUTES_API.updateProfile.url;
 
@@ -221,7 +221,7 @@ export class API {
         credentials: 'include',
         body: JSON.stringify({
           // eslint-disable-next-line camelcase
-          first_name, username, email, age, gender, oldPassword, newPassword, avatar,
+          first_name, username, email, birthday, gender, oldPassword, newPassword, avatar,
         }),
       });
 
