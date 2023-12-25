@@ -60,7 +60,7 @@ export const renderChatList = async () => {
             const label = document.createElement('a');
             label.classList.add('forms_list_main-container_empty-label');
             label.textContent = 'Пока ничего нет...';
-            chats.appendChild(label);
+            chatsContainer.appendChild(label);
         } else {
             const temp = document.createElement('div');
             chats.forEach((chat) => {
