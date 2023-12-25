@@ -1,18 +1,11 @@
 import {ROUTES} from '../config.js';
-import {renderLogin} from '../components/pages/Login/login.js';
-import {renderSignup} from '../components/pages/Signup/signup.js';
-import {renderForms} from '../components/pages/MyForms/forms.js';
-import {renderForm} from '../components/pages/Form/CheckForm/check_form.js';
-import {renderMain} from '../components/pages/Main/main.js';
+import {clearFormIDToRedirect, formIDToRedirect,} from '../components/pages/Form/CheckForm/check_form.js';
 import {renderInitial} from '../components/Initial/Initial.js';
 import {render404} from '../components/404/404.js';
-import {renderProfile} from '../components/pages/Profile/profile.js';
 import {navbar} from '../components/Navbar/navbar.js';
-import {renderFormUpdate} from '../components/pages/Form/UpdateForm/update_form.js';
-import {renderFormNew} from '../components/pages/Form/FormNew/new_form.js';
-import {renderUpdateProfile} from '../components/pages/UpdateProfile/update_profile.js';
+import {editInProcess, renderQuitEditingWindow} from '../components/pages/Form/UpdateForm/update_form.js';
 import {removeMessage} from "../components/Message/message.js";
-import {renderResultsForm} from "../components/pages/FormResults/form_results.js";
+import {STORAGE} from "./storage.js";
 
 /**
  * Расщепляет url запроса на нормальный url (с :id по умолчанию) и id страницы.
@@ -60,6 +53,20 @@ export const parseUrl = (url) => {
 export const goToPage = (page, id = null, redirect = false) => {
   if (!id) {
     id = '';
+  }
+  if (editInProcess) {
+    renderQuitEditingWindow(page, id, redirect);
+    return;
+  }
+  if (formIDToRedirect !== 0) {
+    if (page !== ROUTES.login && page !== ROUTES.signup) {
+      const tempID = formIDToRedirect;
+      clearFormIDToRedirect();
+      if ((window.location.pathname === '/login' || window.location.pathname === '/signup') && STORAGE.user) {
+        goToPage(ROUTES.form, tempID);
+        return;
+      }
+    }
   }
   const url = page.url.replace(':id', id.toString());
   window.scroll(0, 0);
@@ -143,34 +150,34 @@ window.onpopstate = (event) => {
   const state = event.state;
   switch (state) {
     case 'main':
-      renderMain();
+      goToPage(ROUTES.main, '', true);
       break;
     case 'forms':
-      renderForms();
+      goToPage(ROUTES.forms, '', true);
       break;
     case 'form':
-      renderForm(parseUrl(window.location.pathname).id);
+      goToPage(ROUTES.form, parseUrl(window.location.pathname).id, true);
       break;
     case 'formUpdate':
-      renderFormUpdate(parseUrl(window.location.pathname).id);
+      goToPage(ROUTES.formUpdate, parseUrl(window.location.pathname).id, true);
       break;
     case 'formResults':
-      renderResultsForm(parseUrl(window.location.pathname).id);
+      goToPage(ROUTES.formResults, parseUrl(window.location.pathname).id, true);
       break;
     case 'formNew':
-      renderFormNew();
+      goToPage(ROUTES.formNew, '', true);
       break;
     case 'profile':
-      renderProfile();
+      goToPage(ROUTES.profile, '', true);
       break;
     case 'updateProfile':
-      renderUpdateProfile();
+      goToPage(ROUTES.updateProfile, '', true);
       break;
     case 'login':
-      renderLogin();
+      goToPage(ROUTES.login, '', true);
       break;
     case 'signup':
-      renderSignup();
+      goToPage(ROUTES.signup, '', true);
       break;
     default:
       render404();

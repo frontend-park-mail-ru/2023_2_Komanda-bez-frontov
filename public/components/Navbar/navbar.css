@@ -8,6 +8,7 @@
 .navbar .navbar_logo {
   display: flex;
   align-items: center;
+  cursor: pointer;
 }
 .navbar .navbar_logo span {
   font-size: 32px;
@@ -15,7 +16,6 @@
 }
 .navbar .navbar_logo a {
   font-weight: 700;
-  cursor: pointer;
 }
 .navbar .navbar_profile {
   display: flex;

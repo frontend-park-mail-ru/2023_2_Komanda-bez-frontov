@@ -44,11 +44,21 @@ textarea {
   box-shadow: none;
 }
 
+p, h3 {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 #navbar, #popup {
   position: fixed;
   width: 100%;
   top: 0;
   z-index: 100;
+}
+
+#navbar {
+  background-color: #4B357A;
+  height: 64px;
 }
 
 #message-box, #root{
@@ -65,11 +75,17 @@ textarea {
   #message-box, #root{
     top: 76px;
   }
+  #navbar {
+    height: 76px;
+  }
 }
 
 @media screen and (min-width: 768px){
   #message-box, #root{
-    top: 80px;
+    top: 78px;
+  }
+  #navbar {
+    height: 78px;
   }
 }
 

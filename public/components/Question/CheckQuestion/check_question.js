@@ -3,6 +3,8 @@
  * eslint-disable-next-line func-names
  */
 import {TYPE_SINGLE_CHOICE, TYPE_MULTIPLE_CHOICE, TYPE_TEXT} from "../../pages/Form/CheckForm/check_form.js";
+import {textValidation} from "../../../modules/validation.js";
+import {addValidationToFormInput} from "../../pages/Form/UpdateForm/update_form.js";
 
 Handlebars.registerHelper('ifEquals', (a, b, options) => {
   if (a === b) {
@@ -57,6 +59,11 @@ export const createQuestion = (question) => {
       default:
     }
   });
+
+  if (question.type === TYPE_TEXT) {
+    const errorLabel = questionElement.querySelector('#check-question-validation-error');
+    addValidationToFormInput(textArea, textValidation, errorLabel);
+  }
 
   return questionElement;
 };

@@ -21,7 +21,7 @@ export const renderMain = () => {
 
   const formsButton = document.querySelector('#index-forms-button');
   formsButton.addEventListener('click', () => {
-    goToPage(ROUTES.forms);
+    goToPage(ROUTES.login);
   });
   const signupButton = document.querySelector('#index-signup-button');
   signupButton.addEventListener('click', () => {

@@ -17,7 +17,7 @@ templates['check_question'] = template({"1":function(container,depth0,helpers,pa
     + "</p>\n        <div class=\"check-question__answer\" id=\"question-answer\">\n"
     + ((stack1 = (lookupProperty(helpers,"ifEquals")||(depth0 && lookupProperty(depth0,"ifEquals"))||alias4).call(alias3,((stack1 = (depth0 != null ? lookupProperty(depth0,"question") : depth0)) != null ? lookupProperty(stack1,"type") : stack1),1,{"name":"ifEquals","hash":{},"fn":container.program(4, data, 0, blockParams, depths),"inverse":container.noop,"data":data,"loc":{"start":{"line":9,"column":12},"end":{"line":19,"column":25}}})) != null ? stack1 : "")
     + ((stack1 = (lookupProperty(helpers,"ifEquals")||(depth0 && lookupProperty(depth0,"ifEquals"))||alias4).call(alias3,((stack1 = (depth0 != null ? lookupProperty(depth0,"question") : depth0)) != null ? lookupProperty(stack1,"type") : stack1),2,{"name":"ifEquals","hash":{},"fn":container.program(7, data, 0, blockParams, depths),"inverse":container.noop,"data":data,"loc":{"start":{"line":20,"column":12},"end":{"line":30,"column":25}}})) != null ? stack1 : "")
-    + ((stack1 = (lookupProperty(helpers,"ifEquals")||(depth0 && lookupProperty(depth0,"ifEquals"))||alias4).call(alias3,((stack1 = (depth0 != null ? lookupProperty(depth0,"question") : depth0)) != null ? lookupProperty(stack1,"type") : stack1),3,{"name":"ifEquals","hash":{},"fn":container.program(10, data, 0, blockParams, depths),"inverse":container.noop,"data":data,"loc":{"start":{"line":31,"column":12},"end":{"line":36,"column":25}}})) != null ? stack1 : "")
+    + ((stack1 = (lookupProperty(helpers,"ifEquals")||(depth0 && lookupProperty(depth0,"ifEquals"))||alias4).call(alias3,((stack1 = (depth0 != null ? lookupProperty(depth0,"question") : depth0)) != null ? lookupProperty(stack1,"type") : stack1),3,{"name":"ifEquals","hash":{},"fn":container.program(10, data, 0, blockParams, depths),"inverse":container.noop,"data":data,"loc":{"start":{"line":31,"column":12},"end":{"line":37,"column":25}}})) != null ? stack1 : "")
     + "        </div>\n        <div class=\"button-container\">\n            <button class=\"primary-button\" id=\"check-question__clear-button\">Отменить выбор</button>\n        </div>\n    </div>\n";
 },"2":function(container,depth0,helpers,partials,data) {
     return "            <p class=\"check-question__required-title\">Это обязательный вопрос</p>\n";
@@ -93,7 +93,7 @@ templates['check_question'] = template({"1":function(container,depth0,helpers,pa
         return undefined
     };
 
-  return "                <h3 class=\"check-question__answer-title\">Дайте ответ в формате текста:</h3>\n                <div class=\"check-question__answer-item\">\n                    <textarea class=\"check-question__answers-item-textarea\" id=\"check-question_"
+  return "                <h3 class=\"check-question__answer-title\">Дайте ответ в формате текста:</h3>\n                <p class=\"check-question__required-title display-none\" id=\"check-question-validation-error\">Текст должен состоять из русских или английских слов, цифр и знаков препинания</p>\n                <div class=\"check-question__answer-item\">\n                    <textarea class=\"check-question__answers-item-textarea\" id=\"check-question_"
     + container.escapeExpression(container.lambda(((stack1 = (depths[1] != null ? lookupProperty(depths[1],"question") : depths[1])) != null ? lookupProperty(stack1,"id") : stack1), depth0))
     + "_answers-item\" maxlength=\"512\"></textarea>\n                </div>\n";
 },"compiler":[8,">= 4.3.0"],"main":function(container,depth0,helpers,partials,data,blockParams,depths) {
@@ -104,6 +104,6 @@ templates['check_question'] = template({"1":function(container,depth0,helpers,pa
         return undefined
     };
 
-  return ((stack1 = lookupProperty(helpers,"if").call(depth0 != null ? depth0 : (container.nullContext || {}),(depth0 != null ? lookupProperty(depth0,"question") : depth0),{"name":"if","hash":{},"fn":container.program(1, data, 0, blockParams, depths),"inverse":container.noop,"data":data,"loc":{"start":{"line":1,"column":0},"end":{"line":42,"column":7}}})) != null ? stack1 : "");
+  return ((stack1 = lookupProperty(helpers,"if").call(depth0 != null ? depth0 : (container.nullContext || {}),(depth0 != null ? lookupProperty(depth0,"question") : depth0),{"name":"if","hash":{},"fn":container.program(1, data, 0, blockParams, depths),"inverse":container.noop,"data":data,"loc":{"start":{"line":1,"column":0},"end":{"line":43,"column":7}}})) != null ? stack1 : "");
 },"useData":true,"useDepths":true});
 })();

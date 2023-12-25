@@ -7,6 +7,8 @@ import {createQuestionUpdate, removedAnswersID} from '../../../Question/UpdateQu
 import {closePopUpWindow, renderPopUpWindow} from '../../../PopUpWindow/popup_window.js';
 import {textValidation} from '../../../../modules/validation.js';
 import {TYPE_SINGLE_CHOICE, TYPE_MULTIPLE_CHOICE, TYPE_TEXT} from "../CheckForm/check_form.js";
+import {editInProcess, setEditInProcess} from "../UpdateForm/update_form.js";
+import {checkInputsValidation} from "../../Login/login.js";
 
 /**
  * Функция для рендеринга страницы опроса по его id.
@@ -25,6 +27,9 @@ export const renderFormNew = async () => {
     renderMessage('Вы не авторизованы!', true);
     return;
   }
+
+  const rootElement = document.querySelector('#root');
+  rootElement.innerHTML = '';
 
   const defaultForm = {
     title: '',
@@ -47,8 +52,6 @@ export const renderFormNew = async () => {
     ],
   };
 
-  const rootElement = document.querySelector('#root');
-  rootElement.innerHTML = '';
   rootElement.innerHTML = Handlebars.templates.update_form({form: defaultForm});
 
   const pageTitle = document.querySelector('#update-form-title');
@@ -67,6 +70,19 @@ export const renderFormNew = async () => {
     questions.appendChild(questionElement);
   }
 
+  const cInputs = document.querySelectorAll('input, textarea');
+  cInputs.forEach((input) => {
+    input.addEventListener('change', () => {
+      setEditInProcess(true);
+    }, {once: true})
+  });
+  const cButtons = document.querySelectorAll('#delete-question, #add-answer-button');
+  cButtons.forEach((input) => {
+    input.addEventListener('click', () => {
+      setEditInProcess(true);
+    }, {once: true})
+  });
+
   const addQuestion = document.querySelector('#add-button');
   addQuestion.addEventListener('click', () => {
     const defaultQuestion = {
@@ -82,6 +98,7 @@ export const renderFormNew = async () => {
         },
       ],
     };
+    setEditInProcess(true);
     const questionElement = createQuestionUpdate(defaultQuestion);
     questionElement.querySelector('#delete-question').addEventListener('click', (e) => {
       e.stopImmediatePropagation();
@@ -94,7 +111,7 @@ export const renderFormNew = async () => {
   });
 
   const deleteForm = document.querySelector('#delete-button');
-  deleteForm.classList.add('display-none');;
+  deleteForm.classList.add('display-none');
 
   const saveForm = document.querySelector('#update-button');
   saveForm.innerHTML = 'Опубликовать';
@@ -104,9 +121,8 @@ export const renderFormNew = async () => {
     if (!createdForm) {
       return;
     }
-    const formValidation = formUpdateValidator();
-    if (!formValidation.valid) {
-      renderMessage(formValidation.message, true);
+    if (!checkInputsValidation()) {
+      renderMessage('Исправлены не все данные', true);
       return;
     }
     try {
@@ -114,16 +130,13 @@ export const renderFormNew = async () => {
       const res = await api.saveForm(createdForm);
       if (res.message === 'ok') {
         renderMessage('Опрос успешно создан.');
+        setEditInProcess(false);
         goToPage(ROUTES.form, res.form.id);
         return;
       }
       renderMessage(res.message, true);
     } catch (e) {
-      if (e.toString() !== 'TypeError: Failed to fetch') {
-        renderMessage('Ошибка сервера. Попробуйте позже', true);
-        return;
-      }
-      renderMessage('Потеряно соединение с сервером', true);
+      renderMessage('Ошибка сервера. Перезагрузите страницу', true);
     }
   });
 };
@@ -181,14 +194,6 @@ export const formUpdatePageParser = () => {
       }, {once: true});
       flag = true;
     }
-    if (!question.description) {
-      const descInput = questionElement.querySelector('#update-question__description-textarea');
-      descInput.classList.add('update-form__input-error');
-      descInput.addEventListener('click', () => {
-        descInput.classList.remove('update-form__input-error');
-      }, {once: true});
-      flag = true;
-    }
 
     if (question.type === TYPE_TEXT) {
       question.answers.push({
@@ -242,72 +247,4 @@ export const formUpdatePageParser = () => {
     return null;
   }
   return form;
-};
-
-/**
- * Функция для валидации информации из заполненой формы создания/редактирования опроса.
- * Читает все input`ы и textarea, отдает true/false.
- *
- * @function
- * @return {object} - Объект с полем `valid` (true/false) и с полем
- * `message` (сообщение об ошибке).
- */
-export const formUpdateValidator = () => {
-  // Флаг того, что не все данные введены
-  let valid = true;
-  let message = '';
-
-  let validator = textValidation(document.querySelector('#update-form__title').value);
-
-  if (!validator.valid) {
-    const titleInput = document.querySelector('#update-form__title');
-    titleInput.classList.add('update-form__input-error');
-    titleInput.addEventListener('click', () => {
-      titleInput.classList.remove('update-form__input-error');
-    }, {once: true});
-    valid = false;
-    message = validator.message;
-  }
-
-  const cQuestions = document.querySelectorAll('.update-question');
-  cQuestions.forEach((questionElement) => {
-
-    validator = textValidation(questionElement.querySelector('#update-question__title').value);
-    if (!validator.valid) {
-      const titleInput = questionElement.querySelector('#update-question__title');
-      titleInput.classList.add('update-form__input-error');
-      titleInput.addEventListener('click', () => {
-        titleInput.classList.remove('update-form__input-error');
-      }, {once: true});
-      valid = false;
-      message = validator.message;
-    }
-    validator = textValidation(questionElement.querySelector('#update-question__description-textarea').value);
-    if (!validator.valid) {
-      const descInput = questionElement.querySelector('#update-question__description-textarea');
-      descInput.classList.add('update-form__input-error');
-      descInput.addEventListener('click', () => {
-        descInput.classList.remove('update-form__input-error');
-      }, {once: true});
-      valid = false;
-      message = validator.message;
-    }
-
-    if (!questionElement.querySelector('#update-question__answer-format-text').checked) {
-      const cAnswers = questionElement.querySelectorAll('#update-question__answers-item-input');
-      cAnswers.forEach((answer) => {
-        validator = textValidation(answer.value);
-        if (!validator.valid) {
-          answer.classList.add('update-form__input-error');
-          answer.addEventListener('click', () => {
-            answer.classList.remove('update-form__input-error');
-          }, {once: true});
-          valid = false;
-          message = validator.message;
-        }
-      });
-    }
-
-  });
-  return {valid, message};
 };

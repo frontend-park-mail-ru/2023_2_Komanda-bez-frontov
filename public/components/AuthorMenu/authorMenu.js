@@ -2,8 +2,6 @@ import {frontendUrl, ROUTES} from '../../config.js';
 import {goToPage} from '../../modules/router.js';
 import {STORAGE} from '../../modules/storage.js';
 import {renderPopUpWindow} from '../PopUpWindow/popup_window.js';
-import {renderResultsQuestion} from "../Question/ResultsQuestion/results_question.js";
-import {renderResultsForm} from "../pages/FormResults/form_results.js";
 
 /**
  * Функция для рендеринга меню с инструментами автора опроса.
@@ -44,11 +42,11 @@ export const renderAuthorMenu = (id) => {
       copyButton.innerHTML = 'Скопировано!';
       copyButton.classList.add('primary-button');
       copyButton.classList.remove('secondary-button');
+      // Копирование ссылки в буфер на компе
       navigator.clipboard.writeText(link);
     });
     document.querySelector('#popup-ok-button').innerHTML = 'Скопировать';
-  });
-
+  })
   let flagClosed = false;
   const closeButton = document.querySelector('#author-menu-close-button');
   closeButton.addEventListener('click', () => {

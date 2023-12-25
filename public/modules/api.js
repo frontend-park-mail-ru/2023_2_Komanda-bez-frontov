@@ -5,6 +5,8 @@ const POST_METHOD = 'POST';
 const DELETE_METHOD = 'DELETE';
 const PUT_METHOD = 'PUT';
 
+const defaultErrorMessage = 'Ошибка сервера. Перезагрузите страницу или попробуйте позже.'
+
 export class API {
   /**
    * Проверяет, является ли пользователь авторизованным.
@@ -33,6 +35,7 @@ export class API {
       if (res.ok) {
         isAuthorized = true;
         authorizedUser = body.current_user;
+        localStorage.setItem('csrf-token', res.headers.get('x-csrf-token'));
       }
 
       return {isAuthorized, authorizedUser};
@@ -68,21 +71,27 @@ export class API {
         body: JSON.stringify({email, password}),
       });
 
+      localStorage.setItem('csrf-token', res.headers.get('x-csrf-token'));
+
+      let message = defaultErrorMessage;
+
       const body = await res.json();
 
-      let message = 'Ошибка сервера. Попробуйте позже.';
-
-      if (res.status === 400) {
+      if (res.status === 200) {
+        return {message: 'ok', authorizedUser: body.data};
+      }
+      if (res.status === 450) {
+        return {message: 'Нет подключения к сети', authorizedUser: null};
+      }
+      if (body.data.errors[0].status === 'already logged in') {
         message = 'Невозможно выполнить вход. Завершите предыдущую сессию!';
       }
-      if (res.status === 401) {
+      if (body.data.errors[0].status === 'rpc error: code = NotFound desc = login credentials are wrong'
+            || body.data.errors[0].status === 'rpc error: code = NotFound desc = invalid username or password') {
         message = 'Неправильный логин или пароль';
       }
-      if (res.status === 200) {
-        message = 'ok';
-      }
 
-      return {message, authorizedUser: body.data};
+      return {message, authorizedUser: null};
     } catch (e) {
       // TODO убрать к РК4
       console.log('Ошибка метода userLogin:', e);
@@ -104,15 +113,16 @@ export class API {
 
       const res = await fetch(url, {
         method: POST_METHOD,
+        headers: {
+          'X-CSRF-Token': localStorage.getItem('csrf-token'),
+        },
         credentials: 'include',
       });
+      if (res.status === 450) {
+        return {message: 'Нет подключения к сети'};
+      }
 
-      if (res.status === 404) {
-        return {message: 'Вы не авторизованы, обновите страницу'};
-      }
-      if (res.status === 408) {
-        return {message: 'Потеряно соединение с сервером'};
-      }
+      localStorage.removeItem('csrf-token');
 
       return {message: 'ok'};
     } catch (e) {
@@ -152,20 +162,28 @@ export class API {
           first_name, username, email, password, avatar,
         }),
       });
+      if (res.status === 450) {
+        return {message: 'Нет подключения к сети', registeredUser: null};
+      }
+
+      localStorage.setItem('csrf-token', res.headers.get('x-csrf-token'));
 
       const body = await res.json();
 
       const registeredUser = body.data;
-      let message = 'Ошибка сервера. Попробуйте позже.';
+      let message = defaultErrorMessage;
 
-      if (res.status === 409) {
-        message = 'Пользователь уже существует';
-      }
-      if (res.status === 400) {
-        message = 'Невозможно зарегистрироваться. Завершите предыдущую сессию!';
-      }
       if (res.ok) {
-        message = 'ok';
+        return {message: 'ok', registeredUser};
+      }
+      if (body.data.errors[0].status === 'rpc error: code = Canceled desc = email taken') {
+        message = 'Пользователь с такой почтой уже существует';
+      }
+      if (body.data.errors[0].status === 'rpc error: code = Canceled desc = username taken') {
+        message = 'Пользователь с таким username уже существует';
+      }
+      if (body.data.errors[0].status === 'already logged in') {
+        message = 'Невозможно зарегистрироваться. Завершите предыдущую сессию!';
       }
 
       return {message, registeredUser};
@@ -200,6 +218,7 @@ export class API {
         method: PUT_METHOD,
         headers: {
           'Content-Type': 'application/json',
+          'X-CSRF-Token': localStorage.getItem('csrf-token'),
         },
         credentials: 'include',
         body: JSON.stringify({
@@ -207,26 +226,25 @@ export class API {
           first_name, username, email, oldPassword, newPassword, avatar,
         }),
       });
+      if (res.status === 450) {
+        return {message: 'Нет подключения к сети', updatedUser: null};
+      }
 
+      let message = defaultErrorMessage;
       const body = await res.json();
 
-      const updatedUser = body.data;
-      let message = 'Ошибка сервера. Попробуйте позже.';
-
-      if (res.status === 403) {
+      if (res.ok) {
+        const updatedUser = body.data;
+        return {message: 'ok', updatedUser};
+      }
+      if (body.data.errors[0].status === 'rpc error: code = Unknown desc = invalid password') {
         message = 'Введен неправильный пароль';
       }
-      if (res.status === 404) {
-        message = 'Пользователь не найден';
-      }
-      if (res.status === 409) {
+      if (body.data.errors[0].status ===  'rpc error: code = Unknown desc = current user differs from searched one') {
         message = 'Пользователь с такими email/username уже существует';
       }
-      if (res.ok) {
-        message = 'ok';
-      }
 
-      return {message, updatedUser};
+      return {message, updatedUser: null};
     } catch (e) {
       // TODO убрать к РК4
       console.log('Ошибка метода userSignup:', e);
@@ -256,6 +274,9 @@ export class API {
         method: GET_METHOD,
         credentials: 'include',
       });
+      if (res.status === 450) {
+        return {message: 'Нет подключения к сети', forms: null};
+      }
 
       const body = await res.json();
 
@@ -264,7 +285,7 @@ export class API {
         return {message: 'ok', forms};
       }
 
-      return {message: 'Ошибка сервера. Попробуйте позже', forms: null};
+      return {message: defaultErrorMessage, forms: null};
     } catch (e) {
       // TODO убрать к РК4
       console.log('Ошибка метода getForms:', e);
@@ -294,6 +315,9 @@ export class API {
         method: GET_METHOD,
         credentials: 'include',
       });
+      if (res.status === 450) {
+        return {message: 'Нет подключения к сети', forms: null};
+      }
 
       const body = await res.json();
 
@@ -302,7 +326,7 @@ export class API {
         return {message: 'ok', forms};
       }
 
-      return {message: 'Ошибка сервера. Попробуйте позже', forms: null};
+      return {message: defaultErrorMessage, forms: null};
     } catch (e) {
       // TODO убрать к РК4
       console.log('Ошибка метода getFormsByTitle:', e);
@@ -327,6 +351,12 @@ export class API {
         method: GET_METHOD,
         credentials: 'include',
       });
+      if (res.status === 450) {
+        return {message: 'Нет подключения к сети', form: null};
+      }
+      if (res.status === 404) {
+        return {message: '404', form: null};
+      }
 
       const body = await res.json();
 
@@ -334,11 +364,8 @@ export class API {
         const form = body.data;
         return {message: 'ok', form};
       }
-      if (res.status === 404) {
-        return {message: '404', form: null};
-      }
 
-      return {message: 'Ошибка сервера. Попробуйте позже', form: null};
+      return {message: defaultErrorMessage, form: null};
     } catch (e) {
       // TODO убрать к РК4
       console.log('Ошибка метода getForm:', e);
@@ -372,7 +399,7 @@ export class API {
         return {message: 'ok', avatar};
       }
 
-      return {message: 'Ошибка сервера. Попробуйте позже', avatar: null};
+      return {message: defaultErrorMessage, avatar: null};
     } catch (e) {
       // TODO убрать к РК4
       console.log('Ошибка метода getForm:', e);
@@ -398,10 +425,14 @@ export class API {
         method: POST_METHOD,
         headers: {
           'Content-Type': 'application/json',
+          'X-CSRF-Token': localStorage.getItem('csrf-token'),
         },
         credentials: 'include',
         body: JSON.stringify(saveForm),
       });
+      if (res.status === 450) {
+        return {message: 'Нет подключения к сети', form: null};
+      }
 
       const body = await res.json();
 
@@ -409,11 +440,8 @@ export class API {
         const form = body.data;
         return {message: 'ok', form};
       }
-      if (res.status === 408) {
-        return {message: 'Потеряно соединение с сервером', form: null};
-      }
 
-      return {message: 'Ошибка сервера. Попробуйте позже', form: null};
+      return {message: defaultErrorMessage, form: null};
     } catch (e) {
       // TODO убрать к РК4
       console.log('Ошибка метода saveForm:', e);
@@ -439,10 +467,14 @@ export class API {
         method: PUT_METHOD,
         headers: {
           'Content-Type': 'application/json',
+          'X-CSRF-Token': localStorage.getItem('csrf-token'),
         },
         credentials: 'include',
         body: JSON.stringify(updateForm),
       });
+      if (res.status === 450) {
+        return {message: 'Нет подключения к сети', form: null};
+      }
 
       const body = await res.json();
 
@@ -450,11 +482,8 @@ export class API {
         const form = body.data;
         return {message: 'ok', form};
       }
-      if (res.status === 408) {
-        return {message: 'Потеряно соединение с сервером', form: null};
-      }
 
-      return {message: 'Ошибка сервера. Попробуйте позже', form: null};
+      return {message: defaultErrorMessage, form: null};
     } catch (e) {
       // TODO убрать к РК4
       console.log('Ошибка метода updateForm:', e);
@@ -477,20 +506,24 @@ export class API {
 
       const res = await fetch(url, {
         method: DELETE_METHOD,
+        headers: {
+          'Content-Type': 'application/json',
+          'X-CSRF-Token': localStorage.getItem('csrf-token'),
+        },
         credentials: 'include',
       });
 
+      if (res.status === 450) {
+        return {message: 'Нет подключения к сети'};
+      }
       if (res.ok) {
         return {message: 'ok'};
-      }
-      if (res.status === 408) {
-        return {message: 'Потеряно соединение с сервером'};
       }
       if (res.status === 404) {
         return {message: 'Опрос не удалось обнаружить: уже удален.'};
       }
 
-      return {message: 'Ошибка сервера. Попробуйте позже'};
+      return {message: defaultErrorMessage};
     } catch (e) {
       // TODO убрать к РК4
       console.log('Ошибка метода deleteForm:', e);
@@ -515,6 +548,9 @@ export class API {
         method: GET_METHOD,
         credentials: 'include',
       });
+      if (res.status === 450) {
+        return {message: 'Нет подключения к сети', formResults: null};
+      }
 
       const body = await res.json();
 
@@ -526,7 +562,7 @@ export class API {
         return {message: '404', formResults: null};
       }
 
-      return {message: 'Ошибка сервера. Попробуйте позже', formResults: null};
+      return {message: defaultErrorMessage, formResults: null};
     } catch (e) {
       // TODO убрать к РК4
       console.log('Ошибка метода getFormResultsByID:', e);
@@ -552,6 +588,7 @@ export class API {
         method: POST_METHOD,
         headers: {
           'Content-Type': 'application/json',
+          'X-CSRF-Token': localStorage.getItem('csrf-token'),
         },
         credentials: 'include',
         body: JSON.stringify(passageJSON),
@@ -561,15 +598,21 @@ export class API {
         return {message: 'ok'};
       }
 
-      if (res.status === 400) {
-        return {message: 'Введены не валидные данные', form: null};
+      const body = await res.json();
+
+      if (body.data.errors[0].status === 'rpc error: code = Unknown desc = error validating answer: answer to non-existent question was given') {
+        return {message: 'Введены невалидные данные', form: null};
       }
 
-      if (res.status === 401) {
+      if (res.status === 400) {
         return {message: 'Пользователь не авторизирован для прохождения опроса', form: null};
       }
 
-      return {message: 'Ошибка сервера. Попробуйте позже', form: null};
+      if (res.status === 450) {
+        return {message: 'Нет подключения к сети', form: null};
+      }
+
+      return {message: defaultErrorMessage, form: null};
     } catch (e) {
       // TODO убрать к РК4
       console.log('Ошибка метода passageForm:', e);
