@@ -3,8 +3,7 @@ import HtmlWebpackPlugin from 'html-webpack-plugin';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import ImageMinimizerPlugin from 'image-minimizer-webpack-plugin';
 import CssMinimizerPlugin from 'css-minimizer-webpack-plugin';
-import OptimizeJsPlugin from "optimize-js-plugin";
-
+import TerserPlugin from 'terser-webpack-plugin';
 
 
 const __dirname = path.resolve();
@@ -70,6 +69,7 @@ export default {
     new HtmlWebpackPlugin({template: './public/index.html'}),
   ],
   optimization: {
+    minimize: true,
     minimizer: [
       new ImageMinimizerPlugin({
         minimizer: {
@@ -85,9 +85,7 @@ export default {
         },
       }),
       new CssMinimizerPlugin(),
-      new OptimizeJsPlugin({
-        sourceMap: false
-      })
+      new TerserPlugin(),
     ],
   },
   mode: 'development',
