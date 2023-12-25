@@ -33,6 +33,15 @@
   gap: 9px;
 }
 
+.popup-input {
+  width: 280px;
+  margin: 15px 0 50px 12px;
+  padding: 8px 12px;
+  font-size: 16px;
+  border-radius: 8px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
 .stop-scrolling {
   height: 100%;
   overflow: hidden;

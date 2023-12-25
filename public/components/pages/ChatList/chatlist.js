@@ -79,6 +79,12 @@ export const renderChatList = async () => {
                     'Вы: ' + lastMessage.text : lastMessage.text;
                 chat.unread = lastMessage.sender_id !== STORAGE.user.id && !lastMessage.is_read;
 
+                chat.messages.forEach((mes) => {
+                    chat.messages = chat.messages.sort((a, b) => {
+                        return b.id - a.id
+                    });
+                });
+
                 temp.innerHTML = Handlebars.templates.chat_item({chat: chat});
                 const item = temp.querySelector('#chat-item');
                 item.addEventListener('click', () => {

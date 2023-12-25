@@ -2,6 +2,7 @@ import {API, defaultFetchErrorMessage, startWebsocketConnection} from '../../mod
 import {renderMessage} from '../Message/message.js';
 import {clearStorage, getAuthAvatar, STORAGE} from '../../modules/storage.js';
 import {navbar} from "../Navbar/navbar.js";
+import {checkUnreadMessages} from "../pages/Chat/chat.js";
 
 /**
  * Функция для рендеринга страницы при первой загрузке.
@@ -29,4 +30,7 @@ export const renderInitial = async () => {
   }
 
   navbar();
+  if (STORAGE.user) {
+    await checkUnreadMessages();
+  }
 };

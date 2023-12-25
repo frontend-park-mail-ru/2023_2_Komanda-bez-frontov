@@ -10,6 +10,7 @@ import '../components/ChatsItem/chat_item.precompiled.js';
 import '../components/FormPassagesItem/form_pass_item.precompiled.js';
 import '../components/pages/Chat/chat.precompiled.js';
 import '../components/pages/Form/CheckForm/check_form.precompiled.js';
+import '../components/pages/Form/CheckForm/popup_message.precompiled.js';
 import '../components/pages/Form/UpdateForm/update_form.precompiled.js';
 import '../components/pages/FormResults/form_results.precompiled.js';
 import '../components/pages/FormResults/popup_export.precompiled.js';

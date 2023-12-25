@@ -1,4 +1,5 @@
 import {backendUrl, ROUTES_API, websocketUrl} from '../config.js';
+import {changeMailIconUnread} from "../components/Navbar/navbar.js";
 
 const GET_METHOD = 'GET';
 const POST_METHOD = 'POST';
@@ -830,8 +831,7 @@ export class API {
       let unread = 0;
 
       if (res.ok) {
-        unread = res.body.data.unread;
-        localStorage.setItem('csrf-token', res.headers.get('x-csrf-token'));
+        unread = body.data.unread;
       }
 
       return {unread};
@@ -892,6 +892,10 @@ export const startWebsocketConnection = () => {
   socket.onmessage = function(event) {
     const message = event.data;
     console.log('Получено новое сообщение от сервера: ', message);
+    if (message === 'Connection is established!') {
+      return;
+    }
+    changeMailIconUnread(true);
   };
 
   socket.onclose = function(event) {

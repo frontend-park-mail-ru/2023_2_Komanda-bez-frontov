@@ -4,6 +4,7 @@ import {renderMessage} from '../../Message/message.js';
 import {STORAGE} from '../../../modules/storage.js';
 import {frontendUrl, ROUTES} from '../../../config.js';
 import {goToPage} from '../../../modules/router.js';
+import {changeMailIconUnread} from "../../Navbar/navbar.js";
 
 /**
  * Функция для рендеринга страницы чата по его id.
@@ -48,6 +49,8 @@ export const renderChat = async (id) => {
       return b.id - a.id
     });
   }
+
+  await checkUnreadMessages();
 
   console.log(chat);
 
@@ -104,3 +107,17 @@ export const renderChat = async (id) => {
     renderChat(id)
   });
 };
+
+export const checkUnreadMessages = async () => {
+  const api = new API();
+  try {
+    const res = await api.checkUnreadMessages();
+    if (res.unread > 0) {
+      changeMailIconUnread(true);
+    } else {
+      changeMailIconUnread(false);
+    }
+  } catch (e) {
+    renderMessage(defaultFetchErrorMessage, true);
+  }
+}

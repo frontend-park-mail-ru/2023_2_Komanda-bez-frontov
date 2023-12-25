@@ -28,6 +28,9 @@ export const navbar = () => {
     const profileButton = document.querySelector('#navbar-profile');
     profileButton.addEventListener('click', (e) => {
       e.stopImmediatePropagation();
+      if (e.target.id === 'navbar-mail-button') {
+        return;
+      }
       renderProfileMenu();
     });
   } else {

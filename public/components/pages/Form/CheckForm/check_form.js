@@ -2,10 +2,10 @@ import {API, defaultFetchErrorMessage} from '../../../../modules/api.js';
 import {render404} from '../../../404/404.js';
 import {renderMessage} from '../../../Message/message.js';
 import {STORAGE} from '../../../../modules/storage.js';
-import {frontendUrl, ROUTES} from '../../../../config.js';
+import {backendUrl, frontendUrl, ROUTES, ROUTES_API} from '../../../../config.js';
 import {goToPage} from '../../../../modules/router.js';
 import {createQuestion} from '../../../Question/CheckQuestion/check_question.js';
-import {renderPopUpWindow} from '../../../PopUpWindow/popup_window.js';
+import {closePopUpWindow, renderPopUpWindow} from '../../../PopUpWindow/popup_window.js';
 import {renderAuthorMenu} from '../../../AuthorMenu/authorMenu.js';
 import {checkInputsValidation} from "../../Login/login.js";
 
@@ -86,7 +86,9 @@ export const renderForm = async (id) => {
 
   if (!STORAGE.user || STORAGE.user.id !== formJSON.author.id) {
     const warning = document.querySelector('.form__archive-warning');
-    warning.remove();
+    if (warning) {
+      warning.remove();
+    }
   }
 
   const updateSubmitButton = document.querySelector('#update-submit-button');
@@ -234,4 +236,54 @@ export const renderForm = async (id) => {
   } else {
     createLinkButton.classList.add('display-none');
   }
+
+  if (STORAGE.user && STORAGE.user.id !== formJSON.author.id) {
+    const chatButton = document.querySelector('#form-chat-button');
+    chatButton.classList.remove('display-none');
+    chatButton.addEventListener('click', (e) => {
+      e.stopImmediatePropagation();
+
+      const popupContainer = document.querySelector('#popup');
+      popupContainer.innerHTML = Handlebars.templates.popup_message();
+      document.body.classList.add("stop-scrolling");
+
+      const input = popupContainer.querySelector('#popup-mess-input');
+
+      const cancelButton = document.querySelector('#popup-cancel-button');
+      cancelButton.addEventListener('click', () => {
+        closePopUpWindow();
+      });
+      const okButton = document.querySelector('#popup-ok-button');
+      okButton.addEventListener('click', async() => {
+        if (input.value === '') {
+          return;
+        }
+        const text = input.value;
+        try {
+          const res = await api.sendMessage(formJSON.author.id, text);
+          if (res.message !== 'ok') {
+            renderMessage(res.message, true);
+            return;
+          }
+        } catch (e) {
+          renderMessage(defaultFetchErrorMessage, true);
+          return;
+        }
+        closePopUpWindow();
+        goToPage(ROUTES.chat, formJSON.author.id);
+      });
+
+      const closePopUpWindowByBody = (e) => {
+        if (!e.target.classList.contains('popup_window')
+            && !e.target.parentNode.classList.contains('popup_window')
+            && !e.target.parentNode.classList.contains('button-container-diagram')) {
+          document.body.removeEventListener('click', closePopUpWindowByBody);
+          closePopUpWindow();
+        }
+      };
+
+      document.body.addEventListener('click', closePopUpWindowByBody);
+    })
+  }
+
 };
