@@ -166,7 +166,6 @@ export const renderResultsForm = async (id) => {
   questions.appendChild(participantsElement);
   questions.appendChild(participantAgesElement)
   formJSON.questions.forEach((question) => {
-    console.log(question);
     const questionElement = renderResultsQuestion(question);
     questions.appendChild(questionElement);
   });

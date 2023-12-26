@@ -65,6 +65,7 @@ export const navbar = () => {
 
 export const changeMailIconUnread = (unread) => {
   const mailButton = document.querySelector('#navbar-mail-button');
+  localStorage.setItem('unread', unread);
   if (mailButton) {
     mailButton.innerHTML = unread ? "mark_email_unread" : "mail";
   }

@@ -910,7 +910,8 @@ export const startWebsocketConnection = () => {
   };
 
   socket.onclose = function(event) {
-    console.log('WebSocket соединение закрыто');
+    console.log('WebSocket соединение закрыто. Попытка переподключения:');
+    startWebsocketConnection();
   };
 
   socket.onerror = function(error) {

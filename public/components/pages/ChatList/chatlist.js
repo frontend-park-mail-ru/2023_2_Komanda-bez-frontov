@@ -59,7 +59,7 @@ export const renderChatList = async () => {
         if (chats.length === 0) {
             const label = document.createElement('a');
             label.classList.add('forms_list_main-container_empty-label');
-            label.textContent = 'Пока ничего нет...';
+            label.innerHTML = 'Сообщений пока нет<br>Вы можете начать диалог, нажав "Задать вопрос" на странице любого опроса';
             chatsContainer.appendChild(label);
         } else {
             const temp = document.createElement('div');
