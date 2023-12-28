@@ -32,7 +32,7 @@ templates['chat_item'] = template({"1":function(container,depth0,helpers,partial
     + container.escapeExpression(container.lambda(((stack1 = ((stack1 = (depths[1] != null ? lookupProperty(depths[1],"chat") : depths[1])) != null ? lookupProperty(stack1,"user") : stack1)) != null ? lookupProperty(stack1,"avatar") : stack1), depth0))
     + "\" alt=\"\">\n";
 },"4":function(container,depth0,helpers,partials,data) {
-    return "            <img class=\"chat-item__picture\" id=\"chat-item-picture\" src=\"../../resources/images/profile_default.png\" alt=\"\">\n";
+    return "            <img class=\"chat-item__picture\" id=\"chat-item-picture\" src=\"../../resources/images/profile_default.webp\" alt=\"\">\n";
 },"6":function(container,depth0,helpers,partials,data) {
     return "            <div class=\"chat-item__unread-mark\"></div>\n";
 },"compiler":[8,">= 4.3.0"],"main":function(container,depth0,helpers,partials,data,blockParams,depths) {

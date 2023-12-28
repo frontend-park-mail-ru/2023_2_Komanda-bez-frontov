@@ -113,7 +113,7 @@ export const renderUpdateProfile = async () => {
     const labelAvatar = document.querySelector('#update-profile-avatar-button');
     labelAvatar.style.backgroundColor = '#ffffff';
     avatar = '';
-    profilePicture.src = '../../resources/images/profile_default.png';
+    profilePicture.src = '../../resources/images/profile_default.webp';
   });
 
   const saveButton = document.querySelector('#update-profile-save-button');

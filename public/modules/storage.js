@@ -43,9 +43,9 @@ export const getAuthAvatar = async () => {
       const profilePicture = document.querySelector('#navbar-profile-picture');
       const profilePagePicture = document.querySelector('#profile-page-picture');
       if (res.avatar === '') {
-        profilePicture.src = `../../../resources/images/profile_default.png`;
+        profilePicture.src = `../../../resources/images/profile_default.webp`;
         if (profilePagePicture) {
-          profilePagePicture.src = `../../../resources/images/profile_default.png`;
+          profilePagePicture.src = `../../../resources/images/profile_default.webp`;
         }
       } else {
         profilePicture.src = `data:image/png;base64, ${res.avatar}`;

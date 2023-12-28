@@ -56,6 +56,9 @@
       height: 67px;
     }
   }
+  .popup-input {
+    margin: 15px 0 28px 0;
+  }
 }
 
 @media screen and (max-width: 480px) {
@@ -68,5 +71,8 @@
       margin-top: 8px;
       height: 63px;
     }
+  }
+  .popup-input {
+    width: 250px;
   }
 }

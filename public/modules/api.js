@@ -10,6 +10,7 @@ const DELETE_METHOD = 'DELETE';
 const PUT_METHOD = 'PUT';
 
 const defaultErrorMessage = 'Ошибка сервера. Перезагрузите страницу или попробуйте позже.';
+const noConnectionErrorMessage = 'Невозможно подключится к серверу. Проверьте соединение.';
 export const defaultFetchErrorMessage = 'Ошибка сети. Проверьте ваше подключение';
 export class API {
   /**
@@ -44,7 +45,7 @@ export class API {
 
       return {isAuthorized, authorizedUser};
     } catch (e) {
-      console.log('Ошибка метода isAuth:', e);
+      // console.log('Ошибка метода isAuth:', e);
       throw (e);
     }
   }
@@ -84,7 +85,7 @@ export class API {
         return {message: 'ok', authorizedUser: body.data};
       }
       if (res.status === 450) {
-        return {message: 'Нет подключения к сети', authorizedUser: null};
+        return {message: noConnectionErrorMessage, authorizedUser: null};
       }
       if (body.data.errors[0].status === 'already logged in') {
         message = 'Невозможно выполнить вход. Завершите предыдущую сессию!';
@@ -96,7 +97,7 @@ export class API {
 
       return {message, authorizedUser: null};
     } catch (e) {
-      console.log('Ошибка метода userLogin:', e);
+      // console.log('Ошибка метода userLogin:', e);
       throw (e);
     }
   }
@@ -121,14 +122,14 @@ export class API {
         credentials: 'include',
       });
       if (res.status === 450) {
-        return {message: 'Нет подключения к сети'};
+        return {message: noConnectionErrorMessage};
       }
 
       localStorage.removeItem('csrf-token');
 
       return {message: 'ok'};
     } catch (e) {
-      console.log('Ошибка метода userLogout:', e);
+      // console.log('Ошибка метода userLogout:', e);
       throw (e);
     }
   }
@@ -164,7 +165,7 @@ export class API {
         }),
       });
       if (res.status === 450) {
-        return {message: 'Нет подключения к сети', registeredUser: null};
+        return {message: noConnectionErrorMessage, registeredUser: null};
       }
 
       localStorage.setItem('csrf-token', res.headers.get('x-csrf-token'));
@@ -189,7 +190,7 @@ export class API {
 
       return {message, registeredUser};
     } catch (e) {
-      console.log('Ошибка метода userSignup:', e);
+      // console.log('Ошибка метода userSignup:', e);
       throw (e);
     }
   }
@@ -230,7 +231,7 @@ export class API {
       });
 
       if (res.status === 450) {
-        return {message: 'Нет подключения к сети', updatedUser: null};
+        return {message: noConnectionErrorMessage, updatedUser: null};
       }
 
       let message = defaultErrorMessage;
@@ -249,7 +250,7 @@ export class API {
 
       return {message, updatedUser: null};
     } catch (e) {
-      console.log('Ошибка метода userSignup:', e);
+      // console.log('Ошибка метода userSignup:', e);
       throw (e);
     }
   }
@@ -276,7 +277,7 @@ export class API {
         credentials: 'include',
       });
       if (res.status === 450) {
-        return {message: 'Нет подключения к сети', forms: null};
+        return {message: noConnectionErrorMessage, forms: null};
       }
 
       const body = await res.json();
@@ -288,7 +289,7 @@ export class API {
 
       return {message: defaultErrorMessage, forms: null};
     } catch (e) {
-      console.log('Ошибка метода getForms:', e);
+      // console.log('Ошибка метода getForms:', e);
       throw (e);
     }
   }
@@ -310,7 +311,7 @@ export class API {
         credentials: 'include',
       });
       if (res.status === 450) {
-        return {message: 'Нет подключения к сети', forms: null};
+        return {message: noConnectionErrorMessage, forms: null};
       }
 
       const body = await res.json();
@@ -322,7 +323,7 @@ export class API {
 
       return {message: defaultErrorMessage, forms: null};
     } catch (e) {
-      console.log('Ошибка метода getForms:', e);
+      // console.log('Ошибка метода getForms:', e);
       throw (e);
     }
   }
@@ -345,7 +346,7 @@ export class API {
         credentials: 'include',
       });
       if (res.status === 450) {
-        return {message: 'Нет подключения к сети', form: null};
+        return {message: noConnectionErrorMessage, form: null};
       }
       if (res.status === 404) {
         return {message: '404', form: null};
@@ -363,7 +364,7 @@ export class API {
 
       return {message: defaultErrorMessage, form: null};
     } catch (e) {
-      console.log('Ошибка метода getForm:', e);
+      // console.log('Ошибка метода getForm:', e);
       throw (e);
     }
   }
@@ -392,7 +393,7 @@ export class API {
         credentials: 'include',
       });
       if (res.status === 450) {
-        return {message: 'Нет подключения к сети', forms: null};
+        return {message: noConnectionErrorMessage, forms: null};
       }
 
       const body = await res.json();
@@ -404,7 +405,7 @@ export class API {
 
       return {message: defaultErrorMessage, forms: null};
     } catch (e) {
-      console.log('Ошибка метода getFormsByTitle:', e);
+      // console.log('Ошибка метода getFormsByTitle:', e);
       throw (e);
     }
   }
@@ -427,13 +428,13 @@ export class API {
         credentials: 'include',
       });
       if (res.status === 450) {
-        return {message: 'Нет подключения к сети', form: null};
+        return {message: noConnectionErrorMessage, form: null};
       }
       if (res.status === 404) {
         return {message: '404', form: null};
       }
       if (res.status === 403) {
-        return {message: 'У вас нет прав на просмотр этой страницы', form: null};
+        return {message: noConnectionErrorMessage, form: null};
       }
 
       const body = await res.json();
@@ -445,7 +446,7 @@ export class API {
 
       return {message: defaultErrorMessage, form: null};
     } catch (e) {
-      console.log('Ошибка метода getForm:', e);
+      // console.log('Ошибка метода getForm:', e);
       throw (e);
     }
   }
@@ -478,7 +479,7 @@ export class API {
 
       return {message: defaultErrorMessage, avatar: null};
     } catch (e) {
-      console.log('Ошибка метода getForm:', e);
+      // console.log('Ошибка метода getForm:', e);
       throw (e);
     }
   }
@@ -507,7 +508,7 @@ export class API {
         body: JSON.stringify(saveForm),
       });
       if (res.status === 450) {
-        return {message: 'Нет подключения к сети', form: null};
+        return {message: noConnectionErrorMessage, form: null};
       }
 
       const body = await res.json();
@@ -519,7 +520,7 @@ export class API {
 
       return {message: defaultErrorMessage, form: null};
     } catch (e) {
-      console.log('Ошибка метода saveForm:', e);
+      // console.log('Ошибка метода saveForm:', e);
       throw (e);
     }
   }
@@ -548,7 +549,7 @@ export class API {
         body: JSON.stringify(updateForm),
       });
       if (res.status === 450) {
-        return {message: 'Нет подключения к сети', form: null};
+        return {message: noConnectionErrorMessage, form: null};
       }
 
       const body = await res.json();
@@ -560,7 +561,7 @@ export class API {
 
       return {message: defaultErrorMessage, form: null};
     } catch (e) {
-      console.log('Ошибка метода updateForm:', e);
+      // console.log('Ошибка метода updateForm:', e);
       throw (e);
     }
   }
@@ -588,7 +589,7 @@ export class API {
       });
 
       if (res.status === 450) {
-        return {message: 'Нет подключения к сети'};
+        return {message: noConnectionErrorMessage};
       }
       if (res.ok) {
         return {message: 'ok'};
@@ -599,7 +600,7 @@ export class API {
 
       return {message: defaultErrorMessage};
     } catch (e) {
-      console.log('Ошибка метода deleteForm:', e);
+      // console.log('Ошибка метода deleteForm:', e);
       throw (e);
     }
   }
@@ -629,7 +630,7 @@ export class API {
       });
 
       if (res.status === 450) {
-        return {message: 'Нет подключения к сети'};
+        return {message: noConnectionErrorMessage};
       }
       if (res.ok) {
         return {message: 'ok'};
@@ -643,7 +644,7 @@ export class API {
 
       return {message: defaultErrorMessage};
     } catch (e) {
-      console.log('Ошибка метода deleteForm:', e);
+      // console.log('Ошибка метода deleteForm:', e);
       throw (e);
     }
   }
@@ -666,7 +667,7 @@ export class API {
         credentials: 'include',
       });
       if (res.status === 450) {
-        return {message: 'Нет подключения к сети', formResults: null};
+        return {message: noConnectionErrorMessage, formResults: null};
       }
 
       const body = await res.json();
@@ -684,7 +685,7 @@ export class API {
 
       return {message: defaultErrorMessage, formResults: null};
     } catch (e) {
-      console.log('Ошибка метода getFormResultsByID:', e);
+      // console.log('Ошибка метода getFormResultsByID:', e);
       throw (e);
     }
   }
@@ -728,12 +729,12 @@ export class API {
       }
 
       if (res.status === 450) {
-        return {message: 'Нет подключения к сети', form: null};
+        return {message: noConnectionErrorMessage, form: null};
       }
 
       return {message: defaultErrorMessage, form: null};
     } catch (e) {
-      console.log('Ошибка метода passageForm:', e);
+      // console.log('Ошибка метода passageForm:', e);
       throw (e);
     }
   }
@@ -755,7 +756,7 @@ export class API {
         credentials: 'include',
       });
       if (res.status === 450) {
-        return {message: 'Нет подключения к сети', chats: null};
+        return {message: noConnectionErrorMessage, chats: null};
       }
 
       const body = await res.json();
@@ -767,7 +768,7 @@ export class API {
 
       return {message: defaultErrorMessage, chats: null};
     } catch (e) {
-      console.log('Ошибка метода getChats:', e);
+      // console.log('Ошибка метода getChats:', e);
       throw (e);
     }
   }
@@ -790,7 +791,7 @@ export class API {
         credentials: 'include',
       });
       if (res.status === 450) {
-        return {message: 'Нет подключения к сети', chat: null};
+        return {message: noConnectionErrorMessage, chat: null};
       }
       if (res.status === 404) {
         return {message: '404', chat: null};
@@ -808,7 +809,7 @@ export class API {
 
       return {message: defaultErrorMessage, chat: null};
     } catch (e) {
-      console.log('Ошибка метода getChat:', e);
+      // console.log('Ошибка метода getChat:', e);
       throw (e);
     }
   }
@@ -839,7 +840,7 @@ export class API {
 
       return {unread};
     } catch (e) {
-      console.log('Ошибка метода checkUnreadMessages:', e);
+      // console.log('Ошибка метода checkUnreadMessages:', e);
       throw (e);
     }
   }
@@ -874,12 +875,12 @@ export class API {
         return {message: 'ok'};
       }
       if (res.status === 450) {
-        return {message: 'Нет подключения к сети'};
+        return {message: noConnectionErrorMessage};
       }
 
       return {message};
     } catch (e) {
-      console.log('Ошибка метода sendMessage:', e);
+      // console.log('Ошибка метода sendMessage:', e);
       throw (e);
     }
   }
@@ -889,12 +890,12 @@ export const startWebsocketConnection = () => {
   const socket = new WebSocket(websocketUrl);
 
   socket.onopen = function(event) {
-    console.log('WebSocket соединение установлено');
+    // console.log('WebSocket соединение установлено');
   };
 
   socket.onmessage = function(event) {
     const message = event.data;
-    console.log('Получено новое сообщение от сервера: ', message);
+    // console.log('Получено новое сообщение от сервера: ', message);
     if (message === 'Connection is established!') {
       return;
     }
@@ -910,11 +911,11 @@ export const startWebsocketConnection = () => {
   };
 
   socket.onclose = function(event) {
-    console.log('WebSocket соединение закрыто. Попытка переподключения:');
+    // console.log('WebSocket соединение закрыто. Попытка переподключения:');
     startWebsocketConnection();
   };
 
   socket.onerror = function(error) {
-    console.error('Произошла ошибка в WebSocket соединении: ', error);
+    // console.error('Произошла ошибка в WebSocket соединении: ', error);
   };
 }

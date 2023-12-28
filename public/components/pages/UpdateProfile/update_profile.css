@@ -22,6 +22,7 @@
   display: inline-block;
   padding: 5px 9px 6px 15px;
   font-size: 18px;
+  text-align: center;
   cursor: pointer;
 }
 .update-profile_img-container_avatar-container label .update-profile_img-container_avatar-container__input {

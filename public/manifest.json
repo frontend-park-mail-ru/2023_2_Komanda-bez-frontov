@@ -8,7 +8,7 @@
   "background_color": "#EEE",
   "icons": [
     {
-      "src": "resources/images/icon_desktop.png",
+      "src": "resources/images/icon_desktop.webp",
       "sizes": "512x512",
       "type": "image/png"
     }

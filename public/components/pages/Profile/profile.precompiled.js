@@ -23,7 +23,7 @@ templates['profile'] = template({"1":function(container,depth0,helpers,partials,
         return undefined
     };
 
-  return "<div class=\"profile-background\"></div>\n<div class=\"profile\">\n    <div class=\"profile_main-container\">\n        <img class=\"profile_main-container__picture\" id=\"profile-page-picture\" src=\"../../../resources/images/profile_default.png\" alt=\"\">\n        <div class=\"profile_main-container_name-container\">\n            <h3 id=\"profile-page-name\">"
+  return "<div class=\"profile-background\"></div>\n<div class=\"profile\">\n    <div class=\"profile_main-container\">\n        <img class=\"profile_main-container__picture\" id=\"profile-page-picture\" src=\"../../../resources/images/profile_default.webp\" alt=\"\">\n        <div class=\"profile_main-container_name-container\">\n            <h3 id=\"profile-page-name\">"
     + alias2(alias1(((stack1 = (depth0 != null ? lookupProperty(depth0,"user") : depth0)) != null ? lookupProperty(stack1,"first_name") : stack1), depth0))
     + "</h3>\n            <div class=\"line\"></div>\n            <a id=\"profile-page-username\">"
     + alias2(alias1(((stack1 = (depth0 != null ? lookupProperty(depth0,"user") : depth0)) != null ? lookupProperty(stack1,"username") : stack1), depth0))

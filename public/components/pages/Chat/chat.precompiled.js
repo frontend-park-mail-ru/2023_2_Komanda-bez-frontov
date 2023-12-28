@@ -28,7 +28,7 @@ templates['chat'] = template({"1":function(container,depth0,helpers,partials,dat
     + container.escapeExpression(container.lambda(((stack1 = ((stack1 = (depths[1] != null ? lookupProperty(depths[1],"chat") : depths[1])) != null ? lookupProperty(stack1,"user") : stack1)) != null ? lookupProperty(stack1,"avatar") : stack1), depth0))
     + "\" alt=\"\">\n";
 },"4":function(container,depth0,helpers,partials,data) {
-    return "                <img class=\"chat_header__picture\" id=\"chat-item-picture\" src=\"../../../resources/images/profile_default.png\" alt=\"\">\n";
+    return "                <img class=\"chat_header__picture\" id=\"chat-item-picture\" src=\"../../../resources/images/profile_default.webp\" alt=\"\">\n";
 },"6":function(container,depth0,helpers,partials,data,blockParams,depths) {
     var stack1, helper, alias1=depth0 != null ? depth0 : (container.nullContext || {}), alias2=container.hooks.helperMissing, alias3=container.escapeExpression, alias4="function", lookupProperty = container.lookupProperty || function(parent, propertyName) {
         if (Object.prototype.hasOwnProperty.call(parent, propertyName)) {
@@ -61,7 +61,7 @@ templates['chat'] = template({"1":function(container,depth0,helpers,partials,dat
     + container.escapeExpression(container.lambda(((stack1 = (depths[1] != null ? lookupProperty(depths[1],"author") : depths[1])) != null ? lookupProperty(stack1,"avatar") : stack1), depth0))
     + "\" alt=\"\">\n";
 },"9":function(container,depth0,helpers,partials,data) {
-    return "                        <img class=\"chat_message-item__picture\" id=\"chat-item-picture\" src=\"../../../resources/images/profile_default.png\" alt=\"\">\n";
+    return "                        <img class=\"chat_message-item__picture\" id=\"chat-item-picture\" src=\"../../../resources/images/profile_default.webp\" alt=\"\">\n";
 },"11":function(container,depth0,helpers,partials,data) {
     var stack1, alias1=depth0 != null ? depth0 : (container.nullContext || {}), alias2=container.hooks.helperMissing, lookupProperty = container.lookupProperty || function(parent, propertyName) {
         if (Object.prototype.hasOwnProperty.call(parent, propertyName)) {

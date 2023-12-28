@@ -43,7 +43,7 @@ export const renderLogin = async () => {
     e.preventDefault();
 
     if (!checkInputsValidation()) {
-      renderMessage('Исправлены не все данные', true);
+      renderMessage('Проверьте на правильность введенные почту и пароль', true);
       return;
     }
 

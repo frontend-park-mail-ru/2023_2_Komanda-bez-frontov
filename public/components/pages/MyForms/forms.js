@@ -114,6 +114,7 @@ export const renderForms = async (archive = false) => {
       message = res.message;
       forms = res.forms;
       loadingScreen.classList.add('display-invisible');
+      removeMessage();
     } catch (e) {
       loadingScreen.classList.add('display-invisible');
       renderMessage(defaultFetchErrorMessage, true);
@@ -131,6 +132,7 @@ export const renderForms = async (archive = false) => {
       message = res.message;
       forms = res.forms;
       loadingScreen.classList.add('display-invisible');
+      removeMessage();
     } catch (e) {
       loadingScreen.classList.add('display-invisible');
       renderMessage(defaultFetchErrorMessage, true);

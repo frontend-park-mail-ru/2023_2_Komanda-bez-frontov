@@ -9,6 +9,10 @@ import {renderResultsQuestion} from "../../Question/ResultsQuestion/results_ques
 import {closePopUpWindow} from "../../PopUpWindow/popup_window.js";
 
 function calculateAge(dateOfBirth) {
+  if (!dateOfBirth) {
+    return -1;
+  }
+
   const today = new Date();
   const birthDate = new Date(dateOfBirth);
 
@@ -95,76 +99,78 @@ export const renderResultsForm = async (id) => {
     description.innerHTML += '<br> &nbsp;&nbsp;&nbsp;Прохождений пока нет...';
   }
 
-  const participantsQuestion = {
-    title: 'Статистика по участникам (Пол)',
-    type: 1,
-    number_of_passages: 0,
-    answers: [
-      {text: 'Мужской', selected_times: 0},
-      {text: 'Женский', selected_times: 0},
-      {text: 'Не указан', selected_times: 0},
-    ],
-  }
-
-  if (formJSON.participants) {
-    formJSON.participants.forEach((participant) => {
-      switch (participant.gender) {
-        case 'M':
-          participantsQuestion.answers[0].selected_times += 1;
-          participantsQuestion.number_of_passages += 1;
-          break;
-        case 'F':
-          participantsQuestion.answers[1].selected_times += 1;
-          participantsQuestion.number_of_passages += 1;
-          break
-        default:
-          participantsQuestion.answers[2].selected_times += 1;
-          participantsQuestion.number_of_passages += 1;
-          break;
-      }
-    })
-  }
-
-  const participantsAgeQuestion = {
-    title: 'Статистика по участникам (Возраст)',
-    type: 2,
-    number_of_passages: 0,
-    answers: [
-      {text: '0 - 18', selected_times: 0},
-      {text: '18 - 35', selected_times: 0},
-      {text: '35-60', selected_times: 0},
-      {text: '60+', selected_times: 0},
-    ],
-  }
-
-  if (formJSON.participants) {
-    formJSON.participants.forEach((participant) => {
-      let age = calculateAge(participant.birthday);
-      if (age < 18) {
-        participantsAgeQuestion.answers[0].selected_times += 1;
-        participantsAgeQuestion.number_of_passages += 1;
-      } else if (age >= 18 && age < 35) {
-        participantsAgeQuestion.answers[1].selected_times += 1;
-        participantsAgeQuestion.number_of_passages += 1;
-      } else if (age >= 35 && age < 60) {
-        participantsAgeQuestion.answers[2].selected_times += 1;
-        participantsAgeQuestion.number_of_passages += 1;
-      } else if (age >= 60) {
-        participantsAgeQuestion.answers[3].selected_times += 1;
-        participantsAgeQuestion.number_of_passages += 1;
-      }
-    })
-  }
-
   const questions = document.querySelector('#check-form__questions-container');
-  const participantsElement = renderResultsQuestion(participantsQuestion);
-  const participantAgesElement = renderResultsQuestion(participantsAgeQuestion);
 
-  participantsElement.querySelector('.results-question__passage-text').remove();
-  participantAgesElement.querySelector('.results-question__passage-text').remove();
+  if (!formJSON.anonymous) {
+    const participantsQuestion = {
+      title: 'Статистика по участникам (Пол)',
+      type: 1,
+      number_of_passages: 0,
+      answers: [
+        {text: 'Мужской', selected_times: 0},
+        {text: 'Женский', selected_times: 0},
+        {text: 'Не указан', selected_times: 0},
+      ],
+    }
 
-  questions.appendChild(participantsElement);
-  questions.appendChild(participantAgesElement)
+    if (formJSON.participants) {
+      formJSON.participants.forEach((participant) => {
+        switch (participant.gender) {
+          case 'M':
+            participantsQuestion.answers[0].selected_times += 1;
+            participantsQuestion.number_of_passages += 1;
+            break;
+          case 'F':
+            participantsQuestion.answers[1].selected_times += 1;
+            participantsQuestion.number_of_passages += 1;
+            break
+          default:
+            participantsQuestion.answers[2].selected_times += 1;
+            participantsQuestion.number_of_passages += 1;
+            break;
+        }
+      })
+    }
+
+    const participantsAgeQuestion = {
+      title: 'Статистика по участникам (Возраст)',
+      type: 2,
+      number_of_passages: 0,
+      answers: [
+        {text: '0 - 18', selected_times: 0},
+        {text: '18 - 35', selected_times: 0},
+        {text: '35-60', selected_times: 0},
+        {text: '60+', selected_times: 0},
+      ],
+    }
+
+    if (formJSON.participants) {
+      formJSON.participants.forEach((participant) => {
+        let age = calculateAge(participant.birthday);
+        if (age < 18 && age >= 0) {
+          participantsAgeQuestion.answers[0].selected_times += 1;
+          participantsAgeQuestion.number_of_passages += 1;
+        } else if (age >= 18 && age < 35) {
+          participantsAgeQuestion.answers[1].selected_times += 1;
+          participantsAgeQuestion.number_of_passages += 1;
+        } else if (age >= 35 && age < 60) {
+          participantsAgeQuestion.answers[2].selected_times += 1;
+          participantsAgeQuestion.number_of_passages += 1;
+        } else if (age >= 60) {
+          participantsAgeQuestion.answers[3].selected_times += 1;
+          participantsAgeQuestion.number_of_passages += 1;
+        }
+      })
+    }
+
+    const participantsElement = renderResultsQuestion(participantsQuestion);
+    const participantAgesElement = renderResultsQuestion(participantsAgeQuestion);
+    participantsElement.querySelector('.results-question__passage-text').innerText = 'Количество участников:  ' + formJSON.participants.length.toString();
+    participantAgesElement.querySelector('.results-question__passage-text').innerText = 'Количество участников:  ' + formJSON.participants.length.toString();
+    questions.appendChild(participantsElement);
+    questions.appendChild(participantAgesElement);
+  }
+
   formJSON.questions.forEach((question) => {
     const questionElement = renderResultsQuestion(question);
     questions.appendChild(questionElement);

@@ -8,7 +8,7 @@
                 <img class="chat_header__picture" id="chat-item-picture" src="data:image/png;base64, {{../chat.user.avatar}}" alt="">
             {{/ifEquals}}
             {{#ifEquals chat.avatar_check false}}
-                <img class="chat_header__picture" id="chat-item-picture" src="../../../resources/images/profile_default.png" alt="">
+                <img class="chat_header__picture" id="chat-item-picture" src="../../../resources/images/profile_default.webp" alt="">
             {{/ifEquals}}
         </div>
         <div class="chat__messages-container">
@@ -18,7 +18,7 @@
                         <img class="chat_message-item__picture" id="chat-item-picture" src="data:image/png;base64, {{../author.avatar}}" alt="">
                     {{/ifEquals}}
                     {{#ifEquals avatar_check false}}
-                        <img class="chat_message-item__picture" id="chat-item-picture" src="../../../resources/images/profile_default.png" alt="">
+                        <img class="chat_message-item__picture" id="chat-item-picture" src="../../../resources/images/profile_default.webp" alt="">
                     {{/ifEquals}}
                     <div class="chat_message-item__container">
                         <h3>{{author.first_name}}, &nbsp;&nbsp;&nbsp;{{send_at}}</h3>

@@ -448,6 +448,9 @@ input {
   .popup_window p {
     height: 67px;
   }
+  .popup-input {
+    margin: 15px 0 28px 0;
+  }
 }
 @media screen and (max-width: 480px) {
   .popup_window {
@@ -459,6 +462,9 @@ input {
   .popup_window p {
     margin-top: 8px;
     height: 63px;
+  }
+  .popup-input {
+    width: 250px;
   }
 }
 .profile-background {
@@ -629,6 +635,7 @@ input {
   display: inline-block;
   padding: 5px 9px 6px 15px;
   font-size: 18px;
+  text-align: center;
   cursor: pointer;
 }
 .update-profile_img-container_avatar-container label .update-profile_img-container_avatar-container__input {
@@ -1502,6 +1509,7 @@ input {
   padding-left: 4px;
   font-size: 18px;
   text-align: left;
+  margin: 20px 0 10px 0;
 }
 
 .results-question_answers {
@@ -3002,6 +3010,10 @@ input[type=text],
 input[type=email],
 input[type=tel],
 input[type=number],
+input:-webkit-autofill {
+  -webkit-background-clip: text;
+}
+
 textarea {
   -webkit-appearance: none;
   -moz-appearance: none;

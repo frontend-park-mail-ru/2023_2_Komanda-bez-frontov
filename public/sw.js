@@ -6,7 +6,7 @@ self.addEventListener('install', (event) => {
           '/index.html',
           '/index.css',
           '/index.js',
-          '/resources/images/loading.gif'
+          '/resources/images/loading.webp'
       ]))
   );
 });

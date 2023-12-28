@@ -56,6 +56,9 @@
   .popup_window p {
     height: 67px;
   }
+  .popup-input {
+    margin: 15px 0 28px 0;
+  }
 }
 @media screen and (max-width: 480px) {
   .popup_window {
@@ -67,6 +70,9 @@
   .popup_window p {
     margin-top: 8px;
     height: 63px;
+  }
+  .popup-input {
+    width: 250px;
   }
 }
 

@@ -43,22 +43,24 @@ export const createQuestionUpdate = (question) => {
     const cAnswers = answerContainer.querySelectorAll('.update-question__answers-item');
     cAnswers.forEach((answerElement, index) => {
       const deleteButton = answerElement.querySelector('.update-question__answers-item-delete');
-      deleteButton.addEventListener('click', () => {
-        if (buttonAddAnswer) {
-          buttonAddAnswer.classList.remove('button__disabled');
-        }
-        answers.splice(index, 1);
-        if (answers.length === 0) {
-          answers.push({
-            id: 0,
-            text: '',
-          })
-        }
-        if (deleteButton.id !== '0') {
-          removedAnswersID.push(Number(deleteButton.id));
-        }
-        renderAnswers();
-      });
+      if (deleteButton) {
+        deleteButton.addEventListener('click', () => {
+          if (buttonAddAnswer) {
+            buttonAddAnswer.classList.remove('button__disabled');
+          }
+          answers.splice(index, 1);
+          if (answers.length === 0) {
+            answers.push({
+              id: 0,
+              text: '',
+            })
+          }
+          if (deleteButton.id !== '0') {
+            removedAnswersID.push(Number(deleteButton.id));
+          }
+          renderAnswers();
+        });
+      }
     });
 
     if (answers.length >= 12) {
