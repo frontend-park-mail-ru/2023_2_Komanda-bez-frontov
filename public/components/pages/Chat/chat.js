@@ -84,9 +84,8 @@ export const renderChat = async (id) => {
     goToPage(ROUTES.chats);
   });
 
-  const sendButton = document.querySelector('#chat-send-button');
-  sendButton.addEventListener('click', async () => {
-    const input = document.querySelector('#chat-send-input');
+  const input = document.querySelector('#chat-send-input');
+  const sendMessage = async () => {
     if (input.value === '') {
       return;
     }
@@ -98,11 +97,22 @@ export const renderChat = async (id) => {
         return;
       }
     } catch (e) {
-        renderMessage(defaultFetchErrorMessage, true);
-        return;
+      renderMessage(defaultFetchErrorMessage, true);
+      return;
     }
-    renderChat(id)
+    renderChat(id);
+  }
+
+  const sendButton = document.querySelector('#chat-send-button');
+  sendButton.addEventListener('click', async () => {
+    await sendMessage();
   });
+  input.addEventListener('keypress', async (e) => {
+    if (e.key === 'Enter' && input.value !== '') {
+      await sendMessage();
+    }
+  });
+
 };
 
 export const checkUnreadMessages = async () => {
