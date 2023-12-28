@@ -101,6 +101,7 @@ export const renderResultsForm = async (id) => {
 
   const questions = document.querySelector('#check-form__questions-container');
 
+  formJSON.participants = [];
   if (!formJSON.anonymous) {
     const participantsQuestion = {
       title: 'Статистика по участникам (Пол)',
